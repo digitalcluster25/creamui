@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ohio UI Kit</title>
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', sans-serif; background: #f6f4f0; color: #282828; -webkit-font-smoothing: antialiased; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem; }
+.wrap { max-width: 640px; width: 100%; }
+h1 { font-family: 'Urbanist', sans-serif; font-size: 2.5rem; font-weight: 700; letter-spacing: -0.04em; line-height: 1; margin-bottom: 30px; }
+.sub { font-size: 0.85rem; color: rgba(40,40,40,0.4); margin-bottom: 2.5rem; }
+.group-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(40,40,40,0.3); margin-bottom: 0.5rem; font-family: 'Urbanist', sans-serif; margin-top: 1.5rem; }
+.group-label:first-of-type { margin-top: 0; }
+.nav { display: flex; flex-direction: column; gap: 0.4rem; }
+.nav a { display: flex; align-items: center; justify-content: space-between; padding: 0.9rem 1.25rem; background: white; border-radius: 14px; text-decoration: none; color: #282828; font-family: 'Urbanist', sans-serif; font-weight: 600; font-size: 0.95rem; border: 1px solid rgba(0,0,0,0.06); transition: all .2s cubic-bezier(.645,.045,.355,1); }
+.nav a:hover { background: #282828; color: white; }
+.nav a .desc { font-size: 0.75rem; font-weight: 400; opacity: 0.4; font-family: 'Inter', sans-serif; }
+.nav a:hover .desc { opacity: 0.5; color: white; }
+.tag { display: inline-block; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 6px; border-radius: 4px; background: rgba(62,87,89,0.12); color: #3e5759; margin-right: 0.5rem; font-family: 'Urbanist', sans-serif; }
+.nav a:hover .tag { background: rgba(255,255,255,0.15); color: white; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Ohio UI Kit</h1>
+  <p class="sub">CSS 1:1 из demo19 · shop · product/layout-chair-a132</p>
+  <p class="group-label">Примитивы</p>
+  <div class="nav">
+    <a href="/typography.html"><span><span class="tag">atoms</span>Typography</span><span class="desc">H1–H6 · Body · Links · Code · Colors</span></a>
+    <a href="/buttons.html"><span><span class="tag">atoms</span>Buttons</span><span class="desc">Filled · Outlined · Flat · Text + реальные use-cases</span></a>
+    <a href="/icon-buttons.html"><span><span class="tag">atoms</span>Icon Buttons</span><span class="desc">Header · Slider · Product · Scroll · Social</span></a>
+    <a href="/tags.html"><span><span class="tag">atoms</span>Tags &amp; Elements</span><span class="desc">Sale · In Stock · Breadcrumb · Qty · Swatches · Tabs · Chips</span></a>
+    <a href="/forms.html"><span><span class="tag">atoms</span>Forms</span><span class="desc">Text input · Textarea · Select · Search · Checkbox · Radio · Subscribe</span></a>
+  </div>
+  <p class="group-label">Блоки</p>
+  <div class="nav">
+    <a href="#" style="opacity:0.35;pointer-events:none"><span><span class="tag" style="background:rgba(0,0,0,0.06);color:#999">blocks</span>Product Card</span><span class="desc">coming soon</span></a>
+    <a href="/header.html"><span><span class="tag">blocks</span>Header</span><span class="desc">Sticky · Logo · Nav · Cart</span></a>
+  </div>
+</div>
+</body>
+</html>

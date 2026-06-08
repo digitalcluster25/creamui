@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Typography</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,opsz,wght@0,9..40,100..900;1,9..40,100..900&family=Castoro&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+<style>
+/* =============================================
+   CSS VARIABLES — скопированы из style.css Ohio
+   ============================================= */
+:root {
+  --clb-title-font-family:   'Urbanist', sans-serif;
+  --clb-text-font-family:    'Inter', sans-serif;
+  --clb-code-font-family:    menlo, monaco, consolas, "Lucida Console", monospace;
+
+  --clb-title-font-weight:   700;
+  --clb-title-font-size:     inherit;
+  --clb-title-letter-spacing: inherit;
+  --clb-title-line-height:   inherit;
+  --clb-title-style:         normal;
+  --clb-title-text-transform: none;
+  --clb-title-text-decoration: none;
+  --clb-title-color:         #282828;
+
+  --clb-text-font-size:      0.98em;
+  --clb-text-font-weight:    400; /* body */ 
+  --clb-text-line-height:    1.6;
+  --clb-text-letter-spacing: initial;
+  --clb-text-style:          normal;
+  --clb-text-transform:      none;
+  --clb-text-decoration:     none;
+  --clb-text-color:          rgba(40,40,40,0.85);
+  --clb-text-color-grey:     color-mix(in srgb, rgba(40,40,40,0.85) 72%, white);
+  --clb-text-color-grey-light: color-mix(in srgb, rgba(40,40,40,0.85) 52%, white);
+  --clb-text-medium:         500;
+  --clb-text-semi-bold:      600;
+  --clb-text-bold:           bold;
+
+  --clb-color-primary:       #3e5759;
+  --clb-color-neutral:       color-mix(in srgb, #111013 50%, white);
+  --clb-color-fill:          rgba(136,136,137,0.05);
+  --clb-color-border:        color-mix(in srgb, #888 16%, transparent);
+  --clb-color-warning:       #EC8013;
+
+  --clb-font-size-small:     0.95em;
+  --clb-font-size-large:     1.05em;
+  --clb-font-size-caption:   0.9rem;
+  --clb-font-size-extra-small: 0.9em;
+  --clb-font-size-md-titles: 1.5em;
+
+  /* H scale — из style.css */
+  --clb-title-scale-ratio:   0.68;
+  --clb-title-scale-ratio-h5: 1.24;
+  --clb-h1-font-size:        4.5rem;
+  --clb-h1-font-size-min:    calc(var(--clb-h1-font-size) * 0.6);
+  --clb-h1-clamp-size:       calc(4.5vw + 0.25rem);
+  --clb-h1-letter-spacing:   calc(.045em * -1);
+  --clb-h1-line-height:      1;
+
+  --clb-h2-font-size:        calc(var(--clb-h1-font-size) * var(--clb-title-scale-ratio));
+  --clb-h2-font-size-min:    calc(var(--clb-h2-font-size) * 0.64);
+  --clb-h2-clamp-size:       calc(3.15vw + 0.25rem);
+  --clb-h2-letter-spacing:   calc(.04em * -1);
+  --clb-h2-line-height:      1.05;
+
+  --clb-h3-font-size:        calc(var(--clb-h2-font-size) * var(--clb-title-scale-ratio));
+  --clb-h3-font-size-min:    calc(var(--clb-h3-font-size) * 0.72);
+  --clb-h3-clamp-size:       calc(2.25vw + 0.25rem);
+  --clb-h3-letter-spacing:   calc(.035em * -1);
+  --clb-h3-line-height:      1.15;
+
+  --clb-h4-font-size:        calc(var(--clb-h3-font-size) * var(--clb-title-scale-ratio));
+  --clb-h4-font-size-min:    calc(var(--clb-h4-font-size) * 0.88);
+  --clb-h4-clamp-size:       calc(1.5vw + 0.25rem);
+  --clb-h4-letter-spacing:   calc(.03em * -1);
+  --clb-h4-line-height:      1.2;
+
+  --clb-h5-font-size:        calc(var(--clb-h4-font-size) * var(--clb-title-scale-ratio) * var(--clb-title-scale-ratio-h5));
+  --clb-h5-font-size-min:    calc(var(--clb-h5-font-size) * 0.92);
+  --clb-h5-clamp-size:       calc(1.25vw + 0.25rem);
+  --clb-h5-letter-spacing:   normal;
+  --clb-h5-line-height:      1.3;
+
+  --clb-h6-font-size:        var(--clb-text-font-size);
+  --clb-h6-letter-spacing:   normal;
+  --clb-h6-line-height:      1.4;
+
+  --clb-subtitle-font-family: 'Castoro', serif;
+  --clb-subtitle-font-size:   1.075em;
+  --clb-subtitle-font-weight: 400;
+  --clb-subtitle-color:       inherit;
+  --clb-subtitle-letter-spacing: inherit;
+  --clb-subtitle-line-height: 1.45em;
+
+  --clb-border-radius:        14px;
+  --clb-border-radius-small:  7px;
+  --clb-spacer-05:            0.25rem;
+  --clb-spacer-1:             0.5rem;
+  --clb-spacer-3:             1rem;
+  --clb-spacer-4:             1.25rem;
+  --clb-spacer-5:             1.5rem;
+  --clb-border-style-solid:   solid;
+  --clb-transition-function:  cubic-bezier(.645,.045,.355,1);
+  --clb-transition-duration:  .35s;
+}
+
+/* =============================================
+   BODY — из style.css строка 1138
+   ============================================= */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  color: var(--clb-text-color);
+  font-family: var(--clb-text-font-family);
+  font-size: var(--clb-text-font-size);
+  letter-spacing: var(--clb-text-letter-spacing);
+  line-height: var(--clb-text-line-height);
+  font-weight: var(--clb-text-font-weight);
+  font-style: var(--clb-text-style);
+  text-transform: var(--clb-text-transform);
+  text-decoration: var(--clb-text-decoration);
+  background-color: #f6f4f0;
+  margin: 0; padding: 0;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* =============================================
+   HEADINGS — из style.css строка 1574
+   ============================================= */
+h1, h2, h3, h4, h5, h6, .font-titles {
+  font-family: var(--clb-title-font-family);
+  font-weight: var(--clb-title-font-weight);
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--clb-title-color);
+  font-size: var(--clb-title-font-size);
+  letter-spacing: var(--clb-title-letter-spacing);
+  line-height: var(--clb-title-line-height);
+  font-style: var(--clb-title-style);
+  text-transform: var(--clb-title-text-transform);
+  text-decoration: var(--clb-title-text-decoration);
+}
+
+h1 {
+  font-size: clamp(var(--clb-h1-font-size-min), var(--clb-h1-clamp-size), var(--clb-h1-font-size));
+  letter-spacing: var(--clb-h1-letter-spacing);
+  line-height: var(--clb-h1-line-height);
+}
+h2 {
+  font-size: clamp(var(--clb-h2-font-size-min), var(--clb-h2-clamp-size), var(--clb-h2-font-size));
+  letter-spacing: var(--clb-h2-letter-spacing);
+  line-height: var(--clb-h2-line-height);
+}
+h3 {
+  font-size: clamp(var(--clb-h3-font-size-min), var(--clb-h3-clamp-size), var(--clb-h3-font-size));
+  letter-spacing: var(--clb-h3-letter-spacing);
+  line-height: var(--clb-h3-line-height);
+}
+h4 {
+  font-size: clamp(var(--clb-h4-font-size-min), var(--clb-h4-clamp-size), var(--clb-h4-font-size));
+  letter-spacing: var(--clb-h4-letter-spacing);
+  line-height: var(--clb-h4-line-height);
+}
+h5 {
+  font-size: clamp(var(--clb-h5-font-size-min), var(--clb-h5-clamp-size), var(--clb-h5-font-size));
+  letter-spacing: var(--clb-h5-letter-spacing);
+  line-height: var(--clb-h5-line-height);
+}
+h6 {
+  font-size: var(--clb-h6-font-size);
+  letter-spacing: var(--clb-h6-letter-spacing);
+  line-height: var(--clb-h6-line-height);
+}
+
+/* subtitle */
+.subtitle {
+  font-family: var(--clb-subtitle-font-family);
+  font-size: var(--clb-subtitle-font-size);
+  font-weight: var(--clb-subtitle-font-weight);
+  color: var(--clb-subtitle-color);
+  letter-spacing: var(--clb-subtitle-letter-spacing);
+  line-height: var(--clb-subtitle-line-height);
+}
+
+/* links */
+a {
+  color: var(--clb-color-link, inherit);
+  text-decoration: none;
+  transition: color var(--clb-transition-function) var(--clb-transition-duration);
+}
+a:hover { color: var(--clb-color-primary); }
+
+/* demo links */
+a.demo-link {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, currentColor 30%, transparent);
+  transition: color var(--clb-transition-function) var(--clb-transition-duration),
+              text-decoration-color var(--clb-transition-function) var(--clb-transition-duration);
+}
+a.demo-link:hover {
+  color: var(--clb-color-primary);
+  text-decoration-color: color-mix(in srgb, var(--clb-color-primary) 50%, transparent);
+}
+a.demo-link.-dashed {
+  text-decoration-style: dashed;
+}
+
+/* blockquote */
+blockquote {
+  margin: 0;
+  padding: 0 0 0 var(--clb-spacer-5);
+  position: relative;
+  border-left: var(--clb-spacer-05) var(--clb-border-style-solid) var(--clb-color-neutral);
+}
+blockquote p { margin: 0; font-style: normal; font-weight: var(--clb-text-font-weight); }
+blockquote cite {
+  display: block;
+  margin-top: var(--clb-spacer-05);
+  font-weight: var(--clb-text-semi-bold);
+  font-size: var(--clb-font-size-small);
+  font-style: normal;
+}
+
+/* code / pre */
+code {
+  font-family: var(--clb-code-font-family);
+  font-size: var(--clb-font-size-small);
+  color: var(--clb-text-color-grey);
+  background-color: var(--clb-color-fill);
+  padding: 3px 6px;
+  word-break: normal;
+  border-radius: var(--clb-border-radius-small);
+}
+pre {
+  font-family: var(--clb-code-font-family);
+  font-size: var(--clb-font-size-extra-small);
+  background-color: var(--clb-color-fill);
+  border-left: var(--clb-spacer-05) var(--clb-border-style-solid) var(--clb-color-fill);
+  margin-bottom: 1.6em;
+  max-width: 100%;
+  overflow: auto;
+  padding: var(--clb-spacer-3);
+  border-radius: var(--clb-border-radius);
+}
+
+/* mark */
+mark {
+  background-color: color-mix(in srgb, var(--clb-color-warning) 15%, transparent);
+  padding: var(--clb-spacer-05) 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* =============================================
+   PAGE LAYOUT
+   ============================================= */
+.page { max-width: 900px; margin: 0 auto; padding: 3rem 2rem 6rem; }
+.section { margin-bottom: 3rem; }
+.section-label {
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: #282828; margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem; border-bottom: 1px solid rgba(0,0,0,0.07);
+  font-family: 'Urbanist', sans-serif;
+}
+.meta {
+  font-size: 0.7rem; color: #bbb; font-family: monospace;
+  margin-top: 0.3rem; margin-bottom: 1.5rem;
+}
+.token { color: var(--clb-color-primary); }
+.divider { border: none; border-top: 1px solid rgba(0,0,0,0.07); margin: 2rem 0; }
+.page-title { margin-bottom: 30px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <h1 style="margin-bottom:30px">Ohio UI Kit</h1>
+  <p class="subtitle" style="color:var(--clb-text-color-grey);margin-bottom:3rem">Typography — CSS скопирован 1:1 из style.css · Шрифты: Urbanist + Inter</p>
+
+  <!-- HEADINGS -->
+  <div class="section">
+
+    <h1>H1 — Sweet home collection</h1>
+
+    <h2>H2 — Contemporary Design</h2>
+
+    <h3>H3 — Premium Materials</h3>
+
+    <h4>H4 — Crafted with precision</h4>
+
+    <h5>H5 — Free shipping on EU orders</h5>
+
+    <h6>H6 — Sign up here and take 10% off</h6>
+  </div>
+
+  <hr class="divider">
+
+  <!-- BODY TEXT -->
+  <div class="section">
+
+    <p style="font-size:var(--clb-font-size-large)">Large — Discover contemporary design perfectly tailored to meet the needs of the discerning homeowner. Built with premium materials.</p>
+
+    <p>Body — Discover contemporary design perfectly tailored to meet the needs of the discerning homeowner. Premium materials, built to last a lifetime. Encrypted payments with all major providers.</p>
+
+    <p style="font-size:var(--clb-font-size-small);color:var(--clb-text-color-grey)">Small — EU delivery within 2-5 days. Some exclusions apply. Free shipping on orders over a certain value.</p>
+
+    <p style="font-size:var(--clb-font-size-caption);color:var(--clb-text-color-grey-light)">Caption — Metadata, labels, timestamps and secondary information</p>
+
+    <p class="subtitle">Subtitle — Contemporary design for the discerning homeowner</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- LINKS -->
+  <div class="section">
+    <p>Обычный текст с <a href="#" class="demo-link">ссылкой по умолчанию</a> внутри параграфа. Цвет при hover меняется на <code>--clb-color-primary</code>.</p>
+    <p style="margin-top:1rem">
+      <a href="#" class="demo-link" style="color:var(--clb-color-primary)">Активная ссылка</a>
+      &nbsp;·&nbsp;
+      <a href="#" class="demo-link">Обычная ссылка</a>
+      &nbsp;·&nbsp;
+      <a href="#" class="demo-link -dashed">Dashed underline</a>
+    </p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- BLOCKQUOTE -->
+  <div class="section">
+    <blockquote>
+      <p>Premium materials, built to last a lifetime. We believe in crafting furniture that tells a story and stands the test of time.</p>
+      <cite>— Ohio Theme, Sweet Home Collection</cite>
+    </blockquote>
+  </div>
+
+  <hr class="divider">
+
+  <!-- CODE -->
+  <div class="section">
+    <p>Используй <code>var(--clb-color-primary)</code> для основного цвета бренда, <code>var(--clb-button-border-radius)</code> для кнопок.</p>
+    <pre>/* Ohio CSS tokens */
+--clb-title-font-family: 'Urbanist', sans-serif;
+--clb-text-font-family:  'Inter', sans-serif;
+--clb-color-button:       #282828;
+--clb-color-primary:      #3e5759;</pre>
+  </div>
+
+  <hr class="divider">
+
+  <!-- MARK -->
+  <div class="section">
+    <p>Текст с <mark>выделенным фрагментом</mark> через тег mark — используется для акцентов и поиска.</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- FONT WEIGHTS -->
+  <div class="section">
+    <div style="display:flex;flex-direction:column;gap:0.5rem">
+      <span style="font-family:'Urbanist',sans-serif;font-weight:300;font-size:1.5rem">Light 300 — Sweet home collection</span>
+      <span style="font-family:'Urbanist',sans-serif;font-weight:400;font-size:1.5rem">Regular 400 — Sweet home collection</span>
+      <span style="font-family:'Urbanist',sans-serif;font-weight:500;font-size:1.5rem">Medium 500 — Sweet home collection</span>
+      <span style="font-family:'Urbanist',sans-serif;font-weight:600;font-size:1.5rem">SemiBold 600 — Sweet home collection</span>
+      <span style="font-family:'Urbanist',sans-serif;font-weight:700;font-size:1.5rem">Bold 700 — Sweet home collection</span>
+      <span style="font-family:'Urbanist',sans-serif;font-weight:800;font-size:1.5rem">ExtraBold 800 — Sweet home collection</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div style="display:flex;flex-direction:column;gap:0.5rem">
+      <span style="font-family:'Inter',sans-serif;font-weight:400">Regular 400 — Discover contemporary design perfectly tailored to meet the needs of the discerning homeowner.</span>
+      <span style="font-family:'Inter',sans-serif;font-weight:500">Medium 500 — Discover contemporary design perfectly tailored to meet the needs of the discerning homeowner.</span>
+      <span style="font-family:'Inter',sans-serif;font-weight:600">SemiBold 600 — Discover contemporary design perfectly tailored to meet the needs of the discerning homeowner.</span>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- COLOR PALETTE -->
+  <div class="section">
+    <div style="display:flex;flex-direction:column;gap:0.6rem">
+      <p style="color:var(--clb-title-color);margin:0">Title color — #282828 · <code>--clb-title-color</code></p>
+      <p style="color:var(--clb-text-color);margin:0">Body text — rgba(40,40,40,0.85) · <code>--clb-text-color</code></p>
+      <p style="color:var(--clb-text-color-grey);margin:0">Grey text · <code>--clb-text-color-grey</code></p>
+      <p style="color:var(--clb-text-color-grey-light);margin:0">Grey light text · <code>--clb-text-color-grey-light</code></p>
+      <p style="color:var(--clb-color-primary);margin:0">Primary #3e5759 · <code>--clb-color-primary</code></p>
+    </div>
+  </div>
+
+</div>
+<script src="/nav.js?v=4"></script>
+</body>
+</html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Header</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Urbanist:ital,opsz,wght@0,9..40,100..900;1,9..40,100..900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f6f4f0;
+  color: #282828;
+  -webkit-font-smoothing: antialiased;
+}
+.page { max-width: 1630px; margin: 0 auto; padding: 3rem 25px 6rem; }
+h1 {
+  font-family: 'Urbanist', sans-serif;
+  font-size: 2.25rem; font-weight: 700;
+  color: #111013; letter-spacing: -0.03em;
+  margin-bottom: 30px;
+}
+
+/* =============================================
+   HEADER — точные замеры с demo19 (1680px viewport)
+   header height: 104.6px
+   inner padding: 0 25px
+   layout: space-between
+   ============================================= */
+
+.ohio-header {
+  width: 100%;
+  height: 104.633px;
+  background: rgba(246,244,240,0.97);
+  border: 1px solid rgba(0,0,0,0.07);
+  overflow: hidden;
+  position: relative;
+}
+
+.ohio-header-inner {
+  height: 100%;
+  padding: 0 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ---- LEFT: hamburger + logo ---- */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  width: 153px; /* точно из замера: left block width */
+}
+
+/* Hamburger: 56×56px */
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: rgba(40,40,40,0.85);
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: background 0.35s cubic-bezier(.645,.045,.355,1);
+}
+.icon-button:hover { background: rgba(136,136,137,0.08); }
+.icon-button svg[stroke] { fill: none; }
+.icon-button svg { transform: scale(.9); }
+
+.hamburger-lines {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+}
+.hamburger-lines::before,
+.hamburger-lines::after {
+  content: '';
+  display: block;
+  height: 2px;
+  background: currentColor;
+  margin: 3px 0;
+}
+.hamburger-lines::before { width: 22px; }
+.hamburger-lines::after  { width: 17.6px; }
+
+/* Logo: 82×42px */
+.ohio-logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: rgba(40,40,40,0.85);
+  position: relative;
+}
+.ohio-logo img {
+  width: 82px;
+  height: 42px;
+  display: block;
+  object-fit: contain;
+}
+/* version badge поверх логотипа — справа сверху */
+.ohio-logo-badge {
+  position: absolute;
+  top: -4px;
+  right: -28px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 0.5em;
+  height: 20px;
+  font-size: 9.92px;
+  font-weight: 700;
+  font-family: 'Urbanist', sans-serif;
+  color: rgba(255,255,255,0.95);
+  background: rgba(40,40,40,0.85);
+  border-radius: 7.44px;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* ---- CENTER: nav ---- */
+.header-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 0 1rem;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+/* Nav link: 16px Inter 500, padding 0 12px, height 36px */
+.nav-list li a {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0 12px;
+  height: 36px;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(40,40,40,0.85);
+  text-decoration: none;
+  border-radius: 0;
+  white-space: nowrap;
+  transition: background 0.35s cubic-bezier(.645,.045,.355,1);
+}
+.nav-list li a:hover { background: rgba(136,136,137,0.06); border-radius: 8px; }
+
+/* Chevron: inline SVG 10×6 */
+.nav-chevron {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.5em;
+  opacity: 0.5;
+}
+.nav-chevron svg { width: 1em; height: 1em; }
+
+/* Version chip: 9.92px, h 20px, r 7.44px, bg rgba(40,40,40,0.85) */
+.version-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 0.65em;
+  height: 20px;
+  font-size: 9.92px;
+  font-weight: 600;
+  font-family: 'Urbanist', sans-serif;
+  color: rgba(255,255,255,0.95);
+  background: rgba(40,40,40,0.85);
+  border-radius: 7.44px;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+/* ---- RIGHT: account + price + cart ---- */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  width: 162px; /* точно из замера */
+  justify-content: flex-end;
+}
+
+/* Account icon: 48×48px */
+.icon-button.account {
+  width: 48px;
+  height: 48px;
+}
+
+/* Cart price: 13.3px Inter 500 */
+.cart-price {
+  font-family: 'Inter', sans-serif;
+  font-size: 13.328px;
+  font-weight: 500;
+  color: rgba(40,40,40,0.85);
+  white-space: nowrap;
+}
+
+/* Cart icon: 56×56px, bg rgba(136,136,137,0.05) */
+.icon-button.cart {
+  width: 56px;
+  height: 56px;
+  background: rgba(136,136,137,0.05);
+  position: relative;
+}
+
+/* Count badge */
+.count-badge {
+  position: absolute;
+  top: 2px; right: 2px;
+  min-width: 20px; height: 20px;
+  background: rgba(40,40,40,0.85);
+  color: white;
+  font-size: 11px; font-weight: 700;
+  font-family: 'Urbanist', sans-serif;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* =============================================
+   OFFER BANNER / TOP BAR
+   source: .offer-banner из ohio-parent.css
+   height: --clb-offer-banner-height = 2.5rem
+   bg: linear-gradient(215deg, #D3FC96, #A6FDDA)
+   font-size: --clb-font-size-extra-small = 0.9em
+   ============================================= */
+.offer-banner {
+  position: relative;
+  overflow: hidden;
+  height: 2.5rem;
+  background: rgb(231,227,217);
+}
+
+.offer-banner-inner {
+  height: 100%;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.offer-banner-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-size: 0.9em;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  color: rgba(40,40,40,0.85);
+  margin-left: auto;
+}
+.offer-banner-link {
+  text-decoration: none;
+  color: rgba(40,40,40,0.5);
+  transition: color 0.25s;
+}
+.offer-banner-link:hover { color: rgba(40,40,40,0.85); }
+.offer-banner-link.-active {
+  color: rgba(40,40,40,0.85);
+  cursor: default;
+  pointer-events: none;
+}
+
+.block-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(40,40,40,0.3);
+  font-family: 'Urbanist', sans-serif;
+  margin-bottom: 0.6rem;
+  display: block;
+}
+.block-wrap {
+  margin-bottom: 2.5rem;
+}
+
+.full-width-block {
+  margin-left: -25px;
+  margin-right: -25px;
+}
+</style>
+</head>
+<body>
+<div class="page">
+<h1>Header</h1>
+
+<div class="block-wrap full-width-block"><span class="block-label" style="padding-left:25px;">Top Bar</span><div class="offer-banner">
+  <div class="offer-banner-inner">
+    <div></div>
+    <div class="offer-banner-links">
+      <span class="offer-banner-link -active">Магазин</span>
+      <a class="offer-banner-link" href="#">Строительная компания</a>
+    </div>
+  </div>
+</div></div>
+<div class="block-wrap full-width-block"><span class="block-label" style="padding-left:25px;">Header</span><div class="ohio-header" >
+  <div class="ohio-header-inner">
+
+    <!-- LEFT -->
+    <div class="header-left">
+      <a class="icon-button" href="#" aria-label="Menu" style="background:rgba(136,136,137,0.05);">
+        <span class="hamburger-lines"></span>
+      </a>
+      <a class="ohio-logo" href="#" style="margin-left:16px;">
+        <img src="https://wpsandbox.spaces.community/wp-content/uploads/2026/05/hws-dark-logo-2.png"
+             alt="Logo">
+      </a>
+    </div>
+
+    <!-- NAV -->
+    <nav class="header-nav">
+      <ul class="nav-list">
+        <li><a href="#">Elements <span class="nav-chevron"><svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
+        <li><a href="#">Portfolio <span class="nav-chevron"><svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
+        <li><a href="#">Blog <span class="nav-chevron"><svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
+        <li><a href="#">Shop <span class="nav-chevron"><svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
+        <li><a href="#">Pages <span class="nav-chevron"><svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
+        <li><a href="#">Resources <span class="nav-chevron"><svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
+        <li><a href="#">Changelog <span class="version-chip">V3.7</span></a></li>
+      </ul>
+    </nav>
+
+    <!-- RIGHT -->
+    <div class="header-right">
+      <a class="icon-button account" href="#" aria-label="Account">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+        </svg>
+      </a>
+      <span class="cart-price" style="margin-left:8px;">$0.00</span>
+      <a class="icon-button cart" href="#" aria-label="Cart" style="margin-left:8px;">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 01-8 0"/>
+        </svg>
+        <span class="count-badge">0</span>
+      </a>
+    </div>
+
+  </div>
+</div></div>
+
+
+<div class="block-wrap">
+  <span class="block-label">Nav Menu</span>
+  <div style="display:inline-flex;align-items:center;background:rgba(136,136,137,0.08);border-radius:1rem;padding:0.25rem 0.35rem;">
+    <ul style="list-style:none;display:flex;align-items:center;">
+      <li><a href="#" style="display:flex;align-items:center;gap:0.3rem;padding:0 12px;height:36px;font-family:'Inter',sans-serif;font-size:16px;font-weight:500;color:rgba(40,40,40,0.85);text-decoration:none;white-space:nowrap;">Elements <span style="display:inline-flex;font-size:0.5em;opacity:0.5;"><svg viewBox="0 0 10 6" fill="none" style="width:1em;height:1em;"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
+      <li><a href="#" style="display:flex;align-items:center;gap:0.3rem;padding:0 12px;height:36px;font-family:'Inter',sans-serif;font-size:16px;font-weight:500;color:rgba(40,40,40,0.85);text-decoration:none;white-space:nowrap;">Portfolio <span style="display:inline-flex;font-size:0.5em;opacity:0.5;"><svg viewBox="0 0 10 6" fill="none" style="width:1em;height:1em;"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
+      <li><a href="#" style="display:flex;align-items:center;gap:0.3rem;padding:0 12px;height:36px;font-family:'Inter',sans-serif;font-size:16px;font-weight:500;color:rgba(40,40,40,0.85);text-decoration:none;white-space:nowrap;">Blog <span style="display:inline-flex;font-size:0.5em;opacity:0.5;"><svg viewBox="0 0 10 6" fill="none" style="width:1em;height:1em;"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
+      <li><a href="#" style="display:flex;align-items:center;gap:0.3rem;padding:0 12px;height:36px;font-family:'Inter',sans-serif;font-size:16px;font-weight:500;color:rgba(40,40,40,0.85);text-decoration:none;white-space:nowrap;">Shop <span style="display:inline-flex;font-size:0.5em;opacity:0.5;"><svg viewBox="0 0 10 6" fill="none" style="width:1em;height:1em;"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
+      <li><a href="#" style="display:flex;align-items:center;gap:0.3rem;padding:0 12px;height:36px;font-family:'Inter',sans-serif;font-size:16px;font-weight:500;color:rgba(40,40,40,0.85);text-decoration:none;white-space:nowrap;">Pages <span style="display:inline-flex;font-size:0.5em;opacity:0.5;"><svg viewBox="0 0 10 6" fill="none" style="width:1em;height:1em;"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
+      <li><a href="#" style="display:flex;align-items:center;gap:0.3rem;padding:0 12px;height:36px;font-family:'Inter',sans-serif;font-size:16px;font-weight:500;color:rgba(40,40,40,0.85);text-decoration:none;white-space:nowrap;">Resources <span style="display:inline-flex;font-size:0.5em;opacity:0.5;"><svg viewBox="0 0 10 6" fill="none" style="width:1em;height:1em;"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
+      <li><a href="#" style="display:flex;align-items:center;gap:0.4rem;padding:0 12px;height:36px;font-family:'Inter',sans-serif;font-size:16px;font-weight:500;color:rgba(40,40,40,0.85);text-decoration:none;white-space:nowrap;">Changelog <span class="version-chip">V3.7</span></a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="block-wrap">
+  <span class="block-label">Shop Panel</span>
+  <div style="display:inline-flex;align-items:center;gap:0;">
+    <a class="icon-button account" href="#" aria-label="Account">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+    </a>
+    <span class="cart-price" style="margin-left:8px;">$0.00</span>
+    <a class="icon-button cart" href="#" aria-label="Cart" style="margin-left:8px;">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <span class="count-badge">0</span>
+    </a>
+  </div>
+</div>
+
+</div>
+<script src="/nav.js?v=4"></script>
+</body>
+</html>
