@@ -33,7 +33,6 @@ h1 {
   height: 104.633px;
   background: rgba(246,244,240,0.97);
   border: 1px solid rgba(0,0,0,0.07);
-  overflow: hidden;
   position: relative;
 }
 
@@ -69,7 +68,7 @@ h1 {
   flex-shrink: 0;
   transition: background 0.35s cubic-bezier(.645,.045,.355,1);
 }
-.icon-button:hover { background: rgba(136,136,137,0.08); }
+.icon-button:hover { background: rgba(136,136,137,0.05); }
 .icon-button svg[stroke] { fill: none; }
 .icon-button svg { transform: scale(.9); }
 
@@ -132,6 +131,11 @@ h1 {
   flex: 1;
   padding: 0 1rem;
 }
+.header-nav > ul {
+  background: rgba(136,136,137,0.08);
+  border-radius: 1rem;
+  padding: 0.25rem 0.35rem;
+}
 
 .nav-list {
   list-style: none;
@@ -156,7 +160,8 @@ h1 {
   white-space: nowrap;
   transition: background 0.35s cubic-bezier(.645,.045,.355,1);
 }
-.nav-list li a:hover { background: rgba(136,136,137,0.06); border-radius: 8px; }
+.nav-list:hover li a { opacity: 0.5; }
+.nav-list:hover li:hover a { opacity: 1; }
 
 /* Chevron: inline SVG 10×6 */
 .nav-chevron {
@@ -240,8 +245,7 @@ h1 {
    ============================================= */
 .offer-banner {
   position: relative;
-  overflow: hidden;
-  height: 2.5rem;
+  height: calc(2.5rem + 10px);
   background: rgb(231,227,217);
 }
 
@@ -292,6 +296,120 @@ h1 {
   margin-left: -25px;
   margin-right: -25px;
 }
+
+/* currency-switcher — из tags.html */
+.currency-switcher {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  height: 2rem;
+  background: rgba(136,136,137,0.12);
+  border-radius: 0.9rem;
+  cursor: pointer;
+  font-size: 0.85em;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  color: rgba(40,40,40,0.85);
+  user-select: none;
+}
+.currency-switcher-item {
+  position: relative; z-index: 1;
+  height: 100%; padding: 0 0.65rem;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 0.9rem;
+  color: rgba(40,40,40,0.45);
+  transition: color 0.25s cubic-bezier(.645,.045,.355,1);
+  white-space: nowrap;
+}
+.currency-switcher-item.-active { color: rgba(40,40,40,0.85); }
+.currency-switcher-pill {
+  position: absolute; top: 0; left: 0; height: 100%;
+  background: rgba(255,255,255,0.5);
+  border-radius: 0.9rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  transition: transform 0.25s cubic-bezier(.645,.045,.355,1), width 0.25s cubic-bezier(.645,.045,.355,1);
+  pointer-events: none; z-index: 0;
+}
+
+/* =============================================
+   MEGA MENU — source: ohio-parent.css
+   .header:not(.-mobile) .menu li>ul
+   ============================================= */
+/* nav-item — static чтобы submenu позиционировался от .ohio-header-inner */
+.nav-item { position: static; }
+.header-nav { position: static; }
+/* ohio-header-inner — явный containing block для sub-menu */
+.ohio-header-inner { position: relative; }
+
+.sub-menu {
+  list-style: none;
+  background: #ffffff;
+  padding: 1.25rem;
+  /* full-width: компенсируем padding 0 25px у ohio-header-inner */
+  position: absolute;
+  left: -19px;
+  right: -19px;
+  width: auto;
+  top: 100%;
+  z-index: 100;
+  margin: 0;
+  gap: 0.125rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0 0 var(--clb-border-radius-large, 1rem) var(--clb-border-radius-large, 1rem);
+  box-shadow: 0 20px 32px -8px rgba(0,0,0,0.30), 0 0 1px rgba(0,0,0,0.15);
+  /* начальное состояние */
+  opacity: 0;
+  visibility: hidden;
+  transform-origin: 50% -50px;
+  transform: perspective(400px) rotateX(-10deg);
+  transition: opacity 0.35s cubic-bezier(.645,.045,.355,1),
+              transform 0.35s cubic-bezier(.645,.045,.355,1),
+              visibility 0.35s;
+}
+
+/* Показываем при hover */
+.nav-item:hover > .sub-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: perspective(400px) rotateX(0deg);
+}
+
+/* Пункты меню */
+.sub-menu li { margin: 0; }
+.sub-menu li a {
+  display: flex;
+  align-items: center;
+  padding: 0.438rem 0.75rem;
+  min-height: 2.375rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(40,40,40,0.85);
+  text-decoration: none;
+  border-radius: calc(0.5rem * 0.85);
+  transition: background 0.25s cubic-bezier(.645,.045,.355,1);
+  white-space: nowrap;
+}
+.sub-menu li a:hover {
+  background: rgba(136,136,137,0.05);
+}
+
+/* Stagger анимация пунктов */
+.sub-menu > li {
+  will-change: transform;
+  opacity: 0;
+  transform: translateY(0.5rem);
+  transition: opacity 0.35s cubic-bezier(.645,.045,.355,1),
+              transform 0.35s cubic-bezier(.645,.045,.355,1);
+}
+.nav-item:hover > .sub-menu > li { opacity: 1; transform: translateY(0); }
+.nav-item:hover > .sub-menu > li:nth-child(1) { transition-delay: 0.05s; }
+.nav-item:hover > .sub-menu > li:nth-child(2) { transition-delay: 0.10s; }
+.nav-item:hover > .sub-menu > li:nth-child(3) { transition-delay: 0.15s; }
+.nav-item:hover > .sub-menu > li:nth-child(4) { transition-delay: 0.20s; }
+.nav-item:hover > .sub-menu > li:nth-child(5) { transition-delay: 0.25s; }
+.nav-item:hover > .sub-menu > li:nth-child(6) { transition-delay: 0.30s; }
 </style>
 </head>
 <body>
@@ -300,8 +418,13 @@ h1 {
 
 <div class="block-wrap full-width-block"><span class="block-label" style="padding-left:25px;">Top Bar</span><div class="offer-banner">
   <div class="offer-banner-inner">
-    <div></div>
     <div class="offer-banner-links">
+      <div class="currency-switcher" onclick="switchCurrency(this)" style="margin-right:1rem;">
+        <div class="currency-switcher-pill"></div>
+        <div class="currency-switcher-item -active">USD</div>
+        <div class="currency-switcher-item">UZS</div>
+        <div class="currency-switcher-item">AZN</div>
+      </div>
       <span class="offer-banner-link -active">Магазин</span>
       <a class="offer-banner-link" href="#">Строительная компания</a>
     </div>
@@ -324,13 +447,23 @@ h1 {
     <!-- NAV -->
     <nav class="header-nav">
       <ul class="nav-list">
-        <li><a href="#">Elements <span class="nav-chevron"><svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
-        <li><a href="#">Portfolio <span class="nav-chevron"><svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
-        <li><a href="#">Blog <span class="nav-chevron"><svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
-        <li><a href="#">Shop <span class="nav-chevron"><svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
-        <li><a href="#">Pages <span class="nav-chevron"><svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
-        <li><a href="#">Resources <span class="nav-chevron"><svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
-        <li><a href="#">Changelog <span class="version-chip">V3.7</span></a></li>
+        <li class="nav-item">
+          <a href="#">Каталог <span class="nav-chevron"><svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        <ul class="sub-menu">
+          <li><a href="https://wpsandbox.spaces.community/product-category/bath-sauna-stoves/russian-bath-stoves/">Печи для русской бани</a></li>
+          <li><a href="https://wpsandbox.spaces.community/product-category/bath-sauna-stoves/sauna-stoves/">Печи для сауны</a></li>
+          <li><a href="https://wpsandbox.spaces.community/product-category/bath-sauna-stoves/hammam-stoves/">Печи для хаммама</a></li>
+          <li><a href="https://wpsandbox.spaces.community/product-category/bath-sauna-stoves/commercial-bath-stoves/">Коммерческие печи</a></li>
+          <li><a href="https://wpsandbox.spaces.community/product-category/bath-sauna-stoves/steam-generators/">Парогенераторы</a></li>
+          <li><a href="https://wpsandbox.spaces.community/product-category/bath-accessories/">Аксессуары для бани</a></li>
+        </ul>
+        </li>
+        <li><a href="#">Проекты</a></li>
+        <li><a href="#">Услуги</a></li>
+        <li><a href="#">Бренды</a></li>
+        <li><a href="#">База знаний</a></li>
+        <li><a href="#">О компании</a></li>
+        <li><a href="#">Контакты</a></li>
       </ul>
     </nav>
 
@@ -359,14 +492,14 @@ h1 {
 <div class="block-wrap">
   <span class="block-label">Nav Menu</span>
   <div style="display:inline-flex;align-items:center;background:rgba(136,136,137,0.08);border-radius:1rem;padding:0.25rem 0.35rem;">
-    <ul style="list-style:none;display:flex;align-items:center;">
-      <li><a href="#" style="display:flex;align-items:center;gap:0.3rem;padding:0 12px;height:36px;font-family:'Inter',sans-serif;font-size:16px;font-weight:500;color:rgba(40,40,40,0.85);text-decoration:none;white-space:nowrap;">Elements <span style="display:inline-flex;font-size:0.5em;opacity:0.5;"><svg viewBox="0 0 10 6" fill="none" style="width:1em;height:1em;"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
-      <li><a href="#" style="display:flex;align-items:center;gap:0.3rem;padding:0 12px;height:36px;font-family:'Inter',sans-serif;font-size:16px;font-weight:500;color:rgba(40,40,40,0.85);text-decoration:none;white-space:nowrap;">Portfolio <span style="display:inline-flex;font-size:0.5em;opacity:0.5;"><svg viewBox="0 0 10 6" fill="none" style="width:1em;height:1em;"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
-      <li><a href="#" style="display:flex;align-items:center;gap:0.3rem;padding:0 12px;height:36px;font-family:'Inter',sans-serif;font-size:16px;font-weight:500;color:rgba(40,40,40,0.85);text-decoration:none;white-space:nowrap;">Blog <span style="display:inline-flex;font-size:0.5em;opacity:0.5;"><svg viewBox="0 0 10 6" fill="none" style="width:1em;height:1em;"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
-      <li><a href="#" style="display:flex;align-items:center;gap:0.3rem;padding:0 12px;height:36px;font-family:'Inter',sans-serif;font-size:16px;font-weight:500;color:rgba(40,40,40,0.85);text-decoration:none;white-space:nowrap;">Shop <span style="display:inline-flex;font-size:0.5em;opacity:0.5;"><svg viewBox="0 0 10 6" fill="none" style="width:1em;height:1em;"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
-      <li><a href="#" style="display:flex;align-items:center;gap:0.3rem;padding:0 12px;height:36px;font-family:'Inter',sans-serif;font-size:16px;font-weight:500;color:rgba(40,40,40,0.85);text-decoration:none;white-space:nowrap;">Pages <span style="display:inline-flex;font-size:0.5em;opacity:0.5;"><svg viewBox="0 0 10 6" fill="none" style="width:1em;height:1em;"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
-      <li><a href="#" style="display:flex;align-items:center;gap:0.3rem;padding:0 12px;height:36px;font-family:'Inter',sans-serif;font-size:16px;font-weight:500;color:rgba(40,40,40,0.85);text-decoration:none;white-space:nowrap;">Resources <span style="display:inline-flex;font-size:0.5em;opacity:0.5;"><svg viewBox="0 0 10 6" fill="none" style="width:1em;height:1em;"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
-      <li><a href="#" style="display:flex;align-items:center;gap:0.4rem;padding:0 12px;height:36px;font-family:'Inter',sans-serif;font-size:16px;font-weight:500;color:rgba(40,40,40,0.85);text-decoration:none;white-space:nowrap;">Changelog <span class="version-chip">V3.7</span></a></li>
+    <ul class="nav-list" style="list-style:none;display:flex;align-items:center;">
+      <li><a href="#" style="display:flex;align-items:center;gap:0.3rem;padding:0 12px;height:36px;font-family:'Inter',sans-serif;font-size:16px;font-weight:500;color:rgba(40,40,40,0.85);text-decoration:none;white-space:nowrap;">Каталог <span style="display:inline-flex;font-size:0.5em;opacity:0.5;"><svg viewBox="0 0 10 6" fill="none" style="width:1em;height:1em;"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
+      <li><a href="#" style="display:flex;align-items:center;gap:0.3rem;padding:0 12px;height:36px;font-family:'Inter',sans-serif;font-size:16px;font-weight:500;color:rgba(40,40,40,0.85);text-decoration:none;white-space:nowrap;">Проекты <span style="display:inline-flex;font-size:0.5em;opacity:0.5;"><svg viewBox="0 0 10 6" fill="none" style="width:1em;height:1em;"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
+      <li><a href="#" style="display:flex;align-items:center;gap:0.3rem;padding:0 12px;height:36px;font-family:'Inter',sans-serif;font-size:16px;font-weight:500;color:rgba(40,40,40,0.85);text-decoration:none;white-space:nowrap;">Услуги <span style="display:inline-flex;font-size:0.5em;opacity:0.5;"><svg viewBox="0 0 10 6" fill="none" style="width:1em;height:1em;"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
+      <li><a href="#" style="display:flex;align-items:center;gap:0.3rem;padding:0 12px;height:36px;font-family:'Inter',sans-serif;font-size:16px;font-weight:500;color:rgba(40,40,40,0.85);text-decoration:none;white-space:nowrap;">Бренды <span style="display:inline-flex;font-size:0.5em;opacity:0.5;"><svg viewBox="0 0 10 6" fill="none" style="width:1em;height:1em;"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
+      <li><a href="#" style="display:flex;align-items:center;gap:0.3rem;padding:0 12px;height:36px;font-family:'Inter',sans-serif;font-size:16px;font-weight:500;color:rgba(40,40,40,0.85);text-decoration:none;white-space:nowrap;">База знаний <span style="display:inline-flex;font-size:0.5em;opacity:0.5;"><svg viewBox="0 0 10 6" fill="none" style="width:1em;height:1em;"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
+      <li><a href="#" style="display:flex;align-items:center;gap:0.3rem;padding:0 12px;height:36px;font-family:'Inter',sans-serif;font-size:16px;font-weight:500;color:rgba(40,40,40,0.85);text-decoration:none;white-space:nowrap;">О компании <span style="display:inline-flex;font-size:0.5em;opacity:0.5;"><svg viewBox="0 0 10 6" fill="none" style="width:1em;height:1em;"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
+      <li><a href="#" style="display:flex;align-items:center;gap:0.4rem;padding:0 12px;height:36px;font-family:'Inter',sans-serif;font-size:16px;font-weight:500;color:rgba(40,40,40,0.85);text-decoration:none;white-space:nowrap;">Контакты <span class="version-chip">V3.7</span></a></li>
     </ul>
   </div>
 </div>
@@ -387,5 +520,36 @@ h1 {
 
 </div>
 <script src="/nav.js?v=4"></script>
+
+
+<script>
+function switchCurrency(sw) {
+  var clicked = event.target.closest('.currency-switcher-item');
+  if (!clicked) return;
+  sw.querySelectorAll('.currency-switcher-item').forEach(function(i) { i.classList.remove('-active'); });
+  clicked.classList.add('-active');
+  positionPill(sw);
+}
+function positionPill(sw) {
+  var items = sw.querySelectorAll('.currency-switcher-item');
+  var pill = sw.querySelector('.currency-switcher-pill');
+  var activeIdx = 0;
+  items.forEach(function(item, i) { if (item.classList.contains('-active')) activeIdx = i; });
+  var offset = 0, activeW = 0;
+  items.forEach(function(item, i) {
+    if (i < activeIdx) offset += item.offsetWidth;
+    if (i === activeIdx) activeW = item.offsetWidth;
+  });
+  pill.style.width = activeW + 'px';
+  pill.style.transform = 'translateX(' + offset + 'px)';
+}
+var csObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) { if (e.isIntersecting) { positionPill(e.target); csObs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.currency-switcher').forEach(function(sw) { csObs.observe(sw); });
+window.addEventListener('resize', function() {
+  document.querySelectorAll('.currency-switcher').forEach(positionPill);
+});
+</script>
 </body>
 </html>
