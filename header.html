@@ -391,21 +391,24 @@ h1 {
   transform: perspective(400px) rotateX(0deg) translateY(0);
 }
 .header-mega-menu {
-  left: -19px;
-  right: -19px;
+  left: 0;
+  right: 0;
   top: 100%;
 }
 .standalone-nav-widget {
-  display: inline-flex;
-  max-width: 100%;
+  display: flex;
+  width: 100%;
   align-items: center;
+}
+.standalone-nav-widget > .nav-list {
   background: rgba(136,136,137,0.08);
   border-radius: 1rem;
   padding: 0.25rem 0.35rem;
 }
 .standalone-nav-widget .sub-menu-wide {
-  width: min(1500px, calc(100vw - 50px));
-  right: auto;
+  width: auto;
+  left: 0;
+  right: 0;
 }
 .wide-menu-image-holder {
   flex: 0 0 210px;
@@ -420,7 +423,7 @@ h1 {
 }
 .wide-menu-column {
   flex: 1 1 0;
-  min-width: 150px;
+  min-width: 0;
   list-style: none;
 }
 .wide-menu-title {
