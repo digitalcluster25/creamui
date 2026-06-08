@@ -191,12 +191,18 @@ h1 {
   line-height: 1;
 }
 
+/* ---- CURRENCY: between nav and account ---- */
+.header-currency {
+  flex-shrink: 0;
+  margin: 0 1rem;
+}
+
 /* ---- RIGHT: account + price + cart ---- */
 .header-right {
   display: flex;
   align-items: center;
   gap: 0;
-  width: 162px; /* точно из замера */
+  flex-shrink: 0;
   justify-content: flex-end;
 }
 
@@ -476,12 +482,6 @@ h1 {
 <div class="block-wrap full-width-block"><span class="block-label" style="padding-left:25px;">Top Bar</span><div class="offer-banner">
   <div class="offer-banner-inner">
     <div class="offer-banner-links">
-      <div class="currency-switcher" onclick="switchCurrency(this)" style="margin-right:1rem;">
-        <div class="currency-switcher-pill"></div>
-        <div class="currency-switcher-item -active">USD</div>
-        <div class="currency-switcher-item">UZS</div>
-        <div class="currency-switcher-item">AZN</div>
-      </div>
       <span class="offer-banner-link -active">Магазин</span>
       <a class="offer-banner-link" href="#">Строительная компания</a>
     </div>
@@ -556,6 +556,14 @@ h1 {
         <li><a href="#">Контакты</a></li>
       </ul>
     </nav>
+
+    <!-- CURRENCY -->
+    <div class="currency-switcher header-currency" onclick="switchCurrency(this)">
+      <div class="currency-switcher-pill"></div>
+      <div class="currency-switcher-item -active">USD</div>
+      <div class="currency-switcher-item">UZS</div>
+      <div class="currency-switcher-item">AZN</div>
+    </div>
 
     <!-- RIGHT -->
     <div class="header-right">
