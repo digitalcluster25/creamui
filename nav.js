@@ -16,7 +16,7 @@ const NAV_CSS = `
     top: 0; left: 0; right: 0;
     z-index: 1000;
     height: 48px;
-    background: rgba(246,244,240,0.97);
+    background: rgba(244,241,233,0.97);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(0,0,0,0.07);

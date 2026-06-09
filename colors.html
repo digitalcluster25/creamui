@@ -10,7 +10,7 @@
 body {
   font-family: 'Inter', sans-serif;
   font-size: 16px;
-  background: #f6f4f0;
+  background: #f4f1e9;
   color: #282828;
   -webkit-font-smoothing: antialiased;
 }
@@ -88,7 +88,7 @@ h1 {
 /* Gradient / alpha swatches */
 .swatch-fill-5   { background: rgba(136,136,137,0.05); }
 .swatch-fill-12  { background: rgba(136,136,137,0.12); }
-.swatch-overlay  { background: rgba(40,40,40,0.43); }
+.swatch-overlay  { background: rgba(40,40,40,0.42); }
 
 /* Palette row (compact) */
 .palette-row {
@@ -111,15 +111,17 @@ h1 {
   <!-- PALETTE BAR -->
   <div class="section">
     <div class="palette-row">
-      <div class="seg" style="background:#0D0D0D;"></div>
+      <div class="seg" style="background:#111013;"></div>
+      <div class="seg" style="background:#161518;"></div>
       <div class="seg" style="background:#282828;"></div>
-      <div class="seg" style="background:#3A3A3A;"></div>
       <div class="seg" style="background:#3E5759;"></div>
+      <div class="seg" style="background:#7646DD;"></div>
       <div class="seg" style="background:#D91842;"></div>
-      <div class="seg" style="background:#7A7570;"></div>
-      <div class="seg" style="background:#A8A49D;"></div>
+      <div class="seg" style="background:#29A366;"></div>
+      <div class="seg" style="background:#EC8013;"></div>
+      <div class="seg" style="background:#F4F1E9;"></div>
+      <div class="seg" style="background:#E7E3D9;"></div>
       <div class="seg" style="background:#EFEBE0;"></div>
-      <div class="seg" style="background:#EEECEA;"></div>
       <div class="seg" style="background:#DEE2A2;"></div>
       <div class="seg" style="background:#FFFFFF; border-right:1px solid rgba(0,0,0,0.06);"></div>
     </div>
@@ -156,6 +158,33 @@ h1 {
         </div>
       </div>
 
+      <div class="color-card">
+        <div class="color-swatch" style="background:#7646DD;"></div>
+        <div class="color-info">
+          <div class="color-name">Secondary</div>
+          <div class="color-hex">#7646DD</div>
+          <div class="color-role">--clb-color-secondary</div>
+        </div>
+      </div>
+
+      <div class="color-card">
+        <div class="color-swatch" style="background:#29A366;"></div>
+        <div class="color-info">
+          <div class="color-name">Success</div>
+          <div class="color-hex">#29A366</div>
+          <div class="color-role">--clb-color-success</div>
+        </div>
+      </div>
+
+      <div class="color-card">
+        <div class="color-swatch" style="background:#EC8013;"></div>
+        <div class="color-info">
+          <div class="color-name">Warning</div>
+          <div class="color-hex">#EC8013</div>
+          <div class="color-role">--clb-color-warning</div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -164,72 +193,82 @@ h1 {
     <div class="color-grid">
 
       <div class="color-card">
-        <div class="color-swatch" style="background:#0D0D0D;"></div>
+        <div class="color-swatch" style="background:#111013;"></div>
         <div class="color-info">
-          <div class="color-name">Darkest</div>
-          <div class="color-hex">#0D0D0D</div>
-          <div class="color-role">Hero section background</div>
+          <div class="color-name">Black</div>
+          <div class="color-hex">#111013</div>
+          <div class="color-role">--clb-color-black · overlay, neutral source</div>
         </div>
       </div>
 
       <div class="color-card">
-        <div class="color-swatch" style="background:#3A3A3A;"></div>
+        <div class="color-swatch" style="background:#161518;"></div>
         <div class="color-info">
-          <div class="color-name">Border Dark</div>
-          <div class="color-hex">#3A3A3A</div>
-          <div class="color-role">Dividers on dark backgrounds</div>
+          <div class="color-name">Black Light</div>
+          <div class="color-hex">#161518</div>
+          <div class="color-role">Resolved --clb-color-black-light</div>
         </div>
       </div>
 
       <div class="color-card">
-        <div class="color-swatch" style="background:#7A7570;"></div>
+        <div class="color-swatch" style="background:#646466;"></div>
         <div class="color-info">
-          <div class="color-name">Muted</div>
-          <div class="color-hex">#7A7570</div>
-          <div class="color-role">Subtitle text on dark sections</div>
+          <div class="color-name">Grey</div>
+          <div class="color-hex">#646466</div>
+          <div class="color-role">Resolved --clb-color-grey</div>
         </div>
       </div>
 
       <div class="color-card">
-        <div class="color-swatch" style="background:#A8A49D;"></div>
+        <div class="color-swatch" style="background:#888889;"></div>
         <div class="color-info">
-          <div class="color-name">Muted Light</div>
-          <div class="color-hex">#A8A49D</div>
-          <div class="color-role">Secondary text on hero</div>
+          <div class="color-name">Neutral / Grey Light</div>
+          <div class="color-hex">#888889</div>
+          <div class="color-role">Resolved --clb-color-neutral and --clb-color-grey-light</div>
         </div>
       </div>
 
       <div class="color-card">
-        <div class="color-swatch -bordered" style="background:#f6f4f0;"></div>
+        <div class="color-swatch -bordered" style="background:#f4f1e9;"></div>
         <div class="color-info">
           <div class="color-name">Page BG</div>
-          <div class="color-hex">#F6F4F0</div>
-          <div class="color-role">Body background</div>
+          <div class="color-hex">#F4F1E9</div>
+          <div class="color-role">demo19 .site-content and footer background</div>
         </div>
       </div>
 
     </div>
   </div>
 
-  <!-- LIGHT / CREAM -->
+  <!-- DEMO19 SECTION COLORS -->
   <div class="section">
+    <div class="section-label">Demo19 section colors</div>
     <div class="color-grid">
 
       <div class="color-card">
-        <div class="color-swatch -bordered" style="background:#EFEBE0;"></div>
+        <div class="color-swatch -bordered" style="background:#E7E3D9;"></div>
         <div class="color-info">
-          <div class="color-name">Cream</div>
-          <div class="color-hex">#EFEBE0</div>
-          <div class="color-role">Text on dark banners, overlay titles</div>
+          <div class="color-name">Subheader</div>
+          <div class="color-hex">#E7E3D9</div>
+          <div class="color-role">demo19 .subheader background</div>
         </div>
       </div>
 
       <div class="color-card">
-        <div class="color-swatch -bordered" style="background:#EEECEA;"></div>
+        <div class="color-swatch -bordered" style="background:#EFEBE0;"></div>
         <div class="color-info">
-          <div class="color-name">Off-White</div>
-          <div class="color-hex">#EEECEA</div>
-          <div class="color-role">Text on dark banner variant</div>
+          <div class="color-name">White Dark Mode</div>
+          <div class="color-hex">#EFEBE0</div>
+          <div class="color-role">--clb-color-white-dark-mode</div>
+        </div>
+      </div>
+
+      <div class="color-card">
+        <div class="color-swatch -bordered" style="background:#EBC6BC;"></div>
+        <div class="color-info">
+          <div class="color-name">Pink Section</div>
+          <div class="color-hex">#EBC6BC</div>
+          <div class="color-role">Local demo19 section background</div>
         </div>
       </div>
 
@@ -238,7 +277,7 @@ h1 {
         <div class="color-info">
           <div class="color-name">Lime Cream</div>
           <div class="color-hex">#DEE2A2</div>
-          <div class="color-role">Section accent background (featured panel)</div>
+          <div class="color-role">Local demo19 section background</div>
         </div>
       </div>
 
@@ -280,8 +319,8 @@ h1 {
         <div class="color-swatch swatch-overlay"></div>
         <div class="color-info">
           <div class="color-name">Dark Overlay</div>
-          <div class="color-hex">#28282870</div>
-          <div class="color-role">Banner gradient overlay (43%)</div>
+          <div class="color-hex">rgba(40,40,40, 0.42)</div>
+          <div class="color-role">Actual demo19 overlay-details background</div>
         </div>
       </div>
 
