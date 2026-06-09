@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Footer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Urbanist:ital,opsz,wght@0,9..40,100..900;1,9..40,100..900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f4f1e9;
+  color: #282828;
+  -webkit-font-smoothing: antialiased;
+}
+.page {
+  max-width: 1630px;
+  margin: 0 auto;
+  padding: 3rem 25px 6rem;
+}
+h1 {
+  font-family: 'Urbanist', sans-serif;
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #111013;
+  letter-spacing: -0.03em;
+  margin-bottom: 30px;
+}
+
+.footer-demo {
+  padding-top: 3.25rem;
+  border-top: 1px solid rgba(40,40,40,0.08);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2rem 3rem;
+}
+
+.footer-col {
+  min-width: 0;
+}
+
+.footer-title {
+  font-family: 'Urbanist', sans-serif;
+  font-size: clamp(1.25rem, 1.05rem + 0.35vw, 1.5rem);
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #282828;
+  margin-bottom: 1.15rem;
+}
+
+.footer-list {
+  list-style: none;
+  display: grid;
+  gap: 0.82rem;
+}
+
+.footer-list a,
+.footer-contact {
+  text-decoration: none;
+  color: rgba(40,40,40,0.82);
+  font-size: clamp(1.02rem, 0.95rem + 0.2vw, 1.2rem);
+  line-height: 1.22;
+  letter-spacing: -0.01em;
+}
+
+.footer-list a {
+  display: inline-flex;
+  width: fit-content;
+}
+
+.footer-list a:hover {
+  color: #111013;
+}
+
+.footer-phone {
+  font-family: 'Urbanist', sans-serif;
+  font-size: clamp(1.34rem, 1.18rem + 0.28vw, 1.6rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #282828;
+  text-decoration: none;
+  display: inline-flex;
+  width: fit-content;
+}
+
+.footer-phone:hover {
+  color: #111013;
+}
+
+.footer-note {
+  color: rgba(40,40,40,0.82);
+}
+
+@media (max-width: 1100px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem 2.5rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .page { padding-left: 18px; padding-right: 18px; }
+  .footer-demo { padding-top: 2.25rem; }
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+  .footer-title {
+    margin-bottom: 0.9rem;
+  }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>Footer</h1>
+
+  <section class="footer-demo" aria-label="Footer links block">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-title">Товары</div>
+        <ul class="footer-list">
+          <li><a href="#">Печи для русской бани</a></li>
+          <li><a href="#">Печи для сауны</a></li>
+          <li><a href="#">Печи для хаммама</a></li>
+          <li><a href="#">Коммерческие печи</a></li>
+          <li><a href="#">Парогенераторы</a></li>
+          <li><a href="#">Аксессуары для бани</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-title">Компания</div>
+        <ul class="footer-list">
+          <li><a href="#">О нас</a></li>
+          <li><a href="#">Ответственность</a></li>
+          <li><a href="#">Консультации по подбору</a></li>
+          <li><a href="#">Уход и обслуживание</a></li>
+          <li><a href="#">Обзор материалов</a></li>
+          <li><a href="#">Инструкции и документы</a></li>
+          <li><a href="#">Характеристики товаров</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-title">Помощь</div>
+        <ul class="footer-list">
+          <li><a href="#">Центр помощи</a></li>
+          <li><a href="#">Отмена заказа</a></li>
+          <li><a href="#">Возврат и гарантия</a></li>
+          <li><a href="#">Доставка</a></li>
+          <li><a href="#">Доступность сайта</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-title">Контакты</div>
+        <ul class="footer-list">
+          <li><a class="footer-phone" href="tel:+78002000000">8 800 200-00-00</a></li>
+          <li><div class="footer-contact">Понедельник – пятница</div></li>
+          <li><div class="footer-contact">10:00 - 19:00</div></li>
+          <li><a class="footer-contact" href="mailto:sales@wpsandbox.spaces.community">sales@wpsandbox.spaces.community</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
+<script src="/nav.js?v=4"></script>
+</body>
+</html>
