@@ -5,9 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Flexbox & Grid</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Urbanist:ital,opsz,wght@0,9..40,100..900;1,9..40,100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/tokens.css">
+<link rel="stylesheet" href="/elements.css">
+<link rel="stylesheet" href="/blocks.css">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 /* === CSS VARIABLES — точно из ohio-parent.css === */
 :root {
   --clb-grid-gutter:    1rem;
@@ -22,21 +23,6 @@
   --clb-spacer-3:       1rem;
   --clb-spacer-4:       1.25rem;
   --clb-gap-widget:     1.4em;
-}
-
-body {
-  font-family: 'Inter', sans-serif;
-  font-size: 16px;
-  background: #f4f1e9;
-  color: #282828;
-  -webkit-font-smoothing: antialiased;
-}
-.page { max-width: 900px; margin: 0 auto; padding: 3rem 2rem 6rem; }
-h1 {
-  font-family: 'Urbanist', sans-serif;
-  font-size: 2.25rem; font-weight: 700;
-  color: #111013; letter-spacing: -0.03em;
-  margin-bottom: 30px;
 }
 
 /* Demo block styling */
@@ -70,13 +56,6 @@ h1 {
 .box.sm { padding: 0.4rem 0.6rem; min-width: 40px; text-align: center; }
 .box.tall { min-height: 60px; display: flex; align-items: center; }
 .box.wide { min-width: 120px; }
-.demo-wrap {
-  background: rgba(255,255,255,0.6);
-  border: 1px solid rgba(0,0,0,0.06);
-  border-radius: 10px;
-  padding: 1rem;
-}
-
 /* =============================================
    FLEXBOX — из ohio-parent.css + ohio-woo.css
    ============================================= */
@@ -298,8 +277,8 @@ h1 {
 </style>
 </head>
 <body>
-<div class="page">
-<h1>Flexbox & Grid</h1>
+<div class="demo-page">
+<h1 class="demo-title">Flexbox & Grid</h1>
 
 <!-- ======== FLEXBOX ======== -->
 <div class="group">

@@ -5,514 +5,120 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Header</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Urbanist:ital,opsz,wght@0,9..40,100..900;1,9..40,100..900&display=swap" rel="stylesheet">
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: 'Inter', sans-serif;
-  background: #f4f1e9;
-  color: #282828;
-  -webkit-font-smoothing: antialiased;
-}
-.page { max-width: 1630px; margin: 0 auto; padding: 3rem 25px 6rem; }
-h1 {
-  font-family: 'Urbanist', sans-serif;
-  font-size: 2.25rem; font-weight: 700;
-  color: #111013; letter-spacing: -0.03em;
-  margin-bottom: 30px;
-}
-
-/* =============================================
-   HEADER — точные замеры с demo19 (1680px viewport)
-   header height: 104.6px
-   inner padding: 0 25px
-   layout: space-between
-   ============================================= */
-
-.ohio-header {
-  width: 100%;
-  height: 104.633px;
-  background: rgba(244,241,233,0.97);
-  border: 1px solid rgba(0,0,0,0.07);
-  position: relative;
-}
-
-.ohio-header-inner {
-  height: 100%;
-  padding: 0 25px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-/* ---- LEFT: hamburger + logo ---- */
-.header-left {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  width: 153px; /* точно из замера: left block width */
-}
-
-/* Hamburger: 56×56px */
-.icon-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: rgba(40,40,40,0.85);
-  text-decoration: none;
-  flex-shrink: 0;
-  transition: background 0.35s cubic-bezier(.645,.045,.355,1);
-}
-.icon-button:hover { background: rgba(136,136,137,0.05); }
-.icon-button svg[stroke] { fill: none; }
-.icon-button svg { transform: scale(.9); }
-
-.hamburger-lines {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0;
-}
-.hamburger-lines::before,
-.hamburger-lines::after {
-  content: '';
-  display: block;
-  height: 2px;
-  background: currentColor;
-  margin: 3px 0;
-}
-.hamburger-lines::before { width: 22px; }
-.hamburger-lines::after  { width: 17.6px; }
-
-/* Logo: 82×42px */
-.ohio-logo {
-  display: inline-flex;
-  align-items: center;
-  text-decoration: none;
-  color: rgba(40,40,40,0.85);
-  position: relative;
-}
-.ohio-logo img {
-  width: 82px;
-  height: 42px;
-  display: block;
-  object-fit: contain;
-}
-/* version badge поверх логотипа — справа сверху */
-.ohio-logo-badge {
-  position: absolute;
-  top: -4px;
-  right: -28px;
-  display: inline-flex;
-  align-items: center;
-  padding: 0 0.5em;
-  height: 20px;
-  font-size: 9.92px;
-  font-weight: 700;
-  font-family: 'Urbanist', sans-serif;
-  color: rgba(255,255,255,0.95);
-  background: rgba(40,40,40,0.85);
-  border-radius: 7.44px;
-  letter-spacing: 0.02em;
-  line-height: 1;
-  white-space: nowrap;
-}
-
-/* ---- CENTER: nav ---- */
-.header-nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
-  padding: 0 1rem;
-}
-.header-nav > ul {
-  background: rgba(136,136,137,0.08);
-  border-radius: 1rem;
-  padding: 0.25rem 0.35rem;
-}
-
-.nav-list {
-  list-style: none;
-  display: flex;
-  align-items: center;
-  gap: 0;
-}
-
-/* Nav link: 16px Inter 500, padding 0 12px, height 36px */
-.nav-list li a,
-.nav-list li button {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  padding: 0 12px;
-  height: 36px;
-  font-family: 'Inter', sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  color: rgba(40,40,40,0.85);
-  text-decoration: none;
-  border-radius: 0;
-  white-space: nowrap;
-  transition: background 0.35s cubic-bezier(.645,.045,.355,1);
-}
-.nav-list:hover > li > a,
-.nav-list:hover > li > button { opacity: 0.5; }
-.nav-list:hover > li:hover > a,
-.nav-list:hover > li:hover > button { opacity: 1; }
-
-/* Chevron: inline SVG 10×6 */
-.nav-chevron {
-  display: inline-flex;
-  align-items: center;
-  font-size: 0.5em;
-  opacity: 0.5;
-}
-.nav-chevron svg { width: 1em; height: 1em; }
-
-/* Version chip: 9.92px, h 20px, r 7.44px, bg rgba(40,40,40,0.85) */
-.version-chip {
-  display: inline-flex;
-  align-items: center;
-  padding: 0 0.65em;
-  height: 20px;
-  font-size: 9.92px;
-  font-weight: 600;
-  font-family: 'Urbanist', sans-serif;
-  color: rgba(255,255,255,0.95);
-  background: rgba(40,40,40,0.85);
-  border-radius: 7.44px;
-  letter-spacing: 0.04em;
-  line-height: 1;
-}
-
-/* ---- CURRENCY: between nav and account ---- */
-.header-currency {
-  flex-shrink: 0;
-  margin: 0 1rem;
-}
-
-/* ---- RIGHT: account + price + cart ---- */
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  flex-shrink: 0;
-  justify-content: flex-end;
-}
-
-/* Account icon: 48×48px */
-.icon-button.account {
-  width: 48px;
-  height: 48px;
-}
-
-/* Cart price: 13.3px Inter 500 */
-.cart-price {
-  font-family: 'Inter', sans-serif;
-  font-size: 13.328px;
-  font-weight: 500;
-  color: rgba(40,40,40,0.85);
-  white-space: nowrap;
-}
-
-/* Cart icon: 56×56px, bg rgba(136,136,137,0.05) */
-.icon-button.cart {
-  width: 56px;
-  height: 56px;
-  background: rgba(136,136,137,0.05);
-  position: relative;
-}
-
-/* Count badge */
-.count-badge {
-  position: absolute;
-  top: 2px; right: 2px;
-  min-width: 20px; height: 20px;
-  background: rgba(40,40,40,0.85);
-  color: white;
-  font-size: 11px; font-weight: 700;
-  font-family: 'Urbanist', sans-serif;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-}
-
-/* =============================================
-   OFFER BANNER / TOP BAR
-   source: .offer-banner из ohio-parent.css
-   height: --clb-offer-banner-height = 2.5rem
-   bg: linear-gradient(215deg, #D3FC96, #A6FDDA)
-   font-size: --clb-font-size-extra-small = 0.9em
-   ============================================= */
-.offer-banner {
-  position: relative;
-  height: calc(2.5rem + 10px);
-  background: rgb(231,227,217);
-}
-
-.offer-banner-inner {
-  height: 100%;
-  padding: 0 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.offer-banner-links {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  font-size: 0.9em;
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  color: rgba(40,40,40,0.85);
-  margin-left: auto;
-}
-.offer-banner-link {
-  text-decoration: none;
-  color: rgba(40,40,40,0.5);
-  transition: color 0.25s;
-}
-.offer-banner-link:hover { color: rgba(40,40,40,0.85); }
-.offer-banner-link.-active {
-  color: rgba(40,40,40,0.85);
-  cursor: default;
-  pointer-events: none;
-}
-
-.block-label {
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(40,40,40,0.3);
-  font-family: 'Urbanist', sans-serif;
-  margin-bottom: 0.6rem;
-  display: block;
-}
-.block-wrap {
-  margin-bottom: 2.5rem;
-}
-
-.full-width-block {
-  margin-left: -25px;
-  margin-right: -25px;
-}
-
-/* currency-switcher — из tags.html */
-.currency-switcher {
-  display: inline-flex;
-  align-items: center;
-  position: relative;
-  height: 2rem;
-  background: rgba(136,136,137,0.12);
-  border-radius: 0.9rem;
-  cursor: pointer;
-  font-size: 0.85em;
-  font-weight: 500;
-  font-family: 'Inter', sans-serif;
-  color: rgba(40,40,40,0.85);
-  user-select: none;
-}
-.currency-switcher-item {
-  position: relative; z-index: 1;
-  height: 100%; padding: 0 0.65rem;
-  display: flex; align-items: center; justify-content: center;
-  border-radius: 0.9rem;
-  color: rgba(40,40,40,0.45);
-  transition: color 0.25s cubic-bezier(.645,.045,.355,1);
-  white-space: nowrap;
-}
-.currency-switcher-item.-active { color: rgba(40,40,40,0.85); }
-.currency-switcher-pill {
-  position: absolute; top: 0; left: 0; height: 100%;
-  background: transparent;
-  border: 1px solid rgba(40,40,40,0.85);
-  box-sizing: border-box;
-  border-radius: 0.9rem;
-  box-shadow: none;
-  transition: transform 0.25s cubic-bezier(.645,.045,.355,1), width 0.25s cubic-bezier(.645,.045,.355,1);
-  pointer-events: none; z-index: 0;
-}
-
-/* =============================================
-   MEGA MENU — original Ohio sub-menu-wide pattern
-   ============================================= */
-.mega-menu-widget { position: relative; }
-.ohio-header-inner { position: relative; }
-.header-nav { position: static; }
-.nav-item.has-submenu { position: static; }
-
-.nav-trigger {
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-}
-.nav-trigger .nav-chevron {
-  transition: transform 0.35s cubic-bezier(.645,.045,.355,1);
-}
-.nav-item.is-open > .nav-trigger .nav-chevron {
-  transform: rotate(180deg);
-}
-
-.sub-menu-wide {
-  list-style: none;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: calc(100% + 0.25rem);
-  z-index: 100;
-  display: flex;
-  align-items: stretch;
-  gap: 0.75rem;
-  padding: 1.25rem;
-  margin: 0;
-  background: #ffffff;
-  border-radius: 28px;
-  box-shadow: 0 20px 32px -8px rgba(17,16,19,0.15), 0 0 1px rgba(17,16,19,0.05);
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transform-origin: 50% -50px;
-  transform: perspective(400px) rotateX(-10deg) translateY(0.5rem);
-  transition: opacity 0.35s cubic-bezier(.645,.045,.355,1),
-              transform 0.35s cubic-bezier(.645,.045,.355,1),
-              visibility 0.35s;
-}
-.nav-item.is-open > .sub-menu-wide {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transform: perspective(400px) rotateX(0deg) translateY(0);
-}
-.header-mega-menu {
-  left: 0;
-  right: 0;
-  /* Nav pill is 44px high and vertically centered in the header. */
-  top: calc(50% + 26px);
-}
-.standalone-nav-widget {
-  display: flex;
-  width: 100%;
-  align-items: center;
-}
-.standalone-nav-widget > .nav-list {
-  background: rgba(136,136,137,0.08);
-  border-radius: 1rem;
-  padding: 0.25rem 0.35rem;
-}
-.standalone-nav-widget .sub-menu-wide {
-  width: auto;
-  left: 0;
-  right: 0;
-}
-.wide-menu-image-holder {
-  flex: 0 0 210px;
-  min-height: 300px;
-}
-.wide-menu-image {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  border-radius: 14px;
-}
-.wide-menu-column {
-  flex: 1 1 0;
-  min-width: 0;
-  list-style: none;
-}
-.wide-menu-title {
-  display: block;
-  padding: 0.25rem 0.75rem 0.6rem;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: rgba(40,40,40,0.55);
-}
-.wide-menu-links {
-  list-style: none;
-}
-.wide-menu-links a {
-  display: flex;
-  align-items: center;
-  min-height: 2.375rem;
-  padding: 0.438rem 0.75rem;
-  border-radius: 7px;
-  font-family: 'Inter', sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  color: rgba(40,40,40,0.85);
-  text-decoration: none;
-  white-space: normal;
-  transition: background 0.25s cubic-bezier(.645,.045,.355,1);
-}
-.wide-menu-links a:hover { background: rgba(136,136,137,0.05); }
-.sub-menu-wide > li {
-  opacity: 0;
-  transform: translateY(0.5rem);
-  transition: opacity 0.35s cubic-bezier(.645,.045,.355,1),
-              transform 0.35s cubic-bezier(.645,.045,.355,1);
-}
-.nav-item.is-open > .sub-menu-wide > li { opacity: 1; transform: translateY(0); }
-.nav-item.is-open > .sub-menu-wide > li:nth-child(2) { transition-delay: 0.05s; }
-.nav-item.is-open > .sub-menu-wide > li:nth-child(3) { transition-delay: 0.10s; }
-.nav-item.is-open > .sub-menu-wide > li:nth-child(4) { transition-delay: 0.15s; }
-.nav-item.is-open > .sub-menu-wide > li:nth-child(5) { transition-delay: 0.20s; }
-
-@media (max-width: 1100px) {
-  .sub-menu-wide {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.75rem;
-  }
-  .wide-menu-image-holder { display: none; }
-  .wide-menu-column { min-width: 0; }
-  .wide-menu-title,
-  .wide-menu-links a { padding-left: 0.5rem; padding-right: 0.5rem; }
-  .wide-menu-links a { font-size: 14px; }
-}
-</style>
+<link rel="stylesheet" href="/tokens.css">
+<link rel="stylesheet" href="/elements.css">
+<link rel="stylesheet" href="/blocks.css">
 </head>
 <body>
-<div class="page">
-<h1>Header</h1>
+<div class="demo-page-wide">
+  <h1 class="demo-title">Header</h1>
 
-<div class="block-wrap full-width-block"><span class="block-label" style="padding-left:25px;">Top Bar</span><div class="offer-banner">
-  <div class="offer-banner-inner">
-    <div class="offer-banner-links">
-      <span class="offer-banner-link -active">Магазин</span>
-      <a class="offer-banner-link" href="#">Строительная компания</a>
+  <div class="block-wrap"><span class="block-label">Top Bar</span>
+    <div class="offer-banner">
+      <div class="offer-banner-inner">
+        <div class="offer-banner-links">
+          <span class="offer-banner-link -active">Магазин</span>
+          <a class="offer-banner-link" href="#">Строительная компания</a>
+        </div>
+      </div>
     </div>
   </div>
-</div></div>
-<div class="block-wrap full-width-block"><span class="block-label" style="padding-left:25px;">Header</span><div class="ohio-header" >
-  <div class="ohio-header-inner">
 
-    <!-- LEFT -->
-    <div class="header-left">
-      <a class="icon-button" href="#" aria-label="Menu" style="background:rgba(136,136,137,0.05);">
-        <span class="hamburger-lines"></span>
-      </a>
-      <a class="ohio-logo" href="#" style="margin-left:16px;">
-        <img src="https://wpsandbox.spaces.community/wp-content/uploads/2026/05/hws-dark-logo-2.png"
-             alt="Logo">
-      </a>
+  <div class="block-wrap"><span class="block-label">Header</span>
+    <div class="ohio-header">
+      <div class="ohio-header-inner">
+        <div class="header-left" style="width:153px;gap:0;">
+          <a class="icon-button" href="#" aria-label="Menu" style="background:rgba(136,136,137,0.05);">
+            <span class="hamburger-lines"></span>
+          </a>
+          <a class="ohio-logo" href="#" style="margin-left:16px;">
+            <img src="https://wpsandbox.spaces.community/wp-content/uploads/2026/05/hws-dark-logo-2.png" alt="Logo">
+          </a>
+        </div>
+
+        <nav class="header-nav mega-menu-widget" style="position:static;">
+          <ul class="nav-list">
+            <li class="nav-item has-submenu">
+              <button class="nav-trigger" type="button" aria-expanded="false">Каталог <span class="nav-chevron"><svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+              <ul class="sub-menu-wide header-mega-menu">
+                <li class="wide-menu-image-holder">
+                  <img class="wide-menu-image" src="https://colabrio.ams3.cdn.digitaloceanspaces.com/ohio-stage-demo-19/menu_elements.webp" alt="">
+                </li>
+                <li class="wide-menu-column">
+                  <span class="wide-menu-title">Банные печи</span>
+                  <ul class="wide-menu-links">
+                    <li><a href="https://wpsandbox.spaces.community/product-category/bath-sauna-stoves/russian-bath-stoves/">Печи для русской бани</a></li>
+                    <li><a href="https://wpsandbox.spaces.community/product-category/bath-sauna-stoves/sauna-stoves/">Печи для сауны</a></li>
+                    <li><a href="https://wpsandbox.spaces.community/product-category/bath-sauna-stoves/hammam-stoves/">Печи для хаммама</a></li>
+                    <li><a href="https://wpsandbox.spaces.community/product-category/bath-sauna-stoves/commercial-bath-stoves/">Коммерческие печи</a></li>
+                  </ul>
+                </li>
+                <li class="wide-menu-column">
+                  <span class="wide-menu-title">SPA-системы</span>
+                  <ul class="wide-menu-links">
+                    <li><a href="https://wpsandbox.spaces.community/product-category/bath-sauna-stoves/steam-generators/">Парогенераторы</a></li>
+                    <li><a href="#">Хаммамы</a></li>
+                    <li><a href="#">Домашние SPA</a></li>
+                    <li><a href="#">Коммерческие SPA</a></li>
+                  </ul>
+                </li>
+                <li class="wide-menu-column">
+                  <span class="wide-menu-title">Комплектующие</span>
+                  <ul class="wide-menu-links">
+                    <li><a href="https://wpsandbox.spaces.community/product-category/bath-accessories/">Аксессуары для бани</a></li>
+                    <li><a href="#">Камни и облицовка</a></li>
+                    <li><a href="#">Дымоходы</a></li>
+                    <li><a href="#">Автоматика</a></li>
+                  </ul>
+                </li>
+                <li class="wide-menu-column">
+                  <span class="wide-menu-title">Подбор и поддержка</span>
+                  <ul class="wide-menu-links">
+                    <li><a href="#">Подобрать оборудование</a></li>
+                    <li><a href="#">Архитекторам</a></li>
+                    <li><a href="#">Монтаж и сервис</a></li>
+                    <li><a href="#">Все категории</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#">Проекты</a></li>
+            <li><a href="#">Услуги</a></li>
+            <li><a href="#">Бренды</a></li>
+            <li><a href="#">База знаний</a></li>
+            <li><a href="#">О компании</a></li>
+            <li><a href="#">Контакты</a></li>
+          </ul>
+        </nav>
+
+        <div class="currency-switcher header-currency" onclick="switchCurrency(this)" style="margin:0 1rem;">
+          <div class="currency-switcher-pill"></div>
+          <div class="currency-switcher-item -active">USD</div>
+          <div class="currency-switcher-item">UZS</div>
+          <div class="currency-switcher-item">AZN</div>
+        </div>
+
+        <div class="header-right">
+          <a class="icon-button" href="#" aria-label="Account" style="width:48px;height:48px;">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          </a>
+          <span class="service-price" style="margin-left:8px;">$0.00</span>
+          <a class="icon-button cart" href="#" aria-label="Cart" style="margin-left:8px;">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            <span class="count-badge">0</span>
+          </a>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <!-- NAV -->
-    <nav class="header-nav mega-menu-widget">
+  <div class="block-wrap">
+    <span class="block-label">Nav Menu</span>
+    <div class="standalone-nav-widget mega-menu-widget">
       <ul class="nav-list">
         <li class="nav-item has-submenu">
           <button class="nav-trigger" type="button" aria-expanded="false">Каталог <span class="nav-chevron"><svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
-          <ul class="sub-menu-wide header-mega-menu">
+          <ul class="sub-menu-wide">
             <li class="wide-menu-image-holder">
               <img class="wide-menu-image" src="https://colabrio.ams3.cdn.digitaloceanspaces.com/ohio-stage-demo-19/menu_elements.webp" alt="">
             </li>
@@ -559,95 +165,12 @@ h1 {
         <li><a href="#">Бренды</a></li>
         <li><a href="#">База знаний</a></li>
         <li><a href="#">О компании</a></li>
-        <li><a href="#">Контакты</a></li>
+        <li><a href="#">Контакты <span class="version-chip">V3.7</span></a></li>
       </ul>
-    </nav>
-
-    <!-- CURRENCY -->
-    <div class="currency-switcher header-currency" onclick="switchCurrency(this)">
-      <div class="currency-switcher-pill"></div>
-      <div class="currency-switcher-item -active">USD</div>
-      <div class="currency-switcher-item">UZS</div>
-      <div class="currency-switcher-item">AZN</div>
     </div>
-
-    <!-- RIGHT -->
-    <div class="header-right">
-      <a class="icon-button account" href="#" aria-label="Account">
-        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-      </a>
-      <span class="cart-price" style="margin-left:8px;">$0.00</span>
-      <a class="icon-button cart" href="#" aria-label="Cart" style="margin-left:8px;">
-        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-        <span class="count-badge">0</span>
-      </a>
-    </div>
-
   </div>
-</div></div>
-
-
-<div class="block-wrap">
-  <span class="block-label">Nav Menu</span>
-  <div class="standalone-nav-widget mega-menu-widget">
-    <ul class="nav-list" style="list-style:none;display:flex;align-items:center;">
-      <li class="nav-item has-submenu">
-        <button class="nav-trigger" type="button" aria-expanded="false">Каталог <span class="nav-chevron"><svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
-        <ul class="sub-menu-wide">
-          <li class="wide-menu-image-holder">
-            <img class="wide-menu-image" src="https://colabrio.ams3.cdn.digitaloceanspaces.com/ohio-stage-demo-19/menu_elements.webp" alt="">
-          </li>
-          <li class="wide-menu-column">
-            <span class="wide-menu-title">Банные печи</span>
-            <ul class="wide-menu-links">
-              <li><a href="https://wpsandbox.spaces.community/product-category/bath-sauna-stoves/russian-bath-stoves/">Печи для русской бани</a></li>
-              <li><a href="https://wpsandbox.spaces.community/product-category/bath-sauna-stoves/sauna-stoves/">Печи для сауны</a></li>
-              <li><a href="https://wpsandbox.spaces.community/product-category/bath-sauna-stoves/hammam-stoves/">Печи для хаммама</a></li>
-              <li><a href="https://wpsandbox.spaces.community/product-category/bath-sauna-stoves/commercial-bath-stoves/">Коммерческие печи</a></li>
-            </ul>
-          </li>
-          <li class="wide-menu-column">
-            <span class="wide-menu-title">SPA-системы</span>
-            <ul class="wide-menu-links">
-              <li><a href="https://wpsandbox.spaces.community/product-category/bath-sauna-stoves/steam-generators/">Парогенераторы</a></li>
-              <li><a href="#">Хаммамы</a></li>
-              <li><a href="#">Домашние SPA</a></li>
-              <li><a href="#">Коммерческие SPA</a></li>
-            </ul>
-          </li>
-          <li class="wide-menu-column">
-            <span class="wide-menu-title">Комплектующие</span>
-            <ul class="wide-menu-links">
-              <li><a href="https://wpsandbox.spaces.community/product-category/bath-accessories/">Аксессуары для бани</a></li>
-              <li><a href="#">Камни и облицовка</a></li>
-              <li><a href="#">Дымоходы</a></li>
-              <li><a href="#">Автоматика</a></li>
-            </ul>
-          </li>
-          <li class="wide-menu-column">
-            <span class="wide-menu-title">Подбор и поддержка</span>
-            <ul class="wide-menu-links">
-              <li><a href="#">Подобрать оборудование</a></li>
-              <li><a href="#">Архитекторам</a></li>
-              <li><a href="#">Монтаж и сервис</a></li>
-              <li><a href="#">Все категории</a></li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li><a href="#">Проекты</a></li>
-      <li><a href="#">Услуги</a></li>
-      <li><a href="#">Бренды</a></li>
-      <li><a href="#">База знаний</a></li>
-      <li><a href="#">О компании</a></li>
-      <li><a href="#">Контакты <span class="version-chip">V3.7</span></a></li>
-    </ul>
-  </div>
-</div>
 </div>
 <script src="/nav.js?v=7"></script>
-
-
 <script>
 function switchCurrency(sw) {
   var clicked = event.target.closest('.currency-switcher-item');
@@ -656,6 +179,7 @@ function switchCurrency(sw) {
   clicked.classList.add('-active');
   positionPill(sw);
 }
+
 function positionPill(sw) {
   var items = sw.querySelectorAll('.currency-switcher-item');
   var pill = sw.querySelector('.currency-switcher-pill');
@@ -669,9 +193,11 @@ function positionPill(sw) {
   pill.style.width = activeW + 'px';
   pill.style.transform = 'translateX(' + offset + 'px)';
 }
+
 var csObs = new IntersectionObserver(function(entries) {
   entries.forEach(function(e) { if (e.isIntersecting) { positionPill(e.target); csObs.unobserve(e.target); } });
 }, { threshold: 0.1 });
+
 document.querySelectorAll('.currency-switcher').forEach(function(sw) { csObs.observe(sw); });
 window.addEventListener('resize', function() {
   document.querySelectorAll('.currency-switcher').forEach(positionPill);
@@ -699,6 +225,7 @@ document.querySelectorAll('.nav-item.has-submenu > .nav-trigger').forEach(functi
 document.querySelectorAll('.sub-menu-wide').forEach(function(menu) {
   menu.addEventListener('click', function(event) { event.stopPropagation(); });
 });
+
 document.addEventListener('click', function() { closeMegaMenus(); });
 document.addEventListener('keydown', function(event) {
   if (event.key === 'Escape') closeMegaMenus();

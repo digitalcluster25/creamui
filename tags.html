@@ -5,342 +5,100 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tags & Form Elements</title>
 <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,opsz,wght@0,9..40,100..900;1,9..40,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-<style>
-:root {
-  --clb-color-primary:   #3e5759;
-  --clb-color-button:    #282828;
-  --clb-color-fill:      rgba(136,136,137,0.05);
-  --clb-color-fill-medium: color-mix(in srgb, #888 10%, transparent);
-  --clb-color-neutral:   color-mix(in srgb, #111013 50%, white);
-  --clb-color-border:    color-mix(in srgb, #888 16%, transparent);
-  --clb-transition-function: cubic-bezier(.645,.045,.355,1);
-  --clb-transition-duration: .35s;
-  --clb-border-radius: 14px;
-  --clb-button-border-radius: 28px;
-}
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Inter', sans-serif; font-size: 16px; background: #f4f1e9; color: #282828; -webkit-font-smoothing: antialiased; }
-.page { max-width: 900px; margin: 0 auto; padding: 3rem 2rem 6rem; }
-h1 { font-family: 'Urbanist', sans-serif; font-size: 2.25rem; font-weight: 700; color: #111013; letter-spacing: -0.03em; margin-bottom: 30px; }
-h1 { margin-bottom: 30px; }
-.page-sub { font-size: 0.8rem; color: #999; margin-bottom: 3rem; }
-.section { margin-bottom: 2.5rem; }
-.section-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #282828; margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(0,0,0,0.07); font-family: 'Urbanist', sans-serif; }
-.row { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
-.col { display: flex; flex-direction: column; align-items: flex-start; gap: 0.4rem; }
-.meta { font-size: 0.65rem; color: #bbb; font-family: monospace; }
-
-
-
-/* FILTER CHECKBOX — shop sidebar (20px, r:7px) */
-.filter-checkbox-wrap {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  cursor: pointer;
-}
-.filter-checkbox {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-  border-radius: 7px;
-  border: 2px solid color-mix(in srgb, #282828 65%, white);
-  background: transparent;
-  appearance: none;
-  -webkit-appearance: none;
-  cursor: pointer;
-  transition: all .35s cubic-bezier(.645,.045,.355,1);
-  display: inline-flex;
-  align-items: center;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-.filter-checkbox:checked {
-  background-color: var(--clb-color-primary);
-  border-color: var(--clb-color-primary);
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e");
-}
-.filter-checkbox:focus { box-shadow: 0 0 0 4px color-mix(in srgb, var(--clb-color-primary) 20%, transparent); outline: none; }
-.filter-checkbox-label {
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  color: rgba(40,40,40,0.85);
-  cursor: pointer;
-  user-select: none;
-}
-
-/* PRICE RANGE SLIDER — shop sidebar */
-.price-range-wrapper {
-  width: 100%;
-  max-width: 320px;
-}
-.price-range-title {
-  font-family: 'Urbanist', sans-serif;
-  font-size: 15px;
-  font-weight: 700;
-  color: #282828;
-  margin-bottom: 1rem;
-}
-.price-range-track-wrap {
-  position: relative;
-  height: 20px;
-  display: flex;
-  align-items: center;
-}
-.price-range-track {
-  position: absolute;
-  left: 0; right: 0;
-  height: 1px;
-  background: color-mix(in srgb, #282828 20%, transparent);
-  border-radius: 1px;
-  pointer-events: none;
-}
-.price-range-progress {
-  position: absolute;
-  height: 1px;
-  background: #282828;
-  pointer-events: none;
-}
-.price-range-input {
-  position: absolute;
-  width: 100%;
-  height: 0;
-  appearance: none;
-  -webkit-appearance: none;
-  background: transparent;
-  outline: none;
-  border: none;
-  pointer-events: none;
-}
-.price-range-input::-webkit-slider-thumb {
-  appearance: none;
-  -webkit-appearance: none;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: white;
-  border: 2px solid #282828;
-  cursor: pointer;
-  pointer-events: auto;
-  box-sizing: border-box;
-  transition: background .2s, border-color .2s;
-}
-.price-range-input::-webkit-slider-thumb:hover {
-  background: #282828;
-  border-color: white;
-}
-.price-range-input::-moz-range-thumb {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: white;
-  border: 2px solid #282828;
-  cursor: pointer;
-  box-sizing: border-box;
-}
-
-/* CLEAR BUTTON — icon-button + label */
-.clear-filter {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  color: rgba(40,40,40,0.85);
-  font-family: 'Urbanist', sans-serif;
-  font-size: 13.3px;
-  font-weight: 500;
-  transition: color .35s cubic-bezier(.645,.045,.355,1);
-}
-.clear-filter:hover { color: var(--clb-color-primary); }
-.clear-filter svg { flex-shrink: 0; }
-
-/* TAG chip */
-.tag {
-  display: inline-flex; align-items: center; height: 28px; padding: 0 12px;
-  border-radius: 14px; background: color-mix(in srgb, rgba(136,136,137,1) 12%, transparent);
-  color: rgba(40,40,40,0.85); font-family: 'Inter', sans-serif; font-size: 14.4px;
-  font-weight: 500; white-space: nowrap; text-decoration: none; cursor: pointer;
-  transition: background .35s cubic-bezier(.645,.045,.355,1);
-}
-.tag:hover { background: color-mix(in srgb, rgba(136,136,137,1) 20%, transparent); }
-.tag.active { background: #282828; color: white; }
-
-/* COLOR SWITCHER */
-.color-switcher {
-  display: inline-flex; align-items: center; height: 32px; padding: 2px;
-  border-radius: 16px; background: color-mix(in srgb, rgba(136,136,137,1) 12%, transparent);
-}
-.color-switcher-item {
-  display: inline-flex; align-items: center; height: 28px; padding: 0 12px;
-  border-radius: 14px; font-family: 'Inter', sans-serif; font-size: 13.3px;
-  font-weight: 500; color: rgba(40,40,40,0.85); cursor: pointer; background: transparent;
-  transition: all .35s cubic-bezier(.645,.045,.355,1); white-space: nowrap; user-select: none;
-}
-.color-switcher-item.active { background: #282828; color: white; }
-
-/* TAG SALE — из shop & product page */
-.tag { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 14px; font-family: 'Urbanist', sans-serif; font-size: 14.4px; font-weight: 500; white-space: nowrap; }
-.tag-sale { background: rgb(62, 87, 89); color: white; }
-
-/* IN STOCK — product page */
-.stock-badge { display: inline-flex; align-items: center; gap: 0.4rem; height: 32px; padding: 0 12px; border-radius: 14px; background: color-mix(in srgb, rgb(62,87,89) 12%, transparent); color: rgb(62,87,89); font-family: 'Urbanist', sans-serif; font-size: 14px; font-weight: 600; }
-.stock-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
-
-/* BREADCRUMB — product page */
-.breadcrumb { display: flex; align-items: center; gap: 0.4rem; font-family: 'Urbanist', sans-serif; font-size: 14px; color: rgba(40,40,40,0.5); }
-.breadcrumb a { color: rgba(40,40,40,0.5); text-decoration: none; transition: color var(--clb-transition-function) var(--clb-transition-duration); }
-.breadcrumb a:hover { color: var(--clb-color-primary); }
-.breadcrumb-sep { font-size: 12px; opacity: 0.4; }
-.breadcrumb-current { color: rgba(40,40,40,0.85); font-weight: 500; }
-
-/* QTY INPUT — product page: r=28px, h=44px, w=96px, bg=fill */
-.qty-wrapper { display: inline-flex; align-items: center; width: 96px; height: 44px; border-radius: 28px; background: color-mix(in srgb, #888 8%, transparent); overflow: hidden; }
-.qty-wrapper button { width: 36px; height: 44px; background: transparent; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: rgba(40,40,40,0.85); font-size: 18px; font-weight: 300; flex-shrink: 0; transition: color var(--clb-transition-function) var(--clb-transition-duration); line-height: 1; }
-.qty-wrapper button:hover { color: var(--clb-color-primary); }
-.qty-wrapper input { flex: 1; min-width: 0; height: 44px; border: none; background: transparent; text-align: center; font-family: 'Urbanist', sans-serif; font-size: 14px; font-weight: 600; color: #282828; -moz-appearance: textfield; outline: none; }
-.qty-wrapper input::-webkit-outer-spin-button,
-.qty-wrapper input::-webkit-inner-spin-button { -webkit-appearance: none; }
-
-/* COLOR SWATCH — product page: r=50%, h=36px */
-.swatch-group { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
-.swatch-color { width: 36px; height: 36px; border-radius: 50%; border: 1px solid transparent; cursor: pointer; transition: border-color var(--clb-transition-function) var(--clb-transition-duration); position: relative; }
-.swatch-color:hover { border-color: rgba(40,40,40,0.3); }
-.swatch-color.selected { border-color: rgba(40,40,40,0.85); }
-.swatch-color.selected::after { content: ''; position: absolute; inset: -3px; border-radius: 50%; border: 2px solid rgba(40,40,40,0.85); }
-
-/* TEXT SWATCH (Wood/Steel) — product page: r=14px, h=36px, bg=fill */
-.swatch-text { display: inline-flex; align-items: center; height: 36px; padding: 0 14px; border-radius: 14px; border: 1px solid rgba(40,40,40,0.15); background: transparent; font-family: 'Urbanist', sans-serif; font-size: 14px; font-weight: 500; color: rgba(40,40,40,0.85); cursor: pointer; transition: all var(--clb-transition-function) var(--clb-transition-duration); }
-.swatch-text:hover { border-color: rgba(40,40,40,0.5); }
-.swatch-text.selected { border-color: rgba(40,40,40,0.85); background: transparent; font-weight: 600; }
-
-/* SELECT (Sort by) — shop page: r=14px, bg=fill */
-.ohio-select { height: 40px; padding: 0 16px; border-radius: 14px; border: none; background: color-mix(in srgb, #888 8%, transparent); font-family: 'Urbanist', sans-serif; font-size: 14px; font-weight: 500; color: #282828; cursor: pointer; outline: none; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23282828' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
-
-/* VERSION CHIP — nav menu badge */
-/* CSS source: .menu li.version>.menu-link::after */
-.version-chip {
-  display: inline-flex;
-  align-items: center;
-  vertical-align: middle;
-  padding: 0 0.65em;
-  height: 1.25rem;
-  font-size: 0.62em;
-  font-weight: 600;
-  font-family: 'Urbanist', sans-serif;
-  color: #ffffff;
-  background: #282828;
-  border-radius: 0.75em;
-  letter-spacing: 0.02em;
-  line-height: 1;
-}
-
-/* TABS — product page */
-.product-tabs { display: flex; gap: 0; border-bottom: 1px solid rgba(0,0,0,0.08); }
-.product-tab { padding: 0.75rem 0; margin-right: 2rem; font-family: 'Urbanist', sans-serif; font-size: 15px; font-weight: 700; color: rgba(40,40,40,0.4); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all var(--clb-transition-function) var(--clb-transition-duration); text-decoration: none; }
-.product-tab:hover { color: rgba(40,40,40,0.85); }
-.product-tab.active { color: rgba(40,40,40,0.85); border-bottom-color: rgba(40,40,40,0.85); }
-</style>
+<link rel="stylesheet" href="/tokens.css">
+<link rel="stylesheet" href="/elements.css">
+<link rel="stylesheet" href="/blocks.css">
 </head>
 <body>
-<div class="page">
-<h1>Tags & Elements</h1>
+<div class="demo-page">
+  <h1 class="demo-title">Tags & Elements</h1>
 
-<div class="section">
-  <div style="display:flex;flex-direction:column;gap:0.75rem">
-    <label class="filter-checkbox-wrap">
-      <input class="filter-checkbox" type="checkbox" checked>
-      <span class="filter-checkbox-label">In stock (16)</span>
-    </label>
-    <label class="filter-checkbox-wrap">
-      <input class="filter-checkbox" type="checkbox">
-      <span class="filter-checkbox-label">On backorder (3)</span>
-    </label>
-    <label class="filter-checkbox-wrap">
-      <input class="filter-checkbox" type="checkbox">
-      <span class="filter-checkbox-label">Out of stock (2)</span>
-    </label>
-  </div>
-</div>
-
-<div class="section">
-  <div class="price-range-wrapper">
-    <div class="price-range-title">Filter by price</div>
-    <div class="price-range-track-wrap">
-      <div class="price-range-track"></div>
-      <div class="price-range-progress" id="priceProgress"></div>
-      <input class="price-range-input" id="rangeMin" type="range" min="0" max="1000" value="0">
-      <input class="price-range-input" id="rangeMax" type="range" min="0" max="1000" value="1000">
+  <div class="demo-section">
+    <div style="display:flex;flex-direction:column;gap:0.75rem">
+      <label class="filter-checkbox-wrap">
+        <input class="filter-checkbox" type="checkbox" checked>
+        <span class="filter-checkbox-label">In stock (16)</span>
+      </label>
+      <label class="filter-checkbox-wrap">
+        <input class="filter-checkbox" type="checkbox">
+        <span class="filter-checkbox-label">On backorder (3)</span>
+      </label>
+      <label class="filter-checkbox-wrap">
+        <input class="filter-checkbox" type="checkbox">
+        <span class="filter-checkbox-label">Out of stock (2)</span>
+      </label>
     </div>
   </div>
-</div>
 
-<div class="section">
-  <button class="clear-filter">
-    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 14 14" fill="none">
-      <path d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z" fill="currentColor"/>
-    </svg>
-    Clear
-  </button>
-</div>
-
-<div class="section">
-  <div class="row">
-    <a class="tag">Editorial</a>
-    <a class="tag">Interior Design</a>
-    <a class="tag">Trustpilot</a>
-    <a class="tag active">Active</a>
-  </div>
-</div>
-
-<div class="section">
-  <div class="row">
-    <div class="color-switcher">
-      <div class="color-switcher-item active">Trustpilot</div>
-      <div class="color-switcher-item">Design</div>
-    </div>
-    <div class="color-switcher">
-      <div class="color-switcher-item">Light</div>
-      <div class="color-switcher-item active">Dark</div>
+  <div class="demo-section">
+    <div class="price-range-wrapper">
+      <div class="price-range-title">Filter by price</div>
+      <div class="price-range-track-wrap">
+        <div class="price-range-track"></div>
+        <div class="price-range-progress" id="priceProgress"></div>
+        <input class="price-range-input" id="rangeMin" type="range" min="0" max="1000" value="0">
+        <input class="price-range-input" id="rangeMax" type="range" min="0" max="1000" value="1000">
+      </div>
     </div>
   </div>
-</div>
 
-<div class="section">
-  <div class="row">
-    <div class="col">
+  <div class="demo-section">
+    <button class="clear-filter">
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 14 14" fill="none">
+        <path d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z" fill="currentColor"/>
+      </svg>
+      Clear
+    </button>
+  </div>
+
+  <div class="demo-section">
+    <div class="demo-row">
+      <a class="tag">Editorial</a>
+      <a class="tag">Interior Design</a>
+      <a class="tag">Trustpilot</a>
+      <a class="tag active">Active</a>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <div class="demo-row">
+      <div class="color-switcher">
+        <div class="color-switcher-item active">Trustpilot</div>
+        <div class="color-switcher-item">Design</div>
+      </div>
+      <div class="color-switcher">
+        <div class="color-switcher-item">Light</div>
+        <div class="color-switcher-item active">Dark</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <div class="demo-row">
       <span class="tag tag-sale">Sale</span>
     </div>
   </div>
-</div>
 
-<div class="section">
-  <div class="row">
-    <div class="col">
+  <div class="demo-section">
+    <div class="demo-row">
       <span class="stock-badge">In stock</span>
     </div>
   </div>
-</div>
 
-<div class="section">
-  <nav class="breadcrumb">
-    <a href="#">Shop</a>
-    <span class="breadcrumb-sep">›</span>
-    <a href="#">Seating</a>
-    <span class="breadcrumb-sep">›</span>
-    <a href="#">Dining</a>
-    <span class="breadcrumb-sep">›</span>
-    <span class="breadcrumb-current">Layout Chair A132</span>
-  </nav>
-</div>
+  <div class="demo-section">
+    <nav class="breadcrumb">
+      <a href="#">Shop</a>
+      <span class="breadcrumb-sep">›</span>
+      <a href="#">Seating</a>
+      <span class="breadcrumb-sep">›</span>
+      <a href="#">Dining</a>
+      <span class="breadcrumb-sep">›</span>
+      <span class="breadcrumb-current">Layout Chair A132</span>
+    </nav>
+  </div>
 
-<div class="section">
-  <div class="row">
-    <div class="col">
+  <div class="demo-section">
+    <div class="demo-row">
       <div class="qty-wrapper">
         <button>−</button>
         <input type="number" value="1" min="1">
@@ -348,11 +106,9 @@ h1 { margin-bottom: 30px; }
       </div>
     </div>
   </div>
-</div>
 
-<div class="section">
-  <div class="row">
-    <div class="col">
+  <div class="demo-section">
+    <div class="demo-row">
       <div class="swatch-group">
         <div class="swatch-color selected" style="background:#c8c8c8" title="Grey"></div>
         <div class="swatch-color" style="background:#1a1a1a" title="Black"></div>
@@ -361,22 +117,18 @@ h1 { margin-bottom: 30px; }
       </div>
     </div>
   </div>
-</div>
 
-<div class="section">
-  <div class="row">
-    <div class="col">
+  <div class="demo-section">
+    <div class="demo-row">
       <div class="swatch-group">
         <button class="swatch-text selected">Wood</button>
         <button class="swatch-text">Steel</button>
       </div>
     </div>
   </div>
-</div>
 
-<div class="section">
-  <div class="row">
-    <div class="col">
+  <div class="demo-section">
+    <div class="demo-row">
       <select class="ohio-select">
         <option>Sort by latest</option>
         <option>Sort by price: low to high</option>
@@ -385,119 +137,58 @@ h1 { margin-bottom: 30px; }
       </select>
     </div>
   </div>
-</div>
 
-<div class="section">
-  <div class="col" style="width:100%">
-    <nav class="product-tabs">
-      <a class="product-tab active" href="#">Shipping &amp; Returns</a>
-      <a class="product-tab" href="#">Size &amp; Weight</a>
-      <a class="product-tab" href="#">Reviews (0)</a>
-    </nav>
-  </div>
-</div>
-
-<div class="section">
-  <div class="row" style="font-size:1.05em;">
-    <span class="version-chip">V3.7</span>
-    <span class="version-chip">NEW</span>
-    <span class="version-chip">V4.0</span>
-  </div>
-</div>
-
-
-<style>
-/* =============================================
-   CURRENCY SWITCHER
-   Логика: .color-switcher из ohio-parent.css
-   height: --clb-color-switcher-height = 2rem
-   bg: color-mix(neutral 12%) = rgba(136,136,137,0.12)
-   item padding: 0 0.65rem
-   active: bg white, border-radius 0.9rem, box-shadow
-   font: 0.85em Inter, weight 500
-   ============================================= */
-.currency-switcher {
-  display: inline-flex;
-  align-items: center;
-  position: relative;
-  height: 2rem;
-  background: rgba(136,136,137,0.12);
-  border-radius: 0.9rem;
-  padding: 0;
-  cursor: pointer;
-  font-size: 0.85em;
-  font-weight: 500;
-  font-family: 'Inter', sans-serif;
-  color: rgba(40,40,40,0.85);
-  user-select: none;
-}
-.currency-switcher-item {
-  position: relative;
-  z-index: 1;
-  height: 100%;
-  padding: 0 0.65rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0.9rem;
-  color: rgba(40,40,40,0.45);
-  transition: color 0.25s cubic-bezier(.645,.045,.355,1);
-  white-space: nowrap;
-}
-.currency-switcher-item.-active {
-  color: rgba(40,40,40,0.85);
-}
-/* Sliding active pill */
-.currency-switcher-pill {
-  position: absolute;
-  top: 0; left: 0;
-  height: 100%;
-  background: transparent;
-  border: 1px solid rgba(40,40,40,0.85);
-  box-sizing: border-box;
-  border-radius: 0.9rem;
-  box-shadow: none;
-  transition: transform 0.25s cubic-bezier(.645,.045,.355,1), width 0.25s cubic-bezier(.645,.045,.355,1);
-  pointer-events: none;
-  z-index: 0;
-}
-</style>
-
-<div class="section">
-  <div class="row" style="gap:1.5rem;align-items:center;flex-wrap:wrap;">
-    <!-- 3 валюты -->
-    <div class="currency-switcher" id="cs1" onclick="switchCurrency(this)">
-      <div class="currency-switcher-pill" id="cs1-pill"></div>
-      <div class="currency-switcher-item -active" data-idx="0">USD</div>
-      <div class="currency-switcher-item" data-idx="1">UZS</div>
-      <div class="currency-switcher-item" data-idx="2">AZN</div>
+  <div class="demo-section">
+    <div class="demo-col" style="width:100%">
+      <nav class="product-tabs">
+        <a class="product-tab active" href="#">Shipping &amp; Returns</a>
+        <a class="product-tab" href="#">Size &amp; Weight</a>
+        <a class="product-tab" href="#">Reviews (0)</a>
+      </nav>
     </div>
-    <!-- 2 валюты -->
-    <div class="currency-switcher" id="cs2" onclick="switchCurrency(this)">
-      <div class="currency-switcher-pill" id="cs2-pill"></div>
-      <div class="currency-switcher-item -active" data-idx="0">USD</div>
-      <div class="currency-switcher-item" data-idx="1">EUR</div>
+  </div>
+
+  <div class="demo-section">
+    <div class="demo-row" style="font-size:1.05em;">
+      <span class="version-chip">V3.7</span>
+      <span class="version-chip">NEW</span>
+      <span class="version-chip">V4.0</span>
     </div>
-    <!-- 4 валюты -->
-    <div class="currency-switcher" id="cs3" onclick="switchCurrency(this)">
-      <div class="currency-switcher-pill" id="cs3-pill"></div>
-      <div class="currency-switcher-item -active" data-idx="0">USD</div>
-      <div class="currency-switcher-item" data-idx="1">EUR</div>
-      <div class="currency-switcher-item" data-idx="2">UZS</div>
-      <div class="currency-switcher-item" data-idx="3">AZN</div>
+  </div>
+
+  <div class="demo-section">
+    <div class="demo-row" style="gap:1.5rem;align-items:center;flex-wrap:wrap;">
+      <div class="currency-switcher" id="cs1" onclick="switchCurrency(this)">
+        <div class="currency-switcher-pill"></div>
+        <div class="currency-switcher-item -active" data-idx="0">USD</div>
+        <div class="currency-switcher-item" data-idx="1">UZS</div>
+        <div class="currency-switcher-item" data-idx="2">AZN</div>
+      </div>
+      <div class="currency-switcher" id="cs2" onclick="switchCurrency(this)">
+        <div class="currency-switcher-pill"></div>
+        <div class="currency-switcher-item -active" data-idx="0">USD</div>
+        <div class="currency-switcher-item" data-idx="1">EUR</div>
+      </div>
+      <div class="currency-switcher" id="cs3" onclick="switchCurrency(this)">
+        <div class="currency-switcher-pill"></div>
+        <div class="currency-switcher-item -active" data-idx="0">USD</div>
+        <div class="currency-switcher-item" data-idx="1">EUR</div>
+        <div class="currency-switcher-item" data-idx="2">UZS</div>
+        <div class="currency-switcher-item" data-idx="3">AZN</div>
+      </div>
     </div>
   </div>
 </div>
-
 <script>
 function positionPill(sw) {
   var items = sw.querySelectorAll('.currency-switcher-item');
-  var pill  = sw.querySelector('.currency-switcher-pill');
+  var pill = sw.querySelector('.currency-switcher-pill');
   var activeIdx = 0;
   items.forEach(function(item, i) {
     if (item.classList.contains('-active')) activeIdx = i;
   });
-  var offset = 0, activeW = 0;
+  var offset = 0;
+  var activeW = 0;
   items.forEach(function(item, i) {
     if (i < activeIdx) offset += item.offsetWidth;
     if (i === activeIdx) activeW = item.offsetWidth;
@@ -516,7 +207,6 @@ function switchCurrency(sw) {
   positionPill(sw);
 }
 
-// IntersectionObserver — позиционируем pill когда switcher входит в viewport
 var observer = new IntersectionObserver(function(entries) {
   entries.forEach(function(e) {
     if (e.isIntersecting) {
@@ -529,16 +219,11 @@ var observer = new IntersectionObserver(function(entries) {
 document.querySelectorAll('.currency-switcher').forEach(function(sw) {
   observer.observe(sw);
 });
+
 window.addEventListener('resize', function() {
   document.querySelectorAll('.currency-switcher').forEach(positionPill);
 });
-</script>
 
-</div>
-<script>
-// Qty +/-
-window.addEventListener('load', function() { setTimeout(function() {
-// Price range slider
 function updateSlider() {
   var min = parseInt(document.getElementById('rangeMin').value);
   var max = parseInt(document.getElementById('rangeMax').value);
@@ -548,9 +233,14 @@ function updateSlider() {
   document.getElementById('priceProgress').style.left = pct1 + '%';
   document.getElementById('priceProgress').style.width = (pct2 - pct1) + '%';
 }
+
 var rangeMin = document.getElementById('rangeMin');
 var rangeMax = document.getElementById('rangeMax');
-if (rangeMin) { rangeMin.addEventListener('input', updateSlider); rangeMax.addEventListener('input', updateSlider); updateSlider(); }
+if (rangeMin) {
+  rangeMin.addEventListener('input', updateSlider);
+  rangeMax.addEventListener('input', updateSlider);
+  updateSlider();
+}
 
 document.querySelectorAll('.color-switcher-item').forEach(function(item) {
   item.addEventListener('click', function() {
@@ -558,6 +248,7 @@ document.querySelectorAll('.color-switcher-item').forEach(function(item) {
     item.classList.add('active');
   });
 });
+
 document.querySelectorAll('.qty-wrapper').forEach(function(wrapper) {
   var input = wrapper.querySelector('input');
   wrapper.querySelector('button:first-child').addEventListener('click', function() {
@@ -569,7 +260,6 @@ document.querySelectorAll('.qty-wrapper').forEach(function(wrapper) {
   });
 });
 
-// Color swatches
 document.querySelectorAll('.swatch-color').forEach(function(sw) {
   sw.addEventListener('click', function() {
     sw.closest('.swatch-group').querySelectorAll('.swatch-color').forEach(function(s) { s.classList.remove('selected'); });
@@ -577,7 +267,6 @@ document.querySelectorAll('.swatch-color').forEach(function(sw) {
   });
 });
 
-// Text swatches
 document.querySelectorAll('.swatch-text').forEach(function(sw) {
   sw.addEventListener('click', function() {
     sw.closest('.swatch-group').querySelectorAll('.swatch-text').forEach(function(s) { s.classList.remove('selected'); });
@@ -585,7 +274,6 @@ document.querySelectorAll('.swatch-text').forEach(function(sw) {
   });
 });
 
-// Product tabs
 document.querySelectorAll('.product-tab').forEach(function(tab) {
   tab.addEventListener('click', function(e) {
     e.preventDefault();
@@ -593,7 +281,6 @@ document.querySelectorAll('.product-tab').forEach(function(tab) {
     tab.classList.add('active');
   });
 });
-}); // DOMContentLoaded
 </script>
 <script src="/nav.js?v=7"></script>
 </body>

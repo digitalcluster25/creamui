@@ -35,7 +35,7 @@ jobs:
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
           DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
         run: |
-          tar -czf - -- *.html *.js |
+          tar -czf - -- *.html *.js *.css |
             ssh -i ~/.ssh/deploy_key "$DEPLOY_USER@$DEPLOY_HOST"
 
       - name: Verify deployment

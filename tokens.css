@@ -1,0 +1,105 @@
+:root {
+  --font-title: 'Urbanist', sans-serif;
+  --font-text: 'Inter', sans-serif;
+  --font-subtitle: 'Castoro', serif;
+  --font-code: menlo, monaco, consolas, "Lucida Console", monospace;
+
+  --title-weight: 700;
+  --text-weight: 400;
+  --text-medium: 500;
+  --text-semi-bold: 600;
+
+  --color-primary: #3e5759;
+  --color-dark: #282828;
+  --color-dark-strong: #111013;
+  --color-danger: #D91842;
+  --color-secondary: #7646DD;
+  --color-success: #29A366;
+  --color-warning: #EC8013;
+  --color-page-bg: #f4f1e9;
+  --color-subheader-bg: #E7E3D9;
+  --color-white-soft: #EFEBE0;
+  --color-pink-section: #EBC6BC;
+  --color-lime-section: #DEE2A2;
+  --color-surface-soft: rgba(136,136,137,0.06);
+  --color-surface-soft-hover: rgba(136,136,137,0.12);
+  --color-surface-pill: rgba(136,136,137,0.08);
+  --color-surface-nav: rgba(136,136,137,0.075);
+  --color-surface-medium: rgba(136,136,137,0.12);
+  --color-line: rgba(40,40,40,0.08);
+  --color-border: rgba(0,0,0,0.07);
+  --color-border-strong: rgba(40,40,40,0.15);
+  --color-text-main: rgba(40,40,40,0.88);
+  --color-text-muted: rgba(40,40,40,0.52);
+  --color-text-faint: rgba(40,40,40,0.4);
+  --color-text-weak: rgba(40,40,40,0.3);
+  --color-text-strong: var(--color-dark-strong);
+  --color-overlay-dark: rgba(40,40,40,0.42);
+  --color-overlay-light: rgba(255,255,255,0.32);
+  --color-badge-bg: rgba(40,40,40,0.88);
+  --color-badge-text: #fff;
+
+  --container-max: 1984px;
+  --container-pad: 28px;
+  --content-max: 900px;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 18px;
+  --space-6: 20px;
+  --space-7: 24px;
+  --space-8: 28px;
+  --space-9: 32px;
+  --space-10: 38px;
+  --space-11: 44px;
+  --space-12: 48px;
+  --space-13: 54px;
+
+  --radius-sm: 7px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-round: 999px;
+  --radius-pill-sm: 16px;
+  --radius-pill-md: 20px;
+  --radius-pill-lg: 22px;
+
+  --text-body-size: 16px;
+  --text-body-line: 1.6;
+  --text-small: 0.95em;
+  --text-caption: 0.9rem;
+  --text-label-size: 12px;
+  --text-title-size: 16px;
+  --text-title-line: 1.2;
+  --heading-1: 4.5rem;
+  --heading-2: 3rem;
+  --heading-3: 2rem;
+  --heading-4: 1.41rem;
+  --heading-5: 1.08rem;
+  --heading-6: 1rem;
+
+  --button-height-sm: 36px;
+  --button-height-md: 44px;
+  --button-height-lg: 52px;
+  --icon-circle-xs: 32px;
+  --icon-circle-sm: 44px;
+  --icon-circle-md: 56px;
+  --icon-circle-lg: 64px;
+
+  --transition-fast: .25s cubic-bezier(.645,.045,.355,1);
+  --transition-base: .35s cubic-bezier(.645,.045,.355,1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-text);
+  font-size: var(--text-body-size);
+  line-height: var(--text-body-line);
+  color: var(--color-text-main);
+  background: var(--color-page-bg);
+  -webkit-font-smoothing: antialiased;
+}

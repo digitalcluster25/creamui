@@ -5,108 +5,43 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Buttons</title>
 <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,opsz,wght@0,9..40,100..900;1,9..40,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-<style>
-:root {
-  --clb-color-primary:   #3e5759;
-  --clb-color-button:    #282828;
-  --clb-color-button-hover: var(--clb-color-primary);
-  --clb-color-white:     white;
-  --clb-color-fill:      rgba(136,136,137,0.05);
-  --clb-color-neutral:   color-mix(in srgb, #111013 50%, white);
-  --clb-action-font-family:     'Urbanist', sans-serif;
-  --clb-action-font-size:       0.95em;
-  --clb-action-font-size-small: 0.9em;
-  --clb-action-font-size-large: 1em;
-  --clb-action-font-weight:     700;
-  --clb-button-height:         44px;
-  --clb-button-height-small:   36px;
-  --clb-button-height-large:   52px;
-  --clb-button-border-radius:  28px;
-  --clb-button-border-radius-small: 14px;
-  --clb-button-side-padding:       20px;
-  --clb-button-side-padding-small: 16px;
-  --clb-button-side-padding-large: 24px;
-  --clb-border-width-double: 2px;
-  --clb-border-style-solid:  solid;
-  --clb-gap:      0.5em;
-  --clb-spacer-1: 0.5rem;
-  --clb-spacer-4: 1.25rem;
-  --clb-transition-function: cubic-bezier(.645,.045,.355,1);
-  --clb-transition-duration: .35s;
-}
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Inter', sans-serif; font-size: 16px; background: #f4f1e9; color: #282828; -webkit-font-smoothing: antialiased; }
-.page { max-width: 900px; margin: 0 auto; padding: 3rem 2rem 6rem; }
-
-/* КНОПКИ из style.css */
-.button, a.button { color: var(--clb-color-white); background-color: var(--clb-color-button); font-family: var(--clb-action-font-family); font-size: var(--clb-action-font-size); font-weight: var(--clb-action-font-weight); min-height: var(--clb-button-height); padding: 0 var(--clb-button-side-padding); gap: var(--clb-gap); cursor: pointer; border: var(--clb-border-width-double) var(--clb-border-style-solid) transparent; white-space: nowrap; background-image: none !important; display: inline-flex; vertical-align: middle; align-items: center; border-radius: var(--clb-button-border-radius); transition-property: background-color, color, border-color, box-shadow; transition-duration: var(--clb-transition-duration); transition-timing-function: var(--clb-transition-function); justify-content: center; text-decoration: none; }
-.button:hover, a.button:hover { color: var(--clb-color-white); background-color: var(--clb-color-button-hover); }
-.button:focus, .button:active, a.button:focus, a.button:active { box-shadow: 0 0 0 0.3125rem color-mix(in srgb, var(--clb-color-neutral) 15%, transparent); }
-.button svg, a.button svg { fill: currentColor; }
-.button .icon, a.button .icon { min-width: var(--clb-spacer-1); display: inline-flex; align-items: center; }
-.button.-without-text:not(.-block), a.button.-without-text:not(.-block) { max-width: var(--clb-button-height); min-width: var(--clb-button-height); width: var(--clb-button-height); padding: 0; }
-.button:not(.-text):not(.-without-text) .icon.-left, a.button:not(.-text):not(.-without-text) .icon.-left { margin-left: calc(var(--clb-spacer-1) * -1); }
-.button:not(.-text):not(.-without-text) .icon.-right, a.button:not(.-text):not(.-without-text) .icon.-right { margin-right: calc(var(--clb-spacer-1) * -1); }
-.button.-outlined, a.button.-outlined { border-color: currentColor; }
-.button.-outlined, .button.-text, .button.-flat, a.button.-outlined, a.button.-text, a.button.-flat { background-color: transparent; color: var(--clb-color-button); }
-.button.-outlined:not(.-pagination):hover, .button.-text:not(.-pagination):hover, .button.-flat:not(.-pagination):hover, a.button.-outlined:not(.-pagination):hover, a.button.-text:not(.-pagination):hover, a.button.-flat:not(.-pagination):hover { color: var(--clb-color-button-hover); }
-.button.-outlined:not(.-pagination):hover, a.button.-outlined:not(.-pagination):hover { border-color: currentColor; }
-.button.-text, a.button.-text { border: none; padding: 0; min-height: initial; transition-delay: 0s !important; border-radius: var(--clb-button-border-radius-small); box-shadow: 0 0 0 0.5em transparent; }
-.button.-text:hover, a.button.-text:hover { background-color: var(--clb-color-fill); box-shadow: 0 0 0 0.65em var(--clb-color-fill); }
-.button.-flat, a.button.-flat { background-color: transparent; border: none; }
-.button.-flat:hover, a.button.-flat:hover { background-color: var(--clb-color-fill); }
-.button.-primary, a.button.-primary { --clb-color-button: var(--clb-color-primary); }
-.button.-block, a.button.-block { display: flex; }
-.button.-with-shadow:not(.-flat), a.button.-with-shadow:not(.-flat) { box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.06); }
-.button.-small, a.button.-small { font-size: var(--clb-action-font-size-small); }
-.button.-small:not(.-text), a.button.-small:not(.-text) { min-height: var(--clb-button-height-small); padding: 0 var(--clb-button-side-padding-small); }
-.button.-small.-without-text:not(.-block), a.button.-small.-without-text:not(.-block) { max-width: var(--clb-button-height-small); min-width: var(--clb-button-height-small); width: var(--clb-button-height-small); padding: 0; }
-.button.-large:not(.-text), a.button.-large:not(.-text) { min-height: var(--clb-button-height-large); padding: 0 var(--clb-button-side-padding-large); }
-.button.-large.-without-text:not(.-block), a.button.-large.-without-text:not(.-block) { max-width: var(--clb-button-height-large); min-width: var(--clb-button-height-large); width: var(--clb-button-height-large); padding: 0; }
-.button:hover .icon, a.button:hover .icon { animation: iconMove ease-out var(--clb-transition-duration); }
-@keyframes iconMove { 0% { transform: translateX(0); } 30% { opacity: 0; } 31% { transform: translateX(var(--clb-spacer-4)); } 32% { transform: translateX(calc(var(--clb-spacer-4) * -1)); } 84% { opacity: 1; } 100% { transform: translateX(0); } }
-
-h1 { font-family: 'Urbanist', sans-serif; font-size: 2.25rem; font-weight: 700; color: #111013; letter-spacing: -0.03em; margin-bottom: 30px; }
-h1 { margin-bottom: 30px; }
-.page-sub { font-size: 0.8rem; color: #999; margin-bottom: 3rem; }
-.section { margin-bottom: 2.5rem; }
-.section-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #282828; margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(0,0,0,0.07); font-family: 'Urbanist', sans-serif; }
-.row { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
-</style>
+<link rel="stylesheet" href="/tokens.css">
+<link rel="stylesheet" href="/elements.css">
+<link rel="stylesheet" href="/blocks.css">
 </head>
 <body>
-<div class="page">
-<h1>Buttons</h1>
+<div class="demo-page">
+  <h1 class="demo-title">Buttons</h1>
 
-<div class="section">
-  <div class="row">
-    <a class="button -large -block" style="max-width:200px">Go shopping<i class="icon -right"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M646-442.5H170v-75h476L426.5-737l53.5-53 310 310-310 310-53.5-53L646-442.5Z"/></svg></i></a>
-    <a class="button">Add to cart</a>
-    <a class="button -without-text"><i class="icon"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M646-442.5H170v-75h476L426.5-737l53.5-53 310 310-310 310-53.5-53L646-442.5Z"/></svg></i></a>
+  <div class="demo-section">
+    <div class="demo-row">
+      <a class="button -large -block" style="max-width:200px">Go shopping<i class="icon -right"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M646-442.5H170v-75h476L426.5-737l53.5-53 310 310-310 310-53.5-53L646-442.5Z"/></svg></i></a>
+      <a class="button">Add to cart</a>
+      <a class="button -without-text"><i class="icon"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M646-442.5H170v-75h476L426.5-737l53.5-53 310 310-310 310-53.5-53L646-442.5Z"/></svg></i></a>
+    </div>
   </div>
-</div>
 
-<div class="section">
-  <div class="row">
-    <a class="button -outlined">Outlined</a>
-    <a class="button -outlined"><i class="icon -left"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M646-442.5H170v-75h476L426.5-737l53.5-53 310 310-310 310-53.5-53L646-442.5Z"/></svg></i>Outlined</a>
-    <a class="button -outlined -without-text"><i class="icon"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M646-442.5H170v-75h476L426.5-737l53.5-53 310 310-310 310-53.5-53L646-442.5Z"/></svg></i></a>
+  <div class="demo-section">
+    <div class="demo-row">
+      <a class="button -outlined">Outlined</a>
+      <a class="button -outlined"><i class="icon -left"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M646-442.5H170v-75h476L426.5-737l53.5-53 310 310-310 310-53.5-53L646-442.5Z"/></svg></i>Outlined</a>
+      <a class="button -outlined -without-text"><i class="icon"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M646-442.5H170v-75h476L426.5-737l53.5-53 310 310-310 310-53.5-53L646-442.5Z"/></svg></i></a>
+    </div>
   </div>
-</div>
 
-<div class="section">
-  <div class="row">
-    <a class="button -flat -small"><i class="icon -left"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M440-160q-17 0-28.5-11.5T400-200v-240L168-736q-15-20-4.5-42t36.5-22h560q26 0 36.5 22T792-736L560-440v240q0 17-11.5 28.5T520-160h-80Z"/></svg></i>Filters</a>
-    <a class="button -flat -small">Flat Small</a>
+  <div class="demo-section">
+    <div class="demo-row">
+      <a class="button -flat -small"><i class="icon -left"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M440-160q-17 0-28.5-11.5T400-200v-240L168-736q-15-20-4.5-42t36.5-22h560q26 0 36.5 22T792-736L560-440v240q0 17-11.5 28.5T520-160h-80Z"/></svg></i>Filters</a>
+      <a class="button -flat -small">Flat Small</a>
+    </div>
   </div>
-</div>
 
-<div class="section">
-  <div class="row">
-    <a class="button -text">Search</a>
-    <a class="button -text">Clear<i class="icon -right"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z" fill="currentColor"/></svg></i></a>
+  <div class="demo-section">
+    <div class="demo-row">
+      <a class="button -text">Search</a>
+      <a class="button -text">Clear<i class="icon -right"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z" fill="currentColor"/></svg></i></a>
+    </div>
   </div>
-</div>
 </div>
 <script src="/nav.js?v=7"></script>
 </body>

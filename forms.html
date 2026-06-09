@@ -5,348 +5,120 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Forms</title>
 <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,opsz,wght@0,9..40,100..900;1,9..40,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-<style>
-:root {
-  --clb-color-primary:     #3e5759;
-  --clb-color-button:      #282828;
-  --clb-color-danger:      #D91842;
-  --clb-color-fill:        color-mix(in srgb, rgba(136,136,137,1) 10%, transparent);
-  --clb-color-border:      color-mix(in srgb, rgba(136,136,137,1) 16%, transparent);
-  --clb-color-placeholder: color-mix(in srgb, #282828 50%, white);
-  --clb-color-neutral:     color-mix(in srgb, #111013 50%, white);
-  --clb-text-field-border-radius: 14px;
-  --clb-text-field-font-size:     0.96rem;
-  --clb-border-radius:       14px;
-  --clb-border-radius-small: 7px;
-  --clb-border-width:        1px;
-  --clb-border-width-double: 2px;
-  --clb-transition-function: cubic-bezier(.645,.045,.355,1);
-  --clb-transition-duration: .35s;
-  --clb-action-font-family:  'Urbanist', sans-serif;
-  --clb-button-height:       44px;
-  --clb-button-border-radius: 28px;
-  --clb-button-side-padding:  20px;
-  --clb-action-font-weight:   700;
-  --clb-action-font-size:     0.95em;
-}
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Inter', sans-serif; font-size: 16px; background: #f4f1e9; color: #282828; -webkit-font-smoothing: antialiased; }
-.page { max-width: 900px; margin: 0 auto; padding: 3rem 2rem 6rem; }
-h1 { font-family: 'Urbanist', sans-serif; font-size: 2.25rem; font-weight: 700; color: #111013; letter-spacing: -0.03em; margin-bottom: 30px; }
-h1 { margin-bottom: 30px; }
-.page-sub { font-size: 0.8rem; color: #999; margin-bottom: 3rem; }
-.section { margin-bottom: 2.5rem; }
-.section-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #282828; margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(0,0,0,0.07); font-family: 'Urbanist', sans-serif; }
-.row { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 1rem; }
-.col { display: flex; flex-direction: column; gap: 0.5rem; }
-
-/* =============================================
-   TEXT FIELD — из style.css Ohio
-   bg: fill (rgba(136,136,137,0.1)), r: 14px, h: 44px, border: none
-   fs: 0.96rem, fw: 400, ff: Inter
-   placeholder: color-mix(#282828 50%, white)
-   ============================================= */
-.text-field {
-  width: 100%;
-  height: 44px;
-  padding: 0 16px;
-  border-radius: var(--clb-text-field-border-radius);
-  background: var(--clb-color-fill);
-  border: var(--clb-border-width) solid transparent;
-  color: rgba(40,40,40,0.85);
-  font-family: 'Inter', sans-serif;
-  font-size: var(--clb-text-field-font-size);
-  font-weight: 400;
-  outline: none;
-  transition: border-color var(--clb-transition-function) var(--clb-transition-duration),
-              background var(--clb-transition-function) var(--clb-transition-duration),
-              box-shadow var(--clb-transition-function) var(--clb-transition-duration);
-  -webkit-appearance: none;
-}
-.text-field::placeholder { color: var(--clb-color-placeholder); }
-.text-field:focus {
-  border-color: var(--clb-color-border);
-  background: var(--clb-color-fill);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--clb-color-neutral) 10%, transparent);
-}
-.text-field:invalid:not(:placeholder-shown), .text-field.-error {
-  border-color: var(--clb-color-danger);
-}
-.text-field:disabled { opacity: 0.4; cursor: not-allowed; }
-.text-field.-large { height: 56px; font-size: 1rem; }
-
-/* TEXTAREA */
-textarea.text-field {
-  height: auto;
-  min-height: 120px;
-  padding: 12px 16px;
-  resize: vertical;
-  line-height: 1.6;
-}
-
-/* LABEL */
-label.field-label {
-  display: block;
-  font-family: 'Inter', sans-serif;
-  font-size: 14.4px;
-  font-weight: 500;
-  color: rgba(40,40,40,0.85);
-  margin-bottom: 6px;
-}
-
-/* FIELD GROUP */
-.field-group { display: flex; flex-direction: column; width: 100%; }
-.field-group + .field-group { margin-top: 1rem; }
-
-/* ERROR MESSAGE */
-.field-error {
-  font-size: 0.8rem;
-  color: var(--clb-color-danger);
-  margin-top: 4px;
-  font-family: 'Inter', sans-serif;
-}
-.field-hint {
-  font-size: 0.8rem;
-  color: var(--clb-color-placeholder);
-  margin-top: 4px;
-  font-family: 'Inter', sans-serif;
-}
-
-/* CHECKBOX — из style.css Ohio */
-input[type=checkbox],
-input[type=radio] {
-  width: 1rem;
-  height: 1rem;
-  margin: 0;
-  background: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  appearance: none;
-  -webkit-appearance: none;
-  outline: none;
-  border: var(--clb-border-width-double) solid color-mix(in srgb, #282828 65%, white);
-  vertical-align: middle;
-  display: inline-flex;
-  align-items: center;
-  flex-shrink: 0;
-  transition: all var(--clb-transition-function) var(--clb-transition-duration);
-  cursor: pointer;
-}
-input[type=checkbox] { border-radius: var(--clb-border-radius-small); }
-input[type=radio] { border-radius: 50%; }
-input[type=checkbox]:checked,
-input[type=radio]:checked {
-  background-color: var(--clb-color-primary);
-  border-color: var(--clb-color-primary);
-}
-input[type=checkbox]:checked {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e");
-}
-input[type=radio]:checked {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e");
-}
-input[type=checkbox]:focus,
-input[type=checkbox]:active,
-input[type=radio]:focus,
-input[type=radio]:active {
-  box-shadow: 0 0 0 0.3125rem color-mix(in srgb, var(--clb-color-primary) 25%, transparent);
-}
-
-/* Checkbox + label row */
-.check-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
-  cursor: pointer;
-}
-.check-row input { margin-top: 2px; }
-.check-row span {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.95em;
-  color: rgba(40,40,40,0.85);
-  line-height: 1.5;
-}
-
-/* SELECT */
-select.text-field {
-  cursor: pointer;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23282828' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-  padding-right: 36px;
-}
-
-/* SEARCH FIELD (в хедере — светлый текст на тёмном) */
-.search-field-dark {
-  width: 100%;
-  height: 56px;
-  padding: 0 16px;
-  border-radius: var(--clb-text-field-border-radius);
-  background: color-mix(in srgb, rgba(136,136,137,1) 10%, transparent);
-  border: none;
-  color: white;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.96rem;
-  font-weight: 400;
-  outline: none;
-}
-.search-field-dark::placeholder { color: rgba(255,255,255,0.5); }
-
-/* BUTTON */
-.button {
-  display: inline-flex; align-items: center; justify-content: center; gap: 0.5em;
-  height: var(--clb-button-height); padding: 0 var(--clb-button-side-padding);
-  border-radius: var(--clb-button-border-radius); font-family: var(--clb-action-font-family);
-  font-size: var(--clb-action-font-size); font-weight: var(--clb-action-font-weight);
-  background: var(--clb-color-button); color: white; border: 2px solid transparent;
-  cursor: pointer; white-space: nowrap; text-decoration: none;
-  transition: background var(--clb-transition-function) var(--clb-transition-duration);
-}
-.button:hover { background: var(--clb-color-primary); }
-
-/* FORM LAYOUTS */
-.form-card {
-  background: white;
-  border-radius: 14px;
-  padding: 2rem;
-  width: 100%;
-  max-width: 440px;
-}
-.form-card-dark {
-  background: color-mix(in srgb, #3e5759 100%, transparent);
-  border-radius: 14px;
-  padding: 2rem;
-  width: 100%;
-  max-width: 440px;
-}
-.form-card-dark label.field-label { color: rgba(255,255,255,0.8); }
-.form-card-dark .text-field { background: rgba(255,255,255,0.12); color: white; border-color: transparent; }
-.form-card-dark .text-field::placeholder { color: rgba(255,255,255,0.4); }
-.form-card-dark .text-field:focus { border-color: rgba(255,255,255,0.4); box-shadow: none; }
-.form-card-dark .check-row span { color: rgba(255,255,255,0.8); }
-.form-card-dark .button { background: white; color: #282828; }
-.form-card-dark .button:hover { background: rgba(255,255,255,0.85); }
-</style>
+<link rel="stylesheet" href="/tokens.css">
+<link rel="stylesheet" href="/elements.css">
+<link rel="stylesheet" href="/blocks.css">
 </head>
 <body>
-<div class="page">
-<h1>Forms</h1>
+<div class="demo-page">
+  <h1 class="demo-title">Forms</h1>
 
-<!-- TEXT INPUTS -->
-<div class="section">
-  <div class="row">
-    <div class="col" style="width:300px">
+  <div class="demo-section">
+    <div class="demo-row">
+      <div class="demo-col" style="width:300px">
+        <div class="field-group">
+          <label class="field-label">Your first name</label>
+          <input class="text-field" type="text" placeholder="John">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Your email address</label>
+          <input class="text-field" type="email" placeholder="john@email.com">
+        </div>
+        <div class="field-group">
+          <label class="field-label">With hint</label>
+          <input class="text-field" type="text" placeholder="username">
+          <span class="field-hint">Only letters and numbers</span>
+        </div>
+        <div class="field-group">
+          <label class="field-label">With error</label>
+          <input class="text-field -error" type="email" value="not-valid">
+          <span class="field-error">Please enter a valid email</span>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Disabled</label>
+          <input class="text-field" type="text" placeholder="Disabled" disabled>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <div class="field-group" style="max-width:440px">
+      <label class="field-label">Message</label>
+      <textarea class="text-field" placeholder="Write your message here..."></textarea>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <div style="background:#282828;padding:1.5rem;border-radius:14px;max-width:440px">
+      <input class="search-field-dark" type="text" placeholder="Search...">
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <div class="demo-col" style="gap:0.75rem">
+      <label class="check-row">
+        <input type="checkbox" checked>
+        <span>I agree that the data provided may be processed and used for the purpose of sending the newsletter.</span>
+      </label>
+      <label class="check-row">
+        <input type="checkbox">
+        <span>Unchecked checkbox</span>
+      </label>
+      <label class="check-row">
+        <input type="radio" name="demo" checked>
+        <span>Radio option A</span>
+      </label>
+      <label class="check-row">
+        <input type="radio" name="demo">
+        <span>Radio option B</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <div class="form-card">
       <div class="field-group">
         <label class="field-label">Your first name</label>
-        <input class="text-field" type="text" placeholder="John">
+        <input class="text-field" type="text" placeholder="">
       </div>
       <div class="field-group">
         <label class="field-label">Your email address</label>
-        <input class="text-field" type="email" placeholder="john@email.com">
+        <input class="text-field" type="email" placeholder="">
+      </div>
+      <div class="field-group" style="margin-top:1rem">
+        <label class="check-row">
+          <input type="checkbox">
+          <span>I agree that the data provided may be processed and used for the purpose of sending the newsletter.</span>
+        </label>
+      </div>
+      <div style="margin-top:1.5rem">
+        <button class="button" style="width:100%">Subscribe</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <div class="form-card-dark">
+      <div class="field-group">
+        <label class="field-label">Your first name</label>
+        <input class="text-field" type="text" placeholder="">
       </div>
       <div class="field-group">
-        <label class="field-label">With hint</label>
-        <input class="text-field" type="text" placeholder="username">
-        <span class="field-hint">Only letters and numbers</span>
+        <label class="field-label">Your email address</label>
+        <input class="text-field" type="email" placeholder="">
       </div>
-      <div class="field-group">
-        <label class="field-label">With error</label>
-        <input class="text-field -error" type="email" value="not-valid">
-        <span class="field-error">Please enter a valid email</span>
+      <div class="field-group" style="margin-top:1rem">
+        <label class="check-row">
+          <input type="checkbox">
+          <span>I agree that the data provided may be processed and used for the purpose of sending the newsletter.</span>
+        </label>
       </div>
-      <div class="field-group">
-        <label class="field-label">Disabled</label>
-        <input class="text-field" type="text" placeholder="Disabled" disabled>
+      <div style="margin-top:1.5rem">
+        <button class="button">Subscribe</button>
       </div>
     </div>
   </div>
-</div>
-
-<!-- TEXTAREA -->
-<div class="section">
-  <div class="field-group" style="max-width:440px">
-    <label class="field-label">Message</label>
-    <textarea class="text-field" placeholder="Write your message here..."></textarea>
-  </div>
-</div>
-
-
-<!-- SEARCH -->
-<div class="section">
-  <div style="background:#282828;padding:1.5rem;border-radius:14px;max-width:440px">
-    <input class="search-field-dark" type="text" placeholder="Search...">
-  </div>
-</div>
-
-<!-- CHECKBOX & RADIO -->
-<div class="section">
-  <div class="col" style="gap:0.75rem">
-    <label class="check-row">
-      <input type="checkbox" checked>
-      <span>I agree that the data provided may be processed and used for the purpose of sending the newsletter.</span>
-    </label>
-    <label class="check-row">
-      <input type="checkbox">
-      <span>Unchecked checkbox</span>
-    </label>
-    <label class="check-row">
-      <input type="radio" name="demo" checked>
-      <span>Radio option A</span>
-    </label>
-    <label class="check-row">
-      <input type="radio" name="demo">
-      <span>Radio option B</span>
-    </label>
-  </div>
-</div>
-
-<!-- SUBSCRIBE FORM (light) -->
-<div class="section">
-  <div class="form-card">
-    <div class="field-group">
-      <label class="field-label">Your first name</label>
-      <input class="text-field" type="text" placeholder="">
-    </div>
-    <div class="field-group">
-      <label class="field-label">Your email address</label>
-      <input class="text-field" type="email" placeholder="">
-    </div>
-    <div class="field-group" style="margin-top:1rem">
-      <label class="check-row">
-        <input type="checkbox">
-        <span>I agree that the data provided may be processed and used for the purpose of sending the newsletter.</span>
-      </label>
-    </div>
-    <div style="margin-top:1.5rem">
-      <button class="button" style="width:100%">Subscribe</button>
-    </div>
-  </div>
-</div>
-
-<!-- SUBSCRIBE FORM (dark / colored bg) -->
-<div class="section">
-  <div class="form-card-dark">
-    <div class="field-group">
-      <label class="field-label">Your first name</label>
-      <input class="text-field" type="text" placeholder="">
-    </div>
-    <div class="field-group">
-      <label class="field-label">Your email address</label>
-      <input class="text-field" type="email" placeholder="">
-    </div>
-    <div class="field-group" style="margin-top:1rem">
-      <label class="check-row">
-        <input type="checkbox">
-        <span>I agree that the data provided may be processed and used for the purpose of sending the newsletter.</span>
-      </label>
-    </div>
-    <div style="margin-top:1.5rem">
-      <button class="button">Subscribe</button>
-    </div>
-  </div>
-</div>
-
 </div>
 <script src="/nav.js?v=7"></script>
 </body>
