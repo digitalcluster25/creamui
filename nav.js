@@ -9,6 +9,7 @@ const NAV_ITEMS = [
   { href: '/layout.html',       label: 'Layout',          tag: 'atoms' },
   { href: '/header.html',       label: 'Header',          tag: 'blocks' },
   { href: '/footer.html',       label: 'Footer',          tag: 'blocks' },
+  { href: '/page.html',         label: 'Page Template',   tag: 'pages' },
 ];
 
 const NAV_CSS = `

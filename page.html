@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page Template</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Urbanist:ital,opsz,wght@0,9..40,100..900;1,9..40,100..900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --clb-title-font-family: 'Urbanist', sans-serif;
+  --clb-text-font-family: 'Inter', sans-serif;
+  --clb-title-font-weight: 700;
+  --clb-text-font-size: .98em;
+  --clb-text-line-height: 1.6;
+  --clb-text-color: rgba(40,40,40,0.85);
+  --clb-title-color: #282828;
+  --clb-container-width: 1344px;
+  --clb-grid-gutter: 1rem;
+  --clb-transition-function: cubic-bezier(.645,.045,.355,1);
+  --clb-transition-duration: .35s;
+  --clb-color-fill: rgba(136,136,137,0.05);
+  --clb-color-border: rgba(0,0,0,0.07);
+  --clb-color-neutral: #888889;
+}
+body {
+  font-family: var(--clb-text-font-family);
+  font-size: var(--clb-text-font-size);
+  line-height: var(--clb-text-line-height);
+  color: var(--clb-text-color);
+  background: #f4f1e9;
+  -webkit-font-smoothing: antialiased;
+}
+.page-shell { width: 100%; }
+.band { width: 100%; }
+.band-inner {
+  max-width: var(--clb-container-width);
+  margin: 0 auto;
+  padding: 0 25px;
+}
+.block-wrap {
+  width: 100%;
+}
+.block-wrap.full-width-block .band-inner {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.block-label {
+  display: inline-block;
+  padding: 0 0 0.75rem;
+  font-family: 'Urbanist', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(40,40,40,0.32);
+}
+
+/* Top bar */
+.offer-banner {
+  height: 67px;
+  background: rgb(231,227,217);
+  display: flex;
+  align-items: center;
+}
+.offer-banner-inner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.offer-banner-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.1rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.22);
+}
+.offer-banner-link {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgba(40,40,40,0.62);
+  white-space: nowrap;
+  text-decoration: none;
+}
+.offer-banner-link.-active {
+  color: rgba(40,40,40,0.95);
+  font-weight: 600;
+}
+
+/* Header */
+.ohio-header {
+  width: 100%;
+  height: 104.633px;
+  background: rgba(244,241,233,0.97);
+  border-bottom: 1px solid var(--clb-color-border);
+}
+.ohio-header-inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.header-left,
+.header-right {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.header-left { gap: 0; }
+.icon-button {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 0;
+  background: transparent;
+  color: rgba(40,40,40,0.85);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+.icon-button:hover { background: rgba(136,136,137,0.05); }
+.hamburger-lines {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.hamburger-lines::before,
+.hamburger-lines::after {
+  content: '';
+  display: block;
+  height: 2px;
+  margin: 3px 0;
+  background: currentColor;
+}
+.hamburger-lines::before { width: 22px; }
+.hamburger-lines::after { width: 17.6px; }
+.ohio-logo { display: inline-flex; align-items: center; text-decoration: none; color: inherit; margin-left: 16px; }
+.ohio-logo img { width: 82px; height: 42px; object-fit: contain; display: block; }
+.header-nav { flex: 1; display: flex; justify-content: center; min-width: 0; }
+.nav-list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: rgba(136,136,137,0.08);
+  border-radius: 1rem;
+  padding: 0.25rem 0.35rem;
+  white-space: nowrap;
+}
+.nav-list li a,
+.nav-list li button {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0 12px;
+  height: 36px;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(40,40,40,0.85);
+  text-decoration: none;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+.nav-list > li { position: relative; }
+.nav-chevron { display: inline-flex; align-items: center; opacity: 0.5; font-size: 0.5em; }
+.currency-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  padding: 0.2rem;
+  border: 1px solid rgba(40,40,40,0.2);
+  border-radius: 999px;
+  margin: 0 1rem;
+}
+.currency-switcher a {
+  height: 32px;
+  padding: 0 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(40,40,40,0.78);
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: 999px;
+}
+.currency-switcher a.is-active {
+  background: transparent;
+  border-color: rgba(40,40,40,0.78);
+  color: rgba(40,40,40,0.95);
+}
+.icon-button.account { width: 48px; height: 48px; }
+.cart-price {
+  font-family: 'Inter', sans-serif;
+  font-size: 13.328px;
+  font-weight: 500;
+  color: rgba(40,40,40,0.85);
+}
+.icon-button.cart {
+  width: 56px;
+  height: 56px;
+  background: rgba(136,136,137,0.05);
+  position: relative;
+}
+.count-badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  min-width: 20px;
+  height: 20px;
+  background: rgba(40,40,40,0.85);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: 'Urbanist', sans-serif;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Content zone */
+.content-zone {
+  padding: 72px 0 80px;
+}
+.content-shell {
+  max-width: var(--clb-container-width);
+  margin: 0 auto;
+  padding: 0 25px;
+}
+.content-card {
+  min-height: 360px;
+  border-radius: 28px;
+  border: 1px solid rgba(0,0,0,0.06);
+  background: rgba(255,255,255,0.42);
+  padding: 2rem;
+}
+.content-card h1 {
+  font-family: 'Urbanist', sans-serif;
+  font-size: clamp(2rem, 1.2rem + 1vw, 3rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: #111013;
+  margin-bottom: 1rem;
+}
+.content-card p {
+  max-width: 60ch;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(40,40,40,0.78);
+}
+
+/* Footer */
+.footer-demo {
+  padding: 3.25rem 0 0;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(2.25rem, 3vw, 4rem);
+}
+.footer-col { min-width: 0; }
+.footer-title {
+  font-family: 'Urbanist', sans-serif;
+  font-size: 1.08rem;
+  line-height: 1.02;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--clb-title-color);
+  margin-bottom: 0.8rem;
+}
+.footer-list {
+  list-style: none;
+  display: grid;
+  gap: 0.72rem;
+}
+.footer-list a,
+.footer-contact,
+.footer-phone {
+  font-family: 'Inter', sans-serif;
+  font-size: var(--clb-text-font-size);
+  line-height: var(--clb-text-line-height);
+  letter-spacing: initial;
+  color: var(--clb-text-color);
+  text-decoration: none;
+}
+.footer-list a { display: inline-flex; width: fit-content; max-width: 100%; }
+.footer-list a:hover { color: #111013; }
+.footer-phone {
+  font-family: 'Urbanist', sans-serif;
+  font-size: 1.08rem;
+  line-height: 1.02;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--clb-title-color);
+}
+.block-wrap + .footer-service { margin-top: 0; }
+.block-wrap.section-label { margin-top: 2rem; }
+.footer-service {
+  margin-top: 2.7rem;
+}
+.footer-service-top {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: 1.75rem;
+}
+.footer-up-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: #282828;
+  font-family: 'Urbanist', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  transition: color .2s cubic-bezier(.645,.045,.355,1);
+}
+.footer-up-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(136,136,137,0.045);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #282828;
+  transition: background .2s cubic-bezier(.645,.045,.355,1), transform .2s cubic-bezier(.645,.045,.355,1);
+}
+.footer-up-link:hover { color: #111013; }
+.footer-up-link:hover .footer-up-icon { background: rgba(136,136,137,0.09); transform: translateY(-1px); }
+.footer-service-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1.35rem;
+  border-top: 1px solid rgba(40,40,40,0.08);
+  color: var(--clb-text-color);
+  font-size: var(--clb-text-font-size);
+  line-height: var(--clb-text-line-height);
+}
+.footer-legal { display: flex; align-items: center; gap: 0.5rem; white-space: nowrap; }
+.footer-legal a { color: var(--clb-text-color); text-decoration: none; }
+.footer-legal a:hover { color: #111013; }
+
+@media (max-width: 1100px) {
+  .band-inner,
+  .content-shell { padding-left: 32px; padding-right: 32px; }
+  .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.75rem 2rem; }
+  .header-nav { display: none; }
+}
+@media (max-width: 720px) {
+  .band-inner,
+  .content-shell { padding-left: 18px; padding-right: 18px; }
+  .offer-banner { height: auto; padding: 0.75rem 0; }
+  .offer-banner-links { flex-wrap: wrap; justify-content: center; }
+  .ohio-header { height: auto; padding: 0.5rem 0; }
+  .ohio-header-inner { flex-wrap: wrap; justify-content: space-between; }
+  .currency-switcher { margin: 0; }
+  .content-zone { padding: 48px 0 64px; }
+  .content-card { min-height: 280px; padding: 1.5rem; border-radius: 22px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 1.75rem; }
+  .footer-service-bottom { flex-direction: column; align-items: flex-start; }
+  .footer-legal { white-space: normal; flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+<div class="page-shell">
+  <section class="block-wrap full-width-block">
+    <div class="band">
+      <div class="band-inner">
+        <span class="block-label">Top Bar</span>
+        <div class="offer-banner">
+          <div class="offer-banner-inner">
+            <div class="offer-banner-links">
+              <span class="offer-banner-link -active">Магазин</span>
+              <a class="offer-banner-link" href="#">Строительная компания</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block-wrap full-width-block">
+    <div class="band">
+      <div class="band-inner">
+        <span class="block-label">Header</span>
+        <div class="ohio-header">
+          <div class="ohio-header-inner">
+            <div class="header-left">
+              <a class="icon-button" href="#" aria-label="Menu" style="background:rgba(136,136,137,0.05);">
+                <span class="hamburger-lines"></span>
+              </a>
+              <a class="ohio-logo" href="#" aria-label="Home">
+                <img src="https://wpsandbox.spaces.community/wp-content/uploads/2026/05/hws-dark-logo-2.png" alt="Logo">
+              </a>
+            </div>
+
+            <nav class="header-nav" aria-label="Primary navigation">
+              <ul class="nav-list">
+                <li><button type="button">Каталог <span class="nav-chevron"><svg viewBox="0 0 10 6" fill="none" width="10" height="6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button></li>
+                <li><a href="#">Проекты</a></li>
+                <li><a href="#">Услуги</a></li>
+                <li><a href="#">Бренды</a></li>
+                <li><a href="#">База знаний</a></li>
+                <li><a href="#">О компании</a></li>
+                <li><a href="#">Контакты</a></li>
+              </ul>
+            </nav>
+
+            <div class="currency-switcher" aria-label="Currency switcher">
+              <a class="is-active" href="#">USD</a>
+              <a href="#">UZS</a>
+              <a href="#">AZN</a>
+            </div>
+
+            <div class="header-right">
+              <a class="icon-button account" href="#" aria-label="Account">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21a8 8 0 1 0-16 0"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </a>
+              <a class="cart-price" href="#">$0.00</a>
+              <a class="icon-button cart" href="#" aria-label="Cart">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 6h15l-1.5 8h-11z"></path>
+                  <path d="M6 6 5 3H2"></path>
+                  <circle cx="10" cy="20" r="1"></circle>
+                  <circle cx="18" cy="20" r="1"></circle>
+                </svg>
+                <span class="count-badge">0</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="content-zone">
+    <div class="content-shell">
+      <span class="block-label">Useful Content</span>
+      <div class="content-card">
+        <h1>Page template</h1>
+        <p>Это базовая заготовка для любых внутренних страниц. Здесь должна размещаться полезная зона контента, а верхняя и нижняя части уже подхвачены в том же масштабе и сетке, что и шаблон.</p>
+      </div>
+    </div>
+  </main>
+
+  <section class="band">
+    <div class="band-inner">
+      <span class="block-label">Footer</span>
+      <div class="footer-demo">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <div class="footer-title">Товары</div>
+            <ul class="footer-list">
+              <li><a href="#">Печи для русской бани</a></li>
+              <li><a href="#">Печи для сауны</a></li>
+              <li><a href="#">Печи для хаммама</a></li>
+              <li><a href="#">Коммерческие печи</a></li>
+              <li><a href="#">Парогенераторы</a></li>
+              <li><a href="#">Аксессуары для бани</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <div class="footer-title">Компания</div>
+            <ul class="footer-list">
+              <li><a href="#">О нас</a></li>
+              <li><a href="#">Ответственность</a></li>
+              <li><a href="#">Консультации по подбору</a></li>
+              <li><a href="#">Уход и обслуживание</a></li>
+              <li><a href="#">Обзор материалов</a></li>
+              <li><a href="#">Инструкции и документы</a></li>
+              <li><a href="#">Характеристики товаров</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <div class="footer-title">Помощь</div>
+            <ul class="footer-list">
+              <li><a href="#">Центр помощи</a></li>
+              <li><a href="#">Отмена заказа</a></li>
+              <li><a href="#">Возврат и гарантия</a></li>
+              <li><a href="#">Доставка</a></li>
+              <li><a href="#">Доступность сайта</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <div class="footer-title">Контакты</div>
+            <ul class="footer-list">
+              <li><a class="footer-phone" href="tel:+78002000000">8 800 200-00-00</a></li>
+              <li><div class="footer-contact">Понедельник – пятница</div></li>
+              <li><div class="footer-contact">10:00 - 19:00</div></li>
+              <li><a class="footer-contact" href="mailto:sales@wpsandbox.spaces.community">sales@wpsandbox.spaces.community</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-service">
+          <div class="footer-service-top">
+            <a class="footer-up-link" href="#top">
+              <span class="footer-up-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 19V5"></path>
+                  <path d="M6.5 10.5L12 5l5.5 5.5"></path>
+                </svg>
+              </span>
+              <span>Наверх</span>
+            </a>
+          </div>
+          <div class="footer-service-bottom">
+            <div>© 2016-2026 Home Wood Spa Company. Все права защищены</div>
+            <div class="footer-legal">
+              <a href="#">Полиси</a>
+              <span>|</span>
+              <a href="#">Условия использования</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<script src="/nav.js?v=7"></script>
+</body>
+</html>
