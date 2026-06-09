@@ -15,7 +15,7 @@
   --clb-text-line-height: 1.6;
   --clb-text-color: rgba(40,40,40,0.85);
   --clb-title-color: #282828;
-  --clb-container-width: 1344px;
+  --clb-container-width: 1366px;
   --clb-grid-gutter: 1rem;
   --clb-transition-function: cubic-bezier(.645,.045,.355,1);
   --clb-transition-duration: .35s;
@@ -230,34 +230,27 @@ body {
 }
 
 /* Content zone */
-.content-zone {
-  padding: 72px 0 80px;
+.site-content {
+  width: 100%;
+  background: #F4F1E9;
 }
-.content-shell {
+.page-container {
   max-width: var(--clb-container-width);
   margin: 0 auto;
   padding: 0 25px;
 }
-.content-card {
-  min-height: 360px;
-  border-radius: 28px;
-  border: 1px solid rgba(0,0,0,0.06);
-  background: rgba(255,255,255,0.42);
-  padding: 2rem;
+.content-area {
+  width: 100%;
 }
-.content-card h1 {
-  font-family: 'Urbanist', sans-serif;
-  font-size: clamp(2rem, 1.2rem + 1vw, 3rem);
-  line-height: 1;
-  letter-spacing: -0.04em;
-  color: #111013;
-  margin-bottom: 1rem;
+.page-content {
+  width: 100%;
 }
-.content-card p {
-  max-width: 60ch;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: rgba(40,40,40,0.78);
+.page-main {
+  width: 100%;
+  min-height: 320px;
+}
+.page-placeholder {
+  min-height: 26vh;
 }
 
 /* Footer */
@@ -357,20 +350,19 @@ body {
 
 @media (max-width: 1100px) {
   .band-inner,
-  .content-shell { padding-left: 32px; padding-right: 32px; }
+  .page-container { padding-left: 32px; padding-right: 32px; }
   .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.75rem 2rem; }
   .header-nav { display: none; }
 }
 @media (max-width: 720px) {
   .band-inner,
-  .content-shell { padding-left: 18px; padding-right: 18px; }
+  .page-container { padding-left: 18px; padding-right: 18px; }
   .offer-banner { height: auto; padding: 0.75rem 0; }
   .offer-banner-links { flex-wrap: wrap; justify-content: center; }
   .ohio-header { height: auto; padding: 0.5rem 0; }
   .ohio-header-inner { flex-wrap: wrap; justify-content: space-between; }
   .currency-switcher { margin: 0; }
-  .content-zone { padding: 48px 0 64px; }
-  .content-card { min-height: 280px; padding: 1.5rem; border-radius: 22px; }
+  .page-main { min-height: 240px; }
   .footer-grid { grid-template-columns: 1fr; gap: 1.75rem; }
   .footer-service-bottom { flex-direction: column; align-items: flex-start; }
   .footer-legal { white-space: normal; flex-wrap: wrap; }
@@ -452,12 +444,15 @@ body {
     </div>
   </section>
 
-  <main class="content-zone">
-    <div class="content-shell">
+  <main class="site-content">
+    <div class="page-container">
       <span class="block-label">Useful Content</span>
-      <div class="content-card">
-        <h1>Page template</h1>
-        <p>Это базовая заготовка для любых внутренних страниц. Здесь должна размещаться полезная зона контента, а верхняя и нижняя части уже подхвачены в том же масштабе и сетке, что и шаблон.</p>
+      <div class="content-area">
+        <div class="page-content">
+          <div class="page-main" id="main">
+            <div class="page-placeholder"></div>
+          </div>
+        </div>
       </div>
     </div>
   </main>
