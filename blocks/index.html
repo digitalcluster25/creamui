@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blocks</title>
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Castoro&family=DM+Sans:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/tokens.css">
+<link rel="stylesheet" href="/elements.css">
+<link rel="stylesheet" href="/blocks.css">
+</head>
+<body>
+<main class="kit-shell">
+  <header class="kit-page-head">
+    <div>
+      <h1 class="kit-page-title">Blocks</h1>
+    </div>
+    <nav class="kit-topnav" aria-label="Навигация по киту">
+      <a href="/index.html">Главная</a>
+      <a href="/primitives.html">Примитивы</a>
+      <a class="is-active" href="/blocks.html">Блоки</a>
+      <a href="/demo19-elements.html">Demo19</a>
+      <a href="/specs.html">Specs</a>
+    </nav>
+  </header>
+
+  <h2 class="primitive-section-title">Header</h2>
+  <section class="kit-section">
+    <div class="ohio-header-stage">
+      <div class="subheader-strip">
+        <div class="subheader-inner">
+          <ul class="subheader-list">
+            <li class="subheader-item">Welcome,&nbsp;<a href="#" target="_blank"><strong>Sign up</strong></a>&nbsp;here and take 10% off</li>
+            <li class="subheader-item">EU delivery within 2-5 days*</li>
+          </ul>
+          <ul class="subheader-list">
+            <li class="subheader-item">Free shipping on EU orders, some exclusions apply*</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ohio-header">
+        <div class="ohio-header-inner">
+          <div class="ohio-header-left">
+            <button class="icon-circle-large is-filled" type="button" aria-label="Open menu">
+              <span class="ohio-hamburger"></span>
+            </button>
+            <a class="ohio-brand" href="#" aria-label="Ohio Theme">
+              <img src="https://colabrio.ams3.cdn.digitaloceanspaces.com/ohio-stage-demo-19/Eh822n40-ohio_logo_3.7.svg" alt="Ohio Theme">
+            </a>
+          </div>
+
+          <div class="ohio-header-center">
+            <nav class="nav-pill" aria-label="Ohio navigation">
+              <ul class="nav-pill-list">
+                <li><a class="nav-pill-link" href="#">Elements <span class="nav-chevron"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/></svg></span></a></li>
+                <li><a class="nav-pill-link" href="#">Portfolio <span class="nav-chevron"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/></svg></span></a></li>
+                <li><a class="nav-pill-link" href="#">Blog <span class="nav-chevron"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/></svg></span></a></li>
+                <li><a class="nav-pill-link" href="#">Shop <span class="nav-chevron"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/></svg></span></a></li>
+                <li><a class="nav-pill-link" href="#">Pages <span class="nav-chevron"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/></svg></span></a></li>
+                <li><a class="nav-pill-link" href="#">Resources <span class="nav-chevron"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/></svg></span></a></li>
+                <li><a class="nav-pill-link nav-pill-link-version" href="#">Changelog</a></li>
+              </ul>
+            </nav>
+          </div>
+
+          <div class="ohio-header-right">
+            <div class="header-actions">
+              <a class="icon-circle-small" href="#" aria-label="Wishlist">
+                <svg width="24" height="24" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true">
+                  <path d="M480-479q-64.5 0-109.75-45.25T325-634q0-64.5 45.25-109.75T480-789q64.5 0 109.75 45.25T635-634q0 64.5-45.25 109.75T480-479ZM169-173v-106q0-33 16.75-60.25t45.272-41.761Q292-411 354.25-426.25 416.5-441.5 480-441.5t125.75 15.25Q668-411 728.978-381.011 757.5-366.5 774.25-339.25 791-312 791-279v106H169Zm75-75h472v-31q0-11.19-5.5-20.345t-15-14.155Q642-340 588.325-353.25 534.651-366.5 480-366.5q-55 0-108.5 13.25t-107 39.75q-9.5 5-15 14.155T244-279v31Zm236-306q33 0 56.5-23.5T560-634q0-33-23.5-56.5T480-714q-33 0-56.5 23.5T400-634q0 33 23.5 56.5T480-554Zm0-80Zm0 386Z"></path>
+                </svg>
+              </a>
+              <span class="cart-total"><a class="cart-customlocation -unlink -undash" href="#"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#36;</span>0.00</bdi></span></a></span>
+              <a class="icon-circle-large is-filled" href="#" aria-label="Cart">
+                <span class="cart-badge">0</span>
+                <svg width="24" height="24" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true">
+                  <path d="M205-90q-30.94 0-52.97-22.03Q130-134.06 130-165v-472q0-30.94 22.03-52.97Q174.06-712 205-712h82q0-80.5 56.25-136.75T480-905q80.5 0 136.75 56.25T673-712h82q30.94 0 52.97 22.03Q830-667.94 830-637v472q0 30.94-22.03 52.97Q785.94-90 755-90H205Zm0-75h550v-472H205v472Zm274.93-240Q560-405 616.5-461.45 673-517.91 673-598h-75q0 49-34.38 83.5-34.38 34.5-83.5 34.5Q431-480 396.5-514.42 362-548.83 362-598h-75q0 80 56.43 136.5t136.5 56.5ZM362-712h236q0-49-34.38-83.5-34.38-34.5-83.5-34.5Q431-830 396.5-795.58 362-761.17 362-712Z"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <h2 class="primitive-section-title">Hero</h2>
+  <section class="kit-section">
+    <div class="ohio-hero-stage">
+      <div class="ohio-hero" style="--hero-bg: url('/assets/herobg.png')">
+        <div class="ohio-hero-inner">
+          <div class="ohio-hero-content">
+            <p class="hero-eyebrow">Премиальные решения для бань, саун и SPA —</p>
+            <h1 class="hero-display-title">Премиальные бани, сауны и хаммамы под ключ</h1>
+            <p class="hero-lead">Подбор оборудования, поставка, монтаж<br>и запуск в Узбекистане и Азербайджане</p>
+            <div class="ohio-hero-actions">
+              <a class="button -large" href="#">Получить расчёт мощности <span class="icon -right"><svg width="18" height="18" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true"><path d="M85 277.375h259.704L225.002 397.077 256 427l171-171L256 85l-29.922 29.924 118.626 119.701H85v42.75z"/></svg></span></a>
+              <a class="button -outlined -large" href="#">Смотреть проекты</a>
+            </div>
+          </div>
+          <div class="ohio-hero-badges">
+            <div class="feature-badge">
+              <span class="feature-badge-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg></span>
+              <span class="feature-badge-text">Официальные поставки</span>
+            </div>
+            <div class="feature-badge">
+              <span class="feature-badge-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+              <span class="feature-badge-text">Премиальные бренды</span>
+            </div>
+            <div class="feature-badge">
+              <span class="feature-badge-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg></span>
+              <span class="feature-badge-text">Проектирование и подбор</span>
+            </div>
+            <div class="feature-badge">
+              <span class="feature-badge-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></span>
+              <span class="feature-badge-text">Монтаж и запуск</span>
+            </div>
+            <div class="feature-badge">
+              <span class="feature-badge-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></span>
+              <span class="feature-badge-text">Гарантия и сервис</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <h2 class="primitive-section-title">Категории товаров</h2>
+  <section class="kit-section">
+    <div class="ohio-section">
+      <div class="ohio-section-head">
+        <h2 class="ohio-section-title">Решения для любых задач</h2>
+      </div>
+      <div class="ohio-card-grid">
+        <div class="blog-item card -layout2 category-banner" data-tilt="true" data-tilt-perspective="6000">
+          <figure class="image-holder">
+            <a class="-unlink" href="#">
+              <img src="https://wpsandbox.spaces.community/wp-content/uploads/2026/05/oh__demo19__08.webp" alt="">
+            </a>
+            <div class="overlay-details card-details -left">
+              <div class="headline-meta -small-t">
+                <div class="date">Мягкий пар и традиционные решения</div>
+              </div>
+              <h4 class="heading title">
+                <a class="-unlink -undash" href="#">Русская баня</a>
+              </h4>
+              <div class="category-holder -with-tag">
+              <a class="tag" href="#">Дровяные печи</a>
+              <a class="tag" href="#">Камни</a>
+              </div>
+            </div>
+          </figure>
+        </div>
+        <div class="blog-item card -layout2 category-banner" data-tilt="true" data-tilt-perspective="6000">
+          <figure class="image-holder">
+            <a class="-unlink" href="#">
+              <img src="https://wpsandbox.spaces.community/wp-content/uploads/2026/05/oh__demo19__09.webp" alt="">
+            </a>
+            <div class="overlay-details card-details -left">
+              <div class="headline-meta -small-t">
+                <div class="date">Электрические системы и печи</div>
+              </div>
+              <h4 class="heading title">
+                <a class="-unlink -undash" href="#">Финская сауна</a>
+              </h4>
+              <div class="category-holder -with-tag">
+              <a class="tag" href="#">Harvia</a>
+              <a class="tag" href="#">EOS</a>
+              </div>
+            </div>
+          </figure>
+        </div>
+        <div class="blog-item card -layout2 category-banner" data-tilt="true" data-tilt-perspective="6000">
+          <figure class="image-holder">
+            <a class="-unlink" href="#">
+              <img src="https://wpsandbox.spaces.community/wp-content/uploads/2026/05/oh__demo19__14-1024x648.webp" alt="">
+            </a>
+            <div class="overlay-details card-details -left">
+              <div class="headline-meta -small-t">
+                <div class="date">Парогенераторы и климат</div>
+              </div>
+              <h4 class="heading title">
+                <a class="-unlink -undash" href="#">Хаммам</a>
+              </h4>
+              <div class="category-holder -with-tag">
+              <a class="tag" href="#">Парогенераторы</a>
+              <a class="tag" href="#">Освещение</a>
+              </div>
+            </div>
+          </figure>
+        </div>
+        <div class="blog-item card -layout2 category-banner" data-tilt="true" data-tilt-perspective="6000">
+          <figure class="image-holder">
+            <a class="-unlink" href="#">
+              <img src="/assets/herobg.png" alt="">
+            </a>
+            <div class="overlay-details card-details -left">
+              <div class="headline-meta -small-t">
+                <div class="date">Отели, фитнес и wellness</div>
+              </div>
+              <h4 class="heading title">
+                <a class="-unlink -undash" href="#">Коммерческий SPA</a>
+              </h4>
+              <div class="category-holder -with-tag">
+              <a class="tag" href="#">Проектирование</a>
+              <a class="tag" href="#">Монтаж</a>
+              </div>
+            </div>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <h2 class="primitive-section-title">Кейсы</h2>
+  <section class="kit-section">
+    <div class="ohio-section">
+      <div class="ohio-section-head">
+        <h2 class="ohio-section-title">Реализованные проекты</h2>
+        <a class="card-link" href="#">Смотреть все проекты <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8 0L6.59 1.41L12.17 7H0V9H12.17L6.59 14.59L8 16L16 8L8 0Z"/></svg></a>
+      </div>
+      <div class="ohio-card-grid">
+        <div class="blog-item card -layout1 -img-scale">
+          <a class="-unlink" href="#">
+            <figure class="image-holder">
+              <img src="https://wpsandbox.spaces.community/wp-content/uploads/2026/05/oh__demo19__08.webp" alt="">
+            </figure>
+          </a>
+          <div class="card-details -left">
+            <h4 class="heading title"><a class="-undash" href="#">Частная резиденция</a></h4>
+            <div class="headline-meta">Ташкент, Узбекистан</div>
+            <div class="case-meta">
+              <div class="case-meta-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg><span>Площадь · <b>14 м²</b></span></div>
+              <div class="case-meta-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21V8l9-5 9 5v13H3z"/></svg><span>Тип · <b>Русская баня</b></span></div>
+              <div class="case-meta-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg><span>Технологии <b>печь · Kastor</b></span></div>
+            </div>
+          </div>
+        </div>
+        <div class="blog-item card -layout1 -img-scale">
+          <a class="-unlink" href="#">
+            <figure class="image-holder">
+              <img src="https://wpsandbox.spaces.community/wp-content/uploads/2026/05/oh__demo19__09.webp" alt="">
+            </figure>
+          </a>
+          <div class="card-details -left">
+            <h4 class="heading title"><a class="-undash" href="#">SPA комплекс отеля</a></h4>
+            <div class="headline-meta">Баку, Азербайджан</div>
+            <div class="case-meta">
+              <div class="case-meta-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg><span>Площадь · <b>120 м²</b></span></div>
+              <div class="case-meta-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21V8l9-5 9 5v13H3z"/></svg><span>Тип · <b>SPA-зона</b></span></div>
+              <div class="case-meta-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg><span>Технологии <b>пар · EOS</b></span></div>
+            </div>
+          </div>
+        </div>
+        <div class="blog-item card -layout1 -img-scale">
+          <a class="-unlink" href="#">
+            <figure class="image-holder">
+              <img src="https://wpsandbox.spaces.community/wp-content/uploads/2026/05/oh__demo19__14-1024x648.webp" alt="">
+            </figure>
+          </a>
+          <div class="card-details -left">
+            <h4 class="heading title"><a class="-undash" href="#">Загородный дом</a></h4>
+            <div class="headline-meta">Ташкентская область</div>
+            <div class="case-meta">
+              <div class="case-meta-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg><span>Площадь · <b>9 м²</b></span></div>
+              <div class="case-meta-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21V8l9-5 9 5v13H3z"/></svg><span>Тип · <b>Финская сауна</b></span></div>
+              <div class="case-meta-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg><span>Технологии <b>печь · Harvia</b></span></div>
+            </div>
+          </div>
+        </div>
+        <div class="blog-item card -layout1 -img-scale">
+          <a class="-unlink" href="#">
+            <figure class="image-holder">
+              <img src="/assets/herobg.png" alt="">
+            </figure>
+          </a>
+          <div class="card-details -left">
+            <h4 class="heading title"><a class="-undash" href="#">Private SPA</a></h4>
+            <div class="headline-meta">Баку, Азербайджан</div>
+            <div class="case-meta">
+              <div class="case-meta-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg><span>Площадь · <b>26 м²</b></span></div>
+              <div class="case-meta-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21V8l9-5 9 5v13H3z"/></svg><span>Тип · <b>Хаммам</b></span></div>
+              <div class="case-meta-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg><span>Технологии <b>пар · EasySteam</b></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <h2 class="primitive-section-title">Каталог товаров</h2>
+  <section class="kit-section">
+    <div class="ohio-section">
+      <div class="ohio-section-head">
+        <h2 class="ohio-section-title">Picked up collection</h2>
+        <a class="card-link" href="#">View all <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8 0L6.59 1.41L12.17 7H0V9H12.17L6.59 14.59L8 16L16 8L8 0Z"/></svg></a>
+      </div>
+      <div class="products-promo-layout">
+        <div class="woocommerce columns-3">
+          <ul class="products woo-products -unlist">
+            <!-- Form Chair Steel -->
+            <li class="product type-product instock">
+              <div class="product-item product-item-grid card -type1 -img-transition -contained -left" data-tilt="true" data-tilt-perspective="6000">
+                <div class="product-item-thumbnail">
+                  <button class="icon-button button-quickview -fade-down -top" type="button" aria-label="Quickview">
+                    <i class="icon">
+                      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 2V6H2V2H6V0H2C0.9 0 0 0.9 0 2ZM2 12H0V16C0 17.1 0.9 18 2 18H6V16H2V12ZM16 16H12V18H16C17.1 18 18 17.1 18 16V12H16V16ZM16 0H12V2H16V6H18V2C18 0.9 17.1 0 16 0Z" fill="currentColor"></path></svg>
+                    </i>
+                  </button>
+                  <div class="product-item-buttons -fade-up">
+                    <div class="button-group">
+                      <a class="button -dm-ignore" href="#">Select options</a>
+                    </div>
+                  </div>
+                  <div data-cursor-class="cursor-link">
+                    <div class="image-holder">
+                      <img src="https://colabrio.ams3.cdn.digitaloceanspaces.com/ohio-stage-demo-19/oh__demo19__prod_11-800x800.webp" alt="Form Chair Steel">
+                      <img src="https://colabrio.ams3.cdn.digitaloceanspaces.com/ohio-stage-demo-19/oh__demo19__prod_12-800x800.webp" alt="">
+                      <a href="#" aria-label="Product thumbnail"></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-details">
+                  <a href="#" class="woo-product-name title titles-typo -undash">Form Chair Steel</a>
+                  <div class="woo-category category-holder">
+                    <a href="#">Dining</a><a href="#">Seating</a>
+                  </div>
+                  <div class="woo-price">
+                    <span class="price"><span class="woocommerce-Price-amount">$290.00</span></span>
+                    <div class="cfvsw-hidden-select">
+                      <select name="attribute_pa_color" aria-label="Choose color">
+                        <option value="blue" selected>Blue</option>
+                        <option value="brown">Brown</option>
+                      </select>
+                    </div>
+                    <div class="cfvsw-swatches-container cfvsw-shop-container" swatches-attr="attribute_pa_color" data-ohio-swatches>
+                      <div class="cfvsw-swatches-option cfvsw-selected-swatch" data-slug="blue" data-title="Blue" data-tooltip="Blue"><div class="cfvsw-swatch-inner" style="background-color:#829099;"></div></div>
+                      <div class="cfvsw-swatches-option" data-slug="brown" data-title="Brown" data-tooltip="Brown"><div class="cfvsw-swatch-inner" style="background-color:#938686;"></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <!-- Grain Pendant Lamp -->
+            <li class="product type-product instock">
+              <div class="product-item product-item-grid card -type1 -img-transition -contained -left" data-tilt="true" data-tilt-perspective="6000">
+                <div class="product-item-thumbnail">
+                  <button class="icon-button button-quickview -fade-down -top" type="button" aria-label="Quickview">
+                    <i class="icon">
+                      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 2V6H2V2H6V0H2C0.9 0 0 0.9 0 2ZM2 12H0V16C0 17.1 0.9 18 2 18H6V16H2V12ZM16 16H12V18H16C17.1 18 18 17.1 18 16V12H16V16ZM16 0H12V2H16V6H18V2C18 0.9 17.1 0 16 0Z" fill="currentColor"></path></svg>
+                    </i>
+                  </button>
+                  <div class="product-item-buttons -fade-up">
+                    <div class="button-group">
+                      <a class="button -dm-ignore" href="#">Select options</a>
+                    </div>
+                  </div>
+                  <div data-cursor-class="cursor-link">
+                    <div class="image-holder">
+                      <img src="https://colabrio.ams3.cdn.digitaloceanspaces.com/ohio-stage-demo-19/oh__demo19__prod_60-800x800.webp" alt="Grain Pendant Lamp">
+                      <img src="https://colabrio.ams3.cdn.digitaloceanspaces.com/ohio-stage-demo-19/oh__demo19__prod_54-800x800.webp" alt="">
+                      <a href="#" aria-label="Product thumbnail"></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-details">
+                  <a href="#" class="woo-product-name title titles-typo -undash">Grain Pendant Lamp</a>
+                  <div class="woo-category category-holder">
+                    <a href="#">Lighting</a><a href="#">Pendant Lamps</a>
+                  </div>
+                  <div class="woo-price">
+                    <span class="price"><span class="woocommerce-Price-amount">$199.00</span></span>
+                    <div class="cfvsw-hidden-select">
+                      <select name="attribute_pa_color" aria-label="Choose color">
+                        <option value="green" selected>Green</option>
+                        <option value="brown">Brown</option>
+                      </select>
+                    </div>
+                    <div class="cfvsw-swatches-container cfvsw-shop-container" swatches-attr="attribute_pa_color" data-ohio-swatches>
+                      <div class="cfvsw-swatches-option cfvsw-selected-swatch" data-slug="green" data-title="Green" data-tooltip="Green"><div class="cfvsw-swatch-inner" style="background-color:#85a38c;"></div></div>
+                      <div class="cfvsw-swatches-option" data-slug="brown" data-title="Brown" data-tooltip="Brown"><div class="cfvsw-swatch-inner" style="background-color:#938686;"></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <!-- Layout Chair A132 -->
+            <li class="product type-product instock">
+              <div class="product-item product-item-grid card -type1 -img-transition -contained -left" data-tilt="true" data-tilt-perspective="6000">
+                <div class="product-item-thumbnail">
+                  <button class="icon-button button-quickview -fade-down -top" type="button" aria-label="Quickview">
+                    <i class="icon">
+                      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 2V6H2V2H6V0H2C0.9 0 0 0.9 0 2ZM2 12H0V16C0 17.1 0.9 18 16 0ZM16 16H12V18H16C17.1 18 18 17.1 18 16V12H16V16ZM16 0H12V2H16V6H18V2C18 0.9 17.1 0 16 0Z" fill="currentColor"></path></svg>
+                    </i>
+                  </button>
+                  <div class="product-item-buttons -fade-up">
+                    <div class="button-group">
+                      <a class="button -dm-ignore" href="#">Select options</a>
+                    </div>
+                  </div>
+                  <div data-cursor-class="cursor-link">
+                    <div class="image-holder">
+                      <img src="https://colabrio.ams3.cdn.digitaloceanspaces.com/ohio-stage-demo-19/oh__demo19__prod_43-800x800.webp" alt="Layout Chair A132">
+                      <img src="https://colabrio.ams3.cdn.digitaloceanspaces.com/ohio-stage-demo-19/oh__demo19__prod_37-800x800.webp" alt="">
+                      <a href="#" aria-label="Product thumbnail"></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-details">
+                  <a href="#" class="woo-product-name title titles-typo -undash">Layout Chair A132</a>
+                  <div class="woo-category category-holder">
+                    <a href="#">Dining</a><a href="#">Seating</a>
+                  </div>
+                  <div class="woo-price">
+                    <span class="price"><span class="woocommerce-Price-amount">$276.00</span></span>
+                    <div class="cfvsw-hidden-select">
+                      <select name="attribute_pa_color" aria-label="Choose color">
+                        <option value="grey" selected>Grey</option>
+                        <option value="black">Black</option>
+                      </select>
+                    </div>
+                    <div class="cfvsw-swatches-container cfvsw-shop-container" swatches-attr="attribute_pa_color" data-ohio-swatches>
+                      <div class="cfvsw-swatches-option cfvsw-selected-swatch" data-slug="grey" data-title="Grey" data-tooltip="Grey"><div class="cfvsw-swatch-inner" style="background-color:#b7b7b7;"></div></div>
+                      <div class="cfvsw-swatches-option" data-slug="black" data-title="Black" data-tooltip="Black"><div class="cfvsw-swatch-inner" style="background-color:#303035;"></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="ohio-widget banner card -with-overlay -img-scale">
+          <a class="-unlink" href="#">
+            <div class="image-holder">
+              <img decoding="async" src="https://colabrio.ams3.cdn.digitaloceanspaces.com/ohio-stage-demo-19/oh__demo19__17.webp" alt="Get a free design plan.">
+              <div class="overlay-details">
+                <div class="card-details">
+                  <div class="heading">
+                    <h3 class="title">Get a free<br>design plan.</h3>
+                    <div class="subtitle">Start your journey with a complimentary design plan.</div>
+                  </div>
+                </div>
+                <div class="description -flex -flex-column -flex-align-start">
+                  <p></p>
+                  <button class="button" type="button">
+                    Sign in to download
+                    <i class="icon">
+                      <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8 0L6.59 1.41L12.17 7H0V9H12.17L6.59 14.59L8 16L16 8L8 0Z" fill="currentColor"></path></svg>
+                    </i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <h2 class="primitive-section-title">Почему мы</h2>
+  <section class="kit-section">
+    <div class="ohio-section why-us-section">
+      <div class="ohio-section-head">
+        <h2 class="ohio-section-title">Почему выбирают HWS</h2>
+      </div>
+        <div class="why-us-grid">
+          <div class="ohio-widget icon-box -left-icon -left -flex-just-start -why-us-store">
+            <span class="icon-group">
+            <i class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h10"></path><path d="M18 6h2"></path><path d="M10 12h10"></path><path d="M4 12h2"></path><path d="M4 18h6"></path><path d="M14 18h6"></path><circle cx="14" cy="6" r="2"></circle><circle cx="8" cy="12" r="2"></circle><circle cx="12" cy="18" r="2"></circle></svg></i>
+            </span>
+            <div class="icon-box-content">
+              <h5 class="icon-box-heading">Подбор под объект</h5>
+              <p>Решения рассчитываются индивидуально под ваш проект и задачи</p>
+            </div>
+          </div>
+          <div class="ohio-widget icon-box -left-icon -left -flex-just-start -why-us-store">
+            <span class="icon-group">
+            <i class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="2"></circle><circle cx="18" cy="9" r="2"></circle><circle cx="8" cy="18" r="2"></circle><path d="M8 7.5 16 8.5"></path><path d="M7.5 16.5 16.5 10.5"></path></svg></i>
+            </span>
+            <div class="icon-box-content">
+              <h5 class="icon-box-heading">Монтаж и запуск</h5>
+              <p>Профессиональный монтаж и запуск оборудования под ключ</p>
+            </div>
+          </div>
+          <div class="ohio-widget icon-box -left-icon -left -flex-just-start -why-us-store">
+            <span class="icon-group">
+            <i class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M8.5 12.5 7 20l5-2.25L17 20l-1.5-7.5"></path></svg></i>
+            </span>
+            <div class="icon-box-content">
+              <h5 class="icon-box-heading">Премиальные бренды</h5>
+              <p>Работаем только с проверенными производителями премиум класса</p>
+            </div>
+          </div>
+          <div class="ohio-widget icon-box -left-icon -left -flex-just-start -why-us-store">
+            <span class="icon-group">
+            <i class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 6 5.8v5.9c0 3.8 2.4 7.2 6 9.3 3.6-2.1 6-5.5 6-9.3V5.8Z"></path><path d="M9.5 12h5"></path><path d="M12 9.5v5"></path></svg></i>
+            </span>
+            <div class="icon-box-content">
+              <h5 class="icon-box-heading">Техническая поддержка</h5>
+              <p>Гарантия, сервис и консультации на всех этапах эксплуатации</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <h2 class="primitive-section-title">Премиальные бренды</h2>
+  <section class="kit-section">
+    <div class="clients-logo-stage">
+      <div class="clients-logo-grid clients-logo-grid--five">
+        <div class="ohio-widget logo -left">
+          <a class="-undash -unlink" href="#">
+            <img class="image-primary" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='56' viewBox='0 0 160 56'%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia%2Cserif' font-size='22' font-weight='700' font-style='italic' fill='%23282828'%3EHARVIA%3C/text%3E%3C/svg%3E" alt="Harvia">
+          </a>
+        </div>
+        <div class="ohio-widget logo -left">
+          <a class="-undash -unlink" href="#">
+            <img class="image-primary" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='56' viewBox='0 0 160 56'%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia%2Cserif' font-size='22' font-weight='700' fill='%23282828'%3ETYL%C3%96%3C/text%3E%3C/svg%3E" alt="Tylö">
+          </a>
+        </div>
+        <div class="ohio-widget logo -left">
+          <a class="-undash -unlink" href="#">
+            <img class="image-primary" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='56' viewBox='0 0 160 56'%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia%2Cserif' font-size='26' font-weight='400' letter-spacing='4' fill='%23282828'%3EEOS%3C/text%3E%3C/svg%3E" alt="EOS">
+          </a>
+        </div>
+        <div class="ohio-widget logo -left">
+          <a class="-undash -unlink" href="#">
+            <img class="image-primary" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='56' viewBox='0 0 160 56'%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial%2Csans-serif' font-size='18' font-weight='700' letter-spacing='2' fill='%23282828'%3EK KASTOR%3C/text%3E%3C/svg%3E" alt="Kastor">
+          </a>
+        </div>
+        <div class="ohio-widget logo -left">
+          <a class="-undash -unlink" href="#">
+            <img class="image-primary" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='56' viewBox='0 0 160 56'%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial%2Csans-serif' font-size='16' font-weight='700' letter-spacing='3' fill='%23282828'%3ESANGENS%3C/text%3E%3C/svg%3E" alt="Sangens">
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <h2 class="primitive-section-title">Как мы работаем</h2>
+  <section class="kit-section">
+    <div class="ohio-section">
+      <div class="ohio-section-head">
+        <h2 class="ohio-section-title">Как мы работаем</h2>
+      </div>
+      <div class="process-grid-store">
+        <div class="ohio-widget process process-store">
+          <div class="heading">
+            <div class="process-number subtitle">Step 1.</div>
+            <h3 class="process-headline title">Консультация.</h3>
+          </div>
+          <p class="process-description">Обсуждаем задачи и пожелания.</p>
+        </div>
+        <div class="ohio-widget process process-store">
+          <div class="heading">
+            <div class="process-number subtitle">Step 2.</div>
+            <h3 class="process-headline title">Расчёт.</h3>
+          </div>
+          <p class="process-description">Подбираем оптимальное решение.</p>
+        </div>
+        <div class="ohio-widget process process-store">
+          <div class="heading">
+            <div class="process-number subtitle">Step 3.</div>
+            <h3 class="process-headline title">Подбор.</h3>
+          </div>
+          <p class="process-description">Формируем спецификацию оборудования.</p>
+        </div>
+        <div class="ohio-widget process process-store">
+          <div class="heading">
+            <div class="process-number subtitle">Step 4.</div>
+            <h3 class="process-headline title">Поставка.</h3>
+          </div>
+          <p class="process-description">Доставляем оборудование на объект.</p>
+        </div>
+        <div class="ohio-widget process process-store">
+          <div class="heading">
+            <div class="process-number subtitle">Step 5.</div>
+            <h3 class="process-headline title">Монтаж.</h3>
+          </div>
+          <p class="process-description">Профессиональная установка.</p>
+        </div>
+        <div class="ohio-widget process process-store">
+          <div class="heading">
+            <div class="process-number subtitle">Step 6.</div>
+            <h3 class="process-headline title">Запуск.</h3>
+          </div>
+          <p class="process-description">Проверка и запуск системы.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <h2 class="primitive-section-title">База знаний</h2>
+  <section class="kit-section">
+    <div class="ohio-section">
+      <div class="ohio-section-head">
+        <h2 class="ohio-section-title">База знаний</h2>
+        <a class="section-link-inline -undash" href="#">
+          Смотреть все статьи
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 8h12"></path>
+            <path d="m8 3 5 5-5 5"></path>
+          </svg>
+        </a>
+      </div>
+      <div class="knowledge-grid-store">
+        <article class="knowledge-card-store">
+          <a class="knowledge-media" href="#">
+            <img src="https://wpsandbox.spaces.community/wp-content/uploads/2026/05/oh__demo19__09.webp" alt="">
+          </a>
+          <a class="knowledge-link -undash" href="#">
+            <h3 class="knowledge-title">Как выбрать печь для бани: полное руководство</h3>
+          </a>
+        </article>
+        <article class="knowledge-card-store">
+          <a class="knowledge-media" href="#">
+            <img src="https://wpsandbox.spaces.community/wp-content/uploads/2026/05/oh__demo19__14-1024x648.webp" alt="">
+          </a>
+          <a class="knowledge-link -undash" href="#">
+            <h3 class="knowledge-title">Ошибки при строительстве хаммама</h3>
+          </a>
+        </article>
+        <article class="knowledge-card-store">
+          <a class="knowledge-media" href="#">
+            <img src="https://colabrio.ams3.cdn.digitaloceanspaces.com/ohio-stage-demo-19/oh__demo19__17.webp" alt="">
+          </a>
+          <a class="knowledge-link -undash" href="#">
+            <h3 class="knowledge-title">Расчёт мощности печи: пошаговый подход</h3>
+          </a>
+        </article>
+        <article class="knowledge-card-store">
+          <a class="knowledge-media" href="#">
+            <img src="/assets/herobg.png" alt="">
+          </a>
+          <a class="knowledge-link -undash" href="#">
+            <h3 class="knowledge-title">Русская баня vs сауна: в чём разница?</h3>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <h2 class="primitive-section-title">Форма связи</h2>
+  <section class="kit-section contact-template-block">
+    <section class="contact-template-card contact-template-card--subscribe">
+      <div class="contact-template-inner">
+        <div class="contact-template-copy">
+          <h2 class="contact-banner-title">Не уверены какое решение подойдёт вашему объекту?</h2>
+          <p class="contact-banner-lead">Получите бесплатный расчёт мощности и консультацию специалиста HWS</p>
+        </div>
+        <div class="contact-template-form-widget">
+          <div class="ohio-widget contact-form -left">
+            <form class="contact-template-form" action="#" method="post">
+              <div class="vc_col-md-4 vc_col-sm-12 contact-template-cell contact-template-cell--select">
+                <p>
+                  <label class="contact-template-field">
+                    <span class="contact-template-sr-only">Тип объекта</span>
+                    <span class="wpcf7-form-control-wrap" data-name="object-type">
+                      <select class="wpcf7-form-control wpcf7-select" aria-label="Тип объекта" name="object-type">
+                        <option value="" selected>Тип объекта</option>
+                        <option value="Русская баня">Русская баня</option>
+                        <option value="Сауна">Сауна</option>
+                        <option value="Хаммам">Хаммам</option>
+                        <option value="SPA-зона">SPA-зона</option>
+                      </select>
+                    </span>
+                  </label>
+                </p>
+              </div>
+              <div class="vc_col-md-4 vc_col-sm-12 contact-template-cell contact-template-cell--area">
+                <p>
+                  <label class="contact-template-field">
+                    <span class="contact-template-sr-only">Площадь, м²</span>
+                    <span class="wpcf7-form-control-wrap" data-name="area">
+                      <input size="40" maxlength="400" class="wpcf7-form-control wpcf7-text" aria-invalid="false" placeholder="Площадь, м²" value="" type="text" name="area">
+                    </span>
+                  </label>
+                </p>
+              </div>
+              <div class="vc_col-md-4 vc_col-sm-12 contact-template-cell contact-template-cell--phone">
+                <p>
+                  <label class="contact-template-field">
+                    <span class="contact-template-sr-only">Ваш телефон</span>
+                    <span class="wpcf7-form-control-wrap" data-name="phone">
+                      <input size="40" maxlength="400" class="wpcf7-form-control wpcf7-tel wpcf7-text wpcf7-validates-as-tel" aria-invalid="false" placeholder="Ваш телефон" value="" type="tel" name="phone">
+                    </span>
+                  </label>
+                </p>
+              </div>
+              <div class="vc_col-md-4 vc_col-sm-12 contact-template-cell contact-template-cell--submit">
+                <p>
+                  <a class="ohio-widget button -outlined contact-template-submit" href="#">Получить консультацию</a>
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <section class="kit-section demo19-extracted-blocks">
+    <h2 class="primitive-section-title">Cards &amp; Commerce</h2>
+    <div class="demo19-extracted-grid">
+      <article class="demo19-extracted-card">
+        <h3 class="primitive-name">category tile image</h3>
+        <div class="blog-item card -layout2 category-banner demo19-size-category">
+          <figure class="image-holder">
+            <a class="-unlink" href="#"><img src="https://colabrio.ams3.cdn.digitaloceanspaces.com/ohio-stage-demo-19/oh__demo19__05.webp" alt=""></a>
+            <div class="overlay-details card-details -left">
+              <h4 class="heading title"><a class="-unlink -undash" href="#">Furniture</a></h4>
+              <p>From lounge seating to handcrafted dining tables, explore pieces designed to anchor your living space with a timeless sense.</p>
+            </div>
+          </figure>
+        </div>
+      </article>
+
+      <article class="demo19-extracted-card">
+        <h3 class="primitive-name">category tile text</h3>
+        <div class="blog-item card -layout2 category-banner demo19-size-category">
+          <figure class="image-holder">
+            <a class="-unlink" href="#"><img src="https://colabrio.ams3.cdn.digitaloceanspaces.com/ohio-stage-demo-19/oh__demo19__04.webp" alt=""></a>
+            <div class="overlay-details card-details -left -flex-column -flex-just-space-between">
+              <div class="heading">
+                <h4 class="title">Blue &amp; white with an earthy twist</h4>
+                <p>Muted tones and organic silhouettes crafted to bring harmony to your space.</p>
+              </div>
+              <a class="button" href="#">Go shopping <span class="icon -right"><svg width="18" height="18" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true"><path d="M85 277.375h259.704L225.002 397.077 256 427l171-171L256 85l-29.922 29.924 118.626 119.701H85v42.75z"></path></svg></span></a>
+            </div>
+          </figure>
+        </div>
+      </article>
+
+      <article class="demo19-extracted-card">
+        <h3 class="primitive-name">blog card</h3>
+        <article class="blog-item card -layout1 -img-scale demo19-blog-post">
+          <a class="-unlink" href="#" aria-label="The Art of Less: Finding Beauty in Minimalist Architectural Design">
+            <figure class="image-holder">
+              <img class="blog-archive-image" src="https://colabrio.ams3.cdn.digitaloceanspaces.com/ohio-stage-demo-19/oh__demo19__09.webp" alt="">
+              <div class="overlay-details -fade-up">
+                <ul class="meta-holder -unlist">
+                  <li class="meta-item">
+                    <div class="avatar -small">
+                      <img alt="Colabrio" src="https://secure.gravatar.com/avatar/5c71560ff2d454a7285989a0fdc910144738e636527507e1e7857ce983d4214b?s=50&d=mm&r=g" class="avatar avatar-50 photo author-avatar" height="50" width="50">
+                    </div>
+                  </li>
+                  <li class="meta-item">
+                    <span class="prefix">Posted by</span>
+                    <span class="author">Colabrio</span>
+                  </li>
+                </ul>
+              </div>
+            </figure>
+          </a>
+          <div class="card-details -left">
+            <div class="headline-meta"><span class="date">May 11, 2026</span><span>4 min read</span></div>
+            <h4 class="heading title"><a class="-undash" href="#">The Art of Less: Finding Beauty in Minimalist Architectural Design</a></h4>
+            <p>Using a Query A CSS pseudo-class is a keyword added to a selector that specifies a special state of the…</p>
+            <div class="category-holder -with-tag">
+              <span class="tag">Editorial</span>
+              <span class="tag">Interior Design</span>
+            </div>
+          </div>
+        </article>
+      </article>
+
+      <article class="demo19-extracted-card">
+        <h3 class="primitive-name">product card</h3>
+        <ul class="woo-products -unlist" style="list-style:none;margin:0;padding:0;width:100%;max-width:314px;">
+          <li class="product type-product instock">
+            <div class="product-item product-item-grid card -type1 -img-transition -contained -left" data-tilt="true" data-tilt-perspective="6000">
+              <div class="product-item-thumbnail">
+                <button class="icon-button button-quickview -fade-down -top" type="button" aria-label="Quickview">
+                  <i class="icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M0 2V6H2V2H6V0H2C0.9 0 0 0.9 0 2ZM2 12H0V16C0 17.1 0.9 18 2 18H6V16H2V12ZM16 16H12V18H16C17.1 18 18 17.1 18 16V12H16V16ZM16 0H12V2H16V6H18V2C18 0.9 17.1 0 16 0Z" fill="currentColor"></path></svg></i>
+                </button>
+                <div class="product-item-buttons -fade-up">
+                  <div class="button-group">
+                    <a class="button -dm-ignore" href="#">Select options</a>
+                  </div>
+                </div>
+                <div class="image-holder">
+                  <img src="https://colabrio.ams3.cdn.digitaloceanspaces.com/ohio-stage-demo-19/oh__demo19__prod_11-800x800.webp" alt="Form Chair Steel">
+                  <img src="https://colabrio.ams3.cdn.digitaloceanspaces.com/ohio-stage-demo-19/oh__demo19__prod_12-800x800.webp" alt="">
+                  <a href="#" aria-label="Product thumbnail" style="position:absolute;z-index:2;top:0;left:0;width:100%;height:100%;display:block"></a>
+                </div>
+              </div>
+              <div class="card-details">
+                <a href="#" class="woo-product-name title titles-typo -undash">Form Chair Steel</a>
+                <div class="woo-category category-holder">
+                  <a href="#">Dining</a><a href="#">Seating</a>
+                </div>
+                <div class="woo-price">
+                  <span class="price"><span class="woocommerce-Price-amount">$290.00</span></span>
+                  <div class="cfvsw-hidden-select">
+                    <select name="attribute_pa_color" aria-label="Choose color">
+                      <option value="blue">Blue</option>
+                      <option value="brown" selected>Brown</option>
+                    </select>
+                  </div>
+                  <div class="cfvsw-swatches-container cfvsw-shop-container" swatches-attr="attribute_pa_color" data-ohio-swatches>
+                    <div class="cfvsw-swatches-option" data-slug="blue" data-title="Blue" data-tooltip="Blue"><div class="cfvsw-swatch-inner" style="background-color:#829099;"></div></div>
+                    <div class="cfvsw-swatches-option cfvsw-selected-swatch" data-slug="brown" data-title="Brown" data-tooltip="Brown"><div class="cfvsw-swatch-inner" style="background-color:#938686;"></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </article>
+
+      <article class="demo19-extracted-card">
+        <h3 class="primitive-name">payments row</h3>
+        <div class="demo19-footer-payments">
+          <span class="ohio-footer-payments-label">Secure and easy payments</span>
+          <div class="ohio-footer-payments-icons">
+            <svg width="36" height="24" viewBox="0 0 36 24" fill="none" aria-hidden="true"><path d="M0 6C0 2.68629 2.68629 0 6 0H30C33.3137 0 36 2.68629 36 6V18C36 21.3137 33.3137 24 30 24H6C2.68629 24 0 21.3137 0 18V6Z" fill="white"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M11.5001 16.0047H9.25003L7.56275 9.74639C7.48266 9.45851 7.31262 9.20401 7.06248 9.08406C6.43825 8.78262 5.75039 8.54271 5 8.42172V8.18078H8.62471C9.12497 8.18078 9.50017 8.54271 9.5627 8.96306L10.4382 13.4774L12.6871 8.18078H14.8747L11.5001 16.0047ZM16.1253 16.0047H14.0003L15.7501 8.18078H17.8751L16.1253 16.0047ZM20.6245 10.3479C20.687 9.92651 21.0622 9.68557 21.4999 9.68557C22.1878 9.62507 22.9371 9.74606 23.5624 10.0465L23.9376 8.36194C23.3123 8.12099 22.6244 8 22.0002 8C19.9377 8 18.4369 9.08373 18.4369 10.5878C18.4369 11.732 19.5 12.3328 20.2504 12.6948C21.0622 13.0557 21.3748 13.2966 21.3123 13.6575C21.3123 14.1988 20.687 14.4398 20.0628 14.4398C19.3124 14.4398 18.562 14.2593 17.8752 13.9579L17.5 15.6435C18.2504 15.9439 19.0622 16.0649 19.8126 16.0649C22.1252 16.1243 23.5624 15.0416 23.5624 13.4165C23.5624 11.3701 20.6245 11.2501 20.6245 10.3479V10.3479ZM30.9997 16.0047L29.3124 8.18078H27.5001C27.1249 8.18078 26.7497 8.42172 26.6246 8.78262L23.5002 16.0047H25.6877L26.1244 14.8615H28.8122L29.0623 16.0047H30.9997ZM27.8127 10.2871L28.437 13.2358H26.6871L27.8127 10.2871Z" fill="#172B85"></path></svg>
+            <svg width="36" height="24" viewBox="0 0 36 24" fill="none" aria-hidden="true"><path d="M0 6C0 2.68629 2.68629 0 6 0H30C33.3137 0 36 2.68629 36 6V18C36 21.3137 33.3137 24 30 24H6C2.68629 24 0 21.3137 0 18V6Z" fill="white"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M17.5714 17.1569C16.3458 18.1852 14.756 18.806 13.0187 18.806C9.14239 18.806 6 15.7154 6 11.903C6 8.09057 9.14239 5 13.0187 5C14.756 5 16.3458 5.62075 17.5714 6.64903C18.797 5.62075 20.3869 5 22.1241 5C26.0005 5 29.1429 8.09057 29.1429 11.903C29.1429 15.7154 26.0005 18.806 22.1241 18.806C20.3869 18.806 18.797 18.1852 17.5714 17.1569Z" fill="#ED0006"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M17.5723 17.1569C19.0814 15.8908 20.0383 14.0068 20.0383 11.903C20.0383 9.79917 19.0814 7.91517 17.5723 6.64903C18.7979 5.62075 20.3877 5 22.125 5C26.0013 5 29.1437 8.09057 29.1437 11.903C29.1437 15.7154 26.0013 18.806 22.125 18.806C20.3877 18.806 18.7979 18.1852 17.5723 17.1569Z" fill="#F9A000"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M17.5715 17.1563C16.0624 15.8902 15.1055 14.0062 15.1055 11.9024C15.1055 9.79856 16.0624 7.91457 17.5715 6.64844C19.0806 7.91457 20.0375 9.79856 20.0375 11.9024C20.0375 14.0062 19.0806 15.8902 17.5715 17.1563Z" fill="#FF5E00"></path></svg>
+            <svg width="36" height="24" viewBox="0 0 36 24" fill="none" aria-hidden="true"><path d="M0 6C0 2.68629 2.68629 0 6 0H30C33.3137 0 36 2.68629 36 6V18C36 21.3137 33.3137 24 30 24H6C2.68629 24 0 21.3137 0 18V6Z" fill="#1F72CD"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M7.272 8.5L4 15.7467H7.91704L8.40264 14.5913H9.51261L9.99821 15.7467H14.3098V14.8649L14.694 15.7467H16.9242L17.3084 14.8462V15.7467H26.2753L27.3656 14.6213L28.3866 15.7467L32.9922 15.7561L29.7098 12.1436L32.9922 8.5H28.458L27.3966 9.60463L26.4078 8.5H16.6531L15.8154 10.3704L14.9581 8.5H11.0492V9.35186L10.6144 8.5H7.272ZM20.6622 9.52905H25.8114L27.3863 11.2316L29.012 9.52905H30.5869L28.194 12.1426L30.5869 14.726H28.9405L27.3656 13.0036L25.7317 14.726H20.6622V9.52905ZM21.9338 11.555V10.6057V10.6048H25.1467L26.5487 12.1229L25.0846 13.6493H21.9338V12.613H24.7429V11.555H21.9338ZM8.02993 9.52905H9.93928L12.1096 14.4431V9.52905H14.2012L15.8775 13.0524L17.4224 9.52905H19.5036V14.7291H18.2373L18.2269 10.6544L16.3807 14.7291H15.2479L13.3914 10.6544V14.7291H10.7862L10.2923 13.5633H7.62405L7.13118 14.728H5.73537L8.02993 9.52905ZM8.07966 12.4856L8.95876 10.4089L9.83683 12.4856H8.07966Z" fill="white"></path></svg>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <h2 class="primitive-section-title">Footer</h2>
+  <section class="kit-section">
+    <footer class="ohio-footer ohio-footer-stage">
+      <div class="ohio-footer-columns">
+        <div class="ohio-footer-col">
+          <h4 class="ohio-footer-col-title">Товары</h4>
+          <ul class="ohio-footer-link-list">
+            <li><a class="ohio-footer-link" href="#">Печи для русской бани</a></li>
+            <li><a class="ohio-footer-link" href="#">Печи для сауны</a></li>
+            <li><a class="ohio-footer-link" href="#">Печи для хаммама</a></li>
+            <li><a class="ohio-footer-link" href="#">Коммерческие печи</a></li>
+            <li><a class="ohio-footer-link" href="#">Парогенераторы</a></li>
+            <li><a class="ohio-footer-link" href="#">Аксессуары для бани</a></li>
+          </ul>
+          <span class="ohio-footer-payments-label">Безопасная оплата</span>
+        </div>
+        <div class="ohio-footer-col">
+          <h4 class="ohio-footer-col-title">Компания</h4>
+          <ul class="ohio-footer-link-list">
+            <li><a class="ohio-footer-link" href="#">О нас</a></li>
+            <li><a class="ohio-footer-link" href="#">Ответственность</a></li>
+            <li><a class="ohio-footer-link" href="#">Консультации по подбору</a></li>
+            <li><a class="ohio-footer-link" href="#">Уход и обслуживание</a></li>
+            <li><a class="ohio-footer-link" href="#">Обзор материалов</a></li>
+            <li><a class="ohio-footer-link" href="#">Инструкции и документы</a></li>
+            <li><a class="ohio-footer-link" href="#">Характеристики товаров</a></li>
+          </ul>
+        </div>
+        <div class="ohio-footer-col">
+          <h4 class="ohio-footer-col-title">Помощь</h4>
+          <ul class="ohio-footer-link-list">
+            <li><a class="ohio-footer-link" href="#">Центр помощи</a></li>
+            <li><a class="ohio-footer-link" href="#">Отмена заказа</a></li>
+            <li><a class="ohio-footer-link" href="#">Возврат и гарантия</a></li>
+            <li><a class="ohio-footer-link" href="#">Доставка</a></li>
+            <li><a class="ohio-footer-link" href="#">Доступность сайта</a></li>
+          </ul>
+        </div>
+        <div class="ohio-footer-col">
+          <h4 class="ohio-footer-col-title">Контакты</h4>
+          <p class="ohio-footer-phone">8 800 200-00-00</p>
+          <p class="ohio-footer-contact-meta">Понедельник - пятница<br>10:00 - 19:00<br>sales@wpsandbox.spaces.community</p>
+        </div>
+      </div>
+
+      <div class="ohio-footer-up">
+        <div class="ohio-footer-up-inner">
+          <a class="ohio-footer-up-link" href="#">
+            <span class="icon-circle-small is-filled">
+              <svg width="24" height="24" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true">
+                <path d="M440-160v-487L216-423l-56-57 320-320 320 320-56 57-224-224v487h-80Z"/>
+              </svg>
+            </span>
+            Наверх
+          </a>
+        </div>
+      </div>
+
+      <div class="ohio-footer-legal">
+        <div class="ohio-footer-legal-inner">
+          <span class="ohio-footer-copyright">© 2016-2026 Home Wood Spa Compny. Все права защищены</span>
+          <span class="ohio-footer-legal-links"><a href="#">Полиси</a> | <a href="#">Условия использования</a></span>
+        </div>
+      </div>
+    </footer>
+  </section>
+</main>
+<script src="/kit-interactions.js"></script>
+<script>
+// Tilt effect — port of Ohio jquery.tilt.min.js (defaults: maxTilt 20, speed 400, easing cubic-bezier(.03,.98,.52,.99), scale 1)
+document.querySelectorAll('[data-tilt]').forEach(el => {
+  const maxTilt = el.hasAttribute('data-tilt-max') ? parseFloat(el.dataset.tiltMax) : 20;
+  const perspective = el.hasAttribute('data-tilt-perspective') ? parseFloat(el.dataset.tiltPerspective) : 300;
+  const speed = el.hasAttribute('data-tilt-speed') ? parseFloat(el.dataset.tiltSpeed) : 400;
+  const easing = 'cubic-bezier(.03,.98,.52,.99)';
+  let ticking = false;
+  let mouse = { x: 0, y: 0 };
+
+  function update() {
+    const r = el.getBoundingClientRect();
+    const pctX = (mouse.x - r.left) / r.width;
+    const pctY = (mouse.y - r.top) / r.height;
+    const tiltX = (maxTilt / 2 - pctX * maxTilt).toFixed(2);
+    const tiltY = (pctY * maxTilt - maxTilt / 2).toFixed(2);
+    el.style.transform = 'perspective(' + perspective + 'px) rotateX(' + tiltY + 'deg) rotateY(' + tiltX + 'deg) scale3d(1,1,1)';
+    ticking = false;
+  }
+
+  function setTransition() {
+    el.style.transition = 'transform ' + speed + 'ms ' + easing;
+    setTimeout(() => { el.style.transition = ''; }, speed);
+  }
+
+  el.addEventListener('mouseenter', () => {
+    el.style.willChange = 'transform';
+    setTransition();
+  });
+
+  el.addEventListener('mousemove', e => {
+    mouse = { x: e.clientX, y: e.clientY };
+    if (!ticking) { requestAnimationFrame(update); ticking = true; }
+  });
+
+  el.addEventListener('mouseleave', () => {
+    setTransition();
+    el.style.transform = 'perspective(' + perspective + 'px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)';
+  });
+});
+</script>
+</body>
+</html>

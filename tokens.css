@@ -21,16 +21,16 @@
   --color-white-soft: #EFEBE0;
   --color-pink-section: #EBC6BC;
   --color-lime-section: #DEE2A2;
-  --color-surface-soft: rgba(136,136,137,0.06);
+  --color-surface-soft: rgba(136,136,137,0.05);
   --color-surface-soft-hover: rgba(136,136,137,0.12);
   --color-surface-pill: rgba(136,136,137,0.08);
-  --color-surface-nav: rgba(136,136,137,0.075);
+  --color-surface-nav: rgba(136,136,137,0.05);
   --color-surface-medium: rgba(136,136,137,0.12);
   --color-line: rgba(40,40,40,0.08);
   --color-border: rgba(0,0,0,0.07);
   --color-border-strong: rgba(40,40,40,0.15);
-  --color-text-main: rgba(40,40,40,0.88);
-  --color-text-muted: rgba(40,40,40,0.52);
+  --color-text-main: rgba(40,40,40,0.85);
+  --color-text-muted: rgba(40,40,40,0.72);
   --color-text-faint: rgba(40,40,40,0.4);
   --color-text-weak: rgba(40,40,40,0.3);
   --color-text-strong: var(--color-dark-strong);
@@ -39,8 +39,8 @@
   --color-badge-bg: rgba(40,40,40,0.88);
   --color-badge-text: #fff;
 
-  --container-max: 1984px;
-  --container-pad: 28px;
+  --container-max: 1366px;
+  --container-pad: clamp(16px, 1.5vw, 28px);
   --content-max: 900px;
 
   --space-1: 4px;
@@ -65,13 +65,13 @@
   --radius-pill-md: 20px;
   --radius-pill-lg: 22px;
 
-  --text-body-size: 16px;
+  --text-body-size: 0.98rem;
   --text-body-line: 1.6;
   --text-small: 0.95em;
   --text-caption: 0.9rem;
   --text-label-size: 12px;
-  --text-title-size: 16px;
-  --text-title-line: 1.2;
+  --text-title-size: 1.3em;
+  --text-title-line: 1.1;
   --heading-1: 4.5rem;
   --heading-2: 3rem;
   --heading-3: 2rem;
@@ -79,16 +79,60 @@
   --heading-5: 1.08rem;
   --heading-6: 1rem;
 
-  --button-height-sm: 36px;
-  --button-height-md: 44px;
-  --button-height-lg: 52px;
-  --icon-circle-xs: 32px;
-  --icon-circle-sm: 44px;
+  --button-height-sm: 2.25rem;
+  --button-height-md: 2.75rem;
+  --button-height-lg: 3.25rem;
+  --icon-circle-xs: 2.5rem;
+  --icon-circle-sm: 3rem;
   --icon-circle-md: 56px;
   --icon-circle-lg: 64px;
+  --subheader-height: 2.375rem;
+  --offer-banner-height: 2.5rem;
 
-  --transition-fast: .25s cubic-bezier(.645,.045,.355,1);
+  --transition-fast: .2s cubic-bezier(.645,.045,.355,1);
   --transition-base: .35s cubic-bezier(.645,.045,.355,1);
+
+  --clb-color-white: white;
+  --clb-color-black: #111013;
+  --clb-color-black-rgb: 17, 16, 19;
+  --clb-color-black-light: color-mix(in srgb, var(--clb-color-black) 98%, white);
+  --clb-color-primary: #3e5759;
+  --clb-color-secondary: #7646DD;
+  --clb-color-neutral: color-mix(in srgb, var(--clb-color-black) 50%, white);
+  --clb-color-grey: color-mix(in srgb, var(--clb-color-black) 65%, white);
+  --clb-color-grey-light: color-mix(in srgb, var(--clb-color-black) 50%, white);
+  --clb-color-success: #29A366;
+  --clb-color-warning: #EC8013;
+  --clb-color-danger: #D91842;
+  --clb-color-placeholder: var(--clb-color-grey-light);
+  --clb-color-border: color-mix(in srgb, var(--clb-color-neutral) 16%, transparent);
+  --clb-color-fill: color-mix(in srgb, var(--clb-color-neutral) 8%, transparent);
+  --clb-color-button: #282828;
+  --clb-text-color: rgba(40,40,40,0.85);
+  --clb-text-color-grey: rgba(40,40,40,0.72);
+  --clb-text-field-font-size: 0.96rem;
+  --clb-transition-duration: .35s;
+  --clb-transition-function: cubic-bezier(.645, .045, .355, 1);
+  --clb-border-style-solid: solid;
+  --clb-border-width: 1px;
+  --clb-border-width-double: 2px;
+  --clb-border-radius: 14px;
+  --clb-border-radius-small: 7px;
+  --clb-button-border-radius: 28px;
+  --clb-button-border-radius-small: 14px;
+  --clb-text-field-border-radius: 14px;
+  --clb-button-height: 2.75rem;
+  --clb-button-height-small: 2.25rem;
+  --clb-button-height-large: 3.25rem;
+  --clb-spacer-05: 0.25rem;
+  --clb-spacer-1: 0.5rem;
+  --clb-spacer-2: 0.75rem;
+  --clb-spacer-3: 1rem;
+  --clb-spacer-5: 1.5rem;
+  --clb-grid-gutter: 14px;
+  --clb-font-size-small: 0.95em;
+  --clb-font-size-extra-small: 0.9em;
+  --clb-font-size-large: 1.05em;
 }
 
 html {

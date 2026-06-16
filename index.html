@@ -1,36 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ohio UI Kit</title>
+<title>Home</title>
 <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/tokens.css">
 <link rel="stylesheet" href="/elements.css">
 <link rel="stylesheet" href="/blocks.css">
 </head>
 <body class="kit-home">
-<div class="kit-home-wrap">
-  <h1 class="kit-home-title">Ohio UI Kit</h1>
-  <p class="kit-home-sub">CSS 1:1 из demo19 · shop · product/layout-chair-a132</p>
-  <p class="group-label">Примитивы</p>
-  <div class="kit-nav">
-    <a href="/typography.html"><span><span class="kit-tag">atoms</span>Typography</span><span class="desc">H1–H6 · Body · Links · Code · Colors</span></a>
-    <a href="/buttons.html"><span><span class="kit-tag">atoms</span>Buttons</span><span class="desc">Filled · Outlined · Flat · Text + реальные use-cases</span></a>
-    <a href="/icon-buttons.html"><span><span class="kit-tag">atoms</span>Icon Buttons</span><span class="desc">Header · Slider · Product · Scroll · Social</span></a>
-    <a href="/tags.html"><span><span class="kit-tag">atoms</span>Tags &amp; Elements</span><span class="desc">Sale · In Stock · Breadcrumb · Qty · Swatches · Tabs · Chips</span></a>
-    <a href="/forms.html"><span><span class="kit-tag">atoms</span>Forms</span><span class="desc">Text input · Textarea · Select · Search · Checkbox · Radio · Subscribe</span></a>
-  </div>
-  <p class="group-label">Блоки</p>
-  <div class="kit-nav">
-    <a href="#" style="opacity:0.35;pointer-events:none"><span><span class="kit-tag" style="background:rgba(0,0,0,0.06);color:#999">blocks</span>Product Card</span><span class="desc">coming soon</span></a>
-    <a href="/header.html"><span><span class="kit-tag">blocks</span>Header</span><span class="desc">Sticky · Logo · Nav · Cart</span></a>
-    <a href="/footer.html"><span><span class="kit-tag">blocks</span>Footer</span><span class="desc">4 cols · links · contacts</span></a>
-  </div>
-  <p class="group-label">Страницы</p>
-  <div class="kit-nav">
-    <a href="/page.html"><span><span class="kit-tag">pages</span>Page Template</span><span class="desc">Top Bar · Header · Content · Footer</span></a>
-  </div>
-</div>
+<main class="kit-home-wrap">
+  <section class="kit-home-head">
+    <div>
+      <h1 class="kit-home-title">Cream UI Kit</h1>
+      <p class="kit-home-sub">Кит собирается по screenshot-first flow: сначала примитивы, потом блоки, потом страницы. Exact grid и spacing фиксируются отдельно в specs.</p>
+    </div>
+    <div class="kit-chip-row">
+      <span class="kit-chip">Source of truth: Ohio</span>
+      <span class="kit-chip">Mode: block-first</span>
+      <span class="kit-chip">Status: rebuild</span>
+    </div>
+  </section>
+
+  <section class="kit-grid">
+    <a class="kit-card" href="/primitives.html">
+      <div class="kit-card-head">
+        <span class="kit-tag">page</span>
+        <span class="kit-card-index">01</span>
+      </div>
+      <div>
+        <h2 class="kit-card-title">Примитивы</h2>
+        <p class="kit-card-sub">Reusable слой: layout, navigation, buttons, badges, commerce и другие базовые части блоков.</p>
+      </div>
+      <div class="kit-card-foot">
+        <span class="kit-card-link">Открыть</span>
+        <span class="kit-card-meta">system</span>
+      </div>
+    </a>
+
+    <a class="kit-card" href="/blocks.html">
+      <div class="kit-card-head">
+        <span class="kit-tag">page</span>
+        <span class="kit-card-index">02</span>
+      </div>
+      <div>
+        <h2 class="kit-card-title">Блоки</h2>
+        <p class="kit-card-sub">Сборка approved блоков только из существующих примитивов. Первый блок: Ohio Demo19 Header.</p>
+      </div>
+      <div class="kit-card-foot">
+        <span class="kit-card-link">Открыть</span>
+        <span class="kit-card-meta">assembly</span>
+      </div>
+    </a>
+
+    <a class="kit-card" href="/specs.html">
+      <div class="kit-card-head">
+        <span class="kit-tag">page</span>
+        <span class="kit-card-index">03</span>
+      </div>
+      <div>
+        <h2 class="kit-card-title">Specs</h2>
+        <p class="kit-card-sub">Точная фиксация сетки, отступов, размеров и source mapping для каждого утвержденного блока.</p>
+      </div>
+      <div class="kit-card-foot">
+        <span class="kit-card-link">Открыть</span>
+        <span class="kit-card-meta">exact values</span>
+      </div>
+    </a>
+
+    <a class="kit-card" href="/demo19-elements.html">
+      <div class="kit-card-head">
+        <span class="kit-tag">page</span>
+        <span class="kit-card-index">04</span>
+      </div>
+      <div>
+        <h2 class="kit-card-title">Demo19</h2>
+        <p class="kit-card-sub">Verified primitives only from Ohio Demo19. No mixed elements from other Ohio pages.</p>
+      </div>
+      <div class="kit-card-foot">
+        <span class="kit-card-link">Открыть</span>
+        <span class="kit-card-meta">source exact</span>
+      </div>
+    </a>
+
+  </section>
+</main>
 </body>
 </html>
