@@ -7,6 +7,14 @@
       "runtimeArgs": ["serve"],
       "port": 4173,
       "autoPort": true
+    },
+    {
+      "name": "creamui-frontend",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "cwd": "frontend",
+      "port": 3000,
+      "autoPort": false
     }
   ]
 }

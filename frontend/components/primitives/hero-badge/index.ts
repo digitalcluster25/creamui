@@ -1,0 +1,1 @@
+export { HeroBadge } from "./HeroBadge";

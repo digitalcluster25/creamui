@@ -1,0 +1,211 @@
+.card {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  background: rgba(238, 199, 185, 0.75);
+}
+
+.inner {
+  width: 100%;
+  max-width: 1366px;
+  margin: 0 auto;
+  min-height: 239px;
+  padding: 32px clamp(16px, 1.5vw, 28px);
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: start;
+  column-gap: 18px;
+  row-gap: 24px;
+}
+
+.copy {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  row-gap: 16px;
+}
+
+.title {
+  margin: 0;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 53.76px;
+  font-weight: 400;
+  line-height: 51.6096px;
+  letter-spacing: normal;
+  color: rgb(40, 40, 40);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.lead {
+  margin: 0;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: rgba(40, 40, 40, 0.78);
+  white-space: nowrap;
+}
+
+.formWidget {
+  width: 100%;
+  align-self: start;
+  justify-self: start;
+  grid-column: 1 / -1;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  gap: 16px;
+  align-items: end;
+}
+
+.cellSelect {
+  grid-column: span 2;
+}
+
+.cellArea {
+  grid-column: span 2;
+}
+
+.cellPhone {
+  grid-column: span 2;
+}
+
+.cellSubmit {
+  grid-column: span 3;
+  display: flex;
+  align-items: flex-end;
+}
+
+.fieldLabel {
+  display: block;
+  margin: 0;
+  width: 100%;
+}
+
+.fieldControl {
+  display: block;
+  width: 100%;
+  min-height: var(--clb-button-height, 44px);
+  height: var(--clb-button-height, 44px);
+  padding: 0 var(--clb-spacer-3, 16px);
+  border-radius: var(--clb-text-field-border-radius, 14px);
+  background-color: rgba(255, 255, 255, 0.24);
+  color: rgba(40, 40, 40, 0.86);
+  font-family: "Noto Sans", sans-serif;
+  font-size: 15.36px;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.fieldControl::placeholder {
+  color: rgba(40, 40, 40, 0.58);
+}
+
+.fieldControl:focus {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+select.fieldControl {
+  color: rgba(40, 40, 40, 0.72);
+  cursor: pointer;
+}
+
+.submitBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  min-height: 44px;
+  height: 44px;
+  padding: 0 20px;
+  border-radius: 28px;
+  border: 2px solid rgb(40, 40, 40);
+  background: transparent;
+  color: rgb(40, 40, 40);
+  font-family: "Noto Sans", sans-serif;
+  font-size: 14.896px;
+  font-weight: 700;
+  line-height: 23.8336px;
+  letter-spacing: normal;
+  cursor: pointer;
+  box-sizing: border-box;
+  white-space: nowrap;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.submitBtn:hover,
+.submitBtn:focus {
+  color: var(--color-primary, #b05e3a);
+  border-color: currentColor;
+  background-color: transparent;
+}
+
+@media (max-width: 980px) {
+  .inner {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+    padding: 30px 28px;
+    gap: 22px;
+  }
+
+  .copy,
+  .formWidget {
+    grid-column: auto;
+  }
+
+  .copy {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .form {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cellSelect,
+  .cellArea,
+  .cellPhone,
+  .cellSubmit {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 720px) {
+  .inner {
+    padding: 28px 22px;
+    gap: 24px;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .lead {
+    white-space: normal;
+  }
+
+  .form {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .fieldControl,
+  .submitBtn {
+    min-height: 3.25rem;
+  }
+}

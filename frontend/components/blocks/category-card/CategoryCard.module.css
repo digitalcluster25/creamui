@@ -1,0 +1,122 @@
+/*
+ * CategoryCard — all styles self-contained (no global Ohio classes in scope).
+ * Ported 1:1 from elements.css:
+ *   .blog-item.-layout2 .image-holder
+ *   .card .overlay-details
+ *   .blog-item.-layout2 .overlay-details
+ *   .headline-meta.-small-t, .heading .title, .category-holder.-with-tag, .tag
+ */
+
+/* ── Wrapper ─────────────────────────────────────────── */
+.card {
+  position: relative;
+}
+
+/* ── Image holder (figure) ───────────────────────────── */
+.imageHolder {
+  overflow: hidden;
+  position: relative;
+  margin: 0;
+  display: block;
+  border-radius: var(--radius-lg);
+  /* Ohio: .category-banner .image-holder */
+  aspect-ratio: 3 / 4;
+  /* Ohio: .blog-item.-layout2 .image-holder */
+  background-color: color-mix(in srgb, #888889 40%, transparent);
+}
+
+.imageHolder img {
+  position: absolute;
+  inset: 0;
+  min-width: 100%;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: all var(--transition-base);
+}
+
+.card:hover .imageHolder img {
+  transform: scale3d(1.06, 1.06, 1.06);
+}
+
+/* ── Overlay details ─────────────────────────────────── */
+/* Ohio: .card .overlay-details */
+.overlayDetails {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+  padding: 1.5vw;
+  display: block;
+  /* Ohio: .blog-item.-layout2 .overlay-details:not(.-top) */
+  background: linear-gradient(360deg, rgba(17, 16, 19, 0.82) 0%, rgba(17, 16, 19, 0) 100%);
+  color: #fff;
+}
+
+/* ── Headline meta ───────────────────────────────────── */
+/* Ohio: .headline-meta.-small-t, .blog-item.-layout2 .overlay-details .headline-meta */
+.headlineMeta {
+  font-size: 0.95em;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  color: #fff;
+  margin-bottom: 0.25rem;
+}
+
+.date {
+  font-weight: 500;
+}
+
+/* ── Heading / title ─────────────────────────────────── */
+/* Ohio: .card .heading .title, .blog-item.-layout2 .overlay-details .title */
+.heading {
+  margin: 0;
+  font-family: var(--font-subtitle);
+  font-weight: 400;
+  font-size: 1.7em;
+  line-height: 1.3;
+  color: #fff;
+}
+
+.heading a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ── Category holder ─────────────────────────────────── */
+/* Ohio: .blog-item.-layout2 .overlay-details .category-holder,
+         .category-holder.-with-tag */
+.categoryHolder {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.75rem;
+}
+
+/* ── Tag chips ───────────────────────────────────────── */
+/* Ohio: .tag, .blog-item.-layout2 .overlay-details .tag:not(:hover) */
+.tag {
+  background-color: color-mix(in srgb, #888889 45%, transparent);
+  color: #fff;
+  font-weight: 500;
+  gap: 0.5em;
+  line-height: 1;
+  padding: 0.25rem 0.75rem;
+  min-height: 1.75rem;
+  font-size: 0.9rem;
+  transition-duration: 0.35s;
+  white-space: nowrap;
+  border-radius: var(--radius-lg);
+  display: inline-flex;
+  vertical-align: middle;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.tag:hover {
+  background: color-mix(in srgb, #888889 24%, transparent);
+}

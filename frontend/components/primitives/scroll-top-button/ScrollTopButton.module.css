@@ -1,0 +1,38 @@
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--color-text-main);
+  text-decoration: none;
+  margin: 1rem 0;
+  transition: color 0.35s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.link:hover {
+  color: var(--color-dark);
+}
+
+.iconButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-main);
+  padding: 0;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}

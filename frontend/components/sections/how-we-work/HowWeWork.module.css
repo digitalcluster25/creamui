@@ -1,0 +1,73 @@
+.section {
+  width: 100%;
+  max-width: 1366px;
+  margin: 0 auto;
+}
+
+.head {
+  margin-bottom: 2rem;
+}
+
+.title {
+  margin: 0;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 33.6px;
+  font-weight: 400;
+  line-height: 40.32px;
+  letter-spacing: normal;
+  color: rgb(17, 16, 19);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  align-items: start;
+}
+
+.step {
+  min-width: 0;
+}
+
+.number {
+  margin: 0;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 14.76px;
+  font-weight: 500;
+  line-height: 23.616px;
+  letter-spacing: -0.164px;
+  color: rgb(17, 16, 19);
+}
+
+.headline {
+  margin: 0;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 33.2928px;
+  font-weight: 600;
+  line-height: 38.2867px;
+  letter-spacing: -1.16525px;
+  color: rgb(17, 16, 19);
+}
+
+.description {
+  margin: 16.4px 0 0;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 16.4px;
+  font-weight: 400;
+  line-height: 26.24px;
+  letter-spacing: -0.164px;
+  color: rgb(17, 16, 19);
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem 2rem;
+  }
+}
+
+@media (max-width: 580px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

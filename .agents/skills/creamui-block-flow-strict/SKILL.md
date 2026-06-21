@@ -255,15 +255,33 @@ Hard rules:
 
 ### Approved Ohio Source Pages For Copying
 
-Если задача в этом проекте требует копировать primitives или sub-parts 1:1 для кастомного блока, разрешенные source pages по умолчанию такие:
+**PRIMARY SOURCE (ОБЯЗАТЕЛЬНО):** Локальный кит на `localhost:4173/blocks/`
+
+Это единственный первичный источник для всех блоков Next.js фронтенда (`/frontend/`).
+
+Обязательный workflow:
+1. Запустить source server: `preview_start("creamui")` → serverId для port 4173
+2. Навигировать на `/blocks/` через `preview_eval`
+3. Получать exact values через `getComputedStyle` в `preview_eval`
+4. Все CSS значения — только из `getComputedStyle` source сервера
+5. Никогда не угадывать значения, не брать из памяти, не "похожие"
+
+Правило getComputedStyle:
+- КАЖДЫЙ CSS property берётся через `getComputedStyle(el).propertyName`
+- font-family, font-size, font-weight, line-height, letter-spacing, color, padding, margin, border, border-radius, gap, background — все обязательно
+- states (hover) брать из source HTML/CSS, не угадывать
+
+Если source server недоступен — поднять его, не гадать.
+
+Внешние Ohio pages как fallback (только если элемент не найден на localhost:4173):
 - [Demo19 Home](https://ohio.clbthemes.com/demo19/)
 - [Demo19 Shop](https://ohio.clbthemes.com/demo19/shop/)
 - [Demo19 Product Layout Chair A132](https://ohio.clbthemes.com/demo19/product/layout-chair-a132/)
 
 Правило:
-- сначала искать source element на этих страницах
-- только найденный source element можно копировать 1:1 в primitive
-- если user не указал другую source page, эти три страницы являются первичным каталогом для source-copy поиска
+- сначала искать source element на localhost:4173/blocks/
+- только найденный source element можно копировать 1:1
+- если user не указал другую source page, localhost:4173/blocks/ является первичным каталогом
 
 ## 8. Source Of Truth Contract
 
@@ -1105,7 +1123,134 @@ If user says:
 - “возьми все элементы с конкретной страницы” -> exact page extraction with verified inventory before code
 - “сначала моки, потом wpgraphql” -> use the standard delivery pipeline
 
-## 31. Response Style
+## 31. 3-Tier Component Architecture
+
+Весь UI в этом проекте организован по трём уровням. Уровни строго иерархичны: каждый уровень собирает элементы только нижних уровней.
+
+```
+Секции  (Sections)
+  └── Блоки (Blocks)
+        └── Примитивы (Primitives)
+```
+
+### Уровень 1 — Примитивы (Primitives)
+
+**Что это:** атомарные UI-элементы кита, неделимые далее.
+
+**Примеры:**
+- Иконочная кнопка бургер-меню (BurgerButton)
+- Графический элемент логотипа (BrandLogo)
+- Переключатель валют (CurrencySwitcher)
+- Иконочная кнопка профиля (HeaderActionButton)
+- Тип данных "сумма" (PriceAmount — планируется)
+- Иконочная кнопка с каунтером (CartButton)
+- Тег-пилюля (Tag)
+- Свитч цвета (ColorSwatch — планируется)
+
+**Расположение:** `components/primitives/<name>/`
+
+**Роутинг:** `/primitives` — страница с витриной всех примитивов
+
+**Правила:**
+- Один компонент = один атомарный элемент
+- Нет зависимостей от Blocks или Sections
+- Нельзя держать composite-компоненты (карточки, баннеры)
+
+### Уровень 2 — Блоки (Blocks)
+
+**Что это:** переиспользуемые составные компоненты, собранные из примитивов.
+
+**Примеры:**
+- BlogPostCard — карточка статьи (изображение, overlay, заголовок, excerpt, теги)
+- CaseCard — карточка проекта (изображение, заголовок, локация, мета)
+- ProductCard — карточка товара (изображение с hover, заголовок, категории, цена, свотчи)
+- CategoryCard — карточка категории (изображение, subtitle, заголовок, теги)
+- PromoBanner — рекламный баннер (bg-image, заголовок, subtitle, акцентная кнопка) — планируется
+
+**Расположение:** `components/blocks/<name>/`
+
+**Роутинг:** `/blocks` — страница с витриной всех блоков
+
+**Правила:**
+- Блок может использовать Primitives
+- Блок не может использовать Sections
+- Блок нельзя разбить на самостоятельные части без потери смысла (ProductCard без swatches — не карточка)
+- Нет анонимных компонентов внутри Sections — каждый card-компонент должен быть Block
+
+### Уровень 3 — Секции (Sections)
+
+**Что это:** полные секции страницы, собранные из Blocks и Primitives.
+
+**Примеры:**
+- Header — секция шапки (SubheaderMenu + BurgerButton + BrandLogo + MainNav + CurrencySwitcher + Actions)
+- Products — секция товаров (сетка ProductCard + PromoBanner)
+- Cases — карусель проектов (CaseCard × N)
+- BlogPosts — сетка BlogPostCard
+- Categories — сетка CategoryCard
+- Footer, Hero, HowWeWork, Brands, ContactForm
+
+**Расположение:** `components/sections/<name>/`
+
+**Роутинг:** `/sections` — страница с полной сборкой всех секций (reference view)
+
+**Правила:**
+- Секция не определяет визуальные компоненты inline
+- Секция держит только layout CSS (grid, padding, breakpoints)
+- Carousel / slider infrastructure живёт в секции, карточка — в блоке
+
+### Dependency direction (строго)
+
+```
+Pages → Sections → Blocks → Primitives
+```
+
+Нельзя:
+- Секция импортирует другую Секцию
+- Блок импортирует Секцию
+- Примитив импортирует Блок или Секцию
+
+### File Structure
+
+```
+frontend/
+  components/
+    primitives/     # atomic: BrandLogo, BurgerButton, CurrencySwitcher, etc.
+      header/       # (BrandLogo, BurgerButton, CurrencySwitcher, HeaderActionButton, MainNav, SubheaderMenu)
+    blocks/         # composite: cards, banners
+      blog-post-card/
+      case-card/
+      product-card/
+      category-card/
+    sections/       # full page sections
+      header/
+      hero/
+      categories/
+      cases/
+      products/
+      brands/
+      how-we-work/
+      blog-posts/
+      contact-form/
+      footer/
+  app/
+    primitives/     # /primitives route — primitive showcase
+    blocks/         # /blocks route — block showcase
+    sections/       # /sections route — full sections reference
+    pages/          # /pages route — assembled pages
+```
+
+### Enforcement Rules
+
+Before writing any component:
+
+1. Определить уровень: атомарный элемент / составная карточка / секция страницы?
+2. Примитив → `components/primitives/`, показать на `/primitives`
+3. Блок → `components/blocks/`, показать на `/blocks`
+4. Секция → `components/sections/`, собирается на `/sections`
+5. Нельзя определять карточку как локальную функцию внутри секции
+6. Нельзя держать card CSS в CSS-модуле секции
+
+## 32. Response Style
 
 Final response must stay short.
 
@@ -1114,3 +1259,19 @@ Say only:
 - which files changed
 - what was verified
 - what remains, if anything
+
+
+## 32. Zero Creativity Rule
+
+Выполнять СТРОГО то что сказал пользователь. Никакого творчества если явно не попросили.
+
+**Запрещено без явного запроса:**
+- добавлять заголовки, субтитлы, описания которых не было в задании
+- менять структуру страниц "попутно"
+- придумывать inline-стили вместо существующих CSS-классов
+- отклоняться от существующих паттернов (если на других страницах `app-header`/`app-nav` — использовать точно то же самое)
+
+**Правило консистентности UI:**
+Если элемент (навигация, шапка, карточка) уже реализован на одной странице — копировать 1:1. Не изобретать альтернативу. Смотреть существующий код, брать структуру оттуда.
+
+**Нарушение:** добавил `devNav`/`devLink` inline-стили на `/sections` вместо `app-header`/`app-nav` классов, которые уже были на `/primitives` и `/blocks`.

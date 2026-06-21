@@ -1,0 +1,226 @@
+/* ============================================================
+   OHIO HERO BLOCK — CSS Module
+   Source: blocks/blocks.css + blocks/elements.css
+   ============================================================ */
+
+/* .ohio-hero-stage */
+.stage {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+/* .ohio-hero */
+.hero {
+  position: relative;
+  min-height: 67vh;
+  display: flex;
+  flex-direction: column;
+  background-image:
+    linear-gradient(to right, rgba(10, 8, 6, 0.82) 0%, rgba(10, 8, 6, 0.55) 55%, rgba(10, 8, 6, 0.18) 100%),
+    var(--hero-bg);
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+}
+
+/* .ohio-hero-inner */
+.inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  max-width: 1366px;
+  width: 100%;
+  margin: 0 auto;
+  padding: clamp(48px, 8vh, 96px) 1.5vw clamp(32px, 5vh, 60px);
+  gap: 3rem;
+}
+
+/* .ohio-hero-content */
+.content {
+  max-width: 580px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* .hero-eyebrow */
+.eyebrow {
+  font-family: var(--font-text);
+  font-size: 0.9em;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+/* .hero-display-title */
+.displayTitle {
+  font-family: var(--font-title);
+  font-size: 3vw;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.045em;
+  color: #fff;
+  margin: 0;
+  /* .hero-eyebrow + .hero-display-title */
+  padding-top: 0.15em;
+}
+
+/* .hero-lead — .ohio-hero .hero-display-title + .hero-lead */
+.lead {
+  font-family: var(--font-subtitle);
+  font-size: 1.2em;
+  line-height: 1.5em;
+  color: #fff;
+  margin: 0;
+  margin-top: 20px;
+}
+
+/* .ohio-hero-actions */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+/* .button.-large  (Ohio button base + -large modifier) */
+.ctaButton {
+  color: #fff;
+  background-color: var(--color-dark);
+  font-family: var(--font-title);
+  font-size: 0.95em;
+  font-weight: 700;
+  min-height: var(--button-height-lg, 3.25rem);
+  padding: 0 24px;
+  gap: 0.5em;
+  cursor: pointer;
+  border: 2px solid transparent;
+  white-space: nowrap;
+  display: inline-flex;
+  vertical-align: middle;
+  align-items: center;
+  justify-content: center;
+  border-radius: 28px;
+  text-decoration: none;
+  transition:
+    background-color var(--transition-base),
+    color var(--transition-base),
+    border-color var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.ctaButton:hover,
+.ctaButton:active,
+.ctaButton:focus {
+  color: #fff;
+  background-color: var(--color-primary);
+}
+
+.ctaButton:focus,
+.ctaButton:active {
+  box-shadow: 0 0 0 0.3125rem color-mix(in srgb, rgba(136, 136, 137, 1) 15%, transparent);
+  outline: none;
+}
+
+/* .button .icon / .icon.-right */
+.ctaIcon {
+  min-width: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: -0.25rem;
+}
+
+/* Icon animation on hover: iconMove */
+.ctaButton:hover .ctaIcon {
+  animation: iconMove ease-out var(--transition-base, 0.35s);
+}
+
+@keyframes iconMove {
+  0% { transform: translateX(0); }
+  30% { opacity: 0; }
+  31% { transform: translateX(1.25rem); }
+  32% { transform: translateX(calc(1.25rem * -1)); }
+  84% { opacity: 1; }
+  100% { transform: translateX(0); }
+}
+
+/* .ohio-hero-badges */
+.badges {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.5vw, 2.5rem);
+  flex-wrap: wrap;
+}
+
+/* .feature-badge */
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* .feature-badge-icon */
+.badgeIcon {
+  flex-shrink: 0;
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  width: 20px;
+  height: 20px;
+}
+
+/* .feature-badge-icon img */
+.badgeIcon img {
+  width: 20px;
+  height: 20px;
+  display: block;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+/* .feature-badge-icon svg */
+.badgeIcon svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+/* .feature-badge-text */
+.badgeText {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.3;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero {
+    min-height: 100svh;
+    background-image:
+      linear-gradient(to bottom, rgba(10, 8, 6, 0.6) 0%, rgba(10, 8, 6, 0.72) 100%),
+      var(--hero-bg);
+  }
+
+  .displayTitle {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+
+  .badges {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .displayTitle {
+    font-size: 48px;
+    letter-spacing: -2px;
+  }
+}

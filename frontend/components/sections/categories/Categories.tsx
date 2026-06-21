@@ -1,0 +1,34 @@
+import { CategoryCard } from "@/components/blocks/category-card";
+import type { CategoriesData } from "@/lib/types/categories";
+import styles from "./Categories.module.css";
+
+type Props = {
+  data: CategoriesData;
+};
+
+export function Categories({ data }: Props) {
+  const { sectionTitle, items } = data;
+
+  return (
+    <section>
+      <div className={styles.section}>
+        <div className={styles.head}>
+          <h2 className={styles.title}>{sectionTitle}</h2>
+        </div>
+        <div className={styles.grid}>
+          {items.map((item) => (
+            <CategoryCard
+              key={item.id}
+              image={item.imageSrc}
+              imageAlt={item.imageAlt}
+              href={item.href}
+              subtitle={item.subtitle}
+              title={item.title}
+              tags={item.tags}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
