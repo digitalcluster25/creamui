@@ -11,6 +11,9 @@ export type ProductItem = {
   title: string;
   href: string;
   price: string;
+  priceMin?: number;
+  priceMax?: number;
+  currency?: string;
   categories: string[];
   image1: string;
   image2?: string;

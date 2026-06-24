@@ -32,7 +32,7 @@ Source of truth:
 Рабочие страницы проекта:
 - `/Users/macbookpro/Coding/creamui/primitives.html`
 - `/Users/macbookpro/Coding/creamui/blocks.html`
-- `/Users/macbookpro/Coding/creamui/specs.html`
+- `/Users/macbookpro/Coding/creamui/SPECS_REGISTRY.md`
 
 Основная цель:
 - держать `primitives.html` как реестр примитивов
@@ -227,7 +227,7 @@ Source:
 - `/Users/macbookpro/Coding/creamui/.agents/skills/creamui-block-flow-strict/SKILL.md`
 - `/Users/macbookpro/Coding/creamui/primitives.html`
 - `/Users/macbookpro/Coding/creamui/blocks.html`
-- `/Users/macbookpro/Coding/creamui/specs.html`
+- `/Users/macbookpro/Coding/creamui/SPECS_REGISTRY.md`
 - `/Users/macbookpro/Coding/creamui/elements.css`
 - `/Users/macbookpro/Coding/creamui/blocks.css`
 - `/Users/macbookpro/Coding/creamui/tokens.css`

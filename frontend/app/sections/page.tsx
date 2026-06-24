@@ -9,6 +9,10 @@ import { BlogPosts } from "@/components/sections/blog-posts";
 import { ContactForm } from "@/components/sections/contact-form";
 import { Brands } from "@/components/sections/brands/Brands";
 import { Footer } from "@/components/sections/footer";
+import { Catalog } from "@/components/sections/catalog";
+import { ProductPage } from "@/components/sections/product-page";
+import { ProductSpecs } from "@/components/sections/product-specs";
+import { ProductDescription } from "@/components/sections/product-description/ProductDescription";
 import { headerMock } from "@/lib/mocks/header";
 import { footerData } from "@/lib/data/footer";
 import { casesData } from "@/lib/data/cases";
@@ -16,6 +20,10 @@ import { productsData } from "@/lib/data/products";
 import { howWeWorkData } from "@/lib/data/howWeWork";
 import { blogPostsData } from "@/lib/data/blogPosts";
 import { contactFormData } from "@/lib/data/contactForm";
+import { catalogData } from "@/lib/data/catalog";
+import { productPageData } from "@/lib/data/productPage";
+import { productSpecsData } from "@/lib/data/productSpecs";
+import { productDescriptionData } from "@/lib/data/productDescription";
 import type { CategoriesData } from "@/lib/types/categories";
 
 const categoriesData: CategoriesData = {
@@ -74,6 +82,16 @@ const categoriesData: CategoriesData = {
 
 const section = { padding: "64px clamp(16px, 1.5vw, 28px)" };
 
+const headerMock2 = {
+  ...headerMock,
+  topLinks: headerMock.topLinks.map(l => ({ ...l })),
+  primaryNav: headerMock.primaryNav.map(n => ({ ...n, megaMenu: n.megaMenu ? n.megaMenu.map(m => ({ ...m })) : undefined })),
+  currencies: headerMock.currencies.map(c => ({ ...c })),
+  actions: headerMock.actions.map(a => ({ ...a })),
+  hamburgerContacts: headerMock.hamburgerContacts.map(h => ({ ...h, lines: [...h.lines] })),
+  hamburgerSocials: headerMock.hamburgerSocials.map(s => ({ ...s })),
+};
+
 export default function SectionsPage() {
   return (
     <>
@@ -93,7 +111,7 @@ export default function SectionsPage() {
         </header>
       </div>
       <main>
-      <Header data={headerMock} />
+      <Header data={headerMock} hideBurgerOnDesktop hideActionsOnDesktop />
       <Hero data={heroData} />
       <div style={section}>
         <Categories data={categoriesData} />
@@ -115,8 +133,21 @@ export default function SectionsPage() {
       </div>
       <ContactForm data={contactFormData} />
       <div style={section}>
+        <Catalog data={catalogData} />
+      </div>
+      <div style={section}>
+        <ProductPage data={productPageData} />
+      </div>
+      <div style={section}>
+        <ProductDescription {...productDescriptionData} />
+      </div>
+      <div style={section}>
+        <ProductSpecs data={productSpecsData} />
+      </div>
+      <div style={section}>
         <Footer data={footerData} />
       </div>
+      <Header data={headerMock2} />
     </main>
     </>
   );

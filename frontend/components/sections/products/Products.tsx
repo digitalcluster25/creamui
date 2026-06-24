@@ -13,17 +13,23 @@ export function Products({ data }: { data: ProductsData }) {
     <section className={styles.section}>
       <div className={styles.head}>
         <h2 className={styles.title}>{data.title}</h2>
-        <a href={data.allHref} className={styles.allLink}>
+        <a href={data.allHref} className={`${styles.allLink} ${styles.allLinkHead}`}>
           Смотреть все
           {ARROW_SVG}
         </a>
       </div>
       <div className={styles.layout}>
-        <ul className={styles.productGrid}>
-          {data.products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </ul>
+        <div className={styles.productCol}>
+          <ul className={styles.productGrid}>
+            {data.products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </ul>
+          <a href={data.allHref} className={`${styles.allLink} ${styles.allLinkBottom}`}>
+            Смотреть все
+            {ARROW_SVG}
+          </a>
+        </div>
         <div className={styles.banner}>
           <a className={styles.bannerLink} href={data.bannerHref} aria-label="Получите бесплатный дизайн-план" />
           {/* eslint-disable-next-line @next/next/no-img-element */}

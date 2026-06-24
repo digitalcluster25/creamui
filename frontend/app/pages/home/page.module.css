@@ -1,0 +1,21 @@
+.section {
+  padding: 64px clamp(16px, 1.5vw, 28px);
+}
+
+.sectionFlush {
+  padding: 0 clamp(16px, 1.5vw, 28px);
+}
+
+.sectionFooter {
+  padding: 0 clamp(16px, 1.5vw, 28px) 64px;
+}
+
+@media (max-width: 860px) {
+  .section {
+    padding: 40px clamp(16px, 1.5vw, 28px);
+  }
+
+  .sectionFlush {
+    padding: 0 clamp(16px, 1.5vw, 28px);
+  }
+}

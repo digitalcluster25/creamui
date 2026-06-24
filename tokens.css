@@ -1,8 +1,8 @@
 :root {
-  --font-title: 'Urbanist', sans-serif;
-  --font-text: 'Inter', sans-serif;
-  --font-subtitle: 'Castoro', serif;
-  --font-code: menlo, monaco, consolas, "Lucida Console", monospace;
+  --font-title: "Noto Sans", sans-serif;
+  --font-text: "Noto Sans", sans-serif;
+  --font-subtitle: "Noto Sans", sans-serif;
+  --font-code: "Noto Sans", sans-serif;
 
   --title-weight: 700;
   --text-weight: 400;

@@ -1,0 +1,27 @@
+{
+  "eval_id": 2,
+  "eval_name": "eval-categories-block",
+  "prompt": "Порт блока Категории товаров из кита в React. Источник: http://localhost:4173/blocks/ секция с иконками/карточками категорий. Сделай примитив CategoryCard если его нет, собери блок Categories. Всё 1:1 с оригиналом.",
+  "assertions": [
+    {
+      "name": "block-and-primitive-created",
+      "description": "Созданы блок Categories и примитив CategoryCard (если нужен)"
+    },
+    {
+      "name": "primitive-reuse-checked",
+      "description": "Проверены существующие примитивы перед созданием нового"
+    },
+    {
+      "name": "source-extraction-before-code",
+      "description": "HTML структура и computed styles извлечены из localhost:4173 перед кодом"
+    },
+    {
+      "name": "qa-screenshots-taken",
+      "description": "Скриншоты источника и реализации сделаны"
+    },
+    {
+      "name": "typescript-types-defined",
+      "description": "Типы для данных категорий определены в frontend/lib/types/"
+    }
+  ]
+}

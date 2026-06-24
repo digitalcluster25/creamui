@@ -13,7 +13,6 @@ export const footerData: FooterData = {
         { id: "5", label: "Парогенераторы", href: "#" },
         { id: "6", label: "Аксессуары для бани", href: "#" },
       ],
-      paymentsLabel: "Безопасная оплата",
     },
     {
       id: "company",

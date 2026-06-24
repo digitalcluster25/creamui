@@ -31,33 +31,11 @@ export function ProductCard({ product }: { product: ProductItem }) {
             ))}
           </p>
         )}
-        <p className={styles.productPrice}>{product.price}</p>
-        {product.swatches && product.swatches.length > 0 && (
-          <div className={styles.swatchContainer}>
-            {product.swatches.map((sw) => (
-              <button
-                key={sw.slug}
-                type="button"
-                className={`${styles.swatchOption}${sw.slug === selectedSlug ? ` ${styles.swatchSelected}` : ""}`}
-                title={sw.title}
-                aria-label={sw.title}
-                aria-pressed={sw.slug === selectedSlug}
-                onClick={() => setSelectedSlug(sw.slug)}
-              >
-                <span
-                  className={styles.swatchInner}
-                  style={
-                    sw.bgImage
-                      ? { backgroundImage: `url('${sw.bgImage}')` }
-                      : sw.bgColor
-                      ? { backgroundColor: sw.bgColor }
-                      : undefined
-                  }
-                />
-              </button>
-            ))}
-          </div>
-        )}
+        <p className={styles.productPrice}>
+          {product.priceMin != null && product.priceMax != null
+            ? `${product.currency ?? ""}${product.priceMin.toLocaleString("en-US")} – ${product.currency ?? ""}${product.priceMax.toLocaleString("en-US")}`
+            : product.price}
+        </p>
       </div>
     </li>
   );

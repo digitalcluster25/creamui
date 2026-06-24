@@ -1,0 +1,35 @@
+{
+  "expectations": [
+    {
+      "text": "footer-files-created: Footer.tsx and Footer.module.css created",
+      "passed": false,
+      "evidence": "Agent hit API rate limit (3237 tokens). No files created."
+    },
+    {
+      "text": "autonomous-cycle-complete: Full cycle extraction → implementation → QA → fix",
+      "passed": false,
+      "evidence": "Agent hit rate limit immediately. Nothing completed."
+    },
+    {
+      "text": "qa-screenshots-taken: Screenshots of source and implementation taken and compared",
+      "passed": false,
+      "evidence": "No work done — rate limit."
+    },
+    {
+      "text": "source-extraction-before-code: HTML and computed styles extracted before code",
+      "passed": false,
+      "evidence": "No work done — rate limit."
+    },
+    {
+      "text": "data-in-lib-data: Data in frontend/lib/data/",
+      "passed": false,
+      "evidence": "No work done — rate limit."
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 5,
+    "total": 5,
+    "pass_rate": 0.0
+  }
+}

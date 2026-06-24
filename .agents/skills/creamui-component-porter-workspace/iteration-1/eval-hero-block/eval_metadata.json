@@ -1,0 +1,27 @@
+{
+  "eval_id": 0,
+  "eval_name": "eval-hero-block",
+  "prompt": "Портируй блок Hero (первый экран) из html кита в React компонент. Оригинал на http://localhost:4173/blocks/ — найди там секцию с большим заголовком и CTA кнопкой. Сделай 1:1 с источником, включая все hover эффекты. Данные захардкодь в lib/data/hero.ts.",
+  "assertions": [
+    {
+      "name": "hero-files-created",
+      "description": "Созданы Hero.tsx, Hero.module.css, hero.ts (types), hero.ts (data)"
+    },
+    {
+      "name": "no-invented-css",
+      "description": "CSS values получены из источника (getComputedStyle), не придуманы"
+    },
+    {
+      "name": "qa-screenshots-taken",
+      "description": "Сделаны скриншоты источника и реализации для сравнения"
+    },
+    {
+      "name": "use-client-correct",
+      "description": "'use client' добавлен только при необходимости (interactivity/hooks)"
+    },
+    {
+      "name": "source-extraction-before-code",
+      "description": "HTML структура и computed styles извлечены перед написанием кода"
+    }
+  ]
+}

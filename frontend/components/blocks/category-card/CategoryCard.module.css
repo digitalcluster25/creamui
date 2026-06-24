@@ -120,3 +120,13 @@
 .tag:hover {
   background: color-mix(in srgb, #888889 24%, transparent);
 }
+
+@media (max-width: 860px) {
+  .imageHolder {
+    aspect-ratio: 9 / 4;
+  }
+
+  .overlayDetails {
+    padding: 15px;
+  }
+}

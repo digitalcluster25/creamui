@@ -1,0 +1,35 @@
+{
+  "expectations": [
+    {
+      "text": "block-and-primitive-created: Block Categories and primitive CategoryCard created",
+      "passed": true,
+      "evidence": "CategoryCard (primitive) and Categories (block) both created with .tsx, .module.css, index.ts"
+    },
+    {
+      "text": "primitive-reuse-checked: Existing primitives checked before creating new",
+      "passed": false,
+      "evidence": "Agent did not audit existing frontend/components/primitives/ before creating CategoryCard. No evidence of reuse check."
+    },
+    {
+      "text": "source-extraction-before-code: HTML structure and computed styles extracted from localhost:4173",
+      "passed": false,
+      "evidence": "Agent read HTML from blocks/index.html file directly — not via getComputedStyle/preview_eval on live server. Computed values not verified."
+    },
+    {
+      "text": "qa-screenshots-taken: Screenshots of source and implementation taken",
+      "passed": false,
+      "evidence": "No screenshot files. Verification was 'tsc --noEmit' + text description only."
+    },
+    {
+      "text": "typescript-types-defined: Types for category data defined in frontend/lib/types/",
+      "passed": false,
+      "evidence": "No dedicated frontend/lib/types/categories.ts mentioned. Added tokens to globals.css instead of proper types file."
+    }
+  ],
+  "summary": {
+    "passed": 1,
+    "failed": 4,
+    "total": 5,
+    "pass_rate": 0.2
+  }
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useCallback, useEffect, useMemo } from "react";
+import { useRef, useState, useCallback, useEffect, useLayoutEffect, useMemo } from "react";
 import type { CasesData, CaseProject } from "@/lib/types/cases";
 import { CaseCard } from "@/components/blocks/case-card";
 import styles from "./Cases.module.css";
@@ -23,7 +23,7 @@ const ANIM_MS = 1000;
 
 function getVisibleCount(): number {
   if (typeof window === "undefined") return 3;
-  if (window.innerWidth <= 640) return 1;
+  if (window.innerWidth <= 860) return 1;
   if (window.innerWidth <= 1100) return 2;
   return 3;
 }
@@ -130,16 +130,11 @@ export function Cases({ data }: { data: CasesData }) {
     [applyTransform, updateHeight, updateEdgeCropped, total]
   );
 
-  useEffect(() => {
-    const id = requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        const idx = curIdxRef.current;
-        applyTransform(idx, false);
-        updateHeight(idx);
-        updateEdgeCropped(idx);
-      });
-    });
-    return () => cancelAnimationFrame(id);
+  useLayoutEffect(() => {
+    const idx = curIdxRef.current;
+    applyTransform(idx, false);
+    updateHeight(idx);
+    updateEdgeCropped(idx);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [allSlides]);
 
@@ -155,7 +150,7 @@ export function Cases({ data }: { data: CasesData }) {
       <div className={styles.head}>
         <h2 className={styles.title}>{data.title}</h2>
         <div className={styles.controls} aria-label="Навигация слайдера проектов">
-          <div className={styles.dots} role="tablist" aria-label="Индикатор слайдов">
+          <div className={`${styles.dots} ${styles.dotsHead}`} role="tablist" aria-label="Индикатор слайдов">
             {projects.map((_, i) => (
               <button
                 key={i}
@@ -173,7 +168,7 @@ export function Cases({ data }: { data: CasesData }) {
               </button>
             ))}
           </div>
-          <div className={styles.nav} role="group" aria-label="Переключение слайдов">
+          <div className={`${styles.nav} ${styles.navHead}`} role="group" aria-label="Переключение слайдов">
             <button type="button" className={styles.arrow} onClick={() => stepTo(dotIdx - 1)} aria-label="Предыдущий слайд">
               {PREV_SVG}
             </button>
@@ -199,6 +194,33 @@ export function Cases({ data }: { data: CasesData }) {
             ))}
           </div>
         </div>
+        <div className={`${styles.dots} ${styles.dotsBottom}`} role="tablist" aria-label="Индикатор слайдов">
+          {projects.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              role="tab"
+              className={`${styles.dot}${i === dotIdx ? ` ${styles.dotActive}` : ""}`}
+              aria-label={`Слайд ${i + 1}`}
+              aria-selected={i === dotIdx}
+              tabIndex={i === dotIdx ? 0 : -1}
+              onClick={() => stepTo(i)}
+            >
+              <svg viewBox="0 0 20 20" aria-hidden="true">
+                <circle cx="10" cy="10" r="8.25" />
+              </svg>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className={`${styles.nav} ${styles.navBottom}`} role="group" aria-label="Переключение слайдов">
+        <button type="button" className={styles.arrow} onClick={() => stepTo(dotIdx - 1)} aria-label="Предыдущий слайд">
+          {PREV_SVG}
+        </button>
+        <button type="button" className={styles.arrow} onClick={() => stepTo(dotIdx + 1)} aria-label="Следующий слайд">
+          {NEXT_SVG}
+        </button>
       </div>
     </section>
   );

@@ -1,0 +1,35 @@
+{
+  "expectations": [
+    {
+      "text": "hero-files-created: Hero.tsx, Hero.module.css, hero.ts (types), hero.ts (data)",
+      "passed": true,
+      "evidence": "All 4 files exist: frontend/components/blocks/hero/Hero.tsx, Hero.module.css, frontend/lib/types/hero.ts, frontend/lib/data/hero.ts"
+    },
+    {
+      "text": "no-invented-css: CSS values obtained from getComputedStyle, not guessed",
+      "passed": true,
+      "evidence": "Skill protocol enforced extraction phase before code. ctaHeight 52px, radius 28px, padding 0 24px all match source exactly."
+    },
+    {
+      "text": "qa-screenshots-taken: Screenshots of source and implementation compared",
+      "passed": true,
+      "evidence": "Screenshots taken on both localhost:4173/blocks/ and localhost:3001/blocks. Computed values compared: all key metrics match."
+    },
+    {
+      "text": "use-client-correct: use client added only when necessary",
+      "passed": true,
+      "evidence": "Hero.tsx has no 'use client' directive. Correct — static server component with no interactivity."
+    },
+    {
+      "text": "source-extraction-before-code: HTML structure and computed styles extracted before writing code",
+      "passed": true,
+      "evidence": "Skill mandates Phases 1+2 before Phase 3. Source HTML and computed values extracted via preview_eval getComputedStyle."
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "total": 5,
+    "pass_rate": 1.0
+  }
+}

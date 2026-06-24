@@ -15,10 +15,11 @@
 .title {
   margin: 0;
   font-family: "Noto Sans", sans-serif;
-  font-size: 33.6px;
+  font-size: 22px;
   font-weight: 400;
-  line-height: 40.32px;
-  letter-spacing: normal;
+  line-height: 1.3;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: rgb(17, 16, 19);
 }
 
@@ -194,9 +195,66 @@
   }
 }
 
-@media (max-width: 640px) {
+.dotsHead {
+  display: inline-flex;
+}
+
+.dotsBottom {
+  display: none;
+}
+
+.navHead {
+  display: inline-flex;
+}
+
+.navBottom {
+  display: none;
+}
+
+@media (max-width: 860px) {
   .controls {
     width: 100%;
     justify-content: space-between;
+  }
+
+  .dotsHead {
+    display: none;
+  }
+
+  .dotsBottom {
+    display: inline-flex;
+    position: absolute;
+    top: calc(100vw - 2 * clamp(16px, 1.5vw, 28px) - 32px);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+  }
+
+  .navHead {
+    display: none;
+  }
+
+  .section {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .navBottom {
+    display: inline-flex;
+    align-self: flex-end;
+    margin-top: 12px;
+  }
+
+  .carousel {
+    --projects-visible-slides: 1;
+    --projects-carousel-peek: 20px;
+    width: calc(100% + 40px);
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+
+  .viewport {
+    overflow: hidden;
+    padding: 0;
   }
 }

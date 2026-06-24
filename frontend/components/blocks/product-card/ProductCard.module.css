@@ -2,17 +2,14 @@
   display: flex;
   flex-direction: column;
   min-width: 0;
-  overflow: hidden;
-  border-radius: 0;
 }
 
 .productThumb {
   position: relative;
   overflow: hidden;
   aspect-ratio: 1 / 1;
-  min-height: 320px;
-  background: #fff;
-  border-radius: 0;
+  background: #8888890d;
+  border-radius: var(--radius-lg, 14px);
 }
 
 .productThumb img {
@@ -21,12 +18,12 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
+  padding: 0;
+  transition: 0.35s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .productImg2 {
   opacity: 0;
-  object-fit: cover !important;
-  transition: opacity 0.3s ease;
 }
 
 .productThumb:hover .productImg1 {
@@ -38,21 +35,25 @@
 }
 
 .productDetails {
-  padding: 20px 30.72px;
+  padding: 14px 0 0;
   flex: 1;
   display: flex;
   flex-direction: column;
-  background-color: rgba(136, 136, 137, 0.05);
+  gap: 3px;
+  background: none;
 }
 
 .productName {
   margin: 0;
-  font-family: "Urbanist", sans-serif;
-  font-size: 18.816px;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 15px;
   font-weight: 700;
-  line-height: 18.816px;
-  letter-spacing: -0.18816px;
-  color: rgb(40, 40, 40);
+  line-height: 1.4;
+  color: rgb(17, 16, 19);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .productName a {
@@ -61,15 +62,15 @@
 }
 
 .productName a:hover {
-  opacity: 0.8;
+  text-decoration: underline;
 }
 
 .productCategory {
-  font-family: "Inter", sans-serif;
-  font-size: 14.4px;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 13px;
   font-weight: 400;
-  line-height: 19.44px;
-  color: rgba(40, 40, 40, 0.85);
+  line-height: 1.4;
+  color: rgba(17, 16, 19, 0.5);
   margin: 0;
 }
 
@@ -84,11 +85,11 @@
 
 .productPrice {
   margin: 4px 0 0;
-  font-family: "Inter", sans-serif;
-  font-size: 14.4px;
-  font-weight: 600;
-  line-height: 23.04px;
-  color: rgba(40, 40, 40, 0.85);
+  font-family: "Noto Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: rgb(17, 16, 19);
 }
 
 .swatchContainer {

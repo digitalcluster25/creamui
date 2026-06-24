@@ -1,10 +1,24 @@
+import Link from "next/link";
 import styles from "./page.module.css";
 
 const pages = [
   {
     id: "home",
+    href: "/pages/home",
     title: "Главная",
-    text: "Будущая полноценная главная страница нового фронтенда. Первый блок для сборки уже вынесен в Header.",
+    text: "Хедер, категории, кейсы, продукты, бренды, как работаем, блог, форма, футер.",
+  },
+  {
+    id: "catalog",
+    href: "/pages/catalog",
+    title: "Каталог",
+    text: "Хедер, каталог товаров, футер.",
+  },
+  {
+    id: "product",
+    href: "/pages/product",
+    title: "Товар",
+    text: "Хедер, карточка товара, описание, характеристики, футер.",
   },
 ];
 
@@ -28,11 +42,11 @@ export default function PagesPreviewPage() {
 
       <section className={styles.grid}>
         {pages.map((page) => (
-          <article key={page.id} className={styles.card}>
+          <Link key={page.id} href={page.href} className={styles.card}>
             <span className={styles.eyebrow}>Page</span>
             <h2 className={styles.title}>{page.title}</h2>
             <p className={styles.text}>{page.text}</p>
-          </article>
+          </Link>
         ))}
       </section>
     </main>

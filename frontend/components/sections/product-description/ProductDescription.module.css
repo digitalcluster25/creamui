@@ -1,0 +1,42 @@
+.wrapper {
+  width: 100%;
+  max-width: 1366px;
+  margin: 0 auto;
+}
+
+.sectionTitle {
+  font-family: "Noto Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: rgb(17, 16, 19);
+  margin: 0 0 32px;
+}
+
+.blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.heading {
+  font-family: "Noto Sans", sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: rgb(17, 16, 19);
+  margin: 0;
+}
+
+.body {
+  font-family: "Noto Sans", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.65;
+  color: rgba(40, 40, 40, 0.76);
+  margin: 0;
+}

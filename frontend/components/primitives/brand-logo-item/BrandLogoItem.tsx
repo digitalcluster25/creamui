@@ -18,6 +18,7 @@ export function BrandLogoItem({ src, alt, width, height, href = "#" }: Props) {
         width={width}
         height={height}
         className={styles.logo}
+        style={{ width: "auto", height: 62 }}
         unoptimized
       />
     </a>

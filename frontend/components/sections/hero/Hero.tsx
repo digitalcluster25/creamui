@@ -17,14 +17,7 @@ export function Hero({ data }: Props) {
           <div className={styles.content}>
             <p className={styles.eyebrow}>{data.eyebrow}</p>
             <h1 className={styles.displayTitle}>{data.title}</h1>
-            <p className={styles.lead}>
-              {data.lead.split("\n").map((line, i, arr) => (
-                <span key={i}>
-                  {line}
-                  {i < arr.length - 1 && <br />}
-                </span>
-              ))}
-            </p>
+            <p className={styles.lead}>{data.lead.replace(/\n/g, " ")}</p>
             <div className={styles.actions}>
               <a className={styles.ctaButton} href={data.cta.href}>
                 {data.cta.label}

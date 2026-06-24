@@ -93,11 +93,11 @@
   color: #fff;
   background-color: var(--color-dark);
   font-family: var(--font-title);
-  font-size: 0.95em;
+  font-size: 14.896px;
   font-weight: 700;
-  min-height: var(--button-height-lg, 3.25rem);
+  min-height: 52px;
   padding: 0 24px;
-  gap: 0.5em;
+  gap: 7.448px;
   cursor: pointer;
   border: 2px solid transparent;
   white-space: nowrap;
@@ -118,7 +118,7 @@
 .ctaButton:active,
 .ctaButton:focus {
   color: #fff;
-  background-color: var(--color-primary);
+  background-color: #3e5759;
 }
 
 .ctaButton:focus,
@@ -202,11 +202,39 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .stage {
+    overflow: hidden;
+  }
+
   .hero {
-    min-height: 100svh;
+    min-height: auto;
     background-image:
       linear-gradient(to bottom, rgba(10, 8, 6, 0.6) 0%, rgba(10, 8, 6, 0.72) 100%),
       var(--hero-bg);
+  }
+
+  .inner {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: clamp(16px, 4vw, 24px);
+    padding-right: clamp(16px, 4vw, 24px);
+    justify-content: flex-start;
+    gap: 40px;
+  }
+
+  .eyebrow {
+    white-space: normal;
+    overflow-wrap: break-word;
+  }
+
+  .lead {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .badges {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .displayTitle {
@@ -214,7 +242,7 @@
   }
 
   .badges {
-    gap: 1rem;
+    gap: 20px;
   }
 }
 

@@ -380,7 +380,7 @@
 
 @media (max-width: 640px) {
   .subheaderInner {
-    justify-content: flex-start;
+    justify-content: flex-end;
     overflow-x: auto;
     padding-inline: 16px;
   }

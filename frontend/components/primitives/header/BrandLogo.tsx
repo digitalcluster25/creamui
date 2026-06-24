@@ -11,7 +11,7 @@ type BrandLogoProps = {
 export function BrandLogo({ href, src, alt }: BrandLogoProps) {
   return (
     <a className={styles.brand} href={href} aria-label={alt}>
-      <Image className={styles.brandImage} src={src} alt={alt} width={179} height={66} priority />
+      <Image className={styles.brandImage} src={src} alt={alt} width={179} height={66} priority style={{ width: "auto", height: "auto" }} />
     </a>
   );
 }

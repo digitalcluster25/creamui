@@ -22,7 +22,7 @@ const NAV_CSS = `
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(0,0,0,0.07);
-    font-family: 'Urbanist', sans-serif;
+    font-family: "Noto Sans", sans-serif;
     display: flex;
     align-items: center;
   }

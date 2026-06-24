@@ -1,0 +1,27 @@
+{
+  "eval_id": 1,
+  "eval_name": "eval-footer-block",
+  "prompt": "Сделай блок Футер (Footer) для React frontend — 1:1 с http://localhost:4173/blocks/. Блок внизу страницы с логотипом, ссылками и копирайтом. Автономно: извлеки HTML/CSS, реализуй, проверь QA скриншотами, исправь баги.",
+  "assertions": [
+    {
+      "name": "footer-files-created",
+      "description": "Созданы Footer.tsx и Footer.module.css"
+    },
+    {
+      "name": "autonomous-cycle-complete",
+      "description": "Прошёл полный цикл: extraction → implementation → QA → fix"
+    },
+    {
+      "name": "qa-screenshots-taken",
+      "description": "Скриншоты источника и реализации сделаны и сравнены"
+    },
+    {
+      "name": "source-extraction-before-code",
+      "description": "HTML и computed styles извлечены перед кодом"
+    },
+    {
+      "name": "data-in-lib-data",
+      "description": "Данные (ссылки, копирайт) в frontend/lib/data/, не захардкожены в компоненте"
+    }
+  ]
+}

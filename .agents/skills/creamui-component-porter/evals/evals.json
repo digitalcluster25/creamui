@@ -1,0 +1,23 @@
+{
+  "skill_name": "creamui-component-porter",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "Портируй блок Hero (первый экран) из html кита в React компонент. Оригинал на http://localhost:4173/blocks/ — найди там секцию с большим заголовком и CTA кнопкой. Сделай 1:1 с источником, включая все hover эффекты. Данные захардкодь в lib/data/hero.ts.",
+      "expected_output": "Созданы файлы frontend/components/blocks/hero/Hero.tsx, Hero.module.css, frontend/lib/types/hero.ts, frontend/lib/data/hero.ts. Компонент визуально совпадает с источником, QA скриншоты сделаны и расхождения исправлены.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "prompt": "Сделай блок Футер (Footer) для React frontend — 1:1 с http://localhost:4173/blocks/. Блок внизу страницы с логотипом, ссылками и копирайтом. Автономно: извлеки HTML/CSS, реализуй, проверь QA скриншотами, исправь баги.",
+      "expected_output": "Созданы frontend/components/blocks/footer/Footer.tsx и Footer.module.css. Визуально идентичен источнику, QA пройден.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Порт блока Категории товаров из кита в React. Источник: http://localhost:4173/blocks/ секция с иконками/карточками категорий. Сделай примитив CategoryCard если его нет, собери блок Categories. Всё 1:1 с оригиналом.",
+      "expected_output": "Созданы блок Categories и примитив CategoryCard. CSS Modules с точными значениями из источника. QA скриншоты показывают соответствие.",
+      "files": []
+    }
+  ]
+}

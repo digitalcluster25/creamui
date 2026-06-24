@@ -16,6 +16,8 @@ import type { HeaderData } from "@/lib/types/header";
 
 type HeaderProps = {
   data: HeaderData;
+  hideBurgerOnDesktop?: boolean;
+  hideActionsOnDesktop?: boolean;
 };
 
 function CloseIcon() {
@@ -37,7 +39,7 @@ function PlusIcon() {
   );
 }
 
-export function Header({ data }: HeaderProps) {
+export function Header({ data, hideBurgerOnDesktop, hideActionsOnDesktop }: HeaderProps) {
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
   const [isCatalogOpen, setIsCatalogOpen] = useState(false);
 
@@ -58,7 +60,9 @@ export function Header({ data }: HeaderProps) {
       <header className={styles.header}>
         <div className={styles.headerInner}>
           <div className={styles.left}>
-            <BurgerButton label="Открыть меню" onClick={() => setIsOverlayOpen(true)} />
+            <div className={hideBurgerOnDesktop ? styles.burgerWrap : undefined}>
+              <BurgerButton label="Открыть меню" onClick={() => setIsOverlayOpen(true)} />
+            </div>
             <BrandLogo href={data.brandHref} src={data.brandSrc} alt={data.brandAlt} />
           </div>
 
@@ -72,9 +76,11 @@ export function Header({ data }: HeaderProps) {
                 currencies={data.currencies}
                 defaultCurrency={data.defaultCurrency}
               />
-              <HeaderActionButton action={data.actions[0]} />
-              <span className={styles.cartTotal}>{data.cartTotal}</span>
-              <HeaderActionButton action={data.actions[1]} />
+              <div className={hideActionsOnDesktop ? styles.actionsHidden : styles.actionsInner}>
+                <HeaderActionButton action={data.actions[0]} />
+                <span className={styles.cartTotal}>{data.cartTotal}</span>
+                <HeaderActionButton action={data.actions[1]} />
+              </div>
             </div>
           </div>
         </div>

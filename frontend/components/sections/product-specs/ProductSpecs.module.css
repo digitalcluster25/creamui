@@ -1,0 +1,120 @@
+.wrapper {
+  width: 100%;
+  max-width: 1366px;
+  margin: 0 auto;
+}
+
+.sectionTitle {
+  font-family: "Noto Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-text-strong, #111013);
+  margin: 0 0 16px;
+}
+
+/* Card */
+.card {
+  position: relative;
+  background: transparent;
+  padding: 0;
+  max-height: 360px;
+  overflow: hidden;
+}
+
+.cardExpanded {
+  max-height: none;
+  overflow: visible;
+}
+
+/* Fade overlay when collapsed */
+.fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(to bottom, transparent, var(--color-page-bg, #f4f1e9));
+  pointer-events: none;
+}
+
+/* Spec group */
+.group {
+  margin-bottom: 28px;
+}
+
+.group:last-child {
+  margin-bottom: 0;
+}
+
+.groupTitle {
+  font-family: "Noto Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-strong, #111013);
+  margin: 0 0 16px;
+}
+
+/* Rows */
+.rows {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: auto 1fr 50%;
+  align-items: center;
+  padding: 7px 0;
+}
+
+.label {
+  grid-column: 1;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 14px;
+  color: var(--color-text-muted, rgba(40,40,40,0.72));
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 44vw;
+}
+
+/* Dotted filler — col 2, between label and value */
+.row::after {
+  grid-column: 2;
+  content: "";
+  border-bottom: 1px dashed var(--color-border-strong, rgba(40,40,40,0.15));
+  margin: 0 8px;
+}
+
+.value {
+  grid-column: 3;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-strong, #111013);
+  margin: 0;
+  text-align: left;
+}
+
+/* Toggle link */
+.toggle {
+  display: inline-block;
+  margin-top: 14px;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-primary, #3e5759);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.toggle:hover {
+  opacity: 0.75;
+}

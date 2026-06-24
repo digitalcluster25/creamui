@@ -1,0 +1,35 @@
+{
+  "expectations": [
+    {
+      "text": "hero-files-created: Hero.tsx, Hero.module.css, hero.ts (types), hero.ts (data)",
+      "passed": true,
+      "evidence": "Agent created Hero.tsx, Hero.module.css, index.ts, lib/data/hero.ts in worktree"
+    },
+    {
+      "text": "no-invented-css: CSS values obtained from getComputedStyle, not guessed",
+      "passed": false,
+      "evidence": "Agent grep'd CSS source files directly but did NOT use getComputedStyle/preview_eval. Values may diverge from actual computed result due to cascade/specificity."
+    },
+    {
+      "text": "qa-screenshots-taken: Screenshots of source and implementation compared",
+      "passed": false,
+      "evidence": "No screenshots taken. Verification was 'tsc --noEmit' only — type checking does not confirm visual fidelity."
+    },
+    {
+      "text": "use-client-correct: use client added only when necessary",
+      "passed": false,
+      "evidence": "Agent added 'use client' to Hero.tsx despite no hooks or browser APIs. Unnecessary client boundary."
+    },
+    {
+      "text": "source-extraction-before-code: HTML structure and computed styles extracted before writing code",
+      "passed": false,
+      "evidence": "Agent went straight to reading CSS files and writing code — no getComputedStyle, no outerHTML inspection, no preview_eval calls."
+    }
+  ],
+  "summary": {
+    "passed": 1,
+    "failed": 4,
+    "total": 5,
+    "pass_rate": 0.2
+  }
+}
