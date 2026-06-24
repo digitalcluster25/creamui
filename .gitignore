@@ -3,3 +3,4 @@ node_modules
 .codegraph/daemon.pid
 frontend/tsconfig.tsbuildinfo
 .claude/worktrees/
+.codex-*.png
