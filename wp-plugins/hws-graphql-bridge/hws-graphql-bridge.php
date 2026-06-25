@@ -247,6 +247,40 @@ add_action(
 				},
 			]
 		);
+		/**
+		 * 6) hwsContactChannels — глобальное (не по бренду) GraphQL-поле с публичными
+		 *    контактами для кнопок мессенджеров. Источник — плагин hws-contact-channels.
+		 *    Зарегистрировано как RootQuery field, не на Product — это не привязано к товару.
+		 */
+		register_graphql_object_type(
+			'HwsContactChannels',
+			[
+				'description' => __( 'Публичные контакты для кнопок мессенджеров (WhatsApp/Telegram)', 'hws-graphql-bridge' ),
+				'fields'      => [
+					'whatsappNumber'   => [ 'type' => 'String' ],
+					'telegramUsername' => [ 'type' => 'String' ],
+				],
+			]
+		);
+
+		register_graphql_field(
+			'RootQuery',
+			'hwsContactChannels',
+			[
+				'type'        => 'HwsContactChannels',
+				'description' => __( 'Публичные контакты для кнопок мессенджеров', 'hws-graphql-bridge' ),
+				'resolve'     => function () {
+					if ( ! class_exists( 'HWS_Contact_Channels' ) ) {
+						return null;
+					}
+					$row = HWS_Contact_Channels::get_settings();
+					return [
+						'whatsappNumber'   => $row['whatsapp_number'],
+						'telegramUsername' => $row['telegram_username'],
+					];
+				},
+			]
+		);
 	}
 );
 

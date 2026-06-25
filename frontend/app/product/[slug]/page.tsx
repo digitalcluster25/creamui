@@ -8,7 +8,7 @@ import { headerMock } from "@/lib/mocks/header";
 import { footerData } from "@/lib/data/footer";
 import { productDescriptionData } from "@/lib/data/productDescription";
 import { getClient } from "@/lib/wp/apollo";
-import { GET_PRODUCT_BY_SLUG, GET_PRODUCT_SLUGS } from "@/lib/wp/queries";
+import { GET_PRODUCT_BY_SLUG, GET_PRODUCT_SLUGS, GET_CONTACT_CHANNELS } from "@/lib/wp/queries";
 import {
   mapToProductPageData,
   mapToProductSpecsData,
@@ -63,11 +63,25 @@ export default async function ProductPageRoute({
   const specs = mapToProductSpecsData(data.product);
   const productSpecsData = specs.groups.length ? specs : mockProductSpecsData;
 
+  let contactChannels: { whatsappNumber?: string; telegramUsername?: string } | undefined;
+  try {
+    const { data: channelsData } = await client.query<{
+      hwsContactChannels: { whatsappNumber: string; telegramUsername: string } | null;
+    }>({ query: GET_CONTACT_CHANNELS });
+    const c = channelsData?.hwsContactChannels;
+    contactChannels = {
+      whatsappNumber: c?.whatsappNumber || undefined,
+      telegramUsername: c?.telegramUsername || undefined,
+    };
+  } catch (e) {
+    console.error("WP GraphQL error (contact channels):", e);
+  }
+
   return (
     <main>
       <Header data={headerMock} hideBurgerOnDesktop hideActionsOnDesktop />
       <div className={styles.productPageWrap}>
-        <ProductPage data={productPageData} />
+        <ProductPage data={productPageData} contactChannels={contactChannels} />
       </div>
       <div className={styles.section}>
         <ProductDescription {...productDescriptionData} />

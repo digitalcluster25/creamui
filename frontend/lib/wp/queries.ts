@@ -237,3 +237,12 @@ export const GET_PRODUCT_SLUGS = gql`
     }
   }
 `;
+
+export const GET_CONTACT_CHANNELS = gql`
+  query GetContactChannels {
+    hwsContactChannels {
+      whatsappNumber
+      telegramUsername
+    }
+  }
+`;

@@ -141,7 +141,10 @@ export default function SectionsPage() {
         <Catalog data={catalogData} />
       </div>
       <div style={section}>
-        <ProductPage data={productPageData} />
+        <ProductPage
+          data={productPageData}
+          contactChannels={{ whatsappNumber: "70000000000", telegramUsername: "hws_demo" }}
+        />
       </div>
       <div style={section}>
         <ProductDescription {...productDescriptionData} />

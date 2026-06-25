@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import type { ProductPageData } from "@/lib/types/productPage";
 import styles from "./ProductPage.module.css";
 
@@ -19,7 +19,8 @@ function formatPrice(n: number) {
   return n.toLocaleString("en-US", { minimumFractionDigits: 2 });
 }
 
-type Props = { data: ProductPageData };
+type ContactChannels = { whatsappNumber?: string; telegramUsername?: string };
+type Props = { data: ProductPageData; contactChannels?: ContactChannels };
 
 function buildDefaults(groups: ProductPageData["variantGroups"]): Record<string, string> {
   const out: Record<string, string> = {};
@@ -29,11 +30,17 @@ function buildDefaults(groups: ProductPageData["variantGroups"]): Record<string,
   return out;
 }
 
-export function ProductPage({ data }: Props) {
+export function ProductPage({ data, contactChannels }: Props) {
   const [activeImg, setActiveImg] = useState(0);
   const [variants, setVariants] = useState<Record<string, string>>(() => buildDefaults(data.variantGroups));
   const [qty, setQty] = useState(1);
   const dragStartX = useRef<number | null>(null);
+  // window.location.href различается между сервером и первой клиентской отрисовкой —
+  // подставляем после монтирования через эффект, иначе React ругается на hydration mismatch.
+  const [pageUrl, setPageUrl] = useState("");
+  useEffect(() => {
+    setPageUrl(window.location.href);
+  }, []);
 
   function handlePointerDown(e: React.PointerEvent<HTMLDivElement>) {
     dragStartX.current = e.clientX;
@@ -74,6 +81,27 @@ export function ProductPage({ data }: Props) {
     const maxMod = Math.max(...group.options.map((o) => o.priceModifier ?? 0));
     return sum + maxMod;
   }, 0);
+
+  // Сообщение для менеджера — название товара, ссылка, выбранная конфигурация и итоговая цена.
+  const messageText = (() => {
+    const lines = [`Здравствуйте, интересует «${data.title}»`];
+    if (data.variantGroups.length > 0) {
+      const config = data.variantGroups
+        .map((g) => `${g.label}: ${variants[g.key] ?? g.options[0]?.value ?? ""}`)
+        .join(", ");
+      lines.push(`Конфигурация: ${config}`);
+    }
+    lines.push(`Цена: ${data.currency}${formatPrice(effectivePrice)}`);
+    if (pageUrl) lines.push(pageUrl);
+    return lines.join("\n");
+  })();
+
+  const whatsappHref = contactChannels?.whatsappNumber
+    ? `https://wa.me/${contactChannels.whatsappNumber}?text=${encodeURIComponent(messageText)}`
+    : null;
+  const telegramHref = contactChannels?.telegramUsername
+    ? `https://t.me/${contactChannels.telegramUsername}?text=${encodeURIComponent(messageText)}`
+    : null;
 
   return (
     <>
@@ -270,13 +298,23 @@ export function ProductPage({ data }: Props) {
         <hr className={styles.divider} />
 
         {/* Contact panel */}
-        <div className={styles.contactPanel}>
-          <p className={styles.contactText}>Отправить конфигурацию товара менеджеру и обсудить детали</p>
-          <div className={styles.contactBtns}>
-            <a href="#" className={styles.contactBtn} aria-label="Telegram">{TG_ICON} Получить товар</a>
-            <a href="#" className={styles.contactBtn} aria-label="WhatsApp">{WA_ICON} Получить товар</a>
+        {(telegramHref || whatsappHref) && (
+          <div className={styles.contactPanel}>
+            <p className={styles.contactText}>Отправить конфигурацию товара менеджеру и обсудить детали</p>
+            <div className={styles.contactBtns}>
+              {telegramHref && (
+                <a href={telegramHref} target="_blank" rel="noopener noreferrer" className={styles.contactBtn} aria-label="Telegram">
+                  {TG_ICON} Получить товар
+                </a>
+              )}
+              {whatsappHref && (
+                <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className={styles.contactBtn} aria-label="WhatsApp">
+                  {WA_ICON} Получить товар
+                </a>
+              )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </section>
     </>
