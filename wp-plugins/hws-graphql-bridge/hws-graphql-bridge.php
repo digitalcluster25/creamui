@@ -33,6 +33,22 @@ add_filter(
 );
 
 /**
+ * Достаёт ID товара из модели WPGraphQL (Model\Product), общая логика для всех резолверов ниже.
+ *
+ * @param mixed $source
+ * @return int|null
+ */
+function hws_graphql_bridge_get_product_id( $source ): ?int {
+	if ( isset( $source->wc_data ) && is_object( $source->wc_data ) && method_exists( $source->wc_data, 'get_id' ) ) {
+		return (int) $source->wc_data->get_id();
+	}
+	if ( isset( $source->ID ) ) {
+		return (int) $source->ID;
+	}
+	return null;
+}
+
+/**
  * 2) Поле hwsSpecs на интерфейсе Product — разбирает _hws_specs_html
  *    в массив {label, value}. Подтверждено на выборке товаров всех 3 брендов
  *    (ВВД/EasySteam/Sangens), что meta-ключ присутствует универсально.
@@ -59,13 +75,7 @@ add_action(
 				'type'        => [ 'list_of' => 'HwsSpecRow' ],
 				'description' => __( 'Характеристики товара (распарсены из _hws_specs_html)', 'hws-graphql-bridge' ),
 				'resolve'     => function ( $source ) {
-					$product_id = null;
-
-					if ( isset( $source->wc_data ) && is_object( $source->wc_data ) && method_exists( $source->wc_data, 'get_id' ) ) {
-						$product_id = $source->wc_data->get_id();
-					} elseif ( isset( $source->ID ) ) {
-						$product_id = $source->ID;
-					}
+					$product_id = hws_graphql_bridge_get_product_id( $source );
 
 					if ( empty( $product_id ) ) {
 						return [];
@@ -77,6 +87,67 @@ add_action(
 					}
 
 					return hws_graphql_bridge_parse_specs_html( $html );
+				},
+			]
+		);
+
+		/**
+		 * 3) Поле hwsCommerceInfo на интерфейсе Product — условия доставки/оплаты/гарантии
+		 *    по бренду товара. Источник данных — плагин hws-commerce-info (его публичный
+		 *    геттер get_settings_for_brand), сам он раньше рендерился только в PHP-шаблон
+		 *    WooCommerce и был недостижим для headless-фронта.
+		 */
+		register_graphql_object_type(
+			'HwsCommerceInfo',
+			[
+				'description' => __( 'Условия доставки/оплаты/гарантии для бренда товара (заполняются в WooCommerce → Оплата и доставка)', 'hws-graphql-bridge' ),
+				'fields'      => [
+					'deliveryTitle' => [ 'type' => 'String' ],
+					'deliveryText'  => [ 'type' => 'String' ],
+					'paymentTitle'  => [ 'type' => 'String' ],
+					'paymentText'   => [ 'type' => 'String' ],
+					'warrantyTitle' => [ 'type' => 'String' ],
+					'warrantyText'  => [ 'type' => 'String' ],
+					'note'          => [ 'type' => 'String' ],
+				],
+			]
+		);
+
+		register_graphql_field(
+			'Product',
+			'hwsCommerceInfo',
+			[
+				'type'        => 'HwsCommerceInfo',
+				'description' => __( 'Условия доставки/оплаты/гарантии для бренда товара', 'hws-graphql-bridge' ),
+				'resolve'     => function ( $source ) {
+					if ( ! class_exists( 'HWS_Commerce_Info' ) ) {
+						return null;
+					}
+
+					$product_id = hws_graphql_bridge_get_product_id( $source );
+					if ( empty( $product_id ) || ! taxonomy_exists( 'product_brand' ) ) {
+						return null;
+					}
+
+					$brands = wp_get_post_terms( $product_id, 'product_brand' );
+					if ( ! is_array( $brands ) || is_wp_error( $brands ) || empty( $brands[0] ) ) {
+						return null;
+					}
+
+					$row = HWS_Commerce_Info::get_settings_for_brand( $brands[0]->term_id );
+					if ( empty( $row['enabled'] ) ) {
+						return null;
+					}
+
+					return [
+						'deliveryTitle' => $row['delivery_title'],
+						'deliveryText'  => $row['delivery_text'],
+						'paymentTitle'  => $row['payment_title'],
+						'paymentText'   => $row['payment_text'],
+						'warrantyTitle' => $row['warranty_title'],
+						'warrantyText'  => $row['warranty_text'],
+						'note'          => $row['note'],
+					];
 				},
 			]
 		);
