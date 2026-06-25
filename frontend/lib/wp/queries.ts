@@ -35,6 +35,12 @@ export const GET_PRODUCTS = gql`
               slug
             }
           }
+          productBrands {
+            nodes {
+              name
+              slug
+            }
+          }
         }
         ... on VariableProduct {
           price
@@ -51,6 +57,12 @@ export const GET_PRODUCTS = gql`
             }
           }
           productCategories {
+            nodes {
+              name
+              slug
+            }
+          }
+          productBrands {
             nodes {
               name
               slug

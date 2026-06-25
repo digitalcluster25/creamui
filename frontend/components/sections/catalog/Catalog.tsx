@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import type { CatalogData } from "@/lib/types/catalog";
 import { CatalogProductCard } from "@/components/blocks/catalog-product-card";
 import styles from "./Catalog.module.css";
@@ -17,46 +17,56 @@ const CLOSE_ICON = (
   </svg>
 );
 
-const FILTERS = [
-  {
-    key: "volume" as const,
-    label: "Объем парной",
-    options: ["до 8 м³", "до 12 м³", "до 16 м³", "до 20 м³", "до 24 м³", "более 24 м³"],
-  },
-  {
-    key: "power" as const,
-    label: "Мощность",
-    options: ["до 10 кВт", "10–15 кВт", "15–20 кВт", "более 20 кВт"],
-  },
-  {
-    key: "material" as const,
-    label: "Материал облицовки",
-    options: ["Нефрит", "Талькохлорит", "Жадеит", "Порфирит", "Без облицовки"],
-  },
-];
-
-type FilterKey = "volume" | "power" | "material";
-type FilterState = Record<FilterKey, string>;
+const PER_PAGE = 24;
+type SortKey = "default" | "price-asc" | "price-desc" | "name";
 
 type Props = {
   data: CatalogData;
 };
 
 export function Catalog({ data }: Props) {
-  const [sort, setSort] = useState("default");
-  const [filters, setFilters] = useState<FilterState>({ volume: "", power: "", material: "" });
-  const { products, total, page, perPage, totalPages } = data;
-  const from = (page - 1) * perPage + 1;
-  const to = Math.min(page * perPage, total);
+  const [sort, setSort] = useState<SortKey>("default");
+  const [brand, setBrand] = useState("");
+  const [page, setPage] = useState(1);
 
-  const activeChips = FILTERS.filter((f) => filters[f.key] !== "");
+  const { products } = data;
 
-  function setFilter(key: FilterKey, value: string) {
-    setFilters((prev) => ({ ...prev, [key]: value }));
+  // Уникальные бренды из реально пришедших товаров — не захардкожены,
+  // список сам подстроится если бренд добавят/удалят в WP.
+  const brandOptions = useMemo(
+    () =>
+      Array.from(new Set(products.map((p) => p.brand).filter((b): b is string => !!b))).sort(),
+    [products]
+  );
+
+  const filtered = useMemo(
+    () => (brand ? products.filter((p) => p.brand === brand) : products),
+    [products, brand]
+  );
+
+  const sorted = useMemo(() => {
+    const arr = [...filtered];
+    if (sort === "price-asc") arr.sort((a, b) => a.priceMin - b.priceMin);
+    else if (sort === "price-desc") arr.sort((a, b) => b.priceMin - a.priceMin);
+    else if (sort === "name") arr.sort((a, b) => a.title.localeCompare(b.title, "ru"));
+    return arr;
+  }, [filtered, sort]);
+
+  const total = sorted.length;
+  const totalPages = Math.max(1, Math.ceil(total / PER_PAGE));
+  const currentPage = Math.min(page, totalPages);
+  const from = total === 0 ? 0 : (currentPage - 1) * PER_PAGE + 1;
+  const to = Math.min(currentPage * PER_PAGE, total);
+  const visible = sorted.slice((currentPage - 1) * PER_PAGE, currentPage * PER_PAGE);
+
+  function changeBrand(value: string) {
+    setBrand(value);
+    setPage(1);
   }
 
-  function removeFilter(key: FilterKey) {
-    setFilters((prev) => ({ ...prev, [key]: "" }));
+  function changeSort(value: SortKey) {
+    setSort(value);
+    setPage(1);
   }
 
   return (
@@ -65,29 +75,29 @@ export function Catalog({ data }: Props) {
       <div className={styles.toolbar}>
         <span className={styles.filtersLabel}>Фильтры</span>
         <div className={styles.filterSelects}>
-          {FILTERS.map((f) => (
-            <div key={f.key} className={styles.filterSelectWrap}>
-              <select
-                className={[styles.filterSelect, filters[f.key] ? styles.filterSelectActive : ""].filter(Boolean).join(" ")}
-                value={filters[f.key]}
-                onChange={(e) => setFilter(f.key, e.target.value)}
-                aria-label={f.label}
-              >
-                <option value="">{f.label}</option>
-                {f.options.map((o) => (
-                  <option key={o} value={o}>{o}</option>
-                ))}
-              </select>
-            </div>
-          ))}
+          <div className={styles.filterSelectWrap}>
+            <select
+              className={[styles.filterSelect, brand ? styles.filterSelectActive : ""].filter(Boolean).join(" ")}
+              value={brand}
+              onChange={(e) => changeBrand(e.target.value)}
+              aria-label="Бренд"
+            >
+              <option value="">Бренд</option>
+              {brandOptions.map((b) => (
+                <option key={b} value={b}>{b}</option>
+              ))}
+            </select>
+          </div>
         </div>
 
         <div className={styles.toolbarRight}>
-          <span className={styles.count}>Отображение {from}–{to} из {total}</span>
+          <span className={styles.count}>
+            {total === 0 ? "Ничего не найдено" : `Отображение ${from}–${to} из ${total}`}
+          </span>
           <select
             className={styles.sort}
             value={sort}
-            onChange={(e) => setSort(e.target.value)}
+            onChange={(e) => changeSort(e.target.value as SortKey)}
             aria-label="Сортировка"
           >
             <option value="default">Исходная сортировка</option>
@@ -98,24 +108,17 @@ export function Catalog({ data }: Props) {
         </div>
       </div>
 
-      {activeChips.length > 0 && (
+      {brand && (
         <div className={styles.chips}>
-          {activeChips.map((f) => (
-            <button
-              key={f.key}
-              type="button"
-              className={styles.chip}
-              onClick={() => removeFilter(f.key)}
-            >
-              {filters[f.key]}
-              {CLOSE_ICON}
-            </button>
-          ))}
+          <button type="button" className={styles.chip} onClick={() => changeBrand("")}>
+            {brand}
+            {CLOSE_ICON}
+          </button>
         </div>
       )}
 
       <div className={styles.grid}>
-        {products.map((product) => (
+        {visible.map((product) => (
           <CatalogProductCard
             key={product.id}
             href={product.href}
@@ -129,21 +132,30 @@ export function Catalog({ data }: Props) {
         ))}
       </div>
 
-      <nav className={styles.pagination} aria-label="Страницы каталога">
-        {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
-          <a
-            key={p}
-            href="#"
-            className={[styles.pageLink, p === page ? styles.pageLinkActive : ""].filter(Boolean).join(" ")}
-            aria-current={p === page ? "page" : undefined}
+      {totalPages > 1 && (
+        <nav className={styles.pagination} aria-label="Страницы каталога">
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+            <button
+              key={p}
+              type="button"
+              onClick={() => setPage(p)}
+              className={[styles.pageLink, p === currentPage ? styles.pageLinkActive : ""].filter(Boolean).join(" ")}
+              aria-current={p === currentPage ? "page" : undefined}
+            >
+              {p}
+            </button>
+          ))}
+          <button
+            type="button"
+            onClick={() => setPage((p) => Math.min(p + 1, totalPages))}
+            className={styles.pageArrow}
+            aria-label="Следующая страница"
+            disabled={currentPage === totalPages}
           >
-            {p}
-          </a>
-        ))}
-        <a href="#" className={styles.pageArrow} aria-label="Следующая страница">
-          {ARROW_RIGHT}
-        </a>
-      </nav>
+            {ARROW_RIGHT}
+          </button>
+        </nav>
+      )}
     </section>
   );
 }

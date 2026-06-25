@@ -16,7 +16,7 @@ export default async function CatalogPage() {
     const client = getClient();
     const { data } = await client.query<{ products: { nodes: WPProductNode[] } }>({
       query: GET_PRODUCTS,
-      variables: { first: 24 },
+      variables: { first: 200 },
     });
     catalogData = mapToCatalogData(data?.products?.nodes ?? [], "Каталог");
   } catch (e) {

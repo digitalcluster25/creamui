@@ -52,7 +52,7 @@ export default async function CatalogCategoryPage({
   try {
     const { data } = await client.query<{ products: { nodes: WPProductNode[] } }>({
       query: GET_PRODUCTS,
-      variables: { first: 24, category },
+      variables: { first: 200, category },
     });
     catalogData = mapToCatalogData(data?.products?.nodes ?? [], found.name);
   } catch (e) {

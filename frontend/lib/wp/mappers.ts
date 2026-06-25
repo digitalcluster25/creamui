@@ -43,16 +43,15 @@ export function mapToCatalogProduct(node: WPProductNode): CatalogProduct {
     image: node.image?.sourceUrl ?? "",
     title: node.name,
     category: node.productCategories?.nodes[0]?.name ?? "",
+    brand: node.productBrands?.nodes[0]?.name,
     priceMin: price,
     priceMax: price,
     currency: getCurrencySymbol(node.price),
   };
 }
 
-// total/page/perPage здесь приблизительные: WooGraphQL отдаёт курсорную пагинацию
-// (hasNextPage/endCursor), а не номера страниц. Если блоку Catalog нужна честная
-// постраничная навигация — это отдельная задача на адаптацию пагинации, не делал
-// её в этом проходе, чтобы не гадать с интерфейсом блока.
+// Фильтр/сортировка/пагинация теперь полностью клиентские (Catalog.tsx) —
+// каталог небольшой (~106 товаров), поэтому отдаём весь список разом.
 export function mapToCatalogData(
   nodes: WPProductNode[],
   pageTitle?: string
@@ -60,10 +59,6 @@ export function mapToCatalogData(
   return {
     pageTitle,
     products: nodes.map(mapToCatalogProduct),
-    total: nodes.length,
-    page: 1,
-    perPage: nodes.length,
-    totalPages: 1,
   };
 }
 
