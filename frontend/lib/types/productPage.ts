@@ -14,6 +14,16 @@ export type ProductVariantGroup = {
 
 export type Breadcrumb = { label: string; href?: string };
 
+export type CommerceInfo = {
+  deliveryTitle?: string;
+  deliveryText?: string;
+  paymentTitle?: string;
+  paymentText?: string;
+  warrantyTitle?: string;
+  warrantyText?: string;
+  note?: string;
+};
+
 export type ProductPageData = {
   breadcrumbs?: Breadcrumb[];
   images: string[];
@@ -27,5 +37,6 @@ export type ProductPageData = {
   tag?: string;
   brand?: string;
   description: string;
+  commerceInfo?: CommerceInfo;
   variantGroups: ProductVariantGroup[];
 };

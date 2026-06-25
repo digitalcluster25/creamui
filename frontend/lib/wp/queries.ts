@@ -113,6 +113,15 @@ export const GET_PRODUCT_BY_SLUG = gql`
           label
           value
         }
+        hwsCommerceInfo {
+          deliveryTitle
+          deliveryText
+          paymentTitle
+          paymentText
+          warrantyTitle
+          warrantyText
+          note
+        }
         attributes {
           nodes {
             name
@@ -150,6 +159,15 @@ export const GET_PRODUCT_BY_SLUG = gql`
         hwsSpecs {
           label
           value
+        }
+        hwsCommerceInfo {
+          deliveryTitle
+          deliveryText
+          paymentTitle
+          paymentText
+          warrantyTitle
+          warrantyText
+          note
         }
         hwsVariantGroups {
           key

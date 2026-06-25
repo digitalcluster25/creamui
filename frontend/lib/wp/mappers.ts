@@ -18,6 +18,15 @@ export type WPProductNode = {
   productCategories?: { nodes: { name: string; slug: string }[] };
   productBrands?: { nodes: { name: string; slug: string }[] };
   hwsSpecs?: { label: string; value: string }[];
+  hwsCommerceInfo?: {
+    deliveryTitle?: string;
+    deliveryText?: string;
+    paymentTitle?: string;
+    paymentText?: string;
+    warrantyTitle?: string;
+    warrantyText?: string;
+    note?: string;
+  } | null;
   hwsVariantGroups?: {
     key: string;
     label: string;
@@ -90,6 +99,7 @@ export function mapToProductPageData(node: WPProductNode): ProductPageData {
     tag: undefined, // нет надёжного источника — productTags на бэке содержат демо-теги WooCommerce, не реальные
     brand: node.productBrands?.nodes[0]?.name,
     description: node.shortDescription ?? node.description ?? "",
+    commerceInfo: node.hwsCommerceInfo ?? undefined,
     variantGroups: (node.hwsVariantGroups ?? []).map((g) => ({
       key: g.key,
       label: g.label,

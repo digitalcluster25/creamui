@@ -177,31 +177,32 @@ export function ProductPage({ data }: Props) {
           </span>
         </div>
 
-        {/* Commerce info — delivery + payment */}
-        <section className={styles.commerceInfo} aria-label="Оплата и доставка">
-          <div className={styles.commerceItem}>
-            <span className={styles.commerceIcon}>{DELIVERY_ICON}</span>
-            <div>
-              <strong className={styles.commerceItemTitle}>Доставка</strong>
-              <span className={styles.commerceItemDesc}>Срок поставки: от 1 до 12 недель.</span>
-            </div>
-          </div>
-          <div className={styles.commerceItem}>
-            <span className={styles.commerceIcon}>{PAYMENT_ICON}</span>
-            <div>
-              <strong className={styles.commerceItemTitle}>Оплата</strong>
-              <span className={styles.commerceItemDesc}>Наличными, картой или на расчетный счет.</span>
-            </div>
-          </div>
-          <div className={styles.commerceItem}>
-            <span className={styles.commerceIcon}>{WARRANTY_ICON}</span>
-            <div>
-              <strong className={styles.commerceItemTitle}>Гарантия до 3-х лет</strong>
-              <span className={styles.commerceItemDesc}>Зависит от режима использования: бытовое или коммерческое.</span>
-            </div>
-          </div>
-          <p className={styles.commerceNote}>Точные сроки и условия подтвердит менеджер перед оплатой.</p>
-        </section>
+        {/* Commerce info — delivery + payment + warranty, по бренду товара (WooCommerce → Оплата и доставка) */}
+        {(() => {
+          const ci = data.commerceInfo;
+          const items = [
+            { text: ci?.deliveryText, title: ci?.deliveryTitle || "Доставка", icon: DELIVERY_ICON },
+            { text: ci?.paymentText, title: ci?.paymentTitle || "Оплата", icon: PAYMENT_ICON },
+            { text: ci?.warrantyText, title: ci?.warrantyTitle || "Гарантия", icon: WARRANTY_ICON },
+          ].filter((item) => !!item.text);
+
+          if (items.length === 0) return null;
+
+          return (
+            <section className={styles.commerceInfo} aria-label="Оплата и доставка">
+              {items.map((item) => (
+                <div key={item.title} className={styles.commerceItem}>
+                  <span className={styles.commerceIcon}>{item.icon}</span>
+                  <div>
+                    <strong className={styles.commerceItemTitle}>{item.title}</strong>
+                    <span className={styles.commerceItemDesc}>{item.text}</span>
+                  </div>
+                </div>
+              ))}
+              {ci?.note && <p className={styles.commerceNote}>{ci.note}</p>}
+            </section>
+          );
+        })()}
 
         {(data.sku || data.tag || data.brand) && (
           <p className={styles.meta}>

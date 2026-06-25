@@ -29,6 +29,15 @@ export const productPageData: ProductPageData = {
   brand: "EasySteam",
   description:
     "Печь для русской бани с закрытой каменкой до 22 м³. Мягкий пар, встроенный парогенератор, защитные экраны из нержавеющей стали. Топка из AISI 430.",
+  commerceInfo: {
+    deliveryTitle: "Доставка",
+    deliveryText: "Срок поставки: от 1 до 12 недель.",
+    paymentTitle: "Оплата",
+    paymentText: "Наличными, картой или на расчетный счет.",
+    warrantyTitle: "Гарантия до 3-х лет",
+    warrantyText: "Зависит от режима использования: бытовое или коммерческое.",
+    note: "Точные сроки и условия подтвердит менеджер перед оплатой.",
+  },
   variantGroups: [
     {
       key: "color",
