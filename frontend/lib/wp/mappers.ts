@@ -1,5 +1,6 @@
 import type { CatalogProduct, CatalogData } from "@/lib/types/catalog";
 import type { ProductPageData } from "@/lib/types/productPage";
+import type { ProductSpecsData } from "@/lib/types/productSpecs";
 
 // Форма, которую реально отдаёт WooGraphQL (проверено на живом эндпоинте wpsandbox)
 export type WPProductNode = {
@@ -15,6 +16,8 @@ export type WPProductNode = {
   image?: { sourceUrl: string; altText: string } | null;
   galleryImages?: { nodes: { sourceUrl: string; altText: string }[] };
   productCategories?: { nodes: { name: string; slug: string }[] };
+  productBrands?: { nodes: { name: string; slug: string }[] };
+  hwsSpecs?: { label: string; value: string }[];
   attributes?: { nodes: { name: string; options: string[] }[] };
 };
 
@@ -84,7 +87,23 @@ export function mapToProductPageData(node: WPProductNode): ProductPageData {
     price,
     currency: getCurrencySymbol(node.price),
     sku: node.sku,
+    tag: undefined, // нет надёжного источника — productTags на бэке содержат демо-теги WooCommerce, не реальные
+    brand: node.productBrands?.nodes[0]?.name,
     description: node.shortDescription ?? node.description ?? "",
     variantGroups: [], // атрибуты/вариации WooCommerce -> отдельная задача, схема не совпадает 1:1
+  };
+}
+
+// hwsSpecs приходит уже разобранным с бэка (плагин hws-graphql-bridge парсит
+// _hws_specs_html на сервере) — здесь только оборачиваем в форму блока.
+// Группировки по секциям нет: на части товаров (VariableProduct/EasySteam) она
+// есть в исходных данных (_hws_source_payload.detail.specs[].section), но не на
+// всех — поэтому сейчас одна плоская группа, без угадывания структуры.
+export function mapToProductSpecsData(node: WPProductNode): ProductSpecsData {
+  return {
+    sectionTitle: "Характеристики",
+    groups: node.hwsSpecs?.length
+      ? [{ title: "Характеристики", rows: node.hwsSpecs }]
+      : [],
   };
 }

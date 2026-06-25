@@ -91,6 +91,16 @@ export const GET_PRODUCT_BY_SLUG = gql`
             slug
           }
         }
+        productBrands {
+          nodes {
+            name
+            slug
+          }
+        }
+        hwsSpecs {
+          label
+          value
+        }
         attributes {
           nodes {
             name
@@ -118,6 +128,16 @@ export const GET_PRODUCT_BY_SLUG = gql`
             name
             slug
           }
+        }
+        productBrands {
+          nodes {
+            name
+            slug
+          }
+        }
+        hwsSpecs {
+          label
+          value
         }
         variations {
           nodes {
