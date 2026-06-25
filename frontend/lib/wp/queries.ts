@@ -151,6 +151,14 @@ export const GET_PRODUCT_BY_SLUG = gql`
           label
           value
         }
+        hwsVariantGroups {
+          key
+          label
+          options {
+            value
+            priceModifier
+          }
+        }
         variations {
           nodes {
             databaseId

@@ -181,8 +181,128 @@ add_action(
 				},
 			]
 		);
+		/**
+		 * 5) Поле hwsVariantGroups на интерфейсе Product — разбирает кастомный
+		 *    JSON _hws_source_payload.option_groups (только у VariableProduct/EasySteam)
+		 *    в аддитивную модель {key, label, options:[{value, priceModifier}]}.
+		 *    delta_price в исходных данных — в рублях, конвертируем в USD через
+		 *    _hws_usd_rub_rate (формула подтверждена эмпирически: 165000/71.209≈2317≈
+		 *    реальная минимальная цена товара 2320$ в WooCommerce).
+		 *    Дефолтная опция (is_default) ставится первой в массиве — компонент
+		 *    ProductPage.tsx жёстко берёт options[0] как baseline, не смотрит на флаг.
+		 */
+		register_graphql_object_type(
+			'HwsVariantOption',
+			[
+				'description' => __( 'Опция группы вариаций с надбавкой к цене в валюте каталога', 'hws-graphql-bridge' ),
+				'fields'      => [
+					'value'         => [ 'type' => 'String' ],
+					'priceModifier' => [ 'type' => 'Float' ],
+				],
+			]
+		);
+
+		register_graphql_object_type(
+			'HwsVariantGroup',
+			[
+				'description' => __( 'Группа вариаций товара (например "Варианты кожуха")', 'hws-graphql-bridge' ),
+				'fields'      => [
+					'key'     => [ 'type' => 'String' ],
+					'label'   => [ 'type' => 'String' ],
+					'options' => [ 'type' => [ 'list_of' => 'HwsVariantOption' ] ],
+				],
+			]
+		);
+
+		register_graphql_field(
+			'Product',
+			'hwsVariantGroups',
+			[
+				'type'        => [ 'list_of' => 'HwsVariantGroup' ],
+				'description' => __( 'Группы вариаций с аддитивными надбавками к цене (распарсены из _hws_source_payload.option_groups)', 'hws-graphql-bridge' ),
+				'resolve'     => function ( $source ) {
+					$product_id = hws_graphql_bridge_get_product_id( $source );
+					if ( empty( $product_id ) ) {
+						return [];
+					}
+
+					$rate = (float) get_post_meta( $product_id, '_hws_usd_rub_rate', true );
+					if ( $rate <= 0 ) {
+						// Без курса конвертация недостоверна — лучше отдать пусто,
+						// чем смешать рубли с долларами на фронте.
+						return [];
+					}
+
+					$raw = get_post_meta( $product_id, '_hws_source_payload', true );
+					if ( empty( $raw ) ) {
+						return [];
+					}
+
+					$payload = json_decode( $raw, true );
+					if ( ! is_array( $payload ) || empty( $payload['option_groups'] ) || ! is_array( $payload['option_groups'] ) ) {
+						return [];
+					}
+
+					return hws_graphql_bridge_map_variant_groups( $payload['option_groups'], $rate );
+				},
+			]
+		);
 	}
 );
+
+/**
+ * @param array<int, array{id?: mixed, name?: string, values?: array<int, array{name?: string, delta_price?: float, is_default?: bool, sort_order?: int}>}> $groups
+ * @param float $rate USD/RUB курс — delta_price (RUB) / rate = priceModifier (USD)
+ * @return array<int, array{key: string, label: string, options: array<int, array{value: string, priceModifier: float}>}>
+ */
+function hws_graphql_bridge_map_variant_groups( array $groups, float $rate ): array {
+	$result = [];
+
+	foreach ( $groups as $group ) {
+		if ( empty( $group['name'] ) || empty( $group['values'] ) || ! is_array( $group['values'] ) ) {
+			continue;
+		}
+
+		$values = $group['values'];
+
+		// is_default первой, затем по sort_order — компонент берёт options[0] как baseline.
+		usort(
+			$values,
+			function ( $a, $b ) {
+				$a_default = ! empty( $a['is_default'] );
+				$b_default = ! empty( $b['is_default'] );
+				if ( $a_default !== $b_default ) {
+					return $a_default ? -1 : 1;
+				}
+				return ( $a['sort_order'] ?? 0 ) <=> ( $b['sort_order'] ?? 0 );
+			}
+		);
+
+		$options = [];
+		foreach ( $values as $value ) {
+			if ( empty( $value['name'] ) ) {
+				continue;
+			}
+			$delta_rub      = (float) ( $value['delta_price'] ?? 0 );
+			$options[]      = [
+				'value'         => $value['name'],
+				'priceModifier' => round( $delta_rub / $rate ),
+			];
+		}
+
+		if ( empty( $options ) ) {
+			continue;
+		}
+
+		$result[] = [
+			'key'     => ! empty( $group['id'] ) ? (string) $group['id'] : sanitize_title( $group['name'] ),
+			'label'   => $group['name'],
+			'options' => $options,
+		];
+	}
+
+	return $result;
+}
 
 /**
  * Разбирает HTML-таблицу вида
