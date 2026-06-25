@@ -151,6 +151,36 @@ add_action(
 				},
 			]
 		);
+
+		/**
+		 * 4) Поле logoUrl на типе productBrand — читает встроенную миниатюру термина
+		 *    (WooCommerce core уже даёт UI для неё на edit-tags.php?taxonomy=product_brand,
+		 *    тот же механизм и term meta key "thumbnail_id", что и у категорий товаров —
+		 *    см. WC_Admin_Brands::edit_thumbnail_field в woocommerce/includes/admin/class-wc-admin-brands.php).
+		 *    Ничего нового в админке не добавляли — просто прокидываем уже существующее поле в GraphQL.
+		 */
+		register_graphql_field(
+			'productBrand',
+			'logoUrl',
+			[
+				'type'        => 'String',
+				'description' => __( 'URL логотипа бренда (миниатюра термина product_brand)', 'hws-graphql-bridge' ),
+				'resolve'     => function ( $source ) {
+					$term_id = $source->term_id ?? null;
+					if ( empty( $term_id ) ) {
+						return null;
+					}
+
+					$thumbnail_id = get_term_meta( $term_id, 'thumbnail_id', true );
+					if ( empty( $thumbnail_id ) ) {
+						return null;
+					}
+
+					$url = wp_get_attachment_url( $thumbnail_id );
+					return $url ?: null;
+				},
+			]
+		);
 	}
 );
 
