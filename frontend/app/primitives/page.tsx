@@ -7,11 +7,10 @@ export default function PrimitivesPage() {
           <p className="app-subtitle">Атомарные UI-элементы — иконочные кнопки, логотипы, переключатели.</p>
         </div>
         <nav className="app-nav" aria-label="Навигация по frontend">
-          <a href="/">Главная</a>
+          <a href="/dev">Frontend</a>
           <a href="/primitives" aria-current="page">Примитивы</a>
           <a href="/blocks">Блоки</a>
           <a href="/sections">Секции</a>
-          <a href="/pages">Страницы</a>
         </nav>
       </header>
     </main>

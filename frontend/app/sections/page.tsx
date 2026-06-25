@@ -102,11 +102,10 @@ export default function SectionsPage() {
             <p className="app-subtitle">Полные секции страницы — шапка, герой, каталог, кейсы, блог и др.</p>
           </div>
           <nav className="app-nav" aria-label="Навигация по frontend">
-            <a href="/">Главная</a>
+            <a href="/dev">Frontend</a>
             <a href="/primitives">Примитивы</a>
             <a href="/blocks">Блоки</a>
             <a href="/sections" aria-current="page">Секции</a>
-            <a href="/pages">Страницы</a>
           </nav>
         </header>
       </div>
