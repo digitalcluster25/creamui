@@ -123,7 +123,13 @@ export default function SectionsPage() {
         <Products data={productsData} />
       </div>
       <div style={section}>
-        <Brands />
+        <Brands
+          brands={[
+            { src: "/assets/vvd.png", alt: "VVD" },
+            { src: "/assets/easysteam.svg", alt: "EasySteam" },
+            { src: "/assets/sangens.png", alt: "Sangens" },
+          ]}
+        />
       </div>
       <div style={section}>
         <HowWeWork data={howWeWorkData} />

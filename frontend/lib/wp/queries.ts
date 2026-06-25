@@ -178,6 +178,18 @@ export const GET_PRODUCT_CATEGORIES = gql`
   }
 `;
 
+export const GET_PRODUCT_BRANDS = gql`
+  query GetProductBrands {
+    productBrands(where: { hideEmpty: true }) {
+      nodes {
+        name
+        slug
+        logoUrl
+      }
+    }
+  }
+`;
+
 export const GET_PRODUCT_SLUGS = gql`
   query GetProductSlugs($first: Int = 100) {
     products(first: $first, where: { status: "publish" }) {

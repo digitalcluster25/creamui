@@ -3,15 +3,11 @@
 import { useEffect, useRef } from "react";
 import styles from "./Brands.module.css";
 
-const brands = [
-  { src: "/assets/vvd.png", alt: "VVD" },
-  { src: "/assets/easysteam.svg", alt: "EasySteam" },
-  { src: "/assets/sangens.png", alt: "Sangens" },
-];
+export type BrandLogo = { src: string; alt: string };
 
 const REPEATS = 5;
 
-function Strip({ id }: { id: string }) {
+function Strip({ id, brands }: { id: string; brands: BrandLogo[] }) {
   const items: React.ReactNode[] = [];
   for (let i = 0; i < REPEATS; i++) {
     brands.forEach((b) => {
@@ -27,7 +23,7 @@ function Strip({ id }: { id: string }) {
   return <div className={styles.el}>{items}</div>;
 }
 
-export function Brands() {
+export function Brands({ brands }: { brands: BrandLogo[] }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number>(0);
   const posRef = useRef(0);
@@ -60,14 +56,16 @@ export function Brands() {
 
     rafRef.current = requestAnimationFrame(start);
     return () => cancelAnimationFrame(rafRef.current);
-  }, []);
+  }, [brands]);
+
+  if (brands.length === 0) return null;
 
   return (
     <section className={styles.section}>
       <div className={styles.line}>
         <div className={styles.stage} ref={trackRef}>
-          <Strip id="a" />
-          <Strip id="b" />
+          <Strip id="a" brands={brands} />
+          <Strip id="b" brands={brands} />
         </div>
       </div>
     </section>
