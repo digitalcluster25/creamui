@@ -240,7 +240,7 @@ export function ProductPage({ data, contactChannels }: Props) {
           </p>
         )}
 
-        <p className={styles.description}>{data.description}</p>
+        <div className={styles.description} dangerouslySetInnerHTML={{ __html: data.description }} />
 
         <hr className={styles.divider} />
 

@@ -298,6 +298,35 @@
   color: rgba(17, 16, 19, 0.8);
 }
 
+/* Краткое описание WP может приходить как HTML-список (class="hws-product-highlights") —
+   базовые стили под него, дефолтные браузерные маркеры выглядели бы разнобойно. */
+.description ul {
+  margin: 0;
+  padding-left: 20px;
+  list-style: disc;
+}
+
+.description li {
+  margin-bottom: 6px;
+}
+
+.description li:last-child {
+  margin-bottom: 0;
+}
+
+.description strong {
+  color: rgb(17, 16, 19);
+  font-weight: 600;
+}
+
+.description p {
+  margin: 0 0 10px;
+}
+
+.description p:last-child {
+  margin-bottom: 0;
+}
+
 .divider {
   border: none;
   border-top: 1px solid rgba(17, 16, 19, 0.1);
