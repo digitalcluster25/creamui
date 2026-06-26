@@ -98,7 +98,7 @@ export function mapToProductPageData(node: WPProductNode): ProductPageData {
     sku: node.sku,
     tag: undefined, // нет надёжного источника — productTags на бэке содержат демо-теги WooCommerce, не реальные
     brand: node.productBrands?.nodes[0]?.name,
-    description: node.shortDescription ?? node.description ?? "",
+    description: node.shortDescription ?? "",
     commerceInfo: node.hwsCommerceInfo ?? undefined,
     variantGroups: (node.hwsVariantGroups ?? []).map((g) => ({
       key: g.key,
@@ -121,4 +121,12 @@ export function mapToProductSpecsData(node: WPProductNode): ProductSpecsData {
       ? [{ title: "Характеристики", rows: node.hwsSpecs }]
       : [],
   };
+}
+
+// Полное описание товара (поле WooCommerce "description", не "shortDescription") —
+// отдаём как есть, без попытки разобрать на структуру {heading, body}[]. Контент
+// рассчитан на генерацию нейросетью прямо в HTML (h2/p/ul внутри самой строки),
+// поэтому рендерим напрямую (см. ProductDescription.tsx), не подгоняем под мок.
+export function mapToProductDescriptionHtml(node: WPProductNode): string | undefined {
+  return node.description?.trim() || undefined;
 }

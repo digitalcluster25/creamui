@@ -6,12 +6,12 @@ import { ProductSpecs } from "@/components/sections/product-specs";
 import { Footer } from "@/components/sections/footer";
 import { headerMock } from "@/lib/mocks/header";
 import { footerData } from "@/lib/data/footer";
-import { productDescriptionData } from "@/lib/data/productDescription";
 import { getClient } from "@/lib/wp/apollo";
 import { GET_PRODUCT_BY_SLUG, GET_PRODUCT_SLUGS, GET_CONTACT_CHANNELS } from "@/lib/wp/queries";
 import {
   mapToProductPageData,
   mapToProductSpecsData,
+  mapToProductDescriptionHtml,
   type WPProductNode,
 } from "@/lib/wp/mappers";
 import { productSpecsData as mockProductSpecsData } from "@/lib/data/productSpecs";
@@ -84,7 +84,7 @@ export default async function ProductPageRoute({
         <ProductPage data={productPageData} contactChannels={contactChannels} />
       </div>
       <div className={styles.section}>
-        <ProductDescription {...productDescriptionData} />
+        <ProductDescription sectionTitle="Описание товара" html={mapToProductDescriptionHtml(data.product)} />
       </div>
       <div className={styles.section}>
         <ProductSpecs data={productSpecsData} />

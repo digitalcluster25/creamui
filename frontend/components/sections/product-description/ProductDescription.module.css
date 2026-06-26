@@ -13,30 +13,54 @@
 }
 
 .blocks {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
+  display: block;
 }
 
-.block {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.heading {
+/* Контент — сырой HTML из WP (поле "Полное описание"), потенциально сгенерированный
+   нейросетью: h2/h3 как подзаголовки блоков, p как текст. Стили те же, что раньше
+   были у структурированных .heading/.body, просто переложены на голые теги. */
+.blocks h2,
+.blocks h3 {
   font-family: "Noto Sans", sans-serif;
   font-size: 17px;
   font-weight: 700;
   color: rgb(17, 16, 19);
-  margin: 0;
+  margin: 28px 0 10px;
 }
 
-.body {
+.blocks h2:first-child,
+.blocks h3:first-child {
+  margin-top: 0;
+}
+
+.blocks p {
   font-family: "Noto Sans", sans-serif;
   font-size: 15px;
   font-weight: 400;
   line-height: 1.65;
   color: rgba(40, 40, 40, 0.76);
-  margin: 0;
+  margin: 0 0 10px;
+}
+
+.blocks p:last-child {
+  margin-bottom: 0;
+}
+
+.blocks ul,
+.blocks ol {
+  margin: 0 0 10px;
+  padding-left: 20px;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: rgba(40, 40, 40, 0.76);
+}
+
+.blocks li {
+  margin-bottom: 4px;
+}
+
+.blocks strong {
+  color: rgb(17, 16, 19);
+  font-weight: 600;
 }

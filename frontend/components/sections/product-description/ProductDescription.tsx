@@ -1,20 +1,19 @@
 import styles from "./ProductDescription.module.css";
 
-type DescBlock = { heading: string; body: string };
-type Props = { sectionTitle?: string; blocks: DescBlock[] };
+type Props = { sectionTitle?: string; html?: string };
 
-export function ProductDescription({ sectionTitle, blocks }: Props) {
+// Контент приходит как одна HTML-строка из поля WooCommerce "Полное описание"
+// (со временем будет генерироваться нейросетью — заголовки/абзацы внутри самой
+// строки, не отдельными полями) — рендерим как есть, не пытаясь разбить на
+// блоки с фиксированной структурой. Пусто -> секции вообще нет, не показываем
+// пустой заголовок без содержимого.
+export function ProductDescription({ sectionTitle, html }: Props) {
+  if (!html || !html.trim()) return null;
+
   return (
     <section className={styles.wrapper}>
       {sectionTitle && <h2 className={styles.sectionTitle}>{sectionTitle}</h2>}
-      <div className={styles.blocks}>
-        {blocks.map((b, i) => (
-          <div key={i} className={styles.block}>
-            <h3 className={styles.heading}>{b.heading}</h3>
-            <p className={styles.body}>{b.body}</p>
-          </div>
-        ))}
-      </div>
+      <div className={styles.blocks} dangerouslySetInnerHTML={{ __html: html }} />
     </section>
   );
 }
