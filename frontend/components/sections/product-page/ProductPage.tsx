@@ -244,6 +244,35 @@ export function ProductPage({ data, contactChannels }: Props) {
           <div className={styles.description} dangerouslySetInnerHTML={{ __html: data.description }} />
         )}
 
+        {/* Дизайн/облицовка — навигация между товарами одной модели в разной облицовке,
+            не вариации цены внутри одного товара (см. hwsFacingOptions). */}
+        {data.facingOptions && data.facingOptions.length > 1 && (
+          <div className={styles.variantGroup}>
+            <span className={styles.variantLabel}>Дизайн:</span>
+            <div className={styles.facingOptions}>
+              {data.facingOptions.map((opt) =>
+                opt.isActive ? (
+                  <span key={opt.slug} className={[styles.facingOption, styles.facingOptionActive].join(" ")}>
+                    {opt.iconUrl && (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={opt.iconUrl} alt="" className={styles.facingIcon} />
+                    )}
+                    {opt.label}
+                  </span>
+                ) : (
+                  <a key={opt.slug} href={`/product/${opt.slug}`} className={styles.facingOption}>
+                    {opt.iconUrl && (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={opt.iconUrl} alt="" className={styles.facingIcon} />
+                    )}
+                    {opt.label}
+                  </a>
+                )
+              )}
+            </div>
+          </div>
+        )}
+
         <hr className={styles.divider} />
 
         {/* Variant groups */}

@@ -281,6 +281,72 @@ add_action(
 				},
 			]
 		);
+		/**
+		 * 7) hwsFacingOptions — свотчи облицовки/материала. На оригинале (sangens.com)
+		 *    это НЕ JS-вариации внутри одной карточки, а навигация между РАЗНЫМИ
+		 *    товарами одной модели в разной облицовке (Glass Black/White, Brick, Stone —
+		 *    каждый отдельный product post). Воспроизводим тот же паттерн: WooCommerce
+		 *    cross-sell (_crosssell_ids, родное поле, не наша придумка) связывает товары,
+		 *    plus meta _hws_facing_icon_id/_hws_facing_label на каждом для иконки и подписи.
+		 */
+		register_graphql_object_type(
+			'HwsFacingOption',
+			[
+				'description' => __( 'Вариант облицовки/материала — ссылка на соответствующий товар той же модели', 'hws-graphql-bridge' ),
+				'fields'      => [
+					'label'    => [ 'type' => 'String' ],
+					'iconUrl'  => [ 'type' => 'String' ],
+					'slug'     => [ 'type' => 'String' ],
+					'isActive' => [ 'type' => 'Boolean' ],
+				],
+			]
+		);
+
+		register_graphql_field(
+			'Product',
+			'hwsFacingOptions',
+			[
+				'type'        => [ 'list_of' => 'HwsFacingOption' ],
+				'description' => __( 'Варианты облицовки/материала (свотчи), включая сам текущий товар', 'hws-graphql-bridge' ),
+				'resolve'     => function ( $source ) {
+					$product_id = hws_graphql_bridge_get_product_id( $source );
+					if ( empty( $product_id ) ) {
+						return [];
+					}
+
+					$cross_sell_ids = get_post_meta( $product_id, '_crosssell_ids', true );
+					if ( ! is_array( $cross_sell_ids ) ) {
+						$cross_sell_ids = [];
+					}
+
+					$all_ids = array_unique( array_merge( [ $product_id ], $cross_sell_ids ) );
+					$options = [];
+
+					foreach ( $all_ids as $id ) {
+						$icon_id = get_post_meta( $id, '_hws_facing_icon_id', true );
+						$label   = get_post_meta( $id, '_hws_facing_label', true );
+
+						if ( empty( $icon_id ) || empty( $label ) ) {
+							continue; // товар без своей иконки/лейбла — не настоящий вариант облицовки.
+						}
+
+						$post = get_post( $id );
+						if ( ! $post ) {
+							continue;
+						}
+
+						$options[] = [
+							'label'    => $label,
+							'iconUrl'  => wp_get_attachment_url( $icon_id ) ?: null,
+							'slug'     => $post->post_name,
+							'isActive' => (int) $id === (int) $product_id,
+						];
+					}
+
+					return $options;
+				},
+			]
+		);
 	}
 );
 

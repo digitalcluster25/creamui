@@ -24,6 +24,13 @@ export type CommerceInfo = {
   note?: string;
 };
 
+export type FacingOption = {
+  label: string;
+  iconUrl?: string;
+  slug: string;
+  isActive: boolean;
+};
+
 export type ProductPageData = {
   breadcrumbs?: Breadcrumb[];
   images: string[];
@@ -38,5 +45,6 @@ export type ProductPageData = {
   brand?: string;
   description: string;
   commerceInfo?: CommerceInfo;
+  facingOptions?: FacingOption[];
   variantGroups: ProductVariantGroup[];
 };

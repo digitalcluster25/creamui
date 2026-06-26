@@ -122,6 +122,12 @@ export const GET_PRODUCT_BY_SLUG = gql`
           warrantyText
           note
         }
+        hwsFacingOptions {
+          label
+          iconUrl
+          slug
+          isActive
+        }
         attributes {
           nodes {
             name
@@ -168,6 +174,12 @@ export const GET_PRODUCT_BY_SLUG = gql`
           warrantyTitle
           warrantyText
           note
+        }
+        hwsFacingOptions {
+          label
+          iconUrl
+          slug
+          isActive
         }
         hwsVariantGroups {
           key
