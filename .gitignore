@@ -4,3 +4,5 @@ node_modules
 frontend/tsconfig.tsbuildinfo
 .claude/worktrees/
 .codex-*.png
+backups/
+artifacts/

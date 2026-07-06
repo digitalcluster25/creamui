@@ -1,46 +1,48 @@
-name: Deploy UI kit
+name: Deploy HWS frontend
 
 on:
   push:
     branches:
       - main
+    paths:
+      - "frontend/**"
+      - "ops/hws/**"
+      - ".github/workflows/deploy.yml"
   workflow_dispatch:
 
 concurrency:
-  group: deploy-ui-kit
+  group: deploy-hws-frontend
   cancel-in-progress: true
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 15
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v5
 
-      - name: Configure SSH
+      - name: Configure SSH key
         env:
-          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
-          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+          HWS_SSH_KEY: ${{ secrets.HWS_SSH_KEY }}
         run: |
           install -m 700 -d ~/.ssh
-          printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
-          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
-          chmod 600 ~/.ssh/known_hosts
+          printf '%s\n' "$HWS_SSH_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -p "${{ secrets.HWS_PORT || 22 }}" -H "${{ secrets.HWS_HOST }}" >> ~/.ssh/known_hosts
 
-      - name: Deploy static files
+      - name: Deploy frontend to HWS
         env:
-          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
-          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
-        run: |
-          tar -czf - -- *.html *.js *.css |
-            ssh -i ~/.ssh/deploy_key "$DEPLOY_USER@$DEPLOY_HOST"
+          HWS_HOST: ${{ secrets.HWS_HOST }}
+          HWS_USER: ${{ secrets.HWS_USER }}
+          HWS_PORT: ${{ secrets.HWS_PORT }}
+          HWS_REMOTE_DIR: ${{ secrets.HWS_REMOTE_DIR }}
+          HWS_PM2_APP: ${{ secrets.HWS_PM2_APP }}
+        run: ./ops/hws/deploy-frontend.sh
 
-      - name: Verify deployment
+      - name: Verify homepage
         run: |
           curl --fail --silent --show-error \
             --retry 5 --retry-delay 2 \
-            https://ui.spaces.community/header.html |
-            grep --quiet 'sub-menu-wide'
+            https://hwsstore.spaces.community/ > /dev/null

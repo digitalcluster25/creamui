@@ -82,3 +82,4 @@ Verified via `getComputedStyle` at Ohio source (`1680x928px` viewport).
 - `.icon-button` / `.icon-button.-small` -> circle sizes
 - `.branding .logo img` -> logo height limits
 - `.menu li.version > .menu-link::after` -> `V3.7` badge
+> Update: UI kit sources now live under `/Users/macbookpro/Coding/creamui/UIkit`.

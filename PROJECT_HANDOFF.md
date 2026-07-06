@@ -240,3 +240,5 @@ Source:
 - дальше работать только по нему
 - не возвращаться к “похожему” исполнению
 - typography всегда считать обязательной частью source copy
+> Update: static kit files moved from repository root to `/Users/macbookpro/Coding/creamui/UIkit`.
+> When this document references old root html/css assets, use the same paths under `UIkit/`.

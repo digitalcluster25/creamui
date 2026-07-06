@@ -1,9 +1,15 @@
 {
   "name": "creamui",
+  "private": true,
   "version": "1.0.0",
   "description": "",
-  "main": "nav.js",
   "scripts": {
+    "frontend:dev": "npm --prefix frontend run dev -- --port 3001",
+    "frontend:build": "npm --prefix frontend run build",
+    "frontend:start": "npm --prefix frontend run start",
+    "uikit:serve": "python3 -m http.server 4173 -d UIkit",
+    "hws:backup": "./ops/hws/backup-frontend.sh",
+    "hws:deploy": "./ops/hws/deploy-frontend.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
