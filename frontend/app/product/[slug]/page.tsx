@@ -15,6 +15,7 @@ import {
   type WPProductNode,
 } from "@/lib/wp/mappers";
 import { productSpecsData as mockProductSpecsData } from "@/lib/data/productSpecs";
+import { getProductOverride } from "@/lib/data/productOverrides";
 import styles from "./page.module.css";
 
 export const revalidate = 3600;
@@ -59,9 +60,14 @@ export default async function ProductPageRoute({
     notFound();
   }
 
-  const productPageData = mapToProductPageData(data.product);
-  const specs = mapToProductSpecsData(data.product);
+  const override = getProductOverride(slug);
+  const productPageDataBase = mapToProductPageData(data.product);
+  const productPageData = override
+    ? { ...productPageDataBase, ...override.page }
+    : productPageDataBase;
+  const specs = override?.specs ?? mapToProductSpecsData(data.product);
   const productSpecsData = specs.groups.length ? specs : mockProductSpecsData;
+  const descriptionHtml = override?.descriptionHtml ?? mapToProductDescriptionHtml(data.product);
 
   let contactChannels: { whatsappNumber?: string; telegramUsername?: string } | undefined;
   try {
@@ -86,7 +92,7 @@ export default async function ProductPageRoute({
         <ProductPage data={productPageData} contactChannels={contactChannels} />
       </div>
       <div className={styles.section}>
-        <ProductDescription sectionTitle="Описание товара" html={mapToProductDescriptionHtml(data.product)} />
+        <ProductDescription sectionTitle="Описание товара" html={descriptionHtml} />
       </div>
       <div className={styles.section}>
         <ProductSpecs data={productSpecsData} />

@@ -16,8 +16,9 @@ const DELIVERY_ICON = <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.
 const PAYMENT_ICON = <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm0 2v2h16V7H4Zm0 5v5h16v-5H4Zm2 2h5v2H6v-2Z"/></svg>;
 const WARRANTY_ICON = <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 3 6v6c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V6L12 2Zm-1 13-3-3 1.41-1.41L11 12.17l4.59-4.58L17 9l-6 6Z"/></svg>;
 
-function formatPrice(n: number) {
-  return n.toLocaleString("en-US", { minimumFractionDigits: 2 });
+function formatPrice(n: number, currency?: string) {
+  const locale = currency === "₽" ? "ru-RU" : "en-US";
+  return n.toLocaleString(locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
 type ContactChannels = { whatsappNumber?: string; telegramUsername?: string };
@@ -43,6 +44,19 @@ export function ProductPage({ data, contactChannels }: Props) {
     setPageUrl(window.location.href);
   }, []);
 
+  const matchedVariant = data.variantEntries?.find((entry) =>
+    Object.entries(entry.selection).every(([key, value]) => variants[key] === value)
+  );
+
+  const displayedImages =
+    matchedVariant?.image
+      ? [matchedVariant.image, ...data.images.filter((src) => src !== matchedVariant.image)]
+      : data.images;
+
+  useEffect(() => {
+    setActiveImg(0);
+  }, [matchedVariant?.image]);
+
   function handlePointerDown(e: React.PointerEvent<HTMLDivElement>) {
     dragStartX.current = e.clientX;
     (e.currentTarget as HTMLDivElement).setPointerCapture(e.pointerId);
@@ -52,8 +66,8 @@ export function ProductPage({ data, contactChannels }: Props) {
     if (dragStartX.current === null) return;
     const delta = e.clientX - dragStartX.current;
     dragStartX.current = null;
-    if (delta > 50) setActiveImg((i) => (i - 1 + data.images.length) % data.images.length);
-    else if (delta < -50) setActiveImg((i) => (i + 1) % data.images.length);
+    if (delta > 50) setActiveImg((i) => (i - 1 + displayedImages.length) % displayedImages.length);
+    else if (delta < -50) setActiveImg((i) => (i + 1) % displayedImages.length);
   }
 
   function setVariant(key: string, val: string) {
@@ -75,13 +89,16 @@ export function ProductPage({ data, contactChannels }: Props) {
     return sum + (opt?.priceModifier ?? 0);
   }, 0);
 
-  const effectivePrice = data.price + priceModifierTotal;
+  const effectivePrice = matchedVariant?.price ?? (data.price + priceModifierTotal);
 
-  const minPrice = data.price;
-  const maxPrice = data.price + data.variantGroups.reduce((sum, group) => {
-    const maxMod = Math.max(...group.options.map((o) => o.priceModifier ?? 0));
-    return sum + maxMod;
-  }, 0);
+  const variantPrices = data.variantEntries?.map((entry) => entry.price);
+  const minPrice = variantPrices?.length ? Math.min(...variantPrices) : data.price;
+  const maxPrice = variantPrices?.length
+    ? Math.max(...variantPrices)
+    : data.price + data.variantGroups.reduce((sum, group) => {
+      const maxMod = Math.max(...group.options.map((o) => o.priceModifier ?? 0));
+      return sum + maxMod;
+    }, 0);
 
   // Сообщение для менеджера — название товара, ссылка, выбранная конфигурация и итоговая цена.
   const messageText = (() => {
@@ -92,10 +109,12 @@ export function ProductPage({ data, contactChannels }: Props) {
         .join(", ");
       lines.push(`Конфигурация: ${config}`);
     }
-    lines.push(`Цена: ${data.currency}${formatPrice(effectivePrice)}`);
+    lines.push(`Цена: ${data.currency}${formatPrice(effectivePrice, data.currency)}`);
     if (pageUrl) lines.push(pageUrl);
     return lines.join("\n");
   })();
+
+  const displaySku = matchedVariant?.sku ?? data.sku;
 
   const whatsappHref = contactChannels?.whatsappNumber
     ? `https://wa.me/${contactChannels.whatsappNumber}?text=${encodeURIComponent(messageText)}`
@@ -114,7 +133,7 @@ export function ProductPage({ data, contactChannels }: Props) {
       <div className={styles.gallery}>
         {/* Thumbs column */}
         <div className={styles.thumbs}>
-          {data.images.map((src, i) => (
+          {displayedImages.map((src, i) => (
             <button
               key={i}
               type="button"
@@ -135,13 +154,13 @@ export function ProductPage({ data, contactChannels }: Props) {
           onPointerUp={handlePointerUp}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className={styles.mainImg} src={data.images[activeImg]} alt={data.title} />
+          <img className={styles.mainImg} src={displayedImages[activeImg]} alt={data.title} />
         </div>
         <div className={styles.sliderArrows}>
           <button
             type="button"
             className={styles.sliderArrowBtn}
-            onClick={() => setActiveImg((i) => (i - 1 + data.images.length) % data.images.length)}
+            onClick={() => setActiveImg((i) => (i - 1 + displayedImages.length) % displayedImages.length)}
             aria-label="Предыдущее фото"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
@@ -149,7 +168,7 @@ export function ProductPage({ data, contactChannels }: Props) {
           <button
             type="button"
             className={styles.sliderArrowBtn}
-            onClick={() => setActiveImg((i) => (i + 1) % data.images.length)}
+            onClick={() => setActiveImg((i) => (i + 1) % displayedImages.length)}
             aria-label="Следующее фото"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
@@ -181,9 +200,9 @@ export function ProductPage({ data, contactChannels }: Props) {
 
         <div className={styles.priceRow}>
           <span className={styles.price}>
-            {data.currency}{formatPrice(minPrice)}
+            {data.currency}{formatPrice(effectivePrice, data.currency)}
             {maxPrice > minPrice && (
-              <span className={styles.priceRange}> – {data.currency}{formatPrice(maxPrice)}</span>
+              <span className={styles.priceRange}> · диапазон {data.currency}{formatPrice(minPrice, data.currency)} – {data.currency}{formatPrice(maxPrice, data.currency)}</span>
             )}
           </span>
         </div>
@@ -215,9 +234,9 @@ export function ProductPage({ data, contactChannels }: Props) {
           );
         })()}
 
-        {(data.sku || data.tag || data.brand) && (
+        {(displaySku || data.tag || data.brand) && (
           <p className={styles.meta}>
-            {data.sku && <><strong>Артикул:</strong> {data.sku}</>}
+            {displaySku && <><strong>Артикул:</strong> {displaySku}</>}
             {data.tag && <> · <strong>Тэг:</strong> {data.tag}</>}
             {data.brand && <> · <strong>Бренд:</strong> {data.brand}</>}
           </p>
@@ -292,7 +311,7 @@ export function ProductPage({ data, contactChannels }: Props) {
                     >
                       {opt.value}
                       {opt.priceModifier ? (
-                        <span className={styles.swatchPrice}>+{data.currency}{opt.priceModifier.toLocaleString("en-US")}</span>
+                        <span className={styles.swatchPrice}>+{data.currency}{formatPrice(opt.priceModifier, data.currency)}</span>
                       ) : null}
                     </button>
                   );

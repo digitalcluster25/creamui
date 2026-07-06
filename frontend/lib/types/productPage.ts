@@ -12,6 +12,13 @@ export type ProductVariantGroup = {
   fullWidth?: boolean;
 };
 
+export type ProductVariantEntry = {
+  selection: Record<string, string>;
+  price: number;
+  sku?: string;
+  image?: string;
+};
+
 export type Breadcrumb = { label: string; href?: string };
 
 export type CommerceInfo = {
@@ -47,4 +54,5 @@ export type ProductPageData = {
   commerceInfo?: CommerceInfo;
   facingOptions?: FacingOption[];
   variantGroups: ProductVariantGroup[];
+  variantEntries?: ProductVariantEntry[];
 };
