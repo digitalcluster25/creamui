@@ -153,6 +153,12 @@ export function mapToHomeCategoriesData(nodes: WPCategoryNode[]): CategoriesData
 export function mapToProductPageData(node: WPProductNode): ProductPageData {
   const price = parsePrice(node.price);
   const priceOld = node.salePrice ? parsePrice(node.regularPrice) : undefined;
+  const categories =
+    node.productCategories?.nodes.map((c) => ({
+      label: c.name,
+      href: `/catalog/${c.slug}`,
+    })) ?? [];
+  const primaryCategory = categories[0];
 
   return {
     images: [
@@ -160,12 +166,14 @@ export function mapToProductPageData(node: WPProductNode): ProductPageData {
       ...(node.galleryImages?.nodes.map((g) => g.sourceUrl) ?? []),
     ].filter(Boolean) as string[],
     badges: node.salePrice ? [{ label: "Sale", variant: "sale" as const }] : [],
+    breadcrumbs: [
+      { label: "Главная", href: "/" },
+      { label: "Каталог", href: "/catalog" },
+      ...(primaryCategory ? [primaryCategory] : []),
+      { label: node.name },
+    ],
     title: node.name,
-    categories:
-      node.productCategories?.nodes.map((c) => ({
-        label: c.name,
-        href: `/catalog/${c.slug}`,
-      })) ?? [],
+    categories,
     priceOld,
     price,
     currency: getCurrencySymbol(node.price),
