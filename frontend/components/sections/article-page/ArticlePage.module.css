@@ -101,32 +101,6 @@
   color: rgb(17, 16, 19);
 }
 
-.breadcrumbs {
-  width: 100%;
-  max-width: 1366px;
-  margin: 0 auto;
-  padding: 0 clamp(16px, 2vw, 40px) 32px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  font-family: "Noto Sans", sans-serif;
-  font-size: 13px;
-  color: rgba(40, 40, 40, 0.6);
-}
-
-.breadcrumbs a {
-  color: rgba(40, 40, 40, 0.6);
-  text-decoration: none;
-}
-
-.breadcrumbs a:hover {
-  color: rgb(17, 16, 19);
-}
-
-.crumbSep {
-  opacity: 0.5;
-}
-
 .wrapper {
   width: 100%;
   max-width: 1366px;

@@ -1,6 +1,7 @@
 import { Header } from "@/components/sections/header";
 import { Footer } from "@/components/sections/footer";
 import { BrandsDirectory } from "@/components/sections/brands-directory/BrandsDirectory";
+import { Breadcrumbs } from "@/components/primitives/breadcrumbs/Breadcrumbs";
 import { footerData } from "@/lib/data/footer";
 import { getHeaderData } from "@/lib/wp/header";
 import { getClient } from "@/lib/wp/apollo";
@@ -36,6 +37,7 @@ export default async function BrandsPage() {
   return (
     <main>
       <Header data={headerData} hideBurgerOnDesktop hideActionsOnDesktop />
+      <Breadcrumbs items={[{ label: "Главная", href: "/" }, { label: "Бренды" }]} />
       <div className={styles.section}>
         <BrandsDirectory brands={brands} />
       </div>

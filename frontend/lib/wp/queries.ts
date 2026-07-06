@@ -238,6 +238,17 @@ export const GET_PRODUCT_CATEGORIES = gql`
   }
 `;
 
+export const GET_PRODUCT_CATEGORY_BY_SLUG = gql`
+  query GetProductCategoryBySlug($slug: ID!) {
+    productCategory(id: $slug, idType: SLUG) {
+      databaseId
+      name
+      slug
+      count
+    }
+  }
+`;
+
 export const GET_PRODUCT_BRANDS = gql`
   query GetProductBrands {
     productBrands(where: { hideEmpty: true }) {

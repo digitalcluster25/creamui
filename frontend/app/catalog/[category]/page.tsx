@@ -2,10 +2,11 @@ import { notFound } from "next/navigation";
 import { Header } from "@/components/sections/header";
 import { Catalog } from "@/components/sections/catalog";
 import { Footer } from "@/components/sections/footer";
+import { Breadcrumbs } from "@/components/primitives/breadcrumbs/Breadcrumbs";
 import { getHeaderData, flattenCategories, type WPCategoryNode } from "@/lib/wp/header";
 import { footerData } from "@/lib/data/footer";
 import { getClient } from "@/lib/wp/apollo";
-import { GET_PRODUCTS, GET_PRODUCT_CATEGORIES } from "@/lib/wp/queries";
+import { GET_PRODUCTS, GET_PRODUCT_CATEGORIES, GET_PRODUCT_CATEGORY_BY_SLUG } from "@/lib/wp/queries";
 import { mapToCatalogData, type WPProductNode } from "@/lib/wp/mappers";
 import styles from "../page.module.css";
 
@@ -44,16 +45,19 @@ export default async function CatalogCategoryPage({
 
   const client = getClient();
 
-  // Проверяем существование категории отдельно — иначе несуществующий slug
-  // в `where.category` просто вернёт пустой список товаров, а не ошибку,
-  // и страница молча показала бы "каталог пуст" вместо 404.
-  const { data: catData } = await client.query<{
-    productCategories: { nodes: WPCategoryNode[] };
-  }>({ query: GET_PRODUCT_CATEGORIES });
+  // Список категорий в навигации приходит с hideEmpty:true, поэтому после
+  // перевода всех товаров в draft пустые категории исчезают из дерева.
+  // Для страницы категории проверяем slug напрямую через productCategory,
+  // чтобы валидная, но пустая категория не отдавала 404.
+  const { data: categoryData } = await client.query<{
+    productCategory: { name: string; slug: string } | null;
+  }>({
+    query: GET_PRODUCT_CATEGORY_BY_SLUG,
+    variables: { slug: category },
+  });
 
-  const allCategories = flattenCategories(catData?.productCategories?.nodes ?? []);
-  const found = allCategories.find((c) => c.slug === category);
-  if (!found) {
+  const found = categoryData?.productCategory;
+  if (!found?.slug) {
     notFound();
   }
 
@@ -74,6 +78,13 @@ export default async function CatalogCategoryPage({
   return (
     <main>
       <Header data={headerData} hideBurgerOnDesktop hideActionsOnDesktop />
+      <Breadcrumbs
+        items={[
+          { label: "Главная", href: "/" },
+          { label: "Каталог", href: "/catalog" },
+          { label: found.name },
+        ]}
+      />
       <div className={styles.section}>
         <Catalog data={catalogData} initialBrandSlug={initialBrandSlug} />
       </div>

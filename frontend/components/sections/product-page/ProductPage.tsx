@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import type { ProductPageData } from "@/lib/types/productPage";
+import { Breadcrumbs } from "@/components/primitives/breadcrumbs/Breadcrumbs";
 import styles from "./ProductPage.module.css";
 
 /* ── Icons ── */
@@ -106,25 +107,7 @@ export function ProductPage({ data, contactChannels }: Props) {
   return (
     <>
     {data.breadcrumbs && data.breadcrumbs.length > 0 && (
-      <div className={styles.breadcrumbHolder}>
-        <ol className={styles.breadcrumb} aria-label="Breadcrumb">
-          {data.breadcrumbs.map((item, i) => {
-            const isLast = i === data.breadcrumbs!.length - 1;
-            return (
-              <li key={i} className={styles.breadcrumbItem}>
-                {i > 0 && (
-                  <svg className={styles.breadcrumbSep} width="5" height="9" viewBox="0 0 9 16" fill="none" aria-hidden="true">
-                    <path d="M0 14.5697L1.36504 16L9 8L1.36504 0L0 1.4303L6.26992 8L0 14.5697Z" fill="currentColor" />
-                  </svg>
-                )}
-                {item.href && !isLast
-                  ? <a href={item.href} className={styles.breadcrumbLink}>{item.label}</a>
-                  : <span className={isLast ? styles.breadcrumbCurrent : styles.breadcrumbLink}>{item.label}</span>}
-              </li>
-            );
-          })}
-        </ol>
-      </div>
+      <Breadcrumbs items={data.breadcrumbs} />
     )}
     <section className={styles.section}>
       {/* ── Gallery ── */}

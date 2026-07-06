@@ -1,6 +1,7 @@
 import { Header } from "@/components/sections/header";
 import { Catalog } from "@/components/sections/catalog";
 import { Footer } from "@/components/sections/footer";
+import { Breadcrumbs } from "@/components/primitives/breadcrumbs/Breadcrumbs";
 import { getHeaderData } from "@/lib/wp/header";
 import { footerData } from "@/lib/data/footer";
 import { getClient } from "@/lib/wp/apollo";
@@ -35,6 +36,7 @@ export default async function CatalogPage({
   return (
     <main>
       <Header data={headerData} hideBurgerOnDesktop hideActionsOnDesktop />
+      <Breadcrumbs items={[{ label: "Главная", href: "/" }, { label: "Каталог" }]} />
       <div className={styles.section}>
         <Catalog data={catalogData} initialBrandSlug={initialBrandSlug} />
       </div>

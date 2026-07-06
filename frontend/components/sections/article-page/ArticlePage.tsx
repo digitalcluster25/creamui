@@ -1,5 +1,6 @@
 import type { ArticlePageData } from "@/lib/wp/mappers";
 import type { BlogPost } from "@/lib/types/blogPosts";
+import { Breadcrumbs } from "@/components/primitives/breadcrumbs/Breadcrumbs";
 import { BlogPostCard } from "@/components/blocks/blog-post-card";
 import styles from "./ArticlePage.module.css";
 
@@ -48,13 +49,13 @@ export function ArticlePage({ data, relatedPosts = [] }: Props) {
         </ul>
       </div>
 
-      <nav className={styles.breadcrumbs} aria-label="Хлебные крошки">
-        <a href="/">Главная</a>
-        <span className={styles.crumbSep}>/</span>
-        <a href="/knowledge">База знаний</a>
-        <span className={styles.crumbSep}>/</span>
-        <span>{data.title}</span>
-      </nav>
+      <Breadcrumbs
+        items={[
+          { label: "Главная", href: "/" },
+          { label: "База знаний", href: "/knowledge" },
+          { label: data.title },
+        ]}
+      />
 
       <div className={styles.wrapper}>
         {data.contentHtml && (

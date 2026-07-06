@@ -1,6 +1,7 @@
 import { Header } from "@/components/sections/header";
 import { KnowledgeBase } from "@/components/sections/knowledge-base";
 import { Footer } from "@/components/sections/footer";
+import { Breadcrumbs } from "@/components/primitives/breadcrumbs/Breadcrumbs";
 import { getHeaderData } from "@/lib/wp/header";
 import { footerData } from "@/lib/data/footer";
 import { getClient } from "@/lib/wp/apollo";
@@ -33,6 +34,7 @@ export default async function KnowledgePage() {
   return (
     <main>
       <Header data={headerData} hideBurgerOnDesktop hideActionsOnDesktop />
+      <Breadcrumbs items={[{ label: "Главная", href: "/" }, { label: "База знаний" }]} />
       <div className={styles.section}>
         <KnowledgeBase data={{ title: "База знаний", allHref: "/knowledge", posts }} />
       </div>
