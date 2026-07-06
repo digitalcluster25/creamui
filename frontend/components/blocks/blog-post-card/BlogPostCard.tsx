@@ -18,6 +18,7 @@ export function BlogPostCard({ post }: { post: BlogPost }) {
       </div>
       <div className={styles.cardDetails}>
         <div className={styles.headlineMeta}>
+          {post.date && <span className={styles.date}>{post.date}</span>}
           <span className={styles.readTime}>{post.readTime}</span>
         </div>
         <h3 className={styles.cardTitle}>

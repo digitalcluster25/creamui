@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import type { CatalogData } from "@/lib/types/catalog";
 import { CatalogProductCard } from "@/components/blocks/catalog-product-card";
 import styles from "./Catalog.module.css";
@@ -22,25 +23,43 @@ type SortKey = "default" | "price-asc" | "price-desc" | "name";
 
 type Props = {
   data: CatalogData;
+  initialBrandSlug?: string;
 };
 
-export function Catalog({ data }: Props) {
+export function Catalog({ data, initialBrandSlug = "" }: Props) {
+  const router = useRouter();
+  const pathname = usePathname();
   const [sort, setSort] = useState<SortKey>("default");
-  const [brand, setBrand] = useState("");
   const [page, setPage] = useState(1);
 
   const { products } = data;
 
-  // Уникальные бренды из реально пришедших товаров — не захардкожены,
-  // список сам подстроится если бренд добавят/удалят в WP.
   const brandOptions = useMemo(
     () =>
-      Array.from(new Set(products.map((p) => p.brand).filter((b): b is string => !!b))).sort(),
+      Array.from(
+        new Map(
+          products
+            .filter((product) => product.brand && product.brandSlug)
+            .map((product) => [product.brandSlug as string, { slug: product.brandSlug as string, name: product.brand as string }])
+        ).values()
+      ).sort((a, b) => a.name.localeCompare(b.name, "ru")),
     [products]
   );
 
+  const normalizedInitialBrand = useMemo(
+    () => (brandOptions.some((option) => option.slug === initialBrandSlug) ? initialBrandSlug : ""),
+    [brandOptions, initialBrandSlug]
+  );
+
+  const [brand, setBrand] = useState(normalizedInitialBrand);
+
+  useEffect(() => {
+    setBrand(normalizedInitialBrand);
+    setPage(1);
+  }, [normalizedInitialBrand]);
+
   const filtered = useMemo(
-    () => (brand ? products.filter((p) => p.brand === brand) : products),
+    () => (brand ? products.filter((p) => p.brandSlug === brand) : products),
     [products, brand]
   );
 
@@ -58,10 +77,20 @@ export function Catalog({ data }: Props) {
   const from = total === 0 ? 0 : (currentPage - 1) * PER_PAGE + 1;
   const to = Math.min(currentPage * PER_PAGE, total);
   const visible = sorted.slice((currentPage - 1) * PER_PAGE, currentPage * PER_PAGE);
+  const selectedBrand = brandOptions.find((option) => option.slug === brand);
 
   function changeBrand(value: string) {
     setBrand(value);
     setPage(1);
+
+    const params = new URLSearchParams(typeof window !== "undefined" ? window.location.search : "");
+    if (value) {
+      params.set("brand", value);
+    } else {
+      params.delete("brand");
+    }
+    const query = params.toString();
+    router.replace(query ? `${pathname}?${query}` : pathname, { scroll: false });
   }
 
   function changeSort(value: SortKey) {
@@ -83,8 +112,8 @@ export function Catalog({ data }: Props) {
               aria-label="Бренд"
             >
               <option value="">Бренд</option>
-              {brandOptions.map((b) => (
-                <option key={b} value={b}>{b}</option>
+              {brandOptions.map((option) => (
+                <option key={option.slug} value={option.slug}>{option.name}</option>
               ))}
             </select>
           </div>
@@ -111,7 +140,7 @@ export function Catalog({ data }: Props) {
       {brand && (
         <div className={styles.chips}>
           <button type="button" className={styles.chip} onClick={() => changeBrand("")}>
-            {brand}
+            {selectedBrand?.name ?? brand}
             {CLOSE_ICON}
           </button>
         </div>

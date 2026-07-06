@@ -5,6 +5,7 @@ export type CatalogProduct = {
   title: string;
   category: string;
   brand?: string;
+  brandSlug?: string;
   priceMin: number;
   priceMax: number;
   currency: string;

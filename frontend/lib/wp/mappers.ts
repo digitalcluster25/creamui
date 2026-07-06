@@ -1,12 +1,17 @@
 import type { CatalogProduct, CatalogData } from "@/lib/types/catalog";
 import type { ProductPageData } from "@/lib/types/productPage";
 import type { ProductSpecsData } from "@/lib/types/productSpecs";
+import type { BlogPost } from "@/lib/types/blogPosts";
+import type { CategoriesData } from "@/lib/types/categories";
+import type { ProductsData } from "@/lib/types/products";
+import type { WPCategoryChildNode, WPCategoryNode } from "@/lib/wp/header";
 
 // Форма, которую реально отдаёт WooGraphQL (проверено на живом эндпоинте wpsandbox)
 export type WPProductNode = {
   databaseId: number;
   name: string;
   slug: string;
+  date?: string;
   description?: string;
   shortDescription?: string;
   price?: string | null;
@@ -64,6 +69,7 @@ export function mapToCatalogProduct(node: WPProductNode): CatalogProduct {
     title: node.name,
     category: node.productCategories?.nodes[0]?.name ?? "",
     brand: node.productBrands?.nodes[0]?.name,
+    brandSlug: node.productBrands?.nodes[0]?.slug,
     priceMin: price,
     priceMax: price,
     currency: getCurrencySymbol(node.price),
@@ -79,6 +85,68 @@ export function mapToCatalogData(
   return {
     pageTitle,
     products: nodes.map(mapToCatalogProduct),
+  };
+}
+
+export function mapToHomeProductsData(nodes: WPProductNode[]): ProductsData {
+  const products = [...nodes]
+    .sort((a, b) => new Date(b.date ?? 0).getTime() - new Date(a.date ?? 0).getTime())
+    .slice(0, 4)
+    .map((node) => ({
+      id: node.databaseId,
+      title: node.name,
+      href: `/product/${node.slug}`,
+      price: node.price ?? "",
+      priceMin: parsePrice(node.price),
+      priceMax: parsePrice(node.price),
+      currency: getCurrencySymbol(node.price),
+      categories: (node.productCategories?.nodes ?? []).map((category) => category.name),
+      image1: node.image?.sourceUrl ?? "",
+      image2: node.galleryImages?.nodes?.[0]?.sourceUrl,
+      swatches: node.hwsFacingOptions?.map((option) => ({
+        slug: option.slug,
+        title: option.label,
+        selected: option.isActive,
+        bgImage: option.iconUrl ?? undefined,
+      })),
+    }));
+
+  return {
+    title: "Подобранная коллекция",
+    allHref: "/catalog",
+    products,
+    bannerImage: "https://colabrio.ams3.cdn.digitaloceanspaces.com/ohio-stage-demo-19/oh__demo19__17.webp",
+    bannerHref: "#",
+  };
+}
+
+const HOME_CATEGORY_ORDER = [
+  "russian-bath-stoves",
+  "sauna-stoves",
+  "hammam-stoves",
+  "commercial-bath-stoves",
+] as const;
+
+export function mapToHomeCategoriesData(nodes: WPCategoryNode[]): CategoriesData {
+  const children = nodes.flatMap((node) => node.children?.nodes ?? []);
+  const bySlug = new Map(children.map((node) => [node.slug, node]));
+
+  const items = HOME_CATEGORY_ORDER
+    .map((slug) => bySlug.get(slug))
+    .filter((node): node is WPCategoryChildNode => Boolean(node))
+    .map((node) => ({
+      id: String(node.databaseId),
+      imageSrc: node.image?.sourceUrl ?? "",
+      imageAlt: node.image?.altText?.trim() || node.name,
+      href: `/catalog/${node.slug}`,
+      subtitle: node.hwsSubtitle?.trim() ?? "",
+      title: node.name,
+      tags: [],
+    }));
+
+  return {
+    sectionTitle: "Решения для любых задач",
+    items,
   };
 }
 
@@ -143,4 +211,91 @@ export function mapToProductSpecsData(node: WPProductNode): ProductSpecsData {
 // поэтому рендерим напрямую (см. ProductDescription.tsx), не подгоняем под мок.
 export function mapToProductDescriptionHtml(node: WPProductNode): string | undefined {
   return node.description?.trim() || undefined;
+}
+
+// ---------------------------------------------------------------------------
+// Статьи ("База знаний") — форма, которую отдаёт core WPGraphQL для постов.
+// ---------------------------------------------------------------------------
+export type WPPostNode = {
+  databaseId: number;
+  title: string;
+  slug: string;
+  date: string;
+  excerpt?: string;
+  content?: string;
+  author?: { node: { name: string; avatar?: { url: string } | null } } | null;
+  tags?: { nodes: { name: string; slug: string }[] } | null;
+  categories?: { nodes: { name: string; slug: string }[] } | null;
+  featuredImage?: { node: { sourceUrl: string; altText?: string } } | null;
+};
+
+function stripHtml(html?: string): string {
+  if (!html) return "";
+  return html
+    .replace(/<[^>]*>/g, " ")
+    .replace(/&hellip;/g, "…")
+    .replace(/&#8217;/g, "’")
+    .replace(/&#171;/g, "«")
+    .replace(/&#187;/g, "»")
+    .replace(/&amp;/g, "&")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+// В WP нет готового поля "время чтения" — считаем по количеству слов
+// в полном тексте (в excerpt слишком мало слов для честной оценки),
+// ~200 слов/мин — стандартная оценка для среднего читателя.
+function estimateReadTime(node: WPPostNode): string {
+  const words = stripHtml(node.content || node.excerpt).split(" ").filter(Boolean).length;
+  const minutes = Math.max(1, Math.round(words / 200));
+  return `${minutes} мин чтения`;
+}
+
+function formatRuDate(iso: string): string {
+  return new Date(iso).toLocaleDateString("ru-RU", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+}
+
+export function mapToBlogPost(node: WPPostNode): BlogPost {
+  return {
+    id: node.databaseId,
+    image: node.featuredImage?.node?.sourceUrl ?? "",
+    title: node.title,
+    href: `/knowledge/${node.slug}`,
+    readTime: estimateReadTime(node),
+    author: node.author?.node?.name ?? "HWS",
+    excerpt: stripHtml(node.excerpt),
+    tags: (node.tags?.nodes ?? []).map((t) => t.name),
+    date: formatRuDate(node.date),
+  };
+}
+
+export type ArticlePageData = {
+  title: string;
+  image?: string;
+  author: string;
+  authorAvatar?: string;
+  date: string;
+  readTime: string;
+  category?: { name: string; href: string };
+  tags: string[];
+  contentHtml: string;
+};
+
+export function mapToArticlePageData(node: WPPostNode): ArticlePageData {
+  const category = node.categories?.nodes?.[0];
+  return {
+    title: node.title,
+    image: node.featuredImage?.node?.sourceUrl ?? undefined,
+    author: node.author?.node?.name ?? "HWS",
+    authorAvatar: node.author?.node?.avatar?.url ?? undefined,
+    date: formatRuDate(node.date),
+    readTime: estimateReadTime(node),
+    category: category ? { name: category.name, href: `/knowledge` } : undefined,
+    tags: (node.tags?.nodes ?? []).map((t) => t.name),
+    contentHtml: node.content?.trim() ?? "",
+  };
 }

@@ -4,7 +4,7 @@ import { ProductPage } from "@/components/sections/product-page";
 import { ProductDescription } from "@/components/sections/product-description/ProductDescription";
 import { ProductSpecs } from "@/components/sections/product-specs";
 import { Footer } from "@/components/sections/footer";
-import { headerMock } from "@/lib/mocks/header";
+import { getHeaderData } from "@/lib/wp/header";
 import { footerData } from "@/lib/data/footer";
 import { getClient } from "@/lib/wp/apollo";
 import { GET_PRODUCT_BY_SLUG, GET_PRODUCT_SLUGS, GET_CONTACT_CHANNELS } from "@/lib/wp/queries";
@@ -77,9 +77,11 @@ export default async function ProductPageRoute({
     console.error("WP GraphQL error (contact channels):", e);
   }
 
+  const headerData = await getHeaderData();
+
   return (
     <main>
-      <Header data={headerMock} hideBurgerOnDesktop hideActionsOnDesktop />
+      <Header data={headerData} hideBurgerOnDesktop hideActionsOnDesktop />
       <div className={styles.productPageWrap}>
         <ProductPage data={productPageData} contactChannels={contactChannels} />
       </div>

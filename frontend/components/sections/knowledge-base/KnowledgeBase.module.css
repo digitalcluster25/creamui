@@ -1,0 +1,45 @@
+.section {
+  width: 100%;
+  max-width: 1366px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 2vw, 40px);
+}
+
+.pageTitle {
+  margin: 0 0 48px;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 72px;
+  font-weight: 700;
+  line-height: 72px;
+  letter-spacing: -1.8px;
+  color: rgb(17, 16, 19);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px 24px;
+}
+
+.empty {
+  font-family: "Noto Sans", sans-serif;
+  font-size: 15px;
+  color: rgba(40, 40, 40, 0.6);
+}
+
+@media (max-width: 960px) {
+  .pageTitle {
+    font-size: 56px;
+    line-height: 56px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

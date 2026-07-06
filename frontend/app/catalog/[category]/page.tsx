@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { Header } from "@/components/sections/header";
 import { Catalog } from "@/components/sections/catalog";
 import { Footer } from "@/components/sections/footer";
-import { headerMock } from "@/lib/mocks/header";
+import { getHeaderData, flattenCategories, type WPCategoryNode } from "@/lib/wp/header";
 import { footerData } from "@/lib/data/footer";
 import { getClient } from "@/lib/wp/apollo";
 import { GET_PRODUCTS, GET_PRODUCT_CATEGORIES } from "@/lib/wp/queries";
@@ -12,15 +12,19 @@ import styles from "../page.module.css";
 export const revalidate = 3600;
 
 type Params = { category: string };
-type WPCategoryNode = { slug: string; name: string };
 
+// Категории — дерево (parent + children), а реальные разделы каталога живут
+// на уровне детей ("russian-bath-stoves" и т.п.). Раньше тут искали совпадение
+// только среди верхнего уровня, поэтому все подкатегории отдавали 404 —
+// разворачиваем дерево в плоский список перед поиском/генерацией путей.
 export async function generateStaticParams(): Promise<Params[]> {
   try {
     const client = getClient();
     const { data } = await client.query<{
       productCategories: { nodes: WPCategoryNode[] };
     }>({ query: GET_PRODUCT_CATEGORIES });
-    return (data?.productCategories?.nodes ?? []).map((c) => ({ category: c.slug }));
+    const all = flattenCategories(data?.productCategories?.nodes ?? []);
+    return all.map((c) => ({ category: c.slug }));
   } catch (e) {
     console.error("WP GraphQL error (generateStaticParams category):", e);
     return [];
@@ -29,10 +33,14 @@ export async function generateStaticParams(): Promise<Params[]> {
 
 export default async function CatalogCategoryPage({
   params,
+  searchParams,
 }: {
   params: Promise<Params>;
+  searchParams?: Promise<{ brand?: string }>;
 }) {
   const { category } = await params;
+  const resolvedSearchParams = await searchParams;
+  const initialBrandSlug = typeof resolvedSearchParams?.brand === "string" ? resolvedSearchParams.brand : "";
 
   const client = getClient();
 
@@ -43,7 +51,8 @@ export default async function CatalogCategoryPage({
     productCategories: { nodes: WPCategoryNode[] };
   }>({ query: GET_PRODUCT_CATEGORIES });
 
-  const found = catData?.productCategories?.nodes?.find((c) => c.slug === category);
+  const allCategories = flattenCategories(catData?.productCategories?.nodes ?? []);
+  const found = allCategories.find((c) => c.slug === category);
   if (!found) {
     notFound();
   }
@@ -60,11 +69,13 @@ export default async function CatalogCategoryPage({
     catalogData = mapToCatalogData([], found.name);
   }
 
+  const headerData = await getHeaderData();
+
   return (
     <main>
-      <Header data={headerMock} hideBurgerOnDesktop hideActionsOnDesktop />
+      <Header data={headerData} hideBurgerOnDesktop hideActionsOnDesktop />
       <div className={styles.section}>
-        <Catalog data={catalogData} />
+        <Catalog data={catalogData} initialBrandSlug={initialBrandSlug} />
       </div>
       <div className={styles.sectionFooter}>
         <Footer data={footerData} />

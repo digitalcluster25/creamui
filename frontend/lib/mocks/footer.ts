@@ -51,5 +51,6 @@ export const footerMock: FooterData = {
   legalLinks: [
     { id: "policy", label: "Полиси", href: "#" },
     { id: "terms", label: "Условия использования", href: "#" },
+    { id: "ui-kit", label: "UI Kit", href: "/dev" },
   ],
 };

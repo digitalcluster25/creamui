@@ -64,17 +64,17 @@ export const headerMock: HeaderData = {
     {
       id: "brands",
       label: "Бренды",
-      href: "#",
+      href: "/brands",
     },
     {
       id: "knowledge",
       label: "База знаний",
-      href: "#",
+      href: "/knowledge",
     },
     {
       id: "contacts",
       label: "Контакты",
-      href: "https://wpsandbox.spaces.community/contact-us/",
+      href: "/contacts",
     },
   ],
   currencies: [

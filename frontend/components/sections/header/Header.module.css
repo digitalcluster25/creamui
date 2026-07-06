@@ -68,8 +68,7 @@
   }
 
   .actionsHidden {
-    display: flex;
-    align-items: center;
+    display: none;
   }
 }
 
@@ -303,6 +302,10 @@
 
   .actions {
     gap: 4px;
+  }
+
+  .actionsInner {
+    display: none;
   }
 
   .cartTotal {

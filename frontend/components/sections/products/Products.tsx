@@ -18,36 +18,15 @@ export function Products({ data }: { data: ProductsData }) {
           {ARROW_SVG}
         </a>
       </div>
-      <div className={styles.layout}>
-        <div className={styles.productCol}>
-          <ul className={styles.productGrid}>
-            {data.products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </ul>
-          <a href={data.allHref} className={`${styles.allLink} ${styles.allLinkBottom}`}>
-            Смотреть все
-            {ARROW_SVG}
-          </a>
-        </div>
-        <div className={styles.banner}>
-          <a className={styles.bannerLink} href={data.bannerHref} aria-label="Получите бесплатный дизайн-план" />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className={styles.bannerImg} src={data.bannerImage} alt="Получите бесплатный дизайн-план." />
-          <div className={styles.bannerOverlay}>
-            <div>
-              <h3 className={styles.bannerTitle}>
-                Получите бесплатный<br />дизайн-план.
-              </h3>
-              <p className={styles.bannerSubtitle}>Начните свой путь с бесплатного дизайн-плана.</p>
-            </div>
-            <button className={styles.bannerBtn} type="button">
-              Войти и скачать
-              {ARROW_SVG}
-            </button>
-          </div>
-        </div>
-      </div>
+      <ul className={styles.productGrid}>
+        {data.products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </ul>
+      <a href={data.allHref} className={`${styles.allLink} ${styles.allLinkBottom}`}>
+        Смотреть все
+        {ARROW_SVG}
+      </a>
     </section>
   );
 }

@@ -79,6 +79,23 @@
 
 .headlineMeta {
   margin: 0 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.date {
+  font-family: "Inter", sans-serif;
+  font-size: 14.4px;
+  font-weight: 400;
+  line-height: 23.04px;
+  color: rgba(40, 40, 40, 0.6);
+}
+
+.date + .readTime::before {
+  content: "•";
+  margin-right: 8px;
+  opacity: 0.5;
 }
 
 .readTime {

@@ -81,6 +81,7 @@ const categoriesData: CategoriesData = {
 };
 
 const section = { padding: "64px clamp(16px, 1.5vw, 28px)" };
+const compactSection = { padding: "16px clamp(16px, 1.5vw, 28px)" };
 
 const headerMock2 = {
   ...headerMock,
@@ -146,13 +147,13 @@ export default function SectionsPage() {
           contactChannels={{ whatsappNumber: "70000000000", telegramUsername: "hws_demo" }}
         />
       </div>
-      <div style={section}>
+      <div style={compactSection}>
         <ProductDescription {...productDescriptionData} />
       </div>
-      <div style={section}>
+      <div style={compactSection}>
         <ProductSpecs data={productSpecsData} />
       </div>
-      <div style={section}>
+      <div style={compactSection}>
         <Footer data={footerData} />
       </div>
       <Header data={headerMock2} />

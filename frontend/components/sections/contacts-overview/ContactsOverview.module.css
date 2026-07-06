@@ -1,0 +1,184 @@
+.section {
+  width: 100%;
+  max-width: 1366px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 2vw, 40px);
+}
+
+.hero {
+  max-width: 760px;
+  display: grid;
+  gap: 18px;
+  margin-bottom: 72px;
+}
+
+.eyebrow {
+  margin: 0;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(17, 16, 19, 0.48);
+}
+
+.title {
+  margin: 0;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 72px;
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -1.8px;
+  color: rgb(40, 40, 40);
+}
+
+.lead {
+  margin: 0;
+  max-width: 640px;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 22px;
+  line-height: 1.45;
+  color: rgba(40, 40, 40, 0.78);
+}
+
+.offices {
+  display: grid;
+  grid-template-columns: 1.05fr repeat(3, minmax(0, 1fr));
+  gap: 36px;
+  padding: 52px 0 6px;
+  border-top: 1px solid rgba(17, 16, 19, 0.08);
+}
+
+.intro {
+  padding-right: 28px;
+}
+
+.introTitle {
+  margin: 0 0 28px;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -1.2px;
+  color: rgb(17, 16, 19);
+}
+
+.introLead {
+  margin: 0;
+  max-width: 270px;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 18px;
+  line-height: 1.55;
+  color: rgba(40, 40, 40, 0.74);
+}
+
+.officeCard {
+  display: grid;
+  align-content: start;
+  gap: 28px;
+}
+
+.city {
+  margin: 0;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: rgb(17, 16, 19);
+}
+
+.copyBlock {
+  display: grid;
+  gap: 10px;
+}
+
+.label {
+  margin: 0;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: rgb(17, 16, 19);
+}
+
+.copy {
+  margin: 0;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 17px;
+  line-height: 1.55;
+  color: rgba(40, 40, 40, 0.84);
+}
+
+.line {
+  display: block;
+}
+
+.phone {
+  font-family: "Noto Sans", sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: rgb(17, 16, 19);
+  text-decoration: none;
+}
+
+.phone:hover,
+.phone:focus-visible {
+  color: var(--color-primary, #b05e3a);
+  outline: none;
+}
+
+@media (max-width: 1180px) {
+  .offices {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .intro {
+    grid-column: 1 / -1;
+    padding-right: 0;
+  }
+
+  .introLead {
+    max-width: 560px;
+  }
+}
+
+@media (max-width: 860px) {
+  .hero {
+    gap: 16px;
+    margin-bottom: 52px;
+  }
+
+  .title {
+    font-size: 56px;
+    line-height: 1;
+  }
+
+  .lead {
+    font-size: 18px;
+  }
+
+  .offices {
+    gap: 28px 22px;
+    padding-top: 36px;
+  }
+
+  .introTitle {
+    font-size: 40px;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .offices {
+    grid-template-columns: 1fr;
+  }
+
+  .introTitle {
+    font-size: 34px;
+  }
+
+  .city {
+    font-size: 24px;
+  }
+}

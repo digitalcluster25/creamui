@@ -7,6 +7,7 @@ export type BlogPost = {
   author: string;
   excerpt: string;
   tags: string[];
+  date?: string;
 };
 
 export type BlogPostsData = {

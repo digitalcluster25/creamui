@@ -214,12 +214,22 @@ export const GET_PRODUCT_CATEGORIES = gql`
         databaseId
         name
         slug
+        hwsSubtitle
+        image {
+          sourceUrl
+          altText
+        }
         count
         children {
           nodes {
             databaseId
             name
             slug
+            hwsSubtitle
+            image {
+              sourceUrl
+              altText
+            }
             count
           }
         }
@@ -240,6 +250,75 @@ export const GET_PRODUCT_BRANDS = gql`
   }
 `;
 
+export const GET_FEATURED_PRODUCTS = gql`
+  query GetFeaturedProducts($first: Int = 3) {
+    products(first: $first, where: { status: "publish", featured: true }) {
+      nodes {
+        databaseId
+        name
+        slug
+        ... on Product {
+          date
+        }
+        ... on SimpleProduct {
+          price
+          regularPrice
+          salePrice
+          image {
+            sourceUrl
+            altText
+          }
+          galleryImages {
+            nodes {
+              sourceUrl
+              altText
+            }
+          }
+          productCategories {
+            nodes {
+              name
+              slug
+            }
+          }
+          hwsFacingOptions {
+            label
+            iconUrl
+            slug
+            isActive
+          }
+        }
+        ... on VariableProduct {
+          price
+          regularPrice
+          salePrice
+          image {
+            sourceUrl
+            altText
+          }
+          galleryImages {
+            nodes {
+              sourceUrl
+              altText
+            }
+          }
+          productCategories {
+            nodes {
+              name
+              slug
+            }
+          }
+          hwsFacingOptions {
+            label
+            iconUrl
+            slug
+            isActive
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const GET_PRODUCT_SLUGS = gql`
   query GetProductSlugs($first: Int = 100) {
     products(first: $first, where: { status: "publish" }) {
@@ -255,6 +334,86 @@ export const GET_CONTACT_CHANNELS = gql`
     hwsContactChannels {
       whatsappNumber
       telegramUsername
+    }
+  }
+`;
+
+export const GET_POSTS = gql`
+  query GetPosts($categoryName: String, $first: Int = 100) {
+    posts(first: $first, where: { categoryName: $categoryName, status: PUBLISH }) {
+      nodes {
+        databaseId
+        title
+        slug
+        date
+        excerpt
+        content
+        author {
+          node {
+            name
+          }
+        }
+        tags {
+          nodes {
+            name
+            slug
+          }
+        }
+        featuredImage {
+          node {
+            sourceUrl
+            altText
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const GET_POST_BY_SLUG = gql`
+  query GetPostBySlug($slug: ID!) {
+    post(id: $slug, idType: SLUG) {
+      databaseId
+      title
+      slug
+      date
+      content
+      author {
+        node {
+          name
+          avatar {
+            url
+          }
+        }
+      }
+      tags {
+        nodes {
+          name
+          slug
+        }
+      }
+      categories {
+        nodes {
+          name
+          slug
+        }
+      }
+      featuredImage {
+        node {
+          sourceUrl
+          altText
+        }
+      }
+    }
+  }
+`;
+
+export const GET_POST_SLUGS = gql`
+  query GetPostSlugs($categoryName: String, $first: Int = 100) {
+    posts(first: $first, where: { categoryName: $categoryName, status: PUBLISH }) {
+      nodes {
+        slug
+      }
     }
   }
 `;

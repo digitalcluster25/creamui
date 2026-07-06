@@ -182,6 +182,34 @@ add_action(
 			]
 		);
 		/**
+		 * 4.1) Поле hwsSubtitle на типе productCategory — отдаёт описание
+		 *      категории товаров из стандартного поля Description в админке.
+		 *      WooGraphQL в текущей конфигурации description для productCategories
+		 *      не прокидывает, поэтому headless-фронт читает его через явное поле.
+		 */
+		register_graphql_field(
+			'productCategory',
+			'hwsSubtitle',
+			[
+				'type'        => 'String',
+				'description' => __( 'Подзаголовок категории для карточек и баннеров (берётся из стандартного Description в админке WooCommerce)', 'hws-graphql-bridge' ),
+				'resolve'     => function ( $source ) {
+					$term_id = $source->term_id ?? null;
+					if ( empty( $term_id ) ) {
+						return null;
+					}
+
+					$description = term_description( (int) $term_id, 'product_cat' );
+					if ( ! is_string( $description ) ) {
+						return null;
+					}
+
+					$description = trim( wp_strip_all_tags( $description ) );
+					return '' !== $description ? $description : null;
+				},
+			]
+		);
+		/**
 		 * 5) Поле hwsVariantGroups на интерфейсе Product — разбирает кастомный
 		 *    JSON _hws_source_payload.option_groups (только у VariableProduct/EasySteam)
 		 *    в аддитивную модель {key, label, options:[{value, priceModifier}]}.
