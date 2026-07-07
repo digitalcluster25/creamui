@@ -189,11 +189,15 @@ export const GET_PRODUCT_BY_SLUG = gql`
             priceModifier
           }
         }
-        variations {
+        variations(first: 100) {
           nodes {
             databaseId
             name
+            sku
             price
+            image {
+              sourceUrl
+            }
             attributes {
               nodes {
                 name

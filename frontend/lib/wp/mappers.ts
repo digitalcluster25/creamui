@@ -4,6 +4,8 @@ import type { ProductSpecsData } from "@/lib/types/productSpecs";
 import type { BlogPost } from "@/lib/types/blogPosts";
 import type { CategoriesData } from "@/lib/types/categories";
 import type { ProductsData } from "@/lib/types/products";
+import type { CurrencyCode } from "@/lib/currency/format";
+import { htmlToPlainText } from "@/lib/content/plainText";
 import type { WPCategoryChildNode, WPCategoryNode } from "@/lib/wp/header";
 
 // Форма, которую реально отдаёт WooGraphQL (проверено на живом эндпоинте wpsandbox)
@@ -44,14 +46,61 @@ export type WPProductNode = {
     options: { value: string; priceModifier: number }[];
   }[];
   attributes?: { nodes: { name: string; options: string[] }[] };
+  variations?: {
+    nodes: {
+      databaseId: number;
+      name?: string;
+      sku?: string;
+      price?: string | null;
+      image?: { sourceUrl: string } | null;
+      attributes?: { nodes: { name: string; value: string }[] };
+    }[];
+  };
 };
 
-// "$1,900" -> 1900. WooGraphQL отдаёт price уже отформатированной строкой
-// с символом валюты — для priceMin/priceMax (числа) парсим обратно.
+// "$1,900" -> 1900.  "$6.563 - $8.174" -> 6563 (first value).
+// WooGraphQL отдаёт price уже отформатированной строкой с символом валюты.
+// Для VariableProduct это может быть диапазон "$min - $max" —
+// берём первый элемент (min), для min/max отдельно используем parsePriceRange.
 function parsePrice(price?: string | null): number {
   if (!price) return 0;
-  const cleaned = price.replace(/[^\d.,]/g, "").replace(",", "");
-  return Number.parseFloat(cleaned) || 0;
+  // Диапазон "$6.563 - $8.174" → берём первую часть
+  const part = price.includes(" - ") ? price.split(" - ")[0] : price;
+  return parseSinglePrice(part);
+}
+
+function parseSinglePrice(raw: string): number {
+  const cleaned = raw.replace(/[^\d.,]/g, "");
+  const separators = [...cleaned].filter((char) => char === "." || char === ",");
+
+  if (separators.length === 0) return Number.parseFloat(cleaned) || 0;
+
+  if (separators.length === 1) {
+    const separator = separators[0];
+    const parts = cleaned.split(separator);
+    // "6.563" — точка как разделитель тысяч (3 цифры после), не десятичная
+    if (parts[1]?.length === 3) {
+      return Number.parseFloat(parts.join("")) || 0;
+    }
+    return Number.parseFloat(parts.join(".")) || 0;
+  }
+
+  const normalized = cleaned.replace(/,/g, ".");
+  const lastDotIndex = normalized.lastIndexOf(".");
+  const integerPart = normalized.slice(0, lastDotIndex).replace(/\./g, "");
+  const decimalPart = normalized.slice(lastDotIndex + 1);
+  return Number.parseFloat(`${integerPart}.${decimalPart}`) || 0;
+}
+
+// "$6.563 - $8.174" -> { min: 6563, max: 8174 }
+function parsePriceRange(price?: string | null): { min: number; max: number } {
+  if (!price) return { min: 0, max: 0 };
+  if (price.includes(" - ")) {
+    const [lo, hi] = price.split(" - ");
+    return { min: parseSinglePrice(lo), max: parseSinglePrice(hi) };
+  }
+  const single = parseSinglePrice(price);
+  return { min: single, max: single };
 }
 
 function getCurrencySymbol(price?: string | null): string {
@@ -60,8 +109,15 @@ function getCurrencySymbol(price?: string | null): string {
   return match ? match[0].trim() : "$";
 }
 
+function getCurrencyCode(price?: string | null): CurrencyCode {
+  const symbol = getCurrencySymbol(price);
+  if (symbol === "₽") return "RUB";
+  if (symbol === "₼") return "AZN";
+  return "USD";
+}
+
 export function mapToCatalogProduct(node: WPProductNode): CatalogProduct {
-  const price = parsePrice(node.price);
+  const { min, max } = parsePriceRange(node.price);
   return {
     id: node.databaseId,
     href: `/product/${node.slug}`,
@@ -70,9 +126,9 @@ export function mapToCatalogProduct(node: WPProductNode): CatalogProduct {
     category: node.productCategories?.nodes[0]?.name ?? "",
     brand: node.productBrands?.nodes[0]?.name,
     brandSlug: node.productBrands?.nodes[0]?.slug,
-    priceMin: price,
-    priceMax: price,
-    currency: getCurrencySymbol(node.price),
+    priceMin: min,
+    priceMax: max,
+    baseCurrencyCode: getCurrencyCode(node.price),
   };
 }
 
@@ -99,7 +155,7 @@ export function mapToHomeProductsData(nodes: WPProductNode[]): ProductsData {
       price: node.price ?? "",
       priceMin: parsePrice(node.price),
       priceMax: parsePrice(node.price),
-      currency: getCurrencySymbol(node.price),
+      baseCurrencyCode: getCurrencyCode(node.price),
       categories: (node.productCategories?.nodes ?? []).map((category) => category.name),
       image1: node.image?.sourceUrl ?? "",
       image2: node.galleryImages?.nodes?.[0]?.sourceUrl,
@@ -150,6 +206,100 @@ export function mapToHomeCategoriesData(nodes: WPCategoryNode[]): CategoriesData
   };
 }
 
+// Нормализация строки в slug-формат для сопоставления:
+// "Серпентинит Бархат" → "серпентинит-бархат"
+// "10 кВт" → "10-квт"
+function toSlug(s: string): string {
+  return s.toLowerCase().replace(/\s+/g, "-").replace(/ё/g, "е");
+}
+
+// Строим variantEntries из нативных WooCommerce variations.
+// Slug-значения атрибутов вариаций ("10-квт") маппим обратно к
+// человекочитаемым лейблам из hwsVariantGroups ("10 кВт").
+function buildVariantEntries(
+  node: WPProductNode,
+): ProductPageData["variantEntries"] {
+  const variations = node.variations?.nodes;
+  if (!variations?.length) return undefined;
+
+  const groups = node.hwsVariantGroups ?? [];
+  if (groups.length === 0) return undefined;
+
+  // Строим карту: hwsVariantGroups key → Map<normalizedSlug, humanLabel>
+  // Плюс карту: pa_атрибут → hwsVariantGroups key
+  const keyByAttr = new Map<string, string>(); // "pa_power" → "power"
+  const slugToLabel = new Map<string, Map<string, string>>(); // key → (slug → label)
+
+  for (const g of groups) {
+    const labelMap = new Map<string, string>();
+    for (const o of g.options) {
+      // "Серпентинит Бархат" → slug "серпентинит-бархат" → label "Серпентинит Бархат"
+      labelMap.set(toSlug(o.value), o.value);
+    }
+    slugToLabel.set(g.key, labelMap);
+  }
+
+  // Определяем маппинг pa_атрибут → key через совпадение slug-значений
+  if (variations[0]?.attributes?.nodes) {
+    for (const attr of variations[0].attributes.nodes) {
+      const decodedAttrName = decodeURIComponent(attr.name);
+      // Попробуем: pa_power → power, pa_facing → facing
+      const stripped = decodedAttrName.replace(/^pa_/, "");
+      if (slugToLabel.has(stripped)) {
+        keyByAttr.set(decodedAttrName, stripped);
+        continue;
+      }
+      // Или атрибут может совпадать с key напрямую (не pa_)
+      if (slugToLabel.has(decodedAttrName)) {
+        keyByAttr.set(decodedAttrName, decodedAttrName);
+        continue;
+      }
+      // Полный перебор: ищем group, у которого slug-значения пересекаются
+      const decodedVal = toSlug(decodeURIComponent(attr.value));
+      for (const g of groups) {
+        const labelMap = slugToLabel.get(g.key)!;
+        if (labelMap.has(decodedVal) && !keyByAttr.has(decodedAttrName)) {
+          keyByAttr.set(decodedAttrName, g.key);
+        }
+      }
+    }
+  }
+
+  // Если не удалось замаппить хотя бы один атрибут — не строим entries
+  if (keyByAttr.size === 0) return undefined;
+
+  const entries: NonNullable<ProductPageData["variantEntries"]> = [];
+
+  for (const v of variations) {
+    const selection: Record<string, string> = {};
+    let valid = true;
+
+    for (const attr of v.attributes?.nodes ?? []) {
+      const decodedName = decodeURIComponent(attr.name);
+      const groupKey = keyByAttr.get(decodedName);
+      if (!groupKey) { valid = false; break; }
+
+      const decodedVal = toSlug(decodeURIComponent(attr.value));
+      const labelMap = slugToLabel.get(groupKey);
+      const label = labelMap?.get(decodedVal);
+      if (!label) { valid = false; break; }
+
+      selection[groupKey] = label;
+    }
+
+    if (!valid || Object.keys(selection).length === 0) continue;
+
+    entries.push({
+      selection,
+      price: parsePrice(v.price),
+      sku: v.sku,
+      image: v.image?.sourceUrl ?? undefined,
+    });
+  }
+
+  return entries.length > 0 ? entries : undefined;
+}
+
 export function mapToProductPageData(node: WPProductNode): ProductPageData {
   const price = parsePrice(node.price);
   const priceOld = node.salePrice ? parsePrice(node.regularPrice) : undefined;
@@ -159,6 +309,8 @@ export function mapToProductPageData(node: WPProductNode): ProductPageData {
       href: `/catalog/${c.slug}`,
     })) ?? [];
   const primaryCategory = categories[0];
+
+  const variantEntries = buildVariantEntries(node);
 
   return {
     images: [
@@ -176,11 +328,11 @@ export function mapToProductPageData(node: WPProductNode): ProductPageData {
     categories,
     priceOld,
     price,
-    currency: getCurrencySymbol(node.price),
+    baseCurrencyCode: getCurrencyCode(node.price),
     sku: node.sku,
     tag: undefined, // нет надёжного источника — productTags на бэке содержат демо-теги WooCommerce, не реальные
     brand: node.productBrands?.nodes[0]?.name,
-    description: node.shortDescription ?? "",
+    description: htmlToPlainText(node.shortDescription),
     commerceInfo: node.hwsCommerceInfo ?? undefined,
     facingOptions: node.hwsFacingOptions && node.hwsFacingOptions.length > 1
       ? node.hwsFacingOptions.map((f) => ({
@@ -193,9 +345,10 @@ export function mapToProductPageData(node: WPProductNode): ProductPageData {
     variantGroups: (node.hwsVariantGroups ?? []).map((g) => ({
       key: g.key,
       label: g.label,
-      type: "text" as const, // в данных нет hex-цветов, только текстовые опции с надбавкой к цене
+      type: "text" as const,
       options: g.options.map((o) => ({ value: o.value, priceModifier: o.priceModifier })),
     })),
+    variantEntries,
   };
 }
 
@@ -218,7 +371,8 @@ export function mapToProductSpecsData(node: WPProductNode): ProductSpecsData {
 // рассчитан на генерацию нейросетью прямо в HTML (h2/p/ul внутри самой строки),
 // поэтому рендерим напрямую (см. ProductDescription.tsx), не подгоняем под мок.
 export function mapToProductDescriptionHtml(node: WPProductNode): string | undefined {
-  return node.description?.trim() || undefined;
+  const text = htmlToPlainText(node.description);
+  return text || undefined;
 }
 
 // ---------------------------------------------------------------------------
