@@ -268,6 +268,13 @@ function buildVariantEntries(
   // Если не удалось замаппить хотя бы один атрибут — не строим entries
   if (keyByAttr.size === 0) return undefined;
 
+  // Проверяем полноту покрытия: entries имеют смысл только если вариации
+  // покрывают всю матрицу (VVD: 6×4=24 вариаций = 24 variations ✓).
+  // Если покрытие частичное (EasySteam: 10 из сотен) — не используем,
+  // иначе цена будет прыгать между exact и additive при переключении.
+  const expectedCount = groups.reduce((acc, g) => acc * g.options.length, 1);
+  if (variations.length < expectedCount) return undefined;
+
   const entries: NonNullable<ProductPageData["variantEntries"]> = [];
 
   for (const v of variations) {
