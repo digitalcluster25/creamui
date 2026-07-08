@@ -16,7 +16,7 @@
   justify-content: flex-end;
   align-items: flex-start;
   position: sticky;
-  top: 0;
+  top: 20px;
 }
 
 /* Source: type1 .woo-product-image .product-thumbs */
