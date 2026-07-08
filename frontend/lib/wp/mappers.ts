@@ -378,8 +378,8 @@ export function mapToProductSpecsData(node: WPProductNode): ProductSpecsData {
 // рассчитан на генерацию нейросетью прямо в HTML (h2/p/ul внутри самой строки),
 // поэтому рендерим напрямую (см. ProductDescription.tsx), не подгоняем под мок.
 export function mapToProductDescriptionHtml(node: WPProductNode): string | undefined {
-  const text = htmlToPlainText(node.description);
-  return text || undefined;
+  const html = node.description?.trim();
+  return html || undefined;
 }
 
 // ---------------------------------------------------------------------------
