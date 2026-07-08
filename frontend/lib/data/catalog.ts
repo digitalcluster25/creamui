@@ -15,7 +15,7 @@ export const catalogData: CatalogData = {
       brand: "Sangens",
       priceMin: 2050,
       priceMax: 6810,
-      currency: "$",
+      baseCurrencyCode: "USD",
     },
     {
       id: 2,
@@ -26,7 +26,7 @@ export const catalogData: CatalogData = {
       brand: "Sangens",
       priceMin: 2050,
       priceMax: 6760,
-      currency: "$",
+      baseCurrencyCode: "USD",
     },
     {
       id: 3,
@@ -37,7 +37,7 @@ export const catalogData: CatalogData = {
       brand: "Sangens",
       priceMin: 2050,
       priceMax: 4760,
-      currency: "$",
+      baseCurrencyCode: "USD",
     },
     {
       id: 4,
@@ -48,7 +48,7 @@ export const catalogData: CatalogData = {
       brand: "EasySteam",
       priceMin: 2050,
       priceMax: 7410,
-      currency: "$",
+      baseCurrencyCode: "USD",
     },
     {
       id: 5,
@@ -59,7 +59,7 @@ export const catalogData: CatalogData = {
       brand: "EasySteam",
       priceMin: 2050,
       priceMax: 7290,
-      currency: "$",
+      baseCurrencyCode: "USD",
     },
     {
       id: 6,
@@ -70,7 +70,7 @@ export const catalogData: CatalogData = {
       brand: "EasySteam",
       priceMin: 2090,
       priceMax: 7170,
-      currency: "$",
+      baseCurrencyCode: "USD",
     },
     {
       id: 7,
@@ -81,7 +81,7 @@ export const catalogData: CatalogData = {
       brand: "ВВД",
       priceMin: 1970,
       priceMax: 6710,
-      currency: "$",
+      baseCurrencyCode: "USD",
     },
     {
       id: 8,
@@ -92,7 +92,7 @@ export const catalogData: CatalogData = {
       brand: "ВВД",
       priceMin: 1970,
       priceMax: 6660,
-      currency: "$",
+      baseCurrencyCode: "USD",
     },
     {
       id: 9,
@@ -103,7 +103,7 @@ export const catalogData: CatalogData = {
       brand: "ВВД",
       priceMin: 1970,
       priceMax: 4660,
-      currency: "$",
+      baseCurrencyCode: "USD",
     },
     {
       id: 10,
@@ -114,7 +114,7 @@ export const catalogData: CatalogData = {
       brand: "ВВД",
       priceMin: 3740,
       priceMax: 6710,
-      currency: "$",
+      baseCurrencyCode: "USD",
     },
     {
       id: 11,
@@ -125,7 +125,7 @@ export const catalogData: CatalogData = {
       brand: "Sangens",
       priceMin: 3710,
       priceMax: 6660,
-      currency: "$",
+      baseCurrencyCode: "USD",
     },
     {
       id: 12,
@@ -136,7 +136,7 @@ export const catalogData: CatalogData = {
       brand: "EasySteam",
       priceMin: 2090,
       priceMax: 7760,
-      currency: "$",
+      baseCurrencyCode: "USD",
     },
   ],
 };

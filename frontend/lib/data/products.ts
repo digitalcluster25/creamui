@@ -16,7 +16,7 @@ export const productsData: ProductsData = {
       image2: "https://wpsandbox.spaces.community/wp-content/uploads/2026/05/w-12-20-s-prod-image-1-600x600.png",
       priceMin: 2050,
       priceMax: 6810,
-      currency: "$",
+      baseCurrencyCode: "USD",
       swatches: [
         { slug: "glass-black", title: "Стекло чёрное", selected: true, bgImage: "https://sangens.com/wp-content/uploads/2025/11/facing_icon_glass_black.webp" },
         { slug: "glass-white", title: "Стекло белое", bgImage: "https://sangens.com/wp-content/uploads/2025/11/facing_icon_glass_white.webp" },
@@ -34,7 +34,7 @@ export const productsData: ProductsData = {
       image2: "https://wpsandbox.spaces.community/wp-content/uploads/2026/05/media-169-2849070fe0466f48.png",
       priceMin: 2050,
       priceMax: 7410,
-      currency: "$",
+      baseCurrencyCode: "USD",
       swatches: [
         { slug: "talk", title: "Талькохлорит", selected: true, bgImage: "https://easysteam.ru/photos/shares/ikomki_v_nabory/talk.jpg" },
         { slug: "zmeevik", title: "Змеевик", bgImage: "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg" },
@@ -52,7 +52,7 @@ export const productsData: ProductsData = {
       image2: "https://wpsandbox.spaces.community/wp-content/uploads/2026/05/w-12-20-s-prod-image-1-600x600.png",
       priceMin: 1970,
       priceMax: 7760,
-      currency: "$",
+      baseCurrencyCode: "USD",
       swatches: [
         { slug: "talkohlorit", title: "Талькохлорит", bgColor: "#b7b3a8" },
         { slug: "serpentinite-velvet", title: "Серпентинит Бархат", selected: true, bgColor: "#5d5a55" },

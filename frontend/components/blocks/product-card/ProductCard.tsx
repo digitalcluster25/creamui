@@ -2,11 +2,25 @@
 
 import { useState } from "react";
 import type { ProductItem } from "@/lib/types/products";
+import { useCurrency } from "@/components/providers/CurrencyProvider";
+import {
+  convertPrice,
+  formatMoney,
+  getCurrencySymbol,
+} from "@/lib/currency/format";
 import styles from "./ProductCard.module.css";
 
 export function ProductCard({ product }: { product: ProductItem }) {
   const initialSlug = product.swatches?.find((s) => s.selected)?.slug ?? product.swatches?.[0]?.slug ?? null;
   const [selectedSlug] = useState<string | null>(initialSlug);
+  const { activeCurrency, rates } = useCurrency();
+  const symbol = getCurrencySymbol(activeCurrency);
+  const convertedMin = product.priceMin != null
+    ? convertPrice(product.priceMin, product.baseCurrencyCode, activeCurrency, rates)
+    : null;
+  const convertedMax = product.priceMax != null
+    ? convertPrice(product.priceMax, product.baseCurrencyCode, activeCurrency, rates)
+    : null;
 
   return (
     <li className={styles.productCard}>
@@ -32,8 +46,8 @@ export function ProductCard({ product }: { product: ProductItem }) {
           </p>
         )}
         <p className={styles.productPrice}>
-          {product.priceMin != null && product.priceMax != null
-            ? `${product.currency ?? ""}${product.priceMin.toLocaleString("en-US")} – ${product.currency ?? ""}${product.priceMax.toLocaleString("en-US")}`
+          {convertedMin != null && convertedMax != null
+            ? `${symbol}${formatMoney(convertedMin, activeCurrency)} – ${symbol}${formatMoney(convertedMax, activeCurrency)}`
             : product.price}
         </p>
       </div>

@@ -1,3 +1,5 @@
+import type { CurrencyCode } from "@/lib/currency/format";
+
 export type CatalogProduct = {
   id: number;
   href: string;
@@ -8,7 +10,7 @@ export type CatalogProduct = {
   brandSlug?: string;
   priceMin: number;
   priceMax: number;
-  currency: string;
+  baseCurrencyCode: CurrencyCode;
 };
 
 // Пагинация/фильтр по бренду/сортировка теперь полностью клиентские (см.

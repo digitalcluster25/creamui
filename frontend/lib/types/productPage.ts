@@ -1,3 +1,5 @@
+import type { CurrencyCode } from "@/lib/currency/format";
+
 export type ProductSwatch = {
   value: string;
   color?: string;
@@ -46,7 +48,7 @@ export type ProductPageData = {
   categories: { label: string; href: string }[];
   priceOld?: number;
   price: number;
-  currency: string;
+  baseCurrencyCode: CurrencyCode;
   sku?: string;
   tag?: string;
   brand?: string;

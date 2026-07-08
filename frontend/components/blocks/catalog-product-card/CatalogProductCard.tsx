@@ -1,3 +1,12 @@
+"use client";
+
+import { useCurrency } from "@/components/providers/CurrencyProvider";
+import {
+  convertPrice,
+  formatMoney,
+  getCurrencySymbol,
+  type CurrencyCode,
+} from "@/lib/currency/format";
 import styles from "./CatalogProductCard.module.css";
 
 type Props = {
@@ -7,14 +16,15 @@ type Props = {
   category: string;
   priceMin: number;
   priceMax: number;
-  currency: string;
+  baseCurrency: CurrencyCode;
 };
 
-function formatPrice(n: number) {
-  return n.toLocaleString("en-US");
-}
+export function CatalogProductCard({ href, image, title, category, priceMin, priceMax, baseCurrency }: Props) {
+  const { activeCurrency, rates } = useCurrency();
+  const convertedMin = convertPrice(priceMin, baseCurrency, activeCurrency, rates);
+  const convertedMax = convertPrice(priceMax, baseCurrency, activeCurrency, rates);
+  const symbol = getCurrencySymbol(activeCurrency);
 
-export function CatalogProductCard({ href, image, title, category, priceMin, priceMax, currency }: Props) {
   return (
     <div className={styles.card}>
       <a href={href} className={styles.imageLink}>
@@ -29,7 +39,7 @@ export function CatalogProductCard({ href, image, title, category, priceMin, pri
         </a>
         <p className={styles.category}>{category}</p>
         <p className={styles.price}>
-          {currency}{formatPrice(priceMin)} – {currency}{formatPrice(priceMax)}
+          {symbol}{formatMoney(convertedMin, activeCurrency)} – {symbol}{formatMoney(convertedMax, activeCurrency)}
         </p>
       </div>
     </div>

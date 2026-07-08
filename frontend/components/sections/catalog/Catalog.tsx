@@ -156,7 +156,7 @@ export function Catalog({ data, initialBrandSlug = "" }: Props) {
             category={product.category}
             priceMin={product.priceMin}
             priceMax={product.priceMax}
-            currency={product.currency}
+            baseCurrency={product.baseCurrencyCode}
           />
         ))}
       </div>

@@ -1,3 +1,5 @@
+import type { CurrencyCode } from "@/lib/currency/format";
+
 export type Swatch = {
   slug: string;
   title: string;
@@ -13,7 +15,7 @@ export type ProductItem = {
   price: string;
   priceMin?: number;
   priceMax?: number;
-  currency?: string;
+  baseCurrencyCode: CurrencyCode;
   categories: string[];
   image1: string;
   image2?: string;

@@ -1,0 +1,34 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 20px 12px;
+  background: var(--color-surface-soft, rgba(136,136,137,0.05));
+  border-radius: var(--radius-lg, 14px);
+  text-align: center;
+}
+
+.value {
+  font-family: "Noto Sans", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: rgb(17, 16, 19);
+  line-height: 1.2;
+}
+
+.label {
+  font-family: "Noto Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(40, 40, 40, 0.55);
+  line-height: 1.3;
+}

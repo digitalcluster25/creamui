@@ -76,6 +76,36 @@ export default async function ProductPageRoute({
   const productSpecsData = specs.groups.length ? specs : mockProductSpecsData;
   const descriptionHtml = override?.descriptionHtml ?? mapToProductDescriptionHtml(data.product);
 
+  // Извлекаем highlights из характеристик для инфографики под галереей
+  const highlights: { value: string; label: string }[] = [];
+  for (const group of productSpecsData.groups) {
+    for (const row of group.rows) {
+      const l = row.label.toLowerCase();
+      if (l.includes("объём парн") || l.includes("объем парн") || l.includes("максимальный объем") || l.includes("объём парного")) {
+        highlights.push({ value: row.value, label: "Объём парной" });
+      }
+      if ((l.includes("мощность") && !l.includes("макс")) || l.includes("номинальная")) {
+        highlights.push({ value: row.value, label: "Мощность" });
+      }
+      if (l.includes("минимальный объем") || l.includes("минимальный объём")) {
+        // Если есть и min и max — объединим позже
+        const existing = highlights.find((h) => h.label === "Объём парной");
+        if (existing) {
+          existing.value = `${row.value} – ${existing.value}`;
+        } else {
+          highlights.push({ value: row.value, label: "Мин. объём парной" });
+        }
+      }
+    }
+  }
+  // Для EasySteam — топливо из категорий
+  if (!highlights.find((h) => h.label === "Мощность")) {
+    const cats = productPageData.categories.map((c) => c.label.toLowerCase());
+    if (cats.some((c) => c.includes("дров"))) {
+      highlights.push({ value: "Дрова / Газ", label: "Топливо" });
+    }
+  }
+
   const c = channelsResult.data?.hwsContactChannels;
   const contactChannels = {
     whatsappNumber: c?.whatsappNumber || undefined,
@@ -86,7 +116,7 @@ export default async function ProductPageRoute({
     <main>
       <Header data={headerData} hideBurgerOnDesktop hideActionsOnDesktop />
       <div className={styles.productPageWrap}>
-        <ProductPage data={productPageData} contactChannels={contactChannels} />
+        <ProductPage data={productPageData} contactChannels={contactChannels} highlights={highlights} />
       </div>
       <div className={styles.section}>
         <ProductDescription sectionTitle="Описание товара" html={descriptionHtml} />

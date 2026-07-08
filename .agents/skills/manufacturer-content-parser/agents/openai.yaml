@@ -1,0 +1,7 @@
+interface:
+  display_name: "Manufacturer Parser"
+  short_description: "Парсит контент производителей для сайта"
+  default_prompt: "Use $manufacturer-content-parser to collect verified manufacturer content and prepare it for our site."
+
+policy:
+  allow_implicit_invocation: true

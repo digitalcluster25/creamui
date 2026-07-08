@@ -10,6 +10,7 @@ import {
   getCurrencySymbol,
 } from "@/lib/currency/format";
 import styles from "./ProductPage.module.css";
+import { ProductHighlights } from "@/components/blocks/product-highlights/ProductHighlights";
 
 /* ── Icons ── */
 const FB_ICON = <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>;
@@ -23,7 +24,7 @@ const PAYMENT_ICON = <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h1
 const WARRANTY_ICON = <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 3 6v6c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V6L12 2Zm-1 13-3-3 1.41-1.41L11 12.17l4.59-4.58L17 9l-6 6Z"/></svg>;
 
 type ContactChannels = { whatsappNumber?: string; telegramUsername?: string };
-type Props = { data: ProductPageData; contactChannels?: ContactChannels };
+type Props = { data: ProductPageData; contactChannels?: ContactChannels; highlights?: { value: string; label: string }[] };
 
 function buildDefaults(groups: ProductPageData["variantGroups"]): Record<string, string> {
   const out: Record<string, string> = {};
@@ -33,7 +34,7 @@ function buildDefaults(groups: ProductPageData["variantGroups"]): Record<string,
   return out;
 }
 
-export function ProductPage({ data, contactChannels }: Props) {
+export function ProductPage({ data, contactChannels, highlights }: Props) {
   const [activeImg, setActiveImg] = useState(0);
   const [variants, setVariants] = useState<Record<string, string>>(() => buildDefaults(data.variantGroups));
   const [qty, setQty] = useState(1);
@@ -180,6 +181,10 @@ export function ProductPage({ data, contactChannels }: Props) {
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
           </button>
         </div>
+      {/* ── Highlights (инфографика под галереей) ── */}
+      {highlights && highlights.length > 0 && (
+        <ProductHighlights highlights={highlights} />
+      )}
       </div>
 
       {/* ── Info ── */}

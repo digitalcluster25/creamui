@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
-
 import styles from "./HeaderPrimitives.module.css";
 
 import type { HeaderCurrency } from "@/lib/types/header";
+import { useCurrency } from "@/components/providers/CurrencyProvider";
+import type { CurrencyCode } from "@/lib/currency/format";
 
 type CurrencySwitcherProps = {
   currencies: HeaderCurrency[];
@@ -13,9 +13,8 @@ type CurrencySwitcherProps = {
 
 export function CurrencySwitcher({
   currencies,
-  defaultCurrency,
 }: CurrencySwitcherProps) {
-  const [activeCurrency, setActiveCurrency] = useState(defaultCurrency);
+  const { activeCurrency, setActiveCurrency } = useCurrency();
 
   return (
     <div className={styles.currencySwitcher} role="tablist" aria-label="Валюта">
@@ -29,7 +28,7 @@ export function CurrencySwitcher({
             role="tab"
             aria-selected={isActive}
             className={`${styles.currencyItem} ${isActive ? styles.currencyItemActive : ""}`}
-            onClick={() => setActiveCurrency(currency.code)}
+            onClick={() => setActiveCurrency(currency.code as CurrencyCode)}
           >
             {currency.label}
           </button>

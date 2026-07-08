@@ -23,7 +23,7 @@ export const productPageData: ProductPageData = {
   ],
   priceOld: 6810,
   price: 5500,
-  currency: "$",
+  baseCurrencyCode: "USD",
   sku: "SOCHI-M2-22",
   tag: "Сочи",
   brand: "EasySteam",
