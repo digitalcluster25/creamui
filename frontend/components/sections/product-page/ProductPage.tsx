@@ -316,7 +316,7 @@ export function ProductPage({ data, contactChannels }: Props) {
                     >
                       {opt.value}
                       {opt.priceModifier ? (
-                        <span className={styles.swatchPrice}>+{currencySymbol}{formatMoney(convertPrice(opt.priceModifier, data.baseCurrencyCode, activeCurrency, rates), activeCurrency)}</span>
+                        <span className={styles.swatchPrice}>{opt.priceModifier > 0 ? "+" : "−"}{currencySymbol}{formatMoney(Math.abs(convertPrice(opt.priceModifier, data.baseCurrencyCode, activeCurrency, rates)), activeCurrency)}</span>
                       ) : null}
                     </button>
                   );
