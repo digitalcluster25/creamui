@@ -428,12 +428,6 @@
   font-weight: 700;
   color: rgb(17, 16, 19);
   margin: 4px 0 0;
-  position: sticky;
-  bottom: 0;
-  background: var(--color-bg, #f3f0eb);
-  padding: 14px 0;
-  z-index: 10;
-  border-top: 1px solid rgba(17, 16, 19, 0.1);
 }
 
 /* ── Contact panel ── */

@@ -333,8 +333,8 @@ export function ProductPage({ data, contactChannels }: Props) {
           )}
         </div>
 
-        {/* Цена конкретной комбинации — появляется после выбора опций */}
-        {hasVariants && (
+        {/* Цена конкретной комбинации — показываем всегда для товаров с вариациями */}
+        {data.variantGroups.length > 0 && (
           <p className={styles.configPrice}>
             Цена комплектации {currencySymbol}{formatMoney(displayedPrice, activeCurrency)}
           </p>
