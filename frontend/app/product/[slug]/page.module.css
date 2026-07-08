@@ -3,7 +3,7 @@
 }
 
 .section {
-  padding: 40px clamp(16px, 1.5vw, 28px);
+  padding: 20px clamp(16px, 1.5vw, 28px);
 }
 
 @media (max-width: 860px) {
@@ -12,6 +12,6 @@
   }
 
   .section {
-    padding: 40px clamp(16px, 1.5vw, 28px) 0;
+    padding: 20px clamp(16px, 1.5vw, 28px) 0;
   }
 }
