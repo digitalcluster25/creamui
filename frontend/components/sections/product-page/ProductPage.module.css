@@ -17,6 +17,7 @@
   align-items: flex-start;
   position: sticky;
   top: 20px;
+  padding-top: 20px;
 }
 
 /* Source: type1 .woo-product-image .product-thumbs */
