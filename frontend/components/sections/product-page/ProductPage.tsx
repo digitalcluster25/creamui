@@ -207,7 +207,7 @@ export function ProductPage({ data, contactChannels }: Props) {
         <div className={styles.priceRow}>
           <span className={styles.price}>
             {currencySymbol}{formatMoney(displayedPrice, activeCurrency)}
-            {maxPrice > minPrice && !matchedVariant && (
+            {maxPrice > minPrice && (
               <span className={styles.priceRange}> · от {currencySymbol}{formatMoney(displayedMinPrice, activeCurrency)} до {currencySymbol}{formatMoney(displayedMaxPrice, activeCurrency)}</span>
             )}
           </span>
