@@ -47,14 +47,21 @@ export default async function ProductPageRoute({
   const { slug } = await params;
 
   const client = getClient();
-  const { data } = await client.query<{ product: WPProductNode | null }>({
-    query: GET_PRODUCT_BY_SLUG,
-    variables: { slug },
-    // WooGraphQL возвращает GraphQL-ошибку (не просто null) для несуществующего
-    // slug — без errorPolicy: 'all' Apollo бросает исключение вместо того,
-    // чтобы дать нам спокойно проверить data.product === null и отдать 404.
-    errorPolicy: "all",
-  });
+
+  // Три запроса параллельно: товар + контакты + хедер
+  const [productResult, channelsResult, headerData] = await Promise.all([
+    client.query<{ product: WPProductNode | null }>({
+      query: GET_PRODUCT_BY_SLUG,
+      variables: { slug },
+      errorPolicy: "all",
+    }),
+    client.query<{
+      hwsContactChannels: { whatsappNumber: string; telegramUsername: string } | null;
+    }>({ query: GET_CONTACT_CHANNELS }).catch(() => ({ data: null })),
+    getHeaderData(),
+  ]);
+
+  const data = productResult.data;
 
   if (!data?.product) {
     notFound();
@@ -69,21 +76,11 @@ export default async function ProductPageRoute({
   const productSpecsData = specs.groups.length ? specs : mockProductSpecsData;
   const descriptionHtml = override?.descriptionHtml ?? mapToProductDescriptionHtml(data.product);
 
-  let contactChannels: { whatsappNumber?: string; telegramUsername?: string } | undefined;
-  try {
-    const { data: channelsData } = await client.query<{
-      hwsContactChannels: { whatsappNumber: string; telegramUsername: string } | null;
-    }>({ query: GET_CONTACT_CHANNELS });
-    const c = channelsData?.hwsContactChannels;
-    contactChannels = {
-      whatsappNumber: c?.whatsappNumber || undefined,
-      telegramUsername: c?.telegramUsername || undefined,
-    };
-  } catch (e) {
-    console.error("WP GraphQL error (contact channels):", e);
-  }
-
-  const headerData = await getHeaderData();
+  const c = channelsResult.data?.hwsContactChannels;
+  const contactChannels = {
+    whatsappNumber: c?.whatsappNumber || undefined,
+    telegramUsername: c?.telegramUsername || undefined,
+  };
 
   return (
     <main>

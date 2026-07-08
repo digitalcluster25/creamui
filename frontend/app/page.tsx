@@ -39,37 +39,40 @@ export default async function HomePage() {
   };
   try {
     const client = getClient();
-    const { data } = await client.query<{
-      productBrands: { nodes: { name: string; slug: string; logoUrl: string | null }[] };
-    }>({ query: GET_PRODUCT_BRANDS });
 
-    brandLogos = (data?.productBrands?.nodes ?? [])
+    // Все 4 GraphQL-запроса параллельно — вместо ~4с последовательно получаем ~1с
+    const [brandsResult, categoriesResult, featuredResult, postsResult] = await Promise.all([
+      client.query<{
+        productBrands: { nodes: { name: string; slug: string; logoUrl: string | null }[] };
+      }>({ query: GET_PRODUCT_BRANDS }),
+      client.query<{
+        productCategories: { nodes: WPCategoryNode[] };
+      }>({ query: GET_PRODUCT_CATEGORIES }),
+      client.query<{
+        products: { nodes: WPProductNode[] };
+      }>({
+        query: GET_FEATURED_PRODUCTS,
+        variables: { first: 50 },
+      }),
+      client.query<{
+        posts: { nodes: WPPostNode[] };
+      }>({
+        query: GET_POSTS,
+        variables: { categoryName: KNOWLEDGE_CATEGORY, first: 4 },
+      }),
+    ]);
+
+    brandLogos = (brandsResult.data?.productBrands?.nodes ?? [])
       .filter((b) => !!b.logoUrl)
       .map((b) => ({ src: b.logoUrl as string, alt: b.name }));
 
-    const { data: categoriesResponse } = await client.query<{
-      productCategories: { nodes: WPCategoryNode[] };
-    }>({ query: GET_PRODUCT_CATEGORIES });
-    categoriesData = mapToHomeCategoriesData(categoriesResponse?.productCategories?.nodes ?? []);
+    categoriesData = mapToHomeCategoriesData(categoriesResult.data?.productCategories?.nodes ?? []);
+    productsData = mapToHomeProductsData(featuredResult.data?.products?.nodes ?? []);
 
-    const { data: featuredProductsResponse } = await client.query<{
-      products: { nodes: WPProductNode[] };
-    }>({
-      query: GET_FEATURED_PRODUCTS,
-      variables: { first: 50 },
-    });
-    productsData = mapToHomeProductsData(featuredProductsResponse?.products?.nodes ?? []);
-
-    const { data: postsResponse } = await client.query<{
-      posts: { nodes: WPPostNode[] };
-    }>({
-      query: GET_POSTS,
-      variables: { categoryName: KNOWLEDGE_CATEGORY, first: 4 },
-    });
     blogPostsData = {
       title: "База знаний",
       allHref: "/knowledge",
-      posts: (postsResponse?.posts?.nodes ?? []).map(mapToBlogPost),
+      posts: (postsResult.data?.posts?.nodes ?? []).map(mapToBlogPost),
     };
   } catch (e) {
     console.error("WP GraphQL error (home page categories/brands/posts):", e);
