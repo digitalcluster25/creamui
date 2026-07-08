@@ -78,28 +78,40 @@ export default async function ProductPageRoute({
 
   // Извлекаем highlights из характеристик для инфографики под галереей
   const highlights: { value: string; label: string }[] = [];
+  let volumeMin = "";
+  let volumeMax = "";
+  let volumeSingle = "";
+  let power = "";
+
   for (const group of productSpecsData.groups) {
     for (const row of group.rows) {
       const l = row.label.toLowerCase();
-      if (l.includes("объём парн") || l.includes("объем парн") || l.includes("максимальный объем") || l.includes("объём парного")) {
-        highlights.push({ value: row.value, label: "Объём парной" });
-      }
-      if ((l.includes("мощность") && !l.includes("макс")) || l.includes("номинальная")) {
-        highlights.push({ value: row.value, label: "Мощность" });
-      }
       if (l.includes("минимальный объем") || l.includes("минимальный объём")) {
-        // Если есть и min и max — объединим позже
-        const existing = highlights.find((h) => h.label === "Объём парной");
-        if (existing) {
-          existing.value = `${row.value} – ${existing.value}`;
-        } else {
-          highlights.push({ value: row.value, label: "Мин. объём парной" });
-        }
+        volumeMin = row.value;
+      } else if (l.includes("максимальный объем") || l.includes("максимальный объём")) {
+        volumeMax = row.value;
+      } else if ((l.includes("объём парн") || l.includes("объем парн") || l.includes("объём парного")) && !volumeSingle) {
+        volumeSingle = row.value;
+      }
+      if ((l.includes("мощность") && !l.includes("макс") && !l.includes("температур")) || (l.includes("номинальная") && l.includes("мощность"))) {
+        if (!power) power = row.value;
       }
     }
   }
-  // Для EasySteam — топливо из категорий
-  if (!highlights.find((h) => h.label === "Мощность")) {
+
+  // Объём парной
+  if (volumeMin && volumeMax) {
+    highlights.push({ value: `${volumeMin} – ${volumeMax}`, label: "Объём парной" });
+  } else if (volumeSingle) {
+    highlights.push({ value: volumeSingle, label: "Объём парной" });
+  } else if (volumeMax) {
+    highlights.push({ value: volumeMax, label: "Объём парной" });
+  }
+
+  // Мощность или топливо
+  if (power) {
+    highlights.push({ value: power, label: "Мощность" });
+  } else {
     const cats = productPageData.categories.map((c) => c.label.toLowerCase());
     if (cats.some((c) => c.includes("дров"))) {
       highlights.push({ value: "Дрова / Газ", label: "Топливо" });
