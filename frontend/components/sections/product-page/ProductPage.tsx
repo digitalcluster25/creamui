@@ -335,9 +335,12 @@ export function ProductPage({ data, contactChannels }: Props) {
 
         {/* Цена конкретной комбинации — показываем всегда для товаров с вариациями */}
         {data.variantGroups.length > 0 && (
-          <p className={styles.configPrice}>
-            Цена комплектации {currencySymbol}{formatMoney(displayedPrice, activeCurrency)}
-          </p>
+          <>
+            <hr className={styles.divider} />
+            <p className={styles.configPrice}>
+              Цена комплектации {currencySymbol}{formatMoney(displayedPrice, activeCurrency)}
+            </p>
+          </>
         )}
 
         <hr className={styles.divider} />
