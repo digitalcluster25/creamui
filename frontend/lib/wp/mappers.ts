@@ -25,6 +25,7 @@ export type WPProductNode = {
   productCategories?: { nodes: { name: string; slug: string }[] };
   productBrands?: { nodes: { name: string; slug: string }[] };
   hwsSpecs?: { label: string; value: string }[];
+  hwsSpecGroups?: { title: string; rows: { label: string; value: string }[] }[];
   hwsCommerceInfo?: {
     deliveryTitle?: string;
     deliveryText?: string;
@@ -359,12 +360,21 @@ export function mapToProductPageData(node: WPProductNode): ProductPageData {
   };
 }
 
-// hwsSpecs приходит уже разобранным с бэка (плагин hws-graphql-bridge парсит
-// _hws_specs_html на сервере) — здесь только оборачиваем в форму блока.
-// Группировки по секциям нет: на части товаров (VariableProduct/EasySteam) она
-// есть в исходных данных (_hws_source_payload.detail.specs[].section), но не на
-// всех — поэтому сейчас одна плоская группа, без угадывания структуры.
+// Характеристики товара: приоритет hwsSpecGroups (с группировкой),
+// fallback на hwsSpecs (плоский список → одна группа).
 export function mapToProductSpecsData(node: WPProductNode): ProductSpecsData {
+  // Новый формат с группами (плагин hws-specs-groups + graphql bridge)
+  if (node.hwsSpecGroups?.length) {
+    return {
+      sectionTitle: "Характеристики",
+      groups: node.hwsSpecGroups.map((g) => ({
+        title: g.title,
+        rows: g.rows,
+      })),
+    };
+  }
+
+  // Fallback: старый плоский hwsSpecs
   return {
     sectionTitle: "Характеристики",
     groups: node.hwsSpecs?.length

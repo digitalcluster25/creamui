@@ -113,6 +113,13 @@ export const GET_PRODUCT_BY_SLUG = gql`
           label
           value
         }
+        hwsSpecGroups {
+          title
+          rows {
+            label
+            value
+          }
+        }
         hwsCommerceInfo {
           deliveryTitle
           deliveryText
@@ -165,6 +172,13 @@ export const GET_PRODUCT_BY_SLUG = gql`
         hwsSpecs {
           label
           value
+        }
+        hwsSpecGroups {
+          title
+          rows {
+            label
+            value
+          }
         }
         hwsCommerceInfo {
           deliveryTitle
