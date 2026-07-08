@@ -16,7 +16,9 @@ export function ProductSpecs({ data }: Props) {
       <div className={[styles.card, expanded ? styles.cardExpanded : ""].filter(Boolean).join(" ")}>
         {data.groups.map((group) => (
           <div key={group.title} className={styles.group}>
-            <h3 className={styles.groupTitle}>{group.title}</h3>
+            {data.groups.length > 1 && group.title !== data.sectionTitle && (
+              <h3 className={styles.groupTitle}>{group.title}</h3>
+            )}
             <dl className={styles.rows}>
               {group.rows.map((row) => (
                 <div key={row.label} className={styles.row}>
