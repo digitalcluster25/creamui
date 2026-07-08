@@ -206,9 +206,10 @@ export function ProductPage({ data, contactChannels }: Props) {
 
         <div className={styles.priceRow}>
           <span className={styles.price}>
-            {currencySymbol}{formatMoney(displayedPrice, activeCurrency)}
-            {maxPrice > minPrice && (
-              <span className={styles.priceRange}> · от {currencySymbol}{formatMoney(displayedMinPrice, activeCurrency)} до {currencySymbol}{formatMoney(displayedMaxPrice, activeCurrency)}</span>
+            {maxPrice > minPrice ? (
+              <>от {currencySymbol}{formatMoney(displayedMinPrice, activeCurrency)} до {currencySymbol}{formatMoney(displayedMaxPrice, activeCurrency)}</>
+            ) : (
+              <>{currencySymbol}{formatMoney(displayedPrice, activeCurrency)}</>
             )}
           </span>
         </div>
@@ -332,9 +333,14 @@ export function ProductPage({ data, contactChannels }: Props) {
           )}
         </div>
 
-        <hr className={styles.divider} />
+        {/* Цена конкретной комбинации — появляется после выбора опций */}
+        {hasVariants && (
+          <p className={styles.configPrice}>
+            Цена комплектации {currencySymbol}{formatMoney(displayedPrice, activeCurrency)}
+          </p>
+        )}
 
-        {/* Contact panel */}
+        <hr className={styles.divider} />
         {(telegramHref || whatsappHref) && (
           <div className={styles.contactPanel}>
             <p className={styles.contactText}>Отправить конфигурацию товара менеджеру и обсудить детали</p>
