@@ -44,7 +44,7 @@ export type WPProductNode = {
   hwsVariantGroups?: {
     key: string;
     label: string;
-    options: { value: string; priceModifier: number }[];
+    options: { value: string; slug?: string; priceModifier: number }[];
   }[];
   attributes?: { nodes: { name: string; options: string[] }[] };
   variations?: {
@@ -226,16 +226,21 @@ function buildVariantEntries(
   const groups = node.hwsVariantGroups ?? [];
   if (groups.length === 0) return undefined;
 
-  // Строим карту: hwsVariantGroups key → Map<normalizedSlug, humanLabel>
-  // Плюс карту: pa_атрибут → hwsVariantGroups key
+  // Строим slug→label карту из hwsVariantGroups.options[].slug
+  // Если slug доступен — прямой маппинг. Если нет — fallback на нормализацию лейбла.
   const keyByAttr = new Map<string, string>(); // "pa_power" → "power"
   const slugToLabel = new Map<string, Map<string, string>>(); // key → (slug → label)
 
   for (const g of groups) {
     const labelMap = new Map<string, string>();
     for (const o of g.options) {
-      // "Серпентинит Бархат" → slug "серпентинит-бархат" → label "Серпентинит Бархат"
-      labelMap.set(toSlug(o.value), o.value);
+      if (o.slug) {
+        // Прямой маппинг: slug терма → лейбл (надёжный)
+        labelMap.set(toSlug(o.slug), o.value);
+      } else {
+        // Fallback: нормализация лейбла (для EasySteam без slug-ов)
+        labelMap.set(toSlug(o.value), o.value);
+      }
     }
     slugToLabel.set(g.key, labelMap);
   }

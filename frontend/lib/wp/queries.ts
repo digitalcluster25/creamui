@@ -200,6 +200,7 @@ export const GET_PRODUCT_BY_SLUG = gql`
           label
           options {
             value
+            slug
             priceModifier
           }
         }
