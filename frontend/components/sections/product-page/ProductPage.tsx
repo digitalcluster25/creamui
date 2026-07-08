@@ -3,6 +3,12 @@
 import { useState, useRef, useEffect } from "react";
 import type { ProductPageData } from "@/lib/types/productPage";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs/Breadcrumbs";
+import { useCurrency } from "@/components/providers/CurrencyProvider";
+import {
+  convertPrice,
+  formatMoney,
+  getCurrencySymbol,
+} from "@/lib/currency/format";
 import styles from "./ProductPage.module.css";
 
 /* ── Icons ── */
@@ -15,11 +21,6 @@ const WA_ICON = <svg viewBox="0 0 448 512" fill="currentColor" aria-hidden="true
 const DELIVERY_ICON = <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.5A2.5 2.5 0 0 1 5.5 4h9A2.5 2.5 0 0 1 17 6.5V8h1.4c.7 0 1.35.33 1.76.9l1.44 2.02c.26.37.4.8.4 1.25V17h-2.05a2.75 2.75 0 0 1-5.4 0h-5.1a2.75 2.75 0 0 1-5.4 0H3V6.5Zm2 0V15h.55a2.75 2.75 0 0 1 4.9 0H15V6.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5Zm12 3.5v5h.55a2.75 2.75 0 0 1 2.45-1.5V12.2a.2.2 0 0 0-.04-.12L18.52 10H17ZM6.75 16a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm10.5 0a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Z"/></svg>;
 const PAYMENT_ICON = <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm0 2v2h16V7H4Zm0 5v5h16v-5H4Zm2 2h5v2H6v-2Z"/></svg>;
 const WARRANTY_ICON = <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 3 6v6c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V6L12 2Zm-1 13-3-3 1.41-1.41L11 12.17l4.59-4.58L17 9l-6 6Z"/></svg>;
-
-function formatPrice(n: number, currency?: string) {
-  const locale = currency === "₽" ? "ru-RU" : "en-US";
-  return n.toLocaleString(locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-}
 
 type ContactChannels = { whatsappNumber?: string; telegramUsername?: string };
 type Props = { data: ProductPageData; contactChannels?: ContactChannels };
@@ -36,6 +37,7 @@ export function ProductPage({ data, contactChannels }: Props) {
   const [activeImg, setActiveImg] = useState(0);
   const [variants, setVariants] = useState<Record<string, string>>(() => buildDefaults(data.variantGroups));
   const [qty, setQty] = useState(1);
+  const { activeCurrency, rates } = useCurrency();
   const dragStartX = useRef<number | null>(null);
   // window.location.href различается между сервером и первой клиентской отрисовкой —
   // подставляем после монтирования через эффект, иначе React ругается на hydration mismatch.
@@ -90,6 +92,7 @@ export function ProductPage({ data, contactChannels }: Props) {
   }, 0);
 
   const effectivePrice = matchedVariant?.price ?? (data.price + priceModifierTotal);
+  const displayedPrice = convertPrice(effectivePrice, data.baseCurrencyCode, activeCurrency, rates);
 
   const variantPrices = data.variantEntries?.map((entry) => entry.price);
   const minPrice = variantPrices?.length ? Math.min(...variantPrices) : data.price;
@@ -99,6 +102,9 @@ export function ProductPage({ data, contactChannels }: Props) {
       const maxMod = Math.max(...group.options.map((o) => o.priceModifier ?? 0));
       return sum + maxMod;
     }, 0);
+  const displayedMinPrice = convertPrice(minPrice, data.baseCurrencyCode, activeCurrency, rates);
+  const displayedMaxPrice = convertPrice(maxPrice, data.baseCurrencyCode, activeCurrency, rates);
+  const currencySymbol = getCurrencySymbol(activeCurrency);
 
   // Сообщение для менеджера — название товара, ссылка, выбранная конфигурация и итоговая цена.
   const messageText = (() => {
@@ -109,7 +115,7 @@ export function ProductPage({ data, contactChannels }: Props) {
         .join(", ");
       lines.push(`Конфигурация: ${config}`);
     }
-    lines.push(`Цена: ${data.currency}${formatPrice(effectivePrice, data.currency)}`);
+    lines.push(`Цена: ${currencySymbol}${formatMoney(displayedPrice, activeCurrency)}`);
     if (pageUrl) lines.push(pageUrl);
     return lines.join("\n");
   })();
@@ -200,9 +206,9 @@ export function ProductPage({ data, contactChannels }: Props) {
 
         <div className={styles.priceRow}>
           <span className={styles.price}>
-            {data.currency}{formatPrice(effectivePrice, data.currency)}
-            {maxPrice > minPrice && (
-              <span className={styles.priceRange}> · диапазон {data.currency}{formatPrice(minPrice, data.currency)} – {data.currency}{formatPrice(maxPrice, data.currency)}</span>
+            {currencySymbol}{formatMoney(displayedPrice, activeCurrency)}
+            {maxPrice > minPrice && !matchedVariant && (
+              <span className={styles.priceRange}> · от {currencySymbol}{formatMoney(displayedMinPrice, activeCurrency)} до {currencySymbol}{formatMoney(displayedMaxPrice, activeCurrency)}</span>
             )}
           </span>
         </div>
@@ -242,9 +248,7 @@ export function ProductPage({ data, contactChannels }: Props) {
           </p>
         )}
 
-        {data.description && (
-          <div className={styles.description} dangerouslySetInnerHTML={{ __html: data.description }} />
-        )}
+        {data.description && <div className={styles.description}>{data.description}</div>}
 
         {/* Дизайн/облицовка — навигация между товарами одной модели в разной облицовке,
             не вариации цены внутри одного товара (см. hwsFacingOptions). */}
@@ -311,7 +315,7 @@ export function ProductPage({ data, contactChannels }: Props) {
                     >
                       {opt.value}
                       {opt.priceModifier ? (
-                        <span className={styles.swatchPrice}>+{data.currency}{formatPrice(opt.priceModifier, data.currency)}</span>
+                        <span className={styles.swatchPrice}>+{currencySymbol}{formatMoney(convertPrice(opt.priceModifier, data.baseCurrencyCode, activeCurrency, rates), activeCurrency)}</span>
                       ) : null}
                     </button>
                   );
