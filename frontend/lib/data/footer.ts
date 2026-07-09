@@ -6,12 +6,12 @@ export const footerData: FooterData = {
       id: "products",
       title: "Товары",
       links: [
-        { id: "1", label: "Печи для русской бани", href: "#" },
-        { id: "2", label: "Печи для сауны", href: "#" },
-        { id: "3", label: "Печи для хаммама", href: "#" },
-        { id: "4", label: "Коммерческие печи", href: "#" },
-        { id: "5", label: "Парогенераторы", href: "#" },
-        { id: "6", label: "Аксессуары для бани", href: "#" },
+        { id: "1", label: "Печи для русской бани", href: "/catalog/russian-bath-stoves" },
+        { id: "2", label: "Печи для сауны", href: "/catalog/sauna-stoves" },
+        { id: "3", label: "Парогенераторы и хаммам", href: "/catalog/steam-generators-and-hammam" },
+        { id: "4", label: "Коммерческие решения", href: "/catalog/commercial" },
+        { id: "5", label: "Пульты и автоматика", href: "/catalog/control-units" },
+        { id: "6", label: "Аксессуары", href: "/catalog/accessories" },
       ],
     },
     {
