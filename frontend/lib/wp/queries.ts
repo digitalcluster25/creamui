@@ -101,6 +101,9 @@ export const GET_PRODUCT_BY_SLUG = gql`
           nodes {
             name
             slug
+            parent {
+              node { name slug }
+            }
           }
         }
         productBrands {
@@ -161,6 +164,9 @@ export const GET_PRODUCT_BY_SLUG = gql`
           nodes {
             name
             slug
+            parent {
+              node { name slug }
+            }
           }
         }
         productBrands {

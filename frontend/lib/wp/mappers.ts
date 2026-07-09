@@ -22,7 +22,7 @@ export type WPProductNode = {
   sku?: string;
   image?: { sourceUrl: string; altText: string } | null;
   galleryImages?: { nodes: { sourceUrl: string; altText: string }[] };
-  productCategories?: { nodes: { name: string; slug: string }[] };
+  productCategories?: { nodes: { name: string; slug: string; parent?: { node: { name: string; slug: string } } | null }[] };
   productBrands?: { nodes: { name: string; slug: string }[] };
   hwsSpecs?: { label: string; value: string }[];
   hwsSpecGroups?: { title: string; rows: { label: string; value: string }[] }[];
@@ -316,12 +316,25 @@ function buildVariantEntries(
 export function mapToProductPageData(node: WPProductNode): ProductPageData {
   const price = parsePrice(node.price);
   const priceOld = node.salePrice ? parsePrice(node.regularPrice) : undefined;
-  const categories =
-    node.productCategories?.nodes.map((c) => ({
-      label: c.name,
-      href: `/catalog/${c.slug}`,
-    })) ?? [];
-  const primaryCategory = categories[0];
+  const rawCategories = node.productCategories?.nodes ?? [];
+  const categories = rawCategories.map((c) => ({
+    label: c.name,
+    href: `/catalog/${c.slug}`,
+    parentSlug: c.parent?.node?.slug ?? null,
+  }));
+
+  // Для хлебных крошек: находим самую глубокую категорию (у которой есть parent)
+  // и строим цепочку parent → child
+  const childCat = categories.find((c) => c.parentSlug !== null);
+  const parentCat = childCat
+    ? categories.find((c) => c.href === `/catalog/${childCat.parentSlug}`) ?? null
+    : null;
+
+  const breadcrumbCategories = parentCat && childCat
+    ? [parentCat, childCat]
+    : categories.length > 0
+      ? [categories[0]]
+      : [];
 
   const variantEntries = buildVariantEntries(node);
 
@@ -334,11 +347,11 @@ export function mapToProductPageData(node: WPProductNode): ProductPageData {
     breadcrumbs: [
       { label: "Главная", href: "/" },
       { label: "Каталог", href: "/catalog" },
-      ...(primaryCategory ? [primaryCategory] : []),
+      ...breadcrumbCategories.map((c) => ({ label: c.label, href: c.href })),
       { label: node.name },
     ],
     title: node.name,
-    categories,
+    categories: categories.map((c) => ({ label: c.label, href: c.href })),
     priceOld,
     price,
     baseCurrencyCode: getCurrencyCode(node.price),
