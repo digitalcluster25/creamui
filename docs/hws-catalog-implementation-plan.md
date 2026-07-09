@@ -1,213 +1,260 @@
 # HWS Catalog Implementation Plan
 
+Updated: `2026-07-09`
+
 ## Purpose
 
-This document turns the approved catalog program and Phase 1 taxonomy into an implementation sequence tied to the current codebase and the live backend contour.
+This is the working execution plan for the HWS catalog rebuild.
 
-## Current state summary
+It is not a concept note. It is the task order, ownership split, dependencies, and acceptance checklist for the next implementation steps.
 
-### Frontend
+Related source docs:
+- [hws-catalog-program.md](/Users/macbookpro/Coding/creamui/docs/hws-catalog-program.md)
+- [hws-catalog-phase-1-taxonomy.md](/Users/macbookpro/Coding/creamui/docs/hws-catalog-phase-1-taxonomy.md)
+- [hws-catalog-backend-audit.md](/Users/macbookpro/Coding/creamui/docs/hws-catalog-backend-audit.md)
 
-Current catalog storefront is driven by:
-- [frontend/lib/wp/header.ts](/Users/macbookpro/Coding/creamui/frontend/lib/wp/header.ts)
-- [frontend/lib/wp/queries.ts](/Users/macbookpro/Coding/creamui/frontend/lib/wp/queries.ts)
-- [frontend/lib/wp/mappers.ts](/Users/macbookpro/Coding/creamui/frontend/lib/wp/mappers.ts)
-- [frontend/app/catalog/page.tsx](/Users/macbookpro/Coding/creamui/frontend/app/catalog/page.tsx)
-- [frontend/app/catalog/[category]/page.tsx](/Users/macbookpro/Coding/creamui/frontend/app/catalog/[category]/page.tsx)
-- [frontend/components/sections/catalog/Catalog.tsx](/Users/macbookpro/Coding/creamui/frontend/components/sections/catalog/Catalog.tsx)
-- [frontend/components/primitives/header/MainNav.tsx](/Users/macbookpro/Coding/creamui/frontend/components/primitives/header/MainNav.tsx)
+## Current status
 
-Observed constraints:
-- main navigation currently derives catalog items from the WP category tree
-- category cards in the header depend on a hardcoded icon map
-- category pages currently support only one real filter: brand
-- product cards use the first returned WooCommerce category as the visible category label
-- home category order is still tied to old slugs such as `hammam-stoves` and `commercial-bath-stoves`
+### Done
 
-### Backend
+- canonical top-level catalog structure approved
+- duplicate top-level split between `Парогенераторы` and `Хаммам` removed
+- live WooCommerce category tree reworked to the new backbone
+- initial live product recategorization completed for existing published products
+- frontend header menu switched to the new category tree
+- frontend footer links switched to the new category tree
+- product card category label logic improved so child category can be shown instead of a random first category
+- local skills created for `program`, `backend`, `frontend`, `content`, `seo`
 
-Live WordPress contour:
-- host: `69.62.121.157`
-- WordPress stack: `/docker/wpsandbox`
-- frontend stack: `/opt/hws-frontend`
+### Partially done
 
-Observed backend facts:
-- WordPress is Docker-based
-- source taxonomy and product data live in `wpsandbox`
-- the server contains import/update helpers inside `/docker/wpsandbox` and `wp-content`
-- a custom brand-oriented commerce plugin already exists in the repo:
-  [wp-plugins/hws-commerce-info/hws-commerce-info.php](/Users/macbookpro/Coding/creamui/wp-plugins/hws-commerce-info/hws-commerce-info.php)
+- backend category tree exists, but attribute model is still incomplete
+- frontend category pages work, but branch-specific filters are not implemented yet
+- supplier assortment mapping is approved at a high level, but not yet converted into import-ready matrices
+- SEO structure is defined, but indexation and landing implementation are not applied yet
 
-### Content and import
+### Not done
 
-Supplier content is partially represented by manual scripts and JSON artifacts on the server. The next step is to normalize supplier-to-category mapping before adding more content.
+- normalized product matrix for all supplier lines
+- attribute completion in WooCommerce
+- branch-specific filter panels
+- brand hubs and series landing pages
+- SEO metadata, indexation rules, canonical rules, internal linking rollout
 
-## Delivery order
+## Execution streams
 
-Implementation must follow this order:
+### Stream 1. Backend
 
-1. Backend taxonomy
-2. Content normalization and import mapping
-3. Frontend navigation and category rendering
-4. SEO rollout
+Skill:
+- `.agents/skills/hws-catalog-backend`
 
-Do not start final frontend architecture before the backend category truth is stable.
+Goal:
+- make WordPress taxonomy and attributes the only long-term source of truth for catalog structure and filters
 
-## Stream 1: Backend taxonomy
-
-### Goal
-
-Make WooCommerce and GraphQL express the approved catalog tree directly.
-
-### Tasks
-
-1. Create or rename top-level product categories in `wpsandbox` to match Phase 1.
-2. Create required child categories under each top-level section.
-3. Add or normalize structured attributes:
+Tasks:
+1. Finalize child branches under each top-level section where placeholders still exist.
+2. Create or normalize missing attributes:
    - equipment type
-   - fuel type
-   - room type
-   - power
    - voltage
-   - steam-room volume
-   - home/commercial
    - series
-4. Define one primary category per product.
-5. Verify GraphQL returns the category tree and product assignments correctly.
+   - room type where needed
+   - commercial or home usage
+3. Decide how primary category is stored and verified during imports.
+4. Verify GraphQL returns parent and child categories, brands, prices, media, and attributes needed by the frontend.
+5. Remove any remaining frontend assumptions that exist only because backend data is incomplete.
 
-### Affected places
+Acceptance:
+- every imported product has one primary category
+- backend exposes enough structure for filters without frontend hardcoding
+- GraphQL shape is stable for catalog pages
 
-Server-side:
-- `/docker/wpsandbox`
-- `/docker/wpsandbox/wp-content`
-- WooCommerce taxonomy and attribute data in WordPress DB
+### Stream 2. Content / parser
 
-Repo-side:
-- `wp-plugins/` if additional admin or GraphQL exposure is needed
+Skill:
+- `.agents/skills/hws-catalog-content-parser`
 
-### Acceptance criteria
+Goal:
+- turn supplier assortments into normalized import-ready catalog data
 
-- all approved catalog branches exist in WooCommerce
-- each mapped supplier product has exactly one primary branch
-- GraphQL can power the new menu and category pages without frontend hacks
-
-## Stream 2: Content and parser
-
-### Goal
-
-Normalize supplier assortments and align them with the approved category tree.
-
-### Tasks
-
-1. Build normalized supplier matrix:
+Tasks:
+1. Build one normalized matrix per supplier:
    - brand
    - series
-   - product
-   - category
-   - attributes
-2. Mark ambiguous placements explicitly.
-3. Prepare import/update artifacts for `wpsandbox`.
-4. Fill missing content:
-   - descriptions
-   - specs
+   - product title
+   - primary HWS category
+   - equipment type
+   - fuel or power source
+   - power
+   - room volume
+   - voltage
+   - description
    - images
-   - docs
-   - brand/series relations
-5. Verify imported products in GraphQL.
+   - documents
+2. Split supplier navigation from HWS navigation.
+3. Mark ambiguous mappings explicitly instead of guessing.
+4. Prepare import artifacts for WooCommerce.
+5. Load products in waves by supplier or by branch.
 
-### Suppliers
+Acceptance:
+- every supplier SKU or series has one proposed primary HWS category
+- no accessories or engineering items leak into stove listings
+- content import payloads are ready for backend load
 
-- VVD
-- EasySteam
-- Sangens
-- EOS
+### Stream 3. Frontend
 
-### Acceptance criteria
+Skill:
+- `.agents/skills/hws-catalog-frontend`
 
-- every supplier line is mapped to an approved HWS branch
-- no engineering item is accidentally mixed into retail stove branches
-- no retail product remains uncategorized
+Goal:
+- make storefront navigation and category pages follow the approved catalog tree and real backend data
 
-## Stream 3: Frontend
+Tasks:
+1. Keep top navigation aligned with live taxonomy.
+2. Add subcategory entry blocks on category pages before deep filters.
+3. Replace generic filter UI with branch-specific filters:
+   - `russian-bath-stoves`
+   - `sauna-stoves`
+   - `steam-generators-and-hammam`
+   - later the engineering branches
+4. Add category intro and bottom SEO blocks to major landings.
+5. Add brand shortcuts on category pages where they help discovery.
+6. Add empty-state and fallback behavior for branches with no products yet.
 
-### Goal
+Acceptance:
+- menu uses only approved top-level intents
+- category pages show subcategory navigation before filter overload
+- filters depend on current branch, not on one global schema
+- listing composition stays semantically correct
 
-Make the storefront reflect the new catalog structure and backend truth.
+### Stream 4. SEO
 
-### Tasks
+Skill:
+- `.agents/skills/hws-catalog-seo`
 
-1. Update header navigation generation in [frontend/lib/wp/header.ts](/Users/macbookpro/Coding/creamui/frontend/lib/wp/header.ts).
-2. Replace outdated slug assumptions:
-   - `hammam-stoves`
-   - `steam-generators`
-   - `bath-accessories`
-   - any other old branch names
-3. Update category query and category-page behavior:
-   - support the new hierarchy
-   - expose correct breadcrumbs
-   - avoid semantically wrong parent links
-4. Upgrade [frontend/components/sections/catalog/Catalog.tsx](/Users/macbookpro/Coding/creamui/frontend/components/sections/catalog/Catalog.tsx):
-   - keep brand filter
-   - add branch-relevant filters after backend attributes exist
-   - separate subcategory navigation from filters
-5. Fix product category labeling in [frontend/lib/wp/mappers.ts](/Users/macbookpro/Coding/creamui/frontend/lib/wp/mappers.ts) so visible category text does not depend on the first arbitrary category node.
-6. Update home/category promo blocks that still assume the old structure.
+Goal:
+- convert the catalog tree into a clean indexable structure without facet junk
 
-### Acceptance criteria
-
-- menu follows the approved top-level structure
-- category pages render only relevant products
-- filter UI depends on the current catalog branch
-- category labels shown on cards are correct
-
-## Stream 4: SEO
-
-### Goal
-
-Apply the approved crawlable URL and landing structure without generating facet junk.
-
-### Tasks
-
-1. Lock final slug set from Phase 1.
-2. Define which branches are indexable.
-3. Define which filter states must be canonicalized or noindexed.
-4. Add SEO copy, H1, metadata, breadcrumbs, and FAQ blocks to key landings.
-5. Build internal links between:
-   - category hubs
-   - brand pages
+Tasks:
+1. Lock final indexable pages:
+   - top-level categories
+   - meaningful child categories
+   - brand hubs
    - selected series pages
-   - commercial landings
+2. Define canonical behavior for sort, pagination, and filter combinations.
+3. Write metadata rules for category, brand, and series landings.
+4. Add breadcrumbs and internal linking rules.
+5. Define which filter states are noindex or canonicalized.
 
-### Acceptance criteria
+Acceptance:
+- one landing per real search intent
+- no duplicate intent pages
+- no crawlable junk combinations
 
-- indexable pages map to real search intents
-- no duplicate top-level intent pages remain
-- no random filter combinations are left open for indexing
+## Dependency order
 
-## Concrete milestones
+Work must go in this order:
 
-### Milestone A
+1. Backend category and attribute truth
+2. Supplier normalization and import mapping
+3. Frontend category templates and filters
+4. SEO rollout on top of stable URLs and page types
 
-Backend taxonomy ready in `wpsandbox`.
+Reason:
+- if filters or SEO landings are built before backend truth and content mapping are stable, they will be wrong and will need to be rebuilt
 
-### Milestone B
+## Concrete work queue
 
-Supplier mapping matrix imported or staged.
+### Phase A. Stabilize backend data model
 
-### Milestone C
+Owner:
+- backend
 
-Frontend menu and category pages migrated to the new tree.
+Tasks:
+1. Audit live attributes in WooCommerce.
+2. Add missing attributes and agreed term sets.
+3. Verify GraphQL exposure for those attributes.
+4. Document the primary category rule for imports.
 
-### Milestone D
+Exit:
+- backend can fully describe the catalog without frontend taxonomy hacks
 
-SEO landing rules and metadata applied.
+### Phase B. Build supplier matrices
+
+Owner:
+- content / parser
+
+Tasks:
+1. VVD matrix
+2. EasySteam matrix
+3. Sangens matrix
+4. EOS matrix
+5. ambiguous item register
+
+Exit:
+- import-ready mapping exists for all priority suppliers
+
+### Phase C. Import products in controlled waves
+
+Owner:
+- backend + content
+
+Suggested order:
+1. EasySteam bath stove lines
+2. Sangens sauna lines
+3. VVD steam-thermal and steam generators
+4. EOS sauna and commercial lines
+5. accessories and engineering branches
+
+Exit:
+- live catalog has enough real products to support true category and filter QA
+
+### Phase D. Rebuild category pages
+
+Owner:
+- frontend
+
+Tasks:
+1. main category hub template
+2. subcategory grid block
+3. branch-aware filters
+4. brand shortcut block
+5. SEO intro and FAQ block
+
+Exit:
+- top catalog branches are usable even with larger product counts
+
+### Phase E. SEO rollout
+
+Owner:
+- seo
+
+Tasks:
+1. titles and H1 patterns
+2. meta description patterns
+3. canonical and noindex logic
+4. internal linking blocks
+5. brand and series landing strategy
+
+Exit:
+- catalog can scale without duplication or crawl waste
 
 ## Immediate next actions
 
-1. Audit existing WooCommerce categories and attributes in `wpsandbox`.
-2. Compare live category slugs against Phase 1 target slugs.
-3. Produce a migration table:
-   - current slug
-   - target slug
-   - keep / rename / merge / remove
-4. Only after that begin taxonomy changes and content remapping.
+These are the next actual tasks, in order:
+
+1. Complete WooCommerce attribute model for filters.
+2. Build the normalized import matrix for `EasySteam`.
+3. Import the first large product wave into live `wpsandbox`.
+4. Upgrade the category page template to show subcategories and branch-specific filters.
+5. After real product density appears, apply SEO landing logic.
+
+## Verification checklist
+
+Before closing each phase, verify:
+
+- the same category logic exists in backend, content mapping, frontend, and SEO rules
+- `Парогенераторы и хаммам` remains one top-level intent
+- every product has one semantically correct primary category
+- filters reflect the current branch only
+- no temporary frontend override remains undocumented
+
