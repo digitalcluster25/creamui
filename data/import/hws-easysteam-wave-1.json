@@ -188,8 +188,11 @@
       "seriesName": "VIVARTE",
       "seriesSlug": "vivarte",
       "source": {
-        "seriesPageUrl": "https://easysteam.ru/products/stoves",
-        "seedSkuUrls": [],
+        "seriesPageUrl": "https://easysteam.ru/products/stoves/pechi/elektricheskie-pechi",
+        "seedSkuUrls": [
+          "https://easysteam.ru/products/show/1ea4a80c-1619-4fc1-9f38-20d4968d738b",
+          "https://easysteam.ru/products/show/e719db04-f449-4100-9316-c5117c99fc12"
+        ],
         "docCandidates": []
       },
       "target": {

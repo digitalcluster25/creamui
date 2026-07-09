@@ -1,0 +1,2604 @@
+{
+  "supplier": "EasySteam",
+  "wave": "wave-1-retail-bath-stoves",
+  "updated": "2026-07-09",
+  "sourceRoot": "https://easysteam.ru",
+  "buildOptions": {
+    "maxProductsPerSeries": 4,
+    "fetchTimeoutSeconds": 12
+  },
+  "brand": {
+    "name": "EasySteam",
+    "slug": "easysteam"
+  },
+  "scope": {
+    "includeSeries": [
+      "Анапа",
+      "Сочи",
+      "Геленджик",
+      "Южная",
+      "VIVARTE"
+    ],
+    "excludeSeries": [
+      "Ялта",
+      "Анапа К",
+      "Сочи К",
+      "Геленджик К",
+      "Домна",
+      "Ялта К",
+      "MONTFORT"
+    ]
+  },
+  "parserContract": {
+    "discoverSkuCardsFromSeriesPage": true,
+    "createOneParentProductPerSupplierSkuFamily": true,
+    "preserveSourcePayloadJson": true,
+    "buildSpecsHtmlFromStructuredSpecs": true,
+    "buildSpecsGroupsFromStructuredSpecs": true,
+    "setPrimaryCategoryFromManifest": true,
+    "doNotInferMissingVoltage": true,
+    "doNotImportOutOfScopeSeries": true
+  },
+  "series": [
+    {
+      "seriesName": "Анапа",
+      "seriesSlug": "anapa",
+      "seriesPageUrl": "https://easysteam.ru/products/stoves/pechi/anapa",
+      "seriesIntro": null,
+      "target": {
+        "primaryCategoryPath": "russian-bath-stoves/wood-bath-stoves",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Анапа",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "Анапа",
+        "pa_equipment-type": "wood-bath-stove",
+        "pa_room-type": "russian-bath",
+        "pa_usage-class": "private"
+      },
+      "docCandidates": [
+        "https://easysteam.ru/files/shares/Documents/Passports/Anapa%2CSochi_100523_1.pdf"
+      ],
+      "cards": [
+        {
+          "source_url": "https://easysteam.ru/products/show/b3e6389b-75f9-4605-ab89-b65afd2c1bb2",
+          "source_type": "show_page",
+          "title": "Печь Анапа",
+          "subtitle": "базовая модель",
+          "price_text": "139 700 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/ASG_2026/Anapa/Gaz_shtoki/Shtok_metal+3st.png",
+          "option_count": 0,
+          "options": []
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/e7b31fd0-202c-43cf-bfbf-153dd6bed865",
+          "source_type": "show_page",
+          "title": "Печь Анапа М2",
+          "subtitle": "базовая модель",
+          "price_text": "145 500 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/ASG_2026/Anapa/Gaz_shtoki/Shtok_metal+3st.png",
+          "option_count": 1,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/m2pravo.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Anapa/m2_prostaya/anapa.jpg",
+              "price_text": "145 500 ₽",
+              "is_default": false,
+              "sort_order": 0
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/0e247cf8-f0cb-4d0b-b506-503aaac83f64",
+          "source_type": "show_page",
+          "title": "Печь Анапа",
+          "subtitle": "в наборном полноценном кожухе с закрытым верхом",
+          "price_text": "285 500 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/Dlya_gaza/Anapa/Nab_OV_ZV/Shtok_anapa.png",
+          "option_count": 1,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Anapa/Nab_ZV/Anapa_talk_ZV.png",
+              "price_text": "285 500 ₽",
+              "is_default": false,
+              "sort_order": 0
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/fe05a16f-380f-49d1-8457-9af625eb7357",
+          "source_type": "show_page",
+          "title": "Печь Анапа",
+          "subtitle": "в наборном полноценном кожухе с открытым верхом",
+          "price_text": "282 200 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/Dlya_gaza/Anapa/Nab_OV_ZV/Shtok_anapa.png",
+          "option_count": 1,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Anapa/Nab_OV/Anapa_talk_OV.png",
+              "price_text": "282 200 ₽",
+              "is_default": false,
+              "sort_order": 0
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/6c68e4c7-980c-4f9f-ac2a-f0846557815b",
+          "source_type": "show_page",
+          "title": "Печь Анапа",
+          "subtitle": "в полноценном кожухе с закрытым верхом",
+          "price_text": "328 400 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/ASG_2026/Anapa/Gaz_shtoki/Shtok_ZV+OV.png",
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/ASG_2026/Anapa/Poln_ZV/Anapa_talk_ZV_2.png",
+              "price_text": "328 400 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zh_ikon.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/ASG_2026/Anapa/Poln_ZV/Anapa_piroksenit_ZV_2.png",
+              "price_text": "303 600 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/621c86c0-e348-4105-a32f-e30d80096428",
+          "source_type": "show_page",
+          "title": "Печь Анапа М2",
+          "subtitle": "в полноценном кожухе с закрытым верхом",
+          "price_text": "334 200 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/ASG_2026/Anapa/Gaz_shtoki/Shtok_ZV+OV.png",
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/ASG_2026/Anapa/M2_Poln_ZV/Anapa_M2_talk_ZV_2.png",
+              "price_text": "334 200 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zh_ikon.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/ASG_2026/Anapa/M2_Poln_ZV/Anapa_M2_piroksenit_ZV_2.png",
+              "price_text": "309 400 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/3b7bdb06-0412-4920-a480-ef472c6497b7",
+          "source_type": "show_page",
+          "title": "Печь Анапа",
+          "subtitle": "в полноценном кожухе с открытым верхом",
+          "price_text": "320 100 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/ASG_2026/Anapa/Gaz_shtoki/Shtok_ZV+OV.png",
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/ASG_2026/Anapa/Poln_OV/Anapa_talk_OV_2.png",
+              "price_text": "320 100 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zh_ikon.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/ASG_2026/Anapa/Poln_OV/Anapa_piroksenit_OV_2.png",
+              "price_text": "296 500 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/3bc6f8ad-2110-4543-a982-4b6cc0da54e6",
+          "source_type": "show_page",
+          "title": "Печь Анапа М2",
+          "subtitle": "в полноценном кожухе с открытым верхом",
+          "price_text": "325 900 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/ASG_2026/Anapa/Gaz_shtoki/Shtok_ZV+OV.png",
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/ASG_2026/Anapa/M2_Poln_OV/Anapa_M2_talk_OV_2.png",
+              "price_text": "325 900 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zh_ikon.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/ASG_2026/Anapa/M2_Poln_OV/Anapa_M2_piroksenit_OV_2.png",
+              "price_text": "302 300 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/9c2d10ad-443e-44ec-aa03-d6b5198bbc8a",
+          "source_type": "show_page",
+          "title": "Печь Анапа",
+          "subtitle": "в полноценном кожухе с боковым подключением с закрытым верхом",
+          "price_text": "360 300 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/ASG_2026/Anapa/Gaz_shtoki/Shtok_BP_ZV+OV.png",
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/ASG_2026/Anapa/BP_ZV/Anapa_BP_talk_ZV_2.png",
+              "price_text": "360 300 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zh_ikon.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/ASG_2026/Anapa/BP_ZV/Anapa_BP_piroksenit_ZV_2.png",
+              "price_text": "332 800 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/0c14c444-aa5f-46a8-98bf-f95aabcfd77d",
+          "source_type": "show_page",
+          "title": "Печь Анапа",
+          "subtitle": "в трехстороннем кожухе с закрытым верхом",
+          "price_text": "285 500 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/ASG_2026/Anapa/Gaz_shtoki/Shtok_metal+3st.png",
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/ASG_2026/Anapa/3st_ZV/Anapa_talk_3st_ZV_2.png",
+              "price_text": "285 500 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zh_ikon.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/ASG_2026/Anapa/3st_ZV/Anapa_piroksenit_3st_ZV_2.png",
+              "price_text": "266 200 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/ca89c210-18e5-4026-9cc0-0600d20467e3",
+          "source_type": "show_page",
+          "title": "Печь Анапа М2",
+          "subtitle": "в трехстороннем кожухе с закрытым верхом",
+          "price_text": "291 300 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/ASG_2026/Anapa/Gaz_shtoki/Shtok_metal+3st.png",
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/ASG_2026/Anapa/M2_3st_ZV/Anapa_M2_talk_3st_ZV_2.png",
+              "price_text": "291 300 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zh_ikon.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/ASG_2026/Anapa/M2_3st_ZV/Anapa_M2_piroksenit_3st_ZV_2.png",
+              "price_text": "272 000 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/9f7f1834-e1ff-45a8-8b80-f7cbe917d31e",
+          "source_type": "show_page",
+          "title": "Печь Анапа",
+          "subtitle": "в трехстороннем кожухе с открытым верхом",
+          "price_text": "282 200 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/ASG_2026/Anapa/Gaz_shtoki/Shtok_metal+3st.png",
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/ASG_2026/Anapa/3st_OV/Anapa_talk_3st_OV_2.png",
+              "price_text": "282 200 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zh_ikon.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/ASG_2026/Anapa/3st_OV/Anapa_piroksenit_3st_OV_2.png",
+              "price_text": "263 500 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/b3989f37-9788-4bfe-bdae-467690f557fe",
+          "source_type": "show_page",
+          "title": "Печь Анапа М2",
+          "subtitle": "в трехстороннем кожухе с открытым верхом",
+          "price_text": "288 000 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/ASG_2026/Anapa/Gaz_shtoki/Shtok_metal+3st.png",
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/ASG_2026/Anapa/M2_3st_OV/Anapa_M2_talk_3st_OV_2.png",
+              "price_text": "288 000 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zh_ikon.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/ASG_2026/Anapa/M2_3st_OV/Anapa_M2_piroksenit_3st_OV_2.png",
+              "price_text": "269 300 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/907be1c7-ac7a-4923-8356-e5537d8ec44c",
+          "source_type": "show_page",
+          "title": "Печь Анапа",
+          "subtitle": "в трехстороннем кожухе с боковым подключением с закрытым верхом",
+          "price_text": "318 500 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/ASG_2026/Anapa/Gaz_shtoki/Shtok_BP_3st_ZV+OV.png",
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/ASG_2026/Anapa/BP_3st_ZV/Anapa_BP_talk_3st_ZV_2.png",
+              "price_text": "318 500 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zh_ikon.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/ASG_2026/Anapa/BP_3st_ZV/Anapa_BP_piroksenit_3st_ZV_2.png",
+              "price_text": "296 500 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/02b88d4f-2121-4074-88db-421b4a59b738",
+          "source_type": "show_page",
+          "title": "Печь Анапа",
+          "subtitle": "в трехстороннем кожухе с открытым верхом с боковым подключением",
+          "price_text": "318 500 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/ASG_2026/Anapa/Gaz_shtoki/Shtok_BP_3st_ZV+OV.png",
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/ASG_2026/Anapa/M2_BP_3st_OV/Anapa_M2_BP_talk_3st_OV_2.png",
+              "price_text": "318 500 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zh_ikon.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/ASG_2026/Anapa/M2_BP_3st_OV/Anapa_M2_BP_piroksenit_3st_OV_2.png",
+              "price_text": "296 500 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        }
+      ],
+      "products": [
+        {
+          "source_url": "https://easysteam.ru/products/product/1000026",
+          "title": "Печь Анапа базовая модель",
+          "article": "1000026",
+          "series_url": "https://easysteam.ru/products/stoves/pechi/anapa",
+          "main_image": "https://easysteam.ru/images/offers/1000026.jpg",
+          "base_price_rub": 139700,
+          "description": null,
+          "specs_groups": [],
+          "option_groups": [],
+          "documents": [
+            {
+              "title": "Инструкция печи «Анапа, Сочи, Геленджик»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/ASG_27.03.26.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Anapa24.png"
+            },
+            {
+              "title": "Инструкция печи «Анапа, Сочи, Геленджик» eng",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Anapa_eng_2.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Anapa24_eng.png"
+            },
+            {
+              "title": "Схема кладки «Анапа»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/poryadovka_anapa.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Por_anapa.jpg"
+            },
+            {
+              "title": "Сертификат на газовое оборудование 2023 г.",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertifikat_2023.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertifikat_2023.jpg"
+            },
+            {
+              "title": "Паспорт газовой горелки ГГУЛ 20, 40",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/GGUL_NOVA820.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/GGUL_20.40.jpg"
+            },
+            {
+              "title": "Сертификат на газовое оборудование",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertificat_gaz.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertificat_gaz.jpg"
+            },
+            {
+              "title": "Схема сборки обналички печи",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Схема сборки обналички.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Схема сборки обналички посл.jpg"
+            },
+            {
+              "title": "Схема сборки шамотных плит на печах серии Анапа / Сочи / Геленджик",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Shamot_anapa.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/sborka_shamot_anapa.jpg"
+            },
+            {
+              "title": "Схема сборки облицовки из природного камня",
+              "url": "https://easysteam.ru/files/shares/docs/Shemi_sborki/sborka_kozhukh.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/5fe44e9ed9eca.jpg"
+            },
+            {
+              "title": "Каталог",
+              "url": "https://easysteam.ru/files/shares/Documents/Katalog/Katalog_24.02.2026.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Katalog/Katalog_24.02.2026.png"
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/product/1006355",
+          "title": "Печь Анапа в полноценном кожухе с боковым подключением с закрытым верхом",
+          "article": "1006355",
+          "series_url": "https://easysteam.ru/products/stoves/pechi/anapa",
+          "main_image": "https://easysteam.ru/images/offers/1006355.jpg",
+          "base_price_rub": 148500,
+          "description": null,
+          "specs_groups": [],
+          "option_groups": [],
+          "documents": [
+            {
+              "title": "Инструкция печи «Анапа, Сочи, Геленджик»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/ASG_27.03.26.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Anapa24.png"
+            },
+            {
+              "title": "Инструкция печи «Анапа, Сочи, Геленджик» eng",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Anapa_eng_2.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Anapa24_eng.png"
+            },
+            {
+              "title": "Схема кладки «Анапа»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/poryadovka_anapa.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Por_anapa.jpg"
+            },
+            {
+              "title": "Сертификат на газовое оборудование 2023 г.",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertifikat_2023.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertifikat_2023.jpg"
+            },
+            {
+              "title": "Паспорт газовой горелки ГГУЛ 20, 40",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/GGUL_NOVA820.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/GGUL_20.40.jpg"
+            },
+            {
+              "title": "Сертификат на газовое оборудование",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertificat_gaz.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertificat_gaz.jpg"
+            },
+            {
+              "title": "Схема сборки обналички печи",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Схема сборки обналички.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Схема сборки обналички посл.jpg"
+            },
+            {
+              "title": "Схема сборки шамотных плит на печах серии Анапа / Сочи / Геленджик",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Shamot_anapa.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/sborka_shamot_anapa.jpg"
+            },
+            {
+              "title": "Схема сборки облицовки из природного камня",
+              "url": "https://easysteam.ru/files/shares/docs/Shemi_sborki/sborka_kozhukh.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/5fe44e9ed9eca.jpg"
+            },
+            {
+              "title": "Каталог",
+              "url": "https://easysteam.ru/files/shares/Documents/Katalog/Katalog_24.02.2026.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Katalog/Katalog_24.02.2026.png"
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/b3e6389b-75f9-4605-ab89-b65afd2c1bb2",
+          "title": "Печь Анапа базовая модель",
+          "article": "1000026",
+          "series_url": "https://easysteam.ru/products/stoves/pechi/anapa",
+          "main_image": "https://easysteam.ru/images/offers/1000026.jpg",
+          "base_price_rub": 139700,
+          "description": null,
+          "specs_groups": [],
+          "option_groups": [],
+          "documents": [
+            {
+              "title": "Инструкция печи «Анапа, Сочи, Геленджик»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/ASG_27.03.26.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Anapa24.png"
+            },
+            {
+              "title": "Инструкция печи «Анапа, Сочи, Геленджик» eng",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Anapa_eng_2.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Anapa24_eng.png"
+            },
+            {
+              "title": "Схема кладки «Анапа»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/poryadovka_anapa.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Por_anapa.jpg"
+            },
+            {
+              "title": "Сертификат на газовое оборудование 2023 г.",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertifikat_2023.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertifikat_2023.jpg"
+            },
+            {
+              "title": "Паспорт газовой горелки ГГУЛ 20, 40",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/GGUL_NOVA820.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/GGUL_20.40.jpg"
+            },
+            {
+              "title": "Сертификат на газовое оборудование",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertificat_gaz.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertificat_gaz.jpg"
+            },
+            {
+              "title": "Схема сборки обналички печи",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Схема сборки обналички.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Схема сборки обналички посл.jpg"
+            },
+            {
+              "title": "Схема сборки шамотных плит на печах серии Анапа / Сочи / Геленджик",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Shamot_anapa.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/sborka_shamot_anapa.jpg"
+            },
+            {
+              "title": "Схема сборки облицовки из природного камня",
+              "url": "https://easysteam.ru/files/shares/docs/Shemi_sborki/sborka_kozhukh.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/5fe44e9ed9eca.jpg"
+            },
+            {
+              "title": "Каталог",
+              "url": "https://easysteam.ru/files/shares/Documents/Katalog/Katalog_24.02.2026.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Katalog/Katalog_24.02.2026.png"
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/e7b31fd0-202c-43cf-bfbf-153dd6bed865",
+          "title": "Печь Анапа М2 базовая модель",
+          "article": "1000044",
+          "series_url": "https://easysteam.ru/products/stoves/pechi/anapa",
+          "main_image": "https://easysteam.ru/images/offers/1000044.jpg",
+          "base_price_rub": 145500,
+          "description": null,
+          "specs_groups": [],
+          "option_groups": [],
+          "documents": [
+            {
+              "title": "Инструкция печи «Анапа, Сочи, Геленджик»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/ASG_27.03.26.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Anapa24.png"
+            },
+            {
+              "title": "Инструкция печи «Анапа, Сочи, Геленджик» eng",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Anapa_eng_2.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Anapa24_eng.png"
+            },
+            {
+              "title": "Схема кладки «Анапа»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/poryadovka_anapa.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Por_anapa.jpg"
+            },
+            {
+              "title": "Сертификат на газовое оборудование 2023 г.",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertifikat_2023.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertifikat_2023.jpg"
+            },
+            {
+              "title": "Паспорт газовой горелки ГГУЛ 20, 40",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/GGUL_NOVA820.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/GGUL_20.40.jpg"
+            },
+            {
+              "title": "Сертификат на газовое оборудование",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertificat_gaz.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertificat_gaz.jpg"
+            },
+            {
+              "title": "Схема сборки обналички печи",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Схема сборки обналички.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Схема сборки обналички посл.jpg"
+            },
+            {
+              "title": "Схема сборки шамотных плит на печах серии Анапа / Сочи / Геленджик",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Shamot_anapa.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/sborka_shamot_anapa.jpg"
+            },
+            {
+              "title": "Схема сборки облицовки из природного камня",
+              "url": "https://easysteam.ru/files/shares/docs/Shemi_sborki/sborka_kozhukh.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/5fe44e9ed9eca.jpg"
+            },
+            {
+              "title": "Каталог",
+              "url": "https://easysteam.ru/files/shares/Documents/Katalog/Katalog_24.02.2026.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Katalog/Katalog_24.02.2026.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "seriesName": "Сочи",
+      "seriesSlug": "sochi",
+      "seriesPageUrl": "https://easysteam.ru/products/stoves/pechi/sochi",
+      "seriesIntro": null,
+      "target": {
+        "primaryCategoryPath": "russian-bath-stoves/wood-bath-stoves",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Сочи",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "Сочи",
+        "pa_equipment-type": "wood-bath-stove",
+        "pa_room-type": "russian-bath",
+        "pa_usage-class": "private"
+      },
+      "docCandidates": [
+        "https://easysteam.ru/files/shares/Documents/Passports/Anapa%2CSochi_100523_1.pdf"
+      ],
+      "cards": [
+        {
+          "source_url": "https://easysteam.ru/products/show/fc1c2c1a-6c56-4e0b-a4e2-55e016531604",
+          "source_type": "show_page",
+          "title": "Печь Сочи",
+          "subtitle": "базовая модель",
+          "price_text": "156 200 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/Dlya_gaza/Sochi/Prostaya/prost.png",
+          "option_count": 0,
+          "options": []
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/9905cb53-8429-46a4-b0db-b72d14446e14",
+          "source_type": "show_page",
+          "title": "Печь Сочи М2",
+          "subtitle": "базовая модель",
+          "price_text": "165 000 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/ASG_2026/Anapa/Gaz_shtoki/Shtok_metal+3st.png",
+          "option_count": 1,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/m2pravo.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Sochi/m2_prosto/sochi.jpg",
+              "price_text": "165 000 ₽",
+              "is_default": false,
+              "sort_order": 0
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/1d0d241c-d019-4b9b-97ac-142a3dcc25c1",
+          "source_type": "show_page",
+          "title": "Печь Сочи",
+          "subtitle": "в наборном полноценном кожухе с закрытым верхом",
+          "price_text": "319 600 ₽",
+          "image": null,
+          "option_count": 1,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Sochi/Nab_ZV/Sochi_talk_ZV.png",
+              "price_text": "319 600 ₽",
+              "is_default": false,
+              "sort_order": 0
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/520f0035-ab34-4a0a-a8e0-0a4f2e0b517b",
+          "source_type": "show_page",
+          "title": "Печь Сочи",
+          "subtitle": "в наборном полноценном кожухе с открытым верхом",
+          "price_text": "311 900 ₽",
+          "image": null,
+          "option_count": 1,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Sochi/Nab_OV/Sochi_talk_OV.png",
+              "price_text": "311 900 ₽",
+              "is_default": false,
+              "sort_order": 0
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/9b64f6f2-fff0-4a4f-9a2e-4e8dcda5b1cb",
+          "source_type": "show_page",
+          "title": "Печь Сочи",
+          "subtitle": "в полноценном кожухе с закрытым верхом",
+          "price_text": "367 400 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/Dlya_gaza/Sochi/Polnocenniy_kozhuch/2.png",
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Sochi/polnocenniy_kozhuch/talk.jpg",
+              "price_text": "367 400 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zh_ikon.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Sochi/polnocenniy_kozhuch/piro.jpg",
+              "price_text": "339 800 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/8741f8d4-5e47-4f8d-a6c7-02fd14788719",
+          "source_type": "show_page",
+          "title": "Печь Сочи М2",
+          "subtitle": "в полноценном кожухе с закрытым верхом",
+          "price_text": "376 200 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/Dlya_gaza/Sochi/Polnocenniy_kozhuch/2.png",
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Sochi/m2_poln/talk.jpg",
+              "price_text": "376 200 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zh_ikon.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Sochi/m2_poln/piro.jpg",
+              "price_text": "348 600 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/fed010e8-6bf2-4fbe-a438-c1718eb4e70d",
+          "source_type": "show_page",
+          "title": "Печь Сочи",
+          "subtitle": "в полноценном кожухе с открытым верхом",
+          "price_text": "359 700 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/Dlya_gaza/Sochi/Polnocenniy_kozhuch_OV/sh.png",
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Sochi/polnocenniy_kozhuch_OV/talk.jpg",
+              "price_text": "359 700 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zh_ikon.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Sochi/polnocenniy_kozhuch_OV/piro.jpg",
+              "price_text": "333 300 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/843cbb62-bef9-46e4-a900-03e588ffc923",
+          "source_type": "show_page",
+          "title": "Печь Сочи М2",
+          "subtitle": "в полноценном кожухе с открытым верхом",
+          "price_text": "368 500 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/Dlya_gaza/Sochi/Polnocenniy_kozhuch_OV/sh.png",
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Sochi/m2_poln_OV/talk.jpg",
+              "price_text": "368 500 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zh_ikon.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Sochi/m2_poln_OV/piro.jpg",
+              "price_text": "342 100 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/e91439f8-719b-4088-8298-40f4f8a64305",
+          "source_type": "show_page",
+          "title": "Печь Сочи",
+          "subtitle": "в полноценном кожухе с закрытым верхом с боковым подключением",
+          "price_text": "402 100 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/Sochi/m2_prosto/sochi_s.png",
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Sochi/Bp/talk.jpg",
+              "price_text": "402 100 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zh_ikon.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Sochi/Bp/piro.jpg",
+              "price_text": "371 300 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/54f6239e-4c83-473a-bc11-ec01e37348c2",
+          "source_type": "show_page",
+          "title": "Печь Сочи",
+          "subtitle": "в трехстороннем кожухе с закрытым верхом",
+          "price_text": "319 600 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/Dlya_gaza/Sochi/Tri_storoni/sht.png",
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Sochi/three_storony/talk.jpg",
+              "price_text": "319 600 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zh_ikon.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Sochi/three_storony/piro.jpg",
+              "price_text": "298 100 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/a8983dc0-a3b2-48f2-8208-ccd70c3e11aa",
+          "source_type": "show_page",
+          "title": "Печь Сочи М2",
+          "subtitle": "в трехстороннем кожухе с закрытым верхом",
+          "price_text": "328 400 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/Dlya_gaza/Sochi/Tri_storoni/sht.png",
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Sochi/m2_three_storony/talk.jpg",
+              "price_text": "328 400 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zh_ikon.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Sochi/m2_three_storony/piro.jpg",
+              "price_text": "306 900 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/0cca87fe-abf4-42f2-8e6a-c63ab23be66f",
+          "source_type": "show_page",
+          "title": "Печь Сочи",
+          "subtitle": "в трехстороннем кожухе с открытым верхом",
+          "price_text": "311 900 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/Dlya_gaza/Sochi/Tri_storoni_OV/shtj.png",
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Sochi/three_storony_OV/talk.jpg",
+              "price_text": "311 900 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zh_ikon.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Sochi/three_storony_OV/piro.jpg",
+              "price_text": "291 500 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/e1047da5-951b-4010-be84-3c3735bf1b05",
+          "source_type": "show_page",
+          "title": "Печь Сочи М2",
+          "subtitle": "в трехстороннем кожухе с открытым верхом",
+          "price_text": "320 700 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/Dlya_gaza/Sochi/Tri_storoni_OV/shtj.png",
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Sochi/m2_three_storony_OV/talk.jpg",
+              "price_text": "320 700 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zh_ikon.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Sochi/m2_three_storony_OV/piro.jpg",
+              "price_text": "300 300 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/2ad35752-4966-4cb7-b611-af659eaddda7",
+          "source_type": "show_page",
+          "title": "Печь Сочи",
+          "subtitle": "в трехстороннем кожухе с закрытым верхом с боковым подключением",
+          "price_text": "349 800 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/Dlya_gaza/Sochi/bp_3st/shtok.png",
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Sochi/bp_3st_zv/bp_3st_zv_talk.jpg",
+              "price_text": "349 800 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zh_ikon.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Sochi/bp_3st_zv/bp_3st_zv_piro.jpg",
+              "price_text": "325 600 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        }
+      ],
+      "products": [
+        {
+          "source_url": "https://easysteam.ru/products/show/e1047da5-951b-4010-be84-3c3735bf1b05",
+          "title": "Печь Сочи М2 в трехстороннем кожухе с открытым верхом",
+          "article": "1003523",
+          "series_url": "https://easysteam.ru/products/stoves/pechi/sochi",
+          "main_image": "https://easysteam.ru/images/offers/1003523.jpg",
+          "base_price_rub": 165000,
+          "description": null,
+          "specs_groups": [],
+          "option_groups": [],
+          "documents": [
+            {
+              "title": "Инструкция печи «Анапа, Сочи, Геленджик»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/ASG_27.03.26.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Anapa24.png"
+            },
+            {
+              "title": "Инструкция печи «Анапа, Сочи, Геленджик» eng",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Anapa_eng_2.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Anapa24_eng.png"
+            },
+            {
+              "title": "Схема кладки «Сочи»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/poryadovka_sochi.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Por_sochi.jpg"
+            },
+            {
+              "title": "Сертификат на газовое оборудование 2023 г.",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertifikat_2023.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertifikat_2023.jpg"
+            },
+            {
+              "title": "Паспорт газовой горелки ГГУЛ 20, 40",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/GGUL_NOVA820.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/GGUL_20.40.jpg"
+            },
+            {
+              "title": "Сертификат на газовое оборудование",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertificat_gaz.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertificat_gaz.jpg"
+            },
+            {
+              "title": "Схема сборки обналички печи",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Схема сборки обналички.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Схема сборки обналички посл.jpg"
+            },
+            {
+              "title": "Схема сборки шамотных плит на печах серии Анапа / Сочи / Геленджик",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Shamot_anapa.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/sborka_shamot_anapa.jpg"
+            },
+            {
+              "title": "Схема сборки облицовки из природного камня",
+              "url": "https://easysteam.ru/files/shares/docs/Shemi_sborki/sborka_kozhukh.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/5fe44e9ed9eca.jpg"
+            },
+            {
+              "title": "Каталог",
+              "url": "https://easysteam.ru/files/shares/Documents/Katalog/Katalog_24.02.2026.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Katalog/Katalog_24.02.2026.png"
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/fc1c2c1a-6c56-4e0b-a4e2-55e016531604",
+          "title": "Печь Сочи базовая модель",
+          "article": "1000938",
+          "series_url": "https://easysteam.ru/products/stoves/pechi/sochi",
+          "main_image": "https://easysteam.ru/images/offers/1000938.jpg",
+          "base_price_rub": 156200,
+          "description": null,
+          "specs_groups": [],
+          "option_groups": [],
+          "documents": [
+            {
+              "title": "Инструкция печи «Анапа, Сочи, Геленджик»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/ASG_27.03.26.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Anapa24.png"
+            },
+            {
+              "title": "Инструкция печи «Анапа, Сочи, Геленджик» eng",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Anapa_eng_2.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Anapa24_eng.png"
+            },
+            {
+              "title": "Схема кладки «Сочи»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/poryadovka_sochi.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Por_sochi.jpg"
+            },
+            {
+              "title": "Сертификат на газовое оборудование 2023 г.",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertifikat_2023.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertifikat_2023.jpg"
+            },
+            {
+              "title": "Паспорт газовой горелки ГГУЛ 20, 40",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/GGUL_NOVA820.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/GGUL_20.40.jpg"
+            },
+            {
+              "title": "Сертификат на газовое оборудование",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertificat_gaz.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertificat_gaz.jpg"
+            },
+            {
+              "title": "Схема сборки обналички печи",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Схема сборки обналички.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Схема сборки обналички посл.jpg"
+            },
+            {
+              "title": "Схема сборки шамотных плит на печах серии Анапа / Сочи / Геленджик",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Shamot_anapa.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/sborka_shamot_anapa.jpg"
+            },
+            {
+              "title": "Схема сборки облицовки из природного камня",
+              "url": "https://easysteam.ru/files/shares/docs/Shemi_sborki/sborka_kozhukh.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/5fe44e9ed9eca.jpg"
+            },
+            {
+              "title": "Каталог",
+              "url": "https://easysteam.ru/files/shares/Documents/Katalog/Katalog_24.02.2026.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Katalog/Katalog_24.02.2026.png"
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/9905cb53-8429-46a4-b0db-b72d14446e14",
+          "title": "Печь Сочи М2 базовая модель",
+          "article": "1000974",
+          "series_url": "https://easysteam.ru/products/stoves/pechi/sochi",
+          "main_image": "https://easysteam.ru/images/offers/1000974.jpg",
+          "base_price_rub": 165000,
+          "description": null,
+          "specs_groups": [],
+          "option_groups": [],
+          "documents": [
+            {
+              "title": "Инструкция печи «Анапа, Сочи, Геленджик»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/ASG_27.03.26.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Anapa24.png"
+            },
+            {
+              "title": "Инструкция печи «Анапа, Сочи, Геленджик» eng",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Anapa_eng_2.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Anapa24_eng.png"
+            },
+            {
+              "title": "Схема кладки «Сочи»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/poryadovka_sochi.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Por_sochi.jpg"
+            },
+            {
+              "title": "Сертификат на газовое оборудование 2023 г.",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertifikat_2023.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertifikat_2023.jpg"
+            },
+            {
+              "title": "Паспорт газовой горелки ГГУЛ 20, 40",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/GGUL_NOVA820.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/GGUL_20.40.jpg"
+            },
+            {
+              "title": "Сертификат на газовое оборудование",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertificat_gaz.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertificat_gaz.jpg"
+            },
+            {
+              "title": "Схема сборки обналички печи",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Схема сборки обналички.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Схема сборки обналички посл.jpg"
+            },
+            {
+              "title": "Схема сборки шамотных плит на печах серии Анапа / Сочи / Геленджик",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Shamot_anapa.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/sborka_shamot_anapa.jpg"
+            },
+            {
+              "title": "Схема сборки облицовки из природного камня",
+              "url": "https://easysteam.ru/files/shares/docs/Shemi_sborki/sborka_kozhukh.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/5fe44e9ed9eca.jpg"
+            },
+            {
+              "title": "Каталог",
+              "url": "https://easysteam.ru/files/shares/Documents/Katalog/Katalog_24.02.2026.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Katalog/Katalog_24.02.2026.png"
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/1d0d241c-d019-4b9b-97ac-142a3dcc25c1",
+          "title": "Печь Сочи в наборном полноценном кожухе с закрытым верхом",
+          "article": "1013351",
+          "series_url": "https://easysteam.ru/products/stoves/pechi/sochi",
+          "main_image": "https://easysteam.ru/images/offers/1013351.jpg",
+          "base_price_rub": 156200,
+          "description": null,
+          "specs_groups": [],
+          "option_groups": [],
+          "documents": [
+            {
+              "title": "Инструкция печи «Анапа, Сочи, Геленджик»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/ASG_27.03.26.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Anapa24.png"
+            },
+            {
+              "title": "Инструкция печи «Анапа, Сочи, Геленджик» eng",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Anapa_eng_2.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Anapa24_eng.png"
+            },
+            {
+              "title": "Схема кладки «Сочи»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/poryadovka_sochi.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Por_sochi.jpg"
+            },
+            {
+              "title": "Сертификат на газовое оборудование 2023 г.",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertifikat_2023.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertifikat_2023.jpg"
+            },
+            {
+              "title": "Паспорт газовой горелки ГГУЛ 20, 40",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/GGUL_NOVA820.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/GGUL_20.40.jpg"
+            },
+            {
+              "title": "Сертификат на газовое оборудование",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertificat_gaz.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertificat_gaz.jpg"
+            },
+            {
+              "title": "Схема сборки обналички печи",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Схема сборки обналички.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Схема сборки обналички посл.jpg"
+            },
+            {
+              "title": "Схема сборки шамотных плит на печах серии Анапа / Сочи / Геленджик",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Shamot_anapa.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/sborka_shamot_anapa.jpg"
+            },
+            {
+              "title": "Схема сборки облицовки из природного камня",
+              "url": "https://easysteam.ru/files/shares/docs/Shemi_sborki/sborka_kozhukh.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/5fe44e9ed9eca.jpg"
+            },
+            {
+              "title": "Каталог",
+              "url": "https://easysteam.ru/files/shares/Documents/Katalog/Katalog_24.02.2026.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Katalog/Katalog_24.02.2026.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "seriesName": "Геленджик",
+      "seriesSlug": "gelendzhik",
+      "seriesPageUrl": "https://easysteam.ru/products/stoves/pechi/gelendzhik",
+      "seriesIntro": null,
+      "target": {
+        "primaryCategoryPath": "russian-bath-stoves/wood-bath-stoves",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Геленджик",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "Геленджик",
+        "pa_equipment-type": "wood-bath-stove",
+        "pa_room-type": "russian-bath",
+        "pa_usage-class": "private"
+      },
+      "docCandidates": [],
+      "cards": [
+        {
+          "source_url": "https://easysteam.ru/products/show/e345a273-9116-435a-bce7-929e978247c5",
+          "source_type": "show_page",
+          "title": "Печь Геленджик",
+          "subtitle": "базовая модель",
+          "price_text": "204 600 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/Dlya_gaza/Gelendzhik/Prostoy/sht.png",
+          "option_count": 0,
+          "options": []
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/ff8a4b6f-85a1-4f36-beb8-5b1dd7a1d943",
+          "source_type": "show_page",
+          "title": "Печь Геленджик М2",
+          "subtitle": "базовая модель",
+          "price_text": "218 900 ₽",
+          "image": null,
+          "option_count": 1,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/m2pravo.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Gelendzhik/m2_prosto/gel.jpg",
+              "price_text": "218 900 ₽",
+              "is_default": false,
+              "sort_order": 0
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/3ed26192-3066-4f26-8ab1-00fab5a32541",
+          "source_type": "show_page",
+          "title": "Печь Геленджик",
+          "subtitle": "в наборном полноценном кожухе с закрытым верхом",
+          "price_text": "399 300 ₽",
+          "image": null,
+          "option_count": 1,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Gelendzhik/Nab_ZV/Gelendzhik_talk_ZV.png",
+              "price_text": "399 300 ₽",
+              "is_default": false,
+              "sort_order": 0
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/870cf79d-5a25-475d-9b3a-d2d5a1bfc620",
+          "source_type": "show_page",
+          "title": "Печь Геленджик",
+          "subtitle": "в наборном полноценном кожухе с открытым верхом",
+          "price_text": "393 800 ₽",
+          "image": null,
+          "option_count": 1,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Gelendzhik/Nab_OV/Gelendzhik_talk_OV.png",
+              "price_text": "393 800 ₽",
+              "is_default": false,
+              "sort_order": 0
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/45d8cc9c-4ee8-4475-9647-1c7e8cb1b0e7",
+          "source_type": "show_page",
+          "title": "Печь Геленджик",
+          "subtitle": "в полноценном кожухе с закрытым верхом",
+          "price_text": "442 200 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/Dlya_gaza/Gelendzhik/M2_i_prost_polnocenniy_kozhuch/sht.png",
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Gelendzhik/polnocenniy_kozhuch/talk2.jpg",
+              "price_text": "442 200 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zh_ikon.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Gelendzhik/polnocenniy_kozhuch/piro2.jpg",
+              "price_text": "411 400 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/2181dbbb-d281-47be-8933-d545bc796fcb",
+          "source_type": "show_page",
+          "title": "Печь Геленджик М2",
+          "subtitle": "в полноценном кожухе с закрытым верхом",
+          "price_text": "456 500 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/Dlya_gaza/Gelendzhik/M2_i_prost_polnocenniy_kozhuch/sht.png",
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Gelendzhik/m2_polnocenniy/talk2.jpg",
+              "price_text": "456 500 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zh_ikon.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Gelendzhik/m2_polnocenniy/piro2.jpg",
+              "price_text": "425 700 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/4edf9587-e36b-4949-90bf-717977339dae",
+          "source_type": "show_page",
+          "title": "Печь Геленджик",
+          "subtitle": "в полноценном кожухе с открытым верхом",
+          "price_text": "436 200 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/Dlya_gaza/Gelendzhik/M2_i_prost_polnocenniy_OV/sht.png",
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Gelendzhik/polnocenniy_kozhuch_OV/talk.jpg",
+              "price_text": "436 200 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zh_ikon.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Gelendzhik/polnocenniy_kozhuch_OV/piro.jpg",
+              "price_text": "405 900 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/ad427b8b-92ae-4467-b677-b1d2f7251acb",
+          "source_type": "show_page",
+          "title": "Печь Геленджик М2",
+          "subtitle": "в полноценном кожухе с открытым верхом",
+          "price_text": "450 500 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/Dlya_gaza/Gelendzhik/M2_i_prost_polnocenniy_OV/sht.png",
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Gelendzhik/m2_polnocenniy_ov/talk.jpg",
+              "price_text": "450 500 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zh_ikon.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Gelendzhik/m2_polnocenniy_ov/piro.jpg",
+              "price_text": "420 200 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/7bd99f0f-59be-4045-a3ab-b0745f4e1835",
+          "source_type": "show_page",
+          "title": "Печь Геленджик",
+          "subtitle": "в полноценном кожухе с закрытым верхом с боковым подключением",
+          "price_text": "479 600 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/Dlya_gaza/Gelendzhik/M2_prost_BP/png.png",
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Gelendzhik/Bp/talk.jpg",
+              "price_text": "479 600 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zh_ikon.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Gelendzhik/Bp/piro.jpg",
+              "price_text": "445 000 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/13e1e775-96aa-43a3-8191-e944abb38796",
+          "source_type": "show_page",
+          "title": "Печь Геленджик М2",
+          "subtitle": "в полноценном кожухе с закрытым верхом с боковым подключением",
+          "price_text": "493 900 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/Dlya_gaza/Gelendzhik/M2_prost_BP/png.png",
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Gelendzhik/m2_BP/talk.jpg",
+              "price_text": "493 900 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zh_ikon.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Gelendzhik/m2_BP/piro.jpg",
+              "price_text": "459 300 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/960f6a30-5559-4281-8bd4-9fadd352ff94",
+          "source_type": "show_page",
+          "title": "Печь Геленджик",
+          "subtitle": "в трехстороннем кожухе с закрытым верхом",
+          "price_text": "399 300 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/Dlya_gaza/Gelendzhik/M2_prost_3_st/sht.png",
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Gelendzhik/three_storony/talk.jpg",
+              "price_text": "399 300 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zh_ikon.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Gelendzhik/three_storony/piro.jpg",
+              "price_text": "374 000 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/bb96e542-037e-4d81-aa30-698438af10d9",
+          "source_type": "show_page",
+          "title": "Печь Геленджик М2",
+          "subtitle": "в трехстороннем кожухе с закрытым верхом",
+          "price_text": "413 600 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/Dlya_gaza/Gelendzhik/M2_prost_3_st/sht.png",
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Gelendzhik/m2_three_storony/talk.jpg",
+              "price_text": "413 600 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zh_ikon.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Gelendzhik/m2_three_storony/piro.jpg",
+              "price_text": "388 300 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/1188fa69-5654-402c-a8d4-1f866ceb063a",
+          "source_type": "show_page",
+          "title": "Печь Геленджик",
+          "subtitle": "в трехстороннем кожухе с открытым верхом",
+          "price_text": "393 800 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/Dlya_gaza/Gelendzhik/M2_i_prost_3_st_OV/sht.png",
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Gelendzhik/three_storony_OV/talk.jpg",
+              "price_text": "393 800 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zh_ikon.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Gelendzhik/three_storony_OV/piro.jpg",
+              "price_text": "369 200 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/17160ae5-b135-42fc-94bf-a8f49c57d0eb",
+          "source_type": "show_page",
+          "title": "Печь Геленджик М2",
+          "subtitle": "в трехстороннем кожухе с открытым верхом",
+          "price_text": "408 100 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/Dlya_gaza/Gelendzhik/M2_i_prost_3_st_OV/sht.png",
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Gelendzhik/m2_three_storony_OV/talk.jpg",
+              "price_text": "408 100 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zh_ikon.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Gelendzhik/m2_three_storony_OV/piro.jpg",
+              "price_text": "383 500 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/f4801fcc-7fd5-485f-8240-a71c697fec66",
+          "source_type": "show_page",
+          "title": "Печь Геленджик",
+          "subtitle": "в трехстороннем кожухе с закрытым верхом с боковым подключением",
+          "price_text": "438 400 ₽",
+          "image": null,
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Gelendzhik/bp_3st_zv/bp_3st_zv_talk.jpg",
+              "price_text": "438 400 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zh_ikon.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Gelendzhik/bp_3st_zv/bp_3st_zv_piro.jpg",
+              "price_text": "409 200 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/d942e9b0-143d-4a4a-a2ab-bb8c8f4ae9b3",
+          "source_type": "show_page",
+          "title": "Печь Геленджик",
+          "subtitle": "в трехстороннем кожухе с открытым верхом с боковым подключением",
+          "price_text": "438 400 ₽",
+          "image": null,
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Gelendzhik/bp_3st_ov/bp_3st_ov_talk.jpg",
+              "price_text": "438 400 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zh_ikon.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Gelendzhik/bp_3st_ov/bp_3st_ov_piro.jpg",
+              "price_text": "409 200 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/d828672b-6c84-4a77-9792-9d9c3c8d2148",
+          "source_type": "show_page",
+          "title": "Печь Геленджик М2",
+          "subtitle": "в трехстороннем кожухе с открытым верхом с боковым подключением",
+          "price_text": "452 700 ₽",
+          "image": null,
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Gelendzhik/m2_bp_3st_ov/m2_bp_3st_ov_talk.jpg",
+              "price_text": "452 700 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zh_ikon.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Gelendzhik/m2_bp_3st_ov/m2_bp_3st_ov_piro.jpg",
+              "price_text": "423 500 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/216add18-7480-4eea-bb5b-52b24e7e49f0",
+          "source_type": "show_page",
+          "title": "Печь Геленджик М2",
+          "subtitle": "в трехстороннем кожухе с закрытым верхом с боковым подключением",
+          "price_text": "452 700 ₽",
+          "image": null,
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Gelendzhik/m2_bp_3st_zv/m2_bp_3st_zv_talk.jpg",
+              "price_text": "452 700 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zh_ikon.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Gelendzhik/m2_bp_3st_zv/m2_bp_3st_zv_piro.jpg",
+              "price_text": "423 500 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        }
+      ],
+      "products": [
+        {
+          "source_url": "https://easysteam.ru/products/show/e345a273-9116-435a-bce7-929e978247c5",
+          "title": "Печь Геленджик базовая модель",
+          "article": "1001850",
+          "series_url": "https://easysteam.ru/products/stoves/pechi/gelendzhik",
+          "main_image": "https://easysteam.ru/images/offers/1001850.jpg",
+          "base_price_rub": 204600,
+          "description": null,
+          "specs_groups": [],
+          "option_groups": [],
+          "documents": [
+            {
+              "title": "Инструкция печи «Анапа, Сочи, Геленджик»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/ASG_27.03.26.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Anapa24.png"
+            },
+            {
+              "title": "Инструкция печи «Анапа, Сочи, Геленджик» eng",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Anapa_eng_2.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Anapa24_eng.png"
+            },
+            {
+              "title": "Сертификат на газовое оборудование 2023 г.",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertifikat_2023.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertifikat_2023.jpg"
+            },
+            {
+              "title": "Сертификат на газовое оборудование",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertificat_gaz.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertificat_gaz.jpg"
+            },
+            {
+              "title": "Схема сборки обналички печи",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Схема сборки обналички.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Схема сборки обналички посл.jpg"
+            },
+            {
+              "title": "Схема сборки шамотных плит на печах серии Анапа / Сочи / Геленджик",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Shamot_anapa.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/sborka_shamot_anapa.jpg"
+            },
+            {
+              "title": "Схема сборки облицовки из природного камня",
+              "url": "https://easysteam.ru/files/shares/docs/Shemi_sborki/sborka_kozhukh.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/5fe44e9ed9eca.jpg"
+            },
+            {
+              "title": "Схема кладки «Геленджик»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/poryadovka_gelendzhik.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Por_gel.jpg"
+            },
+            {
+              "title": "Каталог",
+              "url": "https://easysteam.ru/files/shares/Documents/Katalog/Katalog_24.02.2026.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Katalog/Katalog_24.02.2026.png"
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/ff8a4b6f-85a1-4f36-beb8-5b1dd7a1d943",
+          "title": "Печь Геленджик М2 базовая модель",
+          "article": "1001886",
+          "series_url": "https://easysteam.ru/products/stoves/pechi/gelendzhik",
+          "main_image": "https://easysteam.ru/images/offers/1001886.jpg",
+          "base_price_rub": 218900,
+          "description": null,
+          "specs_groups": [],
+          "option_groups": [],
+          "documents": [
+            {
+              "title": "Инструкция печи «Анапа, Сочи, Геленджик»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/ASG_27.03.26.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Anapa24.png"
+            },
+            {
+              "title": "Инструкция печи «Анапа, Сочи, Геленджик» eng",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Anapa_eng_2.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Anapa24_eng.png"
+            },
+            {
+              "title": "Сертификат на газовое оборудование 2023 г.",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertifikat_2023.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertifikat_2023.jpg"
+            },
+            {
+              "title": "Сертификат на газовое оборудование",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertificat_gaz.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertificat_gaz.jpg"
+            },
+            {
+              "title": "Схема сборки обналички печи",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Схема сборки обналички.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Схема сборки обналички посл.jpg"
+            },
+            {
+              "title": "Схема сборки шамотных плит на печах серии Анапа / Сочи / Геленджик",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Shamot_anapa.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/sborka_shamot_anapa.jpg"
+            },
+            {
+              "title": "Схема сборки облицовки из природного камня",
+              "url": "https://easysteam.ru/files/shares/docs/Shemi_sborki/sborka_kozhukh.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/5fe44e9ed9eca.jpg"
+            },
+            {
+              "title": "Схема кладки «Геленджик»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/poryadovka_gelendzhik.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Por_gel.jpg"
+            },
+            {
+              "title": "Каталог",
+              "url": "https://easysteam.ru/files/shares/Documents/Katalog/Katalog_24.02.2026.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Katalog/Katalog_24.02.2026.png"
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/3ed26192-3066-4f26-8ab1-00fab5a32541",
+          "title": "Печь Геленджик в наборном полноценном кожухе с закрытым верхом",
+          "article": "1013447",
+          "series_url": "https://easysteam.ru/products/stoves/pechi/gelendzhik",
+          "main_image": "https://easysteam.ru/images/offers/1013447.jpg",
+          "base_price_rub": 204600,
+          "description": null,
+          "specs_groups": [],
+          "option_groups": [],
+          "documents": [
+            {
+              "title": "Инструкция печи «Анапа, Сочи, Геленджик»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/ASG_27.03.26.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Anapa24.png"
+            },
+            {
+              "title": "Инструкция печи «Анапа, Сочи, Геленджик» eng",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Anapa_eng_2.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Anapa24_eng.png"
+            },
+            {
+              "title": "Сертификат на газовое оборудование 2023 г.",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertifikat_2023.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertifikat_2023.jpg"
+            },
+            {
+              "title": "Сертификат на газовое оборудование",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertificat_gaz.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertificat_gaz.jpg"
+            },
+            {
+              "title": "Схема сборки обналички печи",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Схема сборки обналички.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Схема сборки обналички посл.jpg"
+            },
+            {
+              "title": "Схема сборки шамотных плит на печах серии Анапа / Сочи / Геленджик",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Shamot_anapa.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/sborka_shamot_anapa.jpg"
+            },
+            {
+              "title": "Схема сборки облицовки из природного камня",
+              "url": "https://easysteam.ru/files/shares/docs/Shemi_sborki/sborka_kozhukh.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/5fe44e9ed9eca.jpg"
+            },
+            {
+              "title": "Схема кладки «Геленджик»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/poryadovka_gelendzhik.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Por_gel.jpg"
+            },
+            {
+              "title": "Каталог",
+              "url": "https://easysteam.ru/files/shares/Documents/Katalog/Katalog_24.02.2026.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Katalog/Katalog_24.02.2026.png"
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/870cf79d-5a25-475d-9b3a-d2d5a1bfc620",
+          "title": "Печь Геленджик в наборном полноценном кожухе с открытым верхом",
+          "article": "1013495",
+          "series_url": "https://easysteam.ru/products/stoves/pechi/gelendzhik",
+          "main_image": "https://easysteam.ru/images/offers/1013495.jpg",
+          "base_price_rub": 204600,
+          "description": null,
+          "specs_groups": [],
+          "option_groups": [],
+          "documents": [
+            {
+              "title": "Инструкция печи «Анапа, Сочи, Геленджик»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/ASG_27.03.26.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Anapa24.png"
+            },
+            {
+              "title": "Инструкция печи «Анапа, Сочи, Геленджик» eng",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Anapa_eng_2.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Anapa24_eng.png"
+            },
+            {
+              "title": "Сертификат на газовое оборудование 2023 г.",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertifikat_2023.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertifikat_2023.jpg"
+            },
+            {
+              "title": "Сертификат на газовое оборудование",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertificat_gaz.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertificat_gaz.jpg"
+            },
+            {
+              "title": "Схема сборки обналички печи",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Схема сборки обналички.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Схема сборки обналички посл.jpg"
+            },
+            {
+              "title": "Схема сборки шамотных плит на печах серии Анапа / Сочи / Геленджик",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Shamot_anapa.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/sborka_shamot_anapa.jpg"
+            },
+            {
+              "title": "Схема сборки облицовки из природного камня",
+              "url": "https://easysteam.ru/files/shares/docs/Shemi_sborki/sborka_kozhukh.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/5fe44e9ed9eca.jpg"
+            },
+            {
+              "title": "Схема кладки «Геленджик»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/poryadovka_gelendzhik.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Por_gel.jpg"
+            },
+            {
+              "title": "Каталог",
+              "url": "https://easysteam.ru/files/shares/Documents/Katalog/Katalog_24.02.2026.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Katalog/Katalog_24.02.2026.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "seriesName": "Южная",
+      "seriesSlug": "yuzhnaya",
+      "seriesPageUrl": "https://easysteam.ru/products/stoves/pechi/yuzhnaya",
+      "seriesIntro": null,
+      "target": {
+        "primaryCategoryPath": "russian-bath-stoves/wood-bath-stoves",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Южная",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "Южная",
+        "pa_equipment-type": "wood-bath-stove",
+        "pa_room-type": "russian-bath",
+        "pa_usage-class": "private"
+      },
+      "docCandidates": [],
+      "cards": [
+        {
+          "source_url": "https://easysteam.ru/products/show/d6576713-c4df-4626-892f-e2bb22a7ebc5",
+          "source_type": "show_page",
+          "title": "Печь Южная 9",
+          "subtitle": "",
+          "price_text": "264 600 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yuzhnaya/2024/9_talk.png",
+          "option_count": 1,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yuzhnaya/2024/9_talk.png",
+              "price_text": "264 600 ₽",
+              "is_default": false,
+              "sort_order": 0
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/2cf43e7f-637c-4d76-b34a-38027b9e1a25",
+          "source_type": "show_page",
+          "title": "Печь Южная 16",
+          "subtitle": "",
+          "price_text": "302 000 ₽",
+          "image": null,
+          "option_count": 1,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yuzhnaya/2024/16_talk.png",
+              "price_text": "302 000 ₽",
+              "is_default": false,
+              "sort_order": 0
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/8385c3f2-e071-4ede-8e13-f25e0b1a515d",
+          "source_type": "show_page",
+          "title": "Печь Южная 22",
+          "subtitle": "",
+          "price_text": "359 200 ₽",
+          "image": null,
+          "option_count": 1,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yuzhnaya/2024/22_talk_1.png",
+              "price_text": "359 200 ₽",
+              "is_default": false,
+              "sort_order": 0
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/c9eb958e-5c0d-40ef-92d3-bbf651c66d16",
+          "source_type": "show_page",
+          "title": "Печь Южная 35",
+          "subtitle": "",
+          "price_text": "484 000 ₽",
+          "image": null,
+          "option_count": 1,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yuzhnaya/2024/35_talk.png",
+              "price_text": "484 000 ₽",
+              "is_default": false,
+              "sort_order": 0
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/bbb53e36-00b6-4559-a2dd-7d91d15d42f6",
+          "source_type": "show_page",
+          "title": "Печь Южная 9 с топкой из парной",
+          "subtitle": "",
+          "price_text": "264 600 ₽",
+          "image": null,
+          "option_count": 1,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yuzhnaya/2025/9TPn/Uzhnaya9_talk_TP_n.png",
+              "price_text": "264 600 ₽",
+              "is_default": false,
+              "sort_order": 0
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/f301e7c5-d7ce-4ab8-a09a-e8ecb1dc7f25",
+          "source_type": "show_page",
+          "title": "Печь Южная 16 с топкой из парной",
+          "subtitle": "",
+          "price_text": "302 000 ₽",
+          "image": null,
+          "option_count": 1,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yuzhnaya/2025/16TPn/16_TP_OV_n_talk.png",
+              "price_text": "302 000 ₽",
+              "is_default": false,
+              "sort_order": 0
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/bfee63a1-0a21-4446-ac1a-9a5b32887bda",
+          "source_type": "show_page",
+          "title": "Печь Южная 22 с топкой из парной",
+          "subtitle": "",
+          "price_text": "359 200 ₽",
+          "image": null,
+          "option_count": 1,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yuzhnaya/2025/22TPn/22_TP_OV_n_talk.png",
+              "price_text": "359 200 ₽",
+              "is_default": false,
+              "sort_order": 0
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/d27372db-2077-4c5e-8743-b21127232b5c",
+          "source_type": "show_page",
+          "title": "Печь Южная 35 с топкой из парной",
+          "subtitle": "",
+          "price_text": "484 000 ₽",
+          "image": null,
+          "option_count": 1,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yuzhnaya/2025/35TPn/35_TP_OV_n_talk.png",
+              "price_text": "484 000 ₽",
+              "is_default": false,
+              "sort_order": 0
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/a80a3a5f-cca7-41f8-9a5f-576fe16ba435",
+          "source_type": "show_page",
+          "title": "Печь Южная 9 закрытый верх",
+          "subtitle": "",
+          "price_text": "286 600 ₽",
+          "image": null,
+          "option_count": 1,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yuzhnaya/2025/9_ZV+ZV_TP/Uzhnaya9_talk_ZV.png",
+              "price_text": "286 600 ₽",
+              "is_default": false,
+              "sort_order": 0
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/a5be465b-b747-4661-a113-a64c1ae804a5",
+          "source_type": "show_page",
+          "title": "Печь Южная 16 закрытый верх",
+          "subtitle": "",
+          "price_text": "326 200 ₽",
+          "image": null,
+          "option_count": 1,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yuzhnaya/2025/16_ZV+ZV_TP/Uzhnaya16_talk_ZV.png",
+              "price_text": "326 200 ₽",
+              "is_default": false,
+              "sort_order": 0
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/73d8804c-3eaa-4f6a-a6b3-297414dc2244",
+          "source_type": "show_page",
+          "title": "Печь Южная 22 закрытый верх",
+          "subtitle": "",
+          "price_text": "383 400 ₽",
+          "image": null,
+          "option_count": 1,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yuzhnaya/2025/22_ZV+ZV_TP/Uzhnaya22_talk_ZV.png",
+              "price_text": "383 400 ₽",
+              "is_default": false,
+              "sort_order": 0
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/c7778ffc-a2ac-4f62-ba76-db859ee9663d",
+          "source_type": "show_page",
+          "title": "Печь Южная 35 закрытый верх",
+          "subtitle": "",
+          "price_text": "511 500 ₽",
+          "image": null,
+          "option_count": 1,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yuzhnaya/2025/35_ZV+ZV_TP/Uzhnaya35_talk_ZV.png",
+              "price_text": "511 500 ₽",
+              "is_default": false,
+              "sort_order": 0
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/6b7b08fc-8211-4932-8bf3-40410c50bdc8",
+          "source_type": "show_page",
+          "title": "Печь Южная 9 закрытый верх с топкой из парной",
+          "subtitle": "",
+          "price_text": "286 600 ₽",
+          "image": null,
+          "option_count": 1,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yuzhnaya/2025/9TPn/Uzhnaya9_talk_TP_ZV_n.png",
+              "price_text": "286 600 ₽",
+              "is_default": false,
+              "sort_order": 0
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/eac084f9-3120-4084-9b67-6931ce0d4489",
+          "source_type": "show_page",
+          "title": "Печь Южная 16 закрытый верх с топкой из парной",
+          "subtitle": "",
+          "price_text": "326 200 ₽",
+          "image": null,
+          "option_count": 1,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yuzhnaya/2025/16TPn/16_TP_ZV_n_talk.png",
+              "price_text": "326 200 ₽",
+              "is_default": false,
+              "sort_order": 0
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/35fde117-6344-4a32-a437-9b32ae61a820",
+          "source_type": "show_page",
+          "title": "Печь Южная 22 закрытый верх с топкой из парной",
+          "subtitle": "",
+          "price_text": "383 400 ₽",
+          "image": null,
+          "option_count": 1,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yuzhnaya/2025/22TPn/22_TP_ZV_n_talk.png",
+              "price_text": "383 400 ₽",
+              "is_default": false,
+              "sort_order": 0
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/053d18a4-91ba-46c2-951f-fa9cf832bd89",
+          "source_type": "show_page",
+          "title": "Печь Южная 35 закрытый верх с топкой из парной",
+          "subtitle": "",
+          "price_text": "511 500 ₽",
+          "image": null,
+          "option_count": 1,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yuzhnaya/2025/35TPn/35_TP_ZV_n_talk.png",
+              "price_text": "511 500 ₽",
+              "is_default": false,
+              "sort_order": 0
+            }
+          ]
+        }
+      ],
+      "products": [
+        {
+          "source_url": "https://easysteam.ru/products/show/d6576713-c4df-4626-892f-e2bb22a7ebc5",
+          "title": "Печь Южная 9",
+          "article": "1004028",
+          "series_url": "https://easysteam.ru/products/stoves/pechi/yuzhnaya",
+          "main_image": "https://easysteam.ru/images/offers/1004028.jpg",
+          "base_price_rub": 264600,
+          "description": null,
+          "specs_groups": [],
+          "option_groups": [],
+          "documents": [
+            {
+              "title": "Инструкция печи «Южная»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/ЮЖНАЯ_16.12.2024.pdf",
+              "preview": "https://easysteam.ru/photos/shares/docs/pasporta-pechey/Uzhnaya_o.png"
+            },
+            {
+              "title": "Схема сборки обналички печи",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Схема сборки обналички.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Схема сборки обналички посл.jpg"
+            },
+            {
+              "title": "Каталог",
+              "url": "https://easysteam.ru/files/shares/Documents/Katalog/Katalog_24.02.2026.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Katalog/Katalog_24.02.2026.png"
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/2cf43e7f-637c-4d76-b34a-38027b9e1a25",
+          "title": "Печь Южная 16",
+          "article": "1004032",
+          "series_url": "https://easysteam.ru/products/stoves/pechi/yuzhnaya",
+          "main_image": "https://easysteam.ru/images/offers/1004032.jpg",
+          "base_price_rub": 302000,
+          "description": null,
+          "specs_groups": [],
+          "option_groups": [],
+          "documents": [
+            {
+              "title": "Инструкция печи «Южная»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/ЮЖНАЯ_16.12.2024.pdf",
+              "preview": "https://easysteam.ru/photos/shares/docs/pasporta-pechey/Uzhnaya_o.png"
+            },
+            {
+              "title": "Схема сборки обналички печи",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Схема сборки обналички.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Схема сборки обналички посл.jpg"
+            },
+            {
+              "title": "Каталог",
+              "url": "https://easysteam.ru/files/shares/Documents/Katalog/Katalog_24.02.2026.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Katalog/Katalog_24.02.2026.png"
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/8385c3f2-e071-4ede-8e13-f25e0b1a515d",
+          "title": "Печь Южная 22",
+          "article": "1004034",
+          "series_url": "https://easysteam.ru/products/stoves/pechi/yuzhnaya",
+          "main_image": "https://easysteam.ru/images/offers/1004034.jpg",
+          "base_price_rub": 359200,
+          "description": null,
+          "specs_groups": [],
+          "option_groups": [],
+          "documents": [
+            {
+              "title": "Инструкция печи «Южная»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/ЮЖНАЯ_16.12.2024.pdf",
+              "preview": "https://easysteam.ru/photos/shares/docs/pasporta-pechey/Uzhnaya_o.png"
+            },
+            {
+              "title": "Схема сборки обналички печи",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Схема сборки обналички.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Схема сборки обналички посл.jpg"
+            },
+            {
+              "title": "Каталог",
+              "url": "https://easysteam.ru/files/shares/Documents/Katalog/Katalog_24.02.2026.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Katalog/Katalog_24.02.2026.png"
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/c9eb958e-5c0d-40ef-92d3-bbf651c66d16",
+          "title": "Печь Южная 35",
+          "article": "1013211",
+          "series_url": "https://easysteam.ru/products/stoves/pechi/yuzhnaya",
+          "main_image": "https://easysteam.ru/images/offers/1013211.jpg",
+          "base_price_rub": 484000,
+          "description": null,
+          "specs_groups": [],
+          "option_groups": [],
+          "documents": [
+            {
+              "title": "Инструкция печи «Южная»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/ЮЖНАЯ_16.12.2024.pdf",
+              "preview": "https://easysteam.ru/photos/shares/docs/pasporta-pechey/Uzhnaya_o.png"
+            },
+            {
+              "title": "Схема сборки обналички печи",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Схема сборки обналички.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Схема сборки обналички посл.jpg"
+            },
+            {
+              "title": "Каталог",
+              "url": "https://easysteam.ru/files/shares/Documents/Katalog/Katalog_24.02.2026.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Katalog/Katalog_24.02.2026.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "seriesName": "VIVARTE",
+      "seriesSlug": "vivarte",
+      "seriesPageUrl": "https://easysteam.ru/products/stoves/pechi/elektricheskie-pechi",
+      "seriesIntro": null,
+      "target": {
+        "primaryCategoryPath": "russian-bath-stoves/electric-bath-stoves",
+        "brandSlug": "easysteam",
+        "seriesTerm": "VIVARTE",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "VIVARTE",
+        "pa_equipment-type": "electric-bath-stove",
+        "pa_room-type": "russian-bath",
+        "pa_usage-class": "private"
+      },
+      "docCandidates": [],
+      "cards": [
+        {
+          "source_url": "https://easysteam.ru/products/show/1ea4a80c-1619-4fc1-9f38-20d4968d738b",
+          "source_type": "show_page",
+          "title": "Печь VIVARTE 6 в облицовке из стекла",
+          "subtitle": "",
+          "price_text": "335 000 ₽",
+          "image": null,
+          "option_count": 0,
+          "options": []
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/e719db04-f449-4100-9316-c5117c99fc12",
+          "source_type": "show_page",
+          "title": "Печь VIVARTE 6 в облицовке из камня",
+          "subtitle": "",
+          "price_text": "370 000 ₽",
+          "image": null,
+          "option_count": 1,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Test/112.png",
+              "price_text": "370 000 ₽",
+              "is_default": false,
+              "sort_order": 0
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/4c1798b4-e4c9-4169-a10e-f9145bff41dd",
+          "source_type": "show_page",
+          "title": "Печь VIVARTE 9 в облицовке из стекла",
+          "subtitle": "",
+          "price_text": "365 000 ₽",
+          "image": null,
+          "option_count": 0,
+          "options": []
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/65d5c083-ecbe-4fd8-bf1a-4e6a3de2b9ee",
+          "source_type": "show_page",
+          "title": "Печь VIVARTE 9 в облицовке из камня",
+          "subtitle": "",
+          "price_text": "405 000 ₽",
+          "image": null,
+          "option_count": 1,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Test/9_s115.png",
+              "price_text": "405 000 ₽",
+              "is_default": false,
+              "sort_order": 0
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/5d1c25b7-45bd-45a0-96e1-67c9bab45bfb",
+          "source_type": "show_page",
+          "title": "Печь VIVARTE 12 в облицовке из стекла",
+          "subtitle": "",
+          "price_text": "395 000 ₽",
+          "image": null,
+          "option_count": 0,
+          "options": []
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/4cac937f-a49e-47b1-9ba7-0f920679fa2c",
+          "source_type": "show_page",
+          "title": "Печь VIVARTE 12 в облицовке из камня",
+          "subtitle": "",
+          "price_text": "445 000 ₽",
+          "image": null,
+          "option_count": 1,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru/photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Test/12_s15.png",
+              "price_text": "445 000 ₽",
+              "is_default": false,
+              "sort_order": 0
+            }
+          ]
+        }
+      ],
+      "products": [
+        {
+          "source_url": "https://easysteam.ru/products/show/1ea4a80c-1619-4fc1-9f38-20d4968d738b",
+          "title": "Печь VIVARTE 6 в облицовке из стекла",
+          "article": "1015876",
+          "series_url": "https://easysteam.ru/products/stoves/pechi/elektricheskie-pechi",
+          "main_image": "https://easysteam.ru/images/offers/1015876.jpg",
+          "base_price_rub": 335000,
+          "description": null,
+          "specs_groups": [],
+          "option_groups": [],
+          "documents": [
+            {
+              "title": "Сертификат на электрическую печь VIVARTE",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/certificate_VIVARTE.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/certificate.png"
+            },
+            {
+              "title": "Инструкция к печи «VIVARTE»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/VIVARTE_2026.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/VIVARTE.png"
+            },
+            {
+              "title": "Декларация о соответствии VIVATE",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/declaration_VIVARTE.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/декларация.jpg"
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/e719db04-f449-4100-9316-c5117c99fc12",
+          "title": "Печь VIVARTE 6 в облицовке из камня",
+          "article": "1016009",
+          "series_url": "https://easysteam.ru/products/stoves/pechi/elektricheskie-pechi",
+          "main_image": "https://easysteam.ru/images/offers/1016009.jpg",
+          "base_price_rub": 370000,
+          "description": null,
+          "specs_groups": [],
+          "option_groups": [],
+          "documents": [
+            {
+              "title": "Сертификат на электрическую печь VIVARTE",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/certificate_VIVARTE.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/certificate.png"
+            },
+            {
+              "title": "Инструкция к печи «VIVARTE»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/VIVARTE_2026.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/VIVARTE.png"
+            },
+            {
+              "title": "Декларация о соответствии VIVATE",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/declaration_VIVARTE.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/декларация.jpg"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
