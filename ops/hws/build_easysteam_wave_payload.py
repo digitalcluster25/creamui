@@ -47,7 +47,13 @@ def extract_tab_pane(html: str, tab_id: str) -> str | None:
 
 
 def parse_series_intro(html: str) -> str | None:
-    return extract_first(r'<h1[^>]*>.*?</h1>\s*<p[^>]*>(.*?)</p>', html)
+    intro = extract_first(r'<h1[^>]*>.*?</h1>\s*<p[^>]*>(.*?)</p>', html)
+    if intro:
+        return intro
+    return extract_first(
+        r'<div[^>]*class="catalog-banner__title[^"]*"[^>]*>.*?</div>\s*(.*?)\s*(?=<a[^>]*>|<div[^>]*class="catalog-banner__links"|</div>)',
+        html,
+    )
 
 
 def parse_series_cards(html: str, base_url: str) -> list[dict[str, Any]]:

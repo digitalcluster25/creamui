@@ -1,0 +1,1760 @@
+{
+  "supplier": "EasySteam",
+  "wave": "wave-2-retail-sauna-stoves",
+  "updated": "2026-07-09",
+  "sourceRoot": "https://easysteam.ru",
+  "buildOptions": {
+    "maxProductsPerSeries": null,
+    "fetchTimeoutSeconds": 12
+  },
+  "brand": {
+    "name": "EasySteam",
+    "slug": "easysteam"
+  },
+  "scope": {
+    "includeSeries": [
+      "Ялта 15",
+      "Ялта 25",
+      "Ялта 35",
+      "Ялта 40"
+    ],
+    "excludeSeries": [
+      "Анапа",
+      "Сочи",
+      "Геленджик",
+      "Южная",
+      "VIVARTE",
+      "Анапа К",
+      "Сочи К",
+      "Геленджик К",
+      "Домна",
+      "Ялта К",
+      "MONTFORT"
+    ]
+  },
+  "parserContract": {
+    "discoverSkuCardsFromSeriesPage": true,
+    "createOneParentProductPerSupplierSkuFamily": true,
+    "preserveSourcePayloadJson": true,
+    "buildSpecsHtmlFromStructuredSpecs": true,
+    "buildSpecsGroupsFromStructuredSpecs": true,
+    "setPrimaryCategoryFromManifest": true,
+    "doNotInferMissingVoltage": true,
+    "doNotForceFuelSpecificChildCategory": true,
+    "doNotImportOutOfScopeSeries": true
+  },
+  "series": [
+    {
+      "seriesName": "Ялта 15",
+      "seriesSlug": "yalta-15",
+      "seriesPageUrl": "https://easysteam.ru/products/category/yalta-15",
+      "seriesIntro": "Практичные и доступные печи серии ЯЛТА из нержавеющей стали для бани и сауны, сочетающие в себе закрытую и открытую каменку со встроенным парогенератором и возможностью работы на газу. Универсальная и динамичная модель печи, подходит для любителей принимать банные процедуры при более высоких температурах 70-90 градусов. Режим русской бани достигается и удерживается в течение одного-двух парений. Широкий выбор вариантов облицовки позволит украсить интерьер банного комплекса лёгким резным кожухом-сеткой под закладку камнем или в ламелях из натурального природного камня:",
+      "target": {
+        "primaryCategoryPath": "sauna-stoves",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Ялта",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "Ялта",
+        "pa_equipment-type": "bath-sauna-stove",
+        "pa_room-type": "bath-and-sauna",
+        "pa_usage-class": "private"
+      },
+      "docCandidates": [],
+      "cards": [
+        {
+          "source_url": "https://easysteam.ru/products/show/9e13a9af-91d7-465f-95e2-a6ee914612c5",
+          "source_type": "show_page",
+          "title": "Печь Ялта 15/2024 в облицовке из камня",
+          "subtitle": "",
+          "price_text": "148 100 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yalta_kamen/Yalta_15_24/15_talk.png",
+          "option_count": 1,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru//photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yalta_kamen/Yalta_15_24/15_talk.png",
+              "price_text": "148 100 ₽",
+              "is_default": false,
+              "sort_order": 0
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/b8f2cfc4-aff0-4da8-aff4-797010ba0148",
+          "source_type": "show_page",
+          "title": "Печь Ялта 15/2025",
+          "subtitle": "",
+          "price_text": "99 000 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yalta_metall/Yalta_obruch_kamen/15/15_hohloma_obr.png",
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru//photos/shares/ikomki_v_nabory/hohloma_black.png",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yalta_metall/Yalta_obruch_kamen/15/15_hohloma_obr.png",
+              "price_text": "99 000 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru//photos/shares/ikomki_v_nabory/modern_black.png",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yalta_metall/Yalta_obruch_kamen/15/15_modern_obr.png",
+              "price_text": "99 000 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        }
+      ],
+      "products": [
+        {
+          "source_url": "https://easysteam.ru/products/show/9e13a9af-91d7-465f-95e2-a6ee914612c5",
+          "title": "Печь Ялта 15/2024 в облицовке из камня",
+          "article": "1006155",
+          "series_url": null,
+          "main_image": "https://easysteam.ru/images/offers/1006155.jpg",
+          "base_price_rub": 148100,
+          "description": "Доступный, практичный и динамичный вариант печей подойдёт для небольших парных объёмом до 15 м3. Печь сочетает в себе настоящую закрытую каменку и встроенный парогенератор, позволяя получать много качественного и лёгкого пара. Функционал печи ориентирован на создание в парном помещении режима бани и сауны. Режим бани можно поддерживать лишь непродолжительное время за счет проветривания помещения. Кожух из природного камня придаёт изделию стильный и элегантный вид, подчёркивает высокий статус. На печах данной серии есть возможность установки трёх видов систем получения горячей воды: с натрубным теплообменником, натрубным баком и специальным навесным теплообменником.",
+          "specs_groups": [
+            {
+              "section": "Информация о товаре",
+              "title": "Основная информация",
+              "rows": [
+                {
+                  "label": "Тип продукта",
+                  "value": "Печь"
+                },
+                {
+                  "label": "Модель",
+                  "value": "Ялта 15/2024"
+                },
+                {
+                  "label": "Версия",
+                  "value": "в облицовке из камня"
+                },
+                {
+                  "label": "Назначение",
+                  "value": "для русской бани и сауны"
+                }
+              ]
+            },
+            {
+              "section": "Характеристики",
+              "title": "Основные характеристики",
+              "rows": [
+                {
+                  "label": "Максимальный объем парной",
+                  "value": "15 м3"
+                },
+                {
+                  "label": "Диаметр дымохода",
+                  "value": "120 мм."
+                },
+                {
+                  "label": "Защита топки",
+                  "value": "шамотная плита 20 мм, кроме печей с САБК"
+                },
+                {
+                  "label": "Тип каменки",
+                  "value": "внутренняя закрытая, внешняя открытая"
+                },
+                {
+                  "label": "Парогенератор",
+                  "value": "встроенный"
+                }
+              ]
+            },
+            {
+              "section": "Характеристики",
+              "title": "Общие характеристики",
+              "rows": [
+                {
+                  "label": "Время вывода на режим русской бани (зима / лето)",
+                  "value": "110 / 80 мин."
+                },
+                {
+                  "label": "Материал (печь)",
+                  "value": "AISI 430 / AISI 321"
+                },
+                {
+                  "label": "Толщина материала (корпус печи)",
+                  "value": "3 мм."
+                },
+                {
+                  "label": "Толщина материала (корпус закрытой каменки)",
+                  "value": "4 мм."
+                },
+                {
+                  "label": "Толщина материала (элементы жесткости)",
+                  "value": "2-4 мм."
+                },
+                {
+                  "label": "Материал (дверка)",
+                  "value": "сталь, стеклокерамика жаропрочная"
+                },
+                {
+                  "label": "Материал (колосниковая решетка)",
+                  "value": "жаропрочная нержавеющая сталь"
+                },
+                {
+                  "label": "Материал (защитный кожух)",
+                  "value": "нержавеющая сталь, природный камень 20 мм"
+                }
+              ]
+            },
+            {
+              "section": "Характеристики",
+              "title": "Вид топлива",
+              "rows": [
+                {
+                  "label": "Максимальная длина поленьев",
+                  "value": "350 мм."
+                },
+                {
+                  "label": "Комплектация с ГГУ-20",
+                  "value": "природный газ, дрова"
+                },
+                {
+                  "label": "Расход газа (ГГУ)",
+                  "value": "2,15 м^3/час"
+                }
+              ]
+            },
+            {
+              "section": "Характеристики",
+              "title": "Габариты и вес",
+              "rows": [
+                {
+                  "label": "Размеры\n( Ш\nx Г\nx В\n)",
+                  "value": "460\nx\n795\nx\n920\nмм."
+                },
+                {
+                  "label": "Масса печи без учёта закладки камней и шамота",
+                  "value": "73 кг."
+                },
+                {
+                  "label": "Масса кожуха",
+                  "value": "100 кг."
+                },
+                {
+                  "label": "Масса шамота",
+                  "value": "12 кг."
+                },
+                {
+                  "label": "Масса закладываемых камней в закрытую каменку",
+                  "value": "25 кг."
+                },
+                {
+                  "label": "Масса закладываемых камней в открытую каменку",
+                  "value": "20 кг."
+                },
+                {
+                  "label": "Размер стекла на топочной дверце (Ш х В)",
+                  "value": "370 х 370 мм."
+                }
+              ]
+            }
+          ],
+          "option_groups": [],
+          "documents": [
+            {
+              "title": "Инструкция печи «Ялта»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Yalta_2026.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Yalta_2025.png"
+            },
+            {
+              "title": "Сертификат на газовое оборудование 2023 г.",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertifikat_2023.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertifikat_2023.jpg"
+            },
+            {
+              "title": "Паспорт газовой горелки ГГУЛ 20, 40",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/GGUL_NOVA820.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/GGUL_20.40.jpg"
+            },
+            {
+              "title": "Сертификат на газовое оборудование",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertificat_gaz.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertificat_gaz.jpg"
+            },
+            {
+              "title": "Схема сборки обналички печи",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Схема сборки обналички.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Схема сборки обналички посл.jpg"
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/b8f2cfc4-aff0-4da8-aff4-797010ba0148",
+          "title": "Печь Ялта 15/2025",
+          "article": "1013708",
+          "series_url": null,
+          "main_image": "https://easysteam.ru/images/offers/1013708.jpg",
+          "base_price_rub": 99000,
+          "description": "Практичный и доступный вариант печей подойдёт для небольших парных объёмом до 15 м3. Внешне лёгкий резной и одновременно прочный корпус заполненный камнем украсит собой парное помещение каркасной бани, бани-бочки с возможностью топки из комнаты отдыха. Верхний обруч из камня добавит элегантности и статусности внешнему виду печи. \nНа печах данной серии есть возможность установки трех видов систем получения горячей воды: с натрубным теплообменником, натрубным баком и с навесным теплообменником.",
+          "specs_groups": [
+            {
+              "section": "Информация о товаре",
+              "title": "Основная информация",
+              "rows": [
+                {
+                  "label": "Тип продукта",
+                  "value": "Печь"
+                },
+                {
+                  "label": "Модель",
+                  "value": "Ялта 15/2025"
+                },
+                {
+                  "label": "Назначение",
+                  "value": "для русской бани и сауны"
+                }
+              ]
+            },
+            {
+              "section": "Характеристики",
+              "title": "Основные характеристики",
+              "rows": [
+                {
+                  "label": "Максимальный объем парной",
+                  "value": "15 м3"
+                },
+                {
+                  "label": "Диаметр дымохода",
+                  "value": "120 мм."
+                },
+                {
+                  "label": "Защита топки",
+                  "value": "шамотная плита 20 мм, кроме печей с САБК"
+                },
+                {
+                  "label": "Тип каменки",
+                  "value": "внутренняя закрытая, внешняя открытая"
+                },
+                {
+                  "label": "Парогенератор",
+                  "value": "встроенный"
+                }
+              ]
+            },
+            {
+              "section": "Характеристики",
+              "title": "Общие характеристики",
+              "rows": [
+                {
+                  "label": "Время вывода на режим русской бани (зима / лето)",
+                  "value": "110 / 80 мин."
+                },
+                {
+                  "label": "Материал (печь)",
+                  "value": "AISI 430 / AISI 321"
+                },
+                {
+                  "label": "Толщина материала (корпус печи)",
+                  "value": "3 мм."
+                },
+                {
+                  "label": "Толщина материала (корпус закрытой каменки)",
+                  "value": "4 мм."
+                },
+                {
+                  "label": "Толщина материала (элементы жесткости)",
+                  "value": "2-4 мм."
+                },
+                {
+                  "label": "Материал (дверка)",
+                  "value": "сталь, стеклокерамика жаропрочная"
+                },
+                {
+                  "label": "Материал (колосниковая решетка)",
+                  "value": "жаропрочная нержавеющая сталь"
+                },
+                {
+                  "label": "Материал (защитный кожух)",
+                  "value": "конструкционная сталь, природный камень 20 мм"
+                }
+              ]
+            },
+            {
+              "section": "Характеристики",
+              "title": "Вид топлива",
+              "rows": [
+                {
+                  "label": "Максимальная длина поленьев",
+                  "value": "350 мм."
+                },
+                {
+                  "label": "Комплектация с ГГУ-20",
+                  "value": "природный газ, дрова"
+                },
+                {
+                  "label": "Расход газа (ГГУ)",
+                  "value": "2,15 м^3/час"
+                }
+              ]
+            },
+            {
+              "section": "Характеристики",
+              "title": "Габариты и вес",
+              "rows": [
+                {
+                  "label": "Размеры\n( Ш\nx Г\nx В\n)",
+                  "value": "460\nx\n795\nx\n920\nмм."
+                },
+                {
+                  "label": "Масса печи без учёта закладки камней и шамота",
+                  "value": "73 кг."
+                },
+                {
+                  "label": "Масса кожуха",
+                  "value": "19 кг."
+                },
+                {
+                  "label": "Масса шамота",
+                  "value": "12 кг."
+                },
+                {
+                  "label": "Масса закладываемых камней в закрытую каменку",
+                  "value": "25 кг."
+                },
+                {
+                  "label": "Масса закладываемых камней в открытую каменку",
+                  "value": "150 кг."
+                },
+                {
+                  "label": "Размер стекла на топочной дверце (Ш х В)",
+                  "value": "370 х 370 мм."
+                }
+              ]
+            }
+          ],
+          "option_groups": [],
+          "documents": [
+            {
+              "title": "Инструкция печи «Ялта»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Yalta_2026.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Yalta_2025.png"
+            },
+            {
+              "title": "Сертификат на газовое оборудование 2023 г.",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertifikat_2023.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertifikat_2023.jpg"
+            },
+            {
+              "title": "Паспорт газовой горелки ГГУЛ 20, 40",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/GGUL_NOVA820.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/GGUL_20.40.jpg"
+            },
+            {
+              "title": "Сертификат на газовое оборудование",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertificat_gaz.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertificat_gaz.jpg"
+            },
+            {
+              "title": "Схема сборки обналички печи",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Схема сборки обналички.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Схема сборки обналички посл.jpg"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "seriesName": "Ялта 25",
+      "seriesSlug": "yalta-25",
+      "seriesPageUrl": "https://easysteam.ru/products/category/yalta-25",
+      "seriesIntro": "Практичные и доступные печи серии ЯЛТА из нержавеющей стали для бани и сауны, сочетающие в себе закрытую и открытую каменку со встроенным парогенератором и возможностью работы на газу. Универсальная и динамичная модель печи, подходит для любителей принимать банные процедуры при более высоких температурах 70-90 градусов. Режим русской бани достигается и удерживается в течение одного-двух парений. Широкий выбор вариантов облицовки позволит украсить интерьер банного комплекса лёгким резным кожухом-сеткой под закладку камнем или в ламелях из натурального природного камня:",
+      "target": {
+        "primaryCategoryPath": "sauna-stoves",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Ялта",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "Ялта",
+        "pa_equipment-type": "bath-sauna-stove",
+        "pa_room-type": "bath-and-sauna",
+        "pa_usage-class": "private"
+      },
+      "docCandidates": [],
+      "cards": [
+        {
+          "source_url": "https://easysteam.ru/products/show/fd88a36b-14ca-435d-b504-ce3ec4bbab3f",
+          "source_type": "show_page",
+          "title": "Печь Ялта 25/2024 в облицовке из камня",
+          "subtitle": "",
+          "price_text": "174 300 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yalta_kamen/Yalta_25_24/25_talk1.png",
+          "option_count": 1,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru//photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yalta_kamen/Yalta_25_24/25_talk1.png",
+              "price_text": "174 300 ₽",
+              "is_default": false,
+              "sort_order": 0
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/084e3e69-3888-49b6-a4a8-732b3ff9ee9b",
+          "source_type": "show_page",
+          "title": "Печь Ялта 25/2025",
+          "subtitle": "",
+          "price_text": "110 000 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yalta_metall/Yalta_obruch_kamen/25/25_hohloma_obr.png",
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru//photos/shares/ikomki_v_nabory/hohloma_black.png",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yalta_metall/Yalta_obruch_kamen/25/25_hohloma_obr.png",
+              "price_text": "110 000 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru//photos/shares/ikomki_v_nabory/modern_black.png",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yalta_metall/Yalta_obruch_kamen/25/25_modern_obr.png",
+              "price_text": "110 000 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        }
+      ],
+      "products": [
+        {
+          "source_url": "https://easysteam.ru/products/show/fd88a36b-14ca-435d-b504-ce3ec4bbab3f",
+          "title": "Печь Ялта 25/2024 в облицовке из камня",
+          "article": "1006163",
+          "series_url": null,
+          "main_image": "https://easysteam.ru/images/offers/1006163.jpg",
+          "base_price_rub": 174300,
+          "description": null,
+          "specs_groups": [
+            {
+              "section": "Информация о товаре",
+              "title": "Основная информация",
+              "rows": [
+                {
+                  "label": "Тип продукта",
+                  "value": "Печь"
+                },
+                {
+                  "label": "Модель",
+                  "value": "Ялта 25/2024"
+                },
+                {
+                  "label": "Версия",
+                  "value": "в облицовке из камня"
+                },
+                {
+                  "label": "Назначение",
+                  "value": "для русской бани и сауны"
+                }
+              ]
+            },
+            {
+              "section": "Характеристики",
+              "title": "Основные характеристики",
+              "rows": [
+                {
+                  "label": "Минимальный объем парной",
+                  "value": "15 м3"
+                },
+                {
+                  "label": "Максимальный объем парной",
+                  "value": "25 м3"
+                },
+                {
+                  "label": "Диаметр дымохода",
+                  "value": "120 мм."
+                },
+                {
+                  "label": "Защита топки",
+                  "value": "шамотная плита 20 мм, кроме печей с САБК"
+                },
+                {
+                  "label": "Тип каменки",
+                  "value": "внутренняя закрытая, внешняя открытая"
+                },
+                {
+                  "label": "Парогенератор",
+                  "value": "встроенный"
+                }
+              ]
+            },
+            {
+              "section": "Характеристики",
+              "title": "Общие характеристики",
+              "rows": [
+                {
+                  "label": "Время вывода на режим русской бани (зима / лето)",
+                  "value": "110 / 80 мин."
+                },
+                {
+                  "label": "Материал (печь)",
+                  "value": "AISI 430 / AISI 321"
+                },
+                {
+                  "label": "Толщина материала (корпус печи)",
+                  "value": "3 мм."
+                },
+                {
+                  "label": "Толщина материала (корпус закрытой каменки)",
+                  "value": "4 мм."
+                },
+                {
+                  "label": "Толщина материала (элементы жесткости)",
+                  "value": "2-4 мм."
+                },
+                {
+                  "label": "Материал (дверка)",
+                  "value": "сталь, стеклокерамика жаропрочная"
+                },
+                {
+                  "label": "Материал (колосниковая решетка)",
+                  "value": "жаропрочная нержавеющая сталь"
+                },
+                {
+                  "label": "Материал (защитный кожух)",
+                  "value": "нержавеющая сталь, природный камень 20 мм"
+                }
+              ]
+            },
+            {
+              "section": "Характеристики",
+              "title": "Вид топлива",
+              "rows": [
+                {
+                  "label": "Максимальная длина поленьев",
+                  "value": "400 мм."
+                },
+                {
+                  "label": "Комплектация с ГГУ-40",
+                  "value": "природный газ, дрова"
+                },
+                {
+                  "label": "Расход газа (ГГУ)",
+                  "value": "4,3 м^3/час"
+                }
+              ]
+            },
+            {
+              "section": "Характеристики",
+              "title": "Габариты и вес",
+              "rows": [
+                {
+                  "label": "Размеры\n( Ш\nx Г\nx В\n)",
+                  "value": "490\nx\n855\nx\n920\nмм."
+                },
+                {
+                  "label": "Масса печи без учёта закладки камней и шамота",
+                  "value": "84 кг."
+                },
+                {
+                  "label": "Масса кожуха",
+                  "value": "110 кг."
+                },
+                {
+                  "label": "Масса шамота",
+                  "value": "13 кг."
+                },
+                {
+                  "label": "Масса закладываемых камней в закрытую каменку",
+                  "value": "40 кг."
+                },
+                {
+                  "label": "Масса закладываемых камней в открытую каменку",
+                  "value": "25 кг."
+                },
+                {
+                  "label": "Размер стекла на топочной дверце (Ш х В)",
+                  "value": "370 х 370 мм."
+                }
+              ]
+            }
+          ],
+          "option_groups": [],
+          "documents": [
+            {
+              "title": "Инструкция печи «Ялта»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Yalta_2026.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Yalta_2025.png"
+            },
+            {
+              "title": "Сертификат на газовое оборудование 2023 г.",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertifikat_2023.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertifikat_2023.jpg"
+            },
+            {
+              "title": "Паспорт газовой горелки ГГУЛ 20, 40",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/GGUL_NOVA820.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/GGUL_20.40.jpg"
+            },
+            {
+              "title": "Сертификат на газовое оборудование",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertificat_gaz.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertificat_gaz.jpg"
+            },
+            {
+              "title": "Схема сборки обналички печи",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Схема сборки обналички.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Схема сборки обналички посл.jpg"
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/084e3e69-3888-49b6-a4a8-732b3ff9ee9b",
+          "title": "Печь Ялта 25/2025",
+          "article": "1013737",
+          "series_url": null,
+          "main_image": "https://easysteam.ru/images/offers/1013737.jpg",
+          "base_price_rub": 110000,
+          "description": "Практичный и доступный вариант печей для русской бани и сауны. Внешне лёгкий резной и одновременно прочный корпус заполненный камнем украсит собой любой банный комплекс. Верхний обруч из камня добавит элегантности и статусности внешнему виду печи. \nНа печах данной серии есть возможность установки трех видов систем получения горячей воды: с натрубным теплообменником, натрубным баком и с навесным теплообменником.",
+          "specs_groups": [
+            {
+              "section": "Информация о товаре",
+              "title": "Основная информация",
+              "rows": [
+                {
+                  "label": "Тип продукта",
+                  "value": "Печь"
+                },
+                {
+                  "label": "Модель",
+                  "value": "Ялта 25/2025"
+                },
+                {
+                  "label": "Назначение",
+                  "value": "для русской бани и сауны"
+                }
+              ]
+            },
+            {
+              "section": "Характеристики",
+              "title": "Основные характеристики",
+              "rows": [
+                {
+                  "label": "Минимальный объем парной",
+                  "value": "15 м3"
+                },
+                {
+                  "label": "Максимальный объем парной",
+                  "value": "25 м3"
+                },
+                {
+                  "label": "Диаметр дымохода",
+                  "value": "120 мм."
+                },
+                {
+                  "label": "Защита топки",
+                  "value": "шамотная плита 20 мм, кроме печей с САБК"
+                },
+                {
+                  "label": "Тип каменки",
+                  "value": "внутренняя закрытая, внешняя открытая"
+                },
+                {
+                  "label": "Парогенератор",
+                  "value": "встроенный"
+                }
+              ]
+            },
+            {
+              "section": "Характеристики",
+              "title": "Общие характеристики",
+              "rows": [
+                {
+                  "label": "Время вывода на режим русской бани (зима / лето)",
+                  "value": "110 / 80 мин."
+                },
+                {
+                  "label": "Материал (печь)",
+                  "value": "AISI 430 / AISI 321"
+                },
+                {
+                  "label": "Толщина материала (корпус печи)",
+                  "value": "3 мм."
+                },
+                {
+                  "label": "Толщина материала (корпус закрытой каменки)",
+                  "value": "4 мм."
+                },
+                {
+                  "label": "Толщина материала (элементы жесткости)",
+                  "value": "2-4 мм."
+                },
+                {
+                  "label": "Материал (дверка)",
+                  "value": "сталь, стеклокерамика жаропрочная"
+                },
+                {
+                  "label": "Материал (колосниковая решетка)",
+                  "value": "жаропрочная нержавеющая сталь"
+                },
+                {
+                  "label": "Материал (защитный кожух)",
+                  "value": "конструкционная сталь, природный камень 20 мм"
+                }
+              ]
+            },
+            {
+              "section": "Характеристики",
+              "title": "Вид топлива",
+              "rows": [
+                {
+                  "label": "Максимальная длина поленьев",
+                  "value": "400 мм."
+                },
+                {
+                  "label": "Комплектация с ГГУ-40",
+                  "value": "природный газ, дрова"
+                },
+                {
+                  "label": "Расход газа (ГГУ)",
+                  "value": "4,3 м^3/час"
+                }
+              ]
+            },
+            {
+              "section": "Характеристики",
+              "title": "Габариты и вес",
+              "rows": [
+                {
+                  "label": "Размеры\n( Ш\nx Г\nx В\n)",
+                  "value": "490\nx\n855\nx\n920\nмм."
+                },
+                {
+                  "label": "Масса печи без учёта закладки камней и шамота",
+                  "value": "84 кг."
+                },
+                {
+                  "label": "Масса кожуха",
+                  "value": "22 кг."
+                },
+                {
+                  "label": "Масса шамота",
+                  "value": "13 кг."
+                },
+                {
+                  "label": "Масса закладываемых камней в закрытую каменку",
+                  "value": "40 кг."
+                },
+                {
+                  "label": "Масса закладываемых камней в открытую каменку",
+                  "value": "200 кг."
+                },
+                {
+                  "label": "Размер стекла на топочной дверце (Ш х В)",
+                  "value": "370 х 370 мм."
+                }
+              ]
+            }
+          ],
+          "option_groups": [],
+          "documents": [
+            {
+              "title": "Инструкция печи «Ялта»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Yalta_2026.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Yalta_2025.png"
+            },
+            {
+              "title": "Сертификат на газовое оборудование 2023 г.",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertifikat_2023.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertifikat_2023.jpg"
+            },
+            {
+              "title": "Паспорт газовой горелки ГГУЛ 20, 40",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/GGUL_NOVA820.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/GGUL_20.40.jpg"
+            },
+            {
+              "title": "Сертификат на газовое оборудование",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertificat_gaz.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertificat_gaz.jpg"
+            },
+            {
+              "title": "Схема сборки обналички печи",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Схема сборки обналички.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Схема сборки обналички посл.jpg"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "seriesName": "Ялта 35",
+      "seriesSlug": "yalta-35",
+      "seriesPageUrl": "https://easysteam.ru/products/category/yalta-35",
+      "seriesIntro": "Практичные и доступные печи серии ЯЛТА из нержавеющей стали для бани и сауны, сочетающие в себе закрытую и открытую каменку со встроенным парогенератором и возможностью работы на газу. Универсальная и динамичная модель печи, подходит для любителей принимать банные процедуры при более высоких температурах 70-90 градусов. Режим русской бани достигается и удерживается в течение одного-двух парений. Широкий выбор вариантов облицовки позволит украсить интерьер банного комплекса лёгким резным кожухом-сеткой под закладку камнем или в ламелях из натурального природного камня:",
+      "target": {
+        "primaryCategoryPath": "sauna-stoves",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Ялта",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "Ялта",
+        "pa_equipment-type": "bath-sauna-stove",
+        "pa_room-type": "bath-and-sauna",
+        "pa_usage-class": "private"
+      },
+      "docCandidates": [],
+      "cards": [
+        {
+          "source_url": "https://easysteam.ru/products/show/215593e4-8b3c-4172-8e85-bf6cb88b549f",
+          "source_type": "show_page",
+          "title": "Печь Ялта 35/2024 в облицовке из камня",
+          "subtitle": "",
+          "price_text": "198 500 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yalta_kamen/Yalta_35_24/35_talk.png",
+          "option_count": 1,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru//photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yalta_kamen/Yalta_35_24/35_talk.png",
+              "price_text": "198 500 ₽",
+              "is_default": false,
+              "sort_order": 0
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/652f5def-afc2-4465-99b0-0e50442acc8d",
+          "source_type": "show_page",
+          "title": "Печь Ялта 35/2025",
+          "subtitle": "",
+          "price_text": "139 000 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yalta_metall/Yalta_obruch_kamen/35/35_hohloma_obr.png",
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru//photos/shares/ikomki_v_nabory/hohloma_black.png",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yalta_metall/Yalta_obruch_kamen/35/35_hohloma_obr.png",
+              "price_text": "139 000 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru//photos/shares/ikomki_v_nabory/modern_black.png",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yalta_metall/Yalta_obruch_kamen/35/35_modern_obr.png",
+              "price_text": "139 000 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        }
+      ],
+      "products": [
+        {
+          "source_url": "https://easysteam.ru/products/show/215593e4-8b3c-4172-8e85-bf6cb88b549f",
+          "title": "Печь Ялта 35/2024 в облицовке из камня",
+          "article": "1006183",
+          "series_url": null,
+          "main_image": "https://easysteam.ru/images/offers/1006183.jpg",
+          "base_price_rub": 198500,
+          "description": null,
+          "specs_groups": [
+            {
+              "section": "Информация о товаре",
+              "title": "Основная информация",
+              "rows": [
+                {
+                  "label": "Тип продукта",
+                  "value": "Печь"
+                },
+                {
+                  "label": "Модель",
+                  "value": "Ялта 35/2024"
+                },
+                {
+                  "label": "Версия",
+                  "value": "в облицовке из камня"
+                },
+                {
+                  "label": "Назначение",
+                  "value": "для русской бани и сауны"
+                }
+              ]
+            },
+            {
+              "section": "Характеристики",
+              "title": "Основные характеристики",
+              "rows": [
+                {
+                  "label": "Минимальный объем парной",
+                  "value": "25 м3"
+                },
+                {
+                  "label": "Максимальный объем парной",
+                  "value": "35 м3"
+                },
+                {
+                  "label": "Диаметр дымохода",
+                  "value": "120 мм."
+                },
+                {
+                  "label": "Защита топки",
+                  "value": "шамотная плита 20 мм, кроме печей с САБК"
+                },
+                {
+                  "label": "Тип каменки",
+                  "value": "внутренняя закрытая, внешняя открытая"
+                },
+                {
+                  "label": "Парогенератор",
+                  "value": "встроенный"
+                }
+              ]
+            },
+            {
+              "section": "Характеристики",
+              "title": "Общие характеристики",
+              "rows": [
+                {
+                  "label": "Время вывода на режим русской бани (зима / лето)",
+                  "value": "110 / 80 мин."
+                },
+                {
+                  "label": "Материал (печь)",
+                  "value": "AISI 430 / AISI 321"
+                },
+                {
+                  "label": "Толщина материала (корпус печи)",
+                  "value": "3 мм."
+                },
+                {
+                  "label": "Толщина материала (корпус закрытой каменки)",
+                  "value": "4 мм."
+                },
+                {
+                  "label": "Толщина материала (элементы жесткости)",
+                  "value": "2-4 мм."
+                },
+                {
+                  "label": "Материал (дверка)",
+                  "value": "сталь, стеклокерамика жаропрочная"
+                },
+                {
+                  "label": "Материал (колосниковая решетка)",
+                  "value": "жаропрочная нержавеющая сталь"
+                },
+                {
+                  "label": "Материал (защитный кожух)",
+                  "value": "нержавеющая сталь, природный камень 20 мм"
+                }
+              ]
+            },
+            {
+              "section": "Характеристики",
+              "title": "Вид топлива",
+              "rows": [
+                {
+                  "label": "Максимальная длина поленьев",
+                  "value": "450 мм."
+                },
+                {
+                  "label": "Комплектация с САБК-40",
+                  "value": "природный газ"
+                },
+                {
+                  "label": "Расход газа (САБК)",
+                  "value": "4,1 м^3/час"
+                }
+              ]
+            },
+            {
+              "section": "Характеристики",
+              "title": "Габариты и вес",
+              "rows": [
+                {
+                  "label": "Размеры\n( Ш\nx Г\nx В\n)",
+                  "value": "530\nx\n905\nx\n970\nмм."
+                },
+                {
+                  "label": "Масса печи без учёта закладки камней и шамота",
+                  "value": "96 кг."
+                },
+                {
+                  "label": "Масса кожуха",
+                  "value": "120 кг."
+                },
+                {
+                  "label": "Масса шамота",
+                  "value": "16 кг."
+                },
+                {
+                  "label": "Масса закладываемых камней в закрытую каменку",
+                  "value": "60 кг."
+                },
+                {
+                  "label": "Масса закладываемых камней в открытую каменку",
+                  "value": "30 кг."
+                },
+                {
+                  "label": "Размер стекла на топочной дверце (Ш х В)",
+                  "value": "370 х 370 мм."
+                }
+              ]
+            }
+          ],
+          "option_groups": [],
+          "documents": [
+            {
+              "title": "Инструкция печи «Ялта»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Yalta_2026.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Yalta_2025.png"
+            },
+            {
+              "title": "Сертификат на газовое оборудование 2023 г.",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertifikat_2023.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertifikat_2023.jpg"
+            },
+            {
+              "title": "Паспорт газовой горелки ГГУЛ 20, 40",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/GGUL_NOVA820.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/GGUL_20.40.jpg"
+            },
+            {
+              "title": "Сертификат на газовое оборудование",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertificat_gaz.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertificat_gaz.jpg"
+            },
+            {
+              "title": "Схема сборки обналички печи",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Схема сборки обналички.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Схема сборки обналички посл.jpg"
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/652f5def-afc2-4465-99b0-0e50442acc8d",
+          "title": "Печь Ялта 35/2025",
+          "article": "1013770",
+          "series_url": null,
+          "main_image": "https://easysteam.ru/images/offers/1013770.jpg",
+          "base_price_rub": 139000,
+          "description": "Практичный и доступный вариант печей для русской бани и сауны. Внешне лёгкий резной и одновременно прочный корпус заполненный камнем украсит собой любой банный комплекс. Верхний обруч из камня добавит элегантности и статусности внешнему виду печи. \nНа печах данной серии есть возможность установки трех видов систем получения горячей воды: с натрубным теплообменником, натрубным баком и с навесным теплообменником.",
+          "specs_groups": [
+            {
+              "section": "Информация о товаре",
+              "title": "Основная информация",
+              "rows": [
+                {
+                  "label": "Тип продукта",
+                  "value": "Печь"
+                },
+                {
+                  "label": "Модель",
+                  "value": "Ялта 35/2025"
+                },
+                {
+                  "label": "Назначение",
+                  "value": "для русской бани и сауны"
+                }
+              ]
+            },
+            {
+              "section": "Характеристики",
+              "title": "Основные характеристики",
+              "rows": [
+                {
+                  "label": "Минимальный объем парной",
+                  "value": "25 м3"
+                },
+                {
+                  "label": "Максимальный объем парной",
+                  "value": "35 м3"
+                },
+                {
+                  "label": "Диаметр дымохода",
+                  "value": "120 мм."
+                },
+                {
+                  "label": "Защита топки",
+                  "value": "шамотная плита 20 мм, кроме печей с САБК"
+                },
+                {
+                  "label": "Тип каменки",
+                  "value": "внутренняя закрытая, внешняя открытая"
+                },
+                {
+                  "label": "Парогенератор",
+                  "value": "встроенный"
+                }
+              ]
+            },
+            {
+              "section": "Характеристики",
+              "title": "Общие характеристики",
+              "rows": [
+                {
+                  "label": "Время вывода на режим русской бани (зима / лето)",
+                  "value": "110 / 80 мин."
+                },
+                {
+                  "label": "Материал (печь)",
+                  "value": "AISI 430 / AISI 321"
+                },
+                {
+                  "label": "Толщина материала (корпус печи)",
+                  "value": "3 мм."
+                },
+                {
+                  "label": "Толщина материала (корпус закрытой каменки)",
+                  "value": "4 мм."
+                },
+                {
+                  "label": "Толщина материала (элементы жесткости)",
+                  "value": "2-4 мм."
+                },
+                {
+                  "label": "Материал (дверка)",
+                  "value": "сталь, стеклокерамика жаропрочная"
+                },
+                {
+                  "label": "Материал (защитный кожух)",
+                  "value": "конструкционная сталь, природный камень 20 мм"
+                }
+              ]
+            },
+            {
+              "section": "Характеристики",
+              "title": "Вид топлива",
+              "rows": [
+                {
+                  "label": "Максимальная длина поленьев",
+                  "value": "450 мм."
+                },
+                {
+                  "label": "Комплектация с САБК-40",
+                  "value": "природный газ"
+                },
+                {
+                  "label": "Расход газа (САБК)",
+                  "value": "4,1 м^3/час"
+                },
+                {
+                  "label": "Комплектация с ГГУ-40",
+                  "value": "природный газ, дрова"
+                },
+                {
+                  "label": "Расход газа (ГГУ)",
+                  "value": "4,3 м^3/час"
+                }
+              ]
+            },
+            {
+              "section": "Характеристики",
+              "title": "Габариты и вес",
+              "rows": [
+                {
+                  "label": "Размеры\n( Ш\nx Г\nx В\n)",
+                  "value": "530\nx\n905\nx\n970\nмм."
+                },
+                {
+                  "label": "Масса печи без учёта закладки камней и шамота",
+                  "value": "96 кг."
+                },
+                {
+                  "label": "Масса кожуха",
+                  "value": "25 кг."
+                },
+                {
+                  "label": "Масса шамота",
+                  "value": "16 кг."
+                },
+                {
+                  "label": "Масса закладываемых камней в закрытую каменку",
+                  "value": "60 кг."
+                },
+                {
+                  "label": "Масса закладываемых камней в открытую каменку",
+                  "value": "240 кг."
+                },
+                {
+                  "label": "Размер стекла на топочной дверце (Ш х В)",
+                  "value": "370 х 370 мм."
+                }
+              ]
+            }
+          ],
+          "option_groups": [],
+          "documents": [
+            {
+              "title": "Инструкция печи «Ялта»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Yalta_2026.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Yalta_2025.png"
+            },
+            {
+              "title": "Сертификат на газовое оборудование 2023 г.",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertifikat_2023.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertifikat_2023.jpg"
+            },
+            {
+              "title": "Паспорт газовой горелки ГГУЛ 20, 40",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/GGUL_NOVA820.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/GGUL_20.40.jpg"
+            },
+            {
+              "title": "Сертификат на газовое оборудование",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertificat_gaz.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertificat_gaz.jpg"
+            },
+            {
+              "title": "Схема сборки обналички печи",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Схема сборки обналички.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Схема сборки обналички посл.jpg"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "seriesName": "Ялта 40",
+      "seriesSlug": "yalta-40",
+      "seriesPageUrl": "https://easysteam.ru/products/category/yalta-40",
+      "seriesIntro": "Практичные и доступные печи серии ЯЛТА из нержавеющей стали для бани и сауны, сочетающие в себе закрытую и открытую каменку со встроенным парогенератором и возможностью работы на газу. Универсальная и динамичная модель печи, подходит для любителей принимать банные процедуры при более высоких температурах 70-90 градусов. Режим русской бани достигается и удерживается в течение одного-двух парений. Широкий выбор вариантов облицовки позволит украсить интерьер банного комплекса лёгким резным кожухом-сеткой под закладку камнем или в ламелях из натурального природного камня:",
+      "target": {
+        "primaryCategoryPath": "sauna-stoves",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Ялта",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "Ялта",
+        "pa_equipment-type": "bath-sauna-stove",
+        "pa_room-type": "bath-and-sauna",
+        "pa_usage-class": "private"
+      },
+      "docCandidates": [],
+      "cards": [
+        {
+          "source_url": "https://easysteam.ru/products/show/609f2b48-436b-421b-9b49-b69507fd2d6e",
+          "source_type": "show_page",
+          "title": "Печь Ялта 40/2024 в облицовке из камня",
+          "subtitle": "",
+          "price_text": "230 000 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yalta_kamen/Yalta_40_24/40_talk.png",
+          "option_count": 1,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru//photos/shares/ikomki_v_nabory/zm.jpg",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yalta_kamen/Yalta_40_24/40_talk.png",
+              "price_text": "230 000 ₽",
+              "is_default": false,
+              "sort_order": 0
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/20d4d7c7-1a47-42cd-88a5-31fbdda5f4c9",
+          "source_type": "show_page",
+          "title": "Печь Ялта 40/2025",
+          "subtitle": "",
+          "price_text": "162 000 ₽",
+          "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yalta_metall/Yalta_obruch_kamen/40/Yalta40_hohloma_gr_obr.png",
+          "option_count": 2,
+          "options": [
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru//photos/shares/ikomki_v_nabory/hohloma_black.png",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yalta_metall/Yalta_obruch_kamen/40/Yalta40_hohloma_gr_obr.png",
+              "price_text": "162 000 ₽",
+              "is_default": false,
+              "sort_order": 0
+            },
+            {
+              "name": null,
+              "thumb": "https://easysteam.ru//photos/shares/ikomki_v_nabory/modern_black.png",
+              "image": "https://easysteam.ru/photos/shares/Products/Pechi/Yalta_metall/Yalta_obruch_kamen/40/Yalta40_modern_gr_obr.png",
+              "price_text": "162 000 ₽",
+              "is_default": false,
+              "sort_order": 1
+            }
+          ]
+        }
+      ],
+      "products": [
+        {
+          "source_url": "https://easysteam.ru/products/show/609f2b48-436b-421b-9b49-b69507fd2d6e",
+          "title": "Печь Ялта 40/2024 в облицовке из камня",
+          "article": "1006189",
+          "series_url": null,
+          "main_image": "https://easysteam.ru/images/offers/1006189.jpg",
+          "base_price_rub": 230000,
+          "description": null,
+          "specs_groups": [
+            {
+              "section": "Информация о товаре",
+              "title": "Основная информация",
+              "rows": [
+                {
+                  "label": "Тип продукта",
+                  "value": "Печь"
+                },
+                {
+                  "label": "Модель",
+                  "value": "Ялта 40/2024"
+                },
+                {
+                  "label": "Версия",
+                  "value": "в облицовке из камня"
+                },
+                {
+                  "label": "Назначение",
+                  "value": "для русской бани и сауны"
+                }
+              ]
+            },
+            {
+              "section": "Характеристики",
+              "title": "Основные характеристики",
+              "rows": [
+                {
+                  "label": "Минимальный объем парной",
+                  "value": "30 м3"
+                },
+                {
+                  "label": "Максимальный объем парной",
+                  "value": "40 м3"
+                },
+                {
+                  "label": "Диаметр дымохода",
+                  "value": "120 мм."
+                },
+                {
+                  "label": "Защита топки",
+                  "value": "шамотная плита 20 мм, кроме печей с САБК"
+                },
+                {
+                  "label": "Тип каменки",
+                  "value": "внутренняя закрытая, внешняя открытая"
+                },
+                {
+                  "label": "Парогенератор",
+                  "value": "встроенный"
+                }
+              ]
+            },
+            {
+              "section": "Характеристики",
+              "title": "Общие характеристики",
+              "rows": [
+                {
+                  "label": "Время вывода на режим русской бани (зима / лето)",
+                  "value": "110 / 80 мин."
+                },
+                {
+                  "label": "Материал (печь)",
+                  "value": "AISI 430 / AISI 321"
+                },
+                {
+                  "label": "Толщина материала (корпус печи)",
+                  "value": "3 мм."
+                },
+                {
+                  "label": "Толщина материала (корпус закрытой каменки)",
+                  "value": "4 мм."
+                },
+                {
+                  "label": "Толщина материала (элементы жесткости)",
+                  "value": "2-4 мм."
+                },
+                {
+                  "label": "Материал (дверка)",
+                  "value": "сталь, стеклокерамика жаропрочная"
+                },
+                {
+                  "label": "Материал (колосниковая решетка)",
+                  "value": "жаропрочная нержавеющая сталь"
+                },
+                {
+                  "label": "Материал (защитный кожух)",
+                  "value": "нержавеющая сталь, природный камень 20 мм"
+                }
+              ]
+            },
+            {
+              "section": "Характеристики",
+              "title": "Вид топлива",
+              "rows": [
+                {
+                  "label": "Максимальная длина поленьев",
+                  "value": "450 мм."
+                },
+                {
+                  "label": "Комплектация с САБК-40",
+                  "value": "природный газ"
+                },
+                {
+                  "label": "Расход газа (САБК)",
+                  "value": "4,1 м^3/час"
+                }
+              ]
+            },
+            {
+              "section": "Характеристики",
+              "title": "Габариты и вес",
+              "rows": [
+                {
+                  "label": "Размеры\n( Ш\nx Г\nx В\n)",
+                  "value": "530\nx\n905\nx\n1120\nмм."
+                },
+                {
+                  "label": "Масса печи без учёта закладки камней и шамота",
+                  "value": "110 кг."
+                },
+                {
+                  "label": "Масса кожуха",
+                  "value": "140 кг."
+                },
+                {
+                  "label": "Масса шамота",
+                  "value": "17 кг."
+                },
+                {
+                  "label": "Масса закладываемых камней в закрытую каменку",
+                  "value": "80 кг."
+                },
+                {
+                  "label": "Масса закладываемых камней в открытую каменку",
+                  "value": "30 кг."
+                },
+                {
+                  "label": "Размер стекла на топочной дверце (Ш х В)",
+                  "value": "400 х 420 мм."
+                }
+              ]
+            }
+          ],
+          "option_groups": [],
+          "documents": [
+            {
+              "title": "Инструкция печи «Ялта»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Yalta_2026.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Yalta_2025.png"
+            },
+            {
+              "title": "Сертификат на газовое оборудование 2023 г.",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertifikat_2023.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertifikat_2023.jpg"
+            },
+            {
+              "title": "Паспорт газовой горелки ГГУЛ 20, 40",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/GGUL_NOVA820.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/GGUL_20.40.jpg"
+            },
+            {
+              "title": "Сертификат на газовое оборудование",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertificat_gaz.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertificat_gaz.jpg"
+            },
+            {
+              "title": "Схема сборки обналички печи",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Схема сборки обналички.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Схема сборки обналички посл.jpg"
+            }
+          ]
+        },
+        {
+          "source_url": "https://easysteam.ru/products/show/20d4d7c7-1a47-42cd-88a5-31fbdda5f4c9",
+          "title": "Печь Ялта 40/2025",
+          "article": "1013812",
+          "series_url": null,
+          "main_image": "https://easysteam.ru/images/offers/1013812.jpg",
+          "base_price_rub": 162000,
+          "description": "Практичный и доступный вариант печей для русской бани и сауны. Внешне лёгкий резной и одновременно прочный корпус заполненный камнем украсит собой любой банный комплекс. Верхний обруч из камня добавит элегантности и статусности внешнему виду печи. \nНа печах данной серии есть возможность установки трех видов систем получения горячей воды: с натрубным теплообменником, натрубным баком и с навесным теплообменником.",
+          "specs_groups": [
+            {
+              "section": "Информация о товаре",
+              "title": "Основная информация",
+              "rows": [
+                {
+                  "label": "Тип продукта",
+                  "value": "Печь"
+                },
+                {
+                  "label": "Модель",
+                  "value": "Ялта 40/2025"
+                },
+                {
+                  "label": "Назначение",
+                  "value": "для русской бани и сауны"
+                }
+              ]
+            },
+            {
+              "section": "Характеристики",
+              "title": "Основные характеристики",
+              "rows": [
+                {
+                  "label": "Минимальный объем парной",
+                  "value": "30 м3"
+                },
+                {
+                  "label": "Максимальный объем парной",
+                  "value": "40 м3"
+                },
+                {
+                  "label": "Диаметр дымохода",
+                  "value": "120 мм."
+                },
+                {
+                  "label": "Защита топки",
+                  "value": "шамотная плита 20 мм, кроме печей с САБК"
+                },
+                {
+                  "label": "Тип каменки",
+                  "value": "внутренняя закрытая, внешняя открытая"
+                },
+                {
+                  "label": "Парогенератор",
+                  "value": "встроенный"
+                }
+              ]
+            },
+            {
+              "section": "Характеристики",
+              "title": "Общие характеристики",
+              "rows": [
+                {
+                  "label": "Время вывода на режим русской бани (зима / лето)",
+                  "value": "110 / 80 мин."
+                },
+                {
+                  "label": "Материал (печь)",
+                  "value": "AISI 430 / AISI 321"
+                },
+                {
+                  "label": "Толщина материала (корпус печи)",
+                  "value": "3 мм."
+                },
+                {
+                  "label": "Толщина материала (корпус закрытой каменки)",
+                  "value": "4 мм."
+                },
+                {
+                  "label": "Толщина материала (элементы жесткости)",
+                  "value": "2-4 мм."
+                },
+                {
+                  "label": "Материал (дверка)",
+                  "value": "сталь, стеклокерамика жаропрочная"
+                },
+                {
+                  "label": "Материал (колосниковая решетка)",
+                  "value": "жаропрочная нержавеющая сталь"
+                },
+                {
+                  "label": "Материал (защитный кожух)",
+                  "value": "конструкционная сталь, природный камень 20 мм"
+                }
+              ]
+            },
+            {
+              "section": "Характеристики",
+              "title": "Вид топлива",
+              "rows": [
+                {
+                  "label": "Максимальная длина поленьев",
+                  "value": "450 мм."
+                },
+                {
+                  "label": "Комплектация с САБК-40",
+                  "value": "природный газ"
+                },
+                {
+                  "label": "Расход газа (САБК)",
+                  "value": "4,1 м^3/час"
+                },
+                {
+                  "label": "Комплектация с ГГУ-40",
+                  "value": "природный газ, дрова"
+                },
+                {
+                  "label": "Расход газа (ГГУ)",
+                  "value": "4,3 м^3/час"
+                }
+              ]
+            },
+            {
+              "section": "Характеристики",
+              "title": "Габариты и вес",
+              "rows": [
+                {
+                  "label": "Размеры\n( Ш\nx Г\nx В\n)",
+                  "value": "530\nx\n905\nx\n1120\nмм."
+                },
+                {
+                  "label": "Масса печи без учёта закладки камней и шамота",
+                  "value": "110 кг."
+                },
+                {
+                  "label": "Масса кожуха",
+                  "value": "30 кг."
+                },
+                {
+                  "label": "Масса шамота",
+                  "value": "17 кг."
+                },
+                {
+                  "label": "Масса закладываемых камней в закрытую каменку",
+                  "value": "80 кг."
+                },
+                {
+                  "label": "Масса закладываемых камней в открытую каменку",
+                  "value": "280 кг."
+                },
+                {
+                  "label": "Размер стекла на топочной дверце (Ш х В)",
+                  "value": "400 х 420 мм."
+                }
+              ]
+            }
+          ],
+          "option_groups": [],
+          "documents": [
+            {
+              "title": "Инструкция печи «Ялта»",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Yalta_2026.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Yalta_2025.png"
+            },
+            {
+              "title": "Сертификат на газовое оборудование 2023 г.",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertifikat_2023.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertifikat_2023.jpg"
+            },
+            {
+              "title": "Паспорт газовой горелки ГГУЛ 20, 40",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/GGUL_NOVA820.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/GGUL_20.40.jpg"
+            },
+            {
+              "title": "Сертификат на газовое оборудование",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Sertificat_gaz.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Sertificat_gaz.jpg"
+            },
+            {
+              "title": "Схема сборки обналички печи",
+              "url": "https://easysteam.ru/files/shares/Documents/Passports/Схема сборки обналички.pdf",
+              "preview": "https://easysteam.ru/photos/shares/Documents/Passports/Схема сборки обналички посл.jpg"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

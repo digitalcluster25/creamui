@@ -1,0 +1,185 @@
+{
+  "supplier": "EasySteam",
+  "wave": "wave-2-retail-sauna-stoves",
+  "updated": "2026-07-09",
+  "sourceRoot": "https://easysteam.ru",
+  "brand": {
+    "name": "EasySteam",
+    "slug": "easysteam"
+  },
+  "scope": {
+    "includeSeries": [
+      "Ялта 15",
+      "Ялта 25",
+      "Ялта 35",
+      "Ялта 40"
+    ],
+    "excludeSeries": [
+      "Анапа",
+      "Сочи",
+      "Геленджик",
+      "Южная",
+      "VIVARTE",
+      "Анапа К",
+      "Сочи К",
+      "Геленджик К",
+      "Домна",
+      "Ялта К",
+      "MONTFORT"
+    ]
+  },
+  "sourcePriority": [
+    "sku_page",
+    "series_page",
+    "listing_page",
+    "pdf_fallback"
+  ],
+  "listingSources": [
+    {
+      "kind": "listing_page",
+      "url": "https://easysteam.ru/products/stoves",
+      "purpose": [
+        "series discovery",
+        "mixed-use intent validation",
+        "initial volume hints"
+      ]
+    }
+  ],
+  "series": [
+    {
+      "seriesName": "Ялта 15",
+      "seriesSlug": "yalta-15",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/category/yalta-15",
+        "seedSkuUrls": [],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "sauna-stoves",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Ялта",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "Ялта",
+        "pa_equipment-type": "bath-sauna-stove",
+        "pa_room-type": "bath-and-sauna",
+        "pa_usage-class": "private"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1",
+        "description": "sku_page_description_then_series_page",
+        "short_description": "series_page_intro",
+        "steam_room_volume": "sku_specs_then_series_teaser",
+        "fuel_type": "sku_specs_then_series_intent",
+        "cladding": "sku_option_groups_and_specs",
+        "media": "sku_gallery",
+        "documents": "sku_page_then_series_docs"
+      }
+    },
+    {
+      "seriesName": "Ялта 25",
+      "seriesSlug": "yalta-25",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/category/yalta-25",
+        "seedSkuUrls": [],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "sauna-stoves",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Ялта",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "Ялта",
+        "pa_equipment-type": "bath-sauna-stove",
+        "pa_room-type": "bath-and-sauna",
+        "pa_usage-class": "private"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1",
+        "description": "sku_page_description_then_series_page",
+        "short_description": "series_page_intro",
+        "steam_room_volume": "sku_specs_then_series_teaser",
+        "fuel_type": "sku_specs_then_series_intent",
+        "cladding": "sku_option_groups_and_specs",
+        "media": "sku_gallery",
+        "documents": "sku_page_then_series_docs"
+      }
+    },
+    {
+      "seriesName": "Ялта 35",
+      "seriesSlug": "yalta-35",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/category/yalta-35",
+        "seedSkuUrls": [],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "sauna-stoves",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Ялта",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "Ялта",
+        "pa_equipment-type": "bath-sauna-stove",
+        "pa_room-type": "bath-and-sauna",
+        "pa_usage-class": "private"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1",
+        "description": "sku_page_description_then_series_page",
+        "short_description": "series_page_intro",
+        "steam_room_volume": "sku_specs_then_series_teaser",
+        "fuel_type": "sku_specs_then_series_intent",
+        "cladding": "sku_option_groups_and_specs",
+        "media": "sku_gallery",
+        "documents": "sku_page_then_series_docs"
+      }
+    },
+    {
+      "seriesName": "Ялта 40",
+      "seriesSlug": "yalta-40",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/category/yalta-40",
+        "seedSkuUrls": [],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "sauna-stoves",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Ялта",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "Ялта",
+        "pa_equipment-type": "bath-sauna-stove",
+        "pa_room-type": "bath-and-sauna",
+        "pa_usage-class": "private"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1",
+        "description": "sku_page_description_then_series_page",
+        "short_description": "series_page_intro",
+        "steam_room_volume": "sku_specs_then_series_teaser",
+        "fuel_type": "sku_specs_then_series_intent",
+        "cladding": "sku_option_groups_and_specs",
+        "media": "sku_gallery",
+        "documents": "sku_page_then_series_docs"
+      }
+    }
+  ],
+  "parserContract": {
+    "discoverSkuCardsFromSeriesPage": true,
+    "createOneParentProductPerSupplierSkuFamily": true,
+    "preserveSourcePayloadJson": true,
+    "buildSpecsHtmlFromStructuredSpecs": true,
+    "buildSpecsGroupsFromStructuredSpecs": true,
+    "setPrimaryCategoryFromManifest": true,
+    "doNotInferMissingVoltage": true,
+    "doNotForceFuelSpecificChildCategory": true,
+    "doNotImportOutOfScopeSeries": true
+  }
+}
