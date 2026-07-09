@@ -1,0 +1,229 @@
+{
+  "supplier": "EasySteam",
+  "wave": "wave-1-retail-bath-stoves",
+  "updated": "2026-07-09",
+  "sourceRoot": "https://easysteam.ru",
+  "brand": {
+    "name": "EasySteam",
+    "slug": "easysteam"
+  },
+  "scope": {
+    "includeSeries": [
+      "Анапа",
+      "Сочи",
+      "Геленджик",
+      "Южная",
+      "VIVARTE"
+    ],
+    "excludeSeries": [
+      "Ялта",
+      "Анапа К",
+      "Сочи К",
+      "Геленджик К",
+      "Домна",
+      "Ялта К",
+      "MONTFORT"
+    ]
+  },
+  "sourcePriority": [
+    "sku_page",
+    "series_page",
+    "listing_page",
+    "pdf_fallback"
+  ],
+  "listingSources": [
+    {
+      "kind": "listing_page",
+      "url": "https://easysteam.ru/products/stoves",
+      "purpose": [
+        "series discovery",
+        "initial volume hints",
+        "initial intent validation"
+      ]
+    },
+    {
+      "kind": "listing_page",
+      "url": "https://easysteam.ru/products/stoves/pechi",
+      "purpose": [
+        "series discovery",
+        "retail bath stove scope confirmation"
+      ]
+    }
+  ],
+  "series": [
+    {
+      "seriesName": "Анапа",
+      "seriesSlug": "anapa",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/stoves/pechi/anapa",
+        "seedSkuUrls": [
+          "https://easysteam.ru/products/product/1000026",
+          "https://easysteam.ru/products/product/1006355"
+        ],
+        "docCandidates": [
+          "https://easysteam.ru/files/shares/Documents/Passports/Anapa%2CSochi_100523_1.pdf"
+        ]
+      },
+      "target": {
+        "primaryCategoryPath": "russian-bath-stoves/wood-bath-stoves",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Анапа",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "Анапа",
+        "pa_equipment-type": "wood-bath-stove",
+        "pa_room-type": "russian-bath",
+        "pa_usage-class": "private"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1",
+        "description": "sku_page_description",
+        "short_description": "series_page_intro_or_sku_version",
+        "steam_room_volume": "sku_specs_then_series_teaser",
+        "fuel_type": "sku_specs_then_series_intent",
+        "cladding": "sku_option_groups_and_specs",
+        "media": "sku_gallery",
+        "documents": "sku_page_then_doc_candidates"
+      }
+    },
+    {
+      "seriesName": "Сочи",
+      "seriesSlug": "sochi",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/stoves/pechi/sochi",
+        "seedSkuUrls": [
+          "https://easysteam.ru/products/show/e1047da5-951b-4010-be84-3c3735bf1b05"
+        ],
+        "docCandidates": [
+          "https://easysteam.ru/files/shares/Documents/Passports/Anapa%2CSochi_100523_1.pdf"
+        ]
+      },
+      "target": {
+        "primaryCategoryPath": "russian-bath-stoves/wood-bath-stoves",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Сочи",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "Сочи",
+        "pa_equipment-type": "wood-bath-stove",
+        "pa_room-type": "russian-bath",
+        "pa_usage-class": "private"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1",
+        "description": "sku_page_description",
+        "short_description": "series_page_intro_or_sku_version",
+        "steam_room_volume": "sku_specs_then_series_teaser",
+        "fuel_type": "sku_specs_then_series_intent",
+        "cladding": "sku_option_groups_and_specs",
+        "media": "sku_gallery",
+        "documents": "sku_page_then_doc_candidates"
+      }
+    },
+    {
+      "seriesName": "Геленджик",
+      "seriesSlug": "gelendzhik",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/stoves/pechi/gelendzhik",
+        "seedSkuUrls": [],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "russian-bath-stoves/wood-bath-stoves",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Геленджик",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "Геленджик",
+        "pa_equipment-type": "wood-bath-stove",
+        "pa_room-type": "russian-bath",
+        "pa_usage-class": "private"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1",
+        "description": "sku_page_description",
+        "short_description": "series_page_intro_or_sku_version",
+        "steam_room_volume": "sku_specs_then_series_teaser",
+        "fuel_type": "sku_specs_then_series_intent",
+        "cladding": "sku_option_groups_and_specs",
+        "media": "sku_gallery",
+        "documents": "sku_page_then_doc_candidates"
+      }
+    },
+    {
+      "seriesName": "Южная",
+      "seriesSlug": "yuzhnaya",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/stoves/pechi/yuzhnaya",
+        "seedSkuUrls": [],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "russian-bath-stoves/wood-bath-stoves",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Южная",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "Южная",
+        "pa_equipment-type": "wood-bath-stove",
+        "pa_room-type": "russian-bath",
+        "pa_usage-class": "private"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1",
+        "description": "sku_page_description",
+        "short_description": "series_page_intro_or_sku_version",
+        "steam_room_volume": "sku_specs_then_series_teaser",
+        "fuel_type": "sku_specs_then_series_intent",
+        "cladding": "sku_option_groups_and_specs",
+        "media": "sku_gallery",
+        "documents": "sku_page_then_doc_candidates"
+      }
+    },
+    {
+      "seriesName": "VIVARTE",
+      "seriesSlug": "vivarte",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/stoves",
+        "seedSkuUrls": [],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "russian-bath-stoves/electric-bath-stoves",
+        "brandSlug": "easysteam",
+        "seriesTerm": "VIVARTE",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "VIVARTE",
+        "pa_equipment-type": "electric-bath-stove",
+        "pa_room-type": "russian-bath",
+        "pa_usage-class": "private"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1",
+        "description": "sku_page_description",
+        "short_description": "series_page_or_listing_intro",
+        "steam_room_volume": "sku_specs_then_listing_teaser",
+        "fuel_type": "derived_electric_only_if_confirmed",
+        "voltage": "sku_specs_only",
+        "media": "sku_gallery",
+        "documents": "sku_page_then_doc_candidates"
+      }
+    }
+  ],
+  "parserContract": {
+    "discoverSkuCardsFromSeriesPage": true,
+    "createOneParentProductPerSupplierSkuFamily": true,
+    "preserveSourcePayloadJson": true,
+    "buildSpecsHtmlFromStructuredSpecs": true,
+    "buildSpecsGroupsFromStructuredSpecs": true,
+    "setPrimaryCategoryFromManifest": true,
+    "doNotInferMissingVoltage": true,
+    "doNotImportOutOfScopeSeries": true
+  }
+}
