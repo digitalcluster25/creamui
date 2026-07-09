@@ -138,6 +138,7 @@ export function ProductPage({ data, contactChannels, highlights }: Props) {
     <section className={styles.section}>
       {/* ── Gallery ── */}
       <div className={styles.gallery}>
+        <div className={styles.galleryInner}>
         {/* Thumbs column */}
         <div className={styles.thumbs}>
           {displayedImages.map((src, i) => (
@@ -181,14 +182,12 @@ export function ProductPage({ data, contactChannels, highlights }: Props) {
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
           </button>
         </div>
-      </div>
-
-      {/* ── Highlights (инфографика под галереей) ── */}
-      {highlights && highlights.length > 0 && (
-        <div className={styles.highlightsWrap}>
-          <ProductHighlights highlights={highlights} />
         </div>
-      )}
+        {/* ── Highlights (инфографика внутри gallery) ── */}
+        {highlights && highlights.length > 0 && (
+          <ProductHighlights highlights={highlights} />
+        )}
+      </div>
 
       {/* ── Info ── */}
       <div className={styles.info}>
