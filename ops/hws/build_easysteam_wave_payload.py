@@ -40,6 +40,12 @@ def extract_first(pattern: str, text: str, flags: int = re.S | re.I) -> str | No
     return match.group(1).strip() if match else None
 
 
+def extract_tab_pane(html: str, tab_id: str) -> str | None:
+    pattern = rf'<div[^>]*class="tab-pane[^"]*"[^>]*id="{re.escape(tab_id)}"[^>]*>(?P<body>.*?)</div>\s*(?=<div[^>]*class="tab-pane|\Z)'
+    match = re.search(pattern, html, re.S | re.I)
+    return match.group("body") if match else None
+
+
 def parse_series_intro(html: str) -> str | None:
     return extract_first(r'<h1[^>]*>.*?</h1>\s*<p[^>]*>(.*?)</p>', html)
 
@@ -132,14 +138,13 @@ def parse_option_groups(html: str, base_url: str) -> list[dict[str, Any]]:
 
 def parse_specs_groups(html: str) -> list[dict[str, Any]]:
     result: list[dict[str, Any]] = []
-    info_match = re.search(
-        r'<div class="tab-pane fade show active" id="prod-technical-data".*?</div>\s*</div>\s*</div>\s*</div>',
-        html,
+    block = extract_tab_pane(html, "prod-technical-data") or html
+    current_section = None
+    section_pattern = re.compile(
+        r'<div[^>]*class="product__description-title"[^>]*>(.*?)</div>(.*?)(?=<div[^>]*class="product__description-title"|$)',
         re.S | re.I,
     )
-    block = info_match.group(0) if info_match else html
-    current_section = None
-    for section_match in re.finditer(r'<div class="product__description-title">(.*?)</div>(.*?)(?=<div class="product__description-title">|$)', block, re.S | re.I):
+    for section_match in section_pattern.finditer(block):
         current_section = clean_html_text(section_match.group(1))
         section_body = section_match.group(2)
         for group_match in re.finditer(r'<p class="font-weight-bold text-dark">(.*?)</p>(.*?)(?=<p class="font-weight-bold text-dark">|$)', section_body, re.S | re.I):
@@ -174,10 +179,20 @@ def parse_documents(html: str, base_url: str) -> list[dict[str, str]]:
 
 
 def parse_description(html: str) -> str | None:
-    return extract_first(
-        r'<div class="tab-pane fade show" id="prod-description".*?<div class="product__description-title">Описание</div>\s*<div[^>]*>(.*?)</div>\s*</div>',
-        html,
-    )
+    for block in filter(
+        None,
+        [
+            extract_tab_pane(html, "prod-description"),
+            extract_tab_pane(html, "prod-technical-data"),
+        ],
+    ):
+        description = extract_first(
+            r'<div[^>]*class="product__description-title"[^>]*>\s*Описание\s*</div>\s*<div[^>]*>(.*?)</div>',
+            block,
+        )
+        if description:
+            return description
+    return None
 
 
 def parse_product_page(url: str) -> dict[str, Any]:
