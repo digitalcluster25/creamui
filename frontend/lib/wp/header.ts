@@ -27,12 +27,27 @@ export type WPCategoryChildNode = {
 const CATEGORY_ICONS: Record<string, string> = {
   "russian-bath-stoves": "/assets/sauna.png",
   "sauna-stoves": "/assets/sauna.png",
-  "hammam-stoves": "/assets/sauna.png",
-  "commercial-bath-stoves": "/assets/heater.png",
-  "steam-generators": "/assets/steam.png",
-  "bath-accessories": "/assets/acs.png",
+  "steam-generators-and-hammam": "/assets/steam.png",
+  commercial: "/assets/heater.png",
+  "control-units": "/assets/heater.png",
+  "chimneys-and-installation": "/assets/heater.png",
+  "water-tanks-and-heat-exchangers": "/assets/heater.png",
+  "stones-and-cladding": "/assets/sauna.png",
+  accessories: "/assets/acs.png",
 };
 const DEFAULT_ICON = "/assets/sauna.png";
+
+const HEADER_CATEGORY_ORDER = [
+  "russian-bath-stoves",
+  "sauna-stoves",
+  "steam-generators-and-hammam",
+  "commercial",
+  "control-units",
+  "chimneys-and-installation",
+  "water-tanks-and-heat-exchangers",
+  "stones-and-cladding",
+  "accessories",
+] as const;
 
 // Разворачивает дерево категорий (parent + children) в плоский список —
 // используется и тут для меню, и в /catalog/[category] для поиска категории.
@@ -50,29 +65,20 @@ export async function getHeaderData(): Promise<HeaderData> {
     });
 
     const parents = data?.productCategories?.nodes ?? [];
+    const bySlug = new Map(parents.map((node) => [node.slug, node]));
 
-    // Мега-меню = дочерние категории (реальные разделы каталога, у родителя
-    // "Печи для бани и сауны" своей отдельной страницы нет). Если у категории
-    // верхнего уровня нет детей — показываем её саму как пункт меню.
-    const megaMenu: HeaderCatalogItem[] = parents.flatMap((parent) => {
-      const children = parent.children?.nodes ?? [];
-      if (children.length) {
-        return children.map((child) => ({
-          id: child.slug,
-          label: child.name,
-          href: `/catalog/${child.slug}`,
-          iconSrc: CATEGORY_ICONS[child.slug] ?? DEFAULT_ICON,
-        }));
-      }
-      return [
-        {
-          id: parent.slug,
-          label: parent.name,
-          href: `/catalog/${parent.slug}`,
-          iconSrc: CATEGORY_ICONS[parent.slug] ?? DEFAULT_ICON,
-        },
-      ];
-    });
+    // Каноническое меню каталога строим по верхнему уровню taxonomy, а не по
+    // произвольному раскрытию children. Это синхронизирует storefront с новой
+    // архитектурой каталога и не дублирует intent-ветки.
+    const megaMenu: HeaderCatalogItem[] = HEADER_CATEGORY_ORDER
+      .map((slug) => bySlug.get(slug))
+      .filter((node): node is WPCategoryNode => Boolean(node))
+      .map((node) => ({
+        id: node.slug,
+        label: node.name,
+        href: `/catalog/${node.slug}`,
+        iconSrc: CATEGORY_ICONS[node.slug] ?? DEFAULT_ICON,
+      }));
 
     if (!megaMenu.length) {
       return { ...headerMock, brandHref: "/" };

@@ -6,7 +6,7 @@ import type { CategoriesData } from "@/lib/types/categories";
 import type { ProductsData } from "@/lib/types/products";
 import type { CurrencyCode } from "@/lib/currency/format";
 import { htmlToPlainText } from "@/lib/content/plainText";
-import type { WPCategoryChildNode, WPCategoryNode } from "@/lib/wp/header";
+import type { WPCategoryNode } from "@/lib/wp/header";
 
 // Форма, которую реально отдаёт WooGraphQL (проверено на живом эндпоинте wpsandbox)
 export type WPProductNode = {
@@ -58,6 +58,15 @@ export type WPProductNode = {
     }[];
   };
 };
+
+function pickDisplayCategory(
+  categories: NonNullable<WPProductNode["productCategories"]>["nodes"] | undefined
+): string {
+  if (!categories?.length) return "";
+  const leaf = categories.find((category) => !category.parent?.node);
+  const child = categories.find((category) => Boolean(category.parent?.node));
+  return (child ?? leaf ?? categories[0])?.name ?? "";
+}
 
 // "$1,900" -> 1900.  "$6.563 - $8.174" -> 6563 (first value).
 // WooGraphQL отдаёт price уже отформатированной строкой с символом валюты.
@@ -124,7 +133,7 @@ export function mapToCatalogProduct(node: WPProductNode): CatalogProduct {
     href: `/product/${node.slug}`,
     image: node.image?.sourceUrl ?? "",
     title: node.name,
-    category: node.productCategories?.nodes[0]?.name ?? "",
+    category: pickDisplayCategory(node.productCategories?.nodes),
     brand: node.productBrands?.nodes[0]?.name,
     brandSlug: node.productBrands?.nodes[0]?.slug,
     priceMin: min,
@@ -180,17 +189,16 @@ export function mapToHomeProductsData(nodes: WPProductNode[]): ProductsData {
 const HOME_CATEGORY_ORDER = [
   "russian-bath-stoves",
   "sauna-stoves",
-  "hammam-stoves",
-  "commercial-bath-stoves",
+  "steam-generators-and-hammam",
+  "commercial",
 ] as const;
 
 export function mapToHomeCategoriesData(nodes: WPCategoryNode[]): CategoriesData {
-  const children = nodes.flatMap((node) => node.children?.nodes ?? []);
-  const bySlug = new Map(children.map((node) => [node.slug, node]));
+  const bySlug = new Map(nodes.map((node) => [node.slug, node]));
 
   const items = HOME_CATEGORY_ORDER
     .map((slug) => bySlug.get(slug))
-    .filter((node): node is WPCategoryChildNode => Boolean(node))
+    .filter((node): node is WPCategoryNode => Boolean(node))
     .map((node) => ({
       id: String(node.databaseId),
       imageSrc: node.image?.sourceUrl ?? "",

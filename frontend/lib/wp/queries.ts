@@ -33,6 +33,12 @@ export const GET_PRODUCTS = gql`
             nodes {
               name
               slug
+              parent {
+                node {
+                  name
+                  slug
+                }
+              }
             }
           }
           productBrands {
@@ -60,6 +66,12 @@ export const GET_PRODUCTS = gql`
             nodes {
               name
               slug
+              parent {
+                node {
+                  name
+                  slug
+                }
+              }
             }
           }
           productBrands {
@@ -234,7 +246,7 @@ export const GET_PRODUCT_BY_SLUG = gql`
 
 export const GET_PRODUCT_CATEGORIES = gql`
   query GetProductCategories {
-    productCategories(where: { parent: 0, hideEmpty: true }) {
+    productCategories(where: { parent: 0, hideEmpty: false }) {
       nodes {
         databaseId
         name
