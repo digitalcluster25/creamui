@@ -50,7 +50,7 @@ export default async function CatalogCategoryPage({
   // Для страницы категории проверяем slug напрямую через productCategory,
   // чтобы валидная, но пустая категория не отдавала 404.
   const { data: categoryData } = await client.query<{
-    productCategory: { name: string; slug: string } | null;
+    productCategory: { name: string; slug: string; parent?: { node: { name: string; slug: string } } | null } | null;
   }>({
     query: GET_PRODUCT_CATEGORY_BY_SLUG,
     variables: { slug: category },
@@ -82,6 +82,7 @@ export default async function CatalogCategoryPage({
         items={[
           { label: "Главная", href: "/" },
           { label: "Каталог", href: "/catalog" },
+          ...(found.parent?.node ? [{ label: found.parent.node.name, href: `/catalog/${found.parent.node.slug}` }] : []),
           { label: found.name },
         ]}
       />

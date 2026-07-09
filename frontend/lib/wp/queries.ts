@@ -270,6 +270,9 @@ export const GET_PRODUCT_CATEGORY_BY_SLUG = gql`
       name
       slug
       count
+      parent {
+        node { name slug }
+      }
     }
   }
 `;
