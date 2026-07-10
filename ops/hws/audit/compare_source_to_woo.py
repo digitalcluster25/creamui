@@ -128,7 +128,11 @@ def source_attribute_keys(row: dict[str, Any]) -> set[str]:
         keys.update(normalize_text(key) for key in default_attrs.keys() if normalize_text(key))
     attribute_values = row.get("attribute_values")
     if isinstance(attribute_values, dict):
-        keys.update(normalize_text(key) for key in attribute_values.keys() if normalize_text(key))
+        keys.update(
+            normalize_text(key)
+            for key, val in attribute_values.items()
+            if normalize_text(key) and normalize_text(val)
+        )
     return {key for key in keys if key}
 
 

@@ -1,0 +1,232 @@
+{
+  "brand": "vvd",
+  "generated_at": "2026-07-10T22:21:37.341731+00:00",
+  "source_total_rows": 30,
+  "woo_total_rows": 31,
+  "source_total_unique_skus": 30,
+  "woo_total_unique_skus": 31,
+  "summary": {
+    "matched": 23,
+    "matched_but_broken": 7,
+    "source_only": 0,
+    "woo_only": 1,
+    "source_duplicates": 0,
+    "woo_duplicates": 0
+  },
+  "matched": [
+    {
+      "sku": "VVD-AVTONOMNYJ-EGPP-220-4-6KVT",
+      "source_name": "Автономный АЭГПП 3,9 ; 6 кВт (220 / 380 В)",
+      "woo_product_id": 249418,
+      "woo_slug": "vvd-avtonomnyj-egpp-220-4-6kvt"
+    },
+    {
+      "sku": "VVD-AVTONOMNYJ-EGPP-380",
+      "source_name": "Автономный АЭГПП 12 ; 18 кВт (380 В)",
+      "woo_product_id": 249415,
+      "woo_slug": "vvd-avtonomnyj-egpp-380"
+    },
+    {
+      "sku": "VVD-ELEKTRICHESKAYA-PAROTERMALNAYA-PECH-PARIZHAR-10-12-16-KVT-380-V-1574",
+      "source_name": "Электрическая паротермальная печь «ПАРиЖАР» 10 кВт (380 В) в металлической облицовке",
+      "woo_product_id": 249461,
+      "woo_slug": "vvd-elektricheskaya-parotermalnaya-pech-parizhar-10-12-16-kvt-380-v-1574"
+    },
+    {
+      "sku": "VVD-ELEKTRICHESKAYA-PAROTERMALNAYA-PECH-PARIZHAR-10-12-16-KVT-380-V-OBLITSOVKA-IS-KAMNY",
+      "source_name": "Электрическая паротермальная печь «ПАРиЖАР» 10 ; 12 ; 16 кВт (380 В) облицовка из природного камня",
+      "woo_product_id": 249469,
+      "woo_slug": "vvd-elektricheskaya-parotermalnaya-pech-parizhar-10-12-16-kvt-380-v-oblitsovka-is-kamny"
+    },
+    {
+      "sku": "VVD-ELEKTRICHESKAYA-PAROTERMALNAYA-PECH-PARIZHAR-380V-4-25-6-25-KVT-V-METALLICHESKOY-OBLITSOVKE--1568",
+      "source_name": "Электрическая паротермальная печь ПАРиЖАР Про 4,25 кВт (220/380 В)",
+      "woo_product_id": 249421,
+      "woo_slug": "vvd-elektricheskaya-parotermalnaya-pech-parizhar-380v-4-25-6-25-kvt-v-metallicheskoy-oblitsovke-1568"
+    },
+    {
+      "sku": "VVD-ELEKTRICHESKAYA-PAROTERMALNAYA-PECH-PARIZHAR-4-25-6-25-OBLITSOVKA-PRIRODNYJ-KAMEN",
+      "source_name": "Электрическая паротермальная печь «ПАРиЖАР» 4,25 ; 6,25 (220/380 В) облицовка из природного камня",
+      "woo_product_id": 249455,
+      "woo_slug": "vvd-elektricheskaya-parotermalnaya-pech-parizhar-4-25-6-25-oblitsovka-prirodnyj-kamen"
+    },
+    {
+      "sku": "VVD-ELEKTRICHESKAYA-PAROTERMALNAYA-PECH-PARIZHAR-FUTURUS-METALLIC-1411",
+      "source_name": "Электрическая паротермальная печь ФутуРус 10 кВт в металлической облицовке",
+      "woo_product_id": 249378,
+      "woo_slug": "vvd-elektricheskaya-parotermalnaya-pech-parizhar-futurus-metallic-1411"
+    },
+    {
+      "sku": "VVD-ELEKTRICHESKAYA-PAROTERMALNAYA-PECH-PARIZHAR-FUTURUS-V2-0-1383",
+      "source_name": "Электрическая паротермальная печь ФутуРус 2.0 10 кВт Cерпентинит Бархат",
+      "woo_product_id": 249360,
+      "woo_slug": "vvd-elektricheskaya-parotermalnaya-pech-parizhar-futurus-v2-0-1383"
+    },
+    {
+      "sku": "VVD-ELEKTRICHESKAYA-PAROTERMALNAYA-PECH-PARIZHAR-PRO-18-24-KVT-380-V-1549",
+      "source_name": "Электрическая паротермальная печь ПАРиЖАР Про 18 кВт (380 В)",
+      "woo_product_id": 249437,
+      "woo_slug": "vvd-elektricheskaya-parotermalnaya-pech-parizhar-pro-18-24-kvt-380-v-1549"
+    },
+    {
+      "sku": "VVD-ELEKTRICHESKAYA-PAROTERMALNAYA-PECH-PARIZHAR-PRO-380V-10-16-KVT-1570",
+      "source_name": "Электрическая паротермальная печь ПАРиЖАР Про 10 кВт (380 В)",
+      "woo_product_id": 249429,
+      "woo_slug": "vvd-elektricheskaya-parotermalnaya-pech-parizhar-pro-380v-10-16-kvt-1570"
+    },
+    {
+      "sku": "VVD-ELEKTRO-PAROTERMALNIE-PECHI-PARIZHAR-18-24KVT-1564",
+      "source_name": "Электрическая паротермальная печь ПАРиЖАР 380В 18 кВт в металлической облицовке",
+      "woo_product_id": 249475,
+      "woo_slug": "vvd-elektro-parotermalnie-pechi-parizhar-18-24kvt-1564"
+    },
+    {
+      "sku": "VVD-ELEKTRO-PAROTERMALNIE-PECHI-PARIZHAR-220V-174-1577",
+      "source_name": "Электрическая паротермальная печь «ПАРиЖАР» 4,25 кВт (220/380 В) в металлической облицовке",
+      "woo_product_id": 249448,
+      "woo_slug": "vvd-elektro-parotermalnie-pechi-parizhar-220v-174-1577"
+    },
+    {
+      "sku": "VVD-NAVESNAYA-PECH-PARIZHAR-W",
+      "source_name": "Навесная печь ПАРиЖАР",
+      "woo_product_id": 249445,
+      "woo_slug": "vvd-navesnaya-pech-parizhar-w"
+    },
+    {
+      "sku": "VVD-PAROTERMALNAYA-PECH-PREMERA-RUSA-4-25-6-25-KVT-220-380-V",
+      "source_name": "Паротермальная печь Премьера Руса 4,25 ; 6,25 кВт (220 / 380 В)",
+      "woo_product_id": 249483,
+      "woo_slug": "vvd-parotermalnaya-pech-premera-rusa-4-25-6-25-kvt-220-380-v"
+    },
+    {
+      "sku": "VVD-PECH-PREMERA-M-852",
+      "source_name": "Электрическая печь Премьера М в металлическом корпусе 380В 9 кВт",
+      "woo_product_id": 249520,
+      "woo_slug": "vvd-pech-premera-m-852"
+    },
+    {
+      "sku": "VVD-PECH-PREMERA-M-V-KAMNE-865",
+      "source_name": "Электрическая печь Премьера М в камне Cерпентинит Бархат 380В 9 кВт",
+      "woo_product_id": 249522,
+      "woo_slug": "vvd-pech-premera-m-v-kamne-865"
+    },
+    {
+      "sku": "VVD-PECH-PREMERA-RUSA-220V-S-ZAKRYTOY-KAMENKOY-879",
+      "source_name": "Электрическая печь Премьера Руса 220В (с закрытой каменкой) 4 кВт",
+      "woo_product_id": 249531,
+      "woo_slug": "vvd-pech-premera-rusa-220v-s-zakrytoy-kamenkoy-879"
+    },
+    {
+      "sku": "VVD-PECH-PREMERA-RUSA-874",
+      "source_name": "Электрическая печь Премьера Руса 380В 9 кВт",
+      "woo_product_id": 249524,
+      "woo_slug": "vvd-pech-premera-rusa-874"
+    },
+    {
+      "sku": "VVD-PECH-PREMERA9-24-840",
+      "source_name": "Электрическая печь Премьера в каменной облицовке Cерпентинит Премиум 380В 9 кВт",
+      "woo_product_id": 249512,
+      "woo_slug": "vvd-pech-premera9-24-840"
+    },
+    {
+      "sku": "VVD-PREMERA-PROFI-24-KVT-808",
+      "source_name": "Электрическая печь для бани Премьера Профи 24 кВт в облицовке из нержавеющей стали",
+      "woo_product_id": 249538,
+      "woo_slug": "vvd-premera-profi-24-kvt-808"
+    },
+    {
+      "sku": "VVD-PREMERA-PROFI-36-48-KVT-1372",
+      "source_name": "Электрическая печь для бани Премьера Профи 30 кВт в каменной облицовке",
+      "woo_product_id": 249548,
+      "woo_slug": "vvd-premera-profi-36-48-kvt-1372"
+    },
+    {
+      "sku": "VVD-PU-04-M-26-30-380-KVT-DLYA-ENU-FAUNA-1539",
+      "source_name": "ПУ - 04 М для ЭНУ Фауна (26-30 кВт)",
+      "woo_product_id": 249557,
+      "woo_slug": "vvd-pu-04-m-26-30-380-kvt-dlya-enu-fauna-1539"
+    },
+    {
+      "sku": "VVD-PULT-DLYA-AEGPP-2-25-6-KVT",
+      "source_name": "Пульт для АЭГПП (2.25-6 кВт)",
+      "woo_product_id": 249563,
+      "woo_slug": "vvd-pult-dlya-aegpp-2-25-6-kvt"
+    }
+  ],
+  "matched_but_broken": [
+    {
+      "sku": "VVD-ELEKTRICHESKAYA-PAROTERMALNAYA-PECH-FUTURUS-V-METALLICHESKOY-OBLITSOVKE--1512",
+      "source_name": "Электрическая паротермальная печь ФутуРус 2.0 10 кВт в металлической облицовке",
+      "woo_product_id": 249369,
+      "woo_slug": "vvd-elektricheskaya-parotermalnaya-pech-futurus-v-metallicheskoy-oblitsovke-1512",
+      "reasons": [
+        "variation_issue"
+      ]
+    },
+    {
+      "sku": "VVD-PU-02M-I-PU-04M-DLYA-PECHEY-PREMERA-PROFI-808",
+      "source_name": "ПУ 02М и ПУ 04М для печей Премьера Профи",
+      "woo_product_id": 249566,
+      "woo_slug": "vvd-pu-02m-i-pu-04m-dlya-pechey-premera-profi-808",
+      "reasons": [
+        "variation_issue"
+      ]
+    },
+    {
+      "sku": "VVD-PULT-01-M-DLYA-PECHEY-PREMERA-2-25-24KVT-840",
+      "source_name": "Пульт 01 М для печей «Премьера» (от 2.25-24кВт)",
+      "woo_product_id": 249570,
+      "woo_slug": "vvd-pult-01-m-dlya-pechey-premera-2-25-24kvt-840",
+      "reasons": [
+        "variation_issue"
+      ]
+    },
+    {
+      "sku": "VVD-PULT-02-MP-DLYA-PECHEY-PARIZHAR-2-25-24-KVT-1568",
+      "source_name": "Пульт 02 МП для печей «ПАРиЖАР» (от 2.25-24 кВт)",
+      "woo_product_id": 249575,
+      "woo_slug": "vvd-pult-02-mp-dlya-pechey-parizhar-2-25-24-kvt-1568",
+      "reasons": [
+        "variation_issue"
+      ]
+    },
+    {
+      "sku": "VVD-PULT-08-1-840",
+      "source_name": "Пульт 08.1",
+      "woo_product_id": 249580,
+      "woo_slug": "vvd-pult-08-1-840",
+      "reasons": [
+        "variation_issue"
+      ]
+    },
+    {
+      "sku": "VVD-PULT-09-DLYA-PECHEY-PARIZHAR-2-25-24-KVT-1568",
+      "source_name": "Пульт 09 для Печей ПАРиЖАР (от 4.25-24 кВт)",
+      "woo_product_id": 249577,
+      "woo_slug": "vvd-pult-09-dlya-pechey-parizhar-2-25-24-kvt-1568",
+      "reasons": [
+        "variation_issue"
+      ]
+    },
+    {
+      "sku": "VVD-PULT-UPRAVLENIYA-K-PAROTERMALNYM-PECHAM-PREMERA-RUSA-840",
+      "source_name": "ПУ-21МП Пульт управления для ЭНУ",
+      "woo_product_id": 249560,
+      "woo_slug": "vvd-pult-upravleniya-k-parotermalnym-pecham-premera-rusa-840",
+      "reasons": [
+        "variation_issue"
+      ]
+    }
+  ],
+  "source_only": [],
+  "woo_only": [
+    {
+      "sku": "1383",
+      "woo_product_id": 248495,
+      "woo_slug": "vvd-elektricheskaya-parotermalnaya-pech-parizhar-futurus-v2-0",
+      "title": "Электрическая паротермальная печь ФутуРус 2.0 10 кВт Cерпентинит Бархат"
+    }
+  ],
+  "source_duplicates": [],
+  "woo_duplicates": []
+}

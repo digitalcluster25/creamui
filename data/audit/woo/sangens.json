@@ -1,0 +1,1295 @@
+{
+    "brand": "sangens",
+    "generated_at": "2026-07-10T22:21:16+00:00",
+    "total": 32,
+    "products": [
+        {
+            "product_id": 249609,
+            "sku": "G043159",
+            "slug": "sangens-g043159",
+            "status": "publish",
+            "title": "Обливное устройство для бани и сауны Sangens Oblivion 30 Wood (Сангенс Обливное 30 Дерево)",
+            "brand": "sangens",
+            "brand_slugs": [
+                "sangens"
+            ],
+            "source_brand_meta": "sangens",
+            "source_url": "",
+            "primary_category": "pouring-devices",
+            "category_slugs": [
+                "accessories",
+                "pouring-devices"
+            ],
+            "image_count": 0,
+            "featured_image_id": 0,
+            "gallery_image_ids": [],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_room-type",
+                "pa_series",
+                "pa_usage-class"
+            ],
+            "price": "1053",
+            "regular_price": "1053",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 249602,
+            "sku": "S000088",
+            "slug": "sangens-s000088",
+            "status": "publish",
+            "title": "Система управления для бани и сауны Sangens Panel System 3S Pro (Сангенс Система управления 3П Про)",
+            "brand": "sangens",
+            "brand_slugs": [
+                "sangens"
+            ],
+            "source_brand_meta": "sangens",
+            "source_url": "",
+            "primary_category": "for-sauna-heaters",
+            "category_slugs": [
+                "control-units",
+                "for-sauna-heaters"
+            ],
+            "image_count": 0,
+            "featured_image_id": 0,
+            "gallery_image_ids": [],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_room-type",
+                "pa_series",
+                "pa_usage-class"
+            ],
+            "price": "8285",
+            "regular_price": "8285",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 249603,
+            "sku": "S000089",
+            "slug": "sangens-s000089",
+            "status": "publish",
+            "title": "Система управления для бани и сауны Sangens Panel System 3M Pro (Сангенс Система управления 3В Про)",
+            "brand": "sangens",
+            "brand_slugs": [
+                "sangens"
+            ],
+            "source_brand_meta": "sangens",
+            "source_url": "",
+            "primary_category": "for-sauna-heaters",
+            "category_slugs": [
+                "control-units",
+                "for-sauna-heaters"
+            ],
+            "image_count": 0,
+            "featured_image_id": 0,
+            "gallery_image_ids": [],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_room-type",
+                "pa_series",
+                "pa_usage-class"
+            ],
+            "price": "12920",
+            "regular_price": "12920",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 249604,
+            "sku": "S000128",
+            "slug": "sangens-s000128",
+            "status": "publish",
+            "title": "Система управления для бани и сауны Sangens Panel System 4M Pro (Сангенс Система управления 4В Про)",
+            "brand": "sangens",
+            "brand_slugs": [
+                "sangens"
+            ],
+            "source_brand_meta": "sangens",
+            "source_url": "",
+            "primary_category": "for-sauna-heaters",
+            "category_slugs": [
+                "control-units",
+                "for-sauna-heaters"
+            ],
+            "image_count": 0,
+            "featured_image_id": 0,
+            "gallery_image_ids": [],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_room-type",
+                "pa_series",
+                "pa_usage-class"
+            ],
+            "price": "13973",
+            "regular_price": "13973",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 249597,
+            "sku": "S000168",
+            "slug": "sangens-s000168",
+            "status": "publish",
+            "title": "Электрическая печь для бани и сауны Sangens L18C Ceramic (Сангенс Л18КЕ Керамика)",
+            "brand": "sangens",
+            "brand_slugs": [
+                "sangens"
+            ],
+            "source_brand_meta": "sangens",
+            "source_url": "",
+            "primary_category": "electric-sauna-stoves",
+            "category_slugs": [
+                "electric-sauna-stoves",
+                "sauna-stoves"
+            ],
+            "image_count": 0,
+            "featured_image_id": 0,
+            "gallery_image_ids": [],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class"
+            ],
+            "price": "2949",
+            "regular_price": "2949",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 249595,
+            "sku": "S000250",
+            "slug": "sangens-s000250",
+            "status": "publish",
+            "title": "Электрическая печь для бани и сауны Sangens L8C Ceramic (Сангенс Л8КЕ Керамика)",
+            "brand": "sangens",
+            "brand_slugs": [
+                "sangens"
+            ],
+            "source_brand_meta": "sangens",
+            "source_url": "",
+            "primary_category": "electric-sauna-stoves",
+            "category_slugs": [
+                "electric-sauna-stoves",
+                "sauna-stoves"
+            ],
+            "image_count": 0,
+            "featured_image_id": 0,
+            "gallery_image_ids": [],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class"
+            ],
+            "price": "2668",
+            "regular_price": "2668",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 249596,
+            "sku": "S000251",
+            "slug": "sangens-s000251",
+            "status": "publish",
+            "title": "Электрическая печь для бани и сауны Sangens L12C Ceramic (Сангенс Л12КЕ Керамика)",
+            "brand": "sangens",
+            "brand_slugs": [
+                "sangens"
+            ],
+            "source_brand_meta": "sangens",
+            "source_url": "",
+            "primary_category": "electric-sauna-stoves",
+            "category_slugs": [
+                "electric-sauna-stoves",
+                "sauna-stoves"
+            ],
+            "image_count": 0,
+            "featured_image_id": 0,
+            "gallery_image_ids": [],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class"
+            ],
+            "price": "2808",
+            "regular_price": "2808",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 249583,
+            "sku": "S000669",
+            "slug": "sangens-s000669",
+            "status": "publish",
+            "title": "Электрическая печь для бани и сауны Sangens W12G Glass Black (Сангенс В12С Стекло черное)",
+            "brand": "sangens",
+            "brand_slugs": [
+                "sangens"
+            ],
+            "source_brand_meta": "sangens",
+            "source_url": "",
+            "primary_category": "electric-sauna-stoves",
+            "category_slugs": [
+                "electric-sauna-stoves",
+                "sauna-stoves"
+            ],
+            "image_count": 0,
+            "featured_image_id": 0,
+            "gallery_image_ids": [],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class",
+                "pa_voltage"
+            ],
+            "price": "4297",
+            "regular_price": "4297",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 249592,
+            "sku": "S000670",
+            "slug": "sangens-s000670",
+            "status": "publish",
+            "title": "Электрическая печь для бани и сауны Sangens W12S Stone (Сангенс В12КА Камень)",
+            "brand": "sangens",
+            "brand_slugs": [
+                "sangens"
+            ],
+            "source_brand_meta": "sangens",
+            "source_url": "",
+            "primary_category": "electric-sauna-stoves",
+            "category_slugs": [
+                "electric-sauna-stoves",
+                "sauna-stoves"
+            ],
+            "image_count": 0,
+            "featured_image_id": 0,
+            "gallery_image_ids": [],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class"
+            ],
+            "price": "9549",
+            "regular_price": "9549",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 248934,
+            "sku": "S000671",
+            "slug": "sangens-s000671",
+            "status": "publish",
+            "title": "Электрическая печь для бани и сауны Sangens W12B Brick (Сангенс В12КИ Кирпич)",
+            "brand": "sangens",
+            "brand_slugs": [
+                "sangens"
+            ],
+            "source_brand_meta": "sangens",
+            "source_url": "",
+            "primary_category": "electric-sauna-stoves",
+            "category_slugs": [
+                "electric-sauna-stoves",
+                "sauna-stoves"
+            ],
+            "image_count": 1,
+            "featured_image_id": 248938,
+            "gallery_image_ids": [],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class"
+            ],
+            "price": "5477",
+            "regular_price": "5477",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 248473,
+            "sku": "S000672",
+            "slug": "sangens-s000672",
+            "status": "publish",
+            "title": "Электрическая печь для бани и сауны Sangens W20G Glass Black (Сангенс В20С Стекло черное)",
+            "brand": "sangens",
+            "brand_slugs": [
+                "sangens"
+            ],
+            "source_brand_meta": "sangens",
+            "source_url": "https://sangens.com/ru/catalog/furnaces/series-w/sangens_w20g_black/",
+            "primary_category": "electric-sauna-stoves",
+            "category_slugs": [
+                "electric-sauna-stoves",
+                "sauna-stoves"
+            ],
+            "image_count": 3,
+            "featured_image_id": 248931,
+            "gallery_image_ids": [
+                248932,
+                248933
+            ],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class"
+            ],
+            "price": "4438",
+            "regular_price": "4438",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 248936,
+            "sku": "S000673",
+            "slug": "sangens-s000673",
+            "status": "publish",
+            "title": "Электрическая печь для бани и сауны Sangens W20S Stone (Сангенс В20КА Камень)",
+            "brand": "sangens",
+            "brand_slugs": [
+                "sangens"
+            ],
+            "source_brand_meta": "sangens",
+            "source_url": "",
+            "primary_category": "electric-sauna-stoves",
+            "category_slugs": [
+                "electric-sauna-stoves",
+                "sauna-stoves"
+            ],
+            "image_count": 1,
+            "featured_image_id": 248940,
+            "gallery_image_ids": [],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class"
+            ],
+            "price": "9690",
+            "regular_price": "9690",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 248937,
+            "sku": "S000674",
+            "slug": "sangens-s000674",
+            "status": "publish",
+            "title": "Электрическая печь для бани и сауны Sangens W20B Brick (Сангенс В20КИ Кирпич)",
+            "brand": "sangens",
+            "brand_slugs": [
+                "sangens"
+            ],
+            "source_brand_meta": "sangens",
+            "source_url": "",
+            "primary_category": "electric-sauna-stoves",
+            "category_slugs": [
+                "electric-sauna-stoves",
+                "sauna-stoves"
+            ],
+            "image_count": 1,
+            "featured_image_id": 248941,
+            "gallery_image_ids": [],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class"
+            ],
+            "price": "5758",
+            "regular_price": "5758",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 249590,
+            "sku": "S000675",
+            "slug": "sangens-s000675",
+            "status": "publish",
+            "title": "Электрическая печь для бани и сауны Sangens W30B Brick (Сангенс В30КИ Кирпич)",
+            "brand": "sangens",
+            "brand_slugs": [
+                "sangens"
+            ],
+            "source_brand_meta": "sangens",
+            "source_url": "",
+            "primary_category": "electric-sauna-stoves",
+            "category_slugs": [
+                "electric-sauna-stoves",
+                "sauna-stoves"
+            ],
+            "image_count": 0,
+            "featured_image_id": 0,
+            "gallery_image_ids": [],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class"
+            ],
+            "price": "9690",
+            "regular_price": "9690",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 249584,
+            "sku": "S000676",
+            "slug": "sangens-s000676",
+            "status": "publish",
+            "title": "Электрическая печь для бани и сауны Sangens W30G Glass Black (Сангенс В30С Стекло черное)",
+            "brand": "sangens",
+            "brand_slugs": [
+                "sangens"
+            ],
+            "source_brand_meta": "sangens",
+            "source_url": "",
+            "primary_category": "electric-sauna-stoves",
+            "category_slugs": [
+                "electric-sauna-stoves",
+                "sauna-stoves"
+            ],
+            "image_count": 0,
+            "featured_image_id": 0,
+            "gallery_image_ids": [],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class"
+            ],
+            "price": "7162",
+            "regular_price": "7162",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 249593,
+            "sku": "S000677",
+            "slug": "sangens-s000677",
+            "status": "publish",
+            "title": "Электрическая печь для бани и сауны Sangens W30S Stone (Сангенс В30КА Камень)",
+            "brand": "sangens",
+            "brand_slugs": [
+                "sangens"
+            ],
+            "source_brand_meta": "sangens",
+            "source_url": "",
+            "primary_category": "electric-sauna-stoves",
+            "category_slugs": [
+                "electric-sauna-stoves",
+                "sauna-stoves"
+            ],
+            "image_count": 0,
+            "featured_image_id": 0,
+            "gallery_image_ids": [],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class"
+            ],
+            "price": "14886",
+            "regular_price": "14886",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 249591,
+            "sku": "S000678",
+            "slug": "sangens-s000678",
+            "status": "publish",
+            "title": "Электрическая печь для бани и сауны Sangens W40B Brick (Сангенс В40КИ Кирпич)",
+            "brand": "sangens",
+            "brand_slugs": [
+                "sangens"
+            ],
+            "source_brand_meta": "sangens",
+            "source_url": "",
+            "primary_category": "electric-sauna-stoves",
+            "category_slugs": [
+                "electric-sauna-stoves",
+                "sauna-stoves"
+            ],
+            "image_count": 0,
+            "featured_image_id": 0,
+            "gallery_image_ids": [],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class"
+            ],
+            "price": "10111",
+            "regular_price": "10111",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 249585,
+            "sku": "S000679",
+            "slug": "sangens-s000679",
+            "status": "publish",
+            "title": "Электрическая печь для бани и сауны Sangens W40G Glass Black (Сангенс В40С Стекло черное)",
+            "brand": "sangens",
+            "brand_slugs": [
+                "sangens"
+            ],
+            "source_brand_meta": "sangens",
+            "source_url": "",
+            "primary_category": "electric-sauna-stoves",
+            "category_slugs": [
+                "electric-sauna-stoves",
+                "sauna-stoves"
+            ],
+            "image_count": 0,
+            "featured_image_id": 0,
+            "gallery_image_ids": [],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class"
+            ],
+            "price": "7583",
+            "regular_price": "7583",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 249594,
+            "sku": "S000680",
+            "slug": "sangens-s000680",
+            "status": "publish",
+            "title": "Электрическая печь для бани и сауны Sangens W40S Stone (Сангенс В40КА Камень)",
+            "brand": "sangens",
+            "brand_slugs": [
+                "sangens"
+            ],
+            "source_brand_meta": "sangens",
+            "source_url": "",
+            "primary_category": "electric-sauna-stoves",
+            "category_slugs": [
+                "electric-sauna-stoves",
+                "sauna-stoves"
+            ],
+            "image_count": 0,
+            "featured_image_id": 0,
+            "gallery_image_ids": [],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class"
+            ],
+            "price": "15026",
+            "regular_price": "15026",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 249587,
+            "sku": "S001204",
+            "slug": "sangens-s001204",
+            "status": "publish",
+            "title": "Электрическая печь для бани и сауны Sangens W20G Glass White (Сангенс В20С Стекло белое)",
+            "brand": "sangens",
+            "brand_slugs": [
+                "sangens"
+            ],
+            "source_brand_meta": "sangens",
+            "source_url": "",
+            "primary_category": "electric-sauna-stoves",
+            "category_slugs": [
+                "electric-sauna-stoves",
+                "sauna-stoves"
+            ],
+            "image_count": 0,
+            "featured_image_id": 0,
+            "gallery_image_ids": [],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class"
+            ],
+            "price": "4578",
+            "regular_price": "4578",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 249586,
+            "sku": "S001207",
+            "slug": "sangens-s001207",
+            "status": "publish",
+            "title": "Электрическая печь для бани и сауны Sangens W12G Glass White (Сангенс В12С Стекло белое)",
+            "brand": "sangens",
+            "brand_slugs": [
+                "sangens"
+            ],
+            "source_brand_meta": "sangens",
+            "source_url": "",
+            "primary_category": "electric-sauna-stoves",
+            "category_slugs": [
+                "electric-sauna-stoves",
+                "sauna-stoves"
+            ],
+            "image_count": 0,
+            "featured_image_id": 0,
+            "gallery_image_ids": [],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class",
+                "pa_voltage"
+            ],
+            "price": "4438",
+            "regular_price": "4438",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 249588,
+            "sku": "S001208",
+            "slug": "sangens-s001208",
+            "status": "publish",
+            "title": "Электрическая печь для бани и сауны Sangens W30G Glass White (Сангенс В30С Стекло белое)",
+            "brand": "sangens",
+            "brand_slugs": [
+                "sangens"
+            ],
+            "source_brand_meta": "sangens",
+            "source_url": "",
+            "primary_category": "electric-sauna-stoves",
+            "category_slugs": [
+                "electric-sauna-stoves",
+                "sauna-stoves"
+            ],
+            "image_count": 0,
+            "featured_image_id": 0,
+            "gallery_image_ids": [],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class"
+            ],
+            "price": "7302",
+            "regular_price": "7302",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 249589,
+            "sku": "S001209",
+            "slug": "sangens-s001209",
+            "status": "publish",
+            "title": "Электрическая печь для бани и сауны Sangens W40G Glass White (Сангенс В40С Стекло белое)",
+            "brand": "sangens",
+            "brand_slugs": [
+                "sangens"
+            ],
+            "source_brand_meta": "sangens",
+            "source_url": "",
+            "primary_category": "electric-sauna-stoves",
+            "category_slugs": [
+                "electric-sauna-stoves",
+                "sauna-stoves"
+            ],
+            "image_count": 0,
+            "featured_image_id": 0,
+            "gallery_image_ids": [],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class"
+            ],
+            "price": "7724",
+            "regular_price": "7724",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 249607,
+            "sku": "S001279",
+            "slug": "sangens-s001279",
+            "status": "publish",
+            "title": "Снегогенератор для бани и сауны Sangens Snow 10 Steel Black (Сангенс Снег 10 Сталь черная)",
+            "brand": "sangens",
+            "brand_slugs": [
+                "sangens"
+            ],
+            "source_brand_meta": "sangens",
+            "source_url": "",
+            "primary_category": "spa-systems",
+            "category_slugs": [
+                "commercial",
+                "spa-systems"
+            ],
+            "image_count": 0,
+            "featured_image_id": 0,
+            "gallery_image_ids": [],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_cladding-material",
+                "pa_room-type",
+                "pa_series",
+                "pa_usage-class"
+            ],
+            "price": "7724",
+            "regular_price": "7724",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 249608,
+            "sku": "S001280",
+            "slug": "sangens-s001280",
+            "status": "publish",
+            "title": "Стойка для бани и сауны Sangens Snow Stand 900 Steel Black (Сангенс Стойка 900 Сталь черная)",
+            "brand": "sangens",
+            "brand_slugs": [
+                "sangens"
+            ],
+            "source_brand_meta": "sangens",
+            "source_url": "",
+            "primary_category": "spa-systems",
+            "category_slugs": [
+                "commercial",
+                "spa-systems"
+            ],
+            "image_count": 0,
+            "featured_image_id": 0,
+            "gallery_image_ids": [],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_cladding-material",
+                "pa_room-type",
+                "pa_series",
+                "pa_usage-class"
+            ],
+            "price": "744",
+            "regular_price": "744",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 249610,
+            "sku": "S001281",
+            "slug": "sangens-s001281",
+            "status": "publish",
+            "title": "Второе дыхание для бани и сауны Sangens Fresh Air 5 Steel (Сангенс Свежий воздух 5 Сталь)",
+            "brand": "sangens",
+            "brand_slugs": [
+                "sangens"
+            ],
+            "source_brand_meta": "sangens",
+            "source_url": "",
+            "primary_category": "automation",
+            "category_slugs": [
+                "automation",
+                "commercial"
+            ],
+            "image_count": 0,
+            "featured_image_id": 0,
+            "gallery_image_ids": [],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_room-type",
+                "pa_series",
+                "pa_usage-class"
+            ],
+            "price": "899",
+            "regular_price": "899",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 249598,
+            "sku": "S001424",
+            "slug": "sangens-s001424",
+            "status": "publish",
+            "title": "Электрическая печь для бани и сауны Sangens LS12C Ceramic (Сангенс ЛС12КЕ Керамика)",
+            "brand": "sangens",
+            "brand_slugs": [
+                "sangens"
+            ],
+            "source_brand_meta": "sangens",
+            "source_url": "",
+            "primary_category": "electric-sauna-stoves",
+            "category_slugs": [
+                "electric-sauna-stoves",
+                "sauna-stoves"
+            ],
+            "image_count": 0,
+            "featured_image_id": 0,
+            "gallery_image_ids": [],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class"
+            ],
+            "price": "2106",
+            "regular_price": "2106",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 249599,
+            "sku": "S001425",
+            "slug": "sangens-s001425",
+            "status": "publish",
+            "title": "Электрическая печь для бани и сауны Sangens LS18C Ceramic (Сангенс ЛС18КЕ Керамика)",
+            "brand": "sangens",
+            "brand_slugs": [
+                "sangens"
+            ],
+            "source_brand_meta": "sangens",
+            "source_url": "",
+            "primary_category": "electric-sauna-stoves",
+            "category_slugs": [
+                "electric-sauna-stoves",
+                "sauna-stoves"
+            ],
+            "image_count": 0,
+            "featured_image_id": 0,
+            "gallery_image_ids": [],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class"
+            ],
+            "price": "2247",
+            "regular_price": "2247",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 249606,
+            "sku": "S001660",
+            "slug": "sangens-s001660",
+            "status": "publish",
+            "title": "Система интеграции для бани и сауны Sangens Spa System 3200 (Сангенс Спа система 3200)",
+            "brand": "sangens",
+            "brand_slugs": [
+                "sangens"
+            ],
+            "source_brand_meta": "sangens",
+            "source_url": "",
+            "primary_category": "spa-systems",
+            "category_slugs": [
+                "commercial",
+                "spa-systems"
+            ],
+            "image_count": 0,
+            "featured_image_id": 0,
+            "gallery_image_ids": [],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_cladding-material",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class"
+            ],
+            "price": "5968",
+            "regular_price": "5968",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 249605,
+            "sku": "S001666",
+            "slug": "sangens-s001666",
+            "status": "publish",
+            "title": "Система интеграции для бани и сауны Sangens Spa System 2100 (Сангенс Спа система 2100)",
+            "brand": "sangens",
+            "brand_slugs": [
+                "sangens"
+            ],
+            "source_brand_meta": "sangens",
+            "source_url": "",
+            "primary_category": "spa-systems",
+            "category_slugs": [
+                "commercial",
+                "spa-systems"
+            ],
+            "image_count": 0,
+            "featured_image_id": 0,
+            "gallery_image_ids": [],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_cladding-material",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class"
+            ],
+            "price": "5547",
+            "regular_price": "5547",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 249600,
+            "sku": "S045511",
+            "slug": "sangens-s045511",
+            "status": "publish",
+            "title": "Блок управления для бани и сауны Sangens Block 6-9 (Сангенс Блок 6-9)",
+            "brand": "sangens",
+            "brand_slugs": [
+                "sangens"
+            ],
+            "source_brand_meta": "sangens",
+            "source_url": "",
+            "primary_category": "for-sauna-heaters",
+            "category_slugs": [
+                "control-units",
+                "for-sauna-heaters"
+            ],
+            "image_count": 0,
+            "featured_image_id": 0,
+            "gallery_image_ids": [],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class"
+            ],
+            "price": "1123",
+            "regular_price": "1123",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 249601,
+            "sku": "S045512",
+            "slug": "sangens-s045512",
+            "status": "publish",
+            "title": "Блок управления для бани и сауны Sangens Block 15-18 (Сангенс Блок 15-18)",
+            "brand": "sangens",
+            "brand_slugs": [
+                "sangens"
+            ],
+            "source_brand_meta": "sangens",
+            "source_url": "",
+            "primary_category": "for-sauna-heaters",
+            "category_slugs": [
+                "control-units",
+                "for-sauna-heaters"
+            ],
+            "image_count": 0,
+            "featured_image_id": 0,
+            "gallery_image_ids": [],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class"
+            ],
+            "price": "1966",
+            "regular_price": "1966",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        }
+    ]
+}

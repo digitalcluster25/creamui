@@ -1,0 +1,300 @@
+{
+  "brand": "sangens",
+  "generated_at": "2026-07-10T22:23:56.963272+00:00",
+  "source_total_rows": 32,
+  "woo_total_rows": 32,
+  "source_total_unique_skus": 32,
+  "woo_total_unique_skus": 32,
+  "summary": {
+    "matched": 4,
+    "matched_but_broken": 28,
+    "source_only": 0,
+    "woo_only": 0,
+    "source_duplicates": 0,
+    "woo_duplicates": 0
+  },
+  "matched": [
+    {
+      "sku": "S000671",
+      "source_name": "Электрическая печь для бани и сауны Sangens W12B Brick (Сангенс В12КИ Кирпич)",
+      "woo_product_id": 248934,
+      "woo_slug": "sangens-s000671"
+    },
+    {
+      "sku": "S000672",
+      "source_name": "Электрическая печь для бани и сауны Sangens W20G Glass Black (Сангенс В20С Стекло черное)",
+      "woo_product_id": 248473,
+      "woo_slug": "sangens-s000672"
+    },
+    {
+      "sku": "S000673",
+      "source_name": "Электрическая печь для бани и сауны Sangens W20S Stone (Сангенс В20КА Камень)",
+      "woo_product_id": 248936,
+      "woo_slug": "sangens-s000673"
+    },
+    {
+      "sku": "S000674",
+      "source_name": "Электрическая печь для бани и сауны Sangens W20B Brick (Сангенс В20КИ Кирпич)",
+      "woo_product_id": 248937,
+      "woo_slug": "sangens-s000674"
+    }
+  ],
+  "matched_but_broken": [
+    {
+      "sku": "G043159",
+      "source_name": "Обливное устройство для бани и сауны Sangens Oblivion 30 Wood (Сангенс Обливное 30 Дерево)",
+      "woo_product_id": 249609,
+      "woo_slug": "sangens-g043159",
+      "reasons": [
+        "missing_image"
+      ]
+    },
+    {
+      "sku": "S000088",
+      "source_name": "Система управления для бани и сауны Sangens Panel System 3S Pro (Сангенс Система управления 3П Про)",
+      "woo_product_id": 249602,
+      "woo_slug": "sangens-s000088",
+      "reasons": [
+        "missing_image"
+      ]
+    },
+    {
+      "sku": "S000089",
+      "source_name": "Система управления для бани и сауны Sangens Panel System 3M Pro (Сангенс Система управления 3В Про)",
+      "woo_product_id": 249603,
+      "woo_slug": "sangens-s000089",
+      "reasons": [
+        "missing_image"
+      ]
+    },
+    {
+      "sku": "S000128",
+      "source_name": "Система управления для бани и сауны Sangens Panel System 4M Pro (Сангенс Система управления 4В Про)",
+      "woo_product_id": 249604,
+      "woo_slug": "sangens-s000128",
+      "reasons": [
+        "missing_image"
+      ]
+    },
+    {
+      "sku": "S000168",
+      "source_name": "Электрическая печь для бани и сауны Sangens L18C Ceramic (Сангенс Л18КЕ Керамика)",
+      "woo_product_id": 249597,
+      "woo_slug": "sangens-s000168",
+      "reasons": [
+        "missing_image"
+      ]
+    },
+    {
+      "sku": "S000250",
+      "source_name": "Электрическая печь для бани и сауны Sangens L8C Ceramic (Сангенс Л8КЕ Керамика)",
+      "woo_product_id": 249595,
+      "woo_slug": "sangens-s000250",
+      "reasons": [
+        "missing_image"
+      ]
+    },
+    {
+      "sku": "S000251",
+      "source_name": "Электрическая печь для бани и сауны Sangens L12C Ceramic (Сангенс Л12КЕ Керамика)",
+      "woo_product_id": 249596,
+      "woo_slug": "sangens-s000251",
+      "reasons": [
+        "missing_image"
+      ]
+    },
+    {
+      "sku": "S000669",
+      "source_name": "Электрическая печь для бани и сауны Sangens W12G Glass Black (Сангенс В12С Стекло черное)",
+      "woo_product_id": 249583,
+      "woo_slug": "sangens-s000669",
+      "reasons": [
+        "missing_image"
+      ]
+    },
+    {
+      "sku": "S000670",
+      "source_name": "Электрическая печь для бани и сауны Sangens W12S Stone (Сангенс В12КА Камень)",
+      "woo_product_id": 249592,
+      "woo_slug": "sangens-s000670",
+      "reasons": [
+        "missing_image"
+      ]
+    },
+    {
+      "sku": "S000675",
+      "source_name": "Электрическая печь для бани и сауны Sangens W30B Brick (Сангенс В30КИ Кирпич)",
+      "woo_product_id": 249590,
+      "woo_slug": "sangens-s000675",
+      "reasons": [
+        "missing_image"
+      ]
+    },
+    {
+      "sku": "S000676",
+      "source_name": "Электрическая печь для бани и сауны Sangens W30G Glass Black (Сангенс В30С Стекло черное)",
+      "woo_product_id": 249584,
+      "woo_slug": "sangens-s000676",
+      "reasons": [
+        "missing_image"
+      ]
+    },
+    {
+      "sku": "S000677",
+      "source_name": "Электрическая печь для бани и сауны Sangens W30S Stone (Сангенс В30КА Камень)",
+      "woo_product_id": 249593,
+      "woo_slug": "sangens-s000677",
+      "reasons": [
+        "missing_image"
+      ]
+    },
+    {
+      "sku": "S000678",
+      "source_name": "Электрическая печь для бани и сауны Sangens W40B Brick (Сангенс В40КИ Кирпич)",
+      "woo_product_id": 249591,
+      "woo_slug": "sangens-s000678",
+      "reasons": [
+        "missing_image"
+      ]
+    },
+    {
+      "sku": "S000679",
+      "source_name": "Электрическая печь для бани и сауны Sangens W40G Glass Black (Сангенс В40С Стекло черное)",
+      "woo_product_id": 249585,
+      "woo_slug": "sangens-s000679",
+      "reasons": [
+        "missing_image"
+      ]
+    },
+    {
+      "sku": "S000680",
+      "source_name": "Электрическая печь для бани и сауны Sangens W40S Stone (Сангенс В40КА Камень)",
+      "woo_product_id": 249594,
+      "woo_slug": "sangens-s000680",
+      "reasons": [
+        "missing_image"
+      ]
+    },
+    {
+      "sku": "S001204",
+      "source_name": "Электрическая печь для бани и сауны Sangens W20G Glass White (Сангенс В20С Стекло белое)",
+      "woo_product_id": 249587,
+      "woo_slug": "sangens-s001204",
+      "reasons": [
+        "missing_image"
+      ]
+    },
+    {
+      "sku": "S001207",
+      "source_name": "Электрическая печь для бани и сауны Sangens W12G Glass White (Сангенс В12С Стекло белое)",
+      "woo_product_id": 249586,
+      "woo_slug": "sangens-s001207",
+      "reasons": [
+        "missing_image"
+      ]
+    },
+    {
+      "sku": "S001208",
+      "source_name": "Электрическая печь для бани и сауны Sangens W30G Glass White (Сангенс В30С Стекло белое)",
+      "woo_product_id": 249588,
+      "woo_slug": "sangens-s001208",
+      "reasons": [
+        "missing_image"
+      ]
+    },
+    {
+      "sku": "S001209",
+      "source_name": "Электрическая печь для бани и сауны Sangens W40G Glass White (Сангенс В40С Стекло белое)",
+      "woo_product_id": 249589,
+      "woo_slug": "sangens-s001209",
+      "reasons": [
+        "missing_image"
+      ]
+    },
+    {
+      "sku": "S001279",
+      "source_name": "Снегогенератор для бани и сауны Sangens Snow 10 Steel Black (Сангенс Снег 10 Сталь черная)",
+      "woo_product_id": 249607,
+      "woo_slug": "sangens-s001279",
+      "reasons": [
+        "missing_image"
+      ]
+    },
+    {
+      "sku": "S001280",
+      "source_name": "Стойка для бани и сауны Sangens Snow Stand 900 Steel Black (Сангенс Стойка 900 Сталь черная)",
+      "woo_product_id": 249608,
+      "woo_slug": "sangens-s001280",
+      "reasons": [
+        "missing_image"
+      ]
+    },
+    {
+      "sku": "S001281",
+      "source_name": "Второе дыхание для бани и сауны Sangens Fresh Air 5 Steel (Сангенс Свежий воздух 5 Сталь)",
+      "woo_product_id": 249610,
+      "woo_slug": "sangens-s001281",
+      "reasons": [
+        "missing_image"
+      ]
+    },
+    {
+      "sku": "S001424",
+      "source_name": "Электрическая печь для бани и сауны Sangens LS12C Ceramic (Сангенс ЛС12КЕ Керамика)",
+      "woo_product_id": 249598,
+      "woo_slug": "sangens-s001424",
+      "reasons": [
+        "missing_image"
+      ]
+    },
+    {
+      "sku": "S001425",
+      "source_name": "Электрическая печь для бани и сауны Sangens LS18C Ceramic (Сангенс ЛС18КЕ Керамика)",
+      "woo_product_id": 249599,
+      "woo_slug": "sangens-s001425",
+      "reasons": [
+        "missing_image"
+      ]
+    },
+    {
+      "sku": "S001660",
+      "source_name": "Система интеграции для бани и сауны Sangens Spa System 3200 (Сангенс Спа система 3200)",
+      "woo_product_id": 249606,
+      "woo_slug": "sangens-s001660",
+      "reasons": [
+        "missing_image"
+      ]
+    },
+    {
+      "sku": "S001666",
+      "source_name": "Система интеграции для бани и сауны Sangens Spa System 2100 (Сангенс Спа система 2100)",
+      "woo_product_id": 249605,
+      "woo_slug": "sangens-s001666",
+      "reasons": [
+        "missing_image"
+      ]
+    },
+    {
+      "sku": "S045511",
+      "source_name": "Блок управления для бани и сауны Sangens Block 6-9 (Сангенс Блок 6-9)",
+      "woo_product_id": 249600,
+      "woo_slug": "sangens-s045511",
+      "reasons": [
+        "missing_image"
+      ]
+    },
+    {
+      "sku": "S045512",
+      "source_name": "Блок управления для бани и сауны Sangens Block 15-18 (Сангенс Блок 15-18)",
+      "woo_product_id": 249601,
+      "woo_slug": "sangens-s045512",
+      "reasons": [
+        "missing_image"
+      ]
+    }
+  ],
+  "source_only": [],
+  "woo_only": [],
+  "source_duplicates": [],
+  "woo_duplicates": []
+}

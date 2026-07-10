@@ -1,0 +1,1593 @@
+{
+    "brand": "vvd",
+    "generated_at": "2026-07-10T22:21:12+00:00",
+    "total": 31,
+    "products": [
+        {
+            "product_id": 248495,
+            "sku": "1383",
+            "slug": "vvd-elektricheskaya-parotermalnaya-pech-parizhar-futurus-v2-0",
+            "status": "publish",
+            "title": "Электрическая паротермальная печь ФутуРус 2.0 10 кВт Cерпентинит Бархат",
+            "brand": "vvd",
+            "brand_slugs": [
+                "vvd"
+            ],
+            "source_brand_meta": "ВВД",
+            "source_url": "https://vvd.su/product/elektricheskie-pechi-dlya-bani/pechi-futurus/elektricheskaya-parotermalnaya-pech-parizhar-futurus-v2-0/?oid=1383",
+            "primary_category": "steam-thermal",
+            "category_slugs": [
+                "russian-bath-stoves",
+                "steam-thermal"
+            ],
+            "image_count": 6,
+            "featured_image_id": 248898,
+            "gallery_image_ids": [
+                248899,
+                248900,
+                248901,
+                248902,
+                248903
+            ],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_facing",
+                "pa_power"
+            ],
+            "price": "6562.82",
+            "regular_price": "",
+            "price_on_request": false,
+            "product_type": "variable",
+            "variation_count": 24,
+            "variation_ids": [
+                248907,
+                248908,
+                248909,
+                248910,
+                248911,
+                248912,
+                248913,
+                248914,
+                248915,
+                248916,
+                248917,
+                248918,
+                248919,
+                248920,
+                248921,
+                248922,
+                248923,
+                248924,
+                248925,
+                248926,
+                248927,
+                248928,
+                248929,
+                248930
+            ],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 0
+        },
+        {
+            "product_id": 249418,
+            "sku": "VVD-AVTONOMNYJ-EGPP-220-4-6KVT",
+            "slug": "vvd-avtonomnyj-egpp-220-4-6kvt",
+            "status": "publish",
+            "title": "Автономный АЭГПП 3,9 ; 6 кВт (220 / 380 В)",
+            "brand": "vvd",
+            "brand_slugs": [
+                "vvd"
+            ],
+            "source_brand_meta": "VVD",
+            "source_url": "https://vvd.su/product/elektricheskie-pechi-dlya-bani/parogeneratory-dlya-bani/avtonomnyj-egpp-220-4-6kvt/",
+            "primary_category": "steam-generators",
+            "category_slugs": [
+                "steam-generators",
+                "steam-generators-and-hammam"
+            ],
+            "image_count": 2,
+            "featured_image_id": 250237,
+            "gallery_image_ids": [
+                250238
+            ],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class",
+                "pa_voltage"
+            ],
+            "price": "587",
+            "regular_price": "587",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 249415,
+            "sku": "VVD-AVTONOMNYJ-EGPP-380",
+            "slug": "vvd-avtonomnyj-egpp-380",
+            "status": "publish",
+            "title": "Автономный АЭГПП 12 ; 18 кВт (380 В)",
+            "brand": "vvd",
+            "brand_slugs": [
+                "vvd"
+            ],
+            "source_brand_meta": "VVD",
+            "source_url": "https://vvd.su/product/elektricheskie-pechi-dlya-bani/parogeneratory-dlya-bani/avtonomnyj-egpp-380/",
+            "primary_category": "steam-generators",
+            "category_slugs": [
+                "steam-generators",
+                "steam-generators-and-hammam"
+            ],
+            "image_count": 2,
+            "featured_image_id": 250235,
+            "gallery_image_ids": [
+                250236
+            ],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class",
+                "pa_voltage"
+            ],
+            "price": "1574",
+            "regular_price": "1574",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 249369,
+            "sku": "VVD-ELEKTRICHESKAYA-PAROTERMALNAYA-PECH-FUTURUS-V-METALLICHESKOY-OBLITSOVKE--1512",
+            "slug": "vvd-elektricheskaya-parotermalnaya-pech-futurus-v-metallicheskoy-oblitsovke-1512",
+            "status": "publish",
+            "title": "Электрическая паротермальная печь ФутуРус 2.0 10 кВт в металлической облицовке",
+            "brand": "vvd",
+            "brand_slugs": [
+                "vvd"
+            ],
+            "source_brand_meta": "VVD",
+            "source_url": "https://vvd.su/product/elektricheskie-pechi-dlya-bani/pechi-futurus/elektricheskaya-parotermalnaya-pech-futurus-v-metallicheskoy-oblitsovke-/?oid=1512",
+            "primary_category": "steam-thermal",
+            "category_slugs": [
+                "russian-bath-stoves",
+                "steam-thermal"
+            ],
+            "image_count": 8,
+            "featured_image_id": 250343,
+            "gallery_image_ids": [
+                250344,
+                250345,
+                250346,
+                250347,
+                250348,
+                250349,
+                250350
+            ],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "124",
+                "1553",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class"
+            ],
+            "price": "",
+            "regular_price": "",
+            "price_on_request": true,
+            "product_type": "variable",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 18
+        },
+        {
+            "product_id": 249461,
+            "sku": "VVD-ELEKTRICHESKAYA-PAROTERMALNAYA-PECH-PARIZHAR-10-12-16-KVT-380-V-1574",
+            "slug": "vvd-elektricheskaya-parotermalnaya-pech-parizhar-10-12-16-kvt-380-v-1574",
+            "status": "publish",
+            "title": "Электрическая паротермальная печь «ПАРиЖАР» 10 кВт (380 В) в металлической облицовке",
+            "brand": "vvd",
+            "brand_slugs": [
+                "vvd"
+            ],
+            "source_brand_meta": "VVD",
+            "source_url": "https://vvd.su/product/elektricheskie-pechi-dlya-bani/pechi-parizhar/elektricheskaya-parotermalnaya-pech-parizhar-10-12-16-kvt-380-v/?oid=1574",
+            "primary_category": "steam-thermal",
+            "category_slugs": [
+                "russian-bath-stoves",
+                "steam-thermal"
+            ],
+            "image_count": 7,
+            "featured_image_id": 250283,
+            "gallery_image_ids": [
+                250286,
+                250287,
+                250288,
+                250289,
+                250290,
+                250291
+            ],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "124",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class",
+                "pa_voltage"
+            ],
+            "price": "1953",
+            "regular_price": "",
+            "price_on_request": false,
+            "product_type": "variable",
+            "variation_count": 3,
+            "variation_ids": [
+                250282,
+                250284,
+                250285
+            ],
+            "imported_variation_count_meta": 3,
+            "possible_variation_count_meta": 3
+        },
+        {
+            "product_id": 249469,
+            "sku": "VVD-ELEKTRICHESKAYA-PAROTERMALNAYA-PECH-PARIZHAR-10-12-16-KVT-380-V-OBLITSOVKA-IS-KAMNY",
+            "slug": "vvd-elektricheskaya-parotermalnaya-pech-parizhar-10-12-16-kvt-380-v-oblitsovka-is-kamny",
+            "status": "publish",
+            "title": "Электрическая паротермальная печь «ПАРиЖАР» 10 ; 12 ; 16 кВт (380 В) облицовка из природного камня",
+            "brand": "vvd",
+            "brand_slugs": [
+                "vvd"
+            ],
+            "source_brand_meta": "VVD",
+            "source_url": "https://vvd.su/product/elektricheskie-pechi-dlya-bani/pechi-parizhar/elektricheskaya-parotermalnaya-pech-parizhar-10-12-16-kvt-380-v-oblitsovka-is-kamny/",
+            "primary_category": "steam-thermal",
+            "category_slugs": [
+                "russian-bath-stoves",
+                "steam-thermal"
+            ],
+            "image_count": 5,
+            "featured_image_id": 250292,
+            "gallery_image_ids": [
+                250293,
+                250294,
+                250295,
+                250296
+            ],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_room-type",
+                "pa_series",
+                "pa_usage-class",
+                "pa_voltage"
+            ],
+            "price": "2425",
+            "regular_price": "2425",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 249421,
+            "sku": "VVD-ELEKTRICHESKAYA-PAROTERMALNAYA-PECH-PARIZHAR-380V-4-25-6-25-KVT-V-METALLICHESKOY-OBLITSOVKE--1568",
+            "slug": "vvd-elektricheskaya-parotermalnaya-pech-parizhar-380v-4-25-6-25-kvt-v-metallicheskoy-oblitsovke-1568",
+            "status": "publish",
+            "title": "Электрическая паротермальная печь ПАРиЖАР Про 4,25 кВт (220/380 В)",
+            "brand": "vvd",
+            "brand_slugs": [
+                "vvd"
+            ],
+            "source_brand_meta": "VVD",
+            "source_url": "https://vvd.su/product/elektricheskie-pechi-dlya-bani/pechi-parizhar/elektricheskaya-parotermalnaya-pech-parizhar-380v-4-25-6-25-kvt-v-metallicheskoy-oblitsovke-/?oid=1568",
+            "primary_category": "steam-thermal",
+            "category_slugs": [
+                "russian-bath-stoves",
+                "steam-thermal"
+            ],
+            "image_count": 7,
+            "featured_image_id": 250240,
+            "gallery_image_ids": [
+                250242,
+                250243,
+                250244,
+                250245,
+                250246,
+                250247
+            ],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "124",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class",
+                "pa_voltage"
+            ],
+            "price": "",
+            "regular_price": "",
+            "price_on_request": true,
+            "product_type": "variable",
+            "variation_count": 2,
+            "variation_ids": [
+                250239,
+                250241
+            ],
+            "imported_variation_count_meta": 2,
+            "possible_variation_count_meta": 2
+        },
+        {
+            "product_id": 249455,
+            "sku": "VVD-ELEKTRICHESKAYA-PAROTERMALNAYA-PECH-PARIZHAR-4-25-6-25-OBLITSOVKA-PRIRODNYJ-KAMEN",
+            "slug": "vvd-elektricheskaya-parotermalnaya-pech-parizhar-4-25-6-25-oblitsovka-prirodnyj-kamen",
+            "status": "publish",
+            "title": "Электрическая паротермальная печь «ПАРиЖАР» 4,25 ; 6,25 (220/380 В) облицовка из природного камня",
+            "brand": "vvd",
+            "brand_slugs": [
+                "vvd"
+            ],
+            "source_brand_meta": "VVD",
+            "source_url": "https://vvd.su/product/elektricheskie-pechi-dlya-bani/pechi-parizhar/elektricheskaya-parotermalnaya-pech-parizhar-4-25-6-25-oblitsovka-prirodnyj-kamen/",
+            "primary_category": "steam-thermal",
+            "category_slugs": [
+                "russian-bath-stoves",
+                "steam-thermal"
+            ],
+            "image_count": 5,
+            "featured_image_id": 250277,
+            "gallery_image_ids": [
+                250278,
+                250279,
+                250280,
+                250281
+            ],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_room-type",
+                "pa_series",
+                "pa_usage-class",
+                "pa_voltage"
+            ],
+            "price": "1729",
+            "regular_price": "1729",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 249378,
+            "sku": "VVD-ELEKTRICHESKAYA-PAROTERMALNAYA-PECH-PARIZHAR-FUTURUS-METALLIC-1411",
+            "slug": "vvd-elektricheskaya-parotermalnaya-pech-parizhar-futurus-metallic-1411",
+            "status": "publish",
+            "title": "Электрическая паротермальная печь ФутуРус 10 кВт в металлической облицовке",
+            "brand": "vvd",
+            "brand_slugs": [
+                "vvd"
+            ],
+            "source_brand_meta": "VVD",
+            "source_url": "https://vvd.su/product/elektricheskie-pechi-dlya-bani/pechi-futurus/elektricheskaya-parotermalnaya-pech-parizhar-futurus-metallic/?oid=1411",
+            "primary_category": "steam-thermal",
+            "category_slugs": [
+                "russian-bath-stoves",
+                "steam-thermal"
+            ],
+            "image_count": 10,
+            "featured_image_id": 250352,
+            "gallery_image_ids": [
+                250358,
+                250359,
+                250360,
+                250361,
+                250362,
+                250363,
+                250364,
+                250365,
+                250366
+            ],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "124",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class"
+            ],
+            "price": "5286",
+            "regular_price": "",
+            "price_on_request": false,
+            "product_type": "variable",
+            "variation_count": 6,
+            "variation_ids": [
+                250351,
+                250353,
+                250354,
+                250355,
+                250356,
+                250357
+            ],
+            "imported_variation_count_meta": 6,
+            "possible_variation_count_meta": 6
+        },
+        {
+            "product_id": 249360,
+            "sku": "VVD-ELEKTRICHESKAYA-PAROTERMALNAYA-PECH-PARIZHAR-FUTURUS-V2-0-1383",
+            "slug": "vvd-elektricheskaya-parotermalnaya-pech-parizhar-futurus-v2-0-1383",
+            "status": "publish",
+            "title": "Электрическая паротермальная печь ФутуРус 2.0 10 кВт Cерпентинит Бархат",
+            "brand": "vvd",
+            "brand_slugs": [
+                "vvd"
+            ],
+            "source_brand_meta": "VVD",
+            "source_url": "https://vvd.su/product/elektricheskie-pechi-dlya-bani/pechi-futurus/elektricheskaya-parotermalnaya-pech-parizhar-futurus-v2-0/?oid=1383",
+            "primary_category": "steam-thermal",
+            "category_slugs": [
+                "russian-bath-stoves",
+                "steam-thermal"
+            ],
+            "image_count": 8,
+            "featured_image_id": 250309,
+            "gallery_image_ids": [
+                250336,
+                250337,
+                250338,
+                250339,
+                250340,
+                250341,
+                250342
+            ],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "124",
+                "125",
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class"
+            ],
+            "price": "7186",
+            "regular_price": "",
+            "price_on_request": false,
+            "product_type": "variable",
+            "variation_count": 24,
+            "variation_ids": [
+                250308,
+                250310,
+                250312,
+                250314,
+                250316,
+                250317,
+                250318,
+                250319,
+                250320,
+                250321,
+                250322,
+                250323,
+                250324,
+                250325,
+                250326,
+                250327,
+                250328,
+                250329,
+                250330,
+                250331,
+                250332,
+                250333,
+                250334,
+                250335
+            ],
+            "imported_variation_count_meta": 24,
+            "possible_variation_count_meta": 24
+        },
+        {
+            "product_id": 249437,
+            "sku": "VVD-ELEKTRICHESKAYA-PAROTERMALNAYA-PECH-PARIZHAR-PRO-18-24-KVT-380-V-1549",
+            "slug": "vvd-elektricheskaya-parotermalnaya-pech-parizhar-pro-18-24-kvt-380-v-1549",
+            "status": "publish",
+            "title": "Электрическая паротермальная печь ПАРиЖАР Про 18 кВт (380 В)",
+            "brand": "vvd",
+            "brand_slugs": [
+                "vvd"
+            ],
+            "source_brand_meta": "VVD",
+            "source_url": "https://vvd.su/product/elektricheskie-pechi-dlya-bani/pechi-parizhar/elektricheskaya-parotermalnaya-pech-parizhar-pro-18-24-kvt-380-v/?oid=1549",
+            "primary_category": "steam-thermal",
+            "category_slugs": [
+                "russian-bath-stoves",
+                "steam-thermal"
+            ],
+            "image_count": 7,
+            "featured_image_id": 250259,
+            "gallery_image_ids": [
+                250261,
+                250262,
+                250263,
+                250264,
+                250265,
+                250266
+            ],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "124",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class",
+                "pa_voltage"
+            ],
+            "price": "3436",
+            "regular_price": "",
+            "price_on_request": false,
+            "product_type": "variable",
+            "variation_count": 2,
+            "variation_ids": [
+                250258,
+                250260
+            ],
+            "imported_variation_count_meta": 2,
+            "possible_variation_count_meta": 2
+        },
+        {
+            "product_id": 249429,
+            "sku": "VVD-ELEKTRICHESKAYA-PAROTERMALNAYA-PECH-PARIZHAR-PRO-380V-10-16-KVT-1570",
+            "slug": "vvd-elektricheskaya-parotermalnaya-pech-parizhar-pro-380v-10-16-kvt-1570",
+            "status": "publish",
+            "title": "Электрическая паротермальная печь ПАРиЖАР Про 10 кВт (380 В)",
+            "brand": "vvd",
+            "brand_slugs": [
+                "vvd"
+            ],
+            "source_brand_meta": "VVD",
+            "source_url": "https://vvd.su/product/elektricheskie-pechi-dlya-bani/elektricheskaya-parotermalnaya-pech-parizhar-pro-380v-10-16-kvt/?oid=1570",
+            "primary_category": "steam-thermal",
+            "category_slugs": [
+                "russian-bath-stoves",
+                "steam-thermal"
+            ],
+            "image_count": 7,
+            "featured_image_id": 250249,
+            "gallery_image_ids": [
+                250252,
+                250253,
+                250254,
+                250255,
+                250256,
+                250257
+            ],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "124",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class",
+                "pa_voltage"
+            ],
+            "price": "",
+            "regular_price": "",
+            "price_on_request": true,
+            "product_type": "variable",
+            "variation_count": 3,
+            "variation_ids": [
+                250248,
+                250250,
+                250251
+            ],
+            "imported_variation_count_meta": 3,
+            "possible_variation_count_meta": 3
+        },
+        {
+            "product_id": 249475,
+            "sku": "VVD-ELEKTRO-PAROTERMALNIE-PECHI-PARIZHAR-18-24KVT-1564",
+            "slug": "vvd-elektro-parotermalnie-pechi-parizhar-18-24kvt-1564",
+            "status": "publish",
+            "title": "Электрическая паротермальная печь ПАРиЖАР 380В 18 кВт в металлической облицовке",
+            "brand": "vvd",
+            "brand_slugs": [
+                "vvd"
+            ],
+            "source_brand_meta": "VVD",
+            "source_url": "https://vvd.su/product/elektricheskie-pechi-dlya-bani/pechi-parizhar/elektro-parotermalnie-pechi-parizhar-18-24kvt/?oid=1564",
+            "primary_category": "steam-thermal",
+            "category_slugs": [
+                "russian-bath-stoves",
+                "steam-thermal"
+            ],
+            "image_count": 7,
+            "featured_image_id": 250298,
+            "gallery_image_ids": [
+                250300,
+                250301,
+                250302,
+                250303,
+                250304,
+                250305
+            ],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "124",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class",
+                "pa_voltage"
+            ],
+            "price": "2863",
+            "regular_price": "",
+            "price_on_request": false,
+            "product_type": "variable",
+            "variation_count": 2,
+            "variation_ids": [
+                250297,
+                250299
+            ],
+            "imported_variation_count_meta": 2,
+            "possible_variation_count_meta": 2
+        },
+        {
+            "product_id": 249448,
+            "sku": "VVD-ELEKTRO-PAROTERMALNIE-PECHI-PARIZHAR-220V-174-1577",
+            "slug": "vvd-elektro-parotermalnie-pechi-parizhar-220v-174-1577",
+            "status": "publish",
+            "title": "Электрическая паротермальная печь «ПАРиЖАР» 4,25 кВт (220/380 В) в металлической облицовке",
+            "brand": "vvd",
+            "brand_slugs": [
+                "vvd"
+            ],
+            "source_brand_meta": "VVD",
+            "source_url": "https://vvd.su/product/elektricheskie-pechi-dlya-bani/pechi-parizhar/elektro-parotermalnie-pechi-parizhar-220v-174/?oid=1577",
+            "primary_category": "steam-thermal",
+            "category_slugs": [
+                "russian-bath-stoves",
+                "steam-thermal"
+            ],
+            "image_count": 6,
+            "featured_image_id": 250270,
+            "gallery_image_ids": [
+                250272,
+                250273,
+                250274,
+                250275,
+                250276
+            ],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "124",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class",
+                "pa_voltage"
+            ],
+            "price": "1356",
+            "regular_price": "",
+            "price_on_request": false,
+            "product_type": "variable",
+            "variation_count": 2,
+            "variation_ids": [
+                250269,
+                250271
+            ],
+            "imported_variation_count_meta": 2,
+            "possible_variation_count_meta": 2
+        },
+        {
+            "product_id": 249445,
+            "sku": "VVD-NAVESNAYA-PECH-PARIZHAR-W",
+            "slug": "vvd-navesnaya-pech-parizhar-w",
+            "status": "publish",
+            "title": "Навесная печь ПАРиЖАР",
+            "brand": "vvd",
+            "brand_slugs": [
+                "vvd"
+            ],
+            "source_brand_meta": "VVD",
+            "source_url": "https://vvd.su/product/elektricheskie-pechi-dlya-bani/pechi-parizhar/navesnaya-pech-parizhar-w/",
+            "primary_category": "steam-thermal",
+            "category_slugs": [
+                "russian-bath-stoves",
+                "steam-thermal"
+            ],
+            "image_count": 2,
+            "featured_image_id": 250267,
+            "gallery_image_ids": [
+                250268
+            ],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_room-type",
+                "pa_series",
+                "pa_usage-class"
+            ],
+            "price": "1095",
+            "regular_price": "1095",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 249483,
+            "sku": "VVD-PAROTERMALNAYA-PECH-PREMERA-RUSA-4-25-6-25-KVT-220-380-V",
+            "slug": "vvd-parotermalnaya-pech-premera-rusa-4-25-6-25-kvt-220-380-v",
+            "status": "publish",
+            "title": "Паротермальная печь Премьера Руса 4,25 ; 6,25 кВт (220 / 380 В)",
+            "brand": "vvd",
+            "brand_slugs": [
+                "vvd"
+            ],
+            "source_brand_meta": "VVD",
+            "source_url": "https://vvd.su/product/elektricheskie-pechi-dlya-bani/parotermalnye-pechi-premera-rusa/parotermalnaya-pech-premera-rusa-4-25-6-25-kvt-220-380-v/",
+            "primary_category": "steam-thermal",
+            "category_slugs": [
+                "russian-bath-stoves",
+                "steam-thermal"
+            ],
+            "image_count": 2,
+            "featured_image_id": 250306,
+            "gallery_image_ids": [
+                250307
+            ],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_room-type",
+                "pa_series",
+                "pa_usage-class",
+                "pa_voltage"
+            ],
+            "price": "821",
+            "regular_price": "821",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 249520,
+            "sku": "VVD-PECH-PREMERA-M-852",
+            "slug": "vvd-pech-premera-m-852",
+            "status": "publish",
+            "title": "Электрическая печь Премьера М в металлическом корпусе 380В 9 кВт",
+            "brand": "vvd",
+            "brand_slugs": [
+                "vvd"
+            ],
+            "source_brand_meta": "VVD",
+            "source_url": "https://vvd.su/product/elektricheskie-pechi-dlya-bani/elektropechi-dlya-bani-i-sauny-premera/pech-premera-m/?oid=852",
+            "primary_category": "electric-bath-stoves",
+            "category_slugs": [
+                "electric-bath-stoves",
+                "russian-bath-stoves"
+            ],
+            "image_count": 1,
+            "featured_image_id": 250398,
+            "gallery_image_ids": [],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "124",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class",
+                "pa_voltage"
+            ],
+            "price": "598",
+            "regular_price": "",
+            "price_on_request": false,
+            "product_type": "variable",
+            "variation_count": 4,
+            "variation_ids": [
+                250397,
+                250399,
+                250400,
+                250401
+            ],
+            "imported_variation_count_meta": 4,
+            "possible_variation_count_meta": 4
+        },
+        {
+            "product_id": 249522,
+            "sku": "VVD-PECH-PREMERA-M-V-KAMNE-865",
+            "slug": "vvd-pech-premera-m-v-kamne-865",
+            "status": "publish",
+            "title": "Электрическая печь Премьера М в камне Cерпентинит Бархат 380В 9 кВт",
+            "brand": "vvd",
+            "brand_slugs": [
+                "vvd"
+            ],
+            "source_brand_meta": "VVD",
+            "source_url": "https://vvd.su/product/elektricheskie-pechi-dlya-bani/elektropechi-dlya-bani-i-sauny-premera/pech-premera-m-v-kamne/?oid=865",
+            "primary_category": "electric-bath-stoves",
+            "category_slugs": [
+                "electric-bath-stoves",
+                "russian-bath-stoves"
+            ],
+            "image_count": 1,
+            "featured_image_id": 250403,
+            "gallery_image_ids": [],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "124",
+                "125",
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class",
+                "pa_voltage"
+            ],
+            "price": "932",
+            "regular_price": "",
+            "price_on_request": false,
+            "product_type": "variable",
+            "variation_count": 12,
+            "variation_ids": [
+                250402,
+                250404,
+                250405,
+                250406,
+                250407,
+                250409,
+                250410,
+                250411,
+                250412,
+                250414,
+                250415,
+                250416
+            ],
+            "imported_variation_count_meta": 12,
+            "possible_variation_count_meta": 12
+        },
+        {
+            "product_id": 249531,
+            "sku": "VVD-PECH-PREMERA-RUSA-220V-S-ZAKRYTOY-KAMENKOY-879",
+            "slug": "vvd-pech-premera-rusa-220v-s-zakrytoy-kamenkoy-879",
+            "status": "publish",
+            "title": "Электрическая печь Премьера Руса 220В (с закрытой каменкой) 4 кВт",
+            "brand": "vvd",
+            "brand_slugs": [
+                "vvd"
+            ],
+            "source_brand_meta": "VVD",
+            "source_url": "https://vvd.su/product/elektricheskie-pechi-dlya-bani/elektricheskie-pechi-premera-rusa/pech-premera-rusa-220v-s-zakrytoy-kamenkoy/?oid=879",
+            "primary_category": "electric-bath-stoves",
+            "category_slugs": [
+                "electric-bath-stoves",
+                "russian-bath-stoves"
+            ],
+            "image_count": 6,
+            "featured_image_id": 250428,
+            "gallery_image_ids": [
+                250430,
+                250431,
+                250432,
+                250433,
+                250434
+            ],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "124",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class",
+                "pa_voltage"
+            ],
+            "price": "553",
+            "regular_price": "",
+            "price_on_request": false,
+            "product_type": "variable",
+            "variation_count": 2,
+            "variation_ids": [
+                250427,
+                250429
+            ],
+            "imported_variation_count_meta": 2,
+            "possible_variation_count_meta": 2
+        },
+        {
+            "product_id": 249524,
+            "sku": "VVD-PECH-PREMERA-RUSA-874",
+            "slug": "vvd-pech-premera-rusa-874",
+            "status": "publish",
+            "title": "Электрическая печь Премьера Руса 380В 9 кВт",
+            "brand": "vvd",
+            "brand_slugs": [
+                "vvd"
+            ],
+            "source_brand_meta": "VVD",
+            "source_url": "https://vvd.su/product/elektricheskie-pechi-dlya-bani/elektricheskie-pechi-premera-rusa/pech-premera-rusa/?oid=874",
+            "primary_category": "electric-bath-stoves",
+            "category_slugs": [
+                "electric-bath-stoves",
+                "russian-bath-stoves"
+            ],
+            "image_count": 6,
+            "featured_image_id": 250418,
+            "gallery_image_ids": [
+                250422,
+                250423,
+                250424,
+                250425,
+                250426
+            ],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "124",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class",
+                "pa_voltage"
+            ],
+            "price": "640",
+            "regular_price": "",
+            "price_on_request": false,
+            "product_type": "variable",
+            "variation_count": 4,
+            "variation_ids": [
+                250417,
+                250419,
+                250420,
+                250421
+            ],
+            "imported_variation_count_meta": 4,
+            "possible_variation_count_meta": 4
+        },
+        {
+            "product_id": 249512,
+            "sku": "VVD-PECH-PREMERA9-24-840",
+            "slug": "vvd-pech-premera9-24-840",
+            "status": "publish",
+            "title": "Электрическая печь Премьера в каменной облицовке Cерпентинит Премиум 380В 9 кВт",
+            "brand": "vvd",
+            "brand_slugs": [
+                "vvd"
+            ],
+            "source_brand_meta": "VVD",
+            "source_url": "https://vvd.su/product/elektricheskie-pechi-dlya-bani/elektropechi-dlya-bani-i-sauny-premera/pech-premera9-24/?oid=840",
+            "primary_category": "electric-bath-stoves",
+            "category_slugs": [
+                "electric-bath-stoves",
+                "russian-bath-stoves"
+            ],
+            "image_count": 7,
+            "featured_image_id": 250368,
+            "gallery_image_ids": [
+                250391,
+                250392,
+                250393,
+                250394,
+                250395,
+                250396
+            ],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "124",
+                "125",
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class",
+                "pa_voltage"
+            ],
+            "price": "1315",
+            "regular_price": "",
+            "price_on_request": false,
+            "product_type": "variable",
+            "variation_count": 20,
+            "variation_ids": [
+                250367,
+                250369,
+                250371,
+                250373,
+                250374,
+                250375,
+                250376,
+                250377,
+                250378,
+                250379,
+                250380,
+                250381,
+                250382,
+                250383,
+                250384,
+                250385,
+                250387,
+                250388,
+                250389,
+                250390
+            ],
+            "imported_variation_count_meta": 20,
+            "possible_variation_count_meta": 20
+        },
+        {
+            "product_id": 249538,
+            "sku": "VVD-PREMERA-PROFI-24-KVT-808",
+            "slug": "vvd-premera-profi-24-kvt-808",
+            "status": "publish",
+            "title": "Электрическая печь для бани Премьера Профи 24 кВт в облицовке из нержавеющей стали",
+            "brand": "vvd",
+            "brand_slugs": [
+                "vvd"
+            ],
+            "source_brand_meta": "VVD",
+            "source_url": "https://vvd.su/product/elektricheskie-pechi-dlya-bani/elektricheskie-pechi-profi/premera-profi-24-kvt/?oid=808",
+            "primary_category": "electric-bath-stoves",
+            "category_slugs": [
+                "electric-bath-stoves",
+                "russian-bath-stoves"
+            ],
+            "image_count": 9,
+            "featured_image_id": 250436,
+            "gallery_image_ids": [
+                250439,
+                250440,
+                250441,
+                250442,
+                250443,
+                250444,
+                250445,
+                250446
+            ],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "124",
+                "125",
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class"
+            ],
+            "price": "4192",
+            "regular_price": "",
+            "price_on_request": false,
+            "product_type": "variable",
+            "variation_count": 2,
+            "variation_ids": [
+                250435,
+                250437
+            ],
+            "imported_variation_count_meta": 2,
+            "possible_variation_count_meta": 2
+        },
+        {
+            "product_id": 249548,
+            "sku": "VVD-PREMERA-PROFI-36-48-KVT-1372",
+            "slug": "vvd-premera-profi-36-48-kvt-1372",
+            "status": "publish",
+            "title": "Электрическая печь для бани Премьера Профи 30 кВт в каменной облицовке",
+            "brand": "vvd",
+            "brand_slugs": [
+                "vvd"
+            ],
+            "source_brand_meta": "VVD",
+            "source_url": "https://vvd.su/product/elektricheskie-pechi-dlya-bani/elektricheskie-pechi-profi/premera-profi-36-48-kvt/?oid=1372",
+            "primary_category": "electric-bath-stoves",
+            "category_slugs": [
+                "electric-bath-stoves",
+                "russian-bath-stoves"
+            ],
+            "image_count": 8,
+            "featured_image_id": 250448,
+            "gallery_image_ids": [
+                250457,
+                250458,
+                250459,
+                250460,
+                250461,
+                250462,
+                250463
+            ],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "124",
+                "125",
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_steam-room-volume",
+                "pa_usage-class"
+            ],
+            "price": "6448",
+            "regular_price": "",
+            "price_on_request": false,
+            "product_type": "variable",
+            "variation_count": 8,
+            "variation_ids": [
+                250447,
+                250449,
+                250451,
+                250452,
+                250453,
+                250454,
+                250455,
+                250456
+            ],
+            "imported_variation_count_meta": 8,
+            "possible_variation_count_meta": 8
+        },
+        {
+            "product_id": 249566,
+            "sku": "VVD-PU-02M-I-PU-04M-DLYA-PECHEY-PREMERA-PROFI-808",
+            "slug": "vvd-pu-02m-i-pu-04m-dlya-pechey-premera-profi-808",
+            "status": "publish",
+            "title": "ПУ 02М и ПУ 04М для печей Премьера Профи",
+            "brand": "vvd",
+            "brand_slugs": [
+                "vvd"
+            ],
+            "source_brand_meta": "VVD",
+            "source_url": "https://vvd.su/product/pulty-vvd/pu-02m-i-pu-04m-dlya-pechey-premera-profi/",
+            "primary_category": "for-steam-generators",
+            "category_slugs": [
+                "control-units",
+                "for-steam-generators"
+            ],
+            "image_count": 3,
+            "featured_image_id": 250480,
+            "gallery_image_ids": [
+                250468,
+                250469
+            ],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "124",
+                "125",
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_usage-class"
+            ],
+            "price": "",
+            "regular_price": "",
+            "price_on_request": true,
+            "product_type": "variable",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 96
+        },
+        {
+            "product_id": 249557,
+            "sku": "VVD-PU-04-M-26-30-380-KVT-DLYA-ENU-FAUNA-1539",
+            "slug": "vvd-pu-04-m-26-30-380-kvt-dlya-enu-fauna-1539",
+            "status": "publish",
+            "title": "ПУ - 04 М для ЭНУ Фауна (26-30 кВт)",
+            "brand": "vvd",
+            "brand_slugs": [
+                "vvd"
+            ],
+            "source_brand_meta": "VVD",
+            "source_url": "https://vvd.su/product/pulty-vvd/pu-04-m-26-30-380-kvt-dlya-enu-fauna/",
+            "primary_category": "for-steam-generators",
+            "category_slugs": [
+                "control-units",
+                "for-steam-generators"
+            ],
+            "image_count": 2,
+            "featured_image_id": 250468,
+            "gallery_image_ids": [
+                250469
+            ],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "124",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_usage-class"
+            ],
+            "price": "1904",
+            "regular_price": "",
+            "price_on_request": false,
+            "product_type": "variable",
+            "variation_count": 3,
+            "variation_ids": [
+                250464,
+                250466,
+                250467
+            ],
+            "imported_variation_count_meta": 3,
+            "possible_variation_count_meta": 3
+        },
+        {
+            "product_id": 249570,
+            "sku": "VVD-PULT-01-M-DLYA-PECHEY-PREMERA-2-25-24KVT-840",
+            "slug": "vvd-pult-01-m-dlya-pechey-premera-2-25-24kvt-840",
+            "status": "publish",
+            "title": "Пульт 01 М для печей «Премьера» (от 2.25-24кВт)",
+            "brand": "vvd",
+            "brand_slugs": [
+                "vvd"
+            ],
+            "source_brand_meta": "VVD",
+            "source_url": "https://vvd.su/product/pulty-vvd/pult-01-m-dlya-pechey-premera-2-25-24kvt/",
+            "primary_category": "for-steam-generators",
+            "category_slugs": [
+                "control-units",
+                "for-steam-generators"
+            ],
+            "image_count": 4,
+            "featured_image_id": 250487,
+            "gallery_image_ids": [
+                250488,
+                250489,
+                250490
+            ],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "124",
+                "125",
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_usage-class"
+            ],
+            "price": "1361",
+            "regular_price": "",
+            "price_on_request": false,
+            "product_type": "variable",
+            "variation_count": 6,
+            "variation_ids": [
+                250481,
+                250482,
+                250483,
+                250484,
+                250485,
+                250486
+            ],
+            "imported_variation_count_meta": 6,
+            "possible_variation_count_meta": 23040
+        },
+        {
+            "product_id": 249575,
+            "sku": "VVD-PULT-02-MP-DLYA-PECHEY-PARIZHAR-2-25-24-KVT-1568",
+            "slug": "vvd-pult-02-mp-dlya-pechey-parizhar-2-25-24-kvt-1568",
+            "status": "publish",
+            "title": "Пульт 02 МП для печей «ПАРиЖАР» (от 2.25-24 кВт)",
+            "brand": "vvd",
+            "brand_slugs": [
+                "vvd"
+            ],
+            "source_brand_meta": "VVD",
+            "source_url": "https://vvd.su/product/pulty-vvd/pult-02-mp-dlya-pechey-parizhar-2-25-24-kvt/",
+            "primary_category": "for-steam-generators",
+            "category_slugs": [
+                "control-units",
+                "for-steam-generators"
+            ],
+            "image_count": 1,
+            "featured_image_id": 250491,
+            "gallery_image_ids": [],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "124",
+                "125",
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_usage-class"
+            ],
+            "price": "",
+            "regular_price": "",
+            "price_on_request": true,
+            "product_type": "variable",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1152
+        },
+        {
+            "product_id": 249580,
+            "sku": "VVD-PULT-08-1-840",
+            "slug": "vvd-pult-08-1-840",
+            "status": "publish",
+            "title": "Пульт 08.1",
+            "brand": "vvd",
+            "brand_slugs": [
+                "vvd"
+            ],
+            "source_brand_meta": "VVD",
+            "source_url": "https://vvd.su/product/pulty-vvd/pult-08-1/",
+            "primary_category": "for-steam-generators",
+            "category_slugs": [
+                "control-units",
+                "for-steam-generators"
+            ],
+            "image_count": 2,
+            "featured_image_id": 250500,
+            "gallery_image_ids": [
+                250493
+            ],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "124",
+                "125",
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_usage-class"
+            ],
+            "price": "1361",
+            "regular_price": "",
+            "price_on_request": false,
+            "product_type": "variable",
+            "variation_count": 6,
+            "variation_ids": [
+                250494,
+                250495,
+                250496,
+                250497,
+                250498,
+                250499
+            ],
+            "imported_variation_count_meta": 6,
+            "possible_variation_count_meta": 23040
+        },
+        {
+            "product_id": 249577,
+            "sku": "VVD-PULT-09-DLYA-PECHEY-PARIZHAR-2-25-24-KVT-1568",
+            "slug": "vvd-pult-09-dlya-pechey-parizhar-2-25-24-kvt-1568",
+            "status": "publish",
+            "title": "Пульт 09 для Печей ПАРиЖАР (от 4.25-24 кВт)",
+            "brand": "vvd",
+            "brand_slugs": [
+                "vvd"
+            ],
+            "source_brand_meta": "VVD",
+            "source_url": "https://vvd.su/product/pulty-vvd/pult-09-dlya-pechey-parizhar-2-25-24-kvt/",
+            "primary_category": "for-steam-generators",
+            "category_slugs": [
+                "control-units",
+                "for-steam-generators"
+            ],
+            "image_count": 2,
+            "featured_image_id": 250492,
+            "gallery_image_ids": [
+                250493
+            ],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "124",
+                "125",
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_usage-class"
+            ],
+            "price": "",
+            "regular_price": "",
+            "price_on_request": true,
+            "product_type": "variable",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1152
+        },
+        {
+            "product_id": 249563,
+            "sku": "VVD-PULT-DLYA-AEGPP-2-25-6-KVT",
+            "slug": "vvd-pult-dlya-aegpp-2-25-6-kvt",
+            "status": "publish",
+            "title": "Пульт для АЭГПП (2.25-6 кВт)",
+            "brand": "vvd",
+            "brand_slugs": [
+                "vvd"
+            ],
+            "source_brand_meta": "VVD",
+            "source_url": "https://vvd.su/product/parogeneratory/pult-dlya-aegpp-2-25-6-kvt/",
+            "primary_category": "for-steam-generators",
+            "category_slugs": [
+                "control-units",
+                "for-steam-generators"
+            ],
+            "image_count": 2,
+            "featured_image_id": 250478,
+            "gallery_image_ids": [
+                250479
+            ],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_room-type",
+                "pa_series",
+                "pa_usage-class"
+            ],
+            "price": "49",
+            "regular_price": "49",
+            "price_on_request": false,
+            "product_type": "simple",
+            "variation_count": 0,
+            "variation_ids": [],
+            "imported_variation_count_meta": 0,
+            "possible_variation_count_meta": 1
+        },
+        {
+            "product_id": 249560,
+            "sku": "VVD-PULT-UPRAVLENIYA-K-PAROTERMALNYM-PECHAM-PREMERA-RUSA-840",
+            "slug": "vvd-pult-upravleniya-k-parotermalnym-pecham-premera-rusa-840",
+            "status": "publish",
+            "title": "ПУ-21МП Пульт управления для ЭНУ",
+            "brand": "vvd",
+            "brand_slugs": [
+                "vvd"
+            ],
+            "source_brand_meta": "VVD",
+            "source_url": "https://vvd.su/product/pulty-vvd/pult-upravleniya-k-parotermalnym-pecham-premera-rusa/",
+            "primary_category": "for-steam-generators",
+            "category_slugs": [
+                "control-units",
+                "for-steam-generators"
+            ],
+            "image_count": 2,
+            "featured_image_id": 250476,
+            "gallery_image_ids": [
+                250477
+            ],
+            "has_short_description": true,
+            "has_full_description": true,
+            "attribute_keys": [
+                "124",
+                "125",
+                "pa_cladding-material",
+                "pa_equipment-type",
+                "pa_fuel-type",
+                "pa_power",
+                "pa_room-type",
+                "pa_series",
+                "pa_usage-class"
+            ],
+            "price": "1454",
+            "regular_price": "",
+            "price_on_request": false,
+            "product_type": "variable",
+            "variation_count": 6,
+            "variation_ids": [
+                250470,
+                250471,
+                250472,
+                250473,
+                250474,
+                250475
+            ],
+            "imported_variation_count_meta": 6,
+            "possible_variation_count_meta": 69120
+        }
+    ]
+}
