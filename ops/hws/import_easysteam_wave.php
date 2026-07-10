@@ -56,6 +56,9 @@ if ( ! is_array( $payload ) ) {
 	hws_import_error( 'Invalid JSON payload: ' . $payload_path );
 }
 
+$brand_slug = (string) ( $payload['brand']['slug'] ?? 'easysteam' );
+$brand_name = (string) ( $payload['brand']['name'] ?? 'EasySteam' );
+
 function hws_normalize_text( string $value ): string {
 	$value = wp_strip_all_tags( html_entity_decode( $value, ENT_QUOTES | ENT_HTML5, 'UTF-8' ) );
 	$value = preg_replace( '/\s+/u', ' ', $value );
@@ -129,25 +132,13 @@ function hws_build_specs_html( array $spec_groups ): string {
 }
 
 function hws_calculate_rate(): float {
-	$products = wc_get_products(
-		[
-			'limit' => 5,
-			'return' => 'ids',
-			'status' => 'publish',
-			'category' => [],
-		]
+	global $wpdb;
+	$rate = (float) $wpdb->get_var(
+		"SELECT meta_value FROM {$wpdb->postmeta}
+		 WHERE meta_key = '_hws_usd_rub_rate' AND meta_value > 0
+		 ORDER BY post_id DESC LIMIT 1"
 	);
-	foreach ( $products as $product_id ) {
-		$brands = wp_get_post_terms( $product_id, 'product_brand', [ 'fields' => 'slugs' ] );
-		if ( ! in_array( 'easysteam', $brands, true ) ) {
-			continue;
-		}
-		$rate = (float) get_post_meta( $product_id, '_hws_usd_rub_rate', true );
-		if ( $rate > 0 ) {
-			return $rate;
-		}
-	}
-	return 71.209;
+	return $rate > 0 ? $rate : 71.209;
 }
 
 function hws_find_existing_product_id( string $sku, string $slug ): int {
@@ -341,7 +332,7 @@ function hws_sideload_image( string $url, int $post_id, bool $set_thumbnail = fa
 }
 
 $rate = hws_calculate_rate();
-hws_import_log( 'Using EasySteam USD/RUB rate: ' . $rate );
+hws_import_log( 'Brand: ' . $brand_name . ' (' . $brand_slug . ') | USD/RUB rate: ' . $rate );
 
 $processed = 0;
 $created = 0;
@@ -379,7 +370,7 @@ foreach ( $payload['series'] ?? [] as $series_payload ) {
 		}
 
 		$title = hws_normalize_text( (string) ( $product['title'] ?? '' ) );
-		$slug = 'easysteam-' . sanitize_title( $sku );
+		$slug = $brand_slug . '-' . sanitize_title( $sku );
 		$product_id = hws_find_existing_product_id( $sku, $slug );
 		$is_update = $product_id > 0;
 		$post_status = 'publish';
@@ -397,7 +388,7 @@ foreach ( $payload['series'] ?? [] as $series_payload ) {
 			$short_description = $version ? $version : $series_intro;
 		}
 		$category_ids = hws_category_chain_ids( (string) ( $series_payload['target']['primaryCategoryPath'] ?? '' ) );
-		$brand_term_id = hws_ensure_term_by_slug( 'product_brand', 'easysteam', 'EasySteam' );
+		$brand_term_id = hws_ensure_term_by_slug( 'product_brand', $brand_slug, $brand_name );
 		$attrs = hws_attribute_values_for_product( $series_payload, $product, $spec_groups );
 		$specs_html = hws_build_specs_html( $spec_groups );
 		$raw_rows = hws_collect_group_rows( $spec_groups );

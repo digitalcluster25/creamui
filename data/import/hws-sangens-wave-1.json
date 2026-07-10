@@ -1,0 +1,251 @@
+{
+  "supplier": "Sangens",
+  "wave": "wave-1",
+  "updated": "2026-07-10",
+  "sourceRoot": "https://sangens.com/ru/catalog",
+  "brand": {
+    "name": "Sangens",
+    "slug": "sangens"
+  },
+  "parserContract": {
+    "discovery": "product_url_list",
+    "productSource": "product_detail_html",
+    "shortDescription": "og_description",
+    "fullDescription": "entry_content_text",
+    "specs": "table_th_td",
+    "media": "wp_uploads_images",
+    "documents": "pdf_links"
+  },
+  "series": [
+    {
+      "seriesName": "Серия W",
+      "seriesSlug": "seriya-w-steklo",
+      "seriesIntro": "Электрическая печь Sangens Series W — двухконтурная система нагрева с запатентованными энергоблоками из нержавеющей стали AISI 304. Создаёт подлинный микроклимат русской бани и финской сауны без дров и дымохода.",
+      "target": {
+        "primaryCategoryPath": "sauna-stoves/electric-sauna-stoves",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "Серия W",
+        "pa_equipment-type": "bath-sauna-stove",
+        "pa_room-type": "bath-and-sauna",
+        "pa_fuel-type": "Электричество",
+        "pa_usage-class": "Частное использование",
+        "pa_cladding-material": "Каленое стекло"
+      },
+      "products": [
+        {"source_url": "https://sangens.com/ru/catalog/furnaces/series-w/sangens_w12g_black/"},
+        {"source_url": "https://sangens.com/ru/catalog/furnaces/series-w/sangens_w20g_black/"},
+        {"source_url": "https://sangens.com/ru/catalog/furnaces/series-w/sangens_w30g_black/"},
+        {"source_url": "https://sangens.com/ru/catalog/furnaces/series-w/sangens_w40g_black/"},
+        {"source_url": "https://sangens.com/ru/catalog/furnaces/series-w/sangens_w12g_white/"},
+        {"source_url": "https://sangens.com/ru/catalog/furnaces/series-w/sangens_w20g_white/"},
+        {"source_url": "https://sangens.com/ru/catalog/furnaces/series-w/sangens_w30g_white/"},
+        {"source_url": "https://sangens.com/ru/catalog/furnaces/series-w/sangens_w40g_white/"}
+      ]
+    },
+    {
+      "seriesName": "Серия W",
+      "seriesSlug": "seriya-w-kirpich",
+      "seriesIntro": "Электрическая печь Sangens Series W в облицовке из огнеупорного кирпича. Двухконтурная система нагрева, запатентованные энергоблоки из AISI 304. Для русской бани и финской сауны.",
+      "target": {
+        "primaryCategoryPath": "sauna-stoves/electric-sauna-stoves",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "Серия W",
+        "pa_equipment-type": "bath-sauna-stove",
+        "pa_room-type": "bath-and-sauna",
+        "pa_fuel-type": "Электричество",
+        "pa_usage-class": "Частное использование",
+        "pa_cladding-material": "Кирпич"
+      },
+      "products": [
+        {"source_url": "https://sangens.com/ru/catalog/furnaces/series-w/sangens_w12b/"},
+        {"source_url": "https://sangens.com/ru/catalog/furnaces/series-w/sangens_w20b/"},
+        {"source_url": "https://sangens.com/ru/catalog/furnaces/series-w/sangens_w30b/"},
+        {"source_url": "https://sangens.com/ru/catalog/furnaces/series-w/sangens_w40b/"}
+      ]
+    },
+    {
+      "seriesName": "Серия W",
+      "seriesSlug": "seriya-w-kamen",
+      "seriesIntro": "Электрическая печь Sangens Series W в облицовке из натурального камня. Сочетает природную эстетику с двухконтурной технологией нагрева и запатентованными энергоблоками AISI 304.",
+      "target": {
+        "primaryCategoryPath": "sauna-stoves/electric-sauna-stoves",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "Серия W",
+        "pa_equipment-type": "bath-sauna-stove",
+        "pa_room-type": "bath-and-sauna",
+        "pa_fuel-type": "Электричество",
+        "pa_usage-class": "Частное использование",
+        "pa_cladding-material": "Натуральный камень"
+      },
+      "products": [
+        {"source_url": "https://sangens.com/ru/catalog/furnaces/series-w/sangens_w12s/"},
+        {"source_url": "https://sangens.com/ru/catalog/furnaces/series-w/sangens_w20s/"},
+        {"source_url": "https://sangens.com/ru/catalog/furnaces/series-w/sangens_w30s/"},
+        {"source_url": "https://sangens.com/ru/catalog/furnaces/series-w/sangens_w40s/"}
+      ]
+    },
+    {
+      "seriesName": "Серия L",
+      "seriesSlug": "seriya-l",
+      "seriesIntro": "Электрическая печь Sangens Series L — двухконтурная система нагрева с запатентованными энергоблоками и жаростойкой эко-керамической облицовкой. Создаёт микроклимат русской бани и финской сауны без дров.",
+      "target": {
+        "primaryCategoryPath": "sauna-stoves/electric-sauna-stoves",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "Серия L",
+        "pa_equipment-type": "bath-sauna-stove",
+        "pa_room-type": "bath-and-sauna",
+        "pa_fuel-type": "Электричество",
+        "pa_usage-class": "Частное использование",
+        "pa_cladding-material": "Керамика"
+      },
+      "products": [
+        {"source_url": "https://sangens.com/ru/catalog/furnaces/series-l/sangens_l8c/"},
+        {"source_url": "https://sangens.com/ru/catalog/furnaces/series-l/sangens_l12c/"},
+        {"source_url": "https://sangens.com/ru/catalog/furnaces/series-l/sangens_l18c/"}
+      ]
+    },
+    {
+      "seriesName": "Серия LS",
+      "seriesSlug": "seriya-ls",
+      "seriesIntro": "Компактная электрическая печь Sangens Series LS — двухконтурный нагрев с энергоблоками и жаростойкой керамикой. Идеальна для небольших бань и саун.",
+      "target": {
+        "primaryCategoryPath": "sauna-stoves/electric-sauna-stoves",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "Серия LS",
+        "pa_equipment-type": "bath-sauna-stove",
+        "pa_room-type": "bath-and-sauna",
+        "pa_fuel-type": "Электричество",
+        "pa_usage-class": "Частное использование",
+        "pa_cladding-material": "Керамика"
+      },
+      "products": [
+        {"source_url": "https://sangens.com/ru/catalog/furnaces/series-ls/sangens_ls12c/"},
+        {"source_url": "https://sangens.com/ru/catalog/furnaces/series-ls/sangens_ls18c/"}
+      ]
+    },
+    {
+      "seriesName": "Блоки управления Sangens",
+      "seriesSlug": "bloki-upravleniya",
+      "seriesIntro": "Блоки управления Sangens Block — Wi-Fi/Bluetooth управление электрическими печами для бани и сауны. Совместимы с печами Sangens Series W, L и LS.",
+      "target": {
+        "primaryCategoryPath": "control-units/for-sauna-heaters",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "Пульты Sangens",
+        "pa_equipment-type": "control-unit",
+        "pa_room-type": "bath-and-sauna",
+        "pa_usage-class": "Частное использование"
+      },
+      "products": [
+        {"source_url": "https://sangens.com/ru/catalog/system-controls/sangens_69/"},
+        {"source_url": "https://sangens.com/ru/catalog/system-controls/sangens_1518/"}
+      ]
+    },
+    {
+      "seriesName": "Системы управления Sangens",
+      "seriesSlug": "sistemy-upravleniya",
+      "seriesIntro": "Интегрированные системы управления Sangens Panel System — центральный пульт для управления несколькими зонами банного комплекса. Wi-Fi/Bluetooth, удалённое управление, диспетчеризация.",
+      "target": {
+        "primaryCategoryPath": "control-units/for-sauna-heaters",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "Системы Sangens",
+        "pa_equipment-type": "control-unit",
+        "pa_room-type": "bath-and-sauna",
+        "pa_usage-class": "Коммерческое использование"
+      },
+      "products": [
+        {"source_url": "https://sangens.com/ru/catalog/system-controls/sangens_3spro/"},
+        {"source_url": "https://sangens.com/ru/catalog/system-controls/sangens_3mpro/"},
+        {"source_url": "https://sangens.com/ru/catalog/system-controls/sangens_4mpro/"}
+      ]
+    },
+    {
+      "seriesName": "SPA-системы Sangens",
+      "seriesSlug": "spa-sistemy",
+      "seriesIntro": "Профессиональные SPA-системы Sangens — интегрированное решение для создания SPA-зоны в банном комплексе. 9 кВт, нержавеющая сталь, дистанционное управление, диспетчеризация.",
+      "target": {
+        "primaryCategoryPath": "commercial/spa-systems",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "SPA Sangens",
+        "pa_equipment-type": "bath-sauna-stove",
+        "pa_room-type": "bath-and-sauna",
+        "pa_fuel-type": "Электричество",
+        "pa_usage-class": "Коммерческое использование"
+      },
+      "products": [
+        {"source_url": "https://sangens.com/ru/catalog/integration-systems/sangens_spasystem_2100/"},
+        {"source_url": "https://sangens.com/ru/catalog/integration-systems/sangens_spasystem_3200/"}
+      ]
+    },
+    {
+      "seriesName": "Снегогенераторы Sangens",
+      "seriesSlug": "snegogeneratory",
+      "seriesIntro": "Снегогенераторы Sangens Snow — производство искусственного снега для SPA-зоны бани. 6 кг снега/час, уровень шума ≤55 дБ(А).",
+      "target": {
+        "primaryCategoryPath": "commercial/spa-systems",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "Snow Sangens",
+        "pa_equipment-type": "bath-sauna-stove",
+        "pa_room-type": "bath-and-sauna",
+        "pa_usage-class": "Коммерческое использование"
+      },
+      "products": [
+        {"source_url": "https://sangens.com/ru/catalog/snow-generators/sangens_snow_10_black/"},
+        {"source_url": "https://sangens.com/ru/catalog/snow-generators/sangens_stand_900_black/"}
+      ]
+    },
+    {
+      "seriesName": "Обливные устройства Sangens",
+      "seriesSlug": "oblivnye-ustroystva",
+      "seriesIntro": "Обливное устройство Sangens Oblivion — обливание с эффектом водопада для SPA-зоны бани. Вместимость 28 литров, равномерное распределение воды.",
+      "target": {
+        "primaryCategoryPath": "accessories/pouring-devices",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "Oblivion Sangens",
+        "pa_equipment-type": "bath-sauna-stove",
+        "pa_room-type": "bath-and-sauna",
+        "pa_usage-class": "Частное использование"
+      },
+      "products": [
+        {"source_url": "https://sangens.com/ru/catalog/irrigation-devices/sangens_oblivion_30_wood/"}
+      ]
+    },
+    {
+      "seriesName": "Второе дыхание Sangens",
+      "seriesSlug": "vtoroe-dykhanie",
+      "seriesIntro": "Устройство подачи свежего воздуха Sangens Fresh Air — охлаждённый поток свежего воздуха непосредственно к пользователю в парной. 7.2 Вт, уровень шума ≤35 дБ(А).",
+      "target": {
+        "primaryCategoryPath": "commercial/automation",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "Fresh Air Sangens",
+        "pa_equipment-type": "control-unit",
+        "pa_room-type": "bath-and-sauna",
+        "pa_usage-class": "Частное использование"
+      },
+      "products": [
+        {"source_url": "https://sangens.com/ru/catalog/second-wind/sangens_fresh_air_5/"}
+      ]
+    }
+  ]
+}
