@@ -401,6 +401,17 @@ So current live state is:
 - applied live: `renamed=122 merged=2` (e.g. `220В`+`220 В` → `220v`); re-run dry-run = 0 (idempotent verified)
 - STILL OPEN for step 7: equipment-type / voltage / series / room-type / commercial-home dimension *completeness* (not slug quality) per backend audit
 
+### RESOLVED 2026-07-10 (step 6 — branch-aware filters)
+
+- frontend catalog now renders per-branch filter sets, not one global scheme (matches docs/hws-catalog-phase-1-taxonomy.md)
+- config: [frontend/lib/data/catalogFilters.ts](/Users/macbookpro/Coding/creamui/frontend/lib/data/catalogFilters.ts) (branch → ordered pa_* taxonomies, RU labels, URL param keys)
+- data plumbing: `GET_PRODUCTS` now fetches `attributes{name,label,options}`; new `GET_ATTRIBUTE_TERMS` (allPa* slug→name maps); mapper exposes `attributes` on `CatalogProduct`; `page.tsx` derives branch = parent-or-self slug, reads initial filters from searchParams
+- [Catalog.tsx](/Users/macbookpro/Coding/creamui/frontend/components/sections/catalog/Catalog.tsx): multi-select AND filtering, self-prunes filters with <2 distinct values, chips, brand+filters synced to URL, deep-link SSR
+- verified live (wpsandbox): russian-bath-stoves → 6 filters, steam-generators-and-hammam → own set; filter/chip/deep-link all work
+- follow-ups for step 7 (data completeness, not filter bugs):
+  - `pa_equipment-type` term `steam-thermal-stove` has no name mapping (option shows raw slug)
+  - `pa_fuel-type` pruned on russian-bath-stoves → <2 distinct fuel values assigned across products (attribute coverage gap)
+
 ## Immediate next actions for Claude Code
 
 Do these in order.
