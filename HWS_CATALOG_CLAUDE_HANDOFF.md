@@ -393,6 +393,14 @@ So current live state is:
 - live VVD product count = 30; brand term `vvd` (term_id 82, name `ВВД`) slug already normalized, no percent-encoding
 - OPEN: 2 `ПАРиЖАР Про` products price=0 (post_ids 249421, 249429) — parser missed offer price → see open-issue #2 (task spawned)
 
+### RESOLVED 2026-07-10 (step 7 partial — attribute term slugs)
+
+- root cause: `hws_slugify_meta` had no Cyrillic transliteration → `sanitize_title` percent-encoded all Russian attribute term slugs (systemic across VVD + EasySteam, e.g. `pa_fuel-type`, `pa_series`, `pa_power`, `pa_cladding-material`)
+- fix: added `hws_translit_cyr()` to both importers (`import_vvd_wave.php`, `import_easysteam_wave.php`); new slugs now clean latin (`elektrichestvo`, `parizhar`, `10-kvt`, `gaz-drova`)
+- one-off live repair: [ops/hws/normalize_term_slugs.php](/Users/macbookpro/Coding/creamui/ops/hws/normalize_term_slugs.php) — only rewrites percent-encoded slugs (preserves intentional English semantic slugs like `pa_equipment-type` / `pa_room-type`), merges duplicate-concept terms on collision, idempotent
+- applied live: `renamed=122 merged=2` (e.g. `220В`+`220 В` → `220v`); re-run dry-run = 0 (idempotent verified)
+- STILL OPEN for step 7: equipment-type / voltage / series / room-type / commercial-home dimension *completeness* (not slug quality) per backend audit
+
 ## Immediate next actions for Claude Code
 
 Do these in order.
