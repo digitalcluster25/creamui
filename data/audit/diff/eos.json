@@ -1,13 +1,13 @@
 {
   "brand": "eos",
-  "generated_at": "2026-07-10T22:23:57.131967+00:00",
+  "generated_at": "2026-07-10T22:33:25.317856+00:00",
   "source_total_rows": 541,
   "woo_total_rows": 541,
   "source_total_unique_skus": 541,
   "woo_total_unique_skus": 541,
   "summary": {
-    "matched": 140,
-    "matched_but_broken": 401,
+    "matched": 541,
+    "matched_but_broken": 0,
     "source_only": 0,
     "woo_only": 0,
     "source_duplicates": 0,
@@ -39,6 +39,204 @@
       "woo_slug": "eos-20016065"
     },
     {
+      "sku": "907685",
+      "source_name": "EOS Euro 6.0 kW",
+      "woo_product_id": 249705,
+      "woo_slug": "eos-907685"
+    },
+    {
+      "sku": "907686",
+      "source_name": "EOS Euro 7.5 kW",
+      "woo_product_id": 249706,
+      "woo_slug": "eos-907686"
+    },
+    {
+      "sku": "907687",
+      "source_name": "EOS Euro 9.0 kW",
+      "woo_product_id": 249707,
+      "woo_slug": "eos-907687"
+    },
+    {
+      "sku": "908076",
+      "source_name": "EOS Euro 12.0 kW",
+      "woo_product_id": 249709,
+      "woo_slug": "eos-908076"
+    },
+    {
+      "sku": "908608",
+      "source_name": "EOS 46.U series 12.0 kW",
+      "woo_product_id": 249940,
+      "woo_slug": "eos-908608"
+    },
+    {
+      "sku": "908775",
+      "source_name": "EOS P1 series 12.0 kW",
+      "woo_product_id": 249649,
+      "woo_slug": "eos-908775"
+    },
+    {
+      "sku": "908776",
+      "source_name": "EOS P1 series 15.0 kW",
+      "woo_product_id": 249650,
+      "woo_slug": "eos-908776"
+    },
+    {
+      "sku": "941127",
+      "source_name": "EOS 46.U series 12.0 kW",
+      "woo_product_id": 249944,
+      "woo_slug": "eos-941127"
+    },
+    {
+      "sku": "941921",
+      "source_name": "EOS M3 W 3.0 kW",
+      "woo_product_id": 249615,
+      "woo_slug": "eos-941921"
+    },
+    {
+      "sku": "942317",
+      "source_name": "EOS EuroMax series 9.0 kW",
+      "woo_product_id": 249644,
+      "woo_slug": "eos-942317"
+    },
+    {
+      "sku": "942318",
+      "source_name": "EOS EuroMax series 12.0 kW",
+      "woo_product_id": 249645,
+      "woo_slug": "eos-942318"
+    },
+    {
+      "sku": "942320",
+      "source_name": "EOS EuroMax series 9.0 kW",
+      "woo_product_id": 249641,
+      "woo_slug": "eos-942320"
+    },
+    {
+      "sku": "942321",
+      "source_name": "EOS EuroMax series 12.0 kW",
+      "woo_product_id": 249642,
+      "woo_slug": "eos-942321"
+    },
+    {
+      "sku": "942444A",
+      "source_name": "EOS Mini series 3.0 kW",
+      "woo_product_id": 249613,
+      "woo_slug": "eos-942444a"
+    },
+    {
+      "sku": "942589",
+      "source_name": "EOS 34.G HD series 21.0 kW",
+      "woo_product_id": 249954,
+      "woo_slug": "eos-942589"
+    },
+    {
+      "sku": "942605A",
+      "source_name": "EOS ThermoTec series 6.0 kW",
+      "woo_product_id": 249682,
+      "woo_slug": "eos-942605a"
+    },
+    {
+      "sku": "942606A",
+      "source_name": "EOS ThermoTec series 7.5 kW",
+      "woo_product_id": 249683,
+      "woo_slug": "eos-942606a"
+    },
+    {
+      "sku": "942607A",
+      "source_name": "EOS ThermoTec series 9.0 kW",
+      "woo_product_id": 249684,
+      "woo_slug": "eos-942607a"
+    },
+    {
+      "sku": "942830",
+      "source_name": "EOS P1 series 10.5 kW",
+      "woo_product_id": 249648,
+      "woo_slug": "eos-942830"
+    },
+    {
+      "sku": "943037",
+      "source_name": "EOS 34.G HD series 30.0 kW",
+      "woo_product_id": 249956,
+      "woo_slug": "eos-943037"
+    },
+    {
+      "sku": "943077",
+      "source_name": "EOS Watermill sauna",
+      "woo_product_id": 250008,
+      "woo_slug": "eos-943077"
+    },
+    {
+      "sku": "943882",
+      "source_name": "EOS EuroMax series 15.0 kW",
+      "woo_product_id": 249643,
+      "woo_slug": "eos-943882"
+    },
+    {
+      "sku": "943922",
+      "source_name": "EOS EuroMax series 15.0 kW",
+      "woo_product_id": 249646,
+      "woo_slug": "eos-943922"
+    },
+    {
+      "sku": "944079",
+      "source_name": "EOS 34.G HD series 24.0 kW",
+      "woo_product_id": 249955,
+      "woo_slug": "eos-944079"
+    },
+    {
+      "sku": "944250",
+      "source_name": "EOS 46.U series 7.5 kW",
+      "woo_product_id": 249938,
+      "woo_slug": "eos-944250"
+    },
+    {
+      "sku": "944270",
+      "source_name": "EOS Herkules S60 series 12.0 kW",
+      "woo_product_id": 249897,
+      "woo_slug": "eos-944270"
+    },
+    {
+      "sku": "944271",
+      "source_name": "EOS Herkules S60 series 15.0 kW",
+      "woo_product_id": 249898,
+      "woo_slug": "eos-944271"
+    },
+    {
+      "sku": "944272",
+      "source_name": "EOS Herkules S60 series 12.0 kW",
+      "woo_product_id": 249891,
+      "woo_slug": "eos-944272"
+    },
+    {
+      "sku": "944273",
+      "source_name": "EOS Herkules S60 series 15.0 kW",
+      "woo_product_id": 249892,
+      "woo_slug": "eos-944273"
+    },
+    {
+      "sku": "944324",
+      "source_name": "EOS Herkules S25 series 7.5 kW",
+      "woo_product_id": 249714,
+      "woo_slug": "eos-944324"
+    },
+    {
+      "sku": "944325",
+      "source_name": "EOS Herkules S25 series 9.0 kW",
+      "woo_product_id": 249715,
+      "woo_slug": "eos-944325"
+    },
+    {
+      "sku": "944326",
+      "source_name": "EOS Herkules S25 series 7.5 kW",
+      "woo_product_id": 249710,
+      "woo_slug": "eos-944326"
+    },
+    {
+      "sku": "944327",
+      "source_name": "EOS Herkules S25 series 9.0 kW",
+      "woo_product_id": 249711,
+      "woo_slug": "eos-944327"
+    },
+    {
       "sku": "944334",
       "source_name": "EOS InfraTec Classic 3.5 kW",
       "woo_product_id": 250722,
@@ -51,10 +249,286 @@
       "woo_slug": "eos-944388"
     },
     {
+      "sku": "944493",
+      "source_name": "EOS Herkules S60 series 9.0 kW",
+      "woo_product_id": 249890,
+      "woo_slug": "eos-944493"
+    },
+    {
+      "sku": "944494",
+      "source_name": "EOS Herkules S60 series 9.0 kW",
+      "woo_product_id": 249896,
+      "woo_slug": "eos-944494"
+    },
+    {
+      "sku": "944889",
+      "source_name": "EOS 46.U series 9.0 kW",
+      "woo_product_id": 249939,
+      "woo_slug": "eos-944889"
+    },
+    {
+      "sku": "944890",
+      "source_name": "EOS 46.U series 6.0 kW",
+      "woo_product_id": 249941,
+      "woo_slug": "eos-944890"
+    },
+    {
+      "sku": "944891",
+      "source_name": "EOS 46.U series 7.5 kW",
+      "woo_product_id": 249942,
+      "woo_slug": "eos-944891"
+    },
+    {
+      "sku": "944892",
+      "source_name": "EOS 46.U series 9.0 kW",
+      "woo_product_id": 249943,
+      "woo_slug": "eos-944892"
+    },
+    {
+      "sku": "945031",
+      "source_name": "EOS Filius series 4.5 kW",
+      "woo_product_id": 249667,
+      "woo_slug": "eos-945031"
+    },
+    {
+      "sku": "945032",
+      "source_name": "EOS Filius series 6.0 kW",
+      "woo_product_id": 249668,
+      "woo_slug": "eos-945032"
+    },
+    {
+      "sku": "945033",
+      "source_name": "EOS Filius series 7.5 kW",
+      "woo_product_id": 249669,
+      "woo_slug": "eos-945033"
+    },
+    {
+      "sku": "945484",
+      "source_name": "EOS Thermat series 6.0 kW",
+      "woo_product_id": 249628,
+      "woo_slug": "eos-945484"
+    },
+    {
+      "sku": "945485",
+      "source_name": "EOS Thermat series 7.5 kW",
+      "woo_product_id": 249629,
+      "woo_slug": "eos-945485"
+    },
+    {
+      "sku": "945486",
+      "source_name": "EOS Thermat series 9.0 kW",
+      "woo_product_id": 249630,
+      "woo_slug": "eos-945486"
+    },
+    {
+      "sku": "945488",
+      "source_name": "EOS Mythos series 7.5 kW",
+      "woo_product_id": 249814,
+      "woo_slug": "eos-945488"
+    },
+    {
+      "sku": "945489",
+      "source_name": "EOS Mythos series 9.0 kW",
+      "woo_product_id": 249815,
+      "woo_slug": "eos-945489"
+    },
+    {
+      "sku": "945490",
+      "source_name": "EOS Mythos series 12.0 kW",
+      "woo_product_id": 249824,
+      "woo_slug": "eos-945490"
+    },
+    {
+      "sku": "945491",
+      "source_name": "EOS Mythos series 15.0 kW",
+      "woo_product_id": 249825,
+      "woo_slug": "eos-945491"
+    },
+    {
+      "sku": "945492",
+      "source_name": "EOS Mythos series 2.0 kW",
+      "woo_product_id": 249838,
+      "woo_slug": "eos-945492"
+    },
+    {
+      "sku": "945493",
+      "source_name": "EOS Mythos series 3.0 kW",
+      "woo_product_id": 249835,
+      "woo_slug": "eos-945493"
+    },
+    {
+      "sku": "945522",
+      "source_name": "EOS Invisio series 9.0 kW",
+      "woo_product_id": 249931,
+      "woo_slug": "eos-945522"
+    },
+    {
+      "sku": "945571",
+      "source_name": "EOS Mythos series 2.0 kW",
+      "woo_product_id": 249837,
+      "woo_slug": "eos-945571"
+    },
+    {
+      "sku": "945572",
+      "source_name": "EOS Mythos series 3.0 kW",
+      "woo_product_id": 249834,
+      "woo_slug": "eos-945572"
+    },
+    {
+      "sku": "945603",
+      "source_name": "EOS Saunadome II 9.0 kW",
+      "woo_product_id": 249775,
+      "woo_slug": "eos-945603"
+    },
+    {
+      "sku": "945604",
+      "source_name": "EOS Saunadome II 12.0 kW",
+      "woo_product_id": 249776,
+      "woo_slug": "eos-945604"
+    },
+    {
+      "sku": "945605",
+      "source_name": "EOS Saunadome II 15.0 kW",
+      "woo_product_id": 249777,
+      "woo_slug": "eos-945605"
+    },
+    {
+      "sku": "945606",
+      "source_name": "EOS Saunadome II 18.0 kW",
+      "woo_product_id": 249778,
+      "woo_slug": "eos-945606"
+    },
+    {
+      "sku": "945650",
+      "source_name": "EOS Mini series 3.0 kW",
+      "woo_product_id": 249611,
+      "woo_slug": "eos-945650"
+    },
+    {
+      "sku": "945663",
+      "source_name": "EOS FinnRock 7.5 kW",
+      "woo_product_id": 249718,
+      "woo_slug": "eos-945663"
+    },
+    {
+      "sku": "945664",
+      "source_name": "EOS FinnRock 9.0 kW",
+      "woo_product_id": 249719,
+      "woo_slug": "eos-945664"
+    },
+    {
+      "sku": "945688",
+      "source_name": "EOS ThermoTec series 6.0 kW",
+      "woo_product_id": 249676,
+      "woo_slug": "eos-945688"
+    },
+    {
+      "sku": "945689",
+      "source_name": "EOS ThermoTec series 7.5 kW",
+      "woo_product_id": 249677,
+      "woo_slug": "eos-945689"
+    },
+    {
+      "sku": "945690",
+      "source_name": "EOS ThermoTec series 9.0 kW",
+      "woo_product_id": 249678,
+      "woo_slug": "eos-945690"
+    },
+    {
+      "sku": "945708",
+      "source_name": "EOS Invisio series 3.0 kW",
+      "woo_product_id": 249919,
+      "woo_slug": "eos-945708"
+    },
+    {
+      "sku": "945709",
+      "source_name": "EOS Invisio series 4.5 kW",
+      "woo_product_id": 249920,
+      "woo_slug": "eos-945709"
+    },
+    {
+      "sku": "945710",
+      "source_name": "EOS Invisio series 6.0 kW",
+      "woo_product_id": 249921,
+      "woo_slug": "eos-945710"
+    },
+    {
+      "sku": "945719",
+      "source_name": "EOS FinnRock 12.0 kW",
+      "woo_product_id": 249720,
+      "woo_slug": "eos-945719"
+    },
+    {
+      "sku": "945735",
+      "source_name": "EOS Thermat series 7.5 kW",
+      "woo_product_id": 249623,
+      "woo_slug": "eos-945735"
+    },
+    {
       "sku": "945768",
       "source_name": "EOS Econ I1",
       "woo_product_id": 250581,
       "woo_slug": "eos-945768"
+    },
+    {
+      "sku": "945786",
+      "source_name": "EOS Invisio series 6.0 kW",
+      "woo_product_id": 249925,
+      "woo_slug": "eos-945786"
+    },
+    {
+      "sku": "945787",
+      "source_name": "EOS Invisio series 9.0 kW",
+      "woo_product_id": 249926,
+      "woo_slug": "eos-945787"
+    },
+    {
+      "sku": "945788",
+      "source_name": "EOS Invisio series 12.0 kW",
+      "woo_product_id": 249927,
+      "woo_slug": "eos-945788"
+    },
+    {
+      "sku": "945810",
+      "source_name": "EOS Invisio series 3.0 kW",
+      "woo_product_id": 249922,
+      "woo_slug": "eos-945810"
+    },
+    {
+      "sku": "945811",
+      "source_name": "EOS Invisio series 4.5 kW",
+      "woo_product_id": 249923,
+      "woo_slug": "eos-945811"
+    },
+    {
+      "sku": "945812",
+      "source_name": "EOS Invisio series 6.0 kW",
+      "woo_product_id": 249924,
+      "woo_slug": "eos-945812"
+    },
+    {
+      "sku": "945813",
+      "source_name": "EOS Invisio series 6.0 kW",
+      "woo_product_id": 249928,
+      "woo_slug": "eos-945813"
+    },
+    {
+      "sku": "945814",
+      "source_name": "EOS Invisio series 9.0 kW",
+      "woo_product_id": 249929,
+      "woo_slug": "eos-945814"
+    },
+    {
+      "sku": "945815",
+      "source_name": "EOS Invisio series 12.0 kW",
+      "woo_product_id": 249930,
+      "woo_slug": "eos-945815"
+    },
+    {
+      "sku": "945816",
+      "source_name": "EOS Invisio series 9.0 kW",
+      "woo_product_id": 249933,
+      "woo_slug": "eos-945816"
     },
     {
       "sku": "945842",
@@ -69,6 +543,72 @@
       "woo_slug": "eos-945843"
     },
     {
+      "sku": "945862",
+      "source_name": "EOS Thermat series 4.5 kW",
+      "woo_product_id": 249621,
+      "woo_slug": "eos-945862"
+    },
+    {
+      "sku": "945863",
+      "source_name": "EOS Thermat series 6.0 kW",
+      "woo_product_id": 249622,
+      "woo_slug": "eos-945863"
+    },
+    {
+      "sku": "945864",
+      "source_name": "EOS Thermat series 9.0 kW",
+      "woo_product_id": 249624,
+      "woo_slug": "eos-945864"
+    },
+    {
+      "sku": "945899",
+      "source_name": "EOS Mythos series 2.0 kW",
+      "woo_product_id": 249849,
+      "woo_slug": "eos-945899"
+    },
+    {
+      "sku": "945900",
+      "source_name": "EOS Mythos series 3.0 kW",
+      "woo_product_id": 249846,
+      "woo_slug": "eos-945900"
+    },
+    {
+      "sku": "945901",
+      "source_name": "EOS Mythos series 2.0 kW",
+      "woo_product_id": 249843,
+      "woo_slug": "eos-945901"
+    },
+    {
+      "sku": "945902",
+      "source_name": "EOS Mythos series 3.0 kW",
+      "woo_product_id": 249840,
+      "woo_slug": "eos-945902"
+    },
+    {
+      "sku": "945903",
+      "source_name": "EOS Mythos series 2.0 kW",
+      "woo_product_id": 249850,
+      "woo_slug": "eos-945903"
+    },
+    {
+      "sku": "945904",
+      "source_name": "EOS Mythos series 3.0 kW",
+      "woo_product_id": 249847,
+      "woo_slug": "eos-945904"
+    },
+    {
+      "sku": "945905",
+      "source_name": "EOS Mythos series 2.0 kW",
+      "woo_product_id": 249844,
+      "woo_slug": "eos-945905"
+    },
+    {
+      "sku": "945906",
+      "source_name": "EOS Mythos series 3.0 kW",
+      "woo_product_id": 249841,
+      "woo_slug": "eos-945906"
+    },
+    {
       "sku": "945921",
       "source_name": "Sound module (SBM-S BT ) SBM-S BT sound module with Bluetooth",
       "woo_product_id": 251559,
@@ -79,6 +619,30 @@
       "source_name": "SBM-App module",
       "woo_product_id": 251514,
       "woo_slug": "eos-945987"
+    },
+    {
+      "sku": "945988",
+      "source_name": "EOS Mythos series 7.5 kW",
+      "woo_product_id": 249818,
+      "woo_slug": "eos-945988"
+    },
+    {
+      "sku": "945989",
+      "source_name": "EOS Mythos series 9.0 kW",
+      "woo_product_id": 249819,
+      "woo_slug": "eos-945989"
+    },
+    {
+      "sku": "945991",
+      "source_name": "EOS Mythos series 12.0 kW",
+      "woo_product_id": 249828,
+      "woo_slug": "eos-945991"
+    },
+    {
+      "sku": "945992",
+      "source_name": "EOS Mythos series 15.0 kW",
+      "woo_product_id": 249829,
+      "woo_slug": "eos-945992"
     },
     {
       "sku": "945996",
@@ -93,6 +657,18 @@
       "woo_slug": "eos-946007"
     },
     {
+      "sku": "946027",
+      "source_name": "EOS Mini series 3.0 kW",
+      "woo_product_id": 249614,
+      "woo_slug": "eos-946027"
+    },
+    {
+      "sku": "946028",
+      "source_name": "EOS Mini series 3.0 kW",
+      "woo_product_id": 249612,
+      "woo_slug": "eos-946028"
+    },
+    {
       "sku": "946053",
       "source_name": "EOS EmoTec D white/silver",
       "woo_product_id": 250614,
@@ -103,6 +679,30 @@
       "source_name": "EOS EmoTec H white/silver",
       "woo_product_id": 250644,
       "woo_slug": "eos-946054"
+    },
+    {
+      "sku": "946066",
+      "source_name": "EOS Mythos series 7.5 kW",
+      "woo_product_id": 249816,
+      "woo_slug": "eos-946066"
+    },
+    {
+      "sku": "946067",
+      "source_name": "EOS Mythos series 9.0 kW",
+      "woo_product_id": 249817,
+      "woo_slug": "eos-946067"
+    },
+    {
+      "sku": "946068",
+      "source_name": "EOS Mythos series 12.0 kW",
+      "woo_product_id": 249826,
+      "woo_slug": "eos-946068"
+    },
+    {
+      "sku": "946069",
+      "source_name": "EOS Mythos series 15.0 kW",
+      "woo_product_id": 249827,
+      "woo_slug": "eos-946069"
     },
     {
       "sku": "946136",
@@ -141,10 +741,58 @@
       "woo_slug": "eos-946241"
     },
     {
+      "sku": "946250",
+      "source_name": "EOS Mythos series 6.0 kW",
+      "woo_product_id": 249836,
+      "woo_slug": "eos-946250"
+    },
+    {
+      "sku": "946253",
+      "source_name": "EOS Mythos series 4.0 kW",
+      "woo_product_id": 249839,
+      "woo_slug": "eos-946253"
+    },
+    {
+      "sku": "946256",
+      "source_name": "EOS Mythos series 6.0 kW",
+      "woo_product_id": 249848,
+      "woo_slug": "eos-946256"
+    },
+    {
+      "sku": "946259",
+      "source_name": "EOS Mythos series 4.0 kW",
+      "woo_product_id": 249851,
+      "woo_slug": "eos-946259"
+    },
+    {
+      "sku": "946262",
+      "source_name": "EOS Mythos series 6.0 kW",
+      "woo_product_id": 249842,
+      "woo_slug": "eos-946262"
+    },
+    {
+      "sku": "946265",
+      "source_name": "EOS Mythos series 4.0 kW",
+      "woo_product_id": 249845,
+      "woo_slug": "eos-946265"
+    },
+    {
       "sku": "946279",
       "source_name": "Temperature sensor",
       "woo_product_id": 251829,
       "woo_slug": "eos-946279"
+    },
+    {
+      "sku": "946293",
+      "source_name": "EOS Invisio series 2000 W kW",
+      "woo_product_id": 249935,
+      "woo_slug": "eos-946293"
+    },
+    {
+      "sku": "946294",
+      "source_name": "EOS Invisio series 3000 W kW",
+      "woo_product_id": 249936,
+      "woo_slug": "eos-946294"
     },
     {
       "sku": "946296",
@@ -195,6 +843,30 @@
       "woo_slug": "eos-946319"
     },
     {
+      "sku": "946381",
+      "source_name": "EOS P1+ 15.0 kW",
+      "woo_product_id": 249774,
+      "woo_slug": "eos-946381"
+    },
+    {
+      "sku": "946382",
+      "source_name": "EOS P1+ 12.0 kW",
+      "woo_product_id": 249773,
+      "woo_slug": "eos-946382"
+    },
+    {
+      "sku": "946390",
+      "source_name": "EOS Invisio series 12.0 kW",
+      "woo_product_id": 249932,
+      "woo_slug": "eos-946390"
+    },
+    {
+      "sku": "946391",
+      "source_name": "EOS Invisio series 12.0 kW",
+      "woo_product_id": 249934,
+      "woo_slug": "eos-946391"
+    },
+    {
       "sku": "946414",
       "source_name": "EOS EmoStyle Hi walnut black",
       "woo_product_id": 250954,
@@ -205,6 +877,24 @@
       "source_name": "EOS EmoStyle Hi walnut white",
       "woo_product_id": 250973,
       "woo_slug": "eos-946415"
+    },
+    {
+      "sku": "946421",
+      "source_name": "EOS Orbit 18.0 kW",
+      "woo_product_id": 249974,
+      "woo_slug": "eos-946421"
+    },
+    {
+      "sku": "946422",
+      "source_name": "EOS Orbit 21.0 kW",
+      "woo_product_id": 249975,
+      "woo_slug": "eos-946422"
+    },
+    {
+      "sku": "946423",
+      "source_name": "EOS Orbit 24.0 kW",
+      "woo_product_id": 249976,
+      "woo_slug": "eos-946423"
     },
     {
       "sku": "946504",
@@ -219,6 +909,12 @@
       "woo_slug": "eos-946505"
     },
     {
+      "sku": "946507",
+      "source_name": "SBM-Aroma Aroma Button",
+      "woo_product_id": 251523,
+      "woo_slug": "eos-946507"
+    },
+    {
       "sku": "946640",
       "source_name": "LSG Sauna",
       "woo_product_id": 251508,
@@ -231,10 +927,40 @@
       "woo_slug": "eos-946672"
     },
     {
+      "sku": "946707",
+      "source_name": "EOS 46.U series 6.0 kW",
+      "woo_product_id": 249937,
+      "woo_slug": "eos-946707"
+    },
+    {
+      "sku": "946755",
+      "source_name": "EOS Gracil series 6.0 kW",
+      "woo_product_id": 249685,
+      "woo_slug": "eos-946755"
+    },
+    {
+      "sku": "946756",
+      "source_name": "EOS Gracil series 7.5 kW",
+      "woo_product_id": 249686,
+      "woo_slug": "eos-946756"
+    },
+    {
+      "sku": "946757",
+      "source_name": "EOS Gracil series 9.0 kW",
+      "woo_product_id": 249687,
+      "woo_slug": "eos-946757"
+    },
+    {
       "sku": "946773",
       "source_name": "Water Softening System",
       "woo_product_id": 251833,
       "woo_slug": "eos-946773"
+    },
+    {
+      "sku": "946799",
+      "source_name": "SBM-Aroma",
+      "woo_product_id": 251519,
+      "woo_slug": "eos-946799"
     },
     {
       "sku": "946800",
@@ -247,6 +973,12 @@
       "source_name": "Water Softening System",
       "woo_product_id": 251836,
       "woo_slug": "eos-946818"
+    },
+    {
+      "sku": "946826",
+      "source_name": "EOS Herkules XL S120 HD series",
+      "woo_product_id": 249957,
+      "woo_slug": "eos-946826"
     },
     {
       "sku": "946838",
@@ -267,6 +999,24 @@
       "woo_slug": "eos-946840"
     },
     {
+      "sku": "946858",
+      "source_name": "EOS Moment series 6.0 kW",
+      "woo_product_id": 249631,
+      "woo_slug": "eos-946858"
+    },
+    {
+      "sku": "946859",
+      "source_name": "EOS Moment series 7.5 kW",
+      "woo_product_id": 249632,
+      "woo_slug": "eos-946859"
+    },
+    {
+      "sku": "946860",
+      "source_name": "EOS Moment series 9.0 kW",
+      "woo_product_id": 249633,
+      "woo_slug": "eos-946860"
+    },
+    {
       "sku": "946965",
       "source_name": "LSG Infrared",
       "woo_product_id": 251505,
@@ -279,16 +1029,154 @@
       "woo_slug": "eos-946966"
     },
     {
+      "sku": "946967",
+      "source_name": "LSG Steam",
+      "woo_product_id": 251511,
+      "woo_slug": "eos-946967"
+    },
+    {
+      "sku": "946977",
+      "source_name": "EOS Edge series 7.5 kW",
+      "woo_product_id": 249637,
+      "woo_slug": "eos-946977"
+    },
+    {
+      "sku": "946978",
+      "source_name": "EOS Edge series 9.0 kW",
+      "woo_product_id": 249638,
+      "woo_slug": "eos-946978"
+    },
+    {
       "sku": "946980",
       "source_name": "SBM-Eco",
       "woo_product_id": 251527,
       "woo_slug": "eos-946980"
     },
     {
+      "sku": "946987A",
+      "source_name": "EOS Gracil series 7.5 kW",
+      "woo_product_id": 249697,
+      "woo_slug": "eos-946987a"
+    },
+    {
+      "sku": "946988A",
+      "source_name": "EOS Gracil series 9.0 kW",
+      "woo_product_id": 249698,
+      "woo_slug": "eos-946988a"
+    },
+    {
       "sku": "947005",
       "source_name": "Steam outlet",
       "woo_product_id": 251827,
       "woo_slug": "eos-947005"
+    },
+    {
+      "sku": "947011",
+      "source_name": "EOS Zeus S series 7.5 kW",
+      "woo_product_id": 249864,
+      "woo_slug": "eos-947011"
+    },
+    {
+      "sku": "947012",
+      "source_name": "EOS Zeus S series 9.0 kW",
+      "woo_product_id": 249865,
+      "woo_slug": "eos-947012"
+    },
+    {
+      "sku": "947014",
+      "source_name": "EOS Zeus S series 12.0 kW",
+      "woo_product_id": 249866,
+      "woo_slug": "eos-947014"
+    },
+    {
+      "sku": "947016",
+      "source_name": "EOS Zeus S series 7.5 kW",
+      "woo_product_id": 249873,
+      "woo_slug": "eos-947016"
+    },
+    {
+      "sku": "947017",
+      "source_name": "EOS Zeus S series 9.0 kW",
+      "woo_product_id": 249874,
+      "woo_slug": "eos-947017"
+    },
+    {
+      "sku": "947019",
+      "source_name": "EOS Zeus S series 12.0 kW",
+      "woo_product_id": 249875,
+      "woo_slug": "eos-947019"
+    },
+    {
+      "sku": "947021",
+      "source_name": "EOS Zeus S series 7.5 kW",
+      "woo_product_id": 249867,
+      "woo_slug": "eos-947021"
+    },
+    {
+      "sku": "947022",
+      "source_name": "EOS Zeus S series 9.0 kW",
+      "woo_product_id": 249868,
+      "woo_slug": "eos-947022"
+    },
+    {
+      "sku": "947024",
+      "source_name": "EOS Zeus S series 12.0 kW",
+      "woo_product_id": 249869,
+      "woo_slug": "eos-947024"
+    },
+    {
+      "sku": "947026",
+      "source_name": "EOS Zeus S series 7.5 kW",
+      "woo_product_id": 249876,
+      "woo_slug": "eos-947026"
+    },
+    {
+      "sku": "947027",
+      "source_name": "EOS Zeus S series 9.0 kW",
+      "woo_product_id": 249877,
+      "woo_slug": "eos-947027"
+    },
+    {
+      "sku": "947029",
+      "source_name": "EOS Zeus S series 12.0 kW",
+      "woo_product_id": 249878,
+      "woo_slug": "eos-947029"
+    },
+    {
+      "sku": "947031",
+      "source_name": "EOS Zeus S series 7.5 kW",
+      "woo_product_id": 249870,
+      "woo_slug": "eos-947031"
+    },
+    {
+      "sku": "947032",
+      "source_name": "EOS Zeus S series 9.0 kW",
+      "woo_product_id": 249871,
+      "woo_slug": "eos-947032"
+    },
+    {
+      "sku": "947034",
+      "source_name": "EOS Zeus S series 12.0 kW",
+      "woo_product_id": 249872,
+      "woo_slug": "eos-947034"
+    },
+    {
+      "sku": "947036",
+      "source_name": "EOS Zeus S series 7.5 kW",
+      "woo_product_id": 249879,
+      "woo_slug": "eos-947036"
+    },
+    {
+      "sku": "947037",
+      "source_name": "EOS Zeus S series 9.0 kW",
+      "woo_product_id": 249880,
+      "woo_slug": "eos-947037"
+    },
+    {
+      "sku": "947039",
+      "source_name": "EOS Zeus S series 12.0 kW",
+      "woo_product_id": 249881,
+      "woo_slug": "eos-947039"
     },
     {
       "sku": "947045",
@@ -351,6 +1239,150 @@
       "woo_slug": "eos-947131"
     },
     {
+      "sku": "947140",
+      "source_name": "EOS BlackRock series 12.0 kW",
+      "woo_product_id": 249902,
+      "woo_slug": "eos-947140"
+    },
+    {
+      "sku": "947141",
+      "source_name": "EOS BlackRock series 15.0 kW",
+      "woo_product_id": 249903,
+      "woo_slug": "eos-947141"
+    },
+    {
+      "sku": "947142",
+      "source_name": "EOS BlackRock series 18.0 kW",
+      "woo_product_id": 249904,
+      "woo_slug": "eos-947142"
+    },
+    {
+      "sku": "947157",
+      "source_name": "EOS Gracil series 6.0 kW",
+      "woo_product_id": 249691,
+      "woo_slug": "eos-947157"
+    },
+    {
+      "sku": "947158",
+      "source_name": "EOS Gracil series 7.5 kW",
+      "woo_product_id": 249692,
+      "woo_slug": "eos-947158"
+    },
+    {
+      "sku": "947159",
+      "source_name": "EOS Gracil series 9.0 kW",
+      "woo_product_id": 249693,
+      "woo_slug": "eos-947159"
+    },
+    {
+      "sku": "947161A",
+      "source_name": "EOS Gracil series 7.5 kW",
+      "woo_product_id": 249701,
+      "woo_slug": "eos-947161a"
+    },
+    {
+      "sku": "947162A",
+      "source_name": "EOS Gracil series 9.0 kW",
+      "woo_product_id": 249702,
+      "woo_slug": "eos-947162a"
+    },
+    {
+      "sku": "947219",
+      "source_name": "EOS 46.U XL 15.0 kW",
+      "woo_product_id": 249945,
+      "woo_slug": "eos-947219"
+    },
+    {
+      "sku": "947222",
+      "source_name": "EOS 46.U XL 18.0 kW",
+      "woo_product_id": 249946,
+      "woo_slug": "eos-947222"
+    },
+    {
+      "sku": "947226",
+      "source_name": "EOS Filius series 4.5 kW",
+      "woo_product_id": 249670,
+      "woo_slug": "eos-947226"
+    },
+    {
+      "sku": "947227",
+      "source_name": "EOS Filius series 6.0 kW",
+      "woo_product_id": 249671,
+      "woo_slug": "eos-947227"
+    },
+    {
+      "sku": "947228",
+      "source_name": "EOS Filius series 7.5 kW",
+      "woo_product_id": 249672,
+      "woo_slug": "eos-947228"
+    },
+    {
+      "sku": "947230",
+      "source_name": "EOS BlackRock series Anthracite kW",
+      "woo_product_id": 249908,
+      "woo_slug": "eos-947230"
+    },
+    {
+      "sku": "947237",
+      "source_name": "EOS Herkules S25 series 9.0 kW",
+      "woo_product_id": 249713,
+      "woo_slug": "eos-947237"
+    },
+    {
+      "sku": "947238",
+      "source_name": "EOS Herkules S25 series 9.0 kW",
+      "woo_product_id": 249717,
+      "woo_slug": "eos-947238"
+    },
+    {
+      "sku": "947243",
+      "source_name": "EOS Gracil series 7.5 kW",
+      "woo_product_id": 249689,
+      "woo_slug": "eos-947243"
+    },
+    {
+      "sku": "947244",
+      "source_name": "EOS Gracil series 9.0 kW",
+      "woo_product_id": 249690,
+      "woo_slug": "eos-947244"
+    },
+    {
+      "sku": "947245",
+      "source_name": "EOS Gracil series 7.5 kW",
+      "woo_product_id": 249695,
+      "woo_slug": "eos-947245"
+    },
+    {
+      "sku": "947246",
+      "source_name": "EOS Gracil series 9.0 kW",
+      "woo_product_id": 249696,
+      "woo_slug": "eos-947246"
+    },
+    {
+      "sku": "947247",
+      "source_name": "EOS Gracil series 7.5 kW",
+      "woo_product_id": 249699,
+      "woo_slug": "eos-947247"
+    },
+    {
+      "sku": "947248",
+      "source_name": "EOS Gracil series 9.0 kW",
+      "woo_product_id": 249700,
+      "woo_slug": "eos-947248"
+    },
+    {
+      "sku": "947250",
+      "source_name": "EOS Herkules S25 series 7.5 kW",
+      "woo_product_id": 249712,
+      "woo_slug": "eos-947250"
+    },
+    {
+      "sku": "947251",
+      "source_name": "EOS Herkules S25 series 7.5 kW",
+      "woo_product_id": 249716,
+      "woo_slug": "eos-947251"
+    },
+    {
       "sku": "947256",
       "source_name": "EOS EmoTec D anthracite/black",
       "woo_product_id": 250599,
@@ -361,6 +1393,102 @@
       "source_name": "EOS EmoTec H anthracite/black",
       "woo_product_id": 250629,
       "woo_slug": "eos-947257"
+    },
+    {
+      "sku": "947312",
+      "source_name": "EOS BlackRock series 12.0 kW",
+      "woo_product_id": 249905,
+      "woo_slug": "eos-947312"
+    },
+    {
+      "sku": "947313",
+      "source_name": "EOS BlackRock series 15.0 kW",
+      "woo_product_id": 249906,
+      "woo_slug": "eos-947313"
+    },
+    {
+      "sku": "947314",
+      "source_name": "EOS BlackRock series 18.0 kW",
+      "woo_product_id": 249907,
+      "woo_slug": "eos-947314"
+    },
+    {
+      "sku": "947324",
+      "source_name": "EOS BlackRock series Black kW",
+      "woo_product_id": 249909,
+      "woo_slug": "eos-947324"
+    },
+    {
+      "sku": "947327",
+      "source_name": "EOS Gracil series 7.5 kW",
+      "woo_product_id": 249703,
+      "woo_slug": "eos-947327"
+    },
+    {
+      "sku": "947328",
+      "source_name": "EOS Gracil series 9.0 kW",
+      "woo_product_id": 249704,
+      "woo_slug": "eos-947328"
+    },
+    {
+      "sku": "947345",
+      "source_name": "EOS ThermoTec series 9.0 kW",
+      "woo_product_id": 249675,
+      "woo_slug": "eos-947345"
+    },
+    {
+      "sku": "947346",
+      "source_name": "EOS ThermoTec series 7.5 kW",
+      "woo_product_id": 249674,
+      "woo_slug": "eos-947346"
+    },
+    {
+      "sku": "947347",
+      "source_name": "EOS ThermoTec series 6.0 kW",
+      "woo_product_id": 249673,
+      "woo_slug": "eos-947347"
+    },
+    {
+      "sku": "947348",
+      "source_name": "EOS M3 W 3.0 kW",
+      "woo_product_id": 249616,
+      "woo_slug": "eos-947348"
+    },
+    {
+      "sku": "947360",
+      "source_name": "EOS 34.G HD series 24.0 kW",
+      "woo_product_id": 249950,
+      "woo_slug": "eos-947360"
+    },
+    {
+      "sku": "947361",
+      "source_name": "EOS 34.G HD series 27.0 kW",
+      "woo_product_id": 249951,
+      "woo_slug": "eos-947361"
+    },
+    {
+      "sku": "947362",
+      "source_name": "EOS 34.G HD series 30.0 kW",
+      "woo_product_id": 249952,
+      "woo_slug": "eos-947362"
+    },
+    {
+      "sku": "947363",
+      "source_name": "EOS 34.G HD series 36.0 kW",
+      "woo_product_id": 249953,
+      "woo_slug": "eos-947363"
+    },
+    {
+      "sku": "947367",
+      "source_name": "EOS Edge series 7.5 kW",
+      "woo_product_id": 249639,
+      "woo_slug": "eos-947367"
+    },
+    {
+      "sku": "947368",
+      "source_name": "EOS Edge series 9.0 kW",
+      "woo_product_id": 249640,
+      "woo_slug": "eos-947368"
     },
     {
       "sku": "947421",
@@ -447,6 +1575,120 @@
       "woo_slug": "eos-947448"
     },
     {
+      "sku": "947487",
+      "source_name": "EOS Majesty 6.0 kW",
+      "woo_product_id": 249791,
+      "woo_slug": "eos-947487"
+    },
+    {
+      "sku": "947488",
+      "source_name": "EOS Majesty 8.0 kW",
+      "woo_product_id": 249792,
+      "woo_slug": "eos-947488"
+    },
+    {
+      "sku": "947489",
+      "source_name": "EOS Majesty 10.0 kW",
+      "woo_product_id": 249793,
+      "woo_slug": "eos-947489"
+    },
+    {
+      "sku": "947490",
+      "source_name": "EOS Majesty EOSafe L safety system with 27 mm 30° reflector kW",
+      "woo_product_id": 249794,
+      "woo_slug": "eos-947490"
+    },
+    {
+      "sku": "947580",
+      "source_name": "EOS Moment series 6.0 kW",
+      "woo_product_id": 249634,
+      "woo_slug": "eos-947580"
+    },
+    {
+      "sku": "947581",
+      "source_name": "EOS Moment series 7.5 kW",
+      "woo_product_id": 249635,
+      "woo_slug": "eos-947581"
+    },
+    {
+      "sku": "947582",
+      "source_name": "EOS Moment series 9.0 kW",
+      "woo_product_id": 249636,
+      "woo_slug": "eos-947582"
+    },
+    {
+      "sku": "947607",
+      "source_name": "EOS Picco series 3.0 kW",
+      "woo_product_id": 249661,
+      "woo_slug": "eos-947607"
+    },
+    {
+      "sku": "947608",
+      "source_name": "EOS Picco series 3.0 kW",
+      "woo_product_id": 249663,
+      "woo_slug": "eos-947608"
+    },
+    {
+      "sku": "947609",
+      "source_name": "EOS Picco series 3.0 kW",
+      "woo_product_id": 249665,
+      "woo_slug": "eos-947609"
+    },
+    {
+      "sku": "947610",
+      "source_name": "EOS Picco series 3.5 kW",
+      "woo_product_id": 249662,
+      "woo_slug": "eos-947610"
+    },
+    {
+      "sku": "947611",
+      "source_name": "EOS Picco series 3.5 kW",
+      "woo_product_id": 249664,
+      "woo_slug": "eos-947611"
+    },
+    {
+      "sku": "947612",
+      "source_name": "EOS Picco series 3.5 kW",
+      "woo_product_id": 249666,
+      "woo_slug": "eos-947612"
+    },
+    {
+      "sku": "947619",
+      "source_name": "EOS Picco series 3.0 kW",
+      "woo_product_id": 249655,
+      "woo_slug": "eos-947619"
+    },
+    {
+      "sku": "947620",
+      "source_name": "EOS Picco series 3.0 kW",
+      "woo_product_id": 249657,
+      "woo_slug": "eos-947620"
+    },
+    {
+      "sku": "947621",
+      "source_name": "EOS Picco series 3.0 kW",
+      "woo_product_id": 249659,
+      "woo_slug": "eos-947621"
+    },
+    {
+      "sku": "947622",
+      "source_name": "EOS Picco series 3.5 kW",
+      "woo_product_id": 249656,
+      "woo_slug": "eos-947622"
+    },
+    {
+      "sku": "947623",
+      "source_name": "EOS Picco series 3.5 kW",
+      "woo_product_id": 249658,
+      "woo_slug": "eos-947623"
+    },
+    {
+      "sku": "947624",
+      "source_name": "EOS Picco series 3.5 kW",
+      "woo_product_id": 249660,
+      "woo_slug": "eos-947624"
+    },
+    {
       "sku": "947643",
       "source_name": "EOS SteamRock II Premium 9 kW",
       "woo_product_id": 251712,
@@ -495,6 +1737,72 @@
       "woo_slug": "eos-947650"
     },
     {
+      "sku": "947676",
+      "source_name": "EOS Herkules S60 series 9.0 kW",
+      "woo_product_id": 249899,
+      "woo_slug": "eos-947676"
+    },
+    {
+      "sku": "947677",
+      "source_name": "EOS Herkules S60 series 12.0 kW",
+      "woo_product_id": 249900,
+      "woo_slug": "eos-947677"
+    },
+    {
+      "sku": "947678",
+      "source_name": "EOS Herkules S60 series 15.0 kW",
+      "woo_product_id": 249901,
+      "woo_slug": "eos-947678"
+    },
+    {
+      "sku": "947689",
+      "source_name": "EOS Herkules S60 series 9.0 kW",
+      "woo_product_id": 249893,
+      "woo_slug": "eos-947689"
+    },
+    {
+      "sku": "947690",
+      "source_name": "EOS Herkules S60 series 12.0 kW",
+      "woo_product_id": 249894,
+      "woo_slug": "eos-947690"
+    },
+    {
+      "sku": "947691",
+      "source_name": "EOS Herkules S60 series 15.0 kW",
+      "woo_product_id": 249895,
+      "woo_slug": "eos-947691"
+    },
+    {
+      "sku": "947735",
+      "source_name": "EOS Mega HD series 42.0 kW",
+      "woo_product_id": 250000,
+      "woo_slug": "eos-947735"
+    },
+    {
+      "sku": "947736",
+      "source_name": "EOS Mega HD series 48.0 kW",
+      "woo_product_id": 250001,
+      "woo_slug": "eos-947736"
+    },
+    {
+      "sku": "947737",
+      "source_name": "EOS Mega HD series 54.0 kW",
+      "woo_product_id": 250002,
+      "woo_slug": "eos-947737"
+    },
+    {
+      "sku": "947738",
+      "source_name": "EOS Mega HD series 60.0 kW",
+      "woo_product_id": 250003,
+      "woo_slug": "eos-947738"
+    },
+    {
+      "sku": "947739",
+      "source_name": "EOS Mega HD series 72.0 kW",
+      "woo_product_id": 250004,
+      "woo_slug": "eos-947739"
+    },
+    {
       "sku": "947768",
       "source_name": "Loudspeaker for steam rooms",
       "woo_product_id": 251821,
@@ -513,6 +1821,438 @@
       "woo_slug": "eos-947808"
     },
     {
+      "sku": "947825",
+      "source_name": "EOS Zeus HD series 36.0 kW",
+      "woo_product_id": 249992,
+      "woo_slug": "eos-947825"
+    },
+    {
+      "sku": "947826",
+      "source_name": "EOS Goliath HD 18.0 kW",
+      "woo_product_id": 249970,
+      "woo_slug": "eos-947826"
+    },
+    {
+      "sku": "947827",
+      "source_name": "EOS Goliath HD 24.0 kW",
+      "woo_product_id": 249971,
+      "woo_slug": "eos-947827"
+    },
+    {
+      "sku": "947828",
+      "source_name": "EOS Goliath HD 30.0 kW",
+      "woo_product_id": 249972,
+      "woo_slug": "eos-947828"
+    },
+    {
+      "sku": "947829",
+      "source_name": "EOS Goliath HD 36.0 kW",
+      "woo_product_id": 249973,
+      "woo_slug": "eos-947829"
+    },
+    {
+      "sku": "947837",
+      "source_name": "EOS Zeus HD series 20.0 kW",
+      "woo_product_id": 249977,
+      "woo_slug": "eos-947837"
+    },
+    {
+      "sku": "947838",
+      "source_name": "EOS Zeus HD series 24.0 kW",
+      "woo_product_id": 249978,
+      "woo_slug": "eos-947838"
+    },
+    {
+      "sku": "947839",
+      "source_name": "EOS Zeus HD series 30.0 kW",
+      "woo_product_id": 249979,
+      "woo_slug": "eos-947839"
+    },
+    {
+      "sku": "947840",
+      "source_name": "EOS Zeus HD series 36.0 kW",
+      "woo_product_id": 249980,
+      "woo_slug": "eos-947840"
+    },
+    {
+      "sku": "947841",
+      "source_name": "EOS Zeus HD series 20.0 kW",
+      "woo_product_id": 249981,
+      "woo_slug": "eos-947841"
+    },
+    {
+      "sku": "947842",
+      "source_name": "EOS Zeus HD series 24.0 kW",
+      "woo_product_id": 249982,
+      "woo_slug": "eos-947842"
+    },
+    {
+      "sku": "947843",
+      "source_name": "EOS Zeus HD series 30.0 kW",
+      "woo_product_id": 249983,
+      "woo_slug": "eos-947843"
+    },
+    {
+      "sku": "947844",
+      "source_name": "EOS Zeus HD series 36.0 kW",
+      "woo_product_id": 249984,
+      "woo_slug": "eos-947844"
+    },
+    {
+      "sku": "947846",
+      "source_name": "EOS Zeus HD series 24.0 kW",
+      "woo_product_id": 249986,
+      "woo_slug": "eos-947846"
+    },
+    {
+      "sku": "947847",
+      "source_name": "EOS Zeus HD series 30.0 kW",
+      "woo_product_id": 249987,
+      "woo_slug": "eos-947847"
+    },
+    {
+      "sku": "947848",
+      "source_name": "EOS Zeus HD series 36.0 kW",
+      "woo_product_id": 249988,
+      "woo_slug": "eos-947848"
+    },
+    {
+      "sku": "947849",
+      "source_name": "EOS Zeus HD series 20.0 kW",
+      "woo_product_id": 249989,
+      "woo_slug": "eos-947849"
+    },
+    {
+      "sku": "947850",
+      "source_name": "EOS Zeus HD series 24.0 kW",
+      "woo_product_id": 249990,
+      "woo_slug": "eos-947850"
+    },
+    {
+      "sku": "947851",
+      "source_name": "EOS Zeus HD series 30.0 kW",
+      "woo_product_id": 249991,
+      "woo_slug": "eos-947851"
+    },
+    {
+      "sku": "947853",
+      "source_name": "EOS Zeus HD series 20.0 kW",
+      "woo_product_id": 249993,
+      "woo_slug": "eos-947853"
+    },
+    {
+      "sku": "947854",
+      "source_name": "EOS Zeus HD series 20.0 kW",
+      "woo_product_id": 249985,
+      "woo_slug": "eos-947854"
+    },
+    {
+      "sku": "947855",
+      "source_name": "EOS Zeus HD series 30.0 kW",
+      "woo_product_id": 249994,
+      "woo_slug": "eos-947855"
+    },
+    {
+      "sku": "947856",
+      "source_name": "EOS Zeus HD series 36.0 kW",
+      "woo_product_id": 249995,
+      "woo_slug": "eos-947856"
+    },
+    {
+      "sku": "947857",
+      "source_name": "EOS Zeus HD series 20.0 kW",
+      "woo_product_id": 249996,
+      "woo_slug": "eos-947857"
+    },
+    {
+      "sku": "947858",
+      "source_name": "EOS Zeus HD series 24.0 kW",
+      "woo_product_id": 249997,
+      "woo_slug": "eos-947858"
+    },
+    {
+      "sku": "947859",
+      "source_name": "EOS Zeus HD series 30.0 kW",
+      "woo_product_id": 249998,
+      "woo_slug": "eos-947859"
+    },
+    {
+      "sku": "947860",
+      "source_name": "EOS Zeus HD series 36.0 kW",
+      "woo_product_id": 249999,
+      "woo_slug": "eos-947860"
+    },
+    {
+      "sku": "947861",
+      "source_name": "EOS FinnRock 7.5 kW",
+      "woo_product_id": 249721,
+      "woo_slug": "eos-947861"
+    },
+    {
+      "sku": "947862",
+      "source_name": "EOS FinnRock 9.0 kW",
+      "woo_product_id": 249722,
+      "woo_slug": "eos-947862"
+    },
+    {
+      "sku": "947863",
+      "source_name": "EOS FinnRock 12.0 kW",
+      "woo_product_id": 249723,
+      "woo_slug": "eos-947863"
+    },
+    {
+      "sku": "947886",
+      "source_name": "EOS Euro 10.0 kW",
+      "woo_product_id": 249708,
+      "woo_slug": "eos-947886"
+    },
+    {
+      "sku": "947888",
+      "source_name": "EOS P1 series 10.0 kW",
+      "woo_product_id": 249647,
+      "woo_slug": "eos-947888"
+    },
+    {
+      "sku": "947889",
+      "source_name": "EOS P1+ 10.0 kW",
+      "woo_product_id": 249772,
+      "woo_slug": "eos-947889"
+    },
+    {
+      "sku": "948044",
+      "source_name": "EOS Mega HD series 48.0 kW",
+      "woo_product_id": 250007,
+      "woo_slug": "eos-948044"
+    },
+    {
+      "sku": "948045",
+      "source_name": "EOS Mega HD series 42.0 kW",
+      "woo_product_id": 250006,
+      "woo_slug": "eos-948045"
+    },
+    {
+      "sku": "948052",
+      "source_name": "EOS Majesty Heater guard rail in abachi wood – 4-sided with mounting brackets kW",
+      "woo_product_id": 249795,
+      "woo_slug": "eos-948052"
+    },
+    {
+      "sku": "948053",
+      "source_name": "EOS Majesty Heater guard rail in walnut wood – 4-sided with mounting brackets kW",
+      "woo_product_id": 249796,
+      "woo_slug": "eos-948053"
+    },
+    {
+      "sku": "948055",
+      "source_name": "EOS Majesty Heater guard rail brackets (without wooden rail). 6 pcs set kW",
+      "woo_product_id": 249797,
+      "woo_slug": "eos-948055"
+    },
+    {
+      "sku": "948094",
+      "source_name": "EOS Mega HD series 36.0 kW",
+      "woo_product_id": 250005,
+      "woo_slug": "eos-948094"
+    },
+    {
+      "sku": "948097",
+      "source_name": "EOS 34.G HD series 15.0 kW",
+      "woo_product_id": 249947,
+      "woo_slug": "eos-948097"
+    },
+    {
+      "sku": "948098",
+      "source_name": "EOS 34.G HD series 18.0 kW",
+      "woo_product_id": 249948,
+      "woo_slug": "eos-948098"
+    },
+    {
+      "sku": "948099",
+      "source_name": "EOS 34.G HD series 21.0 kW",
+      "woo_product_id": 249949,
+      "woo_slug": "eos-948099"
+    },
+    {
+      "sku": "948100",
+      "source_name": "EOS Structure 6.0 kW",
+      "woo_product_id": 249798,
+      "woo_slug": "eos-948100"
+    },
+    {
+      "sku": "948101",
+      "source_name": "EOS Structure 8.0 kW",
+      "woo_product_id": 249799,
+      "woo_slug": "eos-948101"
+    },
+    {
+      "sku": "948102",
+      "source_name": "EOS Structure 10.0 kW",
+      "woo_product_id": 249800,
+      "woo_slug": "eos-948102"
+    },
+    {
+      "sku": "948103",
+      "source_name": "EOS Structure 12.0 kW",
+      "woo_product_id": 249801,
+      "woo_slug": "eos-948103"
+    },
+    {
+      "sku": "948116",
+      "source_name": "EOS Herkules XL S120 HD series 18.0 kW",
+      "woo_product_id": 249958,
+      "woo_slug": "eos-948116"
+    },
+    {
+      "sku": "948117",
+      "source_name": "EOS Herkules XL S120 HD series 24.0 kW",
+      "woo_product_id": 249959,
+      "woo_slug": "eos-948117"
+    },
+    {
+      "sku": "948118",
+      "source_name": "EOS Herkules XL S120 HD series 30.0 kW",
+      "woo_product_id": 249960,
+      "woo_slug": "eos-948118"
+    },
+    {
+      "sku": "948119",
+      "source_name": "EOS Herkules XL S120 HD series 18.0 kW",
+      "woo_product_id": 249964,
+      "woo_slug": "eos-948119"
+    },
+    {
+      "sku": "948120",
+      "source_name": "EOS Herkules XL S120 HD series 24.0 kW",
+      "woo_product_id": 249965,
+      "woo_slug": "eos-948120"
+    },
+    {
+      "sku": "948121",
+      "source_name": "EOS Herkules XL S120 HD series 30.0 kW",
+      "woo_product_id": 249966,
+      "woo_slug": "eos-948121"
+    },
+    {
+      "sku": "948140",
+      "source_name": "EOS Future/Vision series EOS Vision Stone Nero Impala kW 10,0 kW",
+      "woo_product_id": 249808,
+      "woo_slug": "eos-948140"
+    },
+    {
+      "sku": "948142",
+      "source_name": "EOS Future/Vision series 12.0 kW",
+      "woo_product_id": 249809,
+      "woo_slug": "eos-948142"
+    },
+    {
+      "sku": "948143",
+      "source_name": "EOS Future/Vision series 15.0 kW",
+      "woo_product_id": 249810,
+      "woo_slug": "eos-948143"
+    },
+    {
+      "sku": "948150",
+      "source_name": "EOS Future/Vision series EOS Future Stone Nero Impala kW 10,0 kW",
+      "woo_product_id": 249802,
+      "woo_slug": "eos-948150"
+    },
+    {
+      "sku": "948152",
+      "source_name": "EOS Future/Vision series 12.0 kW",
+      "woo_product_id": 249803,
+      "woo_slug": "eos-948152"
+    },
+    {
+      "sku": "948153",
+      "source_name": "EOS Future/Vision series 15.0 kW",
+      "woo_product_id": 249804,
+      "woo_slug": "eos-948153"
+    },
+    {
+      "sku": "948180",
+      "source_name": "EOS Future/Vision series EOS Vision Stone Silver Wave kW 10,0 kW",
+      "woo_product_id": 249811,
+      "woo_slug": "eos-948180"
+    },
+    {
+      "sku": "948182",
+      "source_name": "EOS Future/Vision series 12.0 kW",
+      "woo_product_id": 249812,
+      "woo_slug": "eos-948182"
+    },
+    {
+      "sku": "948183",
+      "source_name": "EOS Future/Vision series 15.0 kW",
+      "woo_product_id": 249813,
+      "woo_slug": "eos-948183"
+    },
+    {
+      "sku": "948190",
+      "source_name": "EOS Future/Vision series EOS Future Stone Silver Wave kW 10,0 kW",
+      "woo_product_id": 249805,
+      "woo_slug": "eos-948190"
+    },
+    {
+      "sku": "948192",
+      "source_name": "EOS Future/Vision series 12.0 kW",
+      "woo_product_id": 249806,
+      "woo_slug": "eos-948192"
+    },
+    {
+      "sku": "948193",
+      "source_name": "EOS Future/Vision series 15.0 kW",
+      "woo_product_id": 249807,
+      "woo_slug": "eos-948193"
+    },
+    {
+      "sku": "948196",
+      "source_name": "EOS Gracil series 6.0 kW",
+      "woo_product_id": 249688,
+      "woo_slug": "eos-948196"
+    },
+    {
+      "sku": "948197",
+      "source_name": "EOS Gracil series 6.0 kW",
+      "woo_product_id": 249694,
+      "woo_slug": "eos-948197"
+    },
+    {
+      "sku": "948821",
+      "source_name": "EOS Herkules XL S120 HD series 18.0 kW",
+      "woo_product_id": 249961,
+      "woo_slug": "eos-948821"
+    },
+    {
+      "sku": "948822",
+      "source_name": "EOS Herkules XL S120 HD series 24.0 kW",
+      "woo_product_id": 249962,
+      "woo_slug": "eos-948822"
+    },
+    {
+      "sku": "948823",
+      "source_name": "EOS Herkules XL S120 HD series 30.0 kW",
+      "woo_product_id": 249963,
+      "woo_slug": "eos-948823"
+    },
+    {
+      "sku": "948824",
+      "source_name": "EOS Herkules XL S120 HD series 18.0 kW",
+      "woo_product_id": 249967,
+      "woo_slug": "eos-948824"
+    },
+    {
+      "sku": "948825",
+      "source_name": "EOS Herkules XL S120 HD series 24.0 kW",
+      "woo_product_id": 249968,
+      "woo_slug": "eos-948825"
+    },
+    {
+      "sku": "948826",
+      "source_name": "EOS Herkules XL S120 HD series 30.0 kW",
+      "woo_product_id": 249969,
+      "woo_slug": "eos-948826"
+    },
+    {
       "sku": "948827",
       "source_name": "EOS LED Spot matt black Warm-white light type (3000 K)",
       "woo_product_id": 251596,
@@ -523,6 +2263,354 @@
       "source_name": "EOS LED Spot matt black RGB type",
       "woo_product_id": 251603,
       "woo_slug": "eos-948830"
+    },
+    {
+      "sku": "948862",
+      "source_name": "EOS Watermill Sauna 12.0 kW",
+      "woo_product_id": 249913,
+      "woo_slug": "eos-948862"
+    },
+    {
+      "sku": "948863",
+      "source_name": "EOS Watermill Sauna 15.0 kW",
+      "woo_product_id": 249914,
+      "woo_slug": "eos-948863"
+    },
+    {
+      "sku": "948864",
+      "source_name": "EOS Watermill Sauna 18.0 kW",
+      "woo_product_id": 249915,
+      "woo_slug": "eos-948864"
+    },
+    {
+      "sku": "948865",
+      "source_name": "EOS Watermill Sauna 12.0 kW",
+      "woo_product_id": 249916,
+      "woo_slug": "eos-948865"
+    },
+    {
+      "sku": "948866",
+      "source_name": "EOS Watermill Sauna 15.0 kW",
+      "woo_product_id": 249917,
+      "woo_slug": "eos-948866"
+    },
+    {
+      "sku": "948867",
+      "source_name": "EOS Watermill Sauna 18.0 kW",
+      "woo_product_id": 249918,
+      "woo_slug": "eos-948867"
+    },
+    {
+      "sku": "948890",
+      "source_name": "EOS Cubo 2 series 7.5 kW Styling 1",
+      "woo_product_id": 249724,
+      "woo_slug": "eos-948890"
+    },
+    {
+      "sku": "948891",
+      "source_name": "EOS Cubo 2 series 9.0 kW Styling 1",
+      "woo_product_id": 249725,
+      "woo_slug": "eos-948891"
+    },
+    {
+      "sku": "948892",
+      "source_name": "EOS Cubo 2 series 10.0 kW Styling 1",
+      "woo_product_id": 249726,
+      "woo_slug": "eos-948892"
+    },
+    {
+      "sku": "948893",
+      "source_name": "EOS Cubo 2 series 12.0 kW Styling 1",
+      "woo_product_id": 249727,
+      "woo_slug": "eos-948893"
+    },
+    {
+      "sku": "948894",
+      "source_name": "EOS Cubo 2 series 7.5 kW Styling 1 black",
+      "woo_product_id": 249732,
+      "woo_slug": "eos-948894"
+    },
+    {
+      "sku": "948895",
+      "source_name": "EOS Cubo 2 series 9.0 kW Styling 1 black",
+      "woo_product_id": 249733,
+      "woo_slug": "eos-948895"
+    },
+    {
+      "sku": "948896",
+      "source_name": "EOS Cubo 2 series 10.0 kW Styling 1 black",
+      "woo_product_id": 249734,
+      "woo_slug": "eos-948896"
+    },
+    {
+      "sku": "948897",
+      "source_name": "EOS Cubo 2 series 12.0 kW Styling 1 black",
+      "woo_product_id": 249735,
+      "woo_slug": "eos-948897"
+    },
+    {
+      "sku": "948898",
+      "source_name": "EOS Cubo 2 series 7.5 kW Styling 2",
+      "woo_product_id": 249728,
+      "woo_slug": "eos-948898"
+    },
+    {
+      "sku": "948899",
+      "source_name": "EOS Cubo 2 series 9.0 kW Styling 2",
+      "woo_product_id": 249729,
+      "woo_slug": "eos-948899"
+    },
+    {
+      "sku": "948900",
+      "source_name": "EOS Cubo 2 series 10.0 kW Styling 2",
+      "woo_product_id": 249730,
+      "woo_slug": "eos-948900"
+    },
+    {
+      "sku": "948901",
+      "source_name": "EOS Cubo 2 series 12.0 kW Styling 2",
+      "woo_product_id": 249731,
+      "woo_slug": "eos-948901"
+    },
+    {
+      "sku": "948902",
+      "source_name": "EOS Cubo 2 series 7.5 kW Styling 2 black",
+      "woo_product_id": 249736,
+      "woo_slug": "eos-948902"
+    },
+    {
+      "sku": "948903",
+      "source_name": "EOS Cubo 2 series 9.0 kW Styling 2 black",
+      "woo_product_id": 249737,
+      "woo_slug": "eos-948903"
+    },
+    {
+      "sku": "948904",
+      "source_name": "EOS Cubo 2 series 10.0 kW Styling 2 black",
+      "woo_product_id": 249738,
+      "woo_slug": "eos-948904"
+    },
+    {
+      "sku": "948905",
+      "source_name": "EOS Cubo 2 series 12.0 kW Styling 2 black",
+      "woo_product_id": 249739,
+      "woo_slug": "eos-948905"
+    },
+    {
+      "sku": "948906",
+      "source_name": "EOS P1 series 12.0 kW",
+      "woo_product_id": 249651,
+      "woo_slug": "eos-948906"
+    },
+    {
+      "sku": "948907",
+      "source_name": "EOS P1 series 15.0 kW",
+      "woo_product_id": 249652,
+      "woo_slug": "eos-948907"
+    },
+    {
+      "sku": "948913",
+      "source_name": "EOS P1 series 12.0 kW",
+      "woo_product_id": 249653,
+      "woo_slug": "eos-948913"
+    },
+    {
+      "sku": "948914",
+      "source_name": "EOS P1 series 15.0 kW",
+      "woo_product_id": 249654,
+      "woo_slug": "eos-948914"
+    },
+    {
+      "sku": "948919",
+      "source_name": "EOS Cubo 2 series 7.5 kW Styling 1",
+      "woo_product_id": 249740,
+      "woo_slug": "eos-948919"
+    },
+    {
+      "sku": "948920",
+      "source_name": "EOS Cubo 2 series 9.0 kW Styling 1",
+      "woo_product_id": 249741,
+      "woo_slug": "eos-948920"
+    },
+    {
+      "sku": "948921",
+      "source_name": "EOS Cubo 2 series 10.0 kW Styling 1",
+      "woo_product_id": 249742,
+      "woo_slug": "eos-948921"
+    },
+    {
+      "sku": "948922",
+      "source_name": "EOS Cubo 2 series 12.0 kW Styling 1",
+      "woo_product_id": 249743,
+      "woo_slug": "eos-948922"
+    },
+    {
+      "sku": "948923",
+      "source_name": "EOS Cubo 2 series 7.5 kW Styling 1 black",
+      "woo_product_id": 249748,
+      "woo_slug": "eos-948923"
+    },
+    {
+      "sku": "948924",
+      "source_name": "EOS Cubo 2 series 9.0 kW Styling 1 black",
+      "woo_product_id": 249749,
+      "woo_slug": "eos-948924"
+    },
+    {
+      "sku": "948925",
+      "source_name": "EOS Cubo 2 series 10.0 kW Styling 1 black",
+      "woo_product_id": 249750,
+      "woo_slug": "eos-948925"
+    },
+    {
+      "sku": "948926",
+      "source_name": "EOS Cubo 2 series 12.0 kW Styling 1 black",
+      "woo_product_id": 249751,
+      "woo_slug": "eos-948926"
+    },
+    {
+      "sku": "948927",
+      "source_name": "EOS Cubo 2 series 7.5 kW Styling 2",
+      "woo_product_id": 249744,
+      "woo_slug": "eos-948927"
+    },
+    {
+      "sku": "948928",
+      "source_name": "EOS Cubo 2 series 9.0 kW Styling 2",
+      "woo_product_id": 249745,
+      "woo_slug": "eos-948928"
+    },
+    {
+      "sku": "948929",
+      "source_name": "EOS Cubo 2 series 10.0 kW Styling 2",
+      "woo_product_id": 249746,
+      "woo_slug": "eos-948929"
+    },
+    {
+      "sku": "948930",
+      "source_name": "EOS Cubo 2 series 12.0 kW Styling 2",
+      "woo_product_id": 249747,
+      "woo_slug": "eos-948930"
+    },
+    {
+      "sku": "948931",
+      "source_name": "EOS Cubo 2 series 7.5 kW Styling 2 black",
+      "woo_product_id": 249752,
+      "woo_slug": "eos-948931"
+    },
+    {
+      "sku": "948932",
+      "source_name": "EOS Cubo 2 series 9.0 kW Styling 2 black",
+      "woo_product_id": 249753,
+      "woo_slug": "eos-948932"
+    },
+    {
+      "sku": "948933",
+      "source_name": "EOS Cubo 2 series 10.0 kW Styling 2 black",
+      "woo_product_id": 249754,
+      "woo_slug": "eos-948933"
+    },
+    {
+      "sku": "948934",
+      "source_name": "EOS Cubo 2 series 12.0 kW Styling 2 black",
+      "woo_product_id": 249755,
+      "woo_slug": "eos-948934"
+    },
+    {
+      "sku": "948935",
+      "source_name": "EOS Cubo 2 series 7.5 kW Styling 1",
+      "woo_product_id": 249756,
+      "woo_slug": "eos-948935"
+    },
+    {
+      "sku": "948936",
+      "source_name": "EOS Cubo 2 series 9.0 kW Styling 1",
+      "woo_product_id": 249757,
+      "woo_slug": "eos-948936"
+    },
+    {
+      "sku": "948937",
+      "source_name": "EOS Cubo 2 series 10.0 kW Styling 1",
+      "woo_product_id": 249758,
+      "woo_slug": "eos-948937"
+    },
+    {
+      "sku": "948938",
+      "source_name": "EOS Cubo 2 series 12.0 kW Styling 1",
+      "woo_product_id": 249759,
+      "woo_slug": "eos-948938"
+    },
+    {
+      "sku": "948939",
+      "source_name": "EOS Cubo 2 series 7.5 kW Styling 1 black",
+      "woo_product_id": 249764,
+      "woo_slug": "eos-948939"
+    },
+    {
+      "sku": "948940",
+      "source_name": "EOS Cubo 2 series 9.0 kW Styling 1 black",
+      "woo_product_id": 249765,
+      "woo_slug": "eos-948940"
+    },
+    {
+      "sku": "948941",
+      "source_name": "EOS Cubo 2 series 10.0 kW Styling 1 black",
+      "woo_product_id": 249766,
+      "woo_slug": "eos-948941"
+    },
+    {
+      "sku": "948942",
+      "source_name": "EOS Cubo 2 series 12.0 kW Styling 1 black",
+      "woo_product_id": 249767,
+      "woo_slug": "eos-948942"
+    },
+    {
+      "sku": "948943",
+      "source_name": "EOS Cubo 2 series 7.5 kW Styling 2",
+      "woo_product_id": 249760,
+      "woo_slug": "eos-948943"
+    },
+    {
+      "sku": "948944",
+      "source_name": "EOS Cubo 2 series 9.0 kW Styling 2",
+      "woo_product_id": 249761,
+      "woo_slug": "eos-948944"
+    },
+    {
+      "sku": "948945",
+      "source_name": "EOS Cubo 2 series 10.0 kW Styling 2",
+      "woo_product_id": 249762,
+      "woo_slug": "eos-948945"
+    },
+    {
+      "sku": "948946",
+      "source_name": "EOS Cubo 2 series 12.0 kW Styling 2",
+      "woo_product_id": 249763,
+      "woo_slug": "eos-948946"
+    },
+    {
+      "sku": "948947",
+      "source_name": "EOS Cubo 2 series 7.5 kW Styling 2 black",
+      "woo_product_id": 249768,
+      "woo_slug": "eos-948947"
+    },
+    {
+      "sku": "948948",
+      "source_name": "EOS Cubo 2 series 9.0 kW Styling 2 black",
+      "woo_product_id": 249769,
+      "woo_slug": "eos-948948"
+    },
+    {
+      "sku": "948949",
+      "source_name": "EOS Cubo 2 series 10.0 kW Styling 2 black",
+      "woo_product_id": 249770,
+      "woo_slug": "eos-948949"
+    },
+    {
+      "sku": "948950",
+      "source_name": "EOS Cubo 2 series 12.0 kW Styling 2 black",
+      "woo_product_id": 249771,
+      "woo_slug": "eos-948950"
     },
     {
       "sku": "948982",
@@ -547,6 +2635,78 @@
       "source_name": "PEB 36 / 36 H",
       "woo_product_id": 251570,
       "woo_slug": "eos-948985"
+    },
+    {
+      "sku": "949005",
+      "source_name": "EOS Pipe series 3.0 kW anthracite",
+      "woo_product_id": 249785,
+      "woo_slug": "eos-949005"
+    },
+    {
+      "sku": "949006",
+      "source_name": "EOS Pipe series 3.0 kW black",
+      "woo_product_id": 249787,
+      "woo_slug": "eos-949006"
+    },
+    {
+      "sku": "949007",
+      "source_name": "EOS Pipe series 3.0 kW red-brown",
+      "woo_product_id": 249789,
+      "woo_slug": "eos-949007"
+    },
+    {
+      "sku": "949008",
+      "source_name": "EOS Pipe series 3.5 kW anthracite",
+      "woo_product_id": 249786,
+      "woo_slug": "eos-949008"
+    },
+    {
+      "sku": "949009",
+      "source_name": "EOS Pipe series 3.5 kW black",
+      "woo_product_id": 249788,
+      "woo_slug": "eos-949009"
+    },
+    {
+      "sku": "949010",
+      "source_name": "EOS Pipe series 3.5 kW red-brown",
+      "woo_product_id": 249790,
+      "woo_slug": "eos-949010"
+    },
+    {
+      "sku": "949011",
+      "source_name": "EOS Pipe series 3.0 kW anthracite",
+      "woo_product_id": 249779,
+      "woo_slug": "eos-949011"
+    },
+    {
+      "sku": "949012",
+      "source_name": "EOS Pipe series 3.0 kW black",
+      "woo_product_id": 249781,
+      "woo_slug": "eos-949012"
+    },
+    {
+      "sku": "949013",
+      "source_name": "EOS Pipe series 3.0 kW red-brown",
+      "woo_product_id": 249783,
+      "woo_slug": "eos-949013"
+    },
+    {
+      "sku": "949014",
+      "source_name": "EOS Pipe series 3.5 kW anthracite",
+      "woo_product_id": 249780,
+      "woo_slug": "eos-949014"
+    },
+    {
+      "sku": "949015",
+      "source_name": "EOS Pipe series 3.5 kW black",
+      "woo_product_id": 249782,
+      "woo_slug": "eos-949015"
+    },
+    {
+      "sku": "949016",
+      "source_name": "EOS Pipe series 3.5 kW red-brown",
+      "woo_product_id": 249784,
+      "woo_slug": "eos-949016"
     },
     {
       "sku": "949187",
@@ -643,6 +2803,66 @@
       "source_name": "EOS U-Command H18 – For dry and humid sauna – 18 kW white",
       "woo_product_id": 251392,
       "woo_slug": "eos-949263"
+    },
+    {
+      "sku": "949316",
+      "source_name": "EOS Thermat series 4.5 kW",
+      "woo_product_id": 249617,
+      "woo_slug": "eos-949316"
+    },
+    {
+      "sku": "949317",
+      "source_name": "EOS Thermat series 6.0 kW",
+      "woo_product_id": 249618,
+      "woo_slug": "eos-949317"
+    },
+    {
+      "sku": "949318",
+      "source_name": "EOS Thermat series 7.5 kW",
+      "woo_product_id": 249619,
+      "woo_slug": "eos-949318"
+    },
+    {
+      "sku": "949319",
+      "source_name": "EOS Thermat series 9.0 kW",
+      "woo_product_id": 249620,
+      "woo_slug": "eos-949319"
+    },
+    {
+      "sku": "949320",
+      "source_name": "EOS Thermat series 6.0 kW",
+      "woo_product_id": 249625,
+      "woo_slug": "eos-949320"
+    },
+    {
+      "sku": "949321",
+      "source_name": "EOS Thermat series 7.5 kW",
+      "woo_product_id": 249626,
+      "woo_slug": "eos-949321"
+    },
+    {
+      "sku": "949322",
+      "source_name": "EOS Thermat series 9.0 kW",
+      "woo_product_id": 249627,
+      "woo_slug": "eos-949322"
+    },
+    {
+      "sku": "949323A",
+      "source_name": "EOS ThermoTec series 6.0 kW",
+      "woo_product_id": 249679,
+      "woo_slug": "eos-949323a"
+    },
+    {
+      "sku": "949324A",
+      "source_name": "EOS ThermoTec series 7.5 kW",
+      "woo_product_id": 249680,
+      "woo_slug": "eos-949324a"
+    },
+    {
+      "sku": "949325A",
+      "source_name": "EOS ThermoTec series 9.0 kW",
+      "woo_product_id": 249681,
+      "woo_slug": "eos-949325a"
     },
     {
       "sku": "949333",
@@ -789,6 +3009,24 @@
       "woo_slug": "eos-949366"
     },
     {
+      "sku": "949367",
+      "source_name": "EOS Watermill Sauna 9.0 kW",
+      "woo_product_id": 249910,
+      "woo_slug": "eos-949367"
+    },
+    {
+      "sku": "949368",
+      "source_name": "EOS Watermill Sauna 12.0 kW",
+      "woo_product_id": 249911,
+      "woo_slug": "eos-949368"
+    },
+    {
+      "sku": "949369",
+      "source_name": "EOS Watermill Sauna 15.0 kW",
+      "woo_product_id": 249912,
+      "woo_slug": "eos-949369"
+    },
+    {
       "sku": "949378",
       "source_name": "EOS EmoTec IR",
       "woo_product_id": 250587,
@@ -811,6 +3049,90 @@
       "source_name": "RGBW LED Strip Neon Flex 10,0 m",
       "woo_product_id": 251814,
       "woo_slug": "eos-949384"
+    },
+    {
+      "sku": "949402",
+      "source_name": "EOS Mythos series 2.0 kW",
+      "woo_product_id": 249861,
+      "woo_slug": "eos-949402"
+    },
+    {
+      "sku": "949403",
+      "source_name": "EOS Mythos series 2.0 kW",
+      "woo_product_id": 249862,
+      "woo_slug": "eos-949403"
+    },
+    {
+      "sku": "949404",
+      "source_name": "EOS Mythos series 3.0 kW",
+      "woo_product_id": 249858,
+      "woo_slug": "eos-949404"
+    },
+    {
+      "sku": "949405",
+      "source_name": "EOS Mythos series 3.0 kW",
+      "woo_product_id": 249859,
+      "woo_slug": "eos-949405"
+    },
+    {
+      "sku": "949406",
+      "source_name": "EOS Mythos series 12.0 kW",
+      "woo_product_id": 249832,
+      "woo_slug": "eos-949406"
+    },
+    {
+      "sku": "949407",
+      "source_name": "EOS Mythos series 15.0 kW",
+      "woo_product_id": 249833,
+      "woo_slug": "eos-949407"
+    },
+    {
+      "sku": "949408",
+      "source_name": "EOS Mythos series 7.5 kW",
+      "woo_product_id": 249822,
+      "woo_slug": "eos-949408"
+    },
+    {
+      "sku": "949409",
+      "source_name": "EOS Mythos series 9.0 kW",
+      "woo_product_id": 249823,
+      "woo_slug": "eos-949409"
+    },
+    {
+      "sku": "949412",
+      "source_name": "EOS Mythos series 4.0 kW",
+      "woo_product_id": 249863,
+      "woo_slug": "eos-949412"
+    },
+    {
+      "sku": "949415",
+      "source_name": "EOS Mythos series 6.0 kW",
+      "woo_product_id": 249860,
+      "woo_slug": "eos-949415"
+    },
+    {
+      "sku": "949424",
+      "source_name": "EOS Morpheus Pro 6.0 kW",
+      "woo_product_id": 249882,
+      "woo_slug": "eos-949424"
+    },
+    {
+      "sku": "949425",
+      "source_name": "EOS Morpheus Pro 8.0 kW",
+      "woo_product_id": 249883,
+      "woo_slug": "eos-949425"
+    },
+    {
+      "sku": "949426",
+      "source_name": "EOS Morpheus Pro 10.0 kW",
+      "woo_product_id": 249884,
+      "woo_slug": "eos-949426"
+    },
+    {
+      "sku": "949427",
+      "source_name": "EOS Morpheus Pro 12.0 kW",
+      "woo_product_id": 249885,
+      "woo_slug": "eos-949427"
     },
     {
       "sku": "949502",
@@ -853,3619 +3175,93 @@
       "source_name": "EOS U-Command SBM 2 Sauna H18",
       "woo_product_id": 251482,
       "woo_slug": "eos-949512"
-    }
-  ],
-  "matched_but_broken": [
-    {
-      "sku": "907685",
-      "source_name": "EOS Euro 6.0 kW",
-      "woo_product_id": 249705,
-      "woo_slug": "eos-907685",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "907686",
-      "source_name": "EOS Euro 7.5 kW",
-      "woo_product_id": 249706,
-      "woo_slug": "eos-907686",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "907687",
-      "source_name": "EOS Euro 9.0 kW",
-      "woo_product_id": 249707,
-      "woo_slug": "eos-907687",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "908076",
-      "source_name": "EOS Euro 12.0 kW",
-      "woo_product_id": 249709,
-      "woo_slug": "eos-908076",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "908608",
-      "source_name": "EOS 46.U series 12.0 kW",
-      "woo_product_id": 249940,
-      "woo_slug": "eos-908608",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "908775",
-      "source_name": "EOS P1 series 12.0 kW",
-      "woo_product_id": 249649,
-      "woo_slug": "eos-908775",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "908776",
-      "source_name": "EOS P1 series 15.0 kW",
-      "woo_product_id": 249650,
-      "woo_slug": "eos-908776",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "941127",
-      "source_name": "EOS 46.U series 12.0 kW",
-      "woo_product_id": 249944,
-      "woo_slug": "eos-941127",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "941921",
-      "source_name": "EOS M3 W 3.0 kW",
-      "woo_product_id": 249615,
-      "woo_slug": "eos-941921",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "942317",
-      "source_name": "EOS EuroMax series 9.0 kW",
-      "woo_product_id": 249644,
-      "woo_slug": "eos-942317",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "942318",
-      "source_name": "EOS EuroMax series 12.0 kW",
-      "woo_product_id": 249645,
-      "woo_slug": "eos-942318",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "942320",
-      "source_name": "EOS EuroMax series 9.0 kW",
-      "woo_product_id": 249641,
-      "woo_slug": "eos-942320",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "942321",
-      "source_name": "EOS EuroMax series 12.0 kW",
-      "woo_product_id": 249642,
-      "woo_slug": "eos-942321",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "942444A",
-      "source_name": "EOS Mini series 3.0 kW",
-      "woo_product_id": 249613,
-      "woo_slug": "eos-942444a",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "942589",
-      "source_name": "EOS 34.G HD series 21.0 kW",
-      "woo_product_id": 249954,
-      "woo_slug": "eos-942589",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "942605A",
-      "source_name": "EOS ThermoTec series 6.0 kW",
-      "woo_product_id": 249682,
-      "woo_slug": "eos-942605a",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "942606A",
-      "source_name": "EOS ThermoTec series 7.5 kW",
-      "woo_product_id": 249683,
-      "woo_slug": "eos-942606a",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "942607A",
-      "source_name": "EOS ThermoTec series 9.0 kW",
-      "woo_product_id": 249684,
-      "woo_slug": "eos-942607a",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "942830",
-      "source_name": "EOS P1 series 10.5 kW",
-      "woo_product_id": 249648,
-      "woo_slug": "eos-942830",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "943037",
-      "source_name": "EOS 34.G HD series 30.0 kW",
-      "woo_product_id": 249956,
-      "woo_slug": "eos-943037",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "943077",
-      "source_name": "EOS Watermill sauna",
-      "woo_product_id": 250008,
-      "woo_slug": "eos-943077",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "943882",
-      "source_name": "EOS EuroMax series 15.0 kW",
-      "woo_product_id": 249643,
-      "woo_slug": "eos-943882",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "943922",
-      "source_name": "EOS EuroMax series 15.0 kW",
-      "woo_product_id": 249646,
-      "woo_slug": "eos-943922",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "944079",
-      "source_name": "EOS 34.G HD series 24.0 kW",
-      "woo_product_id": 249955,
-      "woo_slug": "eos-944079",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "944250",
-      "source_name": "EOS 46.U series 7.5 kW",
-      "woo_product_id": 249938,
-      "woo_slug": "eos-944250",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "944270",
-      "source_name": "EOS Herkules S60 series 12.0 kW",
-      "woo_product_id": 249897,
-      "woo_slug": "eos-944270",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "944271",
-      "source_name": "EOS Herkules S60 series 15.0 kW",
-      "woo_product_id": 249898,
-      "woo_slug": "eos-944271",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "944272",
-      "source_name": "EOS Herkules S60 series 12.0 kW",
-      "woo_product_id": 249891,
-      "woo_slug": "eos-944272",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "944273",
-      "source_name": "EOS Herkules S60 series 15.0 kW",
-      "woo_product_id": 249892,
-      "woo_slug": "eos-944273",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "944324",
-      "source_name": "EOS Herkules S25 series 7.5 kW",
-      "woo_product_id": 249714,
-      "woo_slug": "eos-944324",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "944325",
-      "source_name": "EOS Herkules S25 series 9.0 kW",
-      "woo_product_id": 249715,
-      "woo_slug": "eos-944325",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "944326",
-      "source_name": "EOS Herkules S25 series 7.5 kW",
-      "woo_product_id": 249710,
-      "woo_slug": "eos-944326",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "944327",
-      "source_name": "EOS Herkules S25 series 9.0 kW",
-      "woo_product_id": 249711,
-      "woo_slug": "eos-944327",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "944493",
-      "source_name": "EOS Herkules S60 series 9.0 kW",
-      "woo_product_id": 249890,
-      "woo_slug": "eos-944493",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "944494",
-      "source_name": "EOS Herkules S60 series 9.0 kW",
-      "woo_product_id": 249896,
-      "woo_slug": "eos-944494",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "944889",
-      "source_name": "EOS 46.U series 9.0 kW",
-      "woo_product_id": 249939,
-      "woo_slug": "eos-944889",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "944890",
-      "source_name": "EOS 46.U series 6.0 kW",
-      "woo_product_id": 249941,
-      "woo_slug": "eos-944890",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "944891",
-      "source_name": "EOS 46.U series 7.5 kW",
-      "woo_product_id": 249942,
-      "woo_slug": "eos-944891",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "944892",
-      "source_name": "EOS 46.U series 9.0 kW",
-      "woo_product_id": 249943,
-      "woo_slug": "eos-944892",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945031",
-      "source_name": "EOS Filius series 4.5 kW",
-      "woo_product_id": 249667,
-      "woo_slug": "eos-945031",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945032",
-      "source_name": "EOS Filius series 6.0 kW",
-      "woo_product_id": 249668,
-      "woo_slug": "eos-945032",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945033",
-      "source_name": "EOS Filius series 7.5 kW",
-      "woo_product_id": 249669,
-      "woo_slug": "eos-945033",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945484",
-      "source_name": "EOS Thermat series 6.0 kW",
-      "woo_product_id": 249628,
-      "woo_slug": "eos-945484",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945485",
-      "source_name": "EOS Thermat series 7.5 kW",
-      "woo_product_id": 249629,
-      "woo_slug": "eos-945485",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945486",
-      "source_name": "EOS Thermat series 9.0 kW",
-      "woo_product_id": 249630,
-      "woo_slug": "eos-945486",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945488",
-      "source_name": "EOS Mythos series 7.5 kW",
-      "woo_product_id": 249814,
-      "woo_slug": "eos-945488",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945489",
-      "source_name": "EOS Mythos series 9.0 kW",
-      "woo_product_id": 249815,
-      "woo_slug": "eos-945489",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945490",
-      "source_name": "EOS Mythos series 12.0 kW",
-      "woo_product_id": 249824,
-      "woo_slug": "eos-945490",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945491",
-      "source_name": "EOS Mythos series 15.0 kW",
-      "woo_product_id": 249825,
-      "woo_slug": "eos-945491",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945492",
-      "source_name": "EOS Mythos series 2.0 kW",
-      "woo_product_id": 249838,
-      "woo_slug": "eos-945492",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945493",
-      "source_name": "EOS Mythos series 3.0 kW",
-      "woo_product_id": 249835,
-      "woo_slug": "eos-945493",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945522",
-      "source_name": "EOS Invisio series 9.0 kW",
-      "woo_product_id": 249931,
-      "woo_slug": "eos-945522",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945571",
-      "source_name": "EOS Mythos series 2.0 kW",
-      "woo_product_id": 249837,
-      "woo_slug": "eos-945571",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945572",
-      "source_name": "EOS Mythos series 3.0 kW",
-      "woo_product_id": 249834,
-      "woo_slug": "eos-945572",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945603",
-      "source_name": "EOS Saunadome II 9.0 kW",
-      "woo_product_id": 249775,
-      "woo_slug": "eos-945603",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945604",
-      "source_name": "EOS Saunadome II 12.0 kW",
-      "woo_product_id": 249776,
-      "woo_slug": "eos-945604",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945605",
-      "source_name": "EOS Saunadome II 15.0 kW",
-      "woo_product_id": 249777,
-      "woo_slug": "eos-945605",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945606",
-      "source_name": "EOS Saunadome II 18.0 kW",
-      "woo_product_id": 249778,
-      "woo_slug": "eos-945606",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945650",
-      "source_name": "EOS Mini series 3.0 kW",
-      "woo_product_id": 249611,
-      "woo_slug": "eos-945650",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945663",
-      "source_name": "EOS FinnRock 7.5 kW",
-      "woo_product_id": 249718,
-      "woo_slug": "eos-945663",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945664",
-      "source_name": "EOS FinnRock 9.0 kW",
-      "woo_product_id": 249719,
-      "woo_slug": "eos-945664",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945688",
-      "source_name": "EOS ThermoTec series 6.0 kW",
-      "woo_product_id": 249676,
-      "woo_slug": "eos-945688",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945689",
-      "source_name": "EOS ThermoTec series 7.5 kW",
-      "woo_product_id": 249677,
-      "woo_slug": "eos-945689",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945690",
-      "source_name": "EOS ThermoTec series 9.0 kW",
-      "woo_product_id": 249678,
-      "woo_slug": "eos-945690",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945708",
-      "source_name": "EOS Invisio series 3.0 kW",
-      "woo_product_id": 249919,
-      "woo_slug": "eos-945708",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945709",
-      "source_name": "EOS Invisio series 4.5 kW",
-      "woo_product_id": 249920,
-      "woo_slug": "eos-945709",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945710",
-      "source_name": "EOS Invisio series 6.0 kW",
-      "woo_product_id": 249921,
-      "woo_slug": "eos-945710",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945719",
-      "source_name": "EOS FinnRock 12.0 kW",
-      "woo_product_id": 249720,
-      "woo_slug": "eos-945719",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945735",
-      "source_name": "EOS Thermat series 7.5 kW",
-      "woo_product_id": 249623,
-      "woo_slug": "eos-945735",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945786",
-      "source_name": "EOS Invisio series 6.0 kW",
-      "woo_product_id": 249925,
-      "woo_slug": "eos-945786",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945787",
-      "source_name": "EOS Invisio series 9.0 kW",
-      "woo_product_id": 249926,
-      "woo_slug": "eos-945787",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945788",
-      "source_name": "EOS Invisio series 12.0 kW",
-      "woo_product_id": 249927,
-      "woo_slug": "eos-945788",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945810",
-      "source_name": "EOS Invisio series 3.0 kW",
-      "woo_product_id": 249922,
-      "woo_slug": "eos-945810",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945811",
-      "source_name": "EOS Invisio series 4.5 kW",
-      "woo_product_id": 249923,
-      "woo_slug": "eos-945811",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945812",
-      "source_name": "EOS Invisio series 6.0 kW",
-      "woo_product_id": 249924,
-      "woo_slug": "eos-945812",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945813",
-      "source_name": "EOS Invisio series 6.0 kW",
-      "woo_product_id": 249928,
-      "woo_slug": "eos-945813",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945814",
-      "source_name": "EOS Invisio series 9.0 kW",
-      "woo_product_id": 249929,
-      "woo_slug": "eos-945814",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945815",
-      "source_name": "EOS Invisio series 12.0 kW",
-      "woo_product_id": 249930,
-      "woo_slug": "eos-945815",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945816",
-      "source_name": "EOS Invisio series 9.0 kW",
-      "woo_product_id": 249933,
-      "woo_slug": "eos-945816",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945862",
-      "source_name": "EOS Thermat series 4.5 kW",
-      "woo_product_id": 249621,
-      "woo_slug": "eos-945862",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945863",
-      "source_name": "EOS Thermat series 6.0 kW",
-      "woo_product_id": 249622,
-      "woo_slug": "eos-945863",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945864",
-      "source_name": "EOS Thermat series 9.0 kW",
-      "woo_product_id": 249624,
-      "woo_slug": "eos-945864",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945899",
-      "source_name": "EOS Mythos series 2.0 kW",
-      "woo_product_id": 249849,
-      "woo_slug": "eos-945899",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945900",
-      "source_name": "EOS Mythos series 3.0 kW",
-      "woo_product_id": 249846,
-      "woo_slug": "eos-945900",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945901",
-      "source_name": "EOS Mythos series 2.0 kW",
-      "woo_product_id": 249843,
-      "woo_slug": "eos-945901",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945902",
-      "source_name": "EOS Mythos series 3.0 kW",
-      "woo_product_id": 249840,
-      "woo_slug": "eos-945902",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945903",
-      "source_name": "EOS Mythos series 2.0 kW",
-      "woo_product_id": 249850,
-      "woo_slug": "eos-945903",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945904",
-      "source_name": "EOS Mythos series 3.0 kW",
-      "woo_product_id": 249847,
-      "woo_slug": "eos-945904",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945905",
-      "source_name": "EOS Mythos series 2.0 kW",
-      "woo_product_id": 249844,
-      "woo_slug": "eos-945905",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945906",
-      "source_name": "EOS Mythos series 3.0 kW",
-      "woo_product_id": 249841,
-      "woo_slug": "eos-945906",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945988",
-      "source_name": "EOS Mythos series 7.5 kW",
-      "woo_product_id": 249818,
-      "woo_slug": "eos-945988",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945989",
-      "source_name": "EOS Mythos series 9.0 kW",
-      "woo_product_id": 249819,
-      "woo_slug": "eos-945989",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945991",
-      "source_name": "EOS Mythos series 12.0 kW",
-      "woo_product_id": 249828,
-      "woo_slug": "eos-945991",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "945992",
-      "source_name": "EOS Mythos series 15.0 kW",
-      "woo_product_id": 249829,
-      "woo_slug": "eos-945992",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "946027",
-      "source_name": "EOS Mini series 3.0 kW",
-      "woo_product_id": 249614,
-      "woo_slug": "eos-946027",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "946028",
-      "source_name": "EOS Mini series 3.0 kW",
-      "woo_product_id": 249612,
-      "woo_slug": "eos-946028",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "946066",
-      "source_name": "EOS Mythos series 7.5 kW",
-      "woo_product_id": 249816,
-      "woo_slug": "eos-946066",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "946067",
-      "source_name": "EOS Mythos series 9.0 kW",
-      "woo_product_id": 249817,
-      "woo_slug": "eos-946067",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "946068",
-      "source_name": "EOS Mythos series 12.0 kW",
-      "woo_product_id": 249826,
-      "woo_slug": "eos-946068",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "946069",
-      "source_name": "EOS Mythos series 15.0 kW",
-      "woo_product_id": 249827,
-      "woo_slug": "eos-946069",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "946250",
-      "source_name": "EOS Mythos series 6.0 kW",
-      "woo_product_id": 249836,
-      "woo_slug": "eos-946250",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "946253",
-      "source_name": "EOS Mythos series 4.0 kW",
-      "woo_product_id": 249839,
-      "woo_slug": "eos-946253",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "946256",
-      "source_name": "EOS Mythos series 6.0 kW",
-      "woo_product_id": 249848,
-      "woo_slug": "eos-946256",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "946259",
-      "source_name": "EOS Mythos series 4.0 kW",
-      "woo_product_id": 249851,
-      "woo_slug": "eos-946259",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "946262",
-      "source_name": "EOS Mythos series 6.0 kW",
-      "woo_product_id": 249842,
-      "woo_slug": "eos-946262",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "946265",
-      "source_name": "EOS Mythos series 4.0 kW",
-      "woo_product_id": 249845,
-      "woo_slug": "eos-946265",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "946293",
-      "source_name": "EOS Invisio series 2000 W kW",
-      "woo_product_id": 249935,
-      "woo_slug": "eos-946293",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "946294",
-      "source_name": "EOS Invisio series 3000 W kW",
-      "woo_product_id": 249936,
-      "woo_slug": "eos-946294",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "946381",
-      "source_name": "EOS P1+ 15.0 kW",
-      "woo_product_id": 249774,
-      "woo_slug": "eos-946381",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "946382",
-      "source_name": "EOS P1+ 12.0 kW",
-      "woo_product_id": 249773,
-      "woo_slug": "eos-946382",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "946390",
-      "source_name": "EOS Invisio series 12.0 kW",
-      "woo_product_id": 249932,
-      "woo_slug": "eos-946390",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "946391",
-      "source_name": "EOS Invisio series 12.0 kW",
-      "woo_product_id": 249934,
-      "woo_slug": "eos-946391",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "946421",
-      "source_name": "EOS Orbit 18.0 kW",
-      "woo_product_id": 249974,
-      "woo_slug": "eos-946421",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "946422",
-      "source_name": "EOS Orbit 21.0 kW",
-      "woo_product_id": 249975,
-      "woo_slug": "eos-946422",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "946423",
-      "source_name": "EOS Orbit 24.0 kW",
-      "woo_product_id": 249976,
-      "woo_slug": "eos-946423",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "946507",
-      "source_name": "SBM-Aroma Aroma Button",
-      "woo_product_id": 251523,
-      "woo_slug": "eos-946507",
-      "reasons": [
-        "wrong_category"
-      ]
-    },
-    {
-      "sku": "946707",
-      "source_name": "EOS 46.U series 6.0 kW",
-      "woo_product_id": 249937,
-      "woo_slug": "eos-946707",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "946755",
-      "source_name": "EOS Gracil series 6.0 kW",
-      "woo_product_id": 249685,
-      "woo_slug": "eos-946755",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "946756",
-      "source_name": "EOS Gracil series 7.5 kW",
-      "woo_product_id": 249686,
-      "woo_slug": "eos-946756",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "946757",
-      "source_name": "EOS Gracil series 9.0 kW",
-      "woo_product_id": 249687,
-      "woo_slug": "eos-946757",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "946799",
-      "source_name": "SBM-Aroma",
-      "woo_product_id": 251519,
-      "woo_slug": "eos-946799",
-      "reasons": [
-        "wrong_category"
-      ]
-    },
-    {
-      "sku": "946826",
-      "source_name": "EOS Herkules XL S120 HD series",
-      "woo_product_id": 249957,
-      "woo_slug": "eos-946826",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "946858",
-      "source_name": "EOS Moment series 6.0 kW",
-      "woo_product_id": 249631,
-      "woo_slug": "eos-946858",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "946859",
-      "source_name": "EOS Moment series 7.5 kW",
-      "woo_product_id": 249632,
-      "woo_slug": "eos-946859",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "946860",
-      "source_name": "EOS Moment series 9.0 kW",
-      "woo_product_id": 249633,
-      "woo_slug": "eos-946860",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "946967",
-      "source_name": "LSG Steam",
-      "woo_product_id": 251511,
-      "woo_slug": "eos-946967",
-      "reasons": [
-        "wrong_category"
-      ]
-    },
-    {
-      "sku": "946977",
-      "source_name": "EOS Edge series 7.5 kW",
-      "woo_product_id": 249637,
-      "woo_slug": "eos-946977",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "946978",
-      "source_name": "EOS Edge series 9.0 kW",
-      "woo_product_id": 249638,
-      "woo_slug": "eos-946978",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "946987A",
-      "source_name": "EOS Gracil series 7.5 kW",
-      "woo_product_id": 249697,
-      "woo_slug": "eos-946987a",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "946988A",
-      "source_name": "EOS Gracil series 9.0 kW",
-      "woo_product_id": 249698,
-      "woo_slug": "eos-946988a",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947011",
-      "source_name": "EOS Zeus S series 7.5 kW",
-      "woo_product_id": 249864,
-      "woo_slug": "eos-947011",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947012",
-      "source_name": "EOS Zeus S series 9.0 kW",
-      "woo_product_id": 249865,
-      "woo_slug": "eos-947012",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947014",
-      "source_name": "EOS Zeus S series 12.0 kW",
-      "woo_product_id": 249866,
-      "woo_slug": "eos-947014",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947016",
-      "source_name": "EOS Zeus S series 7.5 kW",
-      "woo_product_id": 249873,
-      "woo_slug": "eos-947016",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947017",
-      "source_name": "EOS Zeus S series 9.0 kW",
-      "woo_product_id": 249874,
-      "woo_slug": "eos-947017",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947019",
-      "source_name": "EOS Zeus S series 12.0 kW",
-      "woo_product_id": 249875,
-      "woo_slug": "eos-947019",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947021",
-      "source_name": "EOS Zeus S series 7.5 kW",
-      "woo_product_id": 249867,
-      "woo_slug": "eos-947021",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947022",
-      "source_name": "EOS Zeus S series 9.0 kW",
-      "woo_product_id": 249868,
-      "woo_slug": "eos-947022",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947024",
-      "source_name": "EOS Zeus S series 12.0 kW",
-      "woo_product_id": 249869,
-      "woo_slug": "eos-947024",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947026",
-      "source_name": "EOS Zeus S series 7.5 kW",
-      "woo_product_id": 249876,
-      "woo_slug": "eos-947026",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947027",
-      "source_name": "EOS Zeus S series 9.0 kW",
-      "woo_product_id": 249877,
-      "woo_slug": "eos-947027",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947029",
-      "source_name": "EOS Zeus S series 12.0 kW",
-      "woo_product_id": 249878,
-      "woo_slug": "eos-947029",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947031",
-      "source_name": "EOS Zeus S series 7.5 kW",
-      "woo_product_id": 249870,
-      "woo_slug": "eos-947031",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947032",
-      "source_name": "EOS Zeus S series 9.0 kW",
-      "woo_product_id": 249871,
-      "woo_slug": "eos-947032",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947034",
-      "source_name": "EOS Zeus S series 12.0 kW",
-      "woo_product_id": 249872,
-      "woo_slug": "eos-947034",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947036",
-      "source_name": "EOS Zeus S series 7.5 kW",
-      "woo_product_id": 249879,
-      "woo_slug": "eos-947036",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947037",
-      "source_name": "EOS Zeus S series 9.0 kW",
-      "woo_product_id": 249880,
-      "woo_slug": "eos-947037",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947039",
-      "source_name": "EOS Zeus S series 12.0 kW",
-      "woo_product_id": 249881,
-      "woo_slug": "eos-947039",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947140",
-      "source_name": "EOS BlackRock series 12.0 kW",
-      "woo_product_id": 249902,
-      "woo_slug": "eos-947140",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947141",
-      "source_name": "EOS BlackRock series 15.0 kW",
-      "woo_product_id": 249903,
-      "woo_slug": "eos-947141",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947142",
-      "source_name": "EOS BlackRock series 18.0 kW",
-      "woo_product_id": 249904,
-      "woo_slug": "eos-947142",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947157",
-      "source_name": "EOS Gracil series 6.0 kW",
-      "woo_product_id": 249691,
-      "woo_slug": "eos-947157",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947158",
-      "source_name": "EOS Gracil series 7.5 kW",
-      "woo_product_id": 249692,
-      "woo_slug": "eos-947158",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947159",
-      "source_name": "EOS Gracil series 9.0 kW",
-      "woo_product_id": 249693,
-      "woo_slug": "eos-947159",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947161A",
-      "source_name": "EOS Gracil series 7.5 kW",
-      "woo_product_id": 249701,
-      "woo_slug": "eos-947161a",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947162A",
-      "source_name": "EOS Gracil series 9.0 kW",
-      "woo_product_id": 249702,
-      "woo_slug": "eos-947162a",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947219",
-      "source_name": "EOS 46.U XL 15.0 kW",
-      "woo_product_id": 249945,
-      "woo_slug": "eos-947219",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947222",
-      "source_name": "EOS 46.U XL 18.0 kW",
-      "woo_product_id": 249946,
-      "woo_slug": "eos-947222",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947226",
-      "source_name": "EOS Filius series 4.5 kW",
-      "woo_product_id": 249670,
-      "woo_slug": "eos-947226",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947227",
-      "source_name": "EOS Filius series 6.0 kW",
-      "woo_product_id": 249671,
-      "woo_slug": "eos-947227",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947228",
-      "source_name": "EOS Filius series 7.5 kW",
-      "woo_product_id": 249672,
-      "woo_slug": "eos-947228",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947230",
-      "source_name": "EOS BlackRock series Anthracite kW",
-      "woo_product_id": 249908,
-      "woo_slug": "eos-947230",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947237",
-      "source_name": "EOS Herkules S25 series 9.0 kW",
-      "woo_product_id": 249713,
-      "woo_slug": "eos-947237",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947238",
-      "source_name": "EOS Herkules S25 series 9.0 kW",
-      "woo_product_id": 249717,
-      "woo_slug": "eos-947238",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947243",
-      "source_name": "EOS Gracil series 7.5 kW",
-      "woo_product_id": 249689,
-      "woo_slug": "eos-947243",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947244",
-      "source_name": "EOS Gracil series 9.0 kW",
-      "woo_product_id": 249690,
-      "woo_slug": "eos-947244",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947245",
-      "source_name": "EOS Gracil series 7.5 kW",
-      "woo_product_id": 249695,
-      "woo_slug": "eos-947245",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947246",
-      "source_name": "EOS Gracil series 9.0 kW",
-      "woo_product_id": 249696,
-      "woo_slug": "eos-947246",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947247",
-      "source_name": "EOS Gracil series 7.5 kW",
-      "woo_product_id": 249699,
-      "woo_slug": "eos-947247",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947248",
-      "source_name": "EOS Gracil series 9.0 kW",
-      "woo_product_id": 249700,
-      "woo_slug": "eos-947248",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947250",
-      "source_name": "EOS Herkules S25 series 7.5 kW",
-      "woo_product_id": 249712,
-      "woo_slug": "eos-947250",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947251",
-      "source_name": "EOS Herkules S25 series 7.5 kW",
-      "woo_product_id": 249716,
-      "woo_slug": "eos-947251",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947312",
-      "source_name": "EOS BlackRock series 12.0 kW",
-      "woo_product_id": 249905,
-      "woo_slug": "eos-947312",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947313",
-      "source_name": "EOS BlackRock series 15.0 kW",
-      "woo_product_id": 249906,
-      "woo_slug": "eos-947313",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947314",
-      "source_name": "EOS BlackRock series 18.0 kW",
-      "woo_product_id": 249907,
-      "woo_slug": "eos-947314",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947324",
-      "source_name": "EOS BlackRock series Black kW",
-      "woo_product_id": 249909,
-      "woo_slug": "eos-947324",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947327",
-      "source_name": "EOS Gracil series 7.5 kW",
-      "woo_product_id": 249703,
-      "woo_slug": "eos-947327",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947328",
-      "source_name": "EOS Gracil series 9.0 kW",
-      "woo_product_id": 249704,
-      "woo_slug": "eos-947328",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947345",
-      "source_name": "EOS ThermoTec series 9.0 kW",
-      "woo_product_id": 249675,
-      "woo_slug": "eos-947345",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947346",
-      "source_name": "EOS ThermoTec series 7.5 kW",
-      "woo_product_id": 249674,
-      "woo_slug": "eos-947346",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947347",
-      "source_name": "EOS ThermoTec series 6.0 kW",
-      "woo_product_id": 249673,
-      "woo_slug": "eos-947347",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947348",
-      "source_name": "EOS M3 W 3.0 kW",
-      "woo_product_id": 249616,
-      "woo_slug": "eos-947348",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947360",
-      "source_name": "EOS 34.G HD series 24.0 kW",
-      "woo_product_id": 249950,
-      "woo_slug": "eos-947360",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947361",
-      "source_name": "EOS 34.G HD series 27.0 kW",
-      "woo_product_id": 249951,
-      "woo_slug": "eos-947361",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947362",
-      "source_name": "EOS 34.G HD series 30.0 kW",
-      "woo_product_id": 249952,
-      "woo_slug": "eos-947362",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947363",
-      "source_name": "EOS 34.G HD series 36.0 kW",
-      "woo_product_id": 249953,
-      "woo_slug": "eos-947363",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947367",
-      "source_name": "EOS Edge series 7.5 kW",
-      "woo_product_id": 249639,
-      "woo_slug": "eos-947367",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947368",
-      "source_name": "EOS Edge series 9.0 kW",
-      "woo_product_id": 249640,
-      "woo_slug": "eos-947368",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947487",
-      "source_name": "EOS Majesty 6.0 kW",
-      "woo_product_id": 249791,
-      "woo_slug": "eos-947487",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947488",
-      "source_name": "EOS Majesty 8.0 kW",
-      "woo_product_id": 249792,
-      "woo_slug": "eos-947488",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947489",
-      "source_name": "EOS Majesty 10.0 kW",
-      "woo_product_id": 249793,
-      "woo_slug": "eos-947489",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947490",
-      "source_name": "EOS Majesty EOSafe L safety system with 27 mm 30° reflector kW",
-      "woo_product_id": 249794,
-      "woo_slug": "eos-947490",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947580",
-      "source_name": "EOS Moment series 6.0 kW",
-      "woo_product_id": 249634,
-      "woo_slug": "eos-947580",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947581",
-      "source_name": "EOS Moment series 7.5 kW",
-      "woo_product_id": 249635,
-      "woo_slug": "eos-947581",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947582",
-      "source_name": "EOS Moment series 9.0 kW",
-      "woo_product_id": 249636,
-      "woo_slug": "eos-947582",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947607",
-      "source_name": "EOS Picco series 3.0 kW",
-      "woo_product_id": 249661,
-      "woo_slug": "eos-947607",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947608",
-      "source_name": "EOS Picco series 3.0 kW",
-      "woo_product_id": 249663,
-      "woo_slug": "eos-947608",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947609",
-      "source_name": "EOS Picco series 3.0 kW",
-      "woo_product_id": 249665,
-      "woo_slug": "eos-947609",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947610",
-      "source_name": "EOS Picco series 3.5 kW",
-      "woo_product_id": 249662,
-      "woo_slug": "eos-947610",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947611",
-      "source_name": "EOS Picco series 3.5 kW",
-      "woo_product_id": 249664,
-      "woo_slug": "eos-947611",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947612",
-      "source_name": "EOS Picco series 3.5 kW",
-      "woo_product_id": 249666,
-      "woo_slug": "eos-947612",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947619",
-      "source_name": "EOS Picco series 3.0 kW",
-      "woo_product_id": 249655,
-      "woo_slug": "eos-947619",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947620",
-      "source_name": "EOS Picco series 3.0 kW",
-      "woo_product_id": 249657,
-      "woo_slug": "eos-947620",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947621",
-      "source_name": "EOS Picco series 3.0 kW",
-      "woo_product_id": 249659,
-      "woo_slug": "eos-947621",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947622",
-      "source_name": "EOS Picco series 3.5 kW",
-      "woo_product_id": 249656,
-      "woo_slug": "eos-947622",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947623",
-      "source_name": "EOS Picco series 3.5 kW",
-      "woo_product_id": 249658,
-      "woo_slug": "eos-947623",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947624",
-      "source_name": "EOS Picco series 3.5 kW",
-      "woo_product_id": 249660,
-      "woo_slug": "eos-947624",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947676",
-      "source_name": "EOS Herkules S60 series 9.0 kW",
-      "woo_product_id": 249899,
-      "woo_slug": "eos-947676",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947677",
-      "source_name": "EOS Herkules S60 series 12.0 kW",
-      "woo_product_id": 249900,
-      "woo_slug": "eos-947677",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947678",
-      "source_name": "EOS Herkules S60 series 15.0 kW",
-      "woo_product_id": 249901,
-      "woo_slug": "eos-947678",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947689",
-      "source_name": "EOS Herkules S60 series 9.0 kW",
-      "woo_product_id": 249893,
-      "woo_slug": "eos-947689",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947690",
-      "source_name": "EOS Herkules S60 series 12.0 kW",
-      "woo_product_id": 249894,
-      "woo_slug": "eos-947690",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947691",
-      "source_name": "EOS Herkules S60 series 15.0 kW",
-      "woo_product_id": 249895,
-      "woo_slug": "eos-947691",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947735",
-      "source_name": "EOS Mega HD series 42.0 kW",
-      "woo_product_id": 250000,
-      "woo_slug": "eos-947735",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947736",
-      "source_name": "EOS Mega HD series 48.0 kW",
-      "woo_product_id": 250001,
-      "woo_slug": "eos-947736",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947737",
-      "source_name": "EOS Mega HD series 54.0 kW",
-      "woo_product_id": 250002,
-      "woo_slug": "eos-947737",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947738",
-      "source_name": "EOS Mega HD series 60.0 kW",
-      "woo_product_id": 250003,
-      "woo_slug": "eos-947738",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947739",
-      "source_name": "EOS Mega HD series 72.0 kW",
-      "woo_product_id": 250004,
-      "woo_slug": "eos-947739",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947825",
-      "source_name": "EOS Zeus HD series 36.0 kW",
-      "woo_product_id": 249992,
-      "woo_slug": "eos-947825",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947826",
-      "source_name": "EOS Goliath HD 18.0 kW",
-      "woo_product_id": 249970,
-      "woo_slug": "eos-947826",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947827",
-      "source_name": "EOS Goliath HD 24.0 kW",
-      "woo_product_id": 249971,
-      "woo_slug": "eos-947827",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947828",
-      "source_name": "EOS Goliath HD 30.0 kW",
-      "woo_product_id": 249972,
-      "woo_slug": "eos-947828",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947829",
-      "source_name": "EOS Goliath HD 36.0 kW",
-      "woo_product_id": 249973,
-      "woo_slug": "eos-947829",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947837",
-      "source_name": "EOS Zeus HD series 20.0 kW",
-      "woo_product_id": 249977,
-      "woo_slug": "eos-947837",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947838",
-      "source_name": "EOS Zeus HD series 24.0 kW",
-      "woo_product_id": 249978,
-      "woo_slug": "eos-947838",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947839",
-      "source_name": "EOS Zeus HD series 30.0 kW",
-      "woo_product_id": 249979,
-      "woo_slug": "eos-947839",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947840",
-      "source_name": "EOS Zeus HD series 36.0 kW",
-      "woo_product_id": 249980,
-      "woo_slug": "eos-947840",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947841",
-      "source_name": "EOS Zeus HD series 20.0 kW",
-      "woo_product_id": 249981,
-      "woo_slug": "eos-947841",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947842",
-      "source_name": "EOS Zeus HD series 24.0 kW",
-      "woo_product_id": 249982,
-      "woo_slug": "eos-947842",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947843",
-      "source_name": "EOS Zeus HD series 30.0 kW",
-      "woo_product_id": 249983,
-      "woo_slug": "eos-947843",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947844",
-      "source_name": "EOS Zeus HD series 36.0 kW",
-      "woo_product_id": 249984,
-      "woo_slug": "eos-947844",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947846",
-      "source_name": "EOS Zeus HD series 24.0 kW",
-      "woo_product_id": 249986,
-      "woo_slug": "eos-947846",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947847",
-      "source_name": "EOS Zeus HD series 30.0 kW",
-      "woo_product_id": 249987,
-      "woo_slug": "eos-947847",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947848",
-      "source_name": "EOS Zeus HD series 36.0 kW",
-      "woo_product_id": 249988,
-      "woo_slug": "eos-947848",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947849",
-      "source_name": "EOS Zeus HD series 20.0 kW",
-      "woo_product_id": 249989,
-      "woo_slug": "eos-947849",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947850",
-      "source_name": "EOS Zeus HD series 24.0 kW",
-      "woo_product_id": 249990,
-      "woo_slug": "eos-947850",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947851",
-      "source_name": "EOS Zeus HD series 30.0 kW",
-      "woo_product_id": 249991,
-      "woo_slug": "eos-947851",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947853",
-      "source_name": "EOS Zeus HD series 20.0 kW",
-      "woo_product_id": 249993,
-      "woo_slug": "eos-947853",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947854",
-      "source_name": "EOS Zeus HD series 20.0 kW",
-      "woo_product_id": 249985,
-      "woo_slug": "eos-947854",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947855",
-      "source_name": "EOS Zeus HD series 30.0 kW",
-      "woo_product_id": 249994,
-      "woo_slug": "eos-947855",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947856",
-      "source_name": "EOS Zeus HD series 36.0 kW",
-      "woo_product_id": 249995,
-      "woo_slug": "eos-947856",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947857",
-      "source_name": "EOS Zeus HD series 20.0 kW",
-      "woo_product_id": 249996,
-      "woo_slug": "eos-947857",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947858",
-      "source_name": "EOS Zeus HD series 24.0 kW",
-      "woo_product_id": 249997,
-      "woo_slug": "eos-947858",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947859",
-      "source_name": "EOS Zeus HD series 30.0 kW",
-      "woo_product_id": 249998,
-      "woo_slug": "eos-947859",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947860",
-      "source_name": "EOS Zeus HD series 36.0 kW",
-      "woo_product_id": 249999,
-      "woo_slug": "eos-947860",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947861",
-      "source_name": "EOS FinnRock 7.5 kW",
-      "woo_product_id": 249721,
-      "woo_slug": "eos-947861",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947862",
-      "source_name": "EOS FinnRock 9.0 kW",
-      "woo_product_id": 249722,
-      "woo_slug": "eos-947862",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947863",
-      "source_name": "EOS FinnRock 12.0 kW",
-      "woo_product_id": 249723,
-      "woo_slug": "eos-947863",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947886",
-      "source_name": "EOS Euro 10.0 kW",
-      "woo_product_id": 249708,
-      "woo_slug": "eos-947886",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947888",
-      "source_name": "EOS P1 series 10.0 kW",
-      "woo_product_id": 249647,
-      "woo_slug": "eos-947888",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "947889",
-      "source_name": "EOS P1+ 10.0 kW",
-      "woo_product_id": 249772,
-      "woo_slug": "eos-947889",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948044",
-      "source_name": "EOS Mega HD series 48.0 kW",
-      "woo_product_id": 250007,
-      "woo_slug": "eos-948044",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948045",
-      "source_name": "EOS Mega HD series 42.0 kW",
-      "woo_product_id": 250006,
-      "woo_slug": "eos-948045",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948052",
-      "source_name": "EOS Majesty Heater guard rail in abachi wood – 4-sided with mounting brackets kW",
-      "woo_product_id": 249795,
-      "woo_slug": "eos-948052",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948053",
-      "source_name": "EOS Majesty Heater guard rail in walnut wood – 4-sided with mounting brackets kW",
-      "woo_product_id": 249796,
-      "woo_slug": "eos-948053",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948055",
-      "source_name": "EOS Majesty Heater guard rail brackets (without wooden rail). 6 pcs set kW",
-      "woo_product_id": 249797,
-      "woo_slug": "eos-948055",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948094",
-      "source_name": "EOS Mega HD series 36.0 kW",
-      "woo_product_id": 250005,
-      "woo_slug": "eos-948094",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948097",
-      "source_name": "EOS 34.G HD series 15.0 kW",
-      "woo_product_id": 249947,
-      "woo_slug": "eos-948097",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948098",
-      "source_name": "EOS 34.G HD series 18.0 kW",
-      "woo_product_id": 249948,
-      "woo_slug": "eos-948098",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948099",
-      "source_name": "EOS 34.G HD series 21.0 kW",
-      "woo_product_id": 249949,
-      "woo_slug": "eos-948099",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948100",
-      "source_name": "EOS Structure 6.0 kW",
-      "woo_product_id": 249798,
-      "woo_slug": "eos-948100",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948101",
-      "source_name": "EOS Structure 8.0 kW",
-      "woo_product_id": 249799,
-      "woo_slug": "eos-948101",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948102",
-      "source_name": "EOS Structure 10.0 kW",
-      "woo_product_id": 249800,
-      "woo_slug": "eos-948102",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948103",
-      "source_name": "EOS Structure 12.0 kW",
-      "woo_product_id": 249801,
-      "woo_slug": "eos-948103",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948116",
-      "source_name": "EOS Herkules XL S120 HD series 18.0 kW",
-      "woo_product_id": 249958,
-      "woo_slug": "eos-948116",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948117",
-      "source_name": "EOS Herkules XL S120 HD series 24.0 kW",
-      "woo_product_id": 249959,
-      "woo_slug": "eos-948117",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948118",
-      "source_name": "EOS Herkules XL S120 HD series 30.0 kW",
-      "woo_product_id": 249960,
-      "woo_slug": "eos-948118",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948119",
-      "source_name": "EOS Herkules XL S120 HD series 18.0 kW",
-      "woo_product_id": 249964,
-      "woo_slug": "eos-948119",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948120",
-      "source_name": "EOS Herkules XL S120 HD series 24.0 kW",
-      "woo_product_id": 249965,
-      "woo_slug": "eos-948120",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948121",
-      "source_name": "EOS Herkules XL S120 HD series 30.0 kW",
-      "woo_product_id": 249966,
-      "woo_slug": "eos-948121",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948140",
-      "source_name": "EOS Future/Vision series EOS Vision Stone Nero Impala kW 10,0 kW",
-      "woo_product_id": 249808,
-      "woo_slug": "eos-948140",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948142",
-      "source_name": "EOS Future/Vision series 12.0 kW",
-      "woo_product_id": 249809,
-      "woo_slug": "eos-948142",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948143",
-      "source_name": "EOS Future/Vision series 15.0 kW",
-      "woo_product_id": 249810,
-      "woo_slug": "eos-948143",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948150",
-      "source_name": "EOS Future/Vision series EOS Future Stone Nero Impala kW 10,0 kW",
-      "woo_product_id": 249802,
-      "woo_slug": "eos-948150",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948152",
-      "source_name": "EOS Future/Vision series 12.0 kW",
-      "woo_product_id": 249803,
-      "woo_slug": "eos-948152",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948153",
-      "source_name": "EOS Future/Vision series 15.0 kW",
-      "woo_product_id": 249804,
-      "woo_slug": "eos-948153",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948180",
-      "source_name": "EOS Future/Vision series EOS Vision Stone Silver Wave kW 10,0 kW",
-      "woo_product_id": 249811,
-      "woo_slug": "eos-948180",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948182",
-      "source_name": "EOS Future/Vision series 12.0 kW",
-      "woo_product_id": 249812,
-      "woo_slug": "eos-948182",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948183",
-      "source_name": "EOS Future/Vision series 15.0 kW",
-      "woo_product_id": 249813,
-      "woo_slug": "eos-948183",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948190",
-      "source_name": "EOS Future/Vision series EOS Future Stone Silver Wave kW 10,0 kW",
-      "woo_product_id": 249805,
-      "woo_slug": "eos-948190",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948192",
-      "source_name": "EOS Future/Vision series 12.0 kW",
-      "woo_product_id": 249806,
-      "woo_slug": "eos-948192",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948193",
-      "source_name": "EOS Future/Vision series 15.0 kW",
-      "woo_product_id": 249807,
-      "woo_slug": "eos-948193",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948196",
-      "source_name": "EOS Gracil series 6.0 kW",
-      "woo_product_id": 249688,
-      "woo_slug": "eos-948196",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948197",
-      "source_name": "EOS Gracil series 6.0 kW",
-      "woo_product_id": 249694,
-      "woo_slug": "eos-948197",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948821",
-      "source_name": "EOS Herkules XL S120 HD series 18.0 kW",
-      "woo_product_id": 249961,
-      "woo_slug": "eos-948821",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948822",
-      "source_name": "EOS Herkules XL S120 HD series 24.0 kW",
-      "woo_product_id": 249962,
-      "woo_slug": "eos-948822",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948823",
-      "source_name": "EOS Herkules XL S120 HD series 30.0 kW",
-      "woo_product_id": 249963,
-      "woo_slug": "eos-948823",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948824",
-      "source_name": "EOS Herkules XL S120 HD series 18.0 kW",
-      "woo_product_id": 249967,
-      "woo_slug": "eos-948824",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948825",
-      "source_name": "EOS Herkules XL S120 HD series 24.0 kW",
-      "woo_product_id": 249968,
-      "woo_slug": "eos-948825",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948826",
-      "source_name": "EOS Herkules XL S120 HD series 30.0 kW",
-      "woo_product_id": 249969,
-      "woo_slug": "eos-948826",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948862",
-      "source_name": "EOS Watermill Sauna 12.0 kW",
-      "woo_product_id": 249913,
-      "woo_slug": "eos-948862",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948863",
-      "source_name": "EOS Watermill Sauna 15.0 kW",
-      "woo_product_id": 249914,
-      "woo_slug": "eos-948863",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948864",
-      "source_name": "EOS Watermill Sauna 18.0 kW",
-      "woo_product_id": 249915,
-      "woo_slug": "eos-948864",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948865",
-      "source_name": "EOS Watermill Sauna 12.0 kW",
-      "woo_product_id": 249916,
-      "woo_slug": "eos-948865",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948866",
-      "source_name": "EOS Watermill Sauna 15.0 kW",
-      "woo_product_id": 249917,
-      "woo_slug": "eos-948866",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948867",
-      "source_name": "EOS Watermill Sauna 18.0 kW",
-      "woo_product_id": 249918,
-      "woo_slug": "eos-948867",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948890",
-      "source_name": "EOS Cubo 2 series 7.5 kW Styling 1",
-      "woo_product_id": 249724,
-      "woo_slug": "eos-948890",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948891",
-      "source_name": "EOS Cubo 2 series 9.0 kW Styling 1",
-      "woo_product_id": 249725,
-      "woo_slug": "eos-948891",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948892",
-      "source_name": "EOS Cubo 2 series 10.0 kW Styling 1",
-      "woo_product_id": 249726,
-      "woo_slug": "eos-948892",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948893",
-      "source_name": "EOS Cubo 2 series 12.0 kW Styling 1",
-      "woo_product_id": 249727,
-      "woo_slug": "eos-948893",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948894",
-      "source_name": "EOS Cubo 2 series 7.5 kW Styling 1 black",
-      "woo_product_id": 249732,
-      "woo_slug": "eos-948894",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948895",
-      "source_name": "EOS Cubo 2 series 9.0 kW Styling 1 black",
-      "woo_product_id": 249733,
-      "woo_slug": "eos-948895",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948896",
-      "source_name": "EOS Cubo 2 series 10.0 kW Styling 1 black",
-      "woo_product_id": 249734,
-      "woo_slug": "eos-948896",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948897",
-      "source_name": "EOS Cubo 2 series 12.0 kW Styling 1 black",
-      "woo_product_id": 249735,
-      "woo_slug": "eos-948897",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948898",
-      "source_name": "EOS Cubo 2 series 7.5 kW Styling 2",
-      "woo_product_id": 249728,
-      "woo_slug": "eos-948898",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948899",
-      "source_name": "EOS Cubo 2 series 9.0 kW Styling 2",
-      "woo_product_id": 249729,
-      "woo_slug": "eos-948899",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948900",
-      "source_name": "EOS Cubo 2 series 10.0 kW Styling 2",
-      "woo_product_id": 249730,
-      "woo_slug": "eos-948900",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948901",
-      "source_name": "EOS Cubo 2 series 12.0 kW Styling 2",
-      "woo_product_id": 249731,
-      "woo_slug": "eos-948901",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948902",
-      "source_name": "EOS Cubo 2 series 7.5 kW Styling 2 black",
-      "woo_product_id": 249736,
-      "woo_slug": "eos-948902",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948903",
-      "source_name": "EOS Cubo 2 series 9.0 kW Styling 2 black",
-      "woo_product_id": 249737,
-      "woo_slug": "eos-948903",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948904",
-      "source_name": "EOS Cubo 2 series 10.0 kW Styling 2 black",
-      "woo_product_id": 249738,
-      "woo_slug": "eos-948904",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948905",
-      "source_name": "EOS Cubo 2 series 12.0 kW Styling 2 black",
-      "woo_product_id": 249739,
-      "woo_slug": "eos-948905",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948906",
-      "source_name": "EOS P1 series 12.0 kW",
-      "woo_product_id": 249651,
-      "woo_slug": "eos-948906",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948907",
-      "source_name": "EOS P1 series 15.0 kW",
-      "woo_product_id": 249652,
-      "woo_slug": "eos-948907",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948913",
-      "source_name": "EOS P1 series 12.0 kW",
-      "woo_product_id": 249653,
-      "woo_slug": "eos-948913",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948914",
-      "source_name": "EOS P1 series 15.0 kW",
-      "woo_product_id": 249654,
-      "woo_slug": "eos-948914",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948919",
-      "source_name": "EOS Cubo 2 series 7.5 kW Styling 1",
-      "woo_product_id": 249740,
-      "woo_slug": "eos-948919",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948920",
-      "source_name": "EOS Cubo 2 series 9.0 kW Styling 1",
-      "woo_product_id": 249741,
-      "woo_slug": "eos-948920",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948921",
-      "source_name": "EOS Cubo 2 series 10.0 kW Styling 1",
-      "woo_product_id": 249742,
-      "woo_slug": "eos-948921",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948922",
-      "source_name": "EOS Cubo 2 series 12.0 kW Styling 1",
-      "woo_product_id": 249743,
-      "woo_slug": "eos-948922",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948923",
-      "source_name": "EOS Cubo 2 series 7.5 kW Styling 1 black",
-      "woo_product_id": 249748,
-      "woo_slug": "eos-948923",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948924",
-      "source_name": "EOS Cubo 2 series 9.0 kW Styling 1 black",
-      "woo_product_id": 249749,
-      "woo_slug": "eos-948924",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948925",
-      "source_name": "EOS Cubo 2 series 10.0 kW Styling 1 black",
-      "woo_product_id": 249750,
-      "woo_slug": "eos-948925",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948926",
-      "source_name": "EOS Cubo 2 series 12.0 kW Styling 1 black",
-      "woo_product_id": 249751,
-      "woo_slug": "eos-948926",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948927",
-      "source_name": "EOS Cubo 2 series 7.5 kW Styling 2",
-      "woo_product_id": 249744,
-      "woo_slug": "eos-948927",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948928",
-      "source_name": "EOS Cubo 2 series 9.0 kW Styling 2",
-      "woo_product_id": 249745,
-      "woo_slug": "eos-948928",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948929",
-      "source_name": "EOS Cubo 2 series 10.0 kW Styling 2",
-      "woo_product_id": 249746,
-      "woo_slug": "eos-948929",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948930",
-      "source_name": "EOS Cubo 2 series 12.0 kW Styling 2",
-      "woo_product_id": 249747,
-      "woo_slug": "eos-948930",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948931",
-      "source_name": "EOS Cubo 2 series 7.5 kW Styling 2 black",
-      "woo_product_id": 249752,
-      "woo_slug": "eos-948931",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948932",
-      "source_name": "EOS Cubo 2 series 9.0 kW Styling 2 black",
-      "woo_product_id": 249753,
-      "woo_slug": "eos-948932",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948933",
-      "source_name": "EOS Cubo 2 series 10.0 kW Styling 2 black",
-      "woo_product_id": 249754,
-      "woo_slug": "eos-948933",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948934",
-      "source_name": "EOS Cubo 2 series 12.0 kW Styling 2 black",
-      "woo_product_id": 249755,
-      "woo_slug": "eos-948934",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948935",
-      "source_name": "EOS Cubo 2 series 7.5 kW Styling 1",
-      "woo_product_id": 249756,
-      "woo_slug": "eos-948935",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948936",
-      "source_name": "EOS Cubo 2 series 9.0 kW Styling 1",
-      "woo_product_id": 249757,
-      "woo_slug": "eos-948936",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948937",
-      "source_name": "EOS Cubo 2 series 10.0 kW Styling 1",
-      "woo_product_id": 249758,
-      "woo_slug": "eos-948937",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948938",
-      "source_name": "EOS Cubo 2 series 12.0 kW Styling 1",
-      "woo_product_id": 249759,
-      "woo_slug": "eos-948938",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948939",
-      "source_name": "EOS Cubo 2 series 7.5 kW Styling 1 black",
-      "woo_product_id": 249764,
-      "woo_slug": "eos-948939",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948940",
-      "source_name": "EOS Cubo 2 series 9.0 kW Styling 1 black",
-      "woo_product_id": 249765,
-      "woo_slug": "eos-948940",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948941",
-      "source_name": "EOS Cubo 2 series 10.0 kW Styling 1 black",
-      "woo_product_id": 249766,
-      "woo_slug": "eos-948941",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948942",
-      "source_name": "EOS Cubo 2 series 12.0 kW Styling 1 black",
-      "woo_product_id": 249767,
-      "woo_slug": "eos-948942",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948943",
-      "source_name": "EOS Cubo 2 series 7.5 kW Styling 2",
-      "woo_product_id": 249760,
-      "woo_slug": "eos-948943",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948944",
-      "source_name": "EOS Cubo 2 series 9.0 kW Styling 2",
-      "woo_product_id": 249761,
-      "woo_slug": "eos-948944",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948945",
-      "source_name": "EOS Cubo 2 series 10.0 kW Styling 2",
-      "woo_product_id": 249762,
-      "woo_slug": "eos-948945",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948946",
-      "source_name": "EOS Cubo 2 series 12.0 kW Styling 2",
-      "woo_product_id": 249763,
-      "woo_slug": "eos-948946",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948947",
-      "source_name": "EOS Cubo 2 series 7.5 kW Styling 2 black",
-      "woo_product_id": 249768,
-      "woo_slug": "eos-948947",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948948",
-      "source_name": "EOS Cubo 2 series 9.0 kW Styling 2 black",
-      "woo_product_id": 249769,
-      "woo_slug": "eos-948948",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948949",
-      "source_name": "EOS Cubo 2 series 10.0 kW Styling 2 black",
-      "woo_product_id": 249770,
-      "woo_slug": "eos-948949",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "948950",
-      "source_name": "EOS Cubo 2 series 12.0 kW Styling 2 black",
-      "woo_product_id": 249771,
-      "woo_slug": "eos-948950",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949005",
-      "source_name": "EOS Pipe series 3.0 kW anthracite",
-      "woo_product_id": 249785,
-      "woo_slug": "eos-949005",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949006",
-      "source_name": "EOS Pipe series 3.0 kW black",
-      "woo_product_id": 249787,
-      "woo_slug": "eos-949006",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949007",
-      "source_name": "EOS Pipe series 3.0 kW red-brown",
-      "woo_product_id": 249789,
-      "woo_slug": "eos-949007",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949008",
-      "source_name": "EOS Pipe series 3.5 kW anthracite",
-      "woo_product_id": 249786,
-      "woo_slug": "eos-949008",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949009",
-      "source_name": "EOS Pipe series 3.5 kW black",
-      "woo_product_id": 249788,
-      "woo_slug": "eos-949009",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949010",
-      "source_name": "EOS Pipe series 3.5 kW red-brown",
-      "woo_product_id": 249790,
-      "woo_slug": "eos-949010",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949011",
-      "source_name": "EOS Pipe series 3.0 kW anthracite",
-      "woo_product_id": 249779,
-      "woo_slug": "eos-949011",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949012",
-      "source_name": "EOS Pipe series 3.0 kW black",
-      "woo_product_id": 249781,
-      "woo_slug": "eos-949012",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949013",
-      "source_name": "EOS Pipe series 3.0 kW red-brown",
-      "woo_product_id": 249783,
-      "woo_slug": "eos-949013",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949014",
-      "source_name": "EOS Pipe series 3.5 kW anthracite",
-      "woo_product_id": 249780,
-      "woo_slug": "eos-949014",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949015",
-      "source_name": "EOS Pipe series 3.5 kW black",
-      "woo_product_id": 249782,
-      "woo_slug": "eos-949015",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949016",
-      "source_name": "EOS Pipe series 3.5 kW red-brown",
-      "woo_product_id": 249784,
-      "woo_slug": "eos-949016",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949316",
-      "source_name": "EOS Thermat series 4.5 kW",
-      "woo_product_id": 249617,
-      "woo_slug": "eos-949316",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949317",
-      "source_name": "EOS Thermat series 6.0 kW",
-      "woo_product_id": 249618,
-      "woo_slug": "eos-949317",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949318",
-      "source_name": "EOS Thermat series 7.5 kW",
-      "woo_product_id": 249619,
-      "woo_slug": "eos-949318",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949319",
-      "source_name": "EOS Thermat series 9.0 kW",
-      "woo_product_id": 249620,
-      "woo_slug": "eos-949319",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949320",
-      "source_name": "EOS Thermat series 6.0 kW",
-      "woo_product_id": 249625,
-      "woo_slug": "eos-949320",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949321",
-      "source_name": "EOS Thermat series 7.5 kW",
-      "woo_product_id": 249626,
-      "woo_slug": "eos-949321",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949322",
-      "source_name": "EOS Thermat series 9.0 kW",
-      "woo_product_id": 249627,
-      "woo_slug": "eos-949322",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949323A",
-      "source_name": "EOS ThermoTec series 6.0 kW",
-      "woo_product_id": 249679,
-      "woo_slug": "eos-949323a",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949324A",
-      "source_name": "EOS ThermoTec series 7.5 kW",
-      "woo_product_id": 249680,
-      "woo_slug": "eos-949324a",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949325A",
-      "source_name": "EOS ThermoTec series 9.0 kW",
-      "woo_product_id": 249681,
-      "woo_slug": "eos-949325a",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949367",
-      "source_name": "EOS Watermill Sauna 9.0 kW",
-      "woo_product_id": 249910,
-      "woo_slug": "eos-949367",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949368",
-      "source_name": "EOS Watermill Sauna 12.0 kW",
-      "woo_product_id": 249911,
-      "woo_slug": "eos-949368",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949369",
-      "source_name": "EOS Watermill Sauna 15.0 kW",
-      "woo_product_id": 249912,
-      "woo_slug": "eos-949369",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949402",
-      "source_name": "EOS Mythos series 2.0 kW",
-      "woo_product_id": 249861,
-      "woo_slug": "eos-949402",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949403",
-      "source_name": "EOS Mythos series 2.0 kW",
-      "woo_product_id": 249862,
-      "woo_slug": "eos-949403",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949404",
-      "source_name": "EOS Mythos series 3.0 kW",
-      "woo_product_id": 249858,
-      "woo_slug": "eos-949404",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949405",
-      "source_name": "EOS Mythos series 3.0 kW",
-      "woo_product_id": 249859,
-      "woo_slug": "eos-949405",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949406",
-      "source_name": "EOS Mythos series 12.0 kW",
-      "woo_product_id": 249832,
-      "woo_slug": "eos-949406",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949407",
-      "source_name": "EOS Mythos series 15.0 kW",
-      "woo_product_id": 249833,
-      "woo_slug": "eos-949407",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949408",
-      "source_name": "EOS Mythos series 7.5 kW",
-      "woo_product_id": 249822,
-      "woo_slug": "eos-949408",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949409",
-      "source_name": "EOS Mythos series 9.0 kW",
-      "woo_product_id": 249823,
-      "woo_slug": "eos-949409",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949412",
-      "source_name": "EOS Mythos series 4.0 kW",
-      "woo_product_id": 249863,
-      "woo_slug": "eos-949412",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949415",
-      "source_name": "EOS Mythos series 6.0 kW",
-      "woo_product_id": 249860,
-      "woo_slug": "eos-949415",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949424",
-      "source_name": "EOS Morpheus Pro 6.0 kW",
-      "woo_product_id": 249882,
-      "woo_slug": "eos-949424",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949425",
-      "source_name": "EOS Morpheus Pro 8.0 kW",
-      "woo_product_id": 249883,
-      "woo_slug": "eos-949425",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949426",
-      "source_name": "EOS Morpheus Pro 10.0 kW",
-      "woo_product_id": 249884,
-      "woo_slug": "eos-949426",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "949427",
-      "source_name": "EOS Morpheus Pro 12.0 kW",
-      "woo_product_id": 249885,
-      "woo_slug": "eos-949427",
-      "reasons": [
-        "missing_image"
-      ]
     },
     {
       "sku": "949549",
       "source_name": "EOS Morpheus Pro 6.0 kW",
       "woo_product_id": 249886,
-      "woo_slug": "eos-949549",
-      "reasons": [
-        "missing_image"
-      ]
+      "woo_slug": "eos-949549"
     },
     {
       "sku": "949550",
       "source_name": "EOS Morpheus Pro 8.0 kW",
       "woo_product_id": 249887,
-      "woo_slug": "eos-949550",
-      "reasons": [
-        "missing_image"
-      ]
+      "woo_slug": "eos-949550"
     },
     {
       "sku": "949551",
       "source_name": "EOS Morpheus Pro 10.0 kW",
       "woo_product_id": 249888,
-      "woo_slug": "eos-949551",
-      "reasons": [
-        "missing_image"
-      ]
+      "woo_slug": "eos-949551"
     },
     {
       "sku": "949552",
       "source_name": "EOS Morpheus Pro 12.0 kW",
       "woo_product_id": 249889,
-      "woo_slug": "eos-949552",
-      "reasons": [
-        "missing_image"
-      ]
+      "woo_slug": "eos-949552"
     },
     {
       "sku": "949589",
       "source_name": "EOS Mythos series 12.0 kW",
       "woo_product_id": 249830,
-      "woo_slug": "eos-949589",
-      "reasons": [
-        "missing_image"
-      ]
+      "woo_slug": "eos-949589"
     },
     {
       "sku": "949590",
       "source_name": "EOS Mythos series 15.0 kW",
       "woo_product_id": 249831,
-      "woo_slug": "eos-949590",
-      "reasons": [
-        "missing_image"
-      ]
+      "woo_slug": "eos-949590"
     },
     {
       "sku": "949591",
       "source_name": "EOS Mythos series 7.5 kW",
       "woo_product_id": 249820,
-      "woo_slug": "eos-949591",
-      "reasons": [
-        "missing_image"
-      ]
+      "woo_slug": "eos-949591"
     },
     {
       "sku": "949592",
       "source_name": "EOS Mythos series 9.0 kW",
       "woo_product_id": 249821,
-      "woo_slug": "eos-949592",
-      "reasons": [
-        "missing_image"
-      ]
+      "woo_slug": "eos-949592"
     },
     {
       "sku": "949593",
       "source_name": "EOS Mythos series 2.0 kW",
       "woo_product_id": 249855,
-      "woo_slug": "eos-949593",
-      "reasons": [
-        "missing_image"
-      ]
+      "woo_slug": "eos-949593"
     },
     {
       "sku": "949594",
       "source_name": "EOS Mythos series 2.0 kW",
       "woo_product_id": 249856,
-      "woo_slug": "eos-949594",
-      "reasons": [
-        "missing_image"
-      ]
+      "woo_slug": "eos-949594"
     },
     {
       "sku": "949595",
       "source_name": "EOS Mythos series 3.0 kW",
       "woo_product_id": 249852,
-      "woo_slug": "eos-949595",
-      "reasons": [
-        "missing_image"
-      ]
+      "woo_slug": "eos-949595"
     },
     {
       "sku": "949596",
       "source_name": "EOS Mythos series 3.0 kW",
       "woo_product_id": 249853,
-      "woo_slug": "eos-949596",
-      "reasons": [
-        "missing_image"
-      ]
+      "woo_slug": "eos-949596"
     },
     {
       "sku": "949599",
       "source_name": "EOS Mythos series 4.0 kW",
       "woo_product_id": 249857,
-      "woo_slug": "eos-949599",
-      "reasons": [
-        "missing_image"
-      ]
+      "woo_slug": "eos-949599"
     },
     {
       "sku": "949602",
       "source_name": "EOS Mythos series 6.0 kW",
       "woo_product_id": 249854,
-      "woo_slug": "eos-949602",
-      "reasons": [
-        "missing_image"
-      ]
+      "woo_slug": "eos-949602"
     }
   ],
+  "matched_but_broken": [],
   "source_only": [],
   "woo_only": [],
   "source_duplicates": [],
