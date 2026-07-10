@@ -64,9 +64,21 @@ function hws_normalize_text( string $value ): string {
 	return trim( (string) $value );
 }
 
+function hws_translit_cyr( string $value ): string {
+	$map = [
+		'а' => 'a', 'б' => 'b', 'в' => 'v', 'г' => 'g', 'д' => 'd', 'е' => 'e', 'ё' => 'e',
+		'ж' => 'zh', 'з' => 'z', 'и' => 'i', 'й' => 'y', 'к' => 'k', 'л' => 'l', 'м' => 'm',
+		'н' => 'n', 'о' => 'o', 'п' => 'p', 'р' => 'r', 'с' => 's', 'т' => 't', 'у' => 'u',
+		'ф' => 'f', 'х' => 'h', 'ц' => 'c', 'ч' => 'ch', 'ш' => 'sh', 'щ' => 'sch', 'ъ' => '',
+		'ы' => 'y', 'ь' => '', 'э' => 'e', 'ю' => 'yu', 'я' => 'ya',
+	];
+	$value = mb_strtolower( $value, 'UTF-8' );
+	return strtr( $value, $map );
+}
+
 function hws_slugify_meta( string $value ): string {
 	$value = remove_accents( wp_strip_all_tags( $value ) );
-	$value = str_replace( 'ё', 'е', $value );
+	$value = hws_translit_cyr( $value );
 	return sanitize_title( $value );
 }
 
