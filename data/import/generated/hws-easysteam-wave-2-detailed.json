@@ -59,7 +59,8 @@
         "pa_series": "Ялта",
         "pa_equipment-type": "bath-sauna-stove",
         "pa_room-type": "bath-and-sauna",
-        "pa_usage-class": "private"
+        "pa_usage-class": "Частное использование",
+        "pa_fuel-type": "Дрова"
       },
       "docCandidates": [],
       "cards": [
@@ -480,7 +481,8 @@
         "pa_series": "Ялта",
         "pa_equipment-type": "bath-sauna-stove",
         "pa_room-type": "bath-and-sauna",
-        "pa_usage-class": "private"
+        "pa_usage-class": "Частное использование",
+        "pa_fuel-type": "Дрова"
       },
       "docCandidates": [],
       "cards": [
@@ -909,7 +911,8 @@
         "pa_series": "Ялта",
         "pa_equipment-type": "bath-sauna-stove",
         "pa_room-type": "bath-and-sauna",
-        "pa_usage-class": "private"
+        "pa_usage-class": "Частное использование",
+        "pa_fuel-type": "Дрова"
       },
       "docCandidates": [],
       "cards": [
@@ -1342,7 +1345,8 @@
         "pa_series": "Ялта",
         "pa_equipment-type": "bath-sauna-stove",
         "pa_room-type": "bath-and-sauna",
-        "pa_usage-class": "private"
+        "pa_usage-class": "Частное использование",
+        "pa_fuel-type": "Дрова"
       },
       "docCandidates": [],
       "cards": [

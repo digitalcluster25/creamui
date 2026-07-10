@@ -74,7 +74,8 @@
         "pa_series": "Анапа",
         "pa_equipment-type": "wood-bath-stove",
         "pa_room-type": "russian-bath",
-        "pa_usage-class": "private"
+        "pa_usage-class": "Частное использование",
+        "pa_fuel-type": "Дрова"
       },
       "sourceFieldRules": {
         "title": "sku_page_h1",
@@ -109,7 +110,8 @@
         "pa_series": "Сочи",
         "pa_equipment-type": "wood-bath-stove",
         "pa_room-type": "russian-bath",
-        "pa_usage-class": "private"
+        "pa_usage-class": "Частное использование",
+        "pa_fuel-type": "Дрова"
       },
       "sourceFieldRules": {
         "title": "sku_page_h1",
@@ -140,7 +142,8 @@
         "pa_series": "Геленджик",
         "pa_equipment-type": "wood-bath-stove",
         "pa_room-type": "russian-bath",
-        "pa_usage-class": "private"
+        "pa_usage-class": "Частное использование",
+        "pa_fuel-type": "Дрова"
       },
       "sourceFieldRules": {
         "title": "sku_page_h1",
@@ -171,7 +174,8 @@
         "pa_series": "Южная",
         "pa_equipment-type": "wood-bath-stove",
         "pa_room-type": "russian-bath",
-        "pa_usage-class": "private"
+        "pa_usage-class": "Частное использование",
+        "pa_fuel-type": "Дрова"
       },
       "sourceFieldRules": {
         "title": "sku_page_h1",
@@ -205,7 +209,8 @@
         "pa_series": "VIVARTE",
         "pa_equipment-type": "electric-bath-stove",
         "pa_room-type": "russian-bath",
-        "pa_usage-class": "private"
+        "pa_usage-class": "Частное использование",
+        "pa_fuel-type": "Электричество"
       },
       "sourceFieldRules": {
         "title": "sku_page_h1",

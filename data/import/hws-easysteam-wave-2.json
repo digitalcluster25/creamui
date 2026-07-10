@@ -64,7 +64,8 @@
         "pa_series": "Ялта",
         "pa_equipment-type": "bath-sauna-stove",
         "pa_room-type": "bath-and-sauna",
-        "pa_usage-class": "private"
+        "pa_usage-class": "Частное использование",
+        "pa_fuel-type": "Дрова"
       },
       "sourceFieldRules": {
         "title": "sku_page_h1",
@@ -95,7 +96,8 @@
         "pa_series": "Ялта",
         "pa_equipment-type": "bath-sauna-stove",
         "pa_room-type": "bath-and-sauna",
-        "pa_usage-class": "private"
+        "pa_usage-class": "Частное использование",
+        "pa_fuel-type": "Дрова"
       },
       "sourceFieldRules": {
         "title": "sku_page_h1",
@@ -126,7 +128,8 @@
         "pa_series": "Ялта",
         "pa_equipment-type": "bath-sauna-stove",
         "pa_room-type": "bath-and-sauna",
-        "pa_usage-class": "private"
+        "pa_usage-class": "Частное использование",
+        "pa_fuel-type": "Дрова"
       },
       "sourceFieldRules": {
         "title": "sku_page_h1",
@@ -157,7 +160,8 @@
         "pa_series": "Ялта",
         "pa_equipment-type": "bath-sauna-stove",
         "pa_room-type": "bath-and-sauna",
-        "pa_usage-class": "private"
+        "pa_usage-class": "Частное использование",
+        "pa_fuel-type": "Дрова"
       },
       "sourceFieldRules": {
         "title": "sku_page_h1",

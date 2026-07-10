@@ -88,7 +88,8 @@
         "pa_series": "Анапа К",
         "pa_equipment-type": "commercial-bath-stove",
         "pa_room-type": "commercial-bath",
-        "pa_usage-class": "commercial"
+        "pa_usage-class": "Коммерческое использование",
+        "pa_fuel-type": "Дрова"
       },
       "sourceFieldRules": {
         "title": "sku_page_h1",
@@ -119,7 +120,8 @@
         "pa_series": "Сочи К",
         "pa_equipment-type": "commercial-bath-stove",
         "pa_room-type": "commercial-bath",
-        "pa_usage-class": "commercial"
+        "pa_usage-class": "Коммерческое использование",
+        "pa_fuel-type": "Дрова"
       },
       "sourceFieldRules": {
         "title": "sku_page_h1",
@@ -150,7 +152,8 @@
         "pa_series": "Геленджик К",
         "pa_equipment-type": "commercial-bath-stove",
         "pa_room-type": "commercial-bath",
-        "pa_usage-class": "commercial"
+        "pa_usage-class": "Коммерческое использование",
+        "pa_fuel-type": "Дрова"
       },
       "sourceFieldRules": {
         "title": "sku_page_h1",
@@ -181,7 +184,8 @@
         "pa_series": "Домна",
         "pa_equipment-type": "commercial-bath-stove",
         "pa_room-type": "commercial-bath",
-        "pa_usage-class": "commercial"
+        "pa_usage-class": "Коммерческое использование",
+        "pa_fuel-type": "Дрова"
       },
       "sourceFieldRules": {
         "title": "sku_page_h1",
@@ -212,7 +216,8 @@
         "pa_series": "Домна",
         "pa_equipment-type": "commercial-bath-stove",
         "pa_room-type": "commercial-bath",
-        "pa_usage-class": "commercial"
+        "pa_usage-class": "Коммерческое использование",
+        "pa_fuel-type": "Дрова"
       },
       "sourceFieldRules": {
         "title": "sku_page_h1",
@@ -243,7 +248,8 @@
         "pa_series": "Домна",
         "pa_equipment-type": "commercial-bath-stove",
         "pa_room-type": "commercial-bath",
-        "pa_usage-class": "commercial"
+        "pa_usage-class": "Коммерческое использование",
+        "pa_fuel-type": "Дрова"
       },
       "sourceFieldRules": {
         "title": "sku_page_h1",
@@ -276,7 +282,8 @@
         "pa_series": "Домна ТВИН",
         "pa_equipment-type": "commercial-bath-stove",
         "pa_room-type": "commercial-bath",
-        "pa_usage-class": "commercial"
+        "pa_usage-class": "Коммерческое использование",
+        "pa_fuel-type": "Дрова"
       },
       "sourceFieldRules": {
         "title": "sku_page_h1",
@@ -309,7 +316,8 @@
         "pa_series": "Домна ТВИН",
         "pa_equipment-type": "commercial-bath-stove",
         "pa_room-type": "commercial-bath",
-        "pa_usage-class": "commercial"
+        "pa_usage-class": "Коммерческое использование",
+        "pa_fuel-type": "Дрова"
       },
       "sourceFieldRules": {
         "title": "sku_page_h1",
@@ -340,7 +348,8 @@
         "pa_series": "Ялта К",
         "pa_equipment-type": "commercial-bath-sauna-stove",
         "pa_room-type": "commercial-bath-and-sauna",
-        "pa_usage-class": "commercial"
+        "pa_usage-class": "Коммерческое использование",
+        "pa_fuel-type": "Дрова"
       },
       "sourceFieldRules": {
         "title": "sku_page_h1",
@@ -371,7 +380,8 @@
         "pa_series": "Ялта К",
         "pa_equipment-type": "commercial-bath-sauna-stove",
         "pa_room-type": "commercial-bath-and-sauna",
-        "pa_usage-class": "commercial"
+        "pa_usage-class": "Коммерческое использование",
+        "pa_fuel-type": "Дрова"
       },
       "sourceFieldRules": {
         "title": "sku_page_h1",
@@ -402,7 +412,8 @@
         "pa_series": "Ялта К",
         "pa_equipment-type": "commercial-bath-sauna-stove",
         "pa_room-type": "commercial-bath-and-sauna",
-        "pa_usage-class": "commercial"
+        "pa_usage-class": "Коммерческое использование",
+        "pa_fuel-type": "Дрова"
       },
       "sourceFieldRules": {
         "title": "sku_page_h1",
@@ -433,7 +444,8 @@
         "pa_series": "Ялта К",
         "pa_equipment-type": "commercial-bath-sauna-stove",
         "pa_room-type": "commercial-bath-and-sauna",
-        "pa_usage-class": "commercial"
+        "pa_usage-class": "Коммерческое использование",
+        "pa_fuel-type": "Дрова"
       },
       "sourceFieldRules": {
         "title": "sku_page_h1",
@@ -466,7 +478,8 @@
         "pa_series": "Ялта К",
         "pa_equipment-type": "commercial-bath-sauna-stove",
         "pa_room-type": "commercial-bath-and-sauna",
-        "pa_usage-class": "commercial"
+        "pa_usage-class": "Коммерческое использование",
+        "pa_fuel-type": "Дрова"
       },
       "sourceFieldRules": {
         "title": "sku_page_h1",
@@ -499,7 +512,8 @@
         "pa_series": "Ялта К",
         "pa_equipment-type": "commercial-bath-sauna-stove",
         "pa_room-type": "commercial-bath-and-sauna",
-        "pa_usage-class": "commercial"
+        "pa_usage-class": "Коммерческое использование",
+        "pa_fuel-type": "Дрова"
       },
       "sourceFieldRules": {
         "title": "sku_page_h1",
@@ -532,7 +546,8 @@
         "pa_series": "Ялта К",
         "pa_equipment-type": "commercial-bath-sauna-stove",
         "pa_room-type": "commercial-bath-and-sauna",
-        "pa_usage-class": "commercial"
+        "pa_usage-class": "Коммерческое использование",
+        "pa_fuel-type": "Дрова"
       },
       "sourceFieldRules": {
         "title": "sku_page_h1",
@@ -565,7 +580,8 @@
         "pa_series": "Ялта К",
         "pa_equipment-type": "commercial-bath-sauna-stove",
         "pa_room-type": "commercial-bath-and-sauna",
-        "pa_usage-class": "commercial"
+        "pa_usage-class": "Коммерческое использование",
+        "pa_fuel-type": "Дрова"
       },
       "sourceFieldRules": {
         "title": "sku_page_h1",

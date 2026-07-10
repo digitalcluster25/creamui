@@ -55,7 +55,8 @@
         "pa_series": "Анапа",
         "pa_equipment-type": "wood-bath-stove",
         "pa_room-type": "russian-bath",
-        "pa_usage-class": "private"
+        "pa_usage-class": "Частное использование",
+        "pa_fuel-type": "Дрова"
       },
       "docCandidates": [
         "https://easysteam.ru/files/shares/Documents/Passports/Anapa%2CSochi_100523_1.pdf"
@@ -3775,7 +3776,8 @@
         "pa_series": "Сочи",
         "pa_equipment-type": "wood-bath-stove",
         "pa_room-type": "russian-bath",
-        "pa_usage-class": "private"
+        "pa_usage-class": "Частное использование",
+        "pa_fuel-type": "Дрова"
       },
       "docCandidates": [
         "https://easysteam.ru/files/shares/Documents/Passports/Anapa%2CSochi_100523_1.pdf"
@@ -7039,7 +7041,8 @@
         "pa_series": "Геленджик",
         "pa_equipment-type": "wood-bath-stove",
         "pa_room-type": "russian-bath",
-        "pa_usage-class": "private"
+        "pa_usage-class": "Частное использование",
+        "pa_fuel-type": "Дрова"
       },
       "docCandidates": [],
       "cards": [
@@ -11115,7 +11118,8 @@
         "pa_series": "Южная",
         "pa_equipment-type": "wood-bath-stove",
         "pa_room-type": "russian-bath",
-        "pa_usage-class": "private"
+        "pa_usage-class": "Частное использование",
+        "pa_fuel-type": "Дрова"
       },
       "docCandidates": [],
       "cards": [
@@ -13954,7 +13958,8 @@
         "pa_series": "VIVARTE",
         "pa_equipment-type": "electric-bath-stove",
         "pa_room-type": "russian-bath",
-        "pa_usage-class": "private"
+        "pa_usage-class": "Частное использование",
+        "pa_fuel-type": "Электричество"
       },
       "docCandidates": [],
       "cards": [
