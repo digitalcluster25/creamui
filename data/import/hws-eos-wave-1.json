@@ -1,0 +1,137 @@
+{
+  "supplier": "EOS",
+  "wave": "wave-1",
+  "updated": "2026-07-10",
+  "sourceRoot": "https://www.eos-sauna.com",
+  "brand": {
+    "name": "EOS",
+    "slug": "eos"
+  },
+  "parserContract": {
+    "discovery": "range_listing_page",
+    "productSource": "series_page_multi_variant",
+    "variants": "contenttable_power_itemno",
+    "specs": "contenttable_th_td",
+    "media": "head_picture_and_ce_processed",
+    "documents": "pdf_links"
+  },
+  "ranges": [
+    {
+      "rangeName": "Standard",
+      "target": {
+        "primaryCategoryPath": "sauna-stoves/electric-sauna-stoves",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "Standard",
+        "pa_equipment-type": "bath-sauna-stove",
+        "pa_room-type": "sauna",
+        "pa_fuel-type": "Электричество",
+        "pa_usage-class": "Частное использование"
+      },
+      "series": [
+        {"source_url": "https://www.eos-sauna.com/en/products/standard/sauna-heaters/eos-mini-series"},
+        {"source_url": "https://www.eos-sauna.com/en/products/standard/sauna-heaters/eos-m3"},
+        {"source_url": "https://www.eos-sauna.com/en/products/standard/sauna-heaters/eos-thermat-series"},
+        {"source_url": "https://www.eos-sauna.com/en/products/standard/sauna-heaters/eos-moment-series"},
+        {"source_url": "https://www.eos-sauna.com/en/products/standard/sauna-heaters/eos-edge-series"},
+        {"source_url": "https://www.eos-sauna.com/en/products/standard/sauna-heaters/eos-euromax-series"},
+        {"source_url": "https://www.eos-sauna.com/en/products/standard/sauna-heaters/eos-p1-series"}
+      ]
+    },
+    {
+      "rangeName": "Classic",
+      "target": {
+        "primaryCategoryPath": "sauna-stoves/electric-sauna-stoves",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "Classic",
+        "pa_equipment-type": "bath-sauna-stove",
+        "pa_room-type": "sauna",
+        "pa_fuel-type": "Электричество",
+        "pa_usage-class": "Частное использование"
+      },
+      "series": [
+        {"source_url": "https://www.eos-sauna.com/en/products/classic/sauna-heaters/eos-picco-series"},
+        {"source_url": "https://www.eos-sauna.com/en/products/classic/sauna-heaters/eos-filius-series"},
+        {"source_url": "https://www.eos-sauna.com/en/products/classic/sauna-heaters/eos-thermotec-series"},
+        {"source_url": "https://www.eos-sauna.com/en/products/classic/sauna-heaters/eos-gracil-series"},
+        {"source_url": "https://www.eos-sauna.com/en/products/classic/sauna-heaters/eos-euro"},
+        {"source_url": "https://www.eos-sauna.com/en/products/classic/sauna-heaters/eos-herkules-s25-series"},
+        {"source_url": "https://www.eos-sauna.com/en/products/classic/sauna-heaters/eos-finnrock"},
+        {"source_url": "https://www.eos-sauna.com/en/products/classic/sauna-heaters/eos-cubo-2-series"},
+        {"source_url": "https://www.eos-sauna.com/en/products/classic/sauna-heaters/eos-p1-plus"},
+        {"source_url": "https://www.eos-sauna.com/en/products/classic/sauna-heaters/eos-saunadome-ii"}
+      ]
+    },
+    {
+      "rangeName": "Design",
+      "target": {
+        "primaryCategoryPath": "sauna-stoves/electric-sauna-stoves",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "Design",
+        "pa_equipment-type": "bath-sauna-stove",
+        "pa_room-type": "sauna",
+        "pa_fuel-type": "Электричество",
+        "pa_usage-class": "Частное использование"
+      },
+      "series": [
+        {"source_url": "https://www.eos-sauna.com/en/products/design/sauna-heaters/eos-pipe-series"},
+        {"source_url": "https://www.eos-sauna.com/en/products/design/sauna-heaters/eos-majesty"},
+        {"source_url": "https://www.eos-sauna.com/en/products/design/sauna-heaters/eos-structure"},
+        {"source_url": "https://www.eos-sauna.com/en/products/design/sauna-heaters/eos-future/vision-series"},
+        {"source_url": "https://www.eos-sauna.com/en/products/design/sauna-heaters/eos-mythos-series"},
+        {"source_url": "https://www.eos-sauna.com/en/products/design/sauna-heaters/eos-zeus-s-series"}
+      ]
+    },
+    {
+      "rangeName": "Commercial Small",
+      "target": {
+        "primaryCategoryPath": "commercial/commercial-sauna-heaters",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "Commercial",
+        "pa_equipment-type": "bath-sauna-stove",
+        "pa_room-type": "sauna",
+        "pa_fuel-type": "Электричество",
+        "pa_usage-class": "Коммерческое использование"
+      },
+      "series": [
+        {"source_url": "https://www.eos-sauna.com/en/products/commercial-small-scale-projects/sauna-heaters/eos-morpheus-pro"},
+        {"source_url": "https://www.eos-sauna.com/en/products/commercial-small-scale-projects/sauna-heaters/eos-herkules-s60-series"},
+        {"source_url": "https://www.eos-sauna.com/en/products/commercial-small-scale-projects/sauna-heaters/eos-blackrock-series"},
+        {"source_url": "https://www.eos-sauna.com/en/products/commercial-small-scale-projects/sauna-heaters/eos-watermill-sauna"},
+        {"source_url": "https://www.eos-sauna.com/en/products/commercial-small-scale-projects/sauna-heaters/eos-invisio-series"},
+        {"source_url": "https://www.eos-sauna.com/en/products/commercial-small-scale-projects/sauna-heaters/eos-46u-series"}
+      ]
+    },
+    {
+      "rangeName": "Commercial Large",
+      "target": {
+        "primaryCategoryPath": "commercial/commercial-sauna-heaters",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "Commercial",
+        "pa_equipment-type": "bath-sauna-stove",
+        "pa_room-type": "sauna",
+        "pa_fuel-type": "Электричество",
+        "pa_usage-class": "Коммерческое использование"
+      },
+      "series": [
+        {"source_url": "https://www.eos-sauna.com/en/products/commercial-large-scale-projects/sauna-heaters/eos-46u-xl"},
+        {"source_url": "https://www.eos-sauna.com/en/products/commercial-large-scale-projects/sauna-heaters/eos-34g-hd-series"},
+        {"source_url": "https://www.eos-sauna.com/en/products/commercial-large-scale-projects/sauna-heaters/eos-herkules-xl-s120-hd-series"},
+        {"source_url": "https://www.eos-sauna.com/en/products/commercial-large-scale-projects/sauna-heaters/eos-goliath-hd"},
+        {"source_url": "https://www.eos-sauna.com/en/products/commercial-large-scale-projects/sauna-heaters/eos-orbit"},
+        {"source_url": "https://www.eos-sauna.com/en/products/commercial-large-scale-projects/sauna-heaters/eos-zeus-hd-series"},
+        {"source_url": "https://www.eos-sauna.com/en/products/commercial-large-scale-projects/sauna-heaters/eos-mega-hd-series"},
+        {"source_url": "https://www.eos-sauna.com/en/products/commercial-large-scale-projects/sauna-heaters/eos-watermill-sauna"}
+      ]
+    }
+  ]
+}
