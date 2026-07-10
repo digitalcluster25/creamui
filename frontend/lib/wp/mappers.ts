@@ -139,7 +139,20 @@ export function mapToCatalogProduct(node: WPProductNode): CatalogProduct {
     priceMin: min,
     priceMax: max,
     baseCurrencyCode: getCurrencyCode(node.price),
+    attributes: mapProductAttributes(node.attributes?.nodes),
   };
+}
+
+function mapProductAttributes(
+  nodes: { name: string; options: string[] }[] | undefined
+): Record<string, string[]> {
+  const result: Record<string, string[]> = {};
+  for (const attr of nodes ?? []) {
+    if (!attr?.name) continue;
+    const options = (attr.options ?? []).filter(Boolean);
+    if (options.length > 0) result[attr.name] = options;
+  }
+  return result;
 }
 
 // Фильтр/сортировка/пагинация теперь полностью клиентские (Catalog.tsx) —

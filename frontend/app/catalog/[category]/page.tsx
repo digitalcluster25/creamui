@@ -6,9 +6,42 @@ import { Breadcrumbs } from "@/components/primitives/breadcrumbs/Breadcrumbs";
 import { getHeaderData, flattenCategories, type WPCategoryNode } from "@/lib/wp/header";
 import { footerData } from "@/lib/data/footer";
 import { getClient } from "@/lib/wp/apollo";
-import { GET_PRODUCTS, GET_PRODUCT_CATEGORIES, GET_PRODUCT_CATEGORY_BY_SLUG } from "@/lib/wp/queries";
+import { GET_PRODUCTS, GET_PRODUCT_CATEGORIES, GET_PRODUCT_CATEGORY_BY_SLUG, GET_ATTRIBUTE_TERMS } from "@/lib/wp/queries";
 import { mapToCatalogData, type WPProductNode } from "@/lib/wp/mappers";
+import { filtersForBranch, attributeParamKey } from "@/lib/data/catalogFilters";
+import type { AttributeTermLabels } from "@/lib/types/catalog";
 import styles from "../page.module.css";
+
+// Корневое поле WPGraphQL (allPa*) -> имя таксономии (pa_*).
+const ATTRIBUTE_TERM_FIELDS: Record<string, string> = {
+  allPaFuelType: "pa_fuel-type",
+  allPaEquipmentType: "pa_equipment-type",
+  allPaSteamRoomVolume: "pa_steam-room-volume",
+  allPaPower: "pa_power",
+  allPaVoltage: "pa_voltage",
+  allPaCladdingMaterial: "pa_cladding-material",
+  allPaUsageClass: "pa_usage-class",
+  allPaRoomType: "pa_room-type",
+  allPaSeries: "pa_series",
+};
+
+async function getAttributeTermLabels(
+  client: ReturnType<typeof getClient>
+): Promise<AttributeTermLabels> {
+  const labels: AttributeTermLabels = {};
+  try {
+    const { data } = await client.query<Record<string, { nodes: { name: string; slug: string }[] }>>({
+      query: GET_ATTRIBUTE_TERMS,
+    });
+    for (const [field, taxonomy] of Object.entries(ATTRIBUTE_TERM_FIELDS)) {
+      const nodes = data?.[field]?.nodes ?? [];
+      labels[taxonomy] = Object.fromEntries(nodes.map((n) => [n.slug, n.name]));
+    }
+  } catch (e) {
+    console.error("WP GraphQL error (attribute terms):", e);
+  }
+  return labels;
+}
 
 export const revalidate = 3600;
 
@@ -37,11 +70,11 @@ export default async function CatalogCategoryPage({
   searchParams,
 }: {
   params: Promise<Params>;
-  searchParams?: Promise<{ brand?: string }>;
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const { category } = await params;
-  const resolvedSearchParams = await searchParams;
-  const initialBrandSlug = typeof resolvedSearchParams?.brand === "string" ? resolvedSearchParams.brand : "";
+  const resolvedSearchParams = (await searchParams) ?? {};
+  const initialBrandSlug = typeof resolvedSearchParams.brand === "string" ? resolvedSearchParams.brand : "";
 
   const client = getClient();
 
@@ -73,6 +106,16 @@ export default async function CatalogCategoryPage({
     catalogData = mapToCatalogData([], found.name);
   }
 
+  // Ветка = верхний раздел. Для подкатегории берём родителя, иначе саму себя.
+  const branchSlug = found.parent?.node?.slug ?? found.slug;
+  const filterKeys = filtersForBranch(branchSlug);
+  const initialFilters: Record<string, string> = {};
+  for (const key of filterKeys) {
+    const value = resolvedSearchParams[attributeParamKey(key)];
+    if (typeof value === "string" && value) initialFilters[key] = value;
+  }
+
+  const termLabels = await getAttributeTermLabels(client);
   const headerData = await getHeaderData();
 
   return (
@@ -87,7 +130,13 @@ export default async function CatalogCategoryPage({
         ]}
       />
       <div className={styles.section}>
-        <Catalog data={catalogData} initialBrandSlug={initialBrandSlug} />
+        <Catalog
+          data={catalogData}
+          initialBrandSlug={initialBrandSlug}
+          filterKeys={filterKeys}
+          termLabels={termLabels}
+          initialFilters={initialFilters}
+        />
       </div>
       <div className={styles.sectionFooter}>
         <Footer data={footerData} />

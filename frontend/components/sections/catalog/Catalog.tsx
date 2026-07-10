@@ -2,8 +2,9 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import type { CatalogData } from "@/lib/types/catalog";
+import type { CatalogData, AttributeTermLabels } from "@/lib/types/catalog";
 import { CatalogProductCard } from "@/components/blocks/catalog-product-card";
+import { ATTRIBUTE_LABELS, attributeParamKey } from "@/lib/data/catalogFilters";
 import styles from "./Catalog.module.css";
 
 const ARROW_RIGHT = (
@@ -24,9 +25,21 @@ type SortKey = "default" | "price-asc" | "price-desc" | "name";
 type Props = {
   data: CatalogData;
   initialBrandSlug?: string;
+  // Порядок таксономий (pa_*) для текущей ветки каталога.
+  filterKeys?: string[];
+  // slug -> имя термина, по каждой таксономии (для подписи опций).
+  termLabels?: AttributeTermLabels;
+  // Начальные значения фильтров из URL: taxonomy -> slug.
+  initialFilters?: Record<string, string>;
 };
 
-export function Catalog({ data, initialBrandSlug = "" }: Props) {
+export function Catalog({
+  data,
+  initialBrandSlug = "",
+  filterKeys = [],
+  termLabels = {},
+  initialFilters = {},
+}: Props) {
   const router = useRouter();
   const pathname = usePathname();
   const [sort, setSort] = useState<SortKey>("default");
@@ -46,6 +59,23 @@ export function Catalog({ data, initialBrandSlug = "" }: Props) {
     [products]
   );
 
+  // Для каждой таксономии ветки собираем реально встречающиеся значения.
+  // Фильтр показываем только если различных значений >= 2 (иначе бесполезен).
+  const attributeFilters = useMemo(() => {
+    return filterKeys
+      .map((key) => {
+        const slugs = new Set<string>();
+        for (const product of products) {
+          for (const slug of product.attributes?.[key] ?? []) slugs.add(slug);
+        }
+        const options = Array.from(slugs)
+          .map((slug) => ({ slug, name: termLabels[key]?.[slug] ?? slug }))
+          .sort((a, b) => a.name.localeCompare(b.name, "ru"));
+        return { key, label: ATTRIBUTE_LABELS[key] ?? key, options };
+      })
+      .filter((f) => f.options.length >= 2);
+  }, [filterKeys, products, termLabels]);
+
   const normalizedInitialBrand = useMemo(
     () => (brandOptions.some((option) => option.slug === initialBrandSlug) ? initialBrandSlug : ""),
     [brandOptions, initialBrandSlug]
@@ -53,14 +83,39 @@ export function Catalog({ data, initialBrandSlug = "" }: Props) {
 
   const [brand, setBrand] = useState(normalizedInitialBrand);
 
+  // Начальные значения атрибутных фильтров, отфильтрованные до валидных.
+  const normalizedInitialFilters = useMemo(() => {
+    const result: Record<string, string> = {};
+    for (const filter of attributeFilters) {
+      const value = initialFilters[filter.key];
+      if (value && filter.options.some((o) => o.slug === value)) result[filter.key] = value;
+    }
+    return result;
+  }, [attributeFilters, initialFilters]);
+
+  const [filters, setFilters] = useState<Record<string, string>>(normalizedInitialFilters);
+
   useEffect(() => {
     setBrand(normalizedInitialBrand);
     setPage(1);
   }, [normalizedInitialBrand]);
 
+  useEffect(() => {
+    setFilters(normalizedInitialFilters);
+    setPage(1);
+  }, [normalizedInitialFilters]);
+
   const filtered = useMemo(
-    () => (brand ? products.filter((p) => p.brandSlug === brand) : products),
-    [products, brand]
+    () =>
+      products.filter((product) => {
+        if (brand && product.brandSlug !== brand) return false;
+        for (const [key, value] of Object.entries(filters)) {
+          if (!value) continue;
+          if (!(product.attributes?.[key] ?? []).includes(value)) return false;
+        }
+        return true;
+      }),
+    [products, brand, filters]
   );
 
   const sorted = useMemo(() => {
@@ -79,24 +134,38 @@ export function Catalog({ data, initialBrandSlug = "" }: Props) {
   const visible = sorted.slice((currentPage - 1) * PER_PAGE, currentPage * PER_PAGE);
   const selectedBrand = brandOptions.find((option) => option.slug === brand);
 
-  function changeBrand(value: string) {
-    setBrand(value);
-    setPage(1);
-
-    const params = new URLSearchParams(typeof window !== "undefined" ? window.location.search : "");
-    if (value) {
-      params.set("brand", value);
-    } else {
-      params.delete("brand");
+  // Единая точка синхронизации URL: собираем актуальные бренд + фильтры.
+  function syncUrl(nextBrand: string, nextFilters: Record<string, string>) {
+    const params = new URLSearchParams();
+    if (nextBrand) params.set("brand", nextBrand);
+    for (const [key, value] of Object.entries(nextFilters)) {
+      if (value) params.set(attributeParamKey(key), value);
     }
     const query = params.toString();
     router.replace(query ? `${pathname}?${query}` : pathname, { scroll: false });
+  }
+
+  function changeBrand(value: string) {
+    setBrand(value);
+    setPage(1);
+    syncUrl(value, filters);
+  }
+
+  function changeFilter(key: string, value: string) {
+    const next = { ...filters };
+    if (value) next[key] = value;
+    else delete next[key];
+    setFilters(next);
+    setPage(1);
+    syncUrl(brand, next);
   }
 
   function changeSort(value: SortKey) {
     setSort(value);
     setPage(1);
   }
+
+  const hasActiveChips = Boolean(brand) || Object.values(filters).some(Boolean);
 
   return (
     <section className={styles.section}>
@@ -117,6 +186,22 @@ export function Catalog({ data, initialBrandSlug = "" }: Props) {
               ))}
             </select>
           </div>
+
+          {attributeFilters.map((filter) => (
+            <div key={filter.key} className={styles.filterSelectWrap}>
+              <select
+                className={[styles.filterSelect, filters[filter.key] ? styles.filterSelectActive : ""].filter(Boolean).join(" ")}
+                value={filters[filter.key] ?? ""}
+                onChange={(e) => changeFilter(filter.key, e.target.value)}
+                aria-label={filter.label}
+              >
+                <option value="">{filter.label}</option>
+                {filter.options.map((option) => (
+                  <option key={option.slug} value={option.slug}>{option.name}</option>
+                ))}
+              </select>
+            </div>
+          ))}
         </div>
 
         <div className={styles.toolbarRight}>
@@ -137,12 +222,31 @@ export function Catalog({ data, initialBrandSlug = "" }: Props) {
         </div>
       </div>
 
-      {brand && (
+      {hasActiveChips && (
         <div className={styles.chips}>
-          <button type="button" className={styles.chip} onClick={() => changeBrand("")}>
-            {selectedBrand?.name ?? brand}
-            {CLOSE_ICON}
-          </button>
+          {brand && (
+            <button type="button" className={styles.chip} onClick={() => changeBrand("")}>
+              {selectedBrand?.name ?? brand}
+              {CLOSE_ICON}
+            </button>
+          )}
+          {attributeFilters
+            .filter((filter) => filters[filter.key])
+            .map((filter) => {
+              const value = filters[filter.key];
+              const option = filter.options.find((o) => o.slug === value);
+              return (
+                <button
+                  key={filter.key}
+                  type="button"
+                  className={styles.chip}
+                  onClick={() => changeFilter(filter.key, "")}
+                >
+                  {option?.name ?? value}
+                  {CLOSE_ICON}
+                </button>
+              );
+            })}
         </div>
       )}
 

@@ -47,6 +47,13 @@ export const GET_PRODUCTS = gql`
               slug
             }
           }
+          attributes {
+            nodes {
+              name
+              label
+              options
+            }
+          }
         }
         ... on VariableProduct {
           price
@@ -80,9 +87,32 @@ export const GET_PRODUCTS = gql`
               slug
             }
           }
+          attributes {
+            nodes {
+              name
+              label
+              options
+            }
+          }
         }
       }
     }
+  }
+`;
+
+// Термины атрибутов (pa_*) для карт slug -> человекочитаемое имя.
+// WPGraphQL автогенерит корневые поля allPa<Name> для каждой таксономии.
+export const GET_ATTRIBUTE_TERMS = gql`
+  query GetAttributeTerms {
+    allPaFuelType(first: 100) { nodes { name slug } }
+    allPaEquipmentType(first: 100) { nodes { name slug } }
+    allPaSteamRoomVolume(first: 100) { nodes { name slug } }
+    allPaPower(first: 100) { nodes { name slug } }
+    allPaVoltage(first: 100) { nodes { name slug } }
+    allPaCladdingMaterial(first: 100) { nodes { name slug } }
+    allPaUsageClass(first: 100) { nodes { name slug } }
+    allPaRoomType(first: 100) { nodes { name slug } }
+    allPaSeries(first: 100) { nodes { name slug } }
   }
 `;
 
