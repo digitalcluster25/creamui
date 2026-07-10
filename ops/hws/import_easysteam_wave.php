@@ -377,10 +377,13 @@ foreach ( $payload['series'] ?? [] as $series_payload ) {
 		$version = hws_find_spec_value( $spec_groups, [ 'Версия' ] );
 		$series_intro = (string) ( $series_payload['seriesIntro'] ?? '' );
 		$description = (string) ( $product['description'] ?? '' );
+		$short_description = (string) ( $product['short_description'] ?? '' );
 		if ( '' === trim( $description ) && '' !== trim( $series_intro ) ) {
 			$description = $series_intro;
 		}
-		$short_description = $version ? $version : $series_intro;
+		if ( '' === trim( $short_description ) ) {
+			$short_description = $version ? $version : $series_intro;
+		}
 		$category_ids = hws_category_chain_ids( (string) ( $series_payload['target']['primaryCategoryPath'] ?? '' ) );
 		$brand_term_id = hws_ensure_term_by_slug( 'product_brand', 'easysteam', 'EasySteam' );
 		$attrs = hws_attribute_values_for_product( $series_payload, $product, $spec_groups );

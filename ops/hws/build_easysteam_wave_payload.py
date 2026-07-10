@@ -184,7 +184,67 @@ def parse_documents(html: str, base_url: str) -> list[dict[str, str]]:
     return list(deduped.values())
 
 
+def parse_purpose_description(html: str) -> str | None:
+    block = extract_tab_pane(html, "prod-purpose")
+    if not block:
+        return None
+    paragraphs = [
+        clean_html_text(match.group(1))
+        for match in re.finditer(r"<div[^>]*>(.*?)</div>", block, re.S | re.I)
+        if clean_html_text(match.group(1))
+    ]
+    if not paragraphs:
+        return None
+    return "\n\n".join(paragraphs)
+
+
+def parse_advantages_description(html: str) -> str | None:
+    block = extract_tab_pane(html, "prod-advantage")
+    if not block:
+        return None
+    items: list[str] = []
+    pattern = re.compile(
+        r'<div[^>]*class="row\s+mb-2"[^>]*>.*?'
+        r'<div[^>]*class="col-md-3\s+col-sm\s+font-weight-bold"[^>]*>(.*?)</div>.*?'
+        r'<div[^>]*class="col-md-3\s+col-sm"[^>]*>(.*?)</div>.*?'
+        r"</div>",
+        re.S | re.I,
+    )
+    for match in pattern.finditer(block):
+        title = clean_html_text(match.group(1))
+        text = clean_html_text(match.group(2))
+        if title and text:
+            items.append(f"{title}. {text}")
+        elif text:
+            items.append(text)
+    if not items:
+        return None
+    return "\n\n".join(items)
+
+
+def parse_short_description(html: str) -> str | None:
+    short_description = extract_first(
+        r'<div[^>]*id="prod-technical-data"[^>]*>.*?'
+        r'<div[^>]*class="col-12\s+col-lg-5\s+col-xl-6"[^>]*>\s*'
+        r'<div[^>]*class="product__description"[^>]*>\s*'
+        r'<div[^>]*class="product__description-title"[^>]*>\s*Описание\s*</div>\s*'
+        r'<div[^>]*>(.*?)</div>',
+        html,
+    )
+    return clean_html_text(short_description) if short_description else None
+
+
 def parse_description(html: str) -> str | None:
+    composed_parts = [
+        part
+        for part in [
+            parse_purpose_description(html),
+            parse_advantages_description(html),
+        ]
+        if part
+    ]
+    if composed_parts:
+        return "\n\n".join(composed_parts)
     for block in filter(
         None,
         [
@@ -209,6 +269,7 @@ def parse_product_page(url: str) -> dict[str, Any]:
     main_image = extract_first(r'<a target="_blank" class="js-product-main-image-wrap" href="([^"]+)"', html)
     base_price = extract_first(r'data-base-price="([^"]+)"', html)
     series_url = extract_first(r'<a href="https://easysteam\.ru(/products/stoves/pechi/[^"]+|/products/category/[^"]+)" itemprop="item"><span itemprop="name">', html)
+    short_description = parse_short_description(html)
     description = parse_description(html)
     specs_groups = parse_specs_groups(html)
     option_groups = parse_option_groups(html, base_url)
@@ -220,6 +281,7 @@ def parse_product_page(url: str) -> dict[str, Any]:
         "series_url": urljoin(base_url, series_url) if series_url else None,
         "main_image": urljoin(base_url, main_image) if main_image else None,
         "base_price_rub": int(re.sub(r"[^\d]", "", base_price or "0") or "0"),
+        "short_description": short_description,
         "description": clean_html_text(description or "") if description else None,
         "specs_groups": specs_groups,
         "option_groups": option_groups,
