@@ -488,9 +488,14 @@ foreach ( $payload['series'] ?? [] as $series_payload ) {
 
 		$product_attributes = hws_assign_attribute_terms( $product_id, $attrs, false );
 
+		$price_on_request = $base_price_usd <= 0;
 		update_post_meta( $product_id, '_sku', $sku );
-		update_post_meta( $product_id, '_price', $base_price_usd );
-		update_post_meta( $product_id, '_regular_price', $base_price_usd );
+		// Some VVD "Про" items are configure-to-order and expose no price on
+		// the source page. Store empty price (not 0, so Woo does not render
+		// "Free"/"$0") and flag them as price-on-request.
+		update_post_meta( $product_id, '_price', $price_on_request ? '' : $base_price_usd );
+		update_post_meta( $product_id, '_regular_price', $price_on_request ? '' : $base_price_usd );
+		update_post_meta( $product_id, '_hws_price_on_request', $price_on_request ? 'yes' : 'no' );
 		update_post_meta( $product_id, '_stock_status', 'instock' );
 		update_post_meta( $product_id, '_manage_stock', 'no' );
 		update_post_meta( $product_id, '_hws_source_payload', $payload_json );
