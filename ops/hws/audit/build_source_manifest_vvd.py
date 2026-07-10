@@ -83,10 +83,13 @@ def build_row(series_payload: dict[str, Any], product: dict[str, Any], wave_file
         digits = re.sub(r"[^\d]", "", price_text)
         base_price_rub = int(digits) if digits.isdigit() and int(digits) > 0 else 0
 
-    # VVD can be variable (has option_groups). Expected variation count =
-    # product of all option-value counts across all option groups.
+    # VVD products expose real combinations via the `offers` list.
+    # Use that count as expected; option_groups product is usually misleading
+    # because not every combination is a real offer.
     expected_variation_count = 0
-    if option_groups:
+    if offers:
+        expected_variation_count = len(offers)
+    elif option_groups:
         total = 1
         valid = False
         for group in option_groups:
@@ -98,8 +101,6 @@ def build_row(series_payload: dict[str, Any], product: dict[str, Any], wave_file
                 valid = True
         if valid:
             expected_variation_count = total
-    elif offers:
-        expected_variation_count = len(offers)
 
     return {
         "brand": "vvd",
