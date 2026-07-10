@@ -182,9 +182,9 @@
       },
       "defaultAttributes": {
         "pa_series": "SPA Sangens",
-        "pa_equipment-type": "bath-sauna-stove",
+        "pa_equipment-type": "",
         "pa_room-type": "bath-and-sauna",
-        "pa_fuel-type": "Электричество",
+        "pa_fuel-type": "",
         "pa_usage-class": "Коммерческое использование"
       },
       "products": [
@@ -202,7 +202,7 @@
       },
       "defaultAttributes": {
         "pa_series": "Snow Sangens",
-        "pa_equipment-type": "bath-sauna-stove",
+        "pa_equipment-type": "",
         "pa_room-type": "bath-and-sauna",
         "pa_usage-class": "Коммерческое использование"
       },
@@ -221,7 +221,7 @@
       },
       "defaultAttributes": {
         "pa_series": "Oblivion Sangens",
-        "pa_equipment-type": "bath-sauna-stove",
+        "pa_equipment-type": "pouring-device",
         "pa_room-type": "bath-and-sauna",
         "pa_usage-class": "Частное использование"
       },
@@ -241,7 +241,7 @@
         "pa_series": "Fresh Air Sangens",
         "pa_equipment-type": "control-unit",
         "pa_room-type": "bath-and-sauna",
-        "pa_usage-class": "Частное использование"
+        "pa_usage-class": "Коммерческое использование"
       },
       "products": [
         {"source_url": "https://sangens.com/ru/catalog/second-wind/sangens_fresh_air_5/"}

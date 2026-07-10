@@ -2,6 +2,7 @@
 import argparse
 import json
 import re
+import subprocess
 from html import unescape
 from pathlib import Path
 from typing import Any
@@ -15,6 +16,20 @@ FETCH_TIMEOUT = 15
 
 def fetch_text(url: str) -> str:
     req = Request(url, headers={"User-Agent": USER_AGENT})
+    with urlopen(req, timeout=FETCH_TIMEOUT) as resp:
+        return resp.read().decode("utf-8", errors="replace")
+
+
+def post_json(url: str, payload: dict[str, Any]) -> str:
+    body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
+    req = Request(
+        url,
+        data=body,
+        headers={
+            "User-Agent": USER_AGENT,
+            "Content-Type": "application/json",
+        },
+    )
     with urlopen(req, timeout=FETCH_TIMEOUT) as resp:
         return resp.read().decode("utf-8", errors="replace")
 
@@ -279,6 +294,158 @@ def parse_current_offer(html: str, source_url: str, gallery: list[dict[str, Any]
     return offer
 
 
+def parse_sku_request_context(html: str) -> dict[str, Any] | None:
+    sku_config_raw = extract_first(r'<div class="js-sku-config" data-value=\'(.*?)\'></div>', html)
+    if not sku_config_raw:
+        return None
+
+    sku_config = json.loads(unescape(sku_config_raw))
+    item_id = extract_first(r'data-item-id="(\d+)"', html)
+    offer_id = extract_first(r'data-offer-id="(\d+)"', html)
+    iblock_id = extract_first(r'data-iblockid="(\d+)"', html)
+    sku_iblock_id = extract_first(r'data-offer-iblockid="(\d+)"', html)
+    site_id = extract_first(r'data-site-id="([^"]+)"', html)
+
+    if not all([item_id, offer_id, iblock_id, sku_iblock_id, site_id]):
+        return None
+
+    return {
+        "params": sku_config,
+        "item_id": int(item_id),
+        "offer_id": int(offer_id),
+        "iblock_id": int(iblock_id),
+        "sku_iblock_id": int(sku_iblock_id),
+        "site_id": site_id,
+    }
+
+
+def parse_offer_price_text(offer: dict[str, Any]) -> str:
+    display = offer.get("DISPLAY_PROPERTIES") or {}
+    price_prop = display.get("PRICE") or {}
+    value = clean_html_text(str(price_prop.get("VALUE") or ""))
+    if value:
+        return value.replace("#CURRENCY#", "₽").strip()
+
+    html = str(offer.get("PRICES_HTML") or "")
+    value = clean_html_text(extract_first(r'<span class=\\"price__new-val[^"]*\\">\\s*(.*?)\\s*<', html) or "")
+    return value
+
+
+def parse_offer_matrix_via_node(js_response: str) -> list[dict[str, Any]]:
+    node_script = r"""
+const fs = require("fs");
+const input = fs.readFileSync(0, "utf8");
+const match = input.match(/obOffers\s*=\s*(\[[\s\S]*?\])\s*,\s*obElement\s*=/);
+if (!match) {
+  process.stderr.write("obOffers not found\n");
+  process.exit(2);
+}
+const offers = Function(`"use strict"; return (${match[1]});`)();
+process.stdout.write(JSON.stringify(offers));
+"""
+    result = subprocess.run(
+        ["node", "-e", node_script],
+        input=js_response,
+        text=True,
+        capture_output=True,
+        check=True,
+    )
+    parsed = json.loads(result.stdout)
+    if not isinstance(parsed, list):
+        return []
+    return parsed
+
+
+def parse_offer_matrix(
+    source_url: str,
+    html: str,
+    option_groups: list[dict[str, Any]],
+    base_url: str,
+) -> list[dict[str, Any]]:
+    if not option_groups:
+        return []
+
+    context = parse_sku_request_context(html)
+    if not context:
+        return []
+
+    first_group = option_groups[0]
+    first_value = next(
+        (value for value in first_group.get("values", []) if str(value.get("id") or "").strip()),
+        None,
+    )
+    if not first_value:
+        return []
+
+    selected = {f"PROP_{first_group['id']}": str(first_value["id"])}
+    ajax_payload = {
+        "PARAMS": context["params"],
+        "ID": context["item_id"],
+        "OFFER_ID": context["offer_id"],
+        "SITE_ID": context["site_id"],
+        "IBLOCK_ID": context["iblock_id"],
+        "SKU_IBLOCK_ID": context["sku_iblock_id"],
+        "DEPTH": 0,
+        "VALUE": int(first_value["id"]),
+        "SHOW_GALLERY": False,
+        "OID": "Y",
+        "IS_DETAIL": "Y",
+        **selected,
+        "SELECTED": json.dumps(selected, ensure_ascii=False),
+    }
+    response = post_json("https://vvd.su/ajax/js_item_detail.php", ajax_payload)
+    raw_offers = parse_offer_matrix_via_node(response)
+    group_value_names = {
+        str(group["id"]): {
+            str(value["id"]): value["name"]
+            for value in group.get("values", [])
+            if str(value.get("id") or "").strip() and str(value.get("name") or "").strip()
+        }
+        for group in option_groups
+        if str(group.get("id") or "").strip()
+    }
+
+    offers: list[dict[str, Any]] = []
+    for raw_offer in raw_offers:
+        tree = raw_offer.get("TREE") or {}
+        price_text = parse_offer_price_text(raw_offer)
+        price_number = re.sub(r"[^\d]", "", price_text)
+        selections = []
+        for group in option_groups:
+            group_id = str(group.get("id") or "").strip()
+            if not group_id:
+                continue
+            tree_key = f"PROP_{group_id}"
+            value_id = str(tree.get(tree_key) or "").strip()
+            value_name = group_value_names.get(group_id, {}).get(value_id)
+            if not value_id or not value_name or value_name == "—":
+                continue
+            selections.append(
+                {
+                    "group_id": group_id,
+                    "group_name": group.get("name") or "",
+                    "value_id": value_id,
+                    "value_name": value_name,
+                }
+            )
+
+        offers.append(
+            {
+                "offer_id": str(raw_offer.get("ID") or "").strip(),
+                "name": clean_html_text(str(raw_offer.get("NAME") or "")),
+                "price_text": price_text,
+                "price_number_rub": price_number or None,
+                "currency": "RUB" if price_text else None,
+                "detail_page_url": urljoin(base_url, str(raw_offer.get("DETAIL_PAGE_URL") or source_url)),
+                "primary_image_url": urljoin(base_url, str(raw_offer.get("PICTURE_SRC") or "")) if raw_offer.get("PICTURE_SRC") else None,
+                "selections": selections,
+                "tree": tree,
+            }
+        )
+
+    return offers
+
+
 def dedupe_specs(summary_specs: list[dict[str, str]], full_specs: list[dict[str, str]]) -> list[dict[str, str]]:
     merged: list[dict[str, str]] = []
     seen: set[tuple[str, str]] = set()
@@ -307,6 +474,7 @@ def parse_product_page(url: str) -> dict[str, Any]:
     videos = parse_videos(html)
     option_groups = parse_option_groups(html)
     current_offer = parse_current_offer(html, url, gallery, full_specs)
+    offers = parse_offer_matrix(url, html, option_groups, base_url)
     return {
         "source_url": url,
         "title": title,
@@ -320,6 +488,7 @@ def parse_product_page(url: str) -> dict[str, Any]:
         "documents": documents,
         "videos": videos,
         "option_groups": option_groups,
+        "offers": offers,
     }
 
 

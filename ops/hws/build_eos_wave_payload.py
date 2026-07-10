@@ -36,6 +36,7 @@ HEADERS = {
     "Accept-Language": "en-US,en;q=0.9",
 }
 CRAWL_DELAY = 1.5
+ITEM_NO_RE = re.compile(r"\b([A-Z]?\d{5,}[A-Z]?)\b", re.IGNORECASE)
 
 session = requests.Session()
 session.headers.update(HEADERS)
@@ -64,8 +65,32 @@ def fetch_soup(url: str, retries: int = 3) -> Optional[BeautifulSoup]:
 # ---------------------------------------------------------------------------
 
 def extract_h1(soup: BeautifulSoup) -> str:
-    h1 = soup.find("h1")
-    return h1.get_text(strip=True) if h1 else ""
+    for h1 in soup.find_all("h1"):
+        text = h1.get_text(" ", strip=True)
+        if text:
+            return text
+
+    title = soup.find("title")
+    if title:
+        text = title.get_text(" ", strip=True)
+        text = re.split(r"[•|\-]{1,2}", text)[0].strip()
+        if text:
+            return text
+
+    return ""
+
+
+def extract_item_no(value: str) -> str:
+    match = ITEM_NO_RE.search(value or "")
+    return match.group(1) if match else ""
+
+
+def looks_like_power_value(value: str) -> bool:
+    return bool(re.search(r'(^|[^\w])\d+(?:[.,]\d+)?\s*kW\b', value or "", re.IGNORECASE))
+
+
+def leading_tokens(value: str, limit: int = 2) -> list[str]:
+    return re.findall(r"[A-Za-z0-9]+", (value or "").lower())[:limit]
 
 
 def extract_variants(soup: BeautifulSoup) -> list[dict]:
@@ -84,9 +109,24 @@ def extract_variants(soup: BeautifulSoup) -> list[dict]:
         all_text = table.get_text(" ").lower()
         return "item no" in all_text or "artikel" in all_text
 
+    def find_table_heading(table) -> str:
+        current = table
+        while current:
+            current = current.find_previous_sibling()
+            if current is None:
+                break
+            if getattr(current, "name", "") in {"h2", "h3", "h4", "h5", "h6"}:
+                text = current.get_text(" ", strip=True).replace("\xa0", " ").strip()
+                if text:
+                    return text
+            if getattr(current, "name", "") == "table":
+                break
+        return ""
+
     for table in soup.find_all("table", class_="contenttable"):
         if not looks_like_variant_table(table):
             continue
+        table_heading = find_table_heading(table)
         for tr in table.find_all("tr"):
             cells = tr.find_all(["td", "th"])
             ncells = len(cells)
@@ -119,10 +159,26 @@ def extract_variants(soup: BeautifulSoup) -> list[dict]:
 
             # Extract the item number token
             # Handles "945650   Stainless steel" and "942444A   Anthracite"
-            m = re.search(r'\b([A-Z]?\d{5,}[A-Z]?)\b', item_no_raw, re.IGNORECASE)
-            if not m:
+            if ncells == 2:
+                first_item_no = extract_item_no(cell_texts[0])
+                second_item_no = extract_item_no(cell_texts[1])
+                if first_item_no and not second_item_no:
+                    power_raw = ""
+                    item_no_raw = cell_texts[0]
+                    variant_name = cell_texts[1]
+                elif second_item_no:
+                    item_no_raw = cell_texts[1]
+                    if not looks_like_power_value(cell_texts[0]):
+                        power_raw = ""
+                        variant_name = cell_texts[0]
+
+            if power_raw and not looks_like_power_value(power_raw):
+                variant_name = " ".join(part for part in [power_raw, variant_name] if part).strip()
+                power_raw = ""
+
+            item_no = extract_item_no(item_no_raw)
+            if not item_no:
                 continue
-            item_no = m.group(1)
 
             if item_no in seen_item_nos:
                 continue
@@ -132,6 +188,7 @@ def extract_variants(soup: BeautifulSoup) -> list[dict]:
                 "power_kw": power_raw,
                 "item_no": item_no,
                 "variant_name": variant_name,
+                "table_heading": table_heading,
             })
 
     return variants
@@ -144,7 +201,7 @@ def normalize_power(power_raw: str) -> str:
     if m:
         val = m.group(1).replace(",", ".")
         return val
-    return power_raw.replace(",", ".").strip()
+    return ""
 
 
 def extract_specs(soup: BeautifulSoup) -> list[dict]:
@@ -170,6 +227,77 @@ def extract_specs(soup: BeautifulSoup) -> list[dict]:
                 if label and value and label != value:
                     rows.append({"label": label, "value": value})
     return rows
+
+
+def clean_spec_rows(spec_rows: list[dict]) -> list[dict]:
+    skip_labels = {
+        "item no.",
+        "item no",
+        "power",
+        "opening hours",
+        "shipping and receiving:",
+        "shipping and receiving",
+    }
+    skip_label_patterns = [
+        re.compile(r"^\d{5,}[A-Z]?$", re.IGNORECASE),
+        re.compile(r"^mon-thu:?$", re.IGNORECASE),
+        re.compile(r"^fri:?$", re.IGNORECASE),
+    ]
+    skip_value_patterns = [
+        re.compile(r"^\d{1,2}:\d{2}\s*[–-]\s*\d{1,2}:\d{2}$"),
+    ]
+
+    cleaned: list[dict] = []
+    seen: set[tuple[str, str]] = set()
+
+    for row in spec_rows:
+        label = (row.get("label") or "").replace("\xa0", " ").strip()
+        value = (row.get("value") or "").replace("\xa0", " ").strip()
+        if not label or not value or label == value:
+            continue
+
+        label_key = label.lower()
+        if label_key in skip_labels:
+            continue
+        if any(pat.match(label) for pat in skip_label_patterns):
+            continue
+        if any(pat.match(value) for pat in skip_value_patterns):
+            continue
+
+        key = (label, value)
+        if key in seen:
+            continue
+        seen.add(key)
+        cleaned.append({"label": label, "value": value})
+
+    return cleaned
+
+
+def extract_embedded_item_variants(spec_rows: list[dict]) -> list[dict]:
+    """
+    Some EOS pages do not have a dedicated power/item table, but list article
+    numbers directly inside the specs table:
+      947431 -> EOS Compact DP anthracite
+      947427 -> EOS Compact DP white
+    Use those rows as simple variants.
+    """
+    seen_item_nos: set[str] = set()
+    variants: list[dict] = []
+
+    for row in spec_rows:
+        label = (row.get("label") or "").strip()
+        value = (row.get("value") or "").strip()
+        item_no = extract_item_no(label)
+        if not item_no or item_no in seen_item_nos:
+            continue
+        seen_item_nos.add(item_no)
+        variants.append({
+            "power_kw": "",
+            "item_no": item_no,
+            "variant_name": value,
+        })
+
+    return variants
 
 
 def extract_images(soup: BeautifulSoup, page_url: str) -> tuple[str, list[str]]:
@@ -267,22 +395,88 @@ def extract_documents(soup: BeautifulSoup, page_url: str) -> list[dict]:
 
 
 def extract_description(soup: BeautifulSoup) -> tuple[str, str]:
-    # EOS pages have text in .bodytext or general article content
-    full = ""
-    for sel in [".bodytext", ".news-text-wrap", "article", "[class*='content']", "main"]:
-        elem = soup.select_one(sel)
-        if elem:
-            text = elem.get_text(separator=" ", strip=True)
-            text = re.sub(r'\s+', ' ', text).strip()
-            if len(text) > 100:
-                full = text[:4000]
-                break
+    blocks: list[str] = []
+    seen: set[str] = set()
+
+    skip_re = re.compile(
+        r"(opening hours|shipping and receiving|technical data sheet|installation and operating|declaration of conformity|item no\.|mon-thu:|fri:)",
+        re.IGNORECASE,
+    )
+
+    for sel in [
+        "main#content .bodytext p",
+        "main#content .ce-bodytext p",
+        "main#content .news-text-wrap p",
+        "main#content .headandsub + * p",
+        "main#content .container p",
+    ]:
+        for elem in soup.select(sel):
+            text = elem.get_text(" ", strip=True).replace("\xa0", " ")
+            text = re.sub(r"\s+", " ", text).strip()
+            if len(text) < 40:
+                continue
+            if skip_re.search(text):
+                continue
+            if text in seen:
+                continue
+            seen.add(text)
+            blocks.append(text)
+
+    full = " ".join(blocks[:12]).strip()
+    full = re.sub(r"\s+", " ", full)[:4000]
 
     og = soup.find("meta", property="og:description")
     short = og["content"].strip()[:500] if og and og.get("content") else ""
-    if not short and full:
-        short = full[:300]
+    if not short and blocks:
+        short = blocks[0][:300]
+    elif short and skip_re.search(short) and blocks:
+        short = blocks[0][:300]
+
     return full, short
+
+
+def compose_variant_title(family_name: str, variant: dict) -> str:
+    family = (family_name or "").strip()
+    heading = (variant.get("table_heading") or "").replace("\xa0", " ").strip()
+    variant_name = (variant.get("variant_name") or "").replace("\xa0", " ").strip()
+    power_norm = normalize_power(variant.get("power_kw") or "") if variant.get("power_kw") else ""
+
+    parts: list[str] = []
+    use_variant_as_base = False
+
+    if heading and variant_name:
+        heading_tokens = leading_tokens(heading)
+        variant_tokens = leading_tokens(variant_name)
+        use_variant_as_base = bool(heading_tokens and heading_tokens == variant_tokens[:len(heading_tokens)])
+
+    if not use_variant_as_base and family and variant_name:
+        family_tokens = leading_tokens(family)
+        variant_tokens = leading_tokens(variant_name, limit=max(2, len(family_tokens)))
+        use_variant_as_base = bool(family_tokens and family_tokens == variant_tokens[:len(family_tokens)])
+
+    if use_variant_as_base and variant_name:
+        parts.append(variant_name)
+    elif heading and heading.lower() != "accessories":
+        parts.append(heading)
+    elif family:
+        parts.append(family)
+
+    if power_norm and not any(power_norm in part for part in parts):
+        parts.append(f"{power_norm} kW")
+
+    if variant_name and not any(variant_name.lower() in part.lower() for part in parts):
+        parts.append(variant_name)
+
+    title = " ".join(part.strip() for part in parts if part.strip())
+    title = re.sub(r"\s+", " ", title).strip()
+
+    if not title:
+        title = family or variant_name
+
+    if family and title.lower() in {"black", "white"}:
+        title = f"{family} {title}"
+
+    return title.strip()
 
 
 # ---------------------------------------------------------------------------
@@ -302,6 +496,10 @@ def scrape_series_page(url: str, range_name: str) -> list[dict]:
     documents = extract_documents(soup, url)
     full_desc, short_desc = extract_description(soup)
 
+    if not variants:
+        variants = extract_embedded_item_variants(spec_rows)
+
+    spec_rows = clean_spec_rows(spec_rows)
     specs_groups = [{"title": "Technical specifications", "rows": spec_rows}] if spec_rows else []
 
     if not variants:
@@ -328,20 +526,15 @@ def scrape_series_page(url: str, range_name: str) -> list[dict]:
     products = []
     for v in variants:
         power_raw = v["power_kw"]
-        power_raw = v["power_kw"]
-        power_norm = normalize_power(power_raw) if power_raw else ""
+        power_norm = normalize_power(power_raw) if power_raw and looks_like_power_value(power_raw) else ""
         item_no = v["item_no"]
-        variant_name = v.get("variant_name", "").strip()
-        if power_norm:
-            title = f"{family_name} {power_norm} kW"
-        else:
-            title = family_name
-        if variant_name:
-            title = f"{title} {variant_name}"
+        title = compose_variant_title(family_name, v)
 
         # Use Russian label so the PHP importer's hws_find_spec_value picks it up for pa_power
         power_spec = {"label": "Мощность", "value": power_raw}
-        variant_specs = [power_spec] + spec_rows
+        variant_specs = spec_rows
+        if power_raw and looks_like_power_value(power_raw):
+            variant_specs = [power_spec] + spec_rows
         variant_specs_groups = [{"title": "Technical specifications", "rows": variant_specs}]
 
         products.append({

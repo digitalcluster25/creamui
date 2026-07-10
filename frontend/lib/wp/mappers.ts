@@ -16,6 +16,7 @@ export type WPProductNode = {
   date?: string;
   description?: string;
   shortDescription?: string;
+  hwsPriceOnRequest?: boolean;
   price?: string | null;
   regularPrice?: string | null;
   salePrice?: string | null;
@@ -138,6 +139,7 @@ export function mapToCatalogProduct(node: WPProductNode): CatalogProduct {
     brandSlug: node.productBrands?.nodes[0]?.slug,
     priceMin: min,
     priceMax: max,
+    priceOnRequest: Boolean(node.hwsPriceOnRequest),
     baseCurrencyCode: getCurrencyCode(node.price),
     attributes: mapProductAttributes(node.attributes?.nodes),
   };
@@ -178,6 +180,7 @@ export function mapToHomeProductsData(nodes: WPProductNode[]): ProductsData {
       price: node.price ?? "",
       priceMin: parsePrice(node.price),
       priceMax: parsePrice(node.price),
+      priceOnRequest: Boolean(node.hwsPriceOnRequest),
       baseCurrencyCode: getCurrencyCode(node.price),
       categories: (node.productCategories?.nodes ?? []).map((category) => category.name),
       image1: node.image?.sourceUrl ?? "",
@@ -225,6 +228,48 @@ export function mapToHomeCategoriesData(nodes: WPCategoryNode[]): CategoriesData
   return {
     sectionTitle: "Решения для любых задач",
     items,
+  };
+}
+
+const CATEGORY_FALLBACK_IMAGES: Record<string, string> = {
+  "russian-bath-stoves": "/assets/sauna.png",
+  "sauna-stoves": "/assets/sauna.png",
+  "steam-generators-and-hammam": "/assets/steam.png",
+  commercial: "/assets/heater.png",
+  "control-units": "/assets/heater.png",
+  "chimneys-and-installation": "/assets/heater.png",
+  "water-tanks-and-heat-exchangers": "/assets/heater.png",
+  "stones-and-cladding": "/assets/sauna.png",
+  accessories: "/assets/acs.png",
+};
+
+type CategoryLikeNode = {
+  databaseId: number;
+  name: string;
+  slug: string;
+  hwsSubtitle?: string | null;
+  image?: { sourceUrl: string; altText?: string | null } | null;
+  count: number | null;
+};
+
+export function mapToCategoryCardsData(
+  nodes: CategoryLikeNode[],
+  sectionTitle: string,
+): CategoriesData {
+  return {
+    sectionTitle,
+    items: nodes.map((node) => ({
+      id: String(node.databaseId),
+      imageSrc: node.image?.sourceUrl ?? CATEGORY_FALLBACK_IMAGES[node.slug] ?? "/assets/sauna.png",
+      imageAlt: node.image?.altText?.trim() || node.name,
+      href: `/catalog/${node.slug}`,
+      subtitle: node.hwsSubtitle?.trim() || (typeof node.count === "number" ? `${node.count} товаров` : ""),
+      title: node.name,
+      tags:
+        typeof node.count === "number" && node.count > 0
+          ? [{ id: `${node.slug}-count`, label: `${node.count} товаров`, href: `/catalog/${node.slug}` }]
+          : [],
+    })),
   };
 }
 
@@ -375,10 +420,12 @@ export function mapToProductPageData(node: WPProductNode): ProductPageData {
     categories: categories.map((c) => ({ label: c.label, href: c.href })),
     priceOld,
     price,
+    priceOnRequest: Boolean(node.hwsPriceOnRequest),
     baseCurrencyCode: getCurrencyCode(node.price),
     sku: node.sku,
     tag: undefined, // нет надёжного источника — productTags на бэке содержат демо-теги WooCommerce, не реальные
     brand: node.productBrands?.nodes[0]?.name,
+    brandHref: node.productBrands?.nodes[0]?.slug ? `/brands/${node.productBrands.nodes[0].slug}` : undefined,
     description: htmlToPlainText(node.shortDescription),
     commerceInfo: node.hwsCommerceInfo ?? undefined,
     facingOptions: node.hwsFacingOptions && node.hwsFacingOptions.length > 1

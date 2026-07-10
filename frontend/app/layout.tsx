@@ -12,6 +12,7 @@ const notoSans = Noto_Sans({
 export const metadata: Metadata = {
   title: "CreamUI Frontend",
   description: "Headless frontend previews for CreamUI blocks.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://hwsstore.spaces.community"),
 };
 
 export default function RootLayout({

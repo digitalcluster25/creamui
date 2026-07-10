@@ -120,8 +120,21 @@ export function Catalog({
 
   const sorted = useMemo(() => {
     const arr = [...filtered];
-    if (sort === "price-asc") arr.sort((a, b) => a.priceMin - b.priceMin);
-    else if (sort === "price-desc") arr.sort((a, b) => b.priceMin - a.priceMin);
+    if (sort === "price-asc") {
+      arr.sort((a, b) => {
+        if (a.priceOnRequest && b.priceOnRequest) return 0;
+        if (a.priceOnRequest) return 1;
+        if (b.priceOnRequest) return -1;
+        return a.priceMin - b.priceMin;
+      });
+    } else if (sort === "price-desc") {
+      arr.sort((a, b) => {
+        if (a.priceOnRequest && b.priceOnRequest) return 0;
+        if (a.priceOnRequest) return 1;
+        if (b.priceOnRequest) return -1;
+        return b.priceMin - a.priceMin;
+      });
+    }
     else if (sort === "name") arr.sort((a, b) => a.title.localeCompare(b.title, "ru"));
     return arr;
   }, [filtered, sort]);
@@ -166,10 +179,57 @@ export function Catalog({
   }
 
   const hasActiveChips = Boolean(brand) || Object.values(filters).some(Boolean);
+  const seriesFilter = attributeFilters.find((filter) => filter.key === "pa_series");
+  const highlightedBrands = brandOptions.slice(0, 8);
+  const highlightedSeries = seriesFilter?.options.slice(0, 8) ?? [];
 
   return (
     <section className={styles.section}>
       {data.pageTitle && <h1 className={styles.pageTitle}>{data.pageTitle}</h1>}
+
+      {(highlightedBrands.length > 1 || highlightedSeries.length > 1) && (
+        <div className={styles.discovery}>
+          {highlightedBrands.length > 1 && (
+            <div className={styles.discoveryGroup}>
+              <span className={styles.discoveryLabel}>Бренды</span>
+              <div className={styles.discoveryLinks}>
+                {highlightedBrands.map((option) => (
+                  <button
+                    key={option.slug}
+                    type="button"
+                    className={[styles.discoveryLink, brand === option.slug ? styles.discoveryLinkActive : ""].filter(Boolean).join(" ")}
+                    onClick={() => changeBrand(brand === option.slug ? "" : option.slug)}
+                  >
+                    {option.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {highlightedSeries.length > 1 && (
+            <div className={styles.discoveryGroup}>
+              <span className={styles.discoveryLabel}>Серии</span>
+              <div className={styles.discoveryLinks}>
+                {highlightedSeries.map((option) => (
+                  <button
+                    key={option.slug}
+                    type="button"
+                    className={[
+                      styles.discoveryLink,
+                      filters["pa_series"] === option.slug ? styles.discoveryLinkActive : "",
+                    ].filter(Boolean).join(" ")}
+                    onClick={() => changeFilter("pa_series", filters["pa_series"] === option.slug ? "" : option.slug)}
+                  >
+                    {option.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
       <div className={styles.toolbar}>
         <span className={styles.filtersLabel}>Фильтры</span>
         <div className={styles.filterSelects}>
@@ -250,20 +310,30 @@ export function Catalog({
         </div>
       )}
 
-      <div className={styles.grid}>
-        {visible.map((product) => (
-          <CatalogProductCard
-            key={product.id}
-            href={product.href}
-            image={product.image}
-            title={product.title}
-            category={product.category}
-            priceMin={product.priceMin}
-            priceMax={product.priceMax}
-            baseCurrency={product.baseCurrencyCode}
-          />
-        ))}
-      </div>
+      {visible.length > 0 ? (
+        <div className={styles.grid}>
+          {visible.map((product) => (
+            <CatalogProductCard
+              key={product.id}
+              href={product.href}
+              image={product.image}
+              title={product.title}
+              category={product.category}
+              priceMin={product.priceMin}
+              priceMax={product.priceMax}
+              priceOnRequest={product.priceOnRequest}
+              baseCurrency={product.baseCurrencyCode}
+            />
+          ))}
+        </div>
+      ) : (
+        <div className={styles.emptyState}>
+          <h2 className={styles.emptyTitle}>По текущим фильтрам товары не найдены</h2>
+          <p className={styles.emptyText}>
+            Сбросьте часть фильтров или вернитесь к соседнему подразделу каталога, чтобы расширить выборку.
+          </p>
+        </div>
+      )}
 
       {totalPages > 1 && (
         <nav className={styles.pagination} aria-label="Страницы каталога">

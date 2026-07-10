@@ -399,7 +399,55 @@ So current live state is:
 - fix: added `hws_translit_cyr()` to both importers (`import_vvd_wave.php`, `import_easysteam_wave.php`); new slugs now clean latin (`elektrichestvo`, `parizhar`, `10-kvt`, `gaz-drova`)
 - one-off live repair: [ops/hws/normalize_term_slugs.php](/Users/macbookpro/Coding/creamui/ops/hws/normalize_term_slugs.php) — only rewrites percent-encoded slugs (preserves intentional English semantic slugs like `pa_equipment-type` / `pa_room-type`), merges duplicate-concept terms on collision, idempotent
 - applied live: `renamed=122 merged=2` (e.g. `220В`+`220 В` → `220v`); re-run dry-run = 0 (idempotent verified)
-- STILL OPEN for step 7: equipment-type / voltage / series / room-type / commercial-home dimension *completeness* (not slug quality) per backend audit
+- RESOLVED 2026-07-10 (step 7 — attribute term completeness):
+  - fixed 3 pa_equipment-type term names (steam-thermal-stove→"Паротермальная печь", steam-generator→"Парогенератор", control-unit→"Пульт управления")
+  - merged duplicate pa_usage-class terms: private(226)→chastnoe-ispolzovanie(66), commercial(243)→kommercheskoe-ispolzovanie(88); 143 product assignments moved; [ops/hws/fix_attribute_term_names.php](/Users/macbookpro/Coding/creamui/ops/hws/fix_attribute_term_names.php) applied live
+  - updated VVD manifest + generated payloads: pa_usage-class "private"/"commercial" → Russian names for canonical slug lookup
+  - pa_series: all 7 VVD series exist with correct Russian names
+  - pa_room-type: all 6 terms correct (pre-seeded)
+  - pa_voltage: 3 terms correct, 16 VVD products assigned
+  - STILL OPEN: 17 russian-bath-stoves products without pa_fuel-type → EasySteam normalization (step 8)
+
+### RESOLVED 2026-07-10 (step 8 — EasySteam attribute normalization)
+
+- `pa_fuel-type` gap fixed: 61 EasySteam wood stove products assigned `drova` via [ops/hws/fix_easysteam_fuel_type.php](/Users/macbookpro/Coding/creamui/ops/hws/fix_easysteam_fuel_type.php); applied live
+- fuel-type coverage now: `drova`=61, `gaz-drova+drova`=46, `elektrichestvo`=6, no-fuel=60 (engineering/accessories only — correct)
+- `pa_usage-class` in all 4 EasySteam wave manifests + generated payloads updated from 'private'/'commercial' → Russian names (canonical slug lookup)
+- `pa_fuel-type` defaults added to wave 1-3 manifests for wood/electric stove series
+- EasySteam series `pa_series`: all slugs clean (transliterated Russian names)
+- RESOLVED 2026-07-10 (step 8.2 — Sangens + EOS parser rollout):
+  - added generic Woo importer: [ops/hws/import_supplier_wave.php](/Users/macbookpro/Coding/creamui/ops/hws/import_supplier_wave.php) for supplier payloads in `generated/*.json` contract
+  - re-ran Sangens parser locally via venv: `32 products`, `0 errors`, payload refreshed in [data/import/generated/hws-sangens-wave-1-detailed.json](/Users/macbookpro/Coding/creamui/data/import/generated/hws-sangens-wave-1-detailed.json)
+  - re-ran EOS parser locally via venv: `398 products`, `0 errors`, payload refreshed in [data/import/generated/hws-eos-wave-1-detailed.json](/Users/macbookpro/Coding/creamui/data/import/generated/hws-eos-wave-1-detailed.json)
+  - Sangens payload QA: `zero_price=0`, `no_main=0`, `no_desc=0`, `no_short=0`
+  - EOS payload QA: `zero_price=398`, `no_main=0`, `no_desc=0`, `no_short=0`
+  - important EOS finding: public EOS product pages checked from parser environment do not expose obvious price data in HTML/meta; current parser can build structure/media/specs, but not price
+  - NEXT OPEN:
+    - Sangens storefront spot-QA on frontend after cache refresh
+    - decision on EOS pricing source before live publish with prices
+    - EOS control units + steam room equipment still need separate manifest/import wave
+
+### RESOLVED 2026-07-10 (step 8.3 — Sangens live import + mapping cleanup)
+
+- Sangens dry-run executed successfully on live `wpsandbox-wordpress-1`: `processed=32`, no create surprises, all matched existing products as updates
+- Sangens live import executed successfully: `processed=32 updated=32`
+- importer deployment caveat found and resolved:
+  - first live rerun used stale `/tmp/import_supplier_wave.php` in container
+  - first payload redeploy attempt left stale `/tmp/hws-sangens-wave-1-detailed.json` on server/container
+  - both files were re-copied explicitly and verified in container before final rerun
+- generic importer improved to clear managed `pa_*` taxonomies before reassigning terms during update
+- Sangens manifest corrected for non-heater lines:
+  - `SPA-системы Sangens` -> removed false `pa_equipment-type=bath-sauna-stove`, removed false `pa_fuel-type`
+  - `Снегогенераторы Sangens` -> removed false `pa_equipment-type=bath-sauna-stove`
+  - `Обливные устройства Sangens` -> `pa_equipment-type=pouring-device`
+  - `Второе дыхание Sangens` -> `pa_usage-class=Коммерческое использование`
+- verified inside live WordPress via WP-CLI term inspection:
+  - `S001666` (`Spa System 2100`) -> `pa_equipment-type=[]`, `pa_fuel-type=[]`, `pa_usage-class=kommercheskoe-ispolzovanie`
+  - `G043159` (`Oblivion 30`) -> `pa_equipment-type=pouring-device`
+  - `S001281` (`Fresh Air 5`) -> `pa_usage-class=kommercheskoe-ispolzovanie`
+- result:
+  - Sangens import wave can be treated as live-updated and backend-valid
+  - remaining work is frontend/storefront QA, not parser/import blocker
 
 ### RESOLVED 2026-07-10 (step 6 — branch-aware filters)
 
@@ -435,6 +483,9 @@ Current local uncommitted files:
 - `data/import/hws-vvd-wave-1-electric-and-steam.json`
 - `ops/hws/build_vvd_wave_payload.py`
 - `ops/hws/import_vvd_wave.php`
+- `data/import/generated/hws-sangens-wave-1-detailed.json`
+- `data/import/generated/hws-eos-wave-1-detailed.json`
+- `ops/hws/import_supplier_wave.php`
 
 Ignore:
 
@@ -572,15 +623,25 @@ Need:
 
 This is the first thing to repair.
 
-### 4. Frontend/storefront still not complete
+### 4. Frontend/storefront status updated 2026-07-10
 
-Even if backend imports are correct, remaining frontend work still includes:
+Frontend catalog phase moved forward and this part should not be considered untouched anymore.
 
-- category hub blocks
-- subcategory-first UX
-- branch-specific filters
-- brand/series landing logic
-- SEO intro / footer blocks
+Done in frontend catalog:
+
+- top-level `/catalog` now has category hub block
+- branch/category pages now show subcategory-first UX before deep filter overload
+- branch-aware filters are wired by catalog branch
+- brand and series shortcuts exist in catalog listing UI
+- empty-state fallback added for sparse branches
+- SEO intro / FAQ footer blocks added for root catalog and major branch pages
+- category/catalog metadata patterns started in Next app routes
+
+Still remaining in frontend/SEO layer:
+
+- more explicit brand/series landing pages or dedicated templates if those URLs are approved
+- canonical/noindex logic for filter states, sorting, and pagination
+- internal linking rollout between category, brand, series, and knowledge pages
 
 ## HWS-specific operating rules
 
@@ -597,17 +658,26 @@ These were important during the work and should stay in force:
 
 1. Read this handoff + listed docs.
 2. Inspect local diff.
-3. Re-upload patched VVD importer.
-4. Re-run `ФутуРус` live update with media.
-5. Verify corrected slugs on live Woo.
-6. Run full VVD live import.
-7. Verify on live frontend / product pages / GraphQL.
-8. Fix remaining VVD price-zero cases if found.
-9. Move back to attribute completion + branch-aware filters.
+3. Do storefront QA for Sangens on frontend after cache refresh:
+   - sauna-stoves/electric-sauna-stoves
+   - control-units/for-sauna-heaters
+   - commercial/spa-systems
+   - accessories/pouring-devices
+4. Re-upload patched VVD importer.
+5. Re-run `ФутуРус` live update with media.
+6. Verify corrected slugs on live Woo.
+7. Run full VVD live import.
+8. Verify on live frontend / product pages / GraphQL.
+9. Fix remaining VVD price-zero cases if found.
+10. Decide EOS pricing source before EOS live publish.
+11. Move to Phase E SEO rollout and backend cleanup tasks that still block final quality:
+   - canonical/noindex rules
+   - internal linking
+   - VVD variations
+   - EOS missing import waves
 
 ## If a new chat starts with very low context
 
 Paste this instruction:
 
 `Read /Users/macbookpro/Coding/creamui/HWS_CATALOG_CLAUDE_HANDOFF.md first, then continue from the exact next action list without rethinking the approved HWS catalog structure.`
-

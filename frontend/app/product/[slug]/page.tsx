@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/sections/header";
 import { ProductPage } from "@/components/sections/product-page";
@@ -18,9 +19,53 @@ import { productSpecsData as mockProductSpecsData } from "@/lib/data/productSpec
 import { getProductOverride } from "@/lib/data/productOverrides";
 import styles from "./page.module.css";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 type Params = { slug: string };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<Params>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+
+  try {
+    const client = getClient({ noStore: true });
+    const { data } = await client.query<{ product: WPProductNode | null }>({
+      query: GET_PRODUCT_BY_SLUG,
+      variables: { slug },
+      errorPolicy: "all",
+    });
+
+    if (!data?.product) {
+      return {
+        title: "Товар не найден | HWS",
+        description: "Карточка товара в каталоге HWS.",
+      };
+    }
+
+    const mapped = mapToProductPageData(data.product);
+    const descriptionHtml = mapToProductDescriptionHtml(data.product) ?? "";
+    const descriptionText = descriptionHtml
+      .replace(/<[^>]+>/g, " ")
+      .replace(/\s+/g, " ")
+      .trim()
+      .slice(0, 220);
+
+    return {
+      title: `${mapped.title} | HWS`,
+      description: descriptionText || `${mapped.title} в каталоге HWS.`,
+    };
+  } catch (e) {
+    console.error("WP GraphQL error (product metadata):", e);
+    return {
+      title: "Каталог HWS",
+      description: "Печи, парогенераторы, автоматика и инженерные решения HWS.",
+    };
+  }
+}
 
 // Предсобираем страницы под все известные на момент сборки товары (ISR).
 // Товары, добавленные позже, всё равно откроются — Next.js дособерёт страницу
@@ -46,7 +91,7 @@ export default async function ProductPageRoute({
 }) {
   const { slug } = await params;
 
-  const client = getClient();
+  const client = getClient({ noStore: true });
 
   // Три запроса параллельно: товар + контакты + хедер
   const [productResult, channelsResult, headerData] = await Promise.all([

@@ -1,0 +1,48 @@
+.section {
+  width: 100%;
+  max-width: 1366px;
+  margin: 0 auto 48px;
+}
+
+.intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+  gap: 32px;
+  align-items: end;
+  margin-bottom: 36px;
+}
+
+.title {
+  margin: 0;
+  font-family: "Noto Sans", sans-serif;
+  font-size: clamp(44px, 5vw, 72px);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  color: rgb(40, 40, 40);
+}
+
+.lead {
+  margin: 0;
+  max-width: 560px;
+  justify-self: end;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
+  color: rgba(17, 16, 19, 0.72);
+}
+
+.categories {
+  margin-top: 12px;
+}
+
+@media (max-width: 960px) {
+  .intro {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .lead {
+    justify-self: start;
+  }
+}

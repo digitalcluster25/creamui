@@ -78,7 +78,7 @@ export function BrandsDirectory({ brands }: { brands: BrandEntry[] }) {
             </div>
             <div className={styles.grid}>
               {group.items.map((brand) => (
-                <Link key={brand.slug} href={`/catalog?brand=${brand.slug}`} className={styles.card}>
+                <Link key={brand.slug} href={`/brands/${brand.slug}`} className={styles.card}>
                   <div className={styles.cardBody}>
                     <span className={styles.cardName}>{brand.name}</span>
                     <span className={styles.cardLink}>Смотреть товары</span>

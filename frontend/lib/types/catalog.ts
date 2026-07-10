@@ -10,6 +10,7 @@ export type CatalogProduct = {
   brandSlug?: string;
   priceMin: number;
   priceMax: number;
+  priceOnRequest?: boolean;
   baseCurrencyCode: CurrencyCode;
   // Атрибуты товара: taxonomy (pa_*) -> список slug-значений.
   attributes?: Record<string, string[]>;

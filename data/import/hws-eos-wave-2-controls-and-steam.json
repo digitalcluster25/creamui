@@ -1,0 +1,129 @@
+{
+  "supplier": "EOS",
+  "wave": "wave-2-controls-and-steam",
+  "updated": "2026-07-10",
+  "sourceRoot": "https://www.eos-sauna.com",
+  "brand": {
+    "name": "EOS",
+    "slug": "eos"
+  },
+  "parserContract": {
+    "discovery": "product_overview_to_series_pages",
+    "productSource": "series_page_multi_variant",
+    "variants": "contenttable_power_itemno",
+    "specs": "contenttable_th_td",
+    "media": "head_picture_and_ce_processed",
+    "documents": "pdf_links"
+  },
+  "ranges": [
+    {
+      "rangeName": "Control Units Standard",
+      "target": {
+        "primaryCategoryPath": "control-units/for-sauna-heaters",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_equipment-type": "control-unit",
+        "pa_room-type": "sauna",
+        "pa_usage-class": "Частное использование"
+      },
+      "series": [
+        { "source_url": "https://www.eos-sauna.com/en/products/standard/sauna-control-units/eos-compact-dp/hp-series" },
+        { "source_url": "https://www.eos-sauna.com/en/products/standard/sauna-control-units/eos-econ-1-series" },
+        { "source_url": "https://www.eos-sauna.com/en/products/standard/sauna-control-units/eos-econ-2-series" },
+        { "source_url": "https://www.eos-sauna.com/en/products/standard/sauna-control-units/eos-econ-i1" },
+        { "source_url": "https://www.eos-sauna.com/en/products/standard/sauna-control-units/eos-emotec-ir" },
+        { "source_url": "https://www.eos-sauna.com/en/products/standard/sauna-control-units/eos-emotec-series" },
+        { "source_url": "https://www.eos-sauna.com/en/products/standard/sauna-control-units/eos-infratec-classic" },
+        { "source_url": "https://www.eos-sauna.com/en/products/standard/sauna-control-units/peb-10" }
+      ]
+    },
+    {
+      "rangeName": "Control Units Classic",
+      "target": {
+        "primaryCategoryPath": "control-units/for-sauna-heaters",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_equipment-type": "control-unit",
+        "pa_room-type": "sauna",
+        "pa_usage-class": "Частное использование"
+      },
+      "series": [
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/sauna-control-units/eos-compact-d18/h18-series" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/sauna-control-units/eos-compact-dc/hc-series" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/sauna-control-units/eos-econ-4-series" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/sauna-control-units/eos-econ-s2" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/sauna-control-units/eos-emostyle-hi-series" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/sauna-control-units/eos-emostyle-series" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/sauna-control-units/eos-emotouch-3" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/sauna-control-units/eos-infrastyle" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/sauna-control-units/eos-infrastyle-i" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/sauna-control-units/eos-infratec-premium" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/sauna-control-units/eos-spa-control-app" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/sauna-control-units/eos-u-command" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/sauna-control-units/lsg-hammam-for-eos-emotouch-3" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/sauna-control-units/lsg-infrared-for-eos-emotouch-3" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/sauna-control-units/lsg-sauna-for-eos-emotouch-3" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/sauna-control-units/lsg-steam-for-eos-emotouch-3" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/sauna-control-units/peb-10" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/sauna-control-units/sbm-app-module" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/sauna-control-units/sbm-aroma" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/sauna-control-units/sbm-eco" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/sauna-control-units/sbm-fl75/150-coloured-light-module" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/sauna-control-units/sbm-glt-knx-/-modbus-module" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/sauna-control-units/sbm-hot" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/sauna-control-units/sbm-ir-infrared-module" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/sauna-control-units/sbm-ir-relay-module" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/sauna-control-units/sbm-remote-start-module" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/sauna-control-units/sbm-s-bt-sound-module" }
+      ]
+    },
+    {
+      "rangeName": "Control Units Commercial",
+      "target": {
+        "primaryCategoryPath": "control-units/for-sauna-heaters",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_equipment-type": "control-unit",
+        "pa_room-type": "sauna",
+        "pa_usage-class": "Коммерческое использование"
+      },
+      "series": [
+        { "source_url": "https://www.eos-sauna.com/en/products/commercial-large-scale-projects/sauna-control-units/peb-18-/-18-h" },
+        { "source_url": "https://www.eos-sauna.com/en/products/commercial-large-scale-projects/sauna-control-units/peb-36-/-36-h" }
+      ]
+    },
+    {
+      "rangeName": "Steam Room Equipment",
+      "target": {
+        "primaryCategoryPath": "steam-generators-and-hammam/steam-room-equipment",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_equipment-type": "steam-room-equipment",
+        "pa_room-type": "hammam"
+      },
+      "series": [
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/steam-room-equipment/blower-fan" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/steam-room-equipment/disc-valve" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/steam-room-equipment/dosing-pump" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/steam-room-equipment/eos-led-spot" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/steam-room-equipment/eos-led-spot-compact" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/steam-room-equipment/eos-steamattrac" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/steam-room-equipment/eos-steamrock-ii-series" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/steam-room-equipment/exhaust-fan" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/steam-room-equipment/fragrance-essence-container" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/steam-room-equipment/led-strip-neon-flex" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/steam-room-equipment/loudspeaker-for-steam-rooms" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/steam-room-equipment/lsg-steam-for-eos-emotouch-3" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/steam-room-equipment/sbm-aroma" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/steam-room-equipment/special-descaler" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/steam-room-equipment/steam-nozzle" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/steam-room-equipment/temperature-sensor" },
+        { "source_url": "https://www.eos-sauna.com/en/products/classic/steam-room-equipment/water-softening-system" }
+      ]
+    }
+  ]
+}

@@ -5,7 +5,7 @@
     "name": "Sangens",
     "slug": "sangens"
   },
-  "generated_at": "2026-07-10T08:01:42Z",
+  "generated_at": "2026-07-10T11:19:33Z",
   "series": [
     {
       "seriesName": "Серия W",
@@ -2969,9 +2969,9 @@
       },
       "defaultAttributes": {
         "pa_series": "SPA Sangens",
-        "pa_equipment-type": "bath-sauna-stove",
+        "pa_equipment-type": "",
         "pa_room-type": "bath-and-sauna",
-        "pa_fuel-type": "Электричество",
+        "pa_fuel-type": "",
         "pa_usage-class": "Коммерческое использование"
       },
       "products": [
@@ -3195,7 +3195,7 @@
       },
       "defaultAttributes": {
         "pa_series": "Snow Sangens",
-        "pa_equipment-type": "bath-sauna-stove",
+        "pa_equipment-type": "",
         "pa_room-type": "bath-and-sauna",
         "pa_usage-class": "Коммерческое использование"
       },
@@ -3302,7 +3302,7 @@
       },
       "defaultAttributes": {
         "pa_series": "Oblivion Sangens",
-        "pa_equipment-type": "bath-sauna-stove",
+        "pa_equipment-type": "pouring-device",
         "pa_room-type": "bath-and-sauna",
         "pa_usage-class": "Частное использование"
       },
@@ -3361,7 +3361,7 @@
         "pa_series": "Fresh Air Sangens",
         "pa_equipment-type": "control-unit",
         "pa_room-type": "bath-and-sauna",
-        "pa_usage-class": "Частное использование"
+        "pa_usage-class": "Коммерческое использование"
       },
       "products": [
         {

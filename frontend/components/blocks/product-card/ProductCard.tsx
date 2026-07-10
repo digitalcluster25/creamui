@@ -46,7 +46,9 @@ export function ProductCard({ product }: { product: ProductItem }) {
           </p>
         )}
         <p className={styles.productPrice}>
-          {convertedMin != null && convertedMax != null
+          {product.priceOnRequest
+            ? "Цена по запросу"
+            : convertedMin != null && convertedMax != null
             ? `${symbol}${formatMoney(convertedMin, activeCurrency)} – ${symbol}${formatMoney(convertedMax, activeCurrency)}`
             : product.price}
         </p>

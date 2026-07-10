@@ -1,0 +1,1245 @@
+{
+  "brand": "easysteam",
+  "generated_at": "2026-07-10T22:10:59.173584+00:00",
+  "source_total_rows": 173,
+  "woo_total_rows": 173,
+  "source_total_unique_skus": 173,
+  "woo_total_unique_skus": 173,
+  "summary": {
+    "matched": 112,
+    "matched_but_broken": 61,
+    "source_only": 0,
+    "woo_only": 0,
+    "source_duplicates": 0,
+    "woo_duplicates": 0
+  },
+  "matched": [
+    {
+      "sku": "1000016",
+      "source_name": "Теплообменник навесной",
+      "woo_product_id": 249048,
+      "woo_slug": "easysteam-1000016"
+    },
+    {
+      "sku": "1000020",
+      "source_name": "Комплект газового оборудования с горелкой САБК8-40",
+      "woo_product_id": 249052,
+      "woo_slug": "easysteam-1000020"
+    },
+    {
+      "sku": "1000021",
+      "source_name": "Комплект газового оборудования с горелкой САБК8-50",
+      "woo_product_id": 249053,
+      "woo_slug": "easysteam-1000021"
+    },
+    {
+      "sku": "1000022",
+      "source_name": "Комплект газового оборудования с горелкой ГГУ-20",
+      "woo_product_id": 249054,
+      "woo_slug": "easysteam-1000022"
+    },
+    {
+      "sku": "1000023",
+      "source_name": "Комплект газового оборудования с горелкой ГГУ-40",
+      "woo_product_id": 249055,
+      "woo_slug": "easysteam-1000023"
+    },
+    {
+      "sku": "1000024",
+      "source_name": "Комплект газового оборудования с горелкой ГГУ-60",
+      "woo_product_id": 249056,
+      "woo_slug": "easysteam-1000024"
+    },
+    {
+      "sku": "1000025",
+      "source_name": "Комплект газового оборудования с горелкой ГГУ-80",
+      "woo_product_id": 249057,
+      "woo_slug": "easysteam-1000025"
+    },
+    {
+      "sku": "1002621",
+      "source_name": "Бак для воды 80 л.",
+      "woo_product_id": 249039,
+      "woo_slug": "easysteam-1002621"
+    },
+    {
+      "sku": "1002622",
+      "source_name": "Бак для воды 100 л.",
+      "woo_product_id": 249040,
+      "woo_slug": "easysteam-1002622"
+    },
+    {
+      "sku": "1002624",
+      "source_name": "Бак для воды для натрубного теплообменника 100 л.",
+      "woo_product_id": 249043,
+      "woo_slug": "easysteam-1002624"
+    },
+    {
+      "sku": "1002625",
+      "source_name": "Бак для воды для натрубного теплообменника 80 л.",
+      "woo_product_id": 249042,
+      "woo_slug": "easysteam-1002625"
+    },
+    {
+      "sku": "1002633",
+      "source_name": "Портал из природного камня",
+      "woo_product_id": 249072,
+      "woo_slug": "easysteam-1002633"
+    },
+    {
+      "sku": "1002635",
+      "source_name": "Плитка талькохлорит",
+      "woo_product_id": 249073,
+      "woo_slug": "easysteam-1002635"
+    },
+    {
+      "sku": "1002637",
+      "source_name": "Плитка пироксенит",
+      "woo_product_id": 249074,
+      "woo_slug": "easysteam-1002637"
+    },
+    {
+      "sku": "1002965",
+      "source_name": "Решетка-жалюзи",
+      "woo_product_id": 249093,
+      "woo_slug": "easysteam-1002965"
+    },
+    {
+      "sku": "1002967",
+      "source_name": "Т - образный переходник",
+      "woo_product_id": 249065,
+      "woo_slug": "easysteam-1002967"
+    },
+    {
+      "sku": "1002970",
+      "source_name": "Термоионатор Ag+",
+      "woo_product_id": 249094,
+      "woo_slug": "easysteam-1002970"
+    },
+    {
+      "sku": "1002973",
+      "source_name": "Шапка для бани",
+      "woo_product_id": 249091,
+      "woo_slug": "easysteam-1002973"
+    },
+    {
+      "sku": "1003827",
+      "source_name": "Бак для воды 50 л.",
+      "woo_product_id": 249038,
+      "woo_slug": "easysteam-1003827"
+    },
+    {
+      "sku": "1003830",
+      "source_name": "Бак для воды для натрубного теплообменника 50 л.",
+      "woo_product_id": 249041,
+      "woo_slug": "easysteam-1003830"
+    },
+    {
+      "sku": "1004025",
+      "source_name": "Теплообменник навесной",
+      "woo_product_id": 249049,
+      "woo_slug": "easysteam-1004025"
+    },
+    {
+      "sku": "1004027",
+      "source_name": "Потолочное крепление для ОУ Каскад",
+      "woo_product_id": 249090,
+      "woo_slug": "easysteam-1004027"
+    },
+    {
+      "sku": "1004028",
+      "source_name": "Печь Южная 9",
+      "woo_product_id": 248946,
+      "woo_slug": "easysteam-1004028"
+    },
+    {
+      "sku": "1004032",
+      "source_name": "Печь Южная 16",
+      "woo_product_id": 248947,
+      "woo_slug": "easysteam-1004032"
+    },
+    {
+      "sku": "1004034",
+      "source_name": "Печь Южная 22",
+      "woo_product_id": 248948,
+      "woo_slug": "easysteam-1004034"
+    },
+    {
+      "sku": "1006155",
+      "source_name": "Печь Ялта 15/2024 в облицовке из камня",
+      "woo_product_id": 248952,
+      "woo_slug": "easysteam-1006155"
+    },
+    {
+      "sku": "1006163",
+      "source_name": "Печь Ялта 25/2024 в облицовке из камня",
+      "woo_product_id": 248954,
+      "woo_slug": "easysteam-1006163"
+    },
+    {
+      "sku": "1006183",
+      "source_name": "Печь Ялта 35/2024 в облицовке из камня",
+      "woo_product_id": 248956,
+      "woo_slug": "easysteam-1006183"
+    },
+    {
+      "sku": "1006189",
+      "source_name": "Печь Ялта 40/2024 в облицовке из камня",
+      "woo_product_id": 248958,
+      "woo_slug": "easysteam-1006189"
+    },
+    {
+      "sku": "1006259",
+      "source_name": "Печь Ялта 60 К/2024",
+      "woo_product_id": 249035,
+      "woo_slug": "easysteam-1006259"
+    },
+    {
+      "sku": "1006267",
+      "source_name": "Печь Ялта 80 К/2024",
+      "woo_product_id": 249036,
+      "woo_slug": "easysteam-1006267"
+    },
+    {
+      "sku": "1006277",
+      "source_name": "Печь Ялта 100 К/2024",
+      "woo_product_id": 249037,
+      "woo_slug": "easysteam-1006277"
+    },
+    {
+      "sku": "1006279",
+      "source_name": "Печь Ялта 15 К/2024 в облицовке из камня",
+      "woo_product_id": 249027,
+      "woo_slug": "easysteam-1006279"
+    },
+    {
+      "sku": "1006291",
+      "source_name": "Печь Ялта 25 К/2024 в облицовке из камня",
+      "woo_product_id": 249029,
+      "woo_slug": "easysteam-1006291"
+    },
+    {
+      "sku": "1006303",
+      "source_name": "Печь Ялта 35 К/2024 в облицовке из камня",
+      "woo_product_id": 249031,
+      "woo_slug": "easysteam-1006303"
+    },
+    {
+      "sku": "1006321",
+      "source_name": "Печь Ялта 40 К/2024 в облицовке из камня",
+      "woo_product_id": 249033,
+      "woo_slug": "easysteam-1006321"
+    },
+    {
+      "sku": "1006341",
+      "source_name": "Запарник мини",
+      "woo_product_id": 249076,
+      "woo_slug": "easysteam-1006341"
+    },
+    {
+      "sku": "1006834",
+      "source_name": "Печь Анапа в трехстороннем кожухе с открытым верхом с боковым подключением",
+      "woo_product_id": 248985,
+      "woo_slug": "easysteam-1006834"
+    },
+    {
+      "sku": "1012798",
+      "source_name": "Печь Южная 9 с топкой из парной",
+      "woo_product_id": 248986,
+      "woo_slug": "easysteam-1012798"
+    },
+    {
+      "sku": "1012804",
+      "source_name": "Печь Южная 16 с топкой из парной",
+      "woo_product_id": 248987,
+      "woo_slug": "easysteam-1012804"
+    },
+    {
+      "sku": "1012814",
+      "source_name": "Печь Южная 22 с топкой из парной",
+      "woo_product_id": 248988,
+      "woo_slug": "easysteam-1012814"
+    },
+    {
+      "sku": "1012822",
+      "source_name": "Экономайзер Д-180",
+      "woo_product_id": 249063,
+      "woo_slug": "easysteam-1012822"
+    },
+    {
+      "sku": "1012826",
+      "source_name": "Экономайзер Д-180 МИНИ 12 плит",
+      "woo_product_id": 249064,
+      "woo_slug": "easysteam-1012826"
+    },
+    {
+      "sku": "1012830",
+      "source_name": "Печь Сочи К базовая модель",
+      "woo_product_id": 249006,
+      "woo_slug": "easysteam-1012830"
+    },
+    {
+      "sku": "1012844",
+      "source_name": "Печь Сочи К в полноценном кожухе",
+      "woo_product_id": 249008,
+      "woo_slug": "easysteam-1012844"
+    },
+    {
+      "sku": "1012878",
+      "source_name": "Печь Сочи К в полноценном наборном кожухе",
+      "woo_product_id": 249009,
+      "woo_slug": "easysteam-1012878"
+    },
+    {
+      "sku": "1012894",
+      "source_name": "Печь Геленджик К базовая модель",
+      "woo_product_id": 249010,
+      "woo_slug": "easysteam-1012894"
+    },
+    {
+      "sku": "1012914",
+      "source_name": "Печь Геленджик К в полноценном кожухе",
+      "woo_product_id": 249012,
+      "woo_slug": "easysteam-1012914"
+    },
+    {
+      "sku": "1012938",
+      "source_name": "Печь Геленджик К в полноценном наборном кожухе",
+      "woo_product_id": 249013,
+      "woo_slug": "easysteam-1012938"
+    },
+    {
+      "sku": "1012958",
+      "source_name": "Печь Домна 45 К базовая модель",
+      "woo_product_id": 249014,
+      "woo_slug": "easysteam-1012958"
+    },
+    {
+      "sku": "1012972",
+      "source_name": "Печь Домна 45 К в полноценном кожухе",
+      "woo_product_id": 249016,
+      "woo_slug": "easysteam-1012972"
+    },
+    {
+      "sku": "1013006",
+      "source_name": "Печь Домна 45 К в полноценном наборном кожухе",
+      "woo_product_id": 249017,
+      "woo_slug": "easysteam-1013006"
+    },
+    {
+      "sku": "1013022",
+      "source_name": "Печь Домна 60 К базовая модель",
+      "woo_product_id": 249018,
+      "woo_slug": "easysteam-1013022"
+    },
+    {
+      "sku": "1013046",
+      "source_name": "Печь Домна 60 К в полноценном кожухе",
+      "woo_product_id": 249020,
+      "woo_slug": "easysteam-1013046"
+    },
+    {
+      "sku": "1013054",
+      "source_name": "Печь Домна 60 К в полноценном наборном кожухе",
+      "woo_product_id": 249021,
+      "woo_slug": "easysteam-1013054"
+    },
+    {
+      "sku": "1013070",
+      "source_name": "Печь Домна 80 К базовая модель",
+      "woo_product_id": 249022,
+      "woo_slug": "easysteam-1013070"
+    },
+    {
+      "sku": "1013074",
+      "source_name": "Печь Домна 80 К в полноценном кожухе",
+      "woo_product_id": 249023,
+      "woo_slug": "easysteam-1013074"
+    },
+    {
+      "sku": "1013086",
+      "source_name": "Обливное устройство КАСКАД 25 ЭКОНОМ",
+      "woo_product_id": 249087,
+      "woo_slug": "easysteam-1013086"
+    },
+    {
+      "sku": "1013111",
+      "source_name": "Печь Сочи К в трехстороннем кожухе",
+      "woo_product_id": 249007,
+      "woo_slug": "easysteam-1013111"
+    },
+    {
+      "sku": "1013121",
+      "source_name": "Печь Геленджик К в трехстороннем кожухе",
+      "woo_product_id": 249011,
+      "woo_slug": "easysteam-1013121"
+    },
+    {
+      "sku": "1013163",
+      "source_name": "Печь Домна 45 К в трехстороннем кожухе",
+      "woo_product_id": 249015,
+      "woo_slug": "easysteam-1013163"
+    },
+    {
+      "sku": "1013189",
+      "source_name": "Печь Домна 60 К в трехстороннем кожухе",
+      "woo_product_id": 249019,
+      "woo_slug": "easysteam-1013189"
+    },
+    {
+      "sku": "1013210",
+      "source_name": "Настенное крепление для ОУ Каскад Эконом",
+      "woo_product_id": 249089,
+      "woo_slug": "easysteam-1013210"
+    },
+    {
+      "sku": "1013211",
+      "source_name": "Печь Южная 35",
+      "woo_product_id": 248949,
+      "woo_slug": "easysteam-1013211"
+    },
+    {
+      "sku": "1013219",
+      "source_name": "Печь Южная 35 с топкой из парной",
+      "woo_product_id": 248989,
+      "woo_slug": "easysteam-1013219"
+    },
+    {
+      "sku": "1013515",
+      "source_name": "Печь Южная 9 закрытый верх",
+      "woo_product_id": 248990,
+      "woo_slug": "easysteam-1013515"
+    },
+    {
+      "sku": "1013521",
+      "source_name": "Печь Южная 16 закрытый верх",
+      "woo_product_id": 248991,
+      "woo_slug": "easysteam-1013521"
+    },
+    {
+      "sku": "1013525",
+      "source_name": "Печь Южная 22 закрытый верх",
+      "woo_product_id": 248992,
+      "woo_slug": "easysteam-1013525"
+    },
+    {
+      "sku": "1013533",
+      "source_name": "Печь Южная 35 закрытый верх",
+      "woo_product_id": 248993,
+      "woo_slug": "easysteam-1013533"
+    },
+    {
+      "sku": "1013539",
+      "source_name": "Печь Южная 9 закрытый верх с топкой из парной",
+      "woo_product_id": 248994,
+      "woo_slug": "easysteam-1013539"
+    },
+    {
+      "sku": "1013541",
+      "source_name": "Печь Южная 16 закрытый верх с топкой из парной",
+      "woo_product_id": 248995,
+      "woo_slug": "easysteam-1013541"
+    },
+    {
+      "sku": "1013551",
+      "source_name": "Печь Южная 22 закрытый верх с топкой из парной",
+      "woo_product_id": 248996,
+      "woo_slug": "easysteam-1013551"
+    },
+    {
+      "sku": "1013555",
+      "source_name": "Печь Южная 35 закрытый верх с топкой из парной",
+      "woo_product_id": 248997,
+      "woo_slug": "easysteam-1013555"
+    },
+    {
+      "sku": "1013560",
+      "source_name": "Экономайзер - теплообменник «Д-120»",
+      "woo_product_id": 249044,
+      "woo_slug": "easysteam-1013560"
+    },
+    {
+      "sku": "1013572",
+      "source_name": "Экономайзер - теплообменник «Д-150»",
+      "woo_product_id": 249045,
+      "woo_slug": "easysteam-1013572"
+    },
+    {
+      "sku": "1013584",
+      "source_name": "Экономайзер - теплообменник «Д-120» в камне",
+      "woo_product_id": 249046,
+      "woo_slug": "easysteam-1013584"
+    },
+    {
+      "sku": "1013594",
+      "source_name": "Экономайзер - теплообменник «Д-150» в камне",
+      "woo_product_id": 249047,
+      "woo_slug": "easysteam-1013594"
+    },
+    {
+      "sku": "1013606",
+      "source_name": "Экономайзер Д-120",
+      "woo_product_id": 249058,
+      "woo_slug": "easysteam-1013606"
+    },
+    {
+      "sku": "1013608",
+      "source_name": "Экономайзер Д-120 6 плит",
+      "woo_product_id": 249059,
+      "woo_slug": "easysteam-1013608"
+    },
+    {
+      "sku": "1013622",
+      "source_name": "Экономайзер «Д-120» МИНИ 10 плит",
+      "woo_product_id": 249060,
+      "woo_slug": "easysteam-1013622"
+    },
+    {
+      "sku": "1013624",
+      "source_name": "Экономайзер Д-150",
+      "woo_product_id": 249061,
+      "woo_slug": "easysteam-1013624"
+    },
+    {
+      "sku": "1013634",
+      "source_name": "Экономайзер Д-150 6 плит",
+      "woo_product_id": 249062,
+      "woo_slug": "easysteam-1013634"
+    },
+    {
+      "sku": "1013663",
+      "source_name": "Печь Домна 90 К ТВИН",
+      "woo_product_id": 249024,
+      "woo_slug": "easysteam-1013663"
+    },
+    {
+      "sku": "1013689",
+      "source_name": "Печь Домна 120 К ТВИН",
+      "woo_product_id": 249025,
+      "woo_slug": "easysteam-1013689"
+    },
+    {
+      "sku": "1013708",
+      "source_name": "Печь Ялта 15/2025",
+      "woo_product_id": 248953,
+      "woo_slug": "easysteam-1013708"
+    },
+    {
+      "sku": "1013737",
+      "source_name": "Печь Ялта 25/2025",
+      "woo_product_id": 248955,
+      "woo_slug": "easysteam-1013737"
+    },
+    {
+      "sku": "1013770",
+      "source_name": "Печь Ялта 35/2025",
+      "woo_product_id": 248957,
+      "woo_slug": "easysteam-1013770"
+    },
+    {
+      "sku": "1013812",
+      "source_name": "Печь Ялта 40/2025",
+      "woo_product_id": 248959,
+      "woo_slug": "easysteam-1013812"
+    },
+    {
+      "sku": "1013849",
+      "source_name": "Обливное устройство КАСКАД 20/2025 в кожухе сетке Хай-Тек",
+      "woo_product_id": 249081,
+      "woo_slug": "easysteam-1013849"
+    },
+    {
+      "sku": "1013850",
+      "source_name": "Обливное устройство КАСКАД 30/2025 в кожухе сетке Хай-Тек",
+      "woo_product_id": 249082,
+      "woo_slug": "easysteam-1013850"
+    },
+    {
+      "sku": "1013851",
+      "source_name": "Обливное устройство Каскад 20/2025 с декоративными элементами от компании Woodson",
+      "woo_product_id": 249083,
+      "woo_slug": "easysteam-1013851"
+    },
+    {
+      "sku": "1013852",
+      "source_name": "Обливное устройство Каскад 30/2025 с декоративными элементами от компании Woodson",
+      "woo_product_id": 249084,
+      "woo_slug": "easysteam-1013852"
+    },
+    {
+      "sku": "1013925",
+      "source_name": "Комплект для удаленного управления для ОУ Каскад",
+      "woo_product_id": 249088,
+      "woo_slug": "easysteam-1013925"
+    },
+    {
+      "sku": "1013931",
+      "source_name": "Обливное устройство КАСКАД 20/2026 в кожухе сетке",
+      "woo_product_id": 249077,
+      "woo_slug": "easysteam-1013931"
+    },
+    {
+      "sku": "1013938",
+      "source_name": "Обливное устройство КАСКАД 30/2026 в кожухе сетке",
+      "woo_product_id": 249078,
+      "woo_slug": "easysteam-1013938"
+    },
+    {
+      "sku": "1013944",
+      "source_name": "Обливное устройство КАСКАД 40/2026 в кожухе сетке",
+      "woo_product_id": 249079,
+      "woo_slug": "easysteam-1013944"
+    },
+    {
+      "sku": "1013953",
+      "source_name": "Обливное устройство КАСКАД 60/2026 в кожухе сетке",
+      "woo_product_id": 249080,
+      "woo_slug": "easysteam-1013953"
+    },
+    {
+      "sku": "1013984",
+      "source_name": "Печь Ялта 15 К/2025",
+      "woo_product_id": 249026,
+      "woo_slug": "easysteam-1013984"
+    },
+    {
+      "sku": "1013996",
+      "source_name": "Печь Ялта 25 К/2025",
+      "woo_product_id": 249028,
+      "woo_slug": "easysteam-1013996"
+    },
+    {
+      "sku": "1014044",
+      "source_name": "Печь Ялта 35 К/2025",
+      "woo_product_id": 249030,
+      "woo_slug": "easysteam-1014044"
+    },
+    {
+      "sku": "1014064",
+      "source_name": "Печь Ялта 40 К/2025",
+      "woo_product_id": 249032,
+      "woo_slug": "easysteam-1014064"
+    },
+    {
+      "sku": "1014104",
+      "source_name": "Печь Ялта 50 К/2025",
+      "woo_product_id": 249034,
+      "woo_slug": "easysteam-1014104"
+    },
+    {
+      "sku": "1015725",
+      "source_name": "Печь Анапа К базовая модель",
+      "woo_product_id": 249002,
+      "woo_slug": "easysteam-1015725"
+    },
+    {
+      "sku": "1015738",
+      "source_name": "Печь Анапа К в трехстороннем кожухе",
+      "woo_product_id": 249003,
+      "woo_slug": "easysteam-1015738"
+    },
+    {
+      "sku": "1015781",
+      "source_name": "Печь Анапа К в полноценном кожухе",
+      "woo_product_id": 249004,
+      "woo_slug": "easysteam-1015781"
+    },
+    {
+      "sku": "1015818",
+      "source_name": "Печь Анапа К в полноценном наборном кожухе",
+      "woo_product_id": 249005,
+      "woo_slug": "easysteam-1015818"
+    },
+    {
+      "sku": "1015876",
+      "source_name": "Печь VIVARTE 6 в облицовке из стекла",
+      "woo_product_id": 248950,
+      "woo_slug": "easysteam-1015876"
+    },
+    {
+      "sku": "1015877",
+      "source_name": "Печь VIVARTE 9 в облицовке из камня",
+      "woo_product_id": 248999,
+      "woo_slug": "easysteam-1015877"
+    },
+    {
+      "sku": "1015878",
+      "source_name": "Печь VIVARTE 9 в облицовке из стекла",
+      "woo_product_id": 248998,
+      "woo_slug": "easysteam-1015878"
+    },
+    {
+      "sku": "1015880",
+      "source_name": "Печь VIVARTE 12 в облицовке из стекла",
+      "woo_product_id": 249000,
+      "woo_slug": "easysteam-1015880"
+    },
+    {
+      "sku": "1016009",
+      "source_name": "Печь VIVARTE 6 в облицовке из камня",
+      "woo_product_id": 248951,
+      "woo_slug": "easysteam-1016009"
+    },
+    {
+      "sku": "1016014",
+      "source_name": "Печь VIVARTE 12 в облицовке из камня",
+      "woo_product_id": 249001,
+      "woo_slug": "easysteam-1016014"
+    }
+  ],
+  "matched_but_broken": [
+    {
+      "sku": "1000026",
+      "source_name": "Печь Анапа базовая модель",
+      "woo_product_id": 232180,
+      "woo_slug": "easysteam-1000026",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1000044",
+      "source_name": "Печь Анапа М2 базовая модель",
+      "woo_product_id": 232333,
+      "woo_slug": "easysteam-1000044",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1000098",
+      "source_name": "Печь Анапа в полноценном кожухе с закрытым верхом",
+      "woo_product_id": 232489,
+      "woo_slug": "easysteam-1000098",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1000128",
+      "source_name": "Печь Анапа М2 в полноценном кожухе с закрытым верхом",
+      "woo_product_id": 232558,
+      "woo_slug": "easysteam-1000128",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1000256",
+      "source_name": "Печь Анапа М2 в полноценном кожухе с открытым верхом",
+      "woo_product_id": 232821,
+      "woo_slug": "easysteam-1000256",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1000650",
+      "source_name": "Печь Анапа в трехстороннем кожухе с закрытым верхом",
+      "woo_product_id": 233276,
+      "woo_slug": "easysteam-1000650",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1000704",
+      "source_name": "Печь Анапа М2 в трехстороннем кожухе с закрытым верхом",
+      "woo_product_id": 233344,
+      "woo_slug": "easysteam-1000704",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1000938",
+      "source_name": "Печь Сочи базовая модель",
+      "woo_product_id": 234056,
+      "woo_slug": "easysteam-1000938",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1000974",
+      "source_name": "Печь Сочи М2 базовая модель",
+      "woo_product_id": 234077,
+      "woo_slug": "easysteam-1000974",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1001275",
+      "source_name": "Печь Сочи в полноценном кожухе с закрытым верхом с боковым подключением",
+      "woo_product_id": 234753,
+      "woo_slug": "easysteam-1001275",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1001850",
+      "source_name": "Печь Геленджик базовая модель",
+      "woo_product_id": 235798,
+      "woo_slug": "easysteam-1001850",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1001886",
+      "source_name": "Печь Геленджик М2 базовая модель",
+      "woo_product_id": 238623,
+      "woo_slug": "easysteam-1001886",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1002626",
+      "source_name": "Жадеит шлифованный отборный (20кг.)",
+      "woo_product_id": 249067,
+      "woo_slug": "easysteam-1002626",
+      "reasons": [
+        "missing_full_description"
+      ]
+    },
+    {
+      "sku": "1002628",
+      "source_name": "Жадеит колотый средний (20кг.)",
+      "woo_product_id": 249068,
+      "woo_slug": "easysteam-1002628",
+      "reasons": [
+        "missing_full_description"
+      ]
+    },
+    {
+      "sku": "1002629",
+      "source_name": "Малиновый кварцит (20кг.)",
+      "woo_product_id": 249069,
+      "woo_slug": "easysteam-1002629",
+      "reasons": [
+        "missing_full_description"
+      ]
+    },
+    {
+      "sku": "1002959",
+      "source_name": "Запарник",
+      "woo_product_id": 249075,
+      "woo_slug": "easysteam-1002959",
+      "reasons": [
+        "missing_image"
+      ]
+    },
+    {
+      "sku": "1002960",
+      "source_name": "Лист перекрытия",
+      "woo_product_id": 249050,
+      "woo_slug": "easysteam-1002960",
+      "reasons": [
+        "missing_full_description"
+      ]
+    },
+    {
+      "sku": "1002961",
+      "source_name": "Комплект переходников",
+      "woo_product_id": 249051,
+      "woo_slug": "easysteam-1002961",
+      "reasons": [
+        "missing_full_description"
+      ]
+    },
+    {
+      "sku": "1002968",
+      "source_name": "Комплект дымоходов",
+      "woo_product_id": 249066,
+      "woo_slug": "easysteam-1002968",
+      "reasons": [
+        "missing_full_description"
+      ]
+    },
+    {
+      "sku": "1002971",
+      "source_name": "Опахало для бани",
+      "woo_product_id": 249096,
+      "woo_slug": "easysteam-1002971",
+      "reasons": [
+        "missing_full_description"
+      ]
+    },
+    {
+      "sku": "1002972",
+      "source_name": "Ковш фирменный",
+      "woo_product_id": 249095,
+      "woo_slug": "easysteam-1002972",
+      "reasons": [
+        "missing_image"
+      ]
+    },
+    {
+      "sku": "1002974",
+      "source_name": "Колпак банный",
+      "woo_product_id": 249092,
+      "woo_slug": "easysteam-1002974",
+      "reasons": [
+        "missing_full_description"
+      ]
+    },
+    {
+      "sku": "1003031",
+      "source_name": "Печь Анапа в полноценном кожухе с открытым верхом",
+      "woo_product_id": 232752,
+      "woo_slug": "easysteam-1003031",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1003223",
+      "source_name": "Печь Анапа в трехстороннем кожухе с открытым верхом",
+      "woo_product_id": 233538,
+      "woo_slug": "easysteam-1003223",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1003237",
+      "source_name": "Печь Анапа М2 в трехстороннем кожухе с открытым верхом",
+      "woo_product_id": 233604,
+      "woo_slug": "easysteam-1003237",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1003271",
+      "source_name": "Печь Сочи в полноценном кожухе с закрытым верхом",
+      "woo_product_id": 234227,
+      "woo_slug": "easysteam-1003271",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1003285",
+      "source_name": "Печь Сочи М2 в полноценном кожухе с закрытым верхом",
+      "woo_product_id": 234296,
+      "woo_slug": "easysteam-1003285",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1003319",
+      "source_name": "Печь Сочи в полноценном кожухе с открытым верхом",
+      "woo_product_id": 234490,
+      "woo_slug": "easysteam-1003319",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1003333",
+      "source_name": "Печь Сочи М2 в полноценном кожухе с открытым верхом",
+      "woo_product_id": 234559,
+      "woo_slug": "easysteam-1003333",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1003463",
+      "source_name": "Печь Сочи в трехстороннем кожухе с закрытым верхом",
+      "woo_product_id": 235014,
+      "woo_slug": "easysteam-1003463",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1003477",
+      "source_name": "Печь Сочи М2 в трехстороннем кожухе с закрытым верхом",
+      "woo_product_id": 235083,
+      "woo_slug": "easysteam-1003477",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1003511",
+      "source_name": "Печь Сочи в трехстороннем кожухе с открытым верхом",
+      "woo_product_id": 235277,
+      "woo_slug": "easysteam-1003511",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1003523",
+      "source_name": "Печь Сочи М2 в трехстороннем кожухе с открытым верхом",
+      "woo_product_id": 235346,
+      "woo_slug": "easysteam-1003523",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1003559",
+      "source_name": "Печь Геленджик в полноценном кожухе с закрытым верхом",
+      "woo_product_id": 238770,
+      "woo_slug": "easysteam-1003559",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1003571",
+      "source_name": "Печь Геленджик М2 в полноценном кожухе с закрытым верхом",
+      "woo_product_id": 238835,
+      "woo_slug": "easysteam-1003571",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1003607",
+      "source_name": "Печь Геленджик в полноценном кожухе с открытым верхом",
+      "woo_product_id": 239028,
+      "woo_slug": "easysteam-1003607",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1003620",
+      "source_name": "Печь Геленджик М2 в полноценном кожухе с открытым верхом",
+      "woo_product_id": 239093,
+      "woo_slug": "easysteam-1003620",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1003655",
+      "source_name": "Печь Геленджик в полноценном кожухе с закрытым верхом с боковым подключением",
+      "woo_product_id": 239290,
+      "woo_slug": "easysteam-1003655",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1003669",
+      "source_name": "Печь Геленджик М2 в полноценном кожухе с закрытым верхом с боковым подключением",
+      "woo_product_id": 239555,
+      "woo_slug": "easysteam-1003669",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1003703",
+      "source_name": "Печь Геленджик в трехстороннем кожухе с закрытым верхом",
+      "woo_product_id": 241038,
+      "woo_slug": "easysteam-1003703",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1003715",
+      "source_name": "Печь Геленджик М2 в трехстороннем кожухе с закрытым верхом",
+      "woo_product_id": 241040,
+      "woo_slug": "easysteam-1003715",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1003751",
+      "source_name": "Печь Геленджик в трехстороннем кожухе с открытым верхом",
+      "woo_product_id": 241042,
+      "woo_slug": "easysteam-1003751",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1003763",
+      "source_name": "Печь Геленджик М2 в трехстороннем кожухе с открытым верхом",
+      "woo_product_id": 241044,
+      "woo_slug": "easysteam-1003763",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1004026",
+      "source_name": "Дровница для бани",
+      "woo_product_id": 249097,
+      "woo_slug": "easysteam-1004026",
+      "reasons": [
+        "missing_image"
+      ]
+    },
+    {
+      "sku": "1004108",
+      "source_name": "Печь Анапа в трехстороннем кожухе с закрытым верхом с боковым подключением",
+      "woo_product_id": 233798,
+      "woo_slug": "easysteam-1004108",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1005435",
+      "source_name": "Печь Геленджик в трехстороннем кожухе с открытым верхом с боковым подключением",
+      "woo_product_id": 241048,
+      "woo_slug": "easysteam-1005435",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1006355",
+      "source_name": "Печь Анапа в полноценном кожухе с боковым подключением с закрытым верхом",
+      "woo_product_id": 233015,
+      "woo_slug": "easysteam-1006355",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1007626",
+      "source_name": "Печь Сочи в трехстороннем кожухе с закрытым верхом с боковым подключением",
+      "woo_product_id": 235540,
+      "woo_slug": "easysteam-1007626",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1008761",
+      "source_name": "Печь Геленджик в трехстороннем кожухе с закрытым верхом с боковым подключением",
+      "woo_product_id": 241046,
+      "woo_slug": "easysteam-1008761",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1013075",
+      "source_name": "Жадеит шлифованный отборный (10кг)",
+      "woo_product_id": 249070,
+      "woo_slug": "easysteam-1013075",
+      "reasons": [
+        "missing_full_description"
+      ]
+    },
+    {
+      "sku": "1013076",
+      "source_name": "Жадеит колотый средний (10кг)",
+      "woo_product_id": 249071,
+      "woo_slug": "easysteam-1013076",
+      "reasons": [
+        "missing_full_description"
+      ]
+    },
+    {
+      "sku": "1013255",
+      "source_name": "Печь Анапа в наборном полноценном кожухе с закрытым верхом",
+      "woo_product_id": 232386,
+      "woo_slug": "easysteam-1013255",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1013287",
+      "source_name": "Печь Анапа в наборном полноценном кожухе с открытым верхом",
+      "woo_product_id": 232436,
+      "woo_slug": "easysteam-1013287",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1013351",
+      "source_name": "Печь Сочи в наборном полноценном кожухе с закрытым верхом",
+      "woo_product_id": 234127,
+      "woo_slug": "easysteam-1013351",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1013383",
+      "source_name": "Печь Сочи в наборном полноценном кожухе с открытым верхом",
+      "woo_product_id": 234177,
+      "woo_slug": "easysteam-1013383",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1013447",
+      "source_name": "Печь Геленджик в наборном полноценном кожухе с закрытым верхом",
+      "woo_product_id": 238672,
+      "woo_slug": "easysteam-1013447",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1013495",
+      "source_name": "Печь Геленджик в наборном полноценном кожухе с открытым верхом",
+      "woo_product_id": 238721,
+      "woo_slug": "easysteam-1013495",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1013855",
+      "source_name": "Обливное устройство КАСКАД 20/2025 в кожухе из керамики",
+      "woo_product_id": 249085,
+      "woo_slug": "easysteam-1013855",
+      "reasons": [
+        "missing_full_description"
+      ]
+    },
+    {
+      "sku": "1013856",
+      "source_name": "Обливное устройство КАСКАД 30/2025 в кожухе из керамики",
+      "woo_product_id": 249086,
+      "woo_slug": "easysteam-1013856",
+      "reasons": [
+        "missing_full_description"
+      ]
+    },
+    {
+      "sku": "1014219",
+      "source_name": "Печь Геленджик М2 в трехстороннем кожухе с открытым верхом с боковым подключением",
+      "woo_product_id": 241050,
+      "woo_slug": "easysteam-1014219",
+      "reasons": [
+        "missing_attributes"
+      ]
+    },
+    {
+      "sku": "1015076",
+      "source_name": "Печь Геленджик М2 в трехстороннем кожухе с закрытым верхом с боковым подключением",
+      "woo_product_id": 241052,
+      "woo_slug": "easysteam-1015076",
+      "reasons": [
+        "missing_attributes"
+      ]
+    }
+  ],
+  "source_only": [],
+  "woo_only": [],
+  "source_duplicates": [],
+  "woo_duplicates": []
+}

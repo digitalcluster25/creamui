@@ -208,6 +208,24 @@ function hws_sideload_image( string $url, int $post_id, bool $set_thumbnail = fa
 	return (int) $attachment_id;
 }
 
+function hws_sideload_image_cached( string $url, int $post_id, bool $set_thumbnail = false ): int {
+	static $cache = [];
+
+	if ( isset( $cache[ $url ] ) ) {
+		$attachment_id = (int) $cache[ $url ];
+		if ( $attachment_id > 0 && $set_thumbnail ) {
+			set_post_thumbnail( $post_id, $attachment_id );
+		}
+		return $attachment_id;
+	}
+
+	$attachment_id = hws_sideload_image( $url, $post_id, $set_thumbnail );
+	if ( $attachment_id > 0 ) {
+		$cache[ $url ] = $attachment_id;
+	}
+	return $attachment_id;
+}
+
 function hws_calculate_rate(): float {
 	$products = wc_get_products(
 		[
@@ -271,6 +289,204 @@ function hws_vvd_build_sku( array $product ): string {
 	}
 
 	return 'VVD-' . strtoupper( substr( md5( wp_json_encode( $product ) ), 0, 12 ) );
+}
+
+function hws_vvd_build_variation_groups( array $option_groups ): array {
+	$groups = [];
+
+	foreach ( $option_groups as $position => $group ) {
+		$group_id = hws_normalize_text( (string) ( $group['id'] ?? '' ) );
+		if ( '' === $group_id ) {
+			continue;
+		}
+
+		$values = [];
+		foreach ( $group['values'] ?? [] as $value ) {
+			$name = hws_normalize_text( (string) ( $value['name'] ?? '' ) );
+			if ( '' === $name ) {
+				continue;
+			}
+			$values[] = [
+				'name'       => $name,
+				'is_default' => ! empty( $value['is_default'] ),
+			];
+		}
+
+		if ( empty( $values ) ) {
+			continue;
+		}
+
+		$groups[ $group_id ] = [
+			'id'       => $group_id,
+			'label'    => hws_normalize_text( (string) ( $group['name'] ?? '' ) ),
+			'position' => $position,
+			'values'   => $values,
+		];
+	}
+
+	return $groups;
+}
+
+function hws_vvd_merge_product_attributes( array $taxonomy_attributes, array $variation_groups ): array {
+	$product_attributes = $taxonomy_attributes;
+	$position = count( $product_attributes );
+
+	foreach ( $variation_groups as $group_id => $group ) {
+		$values = array_values(
+			array_filter(
+				array_map(
+					static function ( array $value ): string {
+						return (string) ( $value['name'] ?? '' );
+					},
+					$group['values'] ?? []
+				)
+			)
+		);
+
+		if ( empty( $values ) ) {
+			continue;
+		}
+
+		$product_attributes[ $group_id ] = [
+			'name'         => $group_id,
+			'value'        => implode( ' | ', $values ),
+			'position'     => $position++,
+			'is_visible'   => 0,
+			'is_variation' => 1,
+			'is_taxonomy'  => 0,
+		];
+	}
+
+	return $product_attributes;
+}
+
+function hws_vvd_default_variation_attributes( array $variation_groups ): array {
+	$defaults = [];
+
+	foreach ( $variation_groups as $group_id => $group ) {
+		$default_value = '';
+		foreach ( $group['values'] ?? [] as $value ) {
+			if ( ! empty( $value['is_default'] ) ) {
+				$default_value = (string) $value['name'];
+				break;
+			}
+		}
+		if ( '' === $default_value && ! empty( $group['values'][0]['name'] ) ) {
+			$default_value = (string) $group['values'][0]['name'];
+		}
+		if ( '' !== $default_value ) {
+			$defaults[ $group_id ] = $default_value;
+		}
+	}
+
+	return $defaults;
+}
+
+function hws_vvd_clear_variations( int $product_id ): void {
+	$variation_ids = get_posts(
+		[
+			'post_type'   => 'product_variation',
+			'post_parent' => $product_id,
+			'numberposts' => -1,
+			'fields'      => 'ids',
+			'post_status' => [ 'publish', 'private' ],
+		]
+	);
+
+	foreach ( $variation_ids as $variation_id ) {
+		wp_delete_post( (int) $variation_id, true );
+	}
+}
+
+function hws_vvd_build_variation_sku( string $parent_sku, string $offer_id ): string {
+	$base = preg_replace( '/-\d+$/', '', $parent_sku );
+	return $base . '-' . $offer_id;
+}
+
+function hws_vvd_sync_variations( int $product_id, string $parent_sku, array $variation_groups, array $offers, float $rate, bool $download_media ): array {
+	hws_vvd_clear_variations( $product_id );
+
+	$imported = 0;
+	$min_price = null;
+	$max_price = null;
+
+	foreach ( $offers as $index => $offer ) {
+		$offer_id = hws_normalize_text( (string) ( $offer['offer_id'] ?? '' ) );
+		if ( '' === $offer_id ) {
+			continue;
+		}
+
+		$selection_map = [];
+		foreach ( $offer['selections'] ?? [] as $selection ) {
+			$group_id = hws_normalize_text( (string) ( $selection['group_id'] ?? '' ) );
+			$value_name = hws_normalize_text( (string) ( $selection['value_name'] ?? '' ) );
+			if ( '' === $group_id || '' === $value_name || ! isset( $variation_groups[ $group_id ] ) ) {
+				continue;
+			}
+			$selection_map[ $group_id ] = $value_name;
+		}
+
+		if ( ! empty( $variation_groups ) && count( $selection_map ) < count( $variation_groups ) ) {
+			continue;
+		}
+
+		$variation_id = wp_insert_post(
+			[
+				'post_title'   => 'Variation ' . $offer_id,
+				'post_status'  => 'publish',
+				'post_parent'  => $product_id,
+				'post_type'    => 'product_variation',
+				'menu_order'   => $index,
+				'post_content' => '',
+			],
+			true
+		);
+
+		if ( is_wp_error( $variation_id ) ) {
+			hws_import_warn( 'Variation create failed for offer ' . $offer_id . ': ' . $variation_id->get_error_message() );
+			continue;
+		}
+
+		$price_rub = (int) preg_replace( '/[^\d]/', '', (string) ( $offer['price_number_rub'] ?? '' ) );
+		if ( $price_rub <= 0 ) {
+			$price_rub = (int) preg_replace( '/[^\d]/', '', (string) ( $offer['price_text'] ?? '' ) );
+		}
+		$price_usd = $price_rub > 0 ? round( $price_rub / $rate ) : 0;
+		$price_on_request = $price_usd <= 0;
+
+		update_post_meta( $variation_id, '_sku', hws_vvd_build_variation_sku( $parent_sku, $offer_id ) );
+		update_post_meta( $variation_id, '_regular_price', $price_on_request ? '' : $price_usd );
+		update_post_meta( $variation_id, '_price', $price_on_request ? '' : $price_usd );
+		update_post_meta( $variation_id, '_stock_status', 'instock' );
+		update_post_meta( $variation_id, '_manage_stock', 'no' );
+		update_post_meta( $variation_id, '_hws_price_on_request', $price_on_request ? 'yes' : 'no' );
+		update_post_meta( $variation_id, '_hws_source_offer_id', $offer_id );
+		update_post_meta( $variation_id, '_hws_source_offer_url', (string) ( $offer['detail_page_url'] ?? '' ) );
+
+		foreach ( $selection_map as $group_id => $value_name ) {
+			update_post_meta( $variation_id, 'attribute_' . $group_id, $value_name );
+		}
+
+		if ( $download_media ) {
+			$image_url = (string) ( $offer['primary_image_url'] ?? '' );
+			if ( '' !== $image_url ) {
+				hws_sideload_image_cached( $image_url, $variation_id, true );
+			}
+		}
+
+		if ( ! $price_on_request ) {
+			$min_price = null === $min_price ? $price_usd : min( $min_price, $price_usd );
+			$max_price = null === $max_price ? $price_usd : max( $max_price, $price_usd );
+		}
+
+		$imported++;
+	}
+
+	return [
+		'imported'  => $imported,
+		'min_price' => $min_price,
+		'max_price' => $max_price,
+	];
 }
 
 function hws_vvd_attribute_values_for_product( array $series_payload, array $product ): array {
@@ -391,10 +607,9 @@ foreach ( $payload['series'] ?? [] as $series_payload ) {
 		$slug = 'vvd-' . sanitize_title( preg_replace( '/^VVD-/i', '', $sku ) );
 		$product_id = hws_find_existing_product_id( $sku, $slug );
 		$is_update = $product_id > 0;
-		$product_type_label = (string) ( $series_payload['target']['productType'] ?? '' );
-		if ( '' === $product_type_label ) {
-			$product_type_label = ! empty( $product['option_groups'] ) ? 'variable' : 'simple';
-		}
+		$offers = is_array( $product['offers'] ?? null ) ? $product['offers'] : [];
+		$has_real_variations = count( $offers ) > 1;
+		$product_type_label = $has_real_variations ? 'variable' : 'simple';
 
 		$current_offer = $product['current_offer'] ?? [];
 		$base_price_rub = (int) preg_replace( '/[^\d]/', '', (string) ( $current_offer['price_number_rub'] ?? '' ) );
@@ -430,6 +645,7 @@ foreach ( $payload['series'] ?? [] as $series_payload ) {
 				'short_description' => $short_description,
 				'description'       => $description,
 				'option_groups'     => $product['option_groups'] ?? [],
+				'offers'            => $offers,
 				'documents'         => $product['documents'] ?? [],
 				'videos'            => $product['videos'] ?? [],
 				'gallery'           => $product['gallery'] ?? [],
@@ -487,6 +703,14 @@ foreach ( $payload['series'] ?? [] as $series_payload ) {
 		wp_set_object_terms( $product_id, $product_type_label, 'product_type', false );
 
 		$product_attributes = hws_assign_attribute_terms( $product_id, $attrs, false );
+		$variation_groups = hws_vvd_build_variation_groups( $product['option_groups'] ?? [] );
+		if ( 'variable' === $product_type_label && ! empty( $variation_groups ) ) {
+			$product_attributes = hws_vvd_merge_product_attributes( $product_attributes, $variation_groups );
+			update_post_meta( $product_id, '_default_attributes', hws_vvd_default_variation_attributes( $variation_groups ) );
+		} else {
+			delete_post_meta( $product_id, '_default_attributes' );
+			hws_vvd_clear_variations( $product_id );
+		}
 
 		$price_on_request = $base_price_usd <= 0;
 		update_post_meta( $product_id, '_sku', $sku );
@@ -522,6 +746,24 @@ foreach ( $payload['series'] ?? [] as $series_payload ) {
 		);
 		update_post_meta( $product_id, '_hws_imported_variation_count', 0 );
 
+		if ( 'variable' === $product_type_label && ! empty( $variation_groups ) && ! empty( $offers ) ) {
+			$variation_result = hws_vvd_sync_variations( $product_id, $sku, $variation_groups, $offers, $rate, $download_media );
+			update_post_meta( $product_id, '_hws_imported_variation_count', (int) $variation_result['imported'] );
+
+			$min_variation_price = $variation_result['min_price'];
+			$max_variation_price = $variation_result['max_price'];
+			$parent_price_on_request = null === $min_variation_price || null === $max_variation_price;
+
+			update_post_meta( $product_id, '_price', $parent_price_on_request ? '' : $min_variation_price );
+			update_post_meta( $product_id, '_regular_price', $parent_price_on_request ? '' : $min_variation_price );
+			update_post_meta( $product_id, '_hws_price_on_request', $parent_price_on_request ? 'yes' : 'no' );
+			update_post_meta( $product_id, '_min_variation_price', $parent_price_on_request ? '' : $min_variation_price );
+			update_post_meta( $product_id, '_max_variation_price', $parent_price_on_request ? '' : $max_variation_price );
+			update_post_meta( $product_id, '_min_variation_regular_price', $parent_price_on_request ? '' : $min_variation_price );
+			update_post_meta( $product_id, '_max_variation_regular_price', $parent_price_on_request ? '' : $max_variation_price );
+			wc_delete_product_transients( $product_id );
+		}
+
 		if ( $download_media ) {
 			$image_ids = [];
 			foreach ( $product['gallery'] ?? [] as $index => $image ) {
@@ -529,7 +771,7 @@ foreach ( $payload['series'] ?? [] as $series_payload ) {
 				if ( '' === $url ) {
 					continue;
 				}
-				$attachment_id = hws_sideload_image( $url, $product_id, 0 === $index );
+				$attachment_id = hws_sideload_image_cached( $url, $product_id, 0 === $index );
 				if ( $attachment_id > 0 ) {
 					$image_ids[] = $attachment_id;
 				}

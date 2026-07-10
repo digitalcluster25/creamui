@@ -16,10 +16,11 @@ type Props = {
   category: string;
   priceMin: number;
   priceMax: number;
+  priceOnRequest?: boolean;
   baseCurrency: CurrencyCode;
 };
 
-export function CatalogProductCard({ href, image, title, category, priceMin, priceMax, baseCurrency }: Props) {
+export function CatalogProductCard({ href, image, title, category, priceMin, priceMax, priceOnRequest = false, baseCurrency }: Props) {
   const { activeCurrency, rates } = useCurrency();
   const convertedMin = convertPrice(priceMin, baseCurrency, activeCurrency, rates);
   const convertedMax = convertPrice(priceMax, baseCurrency, activeCurrency, rates);
@@ -39,7 +40,9 @@ export function CatalogProductCard({ href, image, title, category, priceMin, pri
         </a>
         <p className={styles.category}>{category}</p>
         <p className={styles.price}>
-          {symbol}{formatMoney(convertedMin, activeCurrency)} – {symbol}{formatMoney(convertedMax, activeCurrency)}
+          {priceOnRequest
+            ? "Цена по запросу"
+            : `${symbol}${formatMoney(convertedMin, activeCurrency)} – ${symbol}${formatMoney(convertedMax, activeCurrency)}`}
         </p>
       </div>
     </div>

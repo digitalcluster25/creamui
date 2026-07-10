@@ -16,6 +16,7 @@ export const GET_PRODUCTS = gql`
         name
         slug
         ... on SimpleProduct {
+          hwsPriceOnRequest
           price
           regularPrice
           salePrice
@@ -56,6 +57,7 @@ export const GET_PRODUCTS = gql`
           }
         }
         ... on VariableProduct {
+          hwsPriceOnRequest
           price
           regularPrice
           salePrice
@@ -125,6 +127,7 @@ export const GET_PRODUCT_BY_SLUG = gql`
       description
       shortDescription
       ... on SimpleProduct {
+        hwsPriceOnRequest
         price
         regularPrice
         salePrice
@@ -157,13 +160,6 @@ export const GET_PRODUCT_BY_SLUG = gql`
         hwsSpecs {
           label
           value
-        }
-        hwsSpecGroups {
-          title
-          rows {
-            label
-            value
-          }
         }
         hwsCommerceInfo {
           deliveryTitle
@@ -188,6 +184,7 @@ export const GET_PRODUCT_BY_SLUG = gql`
         }
       }
       ... on VariableProduct {
+        hwsPriceOnRequest
         price
         regularPrice
         salePrice
@@ -220,13 +217,6 @@ export const GET_PRODUCT_BY_SLUG = gql`
         hwsSpecs {
           label
           value
-        }
-        hwsSpecGroups {
-          title
-          rows {
-            label
-            value
-          }
         }
         hwsCommerceInfo {
           deliveryTitle
@@ -342,6 +332,7 @@ export const GET_FEATURED_PRODUCTS = gql`
           date
         }
         ... on SimpleProduct {
+          hwsPriceOnRequest
           price
           regularPrice
           salePrice
@@ -369,6 +360,7 @@ export const GET_FEATURED_PRODUCTS = gql`
           }
         }
         ... on VariableProduct {
+          hwsPriceOnRequest
           price
           regularPrice
           salePrice

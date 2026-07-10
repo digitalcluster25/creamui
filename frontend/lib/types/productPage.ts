@@ -48,10 +48,12 @@ export type ProductPageData = {
   categories: { label: string; href: string }[];
   priceOld?: number;
   price: number;
+  priceOnRequest?: boolean;
   baseCurrencyCode: CurrencyCode;
   sku?: string;
   tag?: string;
   brand?: string;
+  brandHref?: string;
   description: string;
   commerceInfo?: CommerceInfo;
   facingOptions?: FacingOption[];

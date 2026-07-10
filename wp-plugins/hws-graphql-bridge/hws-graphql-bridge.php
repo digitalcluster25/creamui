@@ -48,6 +48,24 @@ function hws_graphql_bridge_get_product_id( $source ): ?int {
 	return null;
 }
 
+function hws_graphql_bridge_translit_cyr( string $value ): string {
+	$map = [
+		'а' => 'a', 'б' => 'b', 'в' => 'v', 'г' => 'g', 'д' => 'd', 'е' => 'e', 'ё' => 'e',
+		'ж' => 'zh', 'з' => 'z', 'и' => 'i', 'й' => 'y', 'к' => 'k', 'л' => 'l', 'м' => 'm',
+		'н' => 'n', 'о' => 'o', 'п' => 'p', 'р' => 'r', 'с' => 's', 'т' => 't', 'у' => 'u',
+		'ф' => 'f', 'х' => 'h', 'ц' => 'c', 'ч' => 'ch', 'ш' => 'sh', 'щ' => 'sch', 'ъ' => '',
+		'ы' => 'y', 'ь' => '', 'э' => 'e', 'ю' => 'yu', 'я' => 'ya',
+	];
+	$value = mb_strtolower( $value, 'UTF-8' );
+	return strtr( $value, $map );
+}
+
+function hws_graphql_bridge_slugify( string $value ): string {
+	$value = remove_accents( wp_strip_all_tags( $value ) );
+	$value = hws_graphql_bridge_translit_cyr( $value );
+	return sanitize_title( $value );
+}
+
 /**
  * 2) Поле hwsSpecs на интерфейсе Product — разбирает _hws_specs_html
  *    в массив {label, value}. Подтверждено на выборке товаров всех 3 брендов
@@ -87,6 +105,23 @@ add_action(
 					}
 
 					return hws_graphql_bridge_parse_specs_html( $html );
+				},
+			]
+		);
+
+		register_graphql_field(
+			'Product',
+			'hwsPriceOnRequest',
+			[
+				'type'        => 'Boolean',
+				'description' => __( 'Товар публикуется без публичной цены и должен показываться как "Цена по запросу"', 'hws-graphql-bridge' ),
+				'resolve'     => function ( $source ) {
+					$product_id = hws_graphql_bridge_get_product_id( $source );
+					if ( empty( $product_id ) ) {
+						return false;
+					}
+
+					return 'yes' === get_post_meta( $product_id, '_hws_price_on_request', true );
 				},
 			]
 		);
@@ -211,8 +246,8 @@ add_action(
 		);
 		/**
 		 * 5) Поле hwsVariantGroups на интерфейсе Product — разбирает кастомный
-		 *    JSON _hws_source_payload.option_groups (только у VariableProduct/EasySteam)
-		 *    в аддитивную модель {key, label, options:[{value, priceModifier}]}.
+		 *    JSON _hws_source_payload.option_groups у variable-товаров
+		 *    в аддитивную модель {key, label, options:[{value, slug, priceModifier}]}.
 		 *    delta_price в исходных данных — в рублях, конвертируем в USD через
 		 *    _hws_usd_rub_rate (формула подтверждена эмпирически: 165000/71.209≈2317≈
 		 *    реальная минимальная цена товара 2320$ в WooCommerce).
@@ -225,6 +260,7 @@ add_action(
 				'description' => __( 'Опция группы вариаций с надбавкой к цене в валюте каталога', 'hws-graphql-bridge' ),
 				'fields'      => [
 					'value'         => [ 'type' => 'String' ],
+					'slug'          => [ 'type' => 'String' ],
 					'priceModifier' => [ 'type' => 'Float' ],
 				],
 			]
@@ -381,7 +417,7 @@ add_action(
 /**
  * @param array<int, array{id?: mixed, name?: string, values?: array<int, array{name?: string, delta_price?: float, is_default?: bool, sort_order?: int}>}> $groups
  * @param float $rate USD/RUB курс — delta_price (RUB) / rate = priceModifier (USD)
- * @return array<int, array{key: string, label: string, options: array<int, array{value: string, priceModifier: float}>}>
+ * @return array<int, array{key: string, label: string, options: array<int, array{value: string, slug: string, priceModifier: float}>}>
  */
 function hws_graphql_bridge_map_variant_groups( array $groups, float $rate ): array {
 	$result = [];
@@ -414,6 +450,7 @@ function hws_graphql_bridge_map_variant_groups( array $groups, float $rate ): ar
 			$delta_rub      = (float) ( $value['delta_price'] ?? 0 );
 			$options[]      = [
 				'value'         => $value['name'],
+				'slug'          => hws_graphql_bridge_slugify( (string) $value['name'] ),
 				'priceModifier' => round( $delta_rub / $rate ),
 			];
 		}
@@ -423,7 +460,7 @@ function hws_graphql_bridge_map_variant_groups( array $groups, float $rate ): ar
 		}
 
 		$result[] = [
-			'key'     => ! empty( $group['id'] ) ? (string) $group['id'] : sanitize_title( $group['name'] ),
+			'key'     => ! empty( $group['id'] ) ? (string) $group['id'] : hws_graphql_bridge_slugify( (string) $group['name'] ),
 			'label'   => $group['name'],
 			'options' => $options,
 		];

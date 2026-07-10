@@ -16,6 +16,64 @@
   color: rgb(40, 40, 40);
 }
 
+.discovery {
+  display: grid;
+  gap: 18px;
+  margin-bottom: 28px;
+  padding: 22px 24px;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at top right, rgba(155, 140, 120, 0.14), transparent 32%),
+    linear-gradient(180deg, rgba(17, 16, 19, 0.03), rgba(17, 16, 19, 0.015));
+}
+
+.discoveryGroup {
+  display: grid;
+  gap: 10px;
+}
+
+.discoveryLabel {
+  font-family: "Noto Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(17, 16, 19, 0.46);
+}
+
+.discoveryLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.discoveryLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid rgba(17, 16, 19, 0.1);
+  border-radius: 999px;
+  background: #fff;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgb(17, 16, 19);
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.discoveryLink:hover {
+  background: rgba(17, 16, 19, 0.04);
+  border-color: rgba(17, 16, 19, 0.22);
+}
+
+.discoveryLinkActive {
+  background: rgb(17, 16, 19);
+  border-color: rgb(17, 16, 19);
+  color: #fff;
+}
+
 /* ── Toolbar ── */
 .toolbar {
   display: flex;
@@ -158,6 +216,31 @@
   align-items: start;
 }
 
+.emptyState {
+  margin-bottom: 48px;
+  padding: 40px;
+  border-radius: 32px;
+  background: rgba(17, 16, 19, 0.035);
+}
+
+.emptyTitle {
+  margin: 0 0 12px;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.1;
+  color: rgb(17, 16, 19);
+}
+
+.emptyText {
+  margin: 0;
+  max-width: 640px;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(17, 16, 19, 0.68);
+}
+
 /* ── Pagination ── */
 .pagination {
   display: flex;
@@ -242,6 +325,10 @@
     justify-content: flex-end;
   }
 
+  .discovery {
+    padding: 18px;
+  }
+
   .filterSelect,
   .sort {
     font-size: 16px;
@@ -277,5 +364,13 @@
   .grid {
     grid-template-columns: repeat(1, minmax(0, 1fr));
     gap: 20px;
+  }
+
+  .emptyState {
+    padding: 24px 20px;
+  }
+
+  .emptyTitle {
+    font-size: 24px;
   }
 }

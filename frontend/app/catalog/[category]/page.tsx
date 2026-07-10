@@ -1,14 +1,19 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/sections/header";
 import { Catalog } from "@/components/sections/catalog";
+import { CatalogOverview } from "@/components/sections/catalog-overview/CatalogOverview";
+import { CatalogSeo } from "@/components/sections/catalog-seo/CatalogSeo";
 import { Footer } from "@/components/sections/footer";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs/Breadcrumbs";
 import { getHeaderData, flattenCategories, type WPCategoryNode } from "@/lib/wp/header";
 import { footerData } from "@/lib/data/footer";
 import { getClient } from "@/lib/wp/apollo";
 import { GET_PRODUCTS, GET_PRODUCT_CATEGORIES, GET_PRODUCT_CATEGORY_BY_SLUG, GET_ATTRIBUTE_TERMS } from "@/lib/wp/queries";
-import { mapToCatalogData, type WPProductNode } from "@/lib/wp/mappers";
+import { mapToCatalogData, mapToCategoryCardsData, type WPProductNode } from "@/lib/wp/mappers";
 import { filtersForBranch, attributeParamKey } from "@/lib/data/catalogFilters";
+import { CATALOG_BRANCH_INTROS } from "@/lib/data/catalogBranches";
+import { buildCatalogRobots } from "@/lib/seo/catalog";
 import type { AttributeTermLabels } from "@/lib/types/catalog";
 import styles from "../page.module.css";
 
@@ -47,6 +52,64 @@ export const revalidate = 3600;
 
 type Params = { category: string };
 
+export async function generateMetadata({
+  params,
+  searchParams,
+}: {
+  params: Promise<Params>;
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
+}): Promise<Metadata> {
+  const { category } = await params;
+  const resolvedSearchParams = (await searchParams) ?? {};
+  const branchIntro = CATALOG_BRANCH_INTROS[category];
+
+  if (branchIntro) {
+    return {
+      title: `${branchIntro.title} | Каталог HWS`,
+      description: branchIntro.lead,
+      alternates: {
+        canonical: `/catalog/${category}`,
+      },
+      robots: buildCatalogRobots(resolvedSearchParams),
+    };
+  }
+
+  try {
+    const client = getClient();
+    const { data } = await client.query<{
+      productCategory: { name: string; slug: string; parent?: { node: { name: string } } | null } | null;
+    }>({
+      query: GET_PRODUCT_CATEGORY_BY_SLUG,
+      variables: { slug: category },
+    });
+    const found = data?.productCategory;
+    if (!found?.name) {
+      return {
+        title: "Каталог HWS",
+        description: "Каталог печей, парогенераторов, автоматики и инженерных решений HWS.",
+      };
+    }
+
+    const parentName = found.parent?.node?.name;
+    return {
+      title: `${found.name}${parentName ? ` | ${parentName}` : ""} | Каталог HWS`,
+      description: parentName
+        ? `Раздел «${found.name}» внутри ветки «${parentName}» в каталоге HWS. Подбор по брендам, сериям и параметрам текущей категории.`
+        : `Раздел «${found.name}» в каталоге HWS.`,
+      alternates: {
+        canonical: `/catalog/${found.slug}`,
+      },
+      robots: buildCatalogRobots(resolvedSearchParams),
+    };
+  } catch (e) {
+    console.error("WP GraphQL error (category metadata):", e);
+    return {
+      title: "Каталог HWS",
+      description: "Каталог печей, парогенераторов, автоматики и инженерных решений HWS.",
+    };
+  }
+}
+
 // Категории — дерево (parent + children), а реальные разделы каталога живут
 // на уровне детей ("russian-bath-stoves" и т.п.). Раньше тут искали совпадение
 // только среди верхнего уровня, поэтому все подкатегории отдавали 404 —
@@ -77,22 +140,35 @@ export default async function CatalogCategoryPage({
   const initialBrandSlug = typeof resolvedSearchParams.brand === "string" ? resolvedSearchParams.brand : "";
 
   const client = getClient();
-
-  // Список категорий в навигации приходит с hideEmpty:true, поэтому после
-  // перевода всех товаров в draft пустые категории исчезают из дерева.
-  // Для страницы категории проверяем slug напрямую через productCategory,
-  // чтобы валидная, но пустая категория не отдавала 404.
-  const { data: categoryData } = await client.query<{
-    productCategory: { name: string; slug: string; parent?: { node: { name: string; slug: string } } | null } | null;
-  }>({
-    query: GET_PRODUCT_CATEGORY_BY_SLUG,
-    variables: { slug: category },
-  });
+  const [{ data: categoryTreeData }, { data: categoryData }] = await Promise.all([
+    client.query<{
+      productCategories: { nodes: WPCategoryNode[] };
+    }>({
+      query: GET_PRODUCT_CATEGORIES,
+    }),
+    client.query<{
+      productCategory: { name: string; slug: string; parent?: { node: { name: string; slug: string } } | null } | null;
+    }>({
+      query: GET_PRODUCT_CATEGORY_BY_SLUG,
+      variables: { slug: category },
+    }),
+  ]);
 
   const found = categoryData?.productCategory;
   if (!found?.slug) {
     notFound();
   }
+
+  const topCategories = categoryTreeData?.productCategories?.nodes ?? [];
+  const currentParentNode =
+    topCategories.find((node) => node.slug === found.slug) ??
+    topCategories.find((node) => node.slug === found.parent?.node?.slug) ??
+    null;
+  const currentChildNodes =
+    currentParentNode?.children?.nodes?.map((node) => ({
+      ...node,
+      hwsSubtitle: node.hwsSubtitle || currentParentNode.hwsSubtitle || null,
+    })) ?? [];
 
   let catalogData;
   try {
@@ -100,15 +176,16 @@ export default async function CatalogCategoryPage({
       query: GET_PRODUCTS,
       variables: { first: 200, category },
     });
-    catalogData = mapToCatalogData(data?.products?.nodes ?? [], found.name);
+    catalogData = mapToCatalogData(data?.products?.nodes ?? [], undefined);
   } catch (e) {
     console.error("WP GraphQL error (catalog category):", e);
-    catalogData = mapToCatalogData([], found.name);
+    catalogData = mapToCatalogData([], undefined);
   }
 
   // Ветка = верхний раздел. Для подкатегории берём родителя, иначе саму себя.
   const branchSlug = found.parent?.node?.slug ?? found.slug;
   const filterKeys = filtersForBranch(branchSlug);
+  const branchIntro = CATALOG_BRANCH_INTROS[branchSlug];
   const initialFilters: Record<string, string> = {};
   for (const key of filterKeys) {
     const value = resolvedSearchParams[attributeParamKey(key)];
@@ -130,6 +207,18 @@ export default async function CatalogCategoryPage({
         ]}
       />
       <div className={styles.section}>
+        <CatalogOverview
+          title={found.name}
+          lead={found.slug === branchSlug ? branchIntro?.lead : `Раздел внутри ветки «${currentParentNode?.name ?? branchIntro?.title ?? found.name}». Сначала выберите подходящий подтип, затем сузьте выдачу фильтрами только этой ветки.`}
+          categories={
+            currentChildNodes.length > 0
+              ? mapToCategoryCardsData(
+                  currentChildNodes,
+                  found.slug === branchSlug ? "Подразделы" : "Соседние подразделы",
+                )
+              : null
+          }
+        />
         <Catalog
           data={catalogData}
           initialBrandSlug={initialBrandSlug}
@@ -137,6 +226,7 @@ export default async function CatalogCategoryPage({
           termLabels={termLabels}
           initialFilters={initialFilters}
         />
+        <CatalogSeo data={found.slug === branchSlug ? branchIntro?.seo ?? null : null} />
       </div>
       <div className={styles.sectionFooter}>
         <Footer data={footerData} />

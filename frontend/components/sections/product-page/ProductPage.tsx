@@ -106,6 +106,7 @@ export function ProductPage({ data, contactChannels, highlights }: Props) {
   const displayedMinPrice = convertPrice(minPrice, data.baseCurrencyCode, activeCurrency, rates);
   const displayedMaxPrice = convertPrice(maxPrice, data.baseCurrencyCode, activeCurrency, rates);
   const currencySymbol = getCurrencySymbol(activeCurrency);
+  const hasDisplayPrice = !data.priceOnRequest;
 
   // Сообщение для менеджера — название товара, ссылка, выбранная конфигурация и итоговая цена.
   const messageText = (() => {
@@ -116,7 +117,7 @@ export function ProductPage({ data, contactChannels, highlights }: Props) {
         .join(", ");
       lines.push(`Конфигурация: ${config}`);
     }
-    lines.push(`Цена: ${currencySymbol}${formatMoney(displayedPrice, activeCurrency)}`);
+    lines.push(hasDisplayPrice ? `Цена: ${currencySymbol}${formatMoney(displayedPrice, activeCurrency)}` : "Цена: по запросу");
     if (pageUrl) lines.push(pageUrl);
     return lines.join("\n");
   })();
@@ -213,7 +214,9 @@ export function ProductPage({ data, contactChannels, highlights }: Props) {
 
         <div className={styles.priceRow}>
           <span className={styles.price}>
-            {maxPrice > minPrice ? (
+            {!hasDisplayPrice ? (
+              <>Цена по запросу</>
+            ) : maxPrice > minPrice ? (
               <>от {currencySymbol}{formatMoney(displayedMinPrice, activeCurrency)} до {currencySymbol}{formatMoney(displayedMaxPrice, activeCurrency)}</>
             ) : (
               <>{currencySymbol}{formatMoney(displayedPrice, activeCurrency)}</>
@@ -252,7 +255,7 @@ export function ProductPage({ data, contactChannels, highlights }: Props) {
           <p className={styles.meta}>
             {displaySku && <><strong>Артикул:</strong> {displaySku}</>}
             {data.tag && <> · <strong>Тэг:</strong> {data.tag}</>}
-            {data.brand && <> · <strong>Бренд:</strong> {data.brand}</>}
+            {data.brand && <> · <strong>Бренд:</strong> {data.brandHref ? <a href={data.brandHref} className={styles.categoryLink}>{data.brand}</a> : data.brand}</>}
           </p>
         )}
 
@@ -341,7 +344,7 @@ export function ProductPage({ data, contactChannels, highlights }: Props) {
         </div>
 
         {/* Цена конкретной комбинации — показываем всегда для товаров с вариациями */}
-        {data.variantGroups.length > 0 && (
+        {data.variantGroups.length > 0 && hasDisplayPrice && (
           <>
             <hr className={styles.divider} />
             <p className={styles.configPrice}>

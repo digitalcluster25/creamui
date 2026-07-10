@@ -1,0 +1,26 @@
+import { Categories } from "@/components/sections/categories";
+import type { CategoriesData } from "@/lib/types/categories";
+import styles from "./CatalogOverview.module.css";
+
+type Props = {
+  title: string;
+  lead?: string;
+  categories?: CategoriesData | null;
+};
+
+export function CatalogOverview({ title, lead, categories }: Props) {
+  return (
+    <section className={styles.section}>
+      <div className={styles.intro}>
+        <h1 className={styles.title}>{title}</h1>
+        {lead && <p className={styles.lead}>{lead}</p>}
+      </div>
+      {categories && categories.items.length > 0 && (
+        <div className={styles.categories}>
+          <Categories data={categories} />
+        </div>
+      )}
+    </section>
+  );
+}
+

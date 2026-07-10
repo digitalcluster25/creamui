@@ -15,6 +15,7 @@ export type ProductItem = {
   price: string;
   priceMin?: number;
   priceMax?: number;
+  priceOnRequest?: boolean;
   baseCurrencyCode: CurrencyCode;
   categories: string[];
   image1: string;
