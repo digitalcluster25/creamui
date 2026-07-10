@@ -391,7 +391,7 @@ So current live state is:
 - patched importer re-uploaded, `ФутуРус` re-run (`updated=3`), slugs corrected to single `vvd-` prefix (post_ids 249360/249369/249378, matched by `_sku`), thumbnails + galleries attached
 - full VVD wave 1 imported live with media: `processed=30 created=27 updated=3`, no fatal errors
 - live VVD product count = 30; brand term `vvd` (term_id 82, name `ВВД`) slug already normalized, no percent-encoding
-- OPEN: 2 `ПАРиЖАР Про` products price=0 (post_ids 249421, 249429) — parser missed offer price → see open-issue #2 (task spawned)
+- RESOLVED: 2 `ПАРиЖАР Про` products price=0 (post_ids 249421, 249429) — NOT a parser bug; vvd.su shows no price for these configure-to-order Про items (price only in related-product carousels). Importer now stores empty `_price` + `_hws_price_on_request=yes` when base price is 0; applied live. Open-issue #2 closed.
 
 ### RESOLVED 2026-07-10 (step 7 partial — attribute term slugs)
 
