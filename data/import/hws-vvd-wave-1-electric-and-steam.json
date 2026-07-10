@@ -1,0 +1,188 @@
+{
+  "supplier": "VVD",
+  "wave": "wave-1-electric-and-steam",
+  "updated": "2026-07-10",
+  "sourceRoot": "https://vvd.su",
+  "brand": {
+    "name": "Инжкомцентр ВВД",
+    "slug": "vvd"
+  },
+  "scope": {
+    "includeSeries": [
+      "Парогенераторы для бани",
+      "ПАРиЖАР",
+      "Премьера Руса паротермальные",
+      "ФутуРус",
+      "Премьера",
+      "Премьера Руса электрические",
+      "Премьера ПРОФИ",
+      "Пульты для электрических печей"
+    ],
+    "excludeSeries": []
+  },
+  "parserContract": {
+    "discovery": "series_page_cards",
+    "productSource": "bitrix_product_detail_html",
+    "shortDescription": "previewtext_then_og_description",
+    "fullDescription": "desc_tab_html",
+    "specs": "summary_specs_plus_char_tab",
+    "media": "detail_gallery",
+    "documents": "docs_tab",
+    "videos": "video_tab",
+    "offers": "current_offer_plus_sku_option_groups"
+  },
+  "series": [
+    {
+      "seriesName": "Парогенераторы для бани",
+      "seriesSlug": "parogeneratory-dlya-bani",
+      "source": {
+        "seriesPageUrl": "https://vvd.su/product/elektricheskie-pechi-dlya-bani/parogeneratory-dlya-bani/"
+      },
+      "target": {
+        "primaryCategoryPath": "steam-generators-and-hammam/steam-generators",
+        "brandSlug": "vvd",
+        "seriesTerm": "АЭГПП",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "АЭГПП",
+        "pa_equipment-type": "steam-generator",
+        "pa_room-type": "russian-bath",
+        "pa_usage-class": "private"
+      }
+    },
+    {
+      "seriesName": "ПАРиЖАР",
+      "seriesSlug": "pechi-parizhar",
+      "source": {
+        "seriesPageUrl": "https://vvd.su/product/elektricheskie-pechi-dlya-bani/pechi-parizhar/"
+      },
+      "target": {
+        "primaryCategoryPath": "russian-bath-stoves/steam-thermal",
+        "brandSlug": "vvd",
+        "seriesTerm": "ПАРиЖАР",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "ПАРиЖАР",
+        "pa_equipment-type": "steam-thermal-stove",
+        "pa_room-type": "russian-bath",
+        "pa_usage-class": "private"
+      }
+    },
+    {
+      "seriesName": "Премьера Руса паротермальные",
+      "seriesSlug": "parotermalnye-pechi-premera-rusa",
+      "source": {
+        "seriesPageUrl": "https://vvd.su/product/elektricheskie-pechi-dlya-bani/parotermalnye-pechi-premera-rusa/"
+      },
+      "target": {
+        "primaryCategoryPath": "russian-bath-stoves/steam-thermal",
+        "brandSlug": "vvd",
+        "seriesTerm": "Премьера Руса",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "Премьера Руса",
+        "pa_equipment-type": "steam-thermal-stove",
+        "pa_room-type": "russian-bath",
+        "pa_usage-class": "private"
+      }
+    },
+    {
+      "seriesName": "ФутуРус",
+      "seriesSlug": "pechi-futurus",
+      "source": {
+        "seriesPageUrl": "https://vvd.su/product/elektricheskie-pechi-dlya-bani/pechi-futurus/"
+      },
+      "target": {
+        "primaryCategoryPath": "russian-bath-stoves/steam-thermal",
+        "brandSlug": "vvd",
+        "seriesTerm": "ФутуРус",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "ФутуРус",
+        "pa_equipment-type": "steam-thermal-stove",
+        "pa_room-type": "russian-bath",
+        "pa_usage-class": "private"
+      }
+    },
+    {
+      "seriesName": "Премьера",
+      "seriesSlug": "elektropechi-dlya-bani-i-sauny-premera",
+      "source": {
+        "seriesPageUrl": "https://vvd.su/product/elektricheskie-pechi-dlya-bani/elektropechi-dlya-bani-i-sauny-premera/"
+      },
+      "target": {
+        "primaryCategoryPath": "russian-bath-stoves/electric-bath-stoves",
+        "brandSlug": "vvd",
+        "seriesTerm": "Премьера",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "Премьера",
+        "pa_equipment-type": "electric-bath-stove",
+        "pa_room-type": "russian-bath",
+        "pa_usage-class": "private"
+      }
+    },
+    {
+      "seriesName": "Премьера Руса электрические",
+      "seriesSlug": "elektricheskie-pechi-premera-rusa",
+      "source": {
+        "seriesPageUrl": "https://vvd.su/product/elektricheskie-pechi-dlya-bani/elektricheskie-pechi-premera-rusa/"
+      },
+      "target": {
+        "primaryCategoryPath": "russian-bath-stoves/electric-bath-stoves",
+        "brandSlug": "vvd",
+        "seriesTerm": "Премьера Руса",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "Премьера Руса",
+        "pa_equipment-type": "electric-bath-stove",
+        "pa_room-type": "russian-bath",
+        "pa_usage-class": "private"
+      }
+    },
+    {
+      "seriesName": "Премьера ПРОФИ",
+      "seriesSlug": "elektricheskie-pechi-profi",
+      "source": {
+        "seriesPageUrl": "https://vvd.su/product/elektricheskie-pechi-dlya-bani/elektricheskie-pechi-profi/"
+      },
+      "target": {
+        "primaryCategoryPath": "russian-bath-stoves/electric-bath-stoves",
+        "brandSlug": "vvd",
+        "seriesTerm": "Премьера ПРОФИ",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "Премьера ПРОФИ",
+        "pa_equipment-type": "electric-bath-stove",
+        "pa_room-type": "russian-bath",
+        "pa_usage-class": "commercial"
+      }
+    },
+    {
+      "seriesName": "Пульты для электрических печей",
+      "seriesSlug": "pulty-dlya-elektricheskikh-pechey-premera",
+      "source": {
+        "seriesPageUrl": "https://vvd.su/product/elektricheskie-pechi-dlya-bani/pulty-dlya-elektricheskikh-pechey-premera/"
+      },
+      "target": {
+        "primaryCategoryPath": "control-units/for-steam-generators",
+        "brandSlug": "vvd",
+        "seriesTerm": "Пульты VVD",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "Пульты VVD",
+        "pa_equipment-type": "control-unit",
+        "pa_room-type": "russian-bath",
+        "pa_usage-class": "private"
+      }
+    }
+  ]
+}
