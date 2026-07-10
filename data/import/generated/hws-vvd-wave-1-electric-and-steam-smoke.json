@@ -51,7 +51,7 @@
         "pa_series": "АЭГПП",
         "pa_equipment-type": "steam-generator",
         "pa_room-type": "russian-bath",
-        "pa_usage-class": "private"
+        "pa_usage-class": "Частное использование"
       },
       "cards": [
         {
@@ -205,7 +205,7 @@
         "pa_series": "ПАРиЖАР",
         "pa_equipment-type": "steam-thermal-stove",
         "pa_room-type": "russian-bath",
-        "pa_usage-class": "private"
+        "pa_usage-class": "Частное использование"
       },
       "cards": [
         {
@@ -460,7 +460,7 @@
         "pa_series": "Премьера Руса",
         "pa_equipment-type": "steam-thermal-stove",
         "pa_room-type": "russian-bath",
-        "pa_usage-class": "private"
+        "pa_usage-class": "Частное использование"
       },
       "cards": [
         {
@@ -617,7 +617,7 @@
         "pa_series": "ФутуРус",
         "pa_equipment-type": "steam-thermal-stove",
         "pa_room-type": "russian-bath",
-        "pa_usage-class": "private"
+        "pa_usage-class": "Частное использование"
       },
       "cards": [
         {
@@ -890,7 +890,7 @@
         "pa_series": "Премьера",
         "pa_equipment-type": "electric-bath-stove",
         "pa_room-type": "russian-bath",
-        "pa_usage-class": "private"
+        "pa_usage-class": "Частное использование"
       },
       "cards": [
         {
@@ -1128,7 +1128,7 @@
         "pa_series": "Премьера Руса",
         "pa_equipment-type": "electric-bath-stove",
         "pa_room-type": "russian-bath",
-        "pa_usage-class": "private"
+        "pa_usage-class": "Частное использование"
       },
       "cards": [
         {
@@ -1309,7 +1309,7 @@
         "pa_series": "Премьера ПРОФИ",
         "pa_equipment-type": "electric-bath-stove",
         "pa_room-type": "russian-bath",
-        "pa_usage-class": "commercial"
+        "pa_usage-class": "Коммерческое использование"
       },
       "cards": [
         {
@@ -1539,7 +1539,7 @@
         "pa_series": "Пульты VVD",
         "pa_equipment-type": "control-unit",
         "pa_room-type": "russian-bath",
-        "pa_usage-class": "private"
+        "pa_usage-class": "Частное использование"
       },
       "cards": [
         {
