@@ -1,6 +1,6 @@
 {
     "brand": "easysteam",
-    "generated_at": "2026-07-10T22:08:37+00:00",
+    "generated_at": "2026-07-10T22:29:59+00:00",
     "total": 173,
     "products": [
         {
@@ -272,6 +272,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -310,6 +311,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -348,6 +350,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -386,6 +389,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -424,6 +428,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -462,6 +467,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -500,6 +506,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -538,6 +545,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -576,6 +584,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -614,6 +623,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -652,6 +662,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -690,6 +701,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -865,7 +877,7 @@
             "featured_image_id": 249327,
             "gallery_image_ids": [],
             "has_short_description": true,
-            "has_full_description": false,
+            "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
                 "pa_series"
@@ -900,7 +912,7 @@
             "featured_image_id": 249329,
             "gallery_image_ids": [],
             "has_short_description": true,
-            "has_full_description": false,
+            "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
                 "pa_series"
@@ -935,7 +947,7 @@
             "featured_image_id": 249331,
             "gallery_image_ids": [],
             "has_short_description": true,
-            "has_full_description": false,
+            "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
                 "pa_series"
@@ -1071,8 +1083,8 @@
                 "accessories",
                 "aroma-and-steam"
             ],
-            "image_count": 0,
-            "featured_image_id": 0,
+            "image_count": 1,
+            "featured_image_id": 251839,
             "gallery_image_ids": [],
             "has_short_description": true,
             "has_full_description": true,
@@ -1111,7 +1123,7 @@
             "featured_image_id": 249290,
             "gallery_image_ids": [],
             "has_short_description": true,
-            "has_full_description": false,
+            "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
                 "pa_series"
@@ -1146,7 +1158,7 @@
             "featured_image_id": 249292,
             "gallery_image_ids": [],
             "has_short_description": true,
-            "has_full_description": false,
+            "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
                 "pa_series"
@@ -1251,7 +1263,7 @@
             "featured_image_id": 249324,
             "gallery_image_ids": [],
             "has_short_description": true,
-            "has_full_description": false,
+            "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
                 "pa_series"
@@ -1322,7 +1334,7 @@
             "featured_image_id": 249356,
             "gallery_image_ids": [],
             "has_short_description": true,
-            "has_full_description": false,
+            "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
                 "pa_room-type",
@@ -1354,8 +1366,8 @@
                 "accessories",
                 "bathing-accessories"
             ],
-            "image_count": 0,
-            "featured_image_id": 0,
+            "image_count": 1,
+            "featured_image_id": 251840,
             "gallery_image_ids": [],
             "has_short_description": true,
             "has_full_description": true,
@@ -1430,7 +1442,7 @@
             "featured_image_id": 249358,
             "gallery_image_ids": [],
             "has_short_description": true,
-            "has_full_description": false,
+            "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
                 "pa_room-type",
@@ -1469,6 +1481,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -1507,6 +1520,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -1545,6 +1559,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -1583,6 +1598,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -1621,6 +1637,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -1659,6 +1676,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -1697,6 +1715,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -1735,6 +1754,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -1773,6 +1793,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -1811,6 +1832,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -1849,6 +1871,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -1887,6 +1910,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -1925,6 +1949,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -1963,6 +1988,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -2001,6 +2027,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -2039,6 +2066,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -2077,6 +2105,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -2115,6 +2144,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -2153,6 +2183,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -2191,6 +2222,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -2229,6 +2261,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -2365,8 +2398,8 @@
                 "accessories",
                 "wood-storage"
             ],
-            "image_count": 0,
-            "featured_image_id": 0,
+            "image_count": 1,
+            "featured_image_id": 251841,
             "gallery_image_ids": [],
             "has_short_description": true,
             "has_full_description": true,
@@ -2561,6 +2594,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -2599,6 +2633,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -3098,6 +3133,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -3174,6 +3210,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -3212,6 +3249,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -3980,7 +4018,7 @@
             "featured_image_id": 249333,
             "gallery_image_ids": [],
             "has_short_description": true,
-            "has_full_description": false,
+            "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
                 "pa_series"
@@ -4015,7 +4053,7 @@
             "featured_image_id": 249335,
             "gallery_image_ids": [],
             "has_short_description": true,
-            "has_full_description": false,
+            "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
                 "pa_series"
@@ -4359,6 +4397,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -4397,6 +4436,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -4435,6 +4475,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -4473,6 +4514,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -4511,6 +4553,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -4549,6 +4592,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -5585,7 +5629,7 @@
             "featured_image_id": 249350,
             "gallery_image_ids": [],
             "has_short_description": true,
-            "has_full_description": false,
+            "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
                 "pa_room-type",
@@ -5621,7 +5665,7 @@
             "featured_image_id": 249351,
             "gallery_image_ids": [],
             "has_short_description": true,
-            "has_full_description": false,
+            "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
                 "pa_room-type",
@@ -6035,6 +6079,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",
@@ -6073,6 +6118,7 @@
             "has_full_description": true,
             "attribute_keys": [
                 "pa_equipment-type",
+                "pa_fuel-type",
                 "pa_room-type",
                 "pa_series",
                 "pa_steam-room-volume",

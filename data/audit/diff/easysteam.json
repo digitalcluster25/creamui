@@ -1,13 +1,13 @@
 {
   "brand": "easysteam",
-  "generated_at": "2026-07-10T22:23:56.812460+00:00",
+  "generated_at": "2026-07-10T22:30:00.808550+00:00",
   "source_total_rows": 173,
   "woo_total_rows": 173,
   "source_total_unique_skus": 173,
   "woo_total_unique_skus": 173,
   "summary": {
-    "matched": 112,
-    "matched_but_broken": 61,
+    "matched": 173,
+    "matched_but_broken": 0,
     "source_only": 0,
     "woo_only": 0,
     "source_duplicates": 0,
@@ -57,6 +57,78 @@
       "woo_slug": "easysteam-1000025"
     },
     {
+      "sku": "1000026",
+      "source_name": "Печь Анапа базовая модель",
+      "woo_product_id": 232180,
+      "woo_slug": "easysteam-1000026"
+    },
+    {
+      "sku": "1000044",
+      "source_name": "Печь Анапа М2 базовая модель",
+      "woo_product_id": 232333,
+      "woo_slug": "easysteam-1000044"
+    },
+    {
+      "sku": "1000098",
+      "source_name": "Печь Анапа в полноценном кожухе с закрытым верхом",
+      "woo_product_id": 232489,
+      "woo_slug": "easysteam-1000098"
+    },
+    {
+      "sku": "1000128",
+      "source_name": "Печь Анапа М2 в полноценном кожухе с закрытым верхом",
+      "woo_product_id": 232558,
+      "woo_slug": "easysteam-1000128"
+    },
+    {
+      "sku": "1000256",
+      "source_name": "Печь Анапа М2 в полноценном кожухе с открытым верхом",
+      "woo_product_id": 232821,
+      "woo_slug": "easysteam-1000256"
+    },
+    {
+      "sku": "1000650",
+      "source_name": "Печь Анапа в трехстороннем кожухе с закрытым верхом",
+      "woo_product_id": 233276,
+      "woo_slug": "easysteam-1000650"
+    },
+    {
+      "sku": "1000704",
+      "source_name": "Печь Анапа М2 в трехстороннем кожухе с закрытым верхом",
+      "woo_product_id": 233344,
+      "woo_slug": "easysteam-1000704"
+    },
+    {
+      "sku": "1000938",
+      "source_name": "Печь Сочи базовая модель",
+      "woo_product_id": 234056,
+      "woo_slug": "easysteam-1000938"
+    },
+    {
+      "sku": "1000974",
+      "source_name": "Печь Сочи М2 базовая модель",
+      "woo_product_id": 234077,
+      "woo_slug": "easysteam-1000974"
+    },
+    {
+      "sku": "1001275",
+      "source_name": "Печь Сочи в полноценном кожухе с закрытым верхом с боковым подключением",
+      "woo_product_id": 234753,
+      "woo_slug": "easysteam-1001275"
+    },
+    {
+      "sku": "1001850",
+      "source_name": "Печь Геленджик базовая модель",
+      "woo_product_id": 235798,
+      "woo_slug": "easysteam-1001850"
+    },
+    {
+      "sku": "1001886",
+      "source_name": "Печь Геленджик М2 базовая модель",
+      "woo_product_id": 238623,
+      "woo_slug": "easysteam-1001886"
+    },
+    {
       "sku": "1002621",
       "source_name": "Бак для воды 80 л.",
       "woo_product_id": 249039,
@@ -81,6 +153,24 @@
       "woo_slug": "easysteam-1002625"
     },
     {
+      "sku": "1002626",
+      "source_name": "Жадеит шлифованный отборный (20кг.)",
+      "woo_product_id": 249067,
+      "woo_slug": "easysteam-1002626"
+    },
+    {
+      "sku": "1002628",
+      "source_name": "Жадеит колотый средний (20кг.)",
+      "woo_product_id": 249068,
+      "woo_slug": "easysteam-1002628"
+    },
+    {
+      "sku": "1002629",
+      "source_name": "Малиновый кварцит (20кг.)",
+      "woo_product_id": 249069,
+      "woo_slug": "easysteam-1002629"
+    },
+    {
       "sku": "1002633",
       "source_name": "Портал из природного камня",
       "woo_product_id": 249072,
@@ -99,6 +189,24 @@
       "woo_slug": "easysteam-1002637"
     },
     {
+      "sku": "1002959",
+      "source_name": "Запарник",
+      "woo_product_id": 249075,
+      "woo_slug": "easysteam-1002959"
+    },
+    {
+      "sku": "1002960",
+      "source_name": "Лист перекрытия",
+      "woo_product_id": 249050,
+      "woo_slug": "easysteam-1002960"
+    },
+    {
+      "sku": "1002961",
+      "source_name": "Комплект переходников",
+      "woo_product_id": 249051,
+      "woo_slug": "easysteam-1002961"
+    },
+    {
       "sku": "1002965",
       "source_name": "Решетка-жалюзи",
       "woo_product_id": 249093,
@@ -111,16 +219,166 @@
       "woo_slug": "easysteam-1002967"
     },
     {
+      "sku": "1002968",
+      "source_name": "Комплект дымоходов",
+      "woo_product_id": 249066,
+      "woo_slug": "easysteam-1002968"
+    },
+    {
       "sku": "1002970",
       "source_name": "Термоионатор Ag+",
       "woo_product_id": 249094,
       "woo_slug": "easysteam-1002970"
     },
     {
+      "sku": "1002971",
+      "source_name": "Опахало для бани",
+      "woo_product_id": 249096,
+      "woo_slug": "easysteam-1002971"
+    },
+    {
+      "sku": "1002972",
+      "source_name": "Ковш фирменный",
+      "woo_product_id": 249095,
+      "woo_slug": "easysteam-1002972"
+    },
+    {
       "sku": "1002973",
       "source_name": "Шапка для бани",
       "woo_product_id": 249091,
       "woo_slug": "easysteam-1002973"
+    },
+    {
+      "sku": "1002974",
+      "source_name": "Колпак банный",
+      "woo_product_id": 249092,
+      "woo_slug": "easysteam-1002974"
+    },
+    {
+      "sku": "1003031",
+      "source_name": "Печь Анапа в полноценном кожухе с открытым верхом",
+      "woo_product_id": 232752,
+      "woo_slug": "easysteam-1003031"
+    },
+    {
+      "sku": "1003223",
+      "source_name": "Печь Анапа в трехстороннем кожухе с открытым верхом",
+      "woo_product_id": 233538,
+      "woo_slug": "easysteam-1003223"
+    },
+    {
+      "sku": "1003237",
+      "source_name": "Печь Анапа М2 в трехстороннем кожухе с открытым верхом",
+      "woo_product_id": 233604,
+      "woo_slug": "easysteam-1003237"
+    },
+    {
+      "sku": "1003271",
+      "source_name": "Печь Сочи в полноценном кожухе с закрытым верхом",
+      "woo_product_id": 234227,
+      "woo_slug": "easysteam-1003271"
+    },
+    {
+      "sku": "1003285",
+      "source_name": "Печь Сочи М2 в полноценном кожухе с закрытым верхом",
+      "woo_product_id": 234296,
+      "woo_slug": "easysteam-1003285"
+    },
+    {
+      "sku": "1003319",
+      "source_name": "Печь Сочи в полноценном кожухе с открытым верхом",
+      "woo_product_id": 234490,
+      "woo_slug": "easysteam-1003319"
+    },
+    {
+      "sku": "1003333",
+      "source_name": "Печь Сочи М2 в полноценном кожухе с открытым верхом",
+      "woo_product_id": 234559,
+      "woo_slug": "easysteam-1003333"
+    },
+    {
+      "sku": "1003463",
+      "source_name": "Печь Сочи в трехстороннем кожухе с закрытым верхом",
+      "woo_product_id": 235014,
+      "woo_slug": "easysteam-1003463"
+    },
+    {
+      "sku": "1003477",
+      "source_name": "Печь Сочи М2 в трехстороннем кожухе с закрытым верхом",
+      "woo_product_id": 235083,
+      "woo_slug": "easysteam-1003477"
+    },
+    {
+      "sku": "1003511",
+      "source_name": "Печь Сочи в трехстороннем кожухе с открытым верхом",
+      "woo_product_id": 235277,
+      "woo_slug": "easysteam-1003511"
+    },
+    {
+      "sku": "1003523",
+      "source_name": "Печь Сочи М2 в трехстороннем кожухе с открытым верхом",
+      "woo_product_id": 235346,
+      "woo_slug": "easysteam-1003523"
+    },
+    {
+      "sku": "1003559",
+      "source_name": "Печь Геленджик в полноценном кожухе с закрытым верхом",
+      "woo_product_id": 238770,
+      "woo_slug": "easysteam-1003559"
+    },
+    {
+      "sku": "1003571",
+      "source_name": "Печь Геленджик М2 в полноценном кожухе с закрытым верхом",
+      "woo_product_id": 238835,
+      "woo_slug": "easysteam-1003571"
+    },
+    {
+      "sku": "1003607",
+      "source_name": "Печь Геленджик в полноценном кожухе с открытым верхом",
+      "woo_product_id": 239028,
+      "woo_slug": "easysteam-1003607"
+    },
+    {
+      "sku": "1003620",
+      "source_name": "Печь Геленджик М2 в полноценном кожухе с открытым верхом",
+      "woo_product_id": 239093,
+      "woo_slug": "easysteam-1003620"
+    },
+    {
+      "sku": "1003655",
+      "source_name": "Печь Геленджик в полноценном кожухе с закрытым верхом с боковым подключением",
+      "woo_product_id": 239290,
+      "woo_slug": "easysteam-1003655"
+    },
+    {
+      "sku": "1003669",
+      "source_name": "Печь Геленджик М2 в полноценном кожухе с закрытым верхом с боковым подключением",
+      "woo_product_id": 239555,
+      "woo_slug": "easysteam-1003669"
+    },
+    {
+      "sku": "1003703",
+      "source_name": "Печь Геленджик в трехстороннем кожухе с закрытым верхом",
+      "woo_product_id": 241038,
+      "woo_slug": "easysteam-1003703"
+    },
+    {
+      "sku": "1003715",
+      "source_name": "Печь Геленджик М2 в трехстороннем кожухе с закрытым верхом",
+      "woo_product_id": 241040,
+      "woo_slug": "easysteam-1003715"
+    },
+    {
+      "sku": "1003751",
+      "source_name": "Печь Геленджик в трехстороннем кожухе с открытым верхом",
+      "woo_product_id": 241042,
+      "woo_slug": "easysteam-1003751"
+    },
+    {
+      "sku": "1003763",
+      "source_name": "Печь Геленджик М2 в трехстороннем кожухе с открытым верхом",
+      "woo_product_id": 241044,
+      "woo_slug": "easysteam-1003763"
     },
     {
       "sku": "1003827",
@@ -139,6 +397,12 @@
       "source_name": "Теплообменник навесной",
       "woo_product_id": 249049,
       "woo_slug": "easysteam-1004025"
+    },
+    {
+      "sku": "1004026",
+      "source_name": "Дровница для бани",
+      "woo_product_id": 249097,
+      "woo_slug": "easysteam-1004026"
     },
     {
       "sku": "1004027",
@@ -163,6 +427,18 @@
       "source_name": "Печь Южная 22",
       "woo_product_id": 248948,
       "woo_slug": "easysteam-1004034"
+    },
+    {
+      "sku": "1004108",
+      "source_name": "Печь Анапа в трехстороннем кожухе с закрытым верхом с боковым подключением",
+      "woo_product_id": 233798,
+      "woo_slug": "easysteam-1004108"
+    },
+    {
+      "sku": "1005435",
+      "source_name": "Печь Геленджик в трехстороннем кожухе с открытым верхом с боковым подключением",
+      "woo_product_id": 241048,
+      "woo_slug": "easysteam-1005435"
     },
     {
       "sku": "1006155",
@@ -237,10 +513,28 @@
       "woo_slug": "easysteam-1006341"
     },
     {
+      "sku": "1006355",
+      "source_name": "Печь Анапа в полноценном кожухе с боковым подключением с закрытым верхом",
+      "woo_product_id": 233015,
+      "woo_slug": "easysteam-1006355"
+    },
+    {
       "sku": "1006834",
       "source_name": "Печь Анапа в трехстороннем кожухе с открытым верхом с боковым подключением",
       "woo_product_id": 248985,
       "woo_slug": "easysteam-1006834"
+    },
+    {
+      "sku": "1007626",
+      "source_name": "Печь Сочи в трехстороннем кожухе с закрытым верхом с боковым подключением",
+      "woo_product_id": 235540,
+      "woo_slug": "easysteam-1007626"
+    },
+    {
+      "sku": "1008761",
+      "source_name": "Печь Геленджик в трехстороннем кожухе с закрытым верхом с боковым подключением",
+      "woo_product_id": 241046,
+      "woo_slug": "easysteam-1008761"
     },
     {
       "sku": "1012798",
@@ -357,6 +651,18 @@
       "woo_slug": "easysteam-1013074"
     },
     {
+      "sku": "1013075",
+      "source_name": "Жадеит шлифованный отборный (10кг)",
+      "woo_product_id": 249070,
+      "woo_slug": "easysteam-1013075"
+    },
+    {
+      "sku": "1013076",
+      "source_name": "Жадеит колотый средний (10кг)",
+      "woo_product_id": 249071,
+      "woo_slug": "easysteam-1013076"
+    },
+    {
       "sku": "1013086",
       "source_name": "Обливное устройство КАСКАД 25 ЭКОНОМ",
       "woo_product_id": 249087,
@@ -403,6 +709,42 @@
       "source_name": "Печь Южная 35 с топкой из парной",
       "woo_product_id": 248989,
       "woo_slug": "easysteam-1013219"
+    },
+    {
+      "sku": "1013255",
+      "source_name": "Печь Анапа в наборном полноценном кожухе с закрытым верхом",
+      "woo_product_id": 232386,
+      "woo_slug": "easysteam-1013255"
+    },
+    {
+      "sku": "1013287",
+      "source_name": "Печь Анапа в наборном полноценном кожухе с открытым верхом",
+      "woo_product_id": 232436,
+      "woo_slug": "easysteam-1013287"
+    },
+    {
+      "sku": "1013351",
+      "source_name": "Печь Сочи в наборном полноценном кожухе с закрытым верхом",
+      "woo_product_id": 234127,
+      "woo_slug": "easysteam-1013351"
+    },
+    {
+      "sku": "1013383",
+      "source_name": "Печь Сочи в наборном полноценном кожухе с открытым верхом",
+      "woo_product_id": 234177,
+      "woo_slug": "easysteam-1013383"
+    },
+    {
+      "sku": "1013447",
+      "source_name": "Печь Геленджик в наборном полноценном кожухе с закрытым верхом",
+      "woo_product_id": 238672,
+      "woo_slug": "easysteam-1013447"
+    },
+    {
+      "sku": "1013495",
+      "source_name": "Печь Геленджик в наборном полноценном кожухе с открытым верхом",
+      "woo_product_id": 238721,
+      "woo_slug": "easysteam-1013495"
     },
     {
       "sku": "1013515",
@@ -567,6 +909,18 @@
       "woo_slug": "easysteam-1013852"
     },
     {
+      "sku": "1013855",
+      "source_name": "Обливное устройство КАСКАД 20/2025 в кожухе из керамики",
+      "woo_product_id": 249085,
+      "woo_slug": "easysteam-1013855"
+    },
+    {
+      "sku": "1013856",
+      "source_name": "Обливное устройство КАСКАД 30/2025 в кожухе из керамики",
+      "woo_product_id": 249086,
+      "woo_slug": "easysteam-1013856"
+    },
+    {
       "sku": "1013925",
       "source_name": "Комплект для удаленного управления для ОУ Каскад",
       "woo_product_id": 249088,
@@ -625,6 +979,18 @@
       "source_name": "Печь Ялта 50 К/2025",
       "woo_product_id": 249034,
       "woo_slug": "easysteam-1014104"
+    },
+    {
+      "sku": "1014219",
+      "source_name": "Печь Геленджик М2 в трехстороннем кожухе с открытым верхом с боковым подключением",
+      "woo_product_id": 241050,
+      "woo_slug": "easysteam-1014219"
+    },
+    {
+      "sku": "1015076",
+      "source_name": "Печь Геленджик М2 в трехстороннем кожухе с закрытым верхом с боковым подключением",
+      "woo_product_id": 241052,
+      "woo_slug": "easysteam-1015076"
     },
     {
       "sku": "1015725",
@@ -687,557 +1053,7 @@
       "woo_slug": "easysteam-1016014"
     }
   ],
-  "matched_but_broken": [
-    {
-      "sku": "1000026",
-      "source_name": "Печь Анапа базовая модель",
-      "woo_product_id": 232180,
-      "woo_slug": "easysteam-1000026",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1000044",
-      "source_name": "Печь Анапа М2 базовая модель",
-      "woo_product_id": 232333,
-      "woo_slug": "easysteam-1000044",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1000098",
-      "source_name": "Печь Анапа в полноценном кожухе с закрытым верхом",
-      "woo_product_id": 232489,
-      "woo_slug": "easysteam-1000098",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1000128",
-      "source_name": "Печь Анапа М2 в полноценном кожухе с закрытым верхом",
-      "woo_product_id": 232558,
-      "woo_slug": "easysteam-1000128",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1000256",
-      "source_name": "Печь Анапа М2 в полноценном кожухе с открытым верхом",
-      "woo_product_id": 232821,
-      "woo_slug": "easysteam-1000256",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1000650",
-      "source_name": "Печь Анапа в трехстороннем кожухе с закрытым верхом",
-      "woo_product_id": 233276,
-      "woo_slug": "easysteam-1000650",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1000704",
-      "source_name": "Печь Анапа М2 в трехстороннем кожухе с закрытым верхом",
-      "woo_product_id": 233344,
-      "woo_slug": "easysteam-1000704",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1000938",
-      "source_name": "Печь Сочи базовая модель",
-      "woo_product_id": 234056,
-      "woo_slug": "easysteam-1000938",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1000974",
-      "source_name": "Печь Сочи М2 базовая модель",
-      "woo_product_id": 234077,
-      "woo_slug": "easysteam-1000974",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1001275",
-      "source_name": "Печь Сочи в полноценном кожухе с закрытым верхом с боковым подключением",
-      "woo_product_id": 234753,
-      "woo_slug": "easysteam-1001275",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1001850",
-      "source_name": "Печь Геленджик базовая модель",
-      "woo_product_id": 235798,
-      "woo_slug": "easysteam-1001850",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1001886",
-      "source_name": "Печь Геленджик М2 базовая модель",
-      "woo_product_id": 238623,
-      "woo_slug": "easysteam-1001886",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1002626",
-      "source_name": "Жадеит шлифованный отборный (20кг.)",
-      "woo_product_id": 249067,
-      "woo_slug": "easysteam-1002626",
-      "reasons": [
-        "missing_full_description"
-      ]
-    },
-    {
-      "sku": "1002628",
-      "source_name": "Жадеит колотый средний (20кг.)",
-      "woo_product_id": 249068,
-      "woo_slug": "easysteam-1002628",
-      "reasons": [
-        "missing_full_description"
-      ]
-    },
-    {
-      "sku": "1002629",
-      "source_name": "Малиновый кварцит (20кг.)",
-      "woo_product_id": 249069,
-      "woo_slug": "easysteam-1002629",
-      "reasons": [
-        "missing_full_description"
-      ]
-    },
-    {
-      "sku": "1002959",
-      "source_name": "Запарник",
-      "woo_product_id": 249075,
-      "woo_slug": "easysteam-1002959",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "1002960",
-      "source_name": "Лист перекрытия",
-      "woo_product_id": 249050,
-      "woo_slug": "easysteam-1002960",
-      "reasons": [
-        "missing_full_description"
-      ]
-    },
-    {
-      "sku": "1002961",
-      "source_name": "Комплект переходников",
-      "woo_product_id": 249051,
-      "woo_slug": "easysteam-1002961",
-      "reasons": [
-        "missing_full_description"
-      ]
-    },
-    {
-      "sku": "1002968",
-      "source_name": "Комплект дымоходов",
-      "woo_product_id": 249066,
-      "woo_slug": "easysteam-1002968",
-      "reasons": [
-        "missing_full_description"
-      ]
-    },
-    {
-      "sku": "1002971",
-      "source_name": "Опахало для бани",
-      "woo_product_id": 249096,
-      "woo_slug": "easysteam-1002971",
-      "reasons": [
-        "missing_full_description"
-      ]
-    },
-    {
-      "sku": "1002972",
-      "source_name": "Ковш фирменный",
-      "woo_product_id": 249095,
-      "woo_slug": "easysteam-1002972",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "1002974",
-      "source_name": "Колпак банный",
-      "woo_product_id": 249092,
-      "woo_slug": "easysteam-1002974",
-      "reasons": [
-        "missing_full_description"
-      ]
-    },
-    {
-      "sku": "1003031",
-      "source_name": "Печь Анапа в полноценном кожухе с открытым верхом",
-      "woo_product_id": 232752,
-      "woo_slug": "easysteam-1003031",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1003223",
-      "source_name": "Печь Анапа в трехстороннем кожухе с открытым верхом",
-      "woo_product_id": 233538,
-      "woo_slug": "easysteam-1003223",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1003237",
-      "source_name": "Печь Анапа М2 в трехстороннем кожухе с открытым верхом",
-      "woo_product_id": 233604,
-      "woo_slug": "easysteam-1003237",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1003271",
-      "source_name": "Печь Сочи в полноценном кожухе с закрытым верхом",
-      "woo_product_id": 234227,
-      "woo_slug": "easysteam-1003271",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1003285",
-      "source_name": "Печь Сочи М2 в полноценном кожухе с закрытым верхом",
-      "woo_product_id": 234296,
-      "woo_slug": "easysteam-1003285",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1003319",
-      "source_name": "Печь Сочи в полноценном кожухе с открытым верхом",
-      "woo_product_id": 234490,
-      "woo_slug": "easysteam-1003319",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1003333",
-      "source_name": "Печь Сочи М2 в полноценном кожухе с открытым верхом",
-      "woo_product_id": 234559,
-      "woo_slug": "easysteam-1003333",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1003463",
-      "source_name": "Печь Сочи в трехстороннем кожухе с закрытым верхом",
-      "woo_product_id": 235014,
-      "woo_slug": "easysteam-1003463",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1003477",
-      "source_name": "Печь Сочи М2 в трехстороннем кожухе с закрытым верхом",
-      "woo_product_id": 235083,
-      "woo_slug": "easysteam-1003477",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1003511",
-      "source_name": "Печь Сочи в трехстороннем кожухе с открытым верхом",
-      "woo_product_id": 235277,
-      "woo_slug": "easysteam-1003511",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1003523",
-      "source_name": "Печь Сочи М2 в трехстороннем кожухе с открытым верхом",
-      "woo_product_id": 235346,
-      "woo_slug": "easysteam-1003523",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1003559",
-      "source_name": "Печь Геленджик в полноценном кожухе с закрытым верхом",
-      "woo_product_id": 238770,
-      "woo_slug": "easysteam-1003559",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1003571",
-      "source_name": "Печь Геленджик М2 в полноценном кожухе с закрытым верхом",
-      "woo_product_id": 238835,
-      "woo_slug": "easysteam-1003571",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1003607",
-      "source_name": "Печь Геленджик в полноценном кожухе с открытым верхом",
-      "woo_product_id": 239028,
-      "woo_slug": "easysteam-1003607",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1003620",
-      "source_name": "Печь Геленджик М2 в полноценном кожухе с открытым верхом",
-      "woo_product_id": 239093,
-      "woo_slug": "easysteam-1003620",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1003655",
-      "source_name": "Печь Геленджик в полноценном кожухе с закрытым верхом с боковым подключением",
-      "woo_product_id": 239290,
-      "woo_slug": "easysteam-1003655",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1003669",
-      "source_name": "Печь Геленджик М2 в полноценном кожухе с закрытым верхом с боковым подключением",
-      "woo_product_id": 239555,
-      "woo_slug": "easysteam-1003669",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1003703",
-      "source_name": "Печь Геленджик в трехстороннем кожухе с закрытым верхом",
-      "woo_product_id": 241038,
-      "woo_slug": "easysteam-1003703",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1003715",
-      "source_name": "Печь Геленджик М2 в трехстороннем кожухе с закрытым верхом",
-      "woo_product_id": 241040,
-      "woo_slug": "easysteam-1003715",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1003751",
-      "source_name": "Печь Геленджик в трехстороннем кожухе с открытым верхом",
-      "woo_product_id": 241042,
-      "woo_slug": "easysteam-1003751",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1003763",
-      "source_name": "Печь Геленджик М2 в трехстороннем кожухе с открытым верхом",
-      "woo_product_id": 241044,
-      "woo_slug": "easysteam-1003763",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1004026",
-      "source_name": "Дровница для бани",
-      "woo_product_id": 249097,
-      "woo_slug": "easysteam-1004026",
-      "reasons": [
-        "missing_image"
-      ]
-    },
-    {
-      "sku": "1004108",
-      "source_name": "Печь Анапа в трехстороннем кожухе с закрытым верхом с боковым подключением",
-      "woo_product_id": 233798,
-      "woo_slug": "easysteam-1004108",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1005435",
-      "source_name": "Печь Геленджик в трехстороннем кожухе с открытым верхом с боковым подключением",
-      "woo_product_id": 241048,
-      "woo_slug": "easysteam-1005435",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1006355",
-      "source_name": "Печь Анапа в полноценном кожухе с боковым подключением с закрытым верхом",
-      "woo_product_id": 233015,
-      "woo_slug": "easysteam-1006355",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1007626",
-      "source_name": "Печь Сочи в трехстороннем кожухе с закрытым верхом с боковым подключением",
-      "woo_product_id": 235540,
-      "woo_slug": "easysteam-1007626",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1008761",
-      "source_name": "Печь Геленджик в трехстороннем кожухе с закрытым верхом с боковым подключением",
-      "woo_product_id": 241046,
-      "woo_slug": "easysteam-1008761",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1013075",
-      "source_name": "Жадеит шлифованный отборный (10кг)",
-      "woo_product_id": 249070,
-      "woo_slug": "easysteam-1013075",
-      "reasons": [
-        "missing_full_description"
-      ]
-    },
-    {
-      "sku": "1013076",
-      "source_name": "Жадеит колотый средний (10кг)",
-      "woo_product_id": 249071,
-      "woo_slug": "easysteam-1013076",
-      "reasons": [
-        "missing_full_description"
-      ]
-    },
-    {
-      "sku": "1013255",
-      "source_name": "Печь Анапа в наборном полноценном кожухе с закрытым верхом",
-      "woo_product_id": 232386,
-      "woo_slug": "easysteam-1013255",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1013287",
-      "source_name": "Печь Анапа в наборном полноценном кожухе с открытым верхом",
-      "woo_product_id": 232436,
-      "woo_slug": "easysteam-1013287",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1013351",
-      "source_name": "Печь Сочи в наборном полноценном кожухе с закрытым верхом",
-      "woo_product_id": 234127,
-      "woo_slug": "easysteam-1013351",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1013383",
-      "source_name": "Печь Сочи в наборном полноценном кожухе с открытым верхом",
-      "woo_product_id": 234177,
-      "woo_slug": "easysteam-1013383",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1013447",
-      "source_name": "Печь Геленджик в наборном полноценном кожухе с закрытым верхом",
-      "woo_product_id": 238672,
-      "woo_slug": "easysteam-1013447",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1013495",
-      "source_name": "Печь Геленджик в наборном полноценном кожухе с открытым верхом",
-      "woo_product_id": 238721,
-      "woo_slug": "easysteam-1013495",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1013855",
-      "source_name": "Обливное устройство КАСКАД 20/2025 в кожухе из керамики",
-      "woo_product_id": 249085,
-      "woo_slug": "easysteam-1013855",
-      "reasons": [
-        "missing_full_description"
-      ]
-    },
-    {
-      "sku": "1013856",
-      "source_name": "Обливное устройство КАСКАД 30/2025 в кожухе из керамики",
-      "woo_product_id": 249086,
-      "woo_slug": "easysteam-1013856",
-      "reasons": [
-        "missing_full_description"
-      ]
-    },
-    {
-      "sku": "1014219",
-      "source_name": "Печь Геленджик М2 в трехстороннем кожухе с открытым верхом с боковым подключением",
-      "woo_product_id": 241050,
-      "woo_slug": "easysteam-1014219",
-      "reasons": [
-        "missing_attributes"
-      ]
-    },
-    {
-      "sku": "1015076",
-      "source_name": "Печь Геленджик М2 в трехстороннем кожухе с закрытым верхом с боковым подключением",
-      "woo_product_id": 241052,
-      "woo_slug": "easysteam-1015076",
-      "reasons": [
-        "missing_attributes"
-      ]
-    }
-  ],
+  "matched_but_broken": [],
   "source_only": [],
   "woo_only": [],
   "source_duplicates": [],
