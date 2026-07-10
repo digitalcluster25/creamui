@@ -1,6 +1,6 @@
 {
     "brand": "vvd",
-    "generated_at": "2026-07-10T22:21:12+00:00",
+    "generated_at": "2026-07-10T22:52:45+00:00",
     "total": 31,
     "products": [
         {
@@ -187,7 +187,6 @@
             "has_full_description": true,
             "attribute_keys": [
                 "124",
-                "1553",
                 "pa_equipment-type",
                 "pa_fuel-type",
                 "pa_power",
@@ -196,13 +195,20 @@
                 "pa_steam-room-volume",
                 "pa_usage-class"
             ],
-            "price": "",
+            "price": "6484",
             "regular_price": "",
-            "price_on_request": true,
+            "price_on_request": false,
             "product_type": "variable",
-            "variation_count": 0,
-            "variation_ids": [],
-            "imported_variation_count_meta": 0,
+            "variation_count": 6,
+            "variation_ids": [
+                252286,
+                252287,
+                252288,
+                252289,
+                252290,
+                252291
+            ],
+            "imported_variation_count_meta": 6,
             "possible_variation_count_meta": 18
         },
         {
@@ -1243,7 +1249,6 @@
             "has_short_description": true,
             "has_full_description": true,
             "attribute_keys": [
-                "124",
                 "125",
                 "pa_cladding-material",
                 "pa_equipment-type",
@@ -1253,13 +1258,16 @@
                 "pa_series",
                 "pa_usage-class"
             ],
-            "price": "",
+            "price": "4192",
             "regular_price": "",
-            "price_on_request": true,
+            "price_on_request": false,
             "product_type": "variable",
-            "variation_count": 0,
-            "variation_ids": [],
-            "imported_variation_count_meta": 0,
+            "variation_count": 2,
+            "variation_ids": [
+                252298,
+                252299
+            ],
+            "imported_variation_count_meta": 2,
             "possible_variation_count_meta": 96
         },
         {
@@ -1351,12 +1359,12 @@
             "product_type": "variable",
             "variation_count": 6,
             "variation_ids": [
-                250481,
-                250482,
-                250483,
-                250484,
-                250485,
-                250486
+                252300,
+                252301,
+                252302,
+                252303,
+                252304,
+                252305
             ],
             "imported_variation_count_meta": 6,
             "possible_variation_count_meta": 23040
@@ -1444,12 +1452,12 @@
             "product_type": "variable",
             "variation_count": 6,
             "variation_ids": [
-                250494,
-                250495,
-                250496,
-                250497,
-                250498,
-                250499
+                252306,
+                252307,
+                252308,
+                252309,
+                252310,
+                252311
             ],
             "imported_variation_count_meta": 6,
             "possible_variation_count_meta": 23040
@@ -1579,12 +1587,12 @@
             "product_type": "variable",
             "variation_count": 6,
             "variation_ids": [
-                250470,
-                250471,
-                250472,
-                250473,
-                250474,
-                250475
+                252292,
+                252293,
+                252294,
+                252295,
+                252296,
+                252297
             ],
             "imported_variation_count_meta": 6,
             "possible_variation_count_meta": 69120

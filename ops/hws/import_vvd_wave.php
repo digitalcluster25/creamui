@@ -704,6 +704,33 @@ foreach ( $payload['series'] ?? [] as $series_payload ) {
 
 		$product_attributes = hws_assign_attribute_terms( $product_id, $attrs, false );
 		$variation_groups = hws_vvd_build_variation_groups( $product['option_groups'] ?? [] );
+
+		// Narrow variation_groups to only those group_ids that appear in at
+		// least one offer's selections. Groups in the option tree that no
+		// offer actually references are catalog-navigation artefacts and must
+		// not be treated as variation axes — otherwise the strict "all groups
+		// must be covered" check in hws_vvd_sync_variations() skips every offer.
+		if ( ! empty( $variation_groups ) && ! empty( $offers ) ) {
+			$active_gids = [];
+			foreach ( $offers as $offer ) {
+				foreach ( $offer['selections'] ?? [] as $sel ) {
+					$gid = hws_normalize_text( (string) ( $sel['group_id'] ?? '' ) );
+					if ( '' !== $gid && isset( $variation_groups[ $gid ] ) ) {
+						$active_gids[ $gid ] = true;
+					}
+				}
+			}
+			if ( ! empty( $active_gids ) ) {
+				$variation_groups = array_intersect_key( $variation_groups, $active_gids );
+			} else {
+				// Offers have no selection data at all → cannot map to variation
+				// axes. Treat the product as simple.
+				$variation_groups   = [];
+				$product_type_label = 'simple';
+				wp_set_object_terms( $product_id, 'simple', 'product_type', false );
+			}
+		}
+
 		if ( 'variable' === $product_type_label && ! empty( $variation_groups ) ) {
 			$product_attributes = hws_vvd_merge_product_attributes( $product_attributes, $variation_groups );
 			update_post_meta( $product_id, '_default_attributes', hws_vvd_default_variation_attributes( $variation_groups ) );

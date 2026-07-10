@@ -1,13 +1,13 @@
 {
   "brand": "vvd",
-  "generated_at": "2026-07-10T22:31:37.909963+00:00",
+  "generated_at": "2026-07-10T22:55:40.811201+00:00",
   "source_total_rows": 30,
   "woo_total_rows": 31,
   "source_total_unique_skus": 30,
   "woo_total_unique_skus": 31,
   "summary": {
-    "matched": 23,
-    "matched_but_broken": 7,
+    "matched": 30,
+    "matched_but_broken": 0,
     "source_only": 0,
     "woo_only": 1,
     "source_duplicates": 0,
@@ -25,6 +25,12 @@
       "source_name": "Автономный АЭГПП 12 ; 18 кВт (380 В)",
       "woo_product_id": 249415,
       "woo_slug": "vvd-avtonomnyj-egpp-380"
+    },
+    {
+      "sku": "VVD-ELEKTRICHESKAYA-PAROTERMALNAYA-PECH-FUTURUS-V-METALLICHESKOY-OBLITSOVKE--1512",
+      "source_name": "Электрическая паротермальная печь ФутуРус 2.0 10 кВт в металлической облицовке",
+      "woo_product_id": 249369,
+      "woo_slug": "vvd-elektricheskaya-parotermalnaya-pech-futurus-v-metallicheskoy-oblitsovke-1512"
     },
     {
       "sku": "VVD-ELEKTRICHESKAYA-PAROTERMALNAYA-PECH-PARIZHAR-10-12-16-KVT-380-V-1574",
@@ -141,83 +147,55 @@
       "woo_slug": "vvd-premera-profi-36-48-kvt-1372"
     },
     {
+      "sku": "VVD-PU-02M-I-PU-04M-DLYA-PECHEY-PREMERA-PROFI-808",
+      "source_name": "ПУ 02М и ПУ 04М для печей Премьера Профи",
+      "woo_product_id": 249566,
+      "woo_slug": "vvd-pu-02m-i-pu-04m-dlya-pechey-premera-profi-808"
+    },
+    {
       "sku": "VVD-PU-04-M-26-30-380-KVT-DLYA-ENU-FAUNA-1539",
       "source_name": "ПУ - 04 М для ЭНУ Фауна (26-30 кВт)",
       "woo_product_id": 249557,
       "woo_slug": "vvd-pu-04-m-26-30-380-kvt-dlya-enu-fauna-1539"
     },
     {
-      "sku": "VVD-PULT-DLYA-AEGPP-2-25-6-KVT",
-      "source_name": "Пульт для АЭГПП (2.25-6 кВт)",
-      "woo_product_id": 249563,
-      "woo_slug": "vvd-pult-dlya-aegpp-2-25-6-kvt"
-    }
-  ],
-  "matched_but_broken": [
-    {
-      "sku": "VVD-ELEKTRICHESKAYA-PAROTERMALNAYA-PECH-FUTURUS-V-METALLICHESKOY-OBLITSOVKE--1512",
-      "source_name": "Электрическая паротермальная печь ФутуРус 2.0 10 кВт в металлической облицовке",
-      "woo_product_id": 249369,
-      "woo_slug": "vvd-elektricheskaya-parotermalnaya-pech-futurus-v-metallicheskoy-oblitsovke-1512",
-      "reasons": [
-        "variation_issue"
-      ]
-    },
-    {
-      "sku": "VVD-PU-02M-I-PU-04M-DLYA-PECHEY-PREMERA-PROFI-808",
-      "source_name": "ПУ 02М и ПУ 04М для печей Премьера Профи",
-      "woo_product_id": 249566,
-      "woo_slug": "vvd-pu-02m-i-pu-04m-dlya-pechey-premera-profi-808",
-      "reasons": [
-        "variation_issue"
-      ]
-    },
-    {
       "sku": "VVD-PULT-01-M-DLYA-PECHEY-PREMERA-2-25-24KVT-840",
       "source_name": "Пульт 01 М для печей «Премьера» (от 2.25-24кВт)",
       "woo_product_id": 249570,
-      "woo_slug": "vvd-pult-01-m-dlya-pechey-premera-2-25-24kvt-840",
-      "reasons": [
-        "variation_issue"
-      ]
+      "woo_slug": "vvd-pult-01-m-dlya-pechey-premera-2-25-24kvt-840"
     },
     {
       "sku": "VVD-PULT-02-MP-DLYA-PECHEY-PARIZHAR-2-25-24-KVT-1568",
       "source_name": "Пульт 02 МП для печей «ПАРиЖАР» (от 2.25-24 кВт)",
       "woo_product_id": 249575,
-      "woo_slug": "vvd-pult-02-mp-dlya-pechey-parizhar-2-25-24-kvt-1568",
-      "reasons": [
-        "variation_issue"
-      ]
+      "woo_slug": "vvd-pult-02-mp-dlya-pechey-parizhar-2-25-24-kvt-1568"
     },
     {
       "sku": "VVD-PULT-08-1-840",
       "source_name": "Пульт 08.1",
       "woo_product_id": 249580,
-      "woo_slug": "vvd-pult-08-1-840",
-      "reasons": [
-        "variation_issue"
-      ]
+      "woo_slug": "vvd-pult-08-1-840"
     },
     {
       "sku": "VVD-PULT-09-DLYA-PECHEY-PARIZHAR-2-25-24-KVT-1568",
       "source_name": "Пульт 09 для Печей ПАРиЖАР (от 4.25-24 кВт)",
       "woo_product_id": 249577,
-      "woo_slug": "vvd-pult-09-dlya-pechey-parizhar-2-25-24-kvt-1568",
-      "reasons": [
-        "variation_issue"
-      ]
+      "woo_slug": "vvd-pult-09-dlya-pechey-parizhar-2-25-24-kvt-1568"
+    },
+    {
+      "sku": "VVD-PULT-DLYA-AEGPP-2-25-6-KVT",
+      "source_name": "Пульт для АЭГПП (2.25-6 кВт)",
+      "woo_product_id": 249563,
+      "woo_slug": "vvd-pult-dlya-aegpp-2-25-6-kvt"
     },
     {
       "sku": "VVD-PULT-UPRAVLENIYA-K-PAROTERMALNYM-PECHAM-PREMERA-RUSA-840",
       "source_name": "ПУ-21МП Пульт управления для ЭНУ",
       "woo_product_id": 249560,
-      "woo_slug": "vvd-pult-upravleniya-k-parotermalnym-pecham-premera-rusa-840",
-      "reasons": [
-        "variation_issue"
-      ]
+      "woo_slug": "vvd-pult-upravleniya-k-parotermalnym-pecham-premera-rusa-840"
     }
   ],
+  "matched_but_broken": [],
   "source_only": [],
   "woo_only": [
     {

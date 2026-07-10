@@ -84,11 +84,35 @@ def build_row(series_payload: dict[str, Any], product: dict[str, Any], wave_file
         base_price_rub = int(digits) if digits.isdigit() and int(digits) > 0 else 0
 
     # VVD products expose real combinations via the `offers` list.
-    # Use that count as expected; option_groups product is usually misleading
-    # because not every combination is a real offer.
+    # The importer only creates a variation when an offer's selections cover
+    # ALL active_gids (groups that appear in at least one offer).
+    # Offers that only partially fill the selection map are skipped.
+    # Exception: if NO offer has any selections, the importer treats the product
+    # as simple (active_gids filter zeroes out variation_groups), so expected=0.
+    active_gids: set[str] = set()
+    for o in offers:
+        if not isinstance(o, dict):
+            continue
+        for sel in o.get("selections") or []:
+            gid = normalize_text(str(sel.get("group_id", "") or ""))
+            if gid:
+                active_gids.add(gid)
+
     expected_variation_count = 0
-    if offers:
-        expected_variation_count = len(offers)
+    if offers and active_gids:
+        # Count offers whose selections cover every active group
+        for o in offers:
+            if not isinstance(o, dict):
+                continue
+            sel_gids = {
+                normalize_text(str(s.get("group_id", "") or ""))
+                for s in (o.get("selections") or [])
+                if normalize_text(str(s.get("group_id", "") or ""))
+            }
+            if active_gids <= sel_gids:
+                expected_variation_count += 1
+    elif offers and not active_gids:
+        expected_variation_count = 0  # importer will make this simple
     elif option_groups:
         total = 1
         valid = False

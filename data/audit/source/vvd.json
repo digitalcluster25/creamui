@@ -3,7 +3,7 @@
     "name": "ВВД",
     "slug": "vvd"
   },
-  "generated_at": "2026-07-10T22:31:37.783682+00:00",
+  "generated_at": "2026-07-10T22:55:30.509076+00:00",
   "source": "generated detailed wave payloads",
   "input_files": [
     "hws-vvd-wave-1-electric-and-steam.json"
@@ -704,7 +704,7 @@
       "full_description": "Универсальные пульты управления серии ПУ, в комплект которых входят электронный блок, датчик температуры и силовой блок, предназначены для безопасного подключения электрических печей мощностями от 4 до 24 кВт, напряжением 220 и 380В и управления их работой в автоматическом режиме. Электронный терморегулятор позволяет поддерживать заданную температуру, снабжен информационным табло, показывающим текущую температуру (серия ПУ-01М). Пульты управления для электрических печей (цифровые) Тип электропитания Цена (с НДС) ПУ-01М 2,25-6,25кВт/220В 18 900 ПУ-01М 9-12кВт/380В 19 850 ПУ-01М 15-24кВт/380В 22 250",
       "has_specs": true,
       "has_variants": true,
-      "variant_count_expected": 20,
+      "variant_count_expected": 6,
       "document_count": 1,
       "option_groups_count": 8,
       "attribute_values": {
@@ -736,7 +736,7 @@
       "full_description": "Тип электропитания Цена Пульт управления для печи ПАРиЖАР (2,25 - 6,25 кВт) 220 В 24 950 Пульт управления для печи ПАРиЖАР (2,25 - 6,25 кВт) 380 В 24 950 Пульт управления для печи ПАРиЖАР (10 - 16 кВт) 380 В 26 650 Пульт управления для печи ПАРиЖАР (18 - 24 кВт) 380 В 30 550",
       "has_specs": true,
       "has_variants": true,
-      "variant_count_expected": 2,
+      "variant_count_expected": 0,
       "document_count": 3,
       "option_groups_count": 8,
       "attribute_values": {
@@ -768,7 +768,7 @@
       "full_description": "Пульт для управления электрическими нагревательными устройствами различных типов. Модель Стоимость (руб.) ПУ - 08.1 ВВД ПРО 2,25-6,25/220 57 000 ПУ - 08.1 МП ВВД ПРО 2,25-12/380 57 000 ПУ - 08.1 МП ВВД ПРО 15-24/380 60 100",
       "has_specs": true,
       "has_variants": true,
-      "variant_count_expected": 20,
+      "variant_count_expected": 6,
       "document_count": 1,
       "option_groups_count": 8,
       "attribute_values": {
@@ -800,7 +800,7 @@
       "full_description": "Пульт для управления электрическими нагревательными устройствами различных типов. Модель Стоимость (руб.) ПУ - 09 МП ВВД ПРО 4,25-6,25/220/380 (Ar) wi-fi 58 200 ПУ - 09 МП ВВД ПРО 10-24/380 (Ar) wi-fi 60 100",
       "has_specs": true,
       "has_variants": true,
-      "variant_count_expected": 2,
+      "variant_count_expected": 0,
       "document_count": 1,
       "option_groups_count": 8,
       "attribute_values": {
@@ -864,7 +864,7 @@
       "full_description": "ПУ-21МП Пульт управления для Электрических Нагревательных Устройств Тип электропитания Цена (с НДС) ПУ - 21 МП 4,25-6,25/220 22 759 ПУ - 21 МП 4,25-12/380 24 450 ПУ - 21 МП 15-24/380 30 350",
       "has_specs": true,
       "has_variants": true,
-      "variant_count_expected": 20,
+      "variant_count_expected": 6,
       "document_count": 1,
       "option_groups_count": 9,
       "attribute_values": {
