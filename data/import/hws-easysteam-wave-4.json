@@ -1,0 +1,503 @@
+{
+  "supplier": "EasySteam",
+  "wave": "wave-4-equipment-and-accessories",
+  "updated": "2026-07-10",
+  "sourceRoot": "https://easysteam.ru",
+  "brand": {
+    "name": "EasySteam",
+    "slug": "easysteam"
+  },
+  "scope": {
+    "includeSeries": [
+      "Баки для воды",
+      "Теплообменные устройства",
+      "Лист перекрытия",
+      "Конвекционные дверки",
+      "Газовые горелки",
+      "Экономайзеры",
+      "Дымоходы",
+      "Камни для каменки",
+      "Изделия из природного камня",
+      "Запарник",
+      "Обливные устройства",
+      "Термоионатор",
+      "Ковши",
+      "Опахало",
+      "Шапки для бани",
+      "Дровница"
+    ],
+    "excludeSeries": [
+      "Анапа",
+      "Сочи",
+      "Геленджик",
+      "Южная",
+      "VIVARTE",
+      "Ялта",
+      "Анапа К",
+      "Сочи К",
+      "Геленджик К",
+      "Домна",
+      "Ялта К",
+      "MONTFORT"
+    ]
+  },
+  "sourcePriority": [
+    "sku_page",
+    "group_page",
+    "listing_page"
+  ],
+  "listingSources": [
+    {
+      "kind": "listing_page",
+      "url": "https://easysteam.ru/products/optional-equipment",
+      "purpose": [
+        "group discovery",
+        "engineering equipment validation"
+      ]
+    },
+    {
+      "kind": "listing_page",
+      "url": "https://easysteam.ru/products/accessories",
+      "purpose": [
+        "group discovery",
+        "accessory validation"
+      ]
+    }
+  ],
+  "series": [
+    {
+      "seriesName": "Баки для воды",
+      "seriesSlug": "baki-dlya-vody",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/optional-equipment/baki-dlya-vody",
+        "seedSkuUrls": [],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "water-tanks-and-heat-exchangers/water-tanks",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Баки для воды",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "Баки для воды",
+        "pa_equipment-type": "water-tank"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1_then_card_title",
+        "description": "sku_page_description_then_group_page",
+        "short_description": "sku_page_technical_description_then_description",
+        "media": "sku_gallery_then_card_image",
+        "documents": "sku_page_docs_only"
+      }
+    },
+    {
+      "seriesName": "Теплообменные устройства",
+      "seriesSlug": "teploobmennye-ustroystva",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/optional-equipment/teploobmennye-ustroystva",
+        "seedSkuUrls": [],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "water-tanks-and-heat-exchangers/heat-exchangers",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Теплообменные устройства",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "Теплообменные устройства",
+        "pa_equipment-type": "heat-exchanger"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1_then_card_title",
+        "description": "sku_page_description_then_group_page",
+        "short_description": "sku_page_technical_description_then_description",
+        "media": "sku_gallery_then_card_image",
+        "documents": "sku_page_docs_only"
+      }
+    },
+    {
+      "seriesName": "Лист перекрытия",
+      "seriesSlug": "list-perekrytiya",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/optional-equipment/list-perekrytiya",
+        "seedSkuUrls": [],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "chimneys-and-installation/mounting-elements",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Лист перекрытия",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "Лист перекрытия",
+        "pa_equipment-type": "mounting-element"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1_then_card_title",
+        "description": "sku_page_description_then_group_page",
+        "short_description": "sku_page_technical_description_then_description",
+        "media": "sku_gallery_then_card_image",
+        "documents": "sku_page_docs_only"
+      }
+    },
+    {
+      "seriesName": "Конвекционные дверки",
+      "seriesSlug": "konvektsionnye-dverki",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/optional-equipment/konvektsionnye-dverki",
+        "seedSkuUrls": [],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "chimneys-and-installation/convection-elements",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Конвекционные дверки",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "Конвекционные дверки",
+        "pa_equipment-type": "convection-element"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1_then_card_title",
+        "description": "sku_page_description_then_group_page",
+        "short_description": "sku_page_technical_description_then_description",
+        "media": "sku_gallery_then_card_image",
+        "documents": "sku_page_docs_only"
+      }
+    },
+    {
+      "seriesName": "Газовые горелки",
+      "seriesSlug": "gazovye-gorelki",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/optional-equipment/gazovye-gorelki",
+        "seedSkuUrls": [],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "chimneys-and-installation/gas-burners",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Газовые горелки",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "Газовые горелки",
+        "pa_equipment-type": "gas-burner"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1_then_card_title",
+        "description": "sku_page_description_then_group_page",
+        "short_description": "sku_page_technical_description_then_description",
+        "media": "sku_gallery_then_card_image",
+        "documents": "sku_page_docs_only"
+      }
+    },
+    {
+      "seriesName": "Экономайзеры",
+      "seriesSlug": "ekonomayzery",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/optional-equipment/ekonomayzery",
+        "seedSkuUrls": [],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "water-tanks-and-heat-exchangers/economizers",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Экономайзеры",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "Экономайзеры",
+        "pa_equipment-type": "economizer"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1_then_card_title",
+        "description": "sku_page_description_then_group_page",
+        "short_description": "sku_page_technical_description_then_description",
+        "media": "sku_gallery_then_card_image",
+        "documents": "sku_page_docs_only"
+      }
+    },
+    {
+      "seriesName": "Дымоходы",
+      "seriesSlug": "dymokhody",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/optional-equipment/dymokhody",
+        "seedSkuUrls": [],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "chimneys-and-installation/chimneys",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Дымоходы",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "Дымоходы",
+        "pa_equipment-type": "chimney"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1_then_card_title",
+        "description": "sku_page_description_then_group_page",
+        "short_description": "sku_page_technical_description_then_description",
+        "media": "sku_gallery_then_card_image",
+        "documents": "sku_page_docs_only"
+      }
+    },
+    {
+      "seriesName": "Камни для каменки",
+      "seriesSlug": "kamni-dlya-kamenki",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/optional-equipment/kamni-dlya-kamenki",
+        "seedSkuUrls": [],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "stones-and-cladding/heater-stones",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Камни для каменки",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "Камни для каменки",
+        "pa_equipment-type": "heater-stones"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1_then_card_title",
+        "description": "sku_page_description_then_group_page",
+        "short_description": "sku_page_technical_description_then_description",
+        "media": "sku_gallery_then_card_image",
+        "documents": "sku_page_docs_only"
+      }
+    },
+    {
+      "seriesName": "Изделия из природного камня",
+      "seriesSlug": "izdeliya-iz-prirodnogo-kamnya",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/optional-equipment/izdeliya-iz-prirodnogo-kamnya",
+        "seedSkuUrls": [],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "stones-and-cladding/natural-stone-products",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Изделия из природного камня",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "Изделия из природного камня",
+        "pa_equipment-type": "natural-stone-product"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1_then_card_title",
+        "description": "sku_page_description_then_group_page",
+        "short_description": "sku_page_technical_description_then_description",
+        "media": "sku_gallery_then_card_image",
+        "documents": "sku_page_docs_only"
+      }
+    },
+    {
+      "seriesName": "Запарник",
+      "seriesSlug": "zaparnik",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/aksessuary/zaparnik",
+        "seedSkuUrls": [],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "accessories/aroma-and-steam",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Запарник",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "Запарник",
+        "pa_equipment-type": "aroma-and-steam",
+        "pa_room-type": "russian-bath"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1_then_card_title",
+        "description": "sku_page_description_then_group_page",
+        "short_description": "sku_page_technical_description_then_description",
+        "media": "sku_gallery_then_card_image",
+        "documents": "sku_page_docs_only"
+      }
+    },
+    {
+      "seriesName": "Обливные устройства",
+      "seriesSlug": "oblivnye-ustroystva",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/aksessuary/oblivnye-ustroystva",
+        "seedSkuUrls": [],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "accessories/pouring-devices",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Обливные устройства",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "Обливные устройства",
+        "pa_equipment-type": "pouring-device",
+        "pa_room-type": "russian-bath"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1_then_card_title",
+        "description": "sku_page_description_then_group_page",
+        "short_description": "sku_page_technical_description_then_description",
+        "media": "sku_gallery_then_card_image",
+        "documents": "sku_page_docs_only"
+      }
+    },
+    {
+      "seriesName": "Термоионатор",
+      "seriesSlug": "termoionator",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/aksessuary/termoionator",
+        "seedSkuUrls": [],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "accessories/aroma-and-steam",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Термоионатор",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "Термоионатор",
+        "pa_equipment-type": "aroma-and-steam",
+        "pa_room-type": "russian-bath"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1_then_card_title",
+        "description": "sku_page_description_then_group_page",
+        "short_description": "sku_page_technical_description_then_description",
+        "media": "sku_gallery_then_card_image",
+        "documents": "sku_page_docs_only"
+      }
+    },
+    {
+      "seriesName": "Ковши",
+      "seriesSlug": "kovshi",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/aksessuary/kovshi",
+        "seedSkuUrls": [],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "accessories/bathing-accessories",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Ковши",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "Ковши",
+        "pa_equipment-type": "bathing-accessory",
+        "pa_room-type": "russian-bath"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1_then_card_title",
+        "description": "sku_page_description_then_group_page",
+        "short_description": "sku_page_technical_description_then_description",
+        "media": "sku_gallery_then_card_image",
+        "documents": "sku_page_docs_only"
+      }
+    },
+    {
+      "seriesName": "Опахало",
+      "seriesSlug": "opahalo",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/aksessuary/opahalo",
+        "seedSkuUrls": [],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "accessories/bathing-accessories",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Опахало",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "Опахало",
+        "pa_equipment-type": "bathing-accessory",
+        "pa_room-type": "russian-bath"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1_then_card_title",
+        "description": "sku_page_description_then_group_page",
+        "short_description": "sku_page_technical_description_then_description",
+        "media": "sku_gallery_then_card_image",
+        "documents": "sku_page_docs_only"
+      }
+    },
+    {
+      "seriesName": "Шапки для бани",
+      "seriesSlug": "shapka-dlya-banni",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/aksessuary/shapka-dlya-banni",
+        "seedSkuUrls": [],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "accessories/bathing-accessories",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Шапки для бани",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "Шапки для бани",
+        "pa_equipment-type": "bathing-accessory",
+        "pa_room-type": "russian-bath"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1_then_card_title",
+        "description": "sku_page_description_then_group_page",
+        "short_description": "sku_page_technical_description_then_description",
+        "media": "sku_gallery_then_card_image",
+        "documents": "sku_page_docs_only"
+      }
+    },
+    {
+      "seriesName": "Дровница",
+      "seriesSlug": "drovnica",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/aksessuary/drovnica",
+        "seedSkuUrls": [],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "accessories/wood-storage",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Дровница",
+        "productType": "simple"
+      },
+      "defaultAttributes": {
+        "pa_series": "Дровница",
+        "pa_equipment-type": "wood-storage",
+        "pa_room-type": "russian-bath"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1_then_card_title",
+        "description": "sku_page_description_then_group_page",
+        "short_description": "sku_page_technical_description_then_description",
+        "media": "sku_gallery_then_card_image",
+        "documents": "sku_page_docs_only"
+      }
+    }
+  ],
+  "parserContract": {
+    "discoverSkuCardsFromSeriesPage": true,
+    "allowGroupPagesAsSeriesSources": true,
+    "createOneParentProductPerSupplierSkuFamily": true,
+    "preserveSourcePayloadJson": true,
+    "buildSpecsHtmlFromStructuredSpecs": true,
+    "buildSpecsGroupsFromStructuredSpecs": true,
+    "setPrimaryCategoryFromManifest": true,
+    "doNotMixEngineeringGoodsIntoStoveBranches": true,
+    "doNotImportOutOfScopeSeries": true
+  }
+}

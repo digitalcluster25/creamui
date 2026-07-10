@@ -1,0 +1,594 @@
+{
+  "supplier": "EasySteam",
+  "wave": "wave-3-commercial-stoves",
+  "updated": "2026-07-10",
+  "sourceRoot": "https://easysteam.ru",
+  "brand": {
+    "name": "EasySteam",
+    "slug": "easysteam"
+  },
+  "scope": {
+    "includeSeries": [
+      "Анапа К",
+      "Сочи К",
+      "Геленджик К",
+      "Домна 45 К",
+      "Домна 60 К",
+      "Домна 80 К",
+      "Домна 90 К ТВИН",
+      "Домна 120 К ТВИН",
+      "Ялта 15 К",
+      "Ялта 25 К",
+      "Ялта 35 К",
+      "Ялта 40 К",
+      "Ялта 50 К",
+      "Ялта 60 К",
+      "Ялта 80 К",
+      "Ялта 100 К"
+    ],
+    "excludeSeries": [
+      "Анапа",
+      "Сочи",
+      "Геленджик",
+      "Южная",
+      "VIVARTE",
+      "Ялта",
+      "MONTFORT"
+    ]
+  },
+  "sourcePriority": [
+    "sku_page",
+    "series_page",
+    "listing_page",
+    "pdf_fallback"
+  ],
+  "listingSources": [
+    {
+      "kind": "listing_page",
+      "url": "https://easysteam.ru/products/stoves",
+      "purpose": [
+        "series discovery",
+        "commercial branch validation",
+        "initial volume hints"
+      ]
+    },
+    {
+      "kind": "listing_page",
+      "url": "https://easysteam.ru/products/stoves/kommercheskiye_pechi_dlya_bani",
+      "purpose": [
+        "commercial bath branch validation",
+        "series scope confirmation"
+      ]
+    },
+    {
+      "kind": "listing_page",
+      "url": "https://easysteam.ru/products/stoves/kommercheskiye_pechi_dlya_sauny",
+      "purpose": [
+        "commercial sauna branch validation",
+        "series scope confirmation"
+      ]
+    }
+  ],
+  "series": [
+    {
+      "seriesName": "Анапа К",
+      "seriesSlug": "anapa-k",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/category/anapa-k",
+        "seedSkuUrls": [],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "commercial/commercial-bath-stoves",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Анапа К",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "Анапа К",
+        "pa_equipment-type": "commercial-bath-stove",
+        "pa_room-type": "commercial-bath",
+        "pa_usage-class": "commercial"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1",
+        "description": "sku_page_description_then_series_page",
+        "short_description": "sku_page_technical_description_then_series_intro",
+        "steam_room_volume": "sku_specs_then_series_teaser",
+        "fuel_type": "sku_specs_then_series_intent",
+        "cladding": "sku_option_groups_and_specs",
+        "media": "sku_gallery",
+        "documents": "sku_page_then_series_docs"
+      }
+    },
+    {
+      "seriesName": "Сочи К",
+      "seriesSlug": "sochi-k",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/category/sochi-k",
+        "seedSkuUrls": [],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "commercial/commercial-bath-stoves",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Сочи К",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "Сочи К",
+        "pa_equipment-type": "commercial-bath-stove",
+        "pa_room-type": "commercial-bath",
+        "pa_usage-class": "commercial"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1",
+        "description": "sku_page_description_then_series_page",
+        "short_description": "sku_page_technical_description_then_series_intro",
+        "steam_room_volume": "sku_specs_then_series_teaser",
+        "fuel_type": "sku_specs_then_series_intent",
+        "cladding": "sku_option_groups_and_specs",
+        "media": "sku_gallery",
+        "documents": "sku_page_then_series_docs"
+      }
+    },
+    {
+      "seriesName": "Геленджик К",
+      "seriesSlug": "gelendzhik-k",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/category/gelendzhik-k",
+        "seedSkuUrls": [],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "commercial/commercial-bath-stoves",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Геленджик К",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "Геленджик К",
+        "pa_equipment-type": "commercial-bath-stove",
+        "pa_room-type": "commercial-bath",
+        "pa_usage-class": "commercial"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1",
+        "description": "sku_page_description_then_series_page",
+        "short_description": "sku_page_technical_description_then_series_intro",
+        "steam_room_volume": "sku_specs_then_series_teaser",
+        "fuel_type": "sku_specs_then_series_intent",
+        "cladding": "sku_option_groups_and_specs",
+        "media": "sku_gallery",
+        "documents": "sku_page_then_series_docs"
+      }
+    },
+    {
+      "seriesName": "Домна 45 К",
+      "seriesSlug": "domna-45-k",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/category/domna-45-k",
+        "seedSkuUrls": [],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "commercial/commercial-bath-stoves",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Домна",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "Домна",
+        "pa_equipment-type": "commercial-bath-stove",
+        "pa_room-type": "commercial-bath",
+        "pa_usage-class": "commercial"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1",
+        "description": "sku_page_description_then_series_page",
+        "short_description": "sku_page_technical_description_then_series_intro",
+        "steam_room_volume": "sku_specs_then_series_teaser",
+        "fuel_type": "sku_specs_then_series_intent",
+        "cladding": "sku_option_groups_and_specs",
+        "media": "sku_gallery",
+        "documents": "sku_page_then_series_docs"
+      }
+    },
+    {
+      "seriesName": "Домна 60 К",
+      "seriesSlug": "domna-60-k",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/category/domna-60-k",
+        "seedSkuUrls": [],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "commercial/commercial-bath-stoves",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Домна",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "Домна",
+        "pa_equipment-type": "commercial-bath-stove",
+        "pa_room-type": "commercial-bath",
+        "pa_usage-class": "commercial"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1",
+        "description": "sku_page_description_then_series_page",
+        "short_description": "sku_page_technical_description_then_series_intro",
+        "steam_room_volume": "sku_specs_then_series_teaser",
+        "fuel_type": "sku_specs_then_series_intent",
+        "cladding": "sku_option_groups_and_specs",
+        "media": "sku_gallery",
+        "documents": "sku_page_then_series_docs"
+      }
+    },
+    {
+      "seriesName": "Домна 80 К",
+      "seriesSlug": "domna-80-k",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/category/domna-80-k",
+        "seedSkuUrls": [],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "commercial/commercial-bath-stoves",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Домна",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "Домна",
+        "pa_equipment-type": "commercial-bath-stove",
+        "pa_room-type": "commercial-bath",
+        "pa_usage-class": "commercial"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1",
+        "description": "sku_page_description_then_series_page",
+        "short_description": "sku_page_technical_description_then_series_intro",
+        "steam_room_volume": "sku_specs_then_series_teaser",
+        "fuel_type": "sku_specs_then_series_intent",
+        "cladding": "sku_option_groups_and_specs",
+        "media": "sku_gallery",
+        "documents": "sku_page_then_series_docs"
+      }
+    },
+    {
+      "seriesName": "Домна 90 К ТВИН",
+      "seriesSlug": "domna-90-k-twin",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/show/6620e428-83e6-49d6-a6a5-9bf104a740b3",
+        "seedSkuUrls": [
+          "https://easysteam.ru/products/show/6620e428-83e6-49d6-a6a5-9bf104a740b3"
+        ],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "commercial/commercial-bath-stoves",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Домна ТВИН",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "Домна ТВИН",
+        "pa_equipment-type": "commercial-bath-stove",
+        "pa_room-type": "commercial-bath",
+        "pa_usage-class": "commercial"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1",
+        "description": "sku_page_description",
+        "short_description": "sku_page_technical_description_then_description",
+        "steam_room_volume": "sku_specs_then_listing_teaser",
+        "fuel_type": "sku_specs_then_series_intent",
+        "cladding": "sku_option_groups_and_specs",
+        "media": "sku_gallery",
+        "documents": "sku_page_docs_only"
+      }
+    },
+    {
+      "seriesName": "Домна 120 К ТВИН",
+      "seriesSlug": "domna-120-k-twin",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/show/d593f90a-2997-447c-a86c-b9a340786846",
+        "seedSkuUrls": [
+          "https://easysteam.ru/products/show/d593f90a-2997-447c-a86c-b9a340786846"
+        ],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "commercial/commercial-bath-stoves",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Домна ТВИН",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "Домна ТВИН",
+        "pa_equipment-type": "commercial-bath-stove",
+        "pa_room-type": "commercial-bath",
+        "pa_usage-class": "commercial"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1",
+        "description": "sku_page_description",
+        "short_description": "sku_page_technical_description_then_description",
+        "steam_room_volume": "sku_specs_then_listing_teaser",
+        "fuel_type": "sku_specs_then_series_intent",
+        "cladding": "sku_option_groups_and_specs",
+        "media": "sku_gallery",
+        "documents": "sku_page_docs_only"
+      }
+    },
+    {
+      "seriesName": "Ялта 15 К",
+      "seriesSlug": "yalta-15-k",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/category/yalta-15-k",
+        "seedSkuUrls": [],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "commercial/commercial-sauna-heaters",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Ялта К",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "Ялта К",
+        "pa_equipment-type": "commercial-bath-sauna-stove",
+        "pa_room-type": "commercial-bath-and-sauna",
+        "pa_usage-class": "commercial"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1",
+        "description": "sku_page_description_then_series_page",
+        "short_description": "sku_page_technical_description_then_series_intro",
+        "steam_room_volume": "sku_specs_then_series_teaser",
+        "fuel_type": "sku_specs_then_series_intent",
+        "cladding": "sku_option_groups_and_specs",
+        "media": "sku_gallery",
+        "documents": "sku_page_then_series_docs"
+      }
+    },
+    {
+      "seriesName": "Ялта 25 К",
+      "seriesSlug": "yalta-25-k",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/category/yalta-25-k",
+        "seedSkuUrls": [],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "commercial/commercial-sauna-heaters",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Ялта К",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "Ялта К",
+        "pa_equipment-type": "commercial-bath-sauna-stove",
+        "pa_room-type": "commercial-bath-and-sauna",
+        "pa_usage-class": "commercial"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1",
+        "description": "sku_page_description_then_series_page",
+        "short_description": "sku_page_technical_description_then_series_intro",
+        "steam_room_volume": "sku_specs_then_series_teaser",
+        "fuel_type": "sku_specs_then_series_intent",
+        "cladding": "sku_option_groups_and_specs",
+        "media": "sku_gallery",
+        "documents": "sku_page_then_series_docs"
+      }
+    },
+    {
+      "seriesName": "Ялта 35 К",
+      "seriesSlug": "yalta-35-k",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/category/yalta-35-k",
+        "seedSkuUrls": [],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "commercial/commercial-sauna-heaters",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Ялта К",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "Ялта К",
+        "pa_equipment-type": "commercial-bath-sauna-stove",
+        "pa_room-type": "commercial-bath-and-sauna",
+        "pa_usage-class": "commercial"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1",
+        "description": "sku_page_description_then_series_page",
+        "short_description": "sku_page_technical_description_then_series_intro",
+        "steam_room_volume": "sku_specs_then_series_teaser",
+        "fuel_type": "sku_specs_then_series_intent",
+        "cladding": "sku_option_groups_and_specs",
+        "media": "sku_gallery",
+        "documents": "sku_page_then_series_docs"
+      }
+    },
+    {
+      "seriesName": "Ялта 40 К",
+      "seriesSlug": "yalta-40-k",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/category/yalta-40-k",
+        "seedSkuUrls": [],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "commercial/commercial-sauna-heaters",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Ялта К",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "Ялта К",
+        "pa_equipment-type": "commercial-bath-sauna-stove",
+        "pa_room-type": "commercial-bath-and-sauna",
+        "pa_usage-class": "commercial"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1",
+        "description": "sku_page_description_then_series_page",
+        "short_description": "sku_page_technical_description_then_series_intro",
+        "steam_room_volume": "sku_specs_then_series_teaser",
+        "fuel_type": "sku_specs_then_series_intent",
+        "cladding": "sku_option_groups_and_specs",
+        "media": "sku_gallery",
+        "documents": "sku_page_then_series_docs"
+      }
+    },
+    {
+      "seriesName": "Ялта 50 К",
+      "seriesSlug": "yalta-50-k",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/product/1014104",
+        "seedSkuUrls": [
+          "https://easysteam.ru/products/product/1014104"
+        ],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "commercial/commercial-sauna-heaters",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Ялта К",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "Ялта К",
+        "pa_equipment-type": "commercial-bath-sauna-stove",
+        "pa_room-type": "commercial-bath-and-sauna",
+        "pa_usage-class": "commercial"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1",
+        "description": "sku_page_description",
+        "short_description": "sku_page_technical_description_then_description",
+        "steam_room_volume": "sku_specs_then_listing_teaser",
+        "fuel_type": "sku_specs_then_series_intent",
+        "cladding": "sku_option_groups_and_specs",
+        "media": "sku_gallery",
+        "documents": "sku_page_docs_only"
+      }
+    },
+    {
+      "seriesName": "Ялта 60 К",
+      "seriesSlug": "yalta-60-k",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/show/4e8b062d-2e02-4e62-a21e-6a90b288d835",
+        "seedSkuUrls": [
+          "https://easysteam.ru/products/show/4e8b062d-2e02-4e62-a21e-6a90b288d835"
+        ],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "commercial/commercial-sauna-heaters",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Ялта К",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "Ялта К",
+        "pa_equipment-type": "commercial-bath-sauna-stove",
+        "pa_room-type": "commercial-bath-and-sauna",
+        "pa_usage-class": "commercial"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1",
+        "description": "sku_page_description",
+        "short_description": "sku_page_technical_description_then_description",
+        "steam_room_volume": "sku_specs_then_listing_teaser",
+        "fuel_type": "sku_specs_then_series_intent",
+        "cladding": "sku_option_groups_and_specs",
+        "media": "sku_gallery",
+        "documents": "sku_page_docs_only"
+      }
+    },
+    {
+      "seriesName": "Ялта 80 К",
+      "seriesSlug": "yalta-80-k",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/show/ae8c6389-fe58-4fda-91f4-c74e0fb735fd",
+        "seedSkuUrls": [
+          "https://easysteam.ru/products/show/ae8c6389-fe58-4fda-91f4-c74e0fb735fd"
+        ],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "commercial/commercial-sauna-heaters",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Ялта К",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "Ялта К",
+        "pa_equipment-type": "commercial-bath-sauna-stove",
+        "pa_room-type": "commercial-bath-and-sauna",
+        "pa_usage-class": "commercial"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1",
+        "description": "sku_page_description",
+        "short_description": "sku_page_technical_description_then_description",
+        "steam_room_volume": "sku_specs_then_listing_teaser",
+        "fuel_type": "sku_specs_then_series_intent",
+        "cladding": "sku_option_groups_and_specs",
+        "media": "sku_gallery",
+        "documents": "sku_page_docs_only"
+      }
+    },
+    {
+      "seriesName": "Ялта 100 К",
+      "seriesSlug": "yalta-100-k",
+      "source": {
+        "seriesPageUrl": "https://easysteam.ru/products/show/f8df82bf-21a6-4550-91b5-ccfb656e20b2",
+        "seedSkuUrls": [
+          "https://easysteam.ru/products/show/f8df82bf-21a6-4550-91b5-ccfb656e20b2"
+        ],
+        "docCandidates": []
+      },
+      "target": {
+        "primaryCategoryPath": "commercial/commercial-sauna-heaters",
+        "brandSlug": "easysteam",
+        "seriesTerm": "Ялта К",
+        "productType": "variable"
+      },
+      "defaultAttributes": {
+        "pa_series": "Ялта К",
+        "pa_equipment-type": "commercial-bath-sauna-stove",
+        "pa_room-type": "commercial-bath-and-sauna",
+        "pa_usage-class": "commercial"
+      },
+      "sourceFieldRules": {
+        "title": "sku_page_h1",
+        "description": "sku_page_description",
+        "short_description": "sku_page_technical_description_then_description",
+        "steam_room_volume": "sku_specs_then_listing_teaser",
+        "fuel_type": "sku_specs_then_series_intent",
+        "cladding": "sku_option_groups_and_specs",
+        "media": "sku_gallery",
+        "documents": "sku_page_docs_only"
+      }
+    }
+  ],
+  "parserContract": {
+    "discoverSkuCardsFromSeriesPage": true,
+    "allowDirectSkuSeriesPagesForSingleSkuCommercialLines": true,
+    "createOneParentProductPerSupplierSkuFamily": true,
+    "preserveSourcePayloadJson": true,
+    "buildSpecsHtmlFromStructuredSpecs": true,
+    "buildSpecsGroupsFromStructuredSpecs": true,
+    "setPrimaryCategoryFromManifest": true,
+    "doNotForceRetailCategoriesForCommercialProducts": true,
+    "doNotMixBathCommercialAndSaunaCommercialBranches": true,
+    "doNotImportOutOfScopeSeries": true
+  }
+}

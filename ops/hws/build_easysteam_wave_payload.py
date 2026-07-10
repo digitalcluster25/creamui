@@ -16,7 +16,18 @@ FETCH_TIMEOUT = 12
 def fetch_text(url: str) -> str:
     req = Request(url, headers={"User-Agent": USER_AGENT})
     with urlopen(req, timeout=FETCH_TIMEOUT) as resp:
-        return resp.read().decode("utf-8", errors="replace")
+        html = resp.read().decode("utf-8", errors="replace")
+    refresh_url = extract_first(
+        r'<meta[^>]+http-equiv=["\']refresh["\'][^>]+content=["\'][^"\']*url=([^"\']+)["\']',
+        html,
+    )
+    if refresh_url:
+        resolved = urljoin(url, refresh_url.strip())
+        if resolved != url:
+            req = Request(resolved, headers={"User-Agent": USER_AGENT})
+            with urlopen(req, timeout=FETCH_TIMEOUT) as resp:
+                return resp.read().decode("utf-8", errors="replace")
+    return html
 
 
 def clean_html_text(value: str) -> str:
@@ -60,7 +71,7 @@ def parse_series_cards(html: str, base_url: str) -> list[dict[str, Any]]:
     cards: list[dict[str, Any]] = []
     pattern = re.compile(
         r'<div class="product-card js-product">(?P<body>.*?)'
-        r'<a href="(?P<href>https://easysteam\.ru/products/(?:show|product)/[^"]+)" class="product-card__button button">Подробнее</a>',
+        r'<a href="(?P<href>(?:https://easysteam\.ru)?/products/(?:show|product)/[^"]+)" class="product-card__button button">Подробнее</a>',
         re.S | re.I,
     )
     for match in pattern.finditer(html):
@@ -92,7 +103,7 @@ def parse_series_cards(html: str, base_url: str) -> list[dict[str, Any]]:
             )
         cards.append(
             {
-                "source_url": href,
+                "source_url": urljoin(base_url, href),
                 "source_type": "show_page" if "/products/show/" in href else "product_page",
                 "title": clean_html_text(title or ""),
                 "subtitle": clean_html_text(subtitle or ""),
@@ -218,6 +229,10 @@ def parse_advantages_description(html: str) -> str | None:
         elif text:
             items.append(text)
     if not items:
+        fallback = clean_html_text(block)
+        if fallback:
+            items.append(fallback)
+    if not items:
         return None
     return "\n\n".join(items)
 
@@ -231,6 +246,12 @@ def parse_short_description(html: str) -> str | None:
         r'<div[^>]*>(.*?)</div>',
         html,
     )
+    if not short_description:
+        short_description = (
+            extract_first(r'<p[^>]*class="thermoionator-main__text"[^>]*>(.*?)</p>', html)
+            or extract_first(r'<p[^>]*class="thermoionator-card__text"[^>]*>(.*?)</p>', html)
+            or extract_first(r'<div[^>]*class="product__description-title"[^>]*>\s*Описание\s*</div>\s*<div[^>]*>(.*?)</div>', html)
+        )
     return clean_html_text(short_description) if short_description else None
 
 
@@ -258,6 +279,31 @@ def parse_description(html: str) -> str | None:
         )
         if description:
             return description
+    for pattern in [
+        r'<p[^>]*class="thermoionator-card__text"[^>]*>(.*?)</p>',
+        r'<p[^>]*class="thermoionator-main__text"[^>]*>(.*?)</p>',
+    ]:
+        description = extract_first(pattern, html)
+        if description:
+            return description
+    return None
+
+
+def parse_generic_main_image(html: str, base_url: str) -> str | None:
+    candidates = re.findall(
+        r'(?:src|href)="([^"]+\.(?:jpg|jpeg|png|webp))"',
+        html,
+        re.I,
+    )
+    for candidate in candidates:
+        url = urljoin(base_url, candidate)
+        normalized = url.lower()
+        if "favicon" in normalized:
+            continue
+        if "/documents/" in normalized or "/docs/" in normalized:
+            continue
+        if "/offers/" in normalized or "/photos/shares/images/" in normalized or "/thermoionator/" in normalized:
+            return url
     return None
 
 
@@ -284,6 +330,7 @@ def short_description_from_description(description: str | None) -> str | None:
 
 def hydrate_short_descriptions(products: list[dict[str, Any]]) -> None:
     short_by_model: dict[str, str] = {}
+    first_short = next((product.get("short_description") for product in products if product.get("short_description")), None)
     for product in products:
         model = find_spec_value(product.get("specs_groups", []), "Модель")
         short_description = product.get("short_description")
@@ -297,18 +344,46 @@ def hydrate_short_descriptions(products: list[dict[str, Any]]) -> None:
         if model and short_by_model.get(model):
             product["short_description"] = short_by_model[model]
             continue
-        fallback = short_description_from_description(product.get("description"))
-        if fallback:
-            product["short_description"] = fallback
+        if first_short:
+            product["short_description"] = first_short
+
+    for product in products:
+        if product.get("description"):
+            continue
+        if product.get("short_description"):
+            product["description"] = product["short_description"]
+
+
+def merge_card_fallbacks(
+    product: dict[str, Any],
+    card_index: dict[str, dict[str, Any]],
+) -> dict[str, Any]:
+    card = card_index.get(product.get("source_url", ""))
+    if not card:
+        return product
+    if not product.get("main_image") and card.get("image"):
+        product["main_image"] = card["image"]
+    if not product.get("title") and card.get("title"):
+        product["title"] = card["title"]
+    if not product.get("short_description") and card.get("subtitle"):
+        product["short_description"] = card["subtitle"]
+    return product
 
 
 def parse_product_page(url: str) -> dict[str, Any]:
     html = fetch_text(url)
     base_url = "https://easysteam.ru"
-    title = extract_first(r'<h1 class="product__title[^"]*">(.*?)</h1>', html)
+    title = extract_first(r'<h1 class="product__title[^"]*">(.*?)</h1>', html) or extract_first(r"<h1[^>]*>(.*?)</h1>", html)
     article = extract_first(r'data-product-offer="([^"]+)"', html)
     main_image = extract_first(r'<a target="_blank" class="js-product-main-image-wrap" href="([^"]+)"', html)
-    base_price = extract_first(r'data-base-price="([^"]+)"', html)
+    if not main_image:
+        main_image = (
+            extract_first(r'<meta property="og:image" content="([^"]+)"', html)
+            or extract_first(r'<img[^>]*class="thermoionator-main__product"[^>]*src="([^"]+)"', html)
+            or extract_first(r'<img[^>]*class="thermoionator-card__img"[^>]*src="([^"]+)"', html)
+            or parse_generic_main_image(html, base_url)
+        )
+    base_price = extract_first(r'data-base-price="([^"]+)"', html) or extract_first(r'data-product-offer-price="([^"]+)"', html)
     series_url = extract_first(r'<a href="https://easysteam\.ru(/products/stoves/pechi/[^"]+|/products/category/[^"]+)" itemprop="item"><span itemprop="name">', html)
     short_description = parse_short_description(html)
     description = parse_description(html)
@@ -338,8 +413,11 @@ def build_series_payload(series_manifest: dict[str, Any], max_products_per_serie
     detailed_products = []
     seen = set()
     seed_urls = list(series_manifest["source"].get("seedSkuUrls", []))
+    if not cards and extract_first(r'data-product-offer="([^"]+)"', html):
+        seed_urls.append(series_url)
     for card in cards:
         seed_urls.append(card["source_url"])
+    card_index = {card["source_url"]: card for card in cards}
     if max_products_per_series is not None:
         seed_urls = seed_urls[:max_products_per_series]
     for url in seed_urls:
@@ -348,10 +426,16 @@ def build_series_payload(series_manifest: dict[str, Any], max_products_per_serie
         seen.add(url)
         try:
             product = parse_product_page(url)
+            product = merge_card_fallbacks(product, card_index)
         except Exception as exc:
             product = {"source_url": url, "error": str(exc)}
         detailed_products.append(product)
     hydrate_short_descriptions(detailed_products)
+    if intro:
+        intro_text = clean_html_text(intro)
+        for product in detailed_products:
+            if not product.get("short_description"):
+                product["short_description"] = intro_text
     return {
         "seriesName": series_manifest["seriesName"],
         "seriesSlug": series_manifest["seriesSlug"],
