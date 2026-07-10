@@ -261,6 +261,47 @@ def parse_description(html: str) -> str | None:
     return None
 
 
+def find_spec_value(specs_groups: list[dict[str, Any]], label: str) -> str | None:
+    for group in specs_groups:
+        for row in group.get("rows", []):
+            if clean_html_text(row.get("label", "")) == label:
+                value = clean_html_text(row.get("value", ""))
+                if value:
+                    return value
+    return None
+
+
+def short_description_from_description(description: str | None) -> str | None:
+    if not description:
+        return None
+    text = clean_html_text(description)
+    if not text:
+        return None
+    sentences = re.split(r"(?<=[.!?])\s+", text)
+    snippet = " ".join(sentence.strip() for sentence in sentences[:2] if sentence.strip())
+    return snippet or text
+
+
+def hydrate_short_descriptions(products: list[dict[str, Any]]) -> None:
+    short_by_model: dict[str, str] = {}
+    for product in products:
+        model = find_spec_value(product.get("specs_groups", []), "Модель")
+        short_description = product.get("short_description")
+        if model and short_description and model not in short_by_model:
+            short_by_model[model] = short_description
+
+    for product in products:
+        if product.get("short_description"):
+            continue
+        model = find_spec_value(product.get("specs_groups", []), "Модель")
+        if model and short_by_model.get(model):
+            product["short_description"] = short_by_model[model]
+            continue
+        fallback = short_description_from_description(product.get("description"))
+        if fallback:
+            product["short_description"] = fallback
+
+
 def parse_product_page(url: str) -> dict[str, Any]:
     html = fetch_text(url)
     base_url = "https://easysteam.ru"
@@ -310,6 +351,7 @@ def build_series_payload(series_manifest: dict[str, Any], max_products_per_serie
         except Exception as exc:
             product = {"source_url": url, "error": str(exc)}
         detailed_products.append(product)
+    hydrate_short_descriptions(detailed_products)
     return {
         "seriesName": series_manifest["seriesName"],
         "seriesSlug": series_manifest["seriesSlug"],
