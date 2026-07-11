@@ -4,17 +4,19 @@ import { Header } from "@/components/sections/header";
 import { Catalog } from "@/components/sections/catalog";
 import { CatalogOverview } from "@/components/sections/catalog-overview/CatalogOverview";
 import { CatalogSeo } from "@/components/sections/catalog-seo/CatalogSeo";
+import { Categories } from "@/components/sections/categories";
 import { Footer } from "@/components/sections/footer";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs/Breadcrumbs";
 import { getHeaderData, flattenCategories, type WPCategoryNode } from "@/lib/wp/header";
 import { footerData } from "@/lib/data/footer";
 import { getClient } from "@/lib/wp/apollo";
-import { GET_PRODUCTS, GET_PRODUCT_CATEGORIES, GET_PRODUCT_CATEGORY_BY_SLUG, GET_ATTRIBUTE_TERMS } from "@/lib/wp/queries";
+import { GET_PRODUCTS, GET_PRODUCT_BRANDS, GET_PRODUCT_CATEGORIES, GET_PRODUCT_CATEGORY_BY_SLUG, GET_ATTRIBUTE_TERMS } from "@/lib/wp/queries";
 import { mapToCatalogData, mapToCategoryCardsData, type WPProductNode } from "@/lib/wp/mappers";
 import { filtersForBranch, attributeParamKey } from "@/lib/data/catalogFilters";
 import { CATALOG_BRANCH_INTROS } from "@/lib/data/catalogBranches";
 import { buildCatalogRobots } from "@/lib/seo/catalog";
 import type { AttributeTermLabels } from "@/lib/types/catalog";
+import type { CategoriesData } from "@/lib/types/categories";
 import styles from "../page.module.css";
 
 // Корневое поле WPGraphQL (allPa*) -> имя таксономии (pa_*).
@@ -51,6 +53,9 @@ async function getAttributeTermLabels(
 export const revalidate = 3600;
 
 type Params = { category: string };
+type BrandNode = { name: string; slug: string; logoUrl?: string | null };
+
+const BRAND_FALLBACK_IMAGE = "/assets/hws-dark-logo-short.png";
 
 export async function generateMetadata({
   params,
@@ -140,7 +145,7 @@ export default async function CatalogCategoryPage({
   const initialBrandSlug = typeof resolvedSearchParams.brand === "string" ? resolvedSearchParams.brand : "";
 
   const client = getClient();
-  const [{ data: categoryTreeData }, { data: categoryData }] = await Promise.all([
+  const [{ data: categoryTreeData }, { data: categoryData }, { data: brandsData }] = await Promise.all([
     client.query<{
       productCategories: { nodes: WPCategoryNode[] };
     }>({
@@ -151,6 +156,9 @@ export default async function CatalogCategoryPage({
     }>({
       query: GET_PRODUCT_CATEGORY_BY_SLUG,
       variables: { slug: category },
+    }),
+    client.query<{ productBrands: { nodes: BrandNode[] } }>({
+      query: GET_PRODUCT_BRANDS,
     }),
   ]);
 
@@ -171,12 +179,14 @@ export default async function CatalogCategoryPage({
     })) ?? [];
 
   let catalogData;
+  let productsNodes: WPProductNode[] = [];
   try {
     const { data } = await client.query<{ products: { nodes: WPProductNode[] } }>({
       query: GET_PRODUCTS,
       variables: { first: 200, category },
     });
-    catalogData = mapToCatalogData(data?.products?.nodes ?? [], undefined);
+    productsNodes = data?.products?.nodes ?? [];
+    catalogData = mapToCatalogData(productsNodes, undefined);
   } catch (e) {
     console.error("WP GraphQL error (catalog category):", e);
     catalogData = mapToCatalogData([], undefined);
@@ -194,6 +204,7 @@ export default async function CatalogCategoryPage({
 
   const termLabels = await getAttributeTermLabels(client);
   const headerData = await getHeaderData();
+  const brandCards = buildCategoryBrandCards(productsNodes, brandsData?.productBrands?.nodes ?? []);
 
   return (
     <main>
@@ -219,6 +230,7 @@ export default async function CatalogCategoryPage({
               : null
           }
         />
+        {brandCards ? <Categories data={brandCards} /> : null}
         <Catalog
           data={catalogData}
           initialBrandSlug={initialBrandSlug}
@@ -233,4 +245,49 @@ export default async function CatalogCategoryPage({
       </div>
     </main>
   );
+}
+
+function buildCategoryBrandCards(products: WPProductNode[], allBrands: BrandNode[]): CategoriesData | null {
+  const brandCounts = new Map<string, { name: string; count: number }>();
+
+  for (const product of products) {
+    for (const brand of product.productBrands?.nodes ?? []) {
+      if (!brand.slug || !brand.name) continue;
+      const current = brandCounts.get(brand.slug);
+      brandCounts.set(brand.slug, {
+        name: brand.name,
+        count: (current?.count ?? 0) + 1,
+      });
+    }
+  }
+
+  if (brandCounts.size < 2) {
+    return null;
+  }
+
+  const brandMeta = new Map(allBrands.map((brand) => [brand.slug, brand]));
+  const items = Array.from(brandCounts.entries())
+    .map(([slug, data]) => {
+      const meta = brandMeta.get(slug);
+      return {
+        id: `brand-${slug}`,
+        imageSrc: meta?.logoUrl || BRAND_FALLBACK_IMAGE,
+        imageAlt: data.name,
+        href: `/brands/${slug}`,
+        subtitle: `${data.count} товаров`,
+        title: data.name,
+        tags: [{ id: `brand-${slug}-link`, label: "Страница бренда", href: `/brands/${slug}` }],
+        count: data.count,
+      };
+    })
+    .sort((a, b) => b.count - a.count || a.title.localeCompare(b.title, "ru"))
+    .slice(0, 6)
+    .map(({ count: _count, ...item }) => item);
+
+  return items.length > 1
+    ? {
+        sectionTitle: "Бренды в разделе",
+        items,
+      }
+    : null;
 }
