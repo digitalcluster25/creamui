@@ -21,6 +21,8 @@ const CLOSE_ICON = (
 
 const PER_PAGE = 24;
 type SortKey = "default" | "price-asc" | "price-desc" | "name";
+const EMPTY_FILTER_KEYS: string[] = [];
+const EMPTY_INITIAL_FILTERS: Record<string, string> = {};
 
 type Props = {
   data: CatalogData;
@@ -31,14 +33,16 @@ type Props = {
   termLabels?: AttributeTermLabels;
   // Начальные значения фильтров из URL: taxonomy -> slug.
   initialFilters?: Record<string, string>;
+  showBrandFilter?: boolean;
 };
 
 export function Catalog({
   data,
   initialBrandSlug = "",
-  filterKeys = [],
+  filterKeys = EMPTY_FILTER_KEYS,
   termLabels = {},
-  initialFilters = {},
+  initialFilters = EMPTY_INITIAL_FILTERS,
+  showBrandFilter = false,
 }: Props) {
   const router = useRouter();
   const pathname = usePathname();
@@ -233,6 +237,22 @@ export function Catalog({
       <div className={styles.toolbar}>
         <span className={styles.filtersLabel}>Фильтры</span>
         <div className={styles.filterSelects}>
+          {showBrandFilter && brandOptions.length > 1 && (
+            <div className={styles.filterSelectWrap}>
+              <select
+                className={[styles.filterSelect, brand ? styles.filterSelectActive : ""].filter(Boolean).join(" ")}
+                value={brand}
+                onChange={(e) => changeBrand(e.target.value)}
+                aria-label="Бренд"
+              >
+                <option value="">Бренд</option>
+                {brandOptions.map((option) => (
+                  <option key={option.slug} value={option.slug}>{option.name}</option>
+                ))}
+              </select>
+            </div>
+          )}
+
           {attributeFilters.map((filter) => (
             <div key={filter.key} className={styles.filterSelectWrap}>
               <select
