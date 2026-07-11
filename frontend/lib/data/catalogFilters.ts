@@ -51,6 +51,51 @@ export const ATTRIBUTE_LABELS: Record<string, string> = {
   "pa_series": "Серия",
 };
 
+// Фолбэки для случаев, когда WP term name не нормализован и во фронт
+// приходит slug/technical id вместо человекочитаемого текста.
+export const ATTRIBUTE_OPTION_LABELS: Record<string, Record<string, string>> = {
+  "pa_equipment-type": {
+    "steam-room-equipment": "Оборудование для парной",
+    "bathing-accessory": "Аксессуар для бани",
+    "aroma-and-steam": "Арома и пар",
+    "water-tank": "Бак для воды",
+    "gas-burner": "Газовая горелка",
+    "gas-bath-stove": "Газовая печь для бани",
+    "wood-storage": "Дровница",
+    "wood-bath-stove": "Дровяная печь для бани",
+    "chimney": "Дымоход",
+    "natural-stone-product": "Изделие из природного камня",
+    "heater-stones": "Камни для каменки",
+    "commercial-bath-stove": "Коммерческая печь для бани",
+    "commercial-bath-sauna-stove": "Коммерческая печь для бани и сауны",
+    "convection-element": "Конвекционный элемент",
+    "mounting-element": "Монтажный элемент",
+    "pouring-device": "Обливное устройство",
+    "steam-generator": "Парогенератор",
+    "steam-thermal-stove": "Паротермальная печь",
+    "bath-sauna-stove": "Печь для бани и сауны",
+    "fireplace-stove": "Печь-камин",
+    "control-unit": "Пульт управления",
+    "heat-exchanger": "Теплообменник",
+    "economizer": "Экономайзер",
+    "electric-bath-stove": "Электрическая печь для бани",
+  },
+};
+
+export function attributeOptionLabel(taxonomy: string, slug: string, termLabel?: string): string {
+  const normalizedTermLabel = termLabel?.trim();
+  if (normalizedTermLabel && normalizedTermLabel !== slug) {
+    return normalizedTermLabel;
+  }
+
+  const fallback = ATTRIBUTE_OPTION_LABELS[taxonomy]?.[slug];
+  if (fallback) {
+    return fallback;
+  }
+
+  return slug;
+}
+
 // pa_power -> "power" для короткого query-параметра в URL.
 export function attributeParamKey(taxonomy: string): string {
   return taxonomy.replace(/^pa_/, "");

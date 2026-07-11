@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import type { CatalogData, AttributeTermLabels } from "@/lib/types/catalog";
 import { CatalogProductCard } from "@/components/blocks/catalog-product-card";
-import { ATTRIBUTE_LABELS, attributeParamKey } from "@/lib/data/catalogFilters";
+import { ATTRIBUTE_LABELS, attributeOptionLabel, attributeParamKey } from "@/lib/data/catalogFilters";
 import styles from "./Catalog.module.css";
 
 const ARROW_RIGHT = (
@@ -73,7 +73,7 @@ export function Catalog({
           for (const slug of product.attributes?.[key] ?? []) slugs.add(slug);
         }
         const options = Array.from(slugs)
-          .map((slug) => ({ slug, name: termLabels[key]?.[slug] ?? slug }))
+          .map((slug) => ({ slug, name: attributeOptionLabel(key, slug, termLabels[key]?.[slug]) }))
           .sort((a, b) => a.name.localeCompare(b.name, "ru"));
         return { key, label: ATTRIBUTE_LABELS[key] ?? key, options };
       })

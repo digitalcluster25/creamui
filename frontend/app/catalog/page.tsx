@@ -73,7 +73,7 @@ export default async function CatalogPage({
           lead="Каталог организован по реальным сценариям выбора: сначала тип решения, затем подкатегория, и только после этого фильтры по мощности, объёму, серии и бренду."
           categories={hubData}
         />
-        <Catalog data={catalogData} initialBrandSlug={initialBrandSlug} showBrandFilter />
+        <Catalog data={catalogData} initialBrandSlug={initialBrandSlug} />
         <CatalogSeo data={CATALOG_ROOT_SEO} />
       </div>
       <div className={styles.sectionFooter}>
