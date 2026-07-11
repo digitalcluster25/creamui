@@ -102,6 +102,220 @@ export const GET_PRODUCTS = gql`
   }
 `;
 
+export const GET_PRODUCTS_BY_BRAND = gql`
+  query GetProductsByBrand($first: Int = 100, $after: String, $brand: String!) {
+    products(
+      first: $first
+      after: $after
+      where: {
+        status: "publish"
+        taxonomyFilter: {
+          filters: [{ taxonomy: PRODUCT_BRAND, terms: [$brand], operator: IN }]
+        }
+      }
+    ) {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      nodes {
+        databaseId
+        name
+        slug
+        ... on SimpleProduct {
+          hwsPriceOnRequest
+          price
+          regularPrice
+          salePrice
+          image {
+            sourceUrl
+            altText
+          }
+          galleryImages {
+            nodes {
+              sourceUrl
+              altText
+            }
+          }
+          productCategories {
+            nodes {
+              name
+              slug
+              parent {
+                node {
+                  name
+                  slug
+                }
+              }
+            }
+          }
+          productBrands {
+            nodes {
+              name
+              slug
+            }
+          }
+          attributes {
+            nodes {
+              name
+              label
+              options
+            }
+          }
+        }
+        ... on VariableProduct {
+          hwsPriceOnRequest
+          price
+          regularPrice
+          salePrice
+          image {
+            sourceUrl
+            altText
+          }
+          galleryImages {
+            nodes {
+              sourceUrl
+              altText
+            }
+          }
+          productCategories {
+            nodes {
+              name
+              slug
+              parent {
+                node {
+                  name
+                  slug
+                }
+              }
+            }
+          }
+          productBrands {
+            nodes {
+              name
+              slug
+            }
+          }
+          attributes {
+            nodes {
+              name
+              label
+              options
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const GET_PRODUCTS_BY_CATEGORY_FILTER = gql`
+  query GetProductsByCategoryFilter($first: Int = 100, $after: String, $category: String!) {
+    products(
+      first: $first
+      after: $after
+      where: {
+        status: "publish"
+        taxonomyFilter: {
+          filters: [{ taxonomy: PRODUCT_CAT, terms: [$category], operator: IN }]
+        }
+      }
+    ) {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      nodes {
+        databaseId
+        name
+        slug
+        ... on SimpleProduct {
+          hwsPriceOnRequest
+          price
+          regularPrice
+          salePrice
+          image {
+            sourceUrl
+            altText
+          }
+          galleryImages {
+            nodes {
+              sourceUrl
+              altText
+            }
+          }
+          productCategories {
+            nodes {
+              name
+              slug
+              parent {
+                node {
+                  name
+                  slug
+                }
+              }
+            }
+          }
+          productBrands {
+            nodes {
+              name
+              slug
+            }
+          }
+          attributes {
+            nodes {
+              name
+              label
+              options
+            }
+          }
+        }
+        ... on VariableProduct {
+          hwsPriceOnRequest
+          price
+          regularPrice
+          salePrice
+          image {
+            sourceUrl
+            altText
+          }
+          galleryImages {
+            nodes {
+              sourceUrl
+              altText
+            }
+          }
+          productCategories {
+            nodes {
+              name
+              slug
+              parent {
+                node {
+                  name
+                  slug
+                }
+              }
+            }
+          }
+          productBrands {
+            nodes {
+              name
+              slug
+            }
+          }
+          attributes {
+            nodes {
+              name
+              label
+              options
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 // Термины атрибутов (pa_*) для карт slug -> человекочитаемое имя.
 // WPGraphQL автогенерит корневые поля allPa<Name> для каждой таксономии.
 export const GET_ATTRIBUTE_TERMS = gql`

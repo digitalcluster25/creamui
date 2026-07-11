@@ -15,7 +15,7 @@ import { buildCatalogRobots } from "@/lib/seo/catalog";
 import { mapToCatalogData, type WPProductNode } from "@/lib/wp/mappers";
 import type { AttributeTermLabels } from "@/lib/types/catalog";
 import type { CategoriesData } from "@/lib/types/categories";
-import { fetchAllProducts } from "@/lib/wp/products";
+import { fetchProductsByBrand } from "@/lib/wp/products";
 import styles from "../../page.module.css";
 
 export const revalidate = 3600;
@@ -236,11 +236,10 @@ export default async function BrandPage({
   const resolvedSearchParams = (await searchParams) ?? {};
 
   const client = getClient();
-  const [{ data: brandsData }, productsData, { data: categoriesData }] = await Promise.all([
+  const [{ data: brandsData }, { data: categoriesData }] = await Promise.all([
     client.query<{ productBrands: { nodes: BrandNode[] } }>({
       query: GET_PRODUCT_BRANDS,
     }),
-    fetchAllProducts(client),
     client.query<{ productCategories: { nodes: WPCategoryNode[] } }>({
       query: GET_PRODUCT_CATEGORIES,
     }),
@@ -249,9 +248,7 @@ export default async function BrandPage({
   const brand = (brandsData?.productBrands?.nodes ?? []).find((entry) => entry.slug === slug);
   if (!brand) notFound();
 
-  const brandProducts = productsData.filter(
-    (product) => product.productBrands?.nodes?.some((entry) => entry.slug === slug),
-  );
+  const brandProducts = await fetchProductsByBrand(client, slug);
   if (brandProducts.length === 0) notFound();
 
   const categoryTree = categoriesData?.productCategories?.nodes ?? [];

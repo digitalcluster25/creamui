@@ -17,7 +17,7 @@ import { CATALOG_BRANCH_INTROS, buildCatalogCategoryContent } from "@/lib/data/c
 import { buildCatalogRobots } from "@/lib/seo/catalog";
 import type { AttributeTermLabels } from "@/lib/types/catalog";
 import type { CategoriesData } from "@/lib/types/categories";
-import { fetchAllProducts } from "@/lib/wp/products";
+import { fetchProductsByCategory } from "@/lib/wp/products";
 import styles from "../page.module.css";
 
 // Корневое поле WPGraphQL (allPa*) -> имя таксономии (pa_*).
@@ -193,7 +193,7 @@ export default async function CatalogCategoryPage({
   let catalogData;
   let productsNodes: WPProductNode[] = [];
   try {
-    productsNodes = await fetchAllProducts(client, { category });
+    productsNodes = await fetchProductsByCategory(client, category);
     catalogData = mapToCatalogData(productsNodes, undefined);
   } catch (e) {
     console.error("WP GraphQL error (catalog category):", e);

@@ -8,14 +8,19 @@ import { Breadcrumbs } from "@/components/primitives/breadcrumbs/Breadcrumbs";
 import { getHeaderData, type WPCategoryNode } from "@/lib/wp/header";
 import { footerData } from "@/lib/data/footer";
 import { getClient } from "@/lib/wp/apollo";
-import { GET_PRODUCT_CATEGORIES } from "@/lib/wp/queries";
+import { GET_PRODUCT_BRANDS, GET_PRODUCT_CATEGORIES } from "@/lib/wp/queries";
 import { mapToCatalogData, mapToCategoryCardsData } from "@/lib/wp/mappers";
 import { CATALOG_ROOT_SEO } from "@/lib/data/catalogBranches";
 import { buildCatalogRobots } from "@/lib/seo/catalog";
-import { fetchAllProducts } from "@/lib/wp/products";
+import { fetchAllCatalogProducts } from "@/lib/wp/products";
 import styles from "./page.module.css";
 
 export const revalidate = 3600;
+
+type BrandNode = {
+  name: string;
+  slug: string;
+};
 
 export async function generateMetadata({
   searchParams,
@@ -46,12 +51,18 @@ export default async function CatalogPage({
   let hubData = null;
   try {
     const client = getClient();
-    const [productsData, { data: categoriesData }] = await Promise.all([
-      fetchAllProducts(client),
+    const [{ data: brandsData }, { data: categoriesData }] = await Promise.all([
+      client.query<{ productBrands: { nodes: BrandNode[] } }>({
+        query: GET_PRODUCT_BRANDS,
+      }),
       client.query<{ productCategories: { nodes: WPCategoryNode[] } }>({
         query: GET_PRODUCT_CATEGORIES,
       }),
     ]);
+    const productsData = await fetchAllCatalogProducts(
+      client,
+      (brandsData?.productBrands?.nodes ?? []).map((brand) => brand.slug).filter(Boolean),
+    );
     catalogData = mapToCatalogData(productsData, undefined);
     hubData = mapToCategoryCardsData(categoriesData?.productCategories?.nodes ?? [], "Основные направления каталога");
   } catch (e) {
