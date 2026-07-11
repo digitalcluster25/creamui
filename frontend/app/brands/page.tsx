@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Header } from "@/components/sections/header";
 import { Footer } from "@/components/sections/footer";
 import { BrandsDirectory } from "@/components/sections/brands-directory/BrandsDirectory";
@@ -9,6 +10,14 @@ import { GET_PRODUCT_BRANDS } from "@/lib/wp/queries";
 import styles from "../page.module.css";
 
 export const revalidate = 3600;
+
+export const metadata: Metadata = {
+  title: "Бренды HWS",
+  description: "Бренды каталога HWS: переход к страницам производителей и подбору товаров внутри нужных направлений.",
+  alternates: {
+    canonical: "/brands",
+  },
+};
 
 type BrandNode = {
   name: string;

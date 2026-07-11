@@ -11,6 +11,7 @@ import { flattenCategories, getHeaderData, type WPCategoryNode, type WPCategoryC
 import { getClient } from "@/lib/wp/apollo";
 import { GET_PRODUCTS, GET_PRODUCT_BRANDS, GET_PRODUCT_CATEGORIES, GET_ATTRIBUTE_TERMS } from "@/lib/wp/queries";
 import { filtersForBranch, attributeParamKey } from "@/lib/data/catalogFilters";
+import { buildCatalogRobots } from "@/lib/seo/catalog";
 import { mapToCatalogData, type WPProductNode } from "@/lib/wp/mappers";
 import type { AttributeTermLabels } from "@/lib/types/catalog";
 import type { CategoriesData } from "@/lib/types/categories";
@@ -184,10 +185,13 @@ export async function generateStaticParams(): Promise<Params[]> {
 
 export async function generateMetadata({
   params,
+  searchParams,
 }: {
   params: Promise<Params>;
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
 }): Promise<Metadata> {
   const { slug } = await params;
+  const resolvedSearchParams = (await searchParams) ?? {};
 
   try {
     const client = getClient();
@@ -209,6 +213,7 @@ export async function generateMetadata({
       alternates: {
         canonical: `/brands/${brand.slug}`,
       },
+      robots: buildCatalogRobots(resolvedSearchParams),
     };
   } catch (e) {
     console.error("WP GraphQL error (brand metadata):", e);
