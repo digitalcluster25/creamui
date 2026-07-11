@@ -1,5 +1,4 @@
-import type { ApolloClient } from "@apollo/client";
-import type { DocumentNode } from "graphql";
+import { print, type DocumentNode } from "graphql";
 import { GET_PRODUCTS_BY_BRAND, GET_PRODUCTS_BY_CATEGORY_FILTER } from "@/lib/wp/queries";
 import type { WPProductNode } from "@/lib/wp/mappers";
 
@@ -14,35 +13,55 @@ type ProductsQueryResult = {
 };
 
 const PAGE_SIZE = 100;
+const GRAPHQL_URL = process.env.NEXT_PUBLIC_WP_GRAPHQL_URL || "https://wpsandbox.spaces.community/graphql";
+
+async function runGraphQL<T>(query: DocumentNode, variables: Record<string, unknown>): Promise<T> {
+  const response = await fetch(GRAPHQL_URL, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      query: print(query),
+      variables,
+    }),
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    throw new Error(`GraphQL request failed with ${response.status}`);
+  }
+
+  const payload = (await response.json()) as { data?: T; errors?: { message: string }[] };
+  if (payload.errors?.length) {
+    throw new Error(payload.errors.map((error) => error.message).join("; "));
+  }
+
+  if (!payload.data) {
+    throw new Error("GraphQL response did not include data");
+  }
+
+  return payload.data;
+}
 
 async function paginateProducts(
-  client: ApolloClient,
   query: DocumentNode,
   variableKey: string,
   variableValue: string,
 ): Promise<WPProductNode[]> {
   const nodes: WPProductNode[] = [];
-  const seenIds = new Set<number>();
   let after: string | null = null;
   let hasNextPage = true;
 
   while (hasNextPage) {
-    const queryResult: { data?: ProductsQueryResult } = await client.query<ProductsQueryResult>({
-      query,
-      variables: {
-        first: PAGE_SIZE,
-        after,
-        [variableKey]: variableValue,
-      },
+    const data: ProductsQueryResult = await runGraphQL<ProductsQueryResult>(query, {
+      first: PAGE_SIZE,
+      after,
+      [variableKey]: variableValue,
     });
-    const data: ProductsQueryResult = queryResult.data ?? { products: null };
-    const batch = data.products?.nodes ?? [];
 
-    for (const product of batch) {
-      if (seenIds.has(product.databaseId)) continue;
-      seenIds.add(product.databaseId);
-      nodes.push(product);
-    }
+    const batch = data.products?.nodes ?? [];
+    nodes.push(...batch);
 
     hasNextPage = Boolean(data.products?.pageInfo?.hasNextPage);
     after = data.products?.pageInfo?.endCursor ?? null;
@@ -52,25 +71,20 @@ async function paginateProducts(
   return nodes;
 }
 
-export function fetchProductsByBrand(client: ApolloClient, brandSlug: string) {
-  return paginateProducts(client, GET_PRODUCTS_BY_BRAND, "brand", brandSlug);
+export function fetchProductsByBrand(_client: unknown, brandSlug: string) {
+  return paginateProducts(GET_PRODUCTS_BY_BRAND, "brand", brandSlug);
 }
 
-export function fetchProductsByCategory(client: ApolloClient, categorySlug: string) {
-  return paginateProducts(client, GET_PRODUCTS_BY_CATEGORY_FILTER, "category", categorySlug);
+export function fetchProductsByCategory(_client: unknown, categorySlug: string) {
+  return paginateProducts(GET_PRODUCTS_BY_CATEGORY_FILTER, "category", categorySlug);
 }
 
-export async function fetchAllCatalogProducts(client: ApolloClient, brandSlugs: string[]) {
+export async function fetchAllCatalogProducts(_client: unknown, brandSlugs: string[]) {
   const merged: WPProductNode[] = [];
-  const seenIds = new Set<number>();
 
   for (const slug of brandSlugs) {
-    const products = await fetchProductsByBrand(client, slug);
-    for (const product of products) {
-      if (seenIds.has(product.databaseId)) continue;
-      seenIds.add(product.databaseId);
-      merged.push(product);
-    }
+    const products = await fetchProductsByBrand(null, slug);
+    merged.push(...products);
   }
 
   return merged;
