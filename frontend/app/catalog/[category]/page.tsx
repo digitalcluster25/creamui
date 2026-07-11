@@ -13,7 +13,7 @@ import { getClient } from "@/lib/wp/apollo";
 import { GET_PRODUCTS, GET_PRODUCT_BRANDS, GET_PRODUCT_CATEGORIES, GET_PRODUCT_CATEGORY_BY_SLUG, GET_ATTRIBUTE_TERMS } from "@/lib/wp/queries";
 import { mapToCatalogData, mapToCategoryCardsData, type WPProductNode } from "@/lib/wp/mappers";
 import { filtersForBranch, attributeParamKey } from "@/lib/data/catalogFilters";
-import { CATALOG_BRANCH_INTROS } from "@/lib/data/catalogBranches";
+import { CATALOG_BRANCH_INTROS, buildCatalogCategoryContent } from "@/lib/data/catalogBranches";
 import { buildCatalogRobots } from "@/lib/seo/catalog";
 import type { AttributeTermLabels } from "@/lib/types/catalog";
 import type { CategoriesData } from "@/lib/types/categories";
@@ -82,7 +82,7 @@ export async function generateMetadata({
   try {
     const client = getClient();
     const { data } = await client.query<{
-      productCategory: { name: string; slug: string; parent?: { node: { name: string } } | null } | null;
+      productCategory: { name: string; slug: string; count?: number | null; parent?: { node: { name: string; slug: string } } | null } | null;
     }>({
       query: GET_PRODUCT_CATEGORY_BY_SLUG,
       variables: { slug: category },
@@ -96,11 +96,22 @@ export async function generateMetadata({
     }
 
     const parentName = found.parent?.node?.name;
+    const parentSlug = found.parent?.node?.slug;
+    const metadataContent = parentName && parentSlug
+      ? buildCatalogCategoryContent({
+          categoryName: found.name,
+          categorySlug: found.slug,
+          categoryCount: found.count,
+          branchName: parentName,
+          branchSlug: parentSlug,
+        })
+      : null;
+
     return {
       title: `${found.name}${parentName ? ` | ${parentName}` : ""} | Каталог HWS`,
-      description: parentName
+      description: metadataContent?.lead ?? (parentName
         ? `Раздел «${found.name}» внутри ветки «${parentName}» в каталоге HWS. Подбор по брендам, сериям и параметрам текущей категории.`
-        : `Раздел «${found.name}» в каталоге HWS.`,
+        : `Раздел «${found.name}» в каталоге HWS.`),
       alternates: {
         canonical: `/catalog/${found.slug}`,
       },
@@ -152,7 +163,7 @@ export default async function CatalogCategoryPage({
       query: GET_PRODUCT_CATEGORIES,
     }),
     client.query<{
-      productCategory: { name: string; slug: string; parent?: { node: { name: string; slug: string } } | null } | null;
+      productCategory: { name: string; slug: string; count?: number | null; parent?: { node: { name: string; slug: string } } | null } | null;
     }>({
       query: GET_PRODUCT_CATEGORY_BY_SLUG,
       variables: { slug: category },
@@ -196,6 +207,16 @@ export default async function CatalogCategoryPage({
   const branchSlug = found.parent?.node?.slug ?? found.slug;
   const filterKeys = filtersForBranch(branchSlug);
   const branchIntro = CATALOG_BRANCH_INTROS[branchSlug];
+  const categoryContent =
+    found.slug === branchSlug
+      ? null
+      : buildCatalogCategoryContent({
+          categoryName: found.name,
+          categorySlug: found.slug,
+          categoryCount: found.count,
+          branchName: currentParentNode?.name ?? found.parent?.node?.name ?? found.name,
+          branchSlug,
+        });
   const initialFilters: Record<string, string> = {};
   for (const key of filterKeys) {
     const value = resolvedSearchParams[attributeParamKey(key)];
@@ -220,7 +241,7 @@ export default async function CatalogCategoryPage({
       <div className={styles.section}>
         <CatalogOverview
           title={found.name}
-          lead={found.slug === branchSlug ? branchIntro?.lead : `Раздел внутри ветки «${currentParentNode?.name ?? branchIntro?.title ?? found.name}». Сначала выберите подходящий подтип, затем сузьте выдачу фильтрами только этой ветки.`}
+          lead={found.slug === branchSlug ? branchIntro?.lead : (categoryContent?.lead ?? `Раздел внутри ветки «${currentParentNode?.name ?? branchIntro?.title ?? found.name}». Сначала выберите подходящий подтип, затем сузьте выдачу фильтрами только этой ветки.`)}
           categories={
             currentChildNodes.length > 0
               ? mapToCategoryCardsData(
@@ -238,7 +259,7 @@ export default async function CatalogCategoryPage({
           termLabels={termLabels}
           initialFilters={initialFilters}
         />
-        <CatalogSeo data={found.slug === branchSlug ? branchIntro?.seo ?? null : null} />
+        <CatalogSeo data={found.slug === branchSlug ? branchIntro?.seo ?? null : categoryContent?.seo ?? null} />
       </div>
       <div className={styles.sectionFooter}>
         <Footer data={footerData} />
