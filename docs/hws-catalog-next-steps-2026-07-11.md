@@ -6,7 +6,8 @@ Updated: `2026-07-11`
 
 - import and audit closure is complete for `EasySteam`, `VVD`, `Sangens`, `EOS`
 - category hub, subcategory grid, branch-aware filters, catalog SEO blocks, and brand pages are already implemented
-- next real phase is `Phase E: SEO rollout` plus live storefront QA and small backend cleanup
+- SEO rollout rules are now locked in [hws-catalog-seo-final-rules.md](/Users/macbookpro/Coding/creamui/docs/hws-catalog-seo-final-rules.md)
+- next real phase is live storefront QA plus any remaining backend cleanup
 
 ## Priority order
 
@@ -16,39 +17,10 @@ Owner:
 - frontend + seo
 
 Tasks:
-1. lock metadata rules for:
-   - `/catalog`
-   - `/catalog/{branch}`
-   - `/catalog/{child-category}`
-   - `/brands`
-   - `/brands/{brand}`
-2. ensure filtered states are not indexable:
-   - catalog filters
-   - brand filters
-   - sort and any future faceted URLs
-3. review canonical behavior for:
-   - clean landing URL
-   - filtered URL
-   - paginated URL if pagination becomes query-driven
-4. formalize internal linking:
-   - catalog root -> branch
-   - branch -> child category
-   - branch/category -> brand page
-   - brand page -> category page
-5. decide whether `series` gets:
-   - dedicated landing pages
-   - or stays as filter-only dimension
-
-Current decision:
-- for the current rollout, `series` stays filter-only for indexation purposes
-- no mass-generated standalone series pages
-- later, only allowlisted series pages may become indexable
-- source of truth: [hws-series-indexation-strategy.md](/Users/macbookpro/Coding/creamui/docs/hws-series-indexation-strategy.md)
-
-Acceptance:
-- no indexable filter junk
-- one canonical URL per landing intent
-- brand pages and category pages do not compete for the same intent without a clear role split
+1. keep final rules aligned with [hws-catalog-seo-final-rules.md](/Users/macbookpro/Coding/creamui/docs/hws-catalog-seo-final-rules.md)
+2. do not create indexable filter junk
+3. keep one canonical URL per landing intent
+4. do not let brand pages and category pages compete for the same intent without a clear role split
 
 ### 2. Live storefront QA
 
