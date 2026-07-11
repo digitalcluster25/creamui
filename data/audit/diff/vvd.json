@@ -1,15 +1,15 @@
 {
   "brand": "vvd",
-  "generated_at": "2026-07-10T22:55:40.811201+00:00",
+  "generated_at": "2026-07-11T05:58:59.927446+00:00",
   "source_total_rows": 30,
-  "woo_total_rows": 31,
+  "woo_total_rows": 30,
   "source_total_unique_skus": 30,
-  "woo_total_unique_skus": 31,
+  "woo_total_unique_skus": 30,
   "summary": {
     "matched": 30,
     "matched_but_broken": 0,
     "source_only": 0,
-    "woo_only": 1,
+    "woo_only": 0,
     "source_duplicates": 0,
     "woo_duplicates": 0
   },
@@ -197,14 +197,7 @@
   ],
   "matched_but_broken": [],
   "source_only": [],
-  "woo_only": [
-    {
-      "sku": "1383",
-      "woo_product_id": 248495,
-      "woo_slug": "vvd-elektricheskaya-parotermalnaya-pech-parizhar-futurus-v2-0",
-      "title": "Электрическая паротермальная печь ФутуРус 2.0 10 кВт Cерпентинит Бархат"
-    }
-  ],
+  "woo_only": [],
   "source_duplicates": [],
   "woo_duplicates": []
 }

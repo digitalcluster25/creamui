@@ -165,10 +165,15 @@ def source_expected_variation_count(row: dict[str, Any]) -> int:
 
 def source_price_on_request(row: dict[str, Any]) -> bool:
     for key in ("price_on_request_expected", "price_on_request"):
-        if key in row:
+        if key in row and row.get(key) is not None and normalize_text(row.get(key)) != "":
             return normalize_bool(row.get(key))
     price = normalize_text(row.get("price") or row.get("base_price") or row.get("base_price_rub"))
-    return price == ""
+    if price == "":
+        return True
+    try:
+        return float(price.replace(",", ".")) <= 0
+    except ValueError:
+        return False
 
 
 def detect_broken_matches(source_row: dict[str, Any], woo_row: dict[str, Any]) -> list[str]:
@@ -199,7 +204,12 @@ def detect_broken_matches(source_row: dict[str, Any], woo_row: dict[str, Any]) -
     if expected_variations > 0 and actual_variations != expected_variations:
         reasons.append("variation_issue")
 
-    if source_price_on_request(source_row) and not normalize_bool(woo_row.get("price_on_request")):
+    source_por = source_price_on_request(source_row)
+    woo_por = normalize_bool(woo_row.get("price_on_request"))
+    woo_has_price = bool(normalize_text(woo_row.get("price") or woo_row.get("regular_price")))
+    if source_por != woo_por:
+        reasons.append("price_issue")
+    elif not source_por and not woo_has_price:
         reasons.append("price_issue")
 
     return reasons

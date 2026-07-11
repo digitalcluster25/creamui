@@ -1,74 +1,8 @@
 {
     "brand": "vvd",
-    "generated_at": "2026-07-10T22:52:45+00:00",
-    "total": 31,
+    "generated_at": "2026-07-11T05:58:07+00:00",
+    "total": 30,
     "products": [
-        {
-            "product_id": 248495,
-            "sku": "1383",
-            "slug": "vvd-elektricheskaya-parotermalnaya-pech-parizhar-futurus-v2-0",
-            "status": "publish",
-            "title": "Электрическая паротермальная печь ФутуРус 2.0 10 кВт Cерпентинит Бархат",
-            "brand": "vvd",
-            "brand_slugs": [
-                "vvd"
-            ],
-            "source_brand_meta": "ВВД",
-            "source_url": "https://vvd.su/product/elektricheskie-pechi-dlya-bani/pechi-futurus/elektricheskaya-parotermalnaya-pech-parizhar-futurus-v2-0/?oid=1383",
-            "primary_category": "steam-thermal",
-            "category_slugs": [
-                "russian-bath-stoves",
-                "steam-thermal"
-            ],
-            "image_count": 6,
-            "featured_image_id": 248898,
-            "gallery_image_ids": [
-                248899,
-                248900,
-                248901,
-                248902,
-                248903
-            ],
-            "has_short_description": true,
-            "has_full_description": true,
-            "attribute_keys": [
-                "pa_facing",
-                "pa_power"
-            ],
-            "price": "6562.82",
-            "regular_price": "",
-            "price_on_request": false,
-            "product_type": "variable",
-            "variation_count": 24,
-            "variation_ids": [
-                248907,
-                248908,
-                248909,
-                248910,
-                248911,
-                248912,
-                248913,
-                248914,
-                248915,
-                248916,
-                248917,
-                248918,
-                248919,
-                248920,
-                248921,
-                248922,
-                248923,
-                248924,
-                248925,
-                248926,
-                248927,
-                248928,
-                248929,
-                248930
-            ],
-            "imported_variation_count_meta": 0,
-            "possible_variation_count_meta": 0
-        },
         {
             "product_id": 249418,
             "sku": "VVD-AVTONOMNYJ-EGPP-220-4-6KVT",
@@ -1402,9 +1336,9 @@
                 "pa_series",
                 "pa_usage-class"
             ],
-            "price": "",
+            "price": "350",
             "regular_price": "",
-            "price_on_request": true,
+            "price_on_request": false,
             "product_type": "variable",
             "variation_count": 0,
             "variation_ids": [],
@@ -1497,9 +1431,9 @@
                 "pa_series",
                 "pa_usage-class"
             ],
-            "price": "",
+            "price": "817",
             "regular_price": "",
-            "price_on_request": true,
+            "price_on_request": false,
             "product_type": "variable",
             "variation_count": 0,
             "variation_ids": [],

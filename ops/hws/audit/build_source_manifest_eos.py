@@ -84,7 +84,7 @@ def build_row(series_payload: dict[str, Any], product: dict[str, Any], wave_file
         "eos_range": normalize_text(product.get("eos_range")),
         "eos_family": normalize_text(product.get("eos_family")),
         "base_price_rub": base_price_rub,
-        "price_on_request": None,
+        "price_on_request": False if base_price_rub > 0 else True,
         "has_image": bool(main_image),
         "main_image": main_image,
         "has_short_description": bool(short_description),
