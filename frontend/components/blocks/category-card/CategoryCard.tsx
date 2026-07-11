@@ -1,4 +1,3 @@
-import Image from "next/image";
 import styles from "./CategoryCard.module.css";
 
 export type CategoryTag = {
@@ -41,16 +40,13 @@ export function CategoryCard({
   title,
   tags = [],
 }: CategoryCardProps) {
+  const normalizedImage = normalizeImageSrc(image);
+
   return (
     <div className={styles.card}>
       <figure className={styles.imageHolder}>
         <a href={href} style={{ display: "contents" }}>
-          <Image
-            src={image}
-            alt={imageAlt}
-            fill
-            sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          />
+          <img src={normalizedImage} alt={imageAlt} loading="lazy" />
         </a>
         <div className={styles.overlayDetails}>
           {subtitle && (
@@ -74,4 +70,15 @@ export function CategoryCard({
       </figure>
     </div>
   );
+}
+
+function normalizeImageSrc(value: string): string {
+  if (!value) return "";
+  try {
+    return value.startsWith("http://") || value.startsWith("https://")
+      ? encodeURI(value)
+      : value;
+  } catch {
+    return value;
+  }
 }
