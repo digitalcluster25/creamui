@@ -9,12 +9,13 @@ import { Breadcrumbs } from "@/components/primitives/breadcrumbs/Breadcrumbs";
 import { footerData } from "@/lib/data/footer";
 import { flattenCategories, getHeaderData, type WPCategoryNode, type WPCategoryChildNode } from "@/lib/wp/header";
 import { getClient } from "@/lib/wp/apollo";
-import { GET_PRODUCTS, GET_PRODUCT_BRANDS, GET_PRODUCT_CATEGORIES, GET_ATTRIBUTE_TERMS } from "@/lib/wp/queries";
+import { GET_PRODUCT_BRANDS, GET_PRODUCT_CATEGORIES, GET_ATTRIBUTE_TERMS } from "@/lib/wp/queries";
 import { filtersForBranch, attributeParamKey } from "@/lib/data/catalogFilters";
 import { buildCatalogRobots } from "@/lib/seo/catalog";
 import { mapToCatalogData, type WPProductNode } from "@/lib/wp/mappers";
 import type { AttributeTermLabels } from "@/lib/types/catalog";
 import type { CategoriesData } from "@/lib/types/categories";
+import { fetchAllProducts } from "@/lib/wp/products";
 import styles from "../../page.module.css";
 
 export const revalidate = 3600;
@@ -235,14 +236,11 @@ export default async function BrandPage({
   const resolvedSearchParams = (await searchParams) ?? {};
 
   const client = getClient();
-  const [{ data: brandsData }, { data: productsData }, { data: categoriesData }] = await Promise.all([
+  const [{ data: brandsData }, productsData, { data: categoriesData }] = await Promise.all([
     client.query<{ productBrands: { nodes: BrandNode[] } }>({
       query: GET_PRODUCT_BRANDS,
     }),
-    client.query<{ products: { nodes: WPProductNode[] } }>({
-      query: GET_PRODUCTS,
-      variables: { first: 1000 },
-    }),
+    fetchAllProducts(client),
     client.query<{ productCategories: { nodes: WPCategoryNode[] } }>({
       query: GET_PRODUCT_CATEGORIES,
     }),
@@ -251,7 +249,7 @@ export default async function BrandPage({
   const brand = (brandsData?.productBrands?.nodes ?? []).find((entry) => entry.slug === slug);
   if (!brand) notFound();
 
-  const brandProducts = (productsData?.products?.nodes ?? []).filter(
+  const brandProducts = productsData.filter(
     (product) => product.productBrands?.nodes?.some((entry) => entry.slug === slug),
   );
   if (brandProducts.length === 0) notFound();

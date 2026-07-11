@@ -10,13 +10,14 @@ import { Breadcrumbs } from "@/components/primitives/breadcrumbs/Breadcrumbs";
 import { getHeaderData, flattenCategories, type WPCategoryNode } from "@/lib/wp/header";
 import { footerData } from "@/lib/data/footer";
 import { getClient } from "@/lib/wp/apollo";
-import { GET_PRODUCTS, GET_PRODUCT_BRANDS, GET_PRODUCT_CATEGORIES, GET_PRODUCT_CATEGORY_BY_SLUG, GET_ATTRIBUTE_TERMS } from "@/lib/wp/queries";
+import { GET_PRODUCT_BRANDS, GET_PRODUCT_CATEGORIES, GET_PRODUCT_CATEGORY_BY_SLUG, GET_ATTRIBUTE_TERMS } from "@/lib/wp/queries";
 import { mapToCatalogData, mapToCategoryCardsData, type WPProductNode } from "@/lib/wp/mappers";
 import { filtersForBranch, attributeParamKey } from "@/lib/data/catalogFilters";
 import { CATALOG_BRANCH_INTROS, buildCatalogCategoryContent } from "@/lib/data/catalogBranches";
 import { buildCatalogRobots } from "@/lib/seo/catalog";
 import type { AttributeTermLabels } from "@/lib/types/catalog";
 import type { CategoriesData } from "@/lib/types/categories";
+import { fetchAllProducts } from "@/lib/wp/products";
 import styles from "../page.module.css";
 
 // Корневое поле WPGraphQL (allPa*) -> имя таксономии (pa_*).
@@ -192,11 +193,7 @@ export default async function CatalogCategoryPage({
   let catalogData;
   let productsNodes: WPProductNode[] = [];
   try {
-    const { data } = await client.query<{ products: { nodes: WPProductNode[] } }>({
-      query: GET_PRODUCTS,
-      variables: { first: 200, category },
-    });
-    productsNodes = data?.products?.nodes ?? [];
+    productsNodes = await fetchAllProducts(client, { category });
     catalogData = mapToCatalogData(productsNodes, undefined);
   } catch (e) {
     console.error("WP GraphQL error (catalog category):", e);
