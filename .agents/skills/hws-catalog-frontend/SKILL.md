@@ -18,6 +18,9 @@ Targets:
 - Category pages must show subcategory entry points before deep filtering.
 - Filters must reflect the current branch of the tree, not a global one-size-fits-all set.
 - Brand pages are support pages, not the main navigation backbone.
+- Do not change the visual design of existing live UI elements without explicit user approval.
+- If a task is technical or SEO-related, preserve the current visual appearance unless the user explicitly asks for a design change.
+- When removing fake links or changing interaction semantics, keep the rendered look 1:1 unless the user approved a redesign.
 
 ## Required page anatomy
 
