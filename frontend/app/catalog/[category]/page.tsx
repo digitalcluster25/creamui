@@ -1,7 +1,9 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/sections/header";
 import { Catalog } from "@/components/sections/catalog";
+import { CatalogCollections, type CatalogCollection } from "@/components/sections/catalog-collections";
 import { CatalogOverview } from "@/components/sections/catalog-overview/CatalogOverview";
 import { CatalogSeo } from "@/components/sections/catalog-seo/CatalogSeo";
 import { Categories } from "@/components/sections/categories";
@@ -11,10 +13,9 @@ import { getHeaderData, flattenCategories, type WPCategoryNode } from "@/lib/wp/
 import { footerData } from "@/lib/data/footer";
 import { getClient } from "@/lib/wp/apollo";
 import { GET_PRODUCT_BRANDS, GET_PRODUCT_CATEGORIES, GET_PRODUCT_CATEGORY_BY_SLUG, GET_ATTRIBUTE_TERMS } from "@/lib/wp/queries";
-import { mapToCatalogData, mapToCategoryCardsData, type WPProductNode } from "@/lib/wp/mappers";
-import { filtersForBranch, attributeParamKey } from "@/lib/data/catalogFilters";
+import { mapToCatalogData, mapToCategoryCardsData, mapToCatalogProduct, type WPProductNode } from "@/lib/wp/mappers";
+import { filtersForBranch } from "@/lib/data/catalogFilters";
 import { CATALOG_BRANCH_INTROS, buildCatalogCategoryContent } from "@/lib/data/catalogBranches";
-import { buildCatalogRobots } from "@/lib/seo/catalog";
 import type { AttributeTermLabels } from "@/lib/types/catalog";
 import type { CategoriesData } from "@/lib/types/categories";
 import { fetchProductsByCategory } from "@/lib/wp/products";
@@ -60,13 +61,10 @@ const BRAND_FALLBACK_IMAGE = "/assets/hws-dark-logo-short.png";
 
 export async function generateMetadata({
   params,
-  searchParams,
 }: {
   params: Promise<Params>;
-  searchParams?: Promise<Record<string, string | string[] | undefined>>;
 }): Promise<Metadata> {
   const { category } = await params;
-  const resolvedSearchParams = (await searchParams) ?? {};
   const branchIntro = CATALOG_BRANCH_INTROS[category];
 
   if (branchIntro) {
@@ -76,7 +74,6 @@ export async function generateMetadata({
       alternates: {
         canonical: `/catalog/${category}`,
       },
-      robots: buildCatalogRobots(resolvedSearchParams),
     };
   }
 
@@ -116,7 +113,6 @@ export async function generateMetadata({
       alternates: {
         canonical: `/catalog/${found.slug}`,
       },
-      robots: buildCatalogRobots(resolvedSearchParams),
     };
   } catch (e) {
     console.error("WP GraphQL error (category metadata):", e);
@@ -147,14 +143,10 @@ export async function generateStaticParams(): Promise<Params[]> {
 
 export default async function CatalogCategoryPage({
   params,
-  searchParams,
 }: {
   params: Promise<Params>;
-  searchParams?: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const { category } = await params;
-  const resolvedSearchParams = (await searchParams) ?? {};
-  const initialBrandSlug = typeof resolvedSearchParams.brand === "string" ? resolvedSearchParams.brand : "";
 
   const client = getClient();
   const [{ data: categoryTreeData }, { data: categoryData }, { data: brandsData }] = await Promise.all([
@@ -214,15 +206,14 @@ export default async function CatalogCategoryPage({
           branchName: currentParentNode?.name ?? found.parent?.node?.name ?? found.name,
           branchSlug,
         });
-  const initialFilters: Record<string, string> = {};
-  for (const key of filterKeys) {
-    const value = resolvedSearchParams[attributeParamKey(key)];
-    if (typeof value === "string" && value) initialFilters[key] = value;
-  }
 
   const termLabels = await getAttributeTermLabels(client);
   const headerData = await getHeaderData();
   const brandCards = buildCategoryBrandCards(productsNodes, brandsData?.productBrands?.nodes ?? []);
+  const childCollections =
+    found.slug === branchSlug
+      ? buildChildCollections(currentChildNodes, productsNodes)
+      : [];
 
   return (
     <main>
@@ -248,14 +239,23 @@ export default async function CatalogCategoryPage({
               : null
           }
         />
-        {brandCards ? <Categories data={brandCards} /> : null}
-        <Catalog
-          data={catalogData}
-          initialBrandSlug={initialBrandSlug}
-          filterKeys={filterKeys}
-          termLabels={termLabels}
-          initialFilters={initialFilters}
-        />
+        {found.slug === branchSlug ? (
+          <CatalogCollections
+            title="Популярные товары по подкатегориям"
+            collections={childCollections}
+          />
+        ) : (
+          <>
+            {brandCards ? <Categories data={brandCards} /> : null}
+            <Suspense fallback={null}>
+              <Catalog
+                data={catalogData}
+                filterKeys={filterKeys}
+                termLabels={termLabels}
+              />
+            </Suspense>
+          </>
+        )}
         <CatalogSeo data={found.slug === branchSlug ? branchIntro?.seo ?? null : categoryContent?.seo ?? null} />
       </div>
       <div className={styles.sectionFooter}>
@@ -263,6 +263,40 @@ export default async function CatalogCategoryPage({
       </div>
     </main>
   );
+}
+
+function buildChildCollections(
+  childNodes: Array<{
+    databaseId: number;
+    name: string;
+    slug: string;
+    hwsSubtitle?: string | null;
+  }>,
+  products: WPProductNode[],
+): CatalogCollection[] {
+  const collections: Array<CatalogCollection | null> = childNodes
+    .map((child) => {
+      const collectionProducts = products
+        .filter((product) =>
+          (product.productCategories?.nodes ?? []).some((category) => category.slug === child.slug),
+        )
+        .slice(0, 8)
+        .map(mapToCatalogProduct);
+
+      if (collectionProducts.length === 0) {
+        return null;
+      }
+
+      return {
+        id: child.slug,
+        title: child.name,
+        href: `/catalog/${child.slug}`,
+        description: child.hwsSubtitle?.trim() || null,
+        products: collectionProducts,
+      };
+    });
+
+  return collections.filter((collection): collection is CatalogCollection => collection !== null);
 }
 
 function buildCategoryBrandCards(products: WPProductNode[], allBrands: BrandNode[]): CategoriesData | null {

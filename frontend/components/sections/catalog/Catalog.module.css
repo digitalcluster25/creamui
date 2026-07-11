@@ -255,7 +255,9 @@
   justify-content: center;
   width: 36px;
   height: 36px;
+  border: none;
   border-radius: 50%;
+  background: transparent;
   font-family: "Noto Sans", sans-serif;
   font-size: 14px;
   font-weight: 400;
@@ -284,7 +286,9 @@
   justify-content: center;
   width: 36px;
   height: 36px;
+  border: none;
   border-radius: 50%;
+  background: transparent;
   color: rgb(17, 16, 19);
   text-decoration: none;
   transition: background 0.2s ease;

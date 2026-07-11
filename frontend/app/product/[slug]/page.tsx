@@ -19,8 +19,7 @@ import { productSpecsData as mockProductSpecsData } from "@/lib/data/productSpec
 import { getProductOverride } from "@/lib/data/productOverrides";
 import styles from "./page.module.css";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 3600;
 
 type Params = { slug: string };
 
@@ -32,7 +31,7 @@ export async function generateMetadata({
   const { slug } = await params;
 
   try {
-    const client = getClient({ noStore: true });
+    const client = getClient();
     const { data } = await client.query<{ product: WPProductNode | null }>({
       query: GET_PRODUCT_BY_SLUG,
       variables: { slug },
@@ -91,7 +90,7 @@ export default async function ProductPageRoute({
 }) {
   const { slug } = await params;
 
-  const client = getClient({ noStore: true });
+  const client = getClient();
 
   // Три запроса параллельно: товар + контакты + хедер
   const [productResult, channelsResult, headerData] = await Promise.all([

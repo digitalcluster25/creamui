@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/sections/header";
@@ -10,8 +11,7 @@ import { footerData } from "@/lib/data/footer";
 import { flattenCategories, getHeaderData, type WPCategoryNode, type WPCategoryChildNode } from "@/lib/wp/header";
 import { getClient } from "@/lib/wp/apollo";
 import { GET_PRODUCT_BRANDS, GET_PRODUCT_CATEGORIES, GET_ATTRIBUTE_TERMS } from "@/lib/wp/queries";
-import { filtersForBranch, attributeParamKey } from "@/lib/data/catalogFilters";
-import { buildCatalogRobots } from "@/lib/seo/catalog";
+import { filtersForBranch } from "@/lib/data/catalogFilters";
 import { mapToCatalogData, type WPProductNode } from "@/lib/wp/mappers";
 import type { AttributeTermLabels } from "@/lib/types/catalog";
 import type { CategoriesData } from "@/lib/types/categories";
@@ -186,13 +186,10 @@ export async function generateStaticParams(): Promise<Params[]> {
 
 export async function generateMetadata({
   params,
-  searchParams,
 }: {
   params: Promise<Params>;
-  searchParams?: Promise<Record<string, string | string[] | undefined>>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const resolvedSearchParams = (await searchParams) ?? {};
 
   try {
     const client = getClient();
@@ -214,7 +211,6 @@ export async function generateMetadata({
       alternates: {
         canonical: `/brands/${brand.slug}`,
       },
-      robots: buildCatalogRobots(resolvedSearchParams),
     };
   } catch (e) {
     console.error("WP GraphQL error (brand metadata):", e);
@@ -227,13 +223,10 @@ export async function generateMetadata({
 
 export default async function BrandPage({
   params,
-  searchParams,
 }: {
   params: Promise<Params>;
-  searchParams?: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const { slug } = await params;
-  const resolvedSearchParams = (await searchParams) ?? {};
 
   const client = getClient();
   const [{ data: brandsData }, { data: categoriesData }] = await Promise.all([
@@ -257,12 +250,6 @@ export default async function BrandPage({
   const uniqueCategoryNames = overviewCategories?.items.map((item) => item.title) ?? [];
 
   const filterKeys = collectBrandFilterKeys(brandProducts);
-  const initialFilters: Record<string, string> = {};
-  for (const key of filterKeys) {
-    const value = resolvedSearchParams[attributeParamKey(key)];
-    if (typeof value === "string" && value) initialFilters[key] = value;
-  }
-
   const catalogData = mapToCatalogData(brandProducts, undefined);
   const termLabels = await getAttributeTermLabels(client);
   const headerData = await getHeaderData();
@@ -281,7 +268,9 @@ export default async function BrandPage({
       />
       <div className={styles.section}>
         <CatalogOverview title={brand.name} lead={lead} categories={overviewCategories} />
-        <Catalog data={catalogData} filterKeys={filterKeys} termLabels={termLabels} initialFilters={initialFilters} />
+        <Suspense fallback={null}>
+          <Catalog data={catalogData} filterKeys={filterKeys} termLabels={termLabels} />
+        </Suspense>
         <CatalogSeo data={seoData} />
       </div>
       <div className={styles.sectionFooter}>

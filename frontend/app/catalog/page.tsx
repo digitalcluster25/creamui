@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { Header } from "@/components/sections/header";
 import { Catalog } from "@/components/sections/catalog";
@@ -11,7 +12,6 @@ import { getClient } from "@/lib/wp/apollo";
 import { GET_PRODUCT_BRANDS, GET_PRODUCT_CATEGORIES } from "@/lib/wp/queries";
 import { mapToCatalogData, mapToCategoryCardsData } from "@/lib/wp/mappers";
 import { CATALOG_ROOT_SEO } from "@/lib/data/catalogBranches";
-import { buildCatalogRobots } from "@/lib/seo/catalog";
 import { fetchAllCatalogProducts } from "@/lib/wp/products";
 import styles from "./page.module.css";
 
@@ -22,13 +22,7 @@ type BrandNode = {
   slug: string;
 };
 
-export async function generateMetadata({
-  searchParams,
-}: {
-  searchParams?: Promise<Record<string, string | string[] | undefined>>;
-}): Promise<Metadata> {
-  const resolvedSearchParams = (await searchParams) ?? {};
-
+export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Каталог HWS | Печи, парогенераторы, автоматика и инженерия",
     description:
@@ -36,17 +30,10 @@ export async function generateMetadata({
     alternates: {
       canonical: "/catalog",
     },
-    robots: buildCatalogRobots(resolvedSearchParams),
   };
 }
 
-export default async function CatalogPage({
-  searchParams,
-}: {
-  searchParams?: Promise<{ brand?: string }>;
-}) {
-  const resolvedSearchParams = await searchParams;
-  const initialBrandSlug = typeof resolvedSearchParams?.brand === "string" ? resolvedSearchParams.brand : "";
+export default async function CatalogPage() {
   let catalogData;
   let hubData = null;
   try {
@@ -82,7 +69,9 @@ export default async function CatalogPage({
           lead="Каталог организован по реальным сценариям выбора: сначала тип решения, затем подкатегория, и только после этого фильтры по мощности, объёму, серии и бренду."
           categories={hubData}
         />
-        <Catalog data={catalogData} initialBrandSlug={initialBrandSlug} />
+        <Suspense fallback={null}>
+          <Catalog data={catalogData} />
+        </Suspense>
         <CatalogSeo data={CATALOG_ROOT_SEO} />
       </div>
       <div className={styles.sectionFooter}>

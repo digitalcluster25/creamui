@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { CatalogData, AttributeTermLabels } from "@/lib/types/catalog";
 import { CatalogProductCard } from "@/components/blocks/catalog-product-card";
 import { ATTRIBUTE_LABELS, attributeOptionLabel, attributeParamKey } from "@/lib/data/catalogFilters";
@@ -22,6 +22,7 @@ const CLOSE_ICON = (
 const PER_PAGE = 24;
 type SortKey = "default" | "price-asc" | "price-desc" | "name";
 const EMPTY_FILTER_KEYS: string[] = [];
+const EMPTY_TERM_LABELS: AttributeTermLabels = {};
 const EMPTY_INITIAL_FILTERS: Record<string, string> = {};
 
 type Props = {
@@ -40,12 +41,13 @@ export function Catalog({
   data,
   initialBrandSlug = "",
   filterKeys = EMPTY_FILTER_KEYS,
-  termLabels = {},
+  termLabels = EMPTY_TERM_LABELS,
   initialFilters = EMPTY_INITIAL_FILTERS,
   showBrandFilter = false,
 }: Props) {
   const router = useRouter();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [sort, setSort] = useState<SortKey>("default");
   const [page, setPage] = useState(1);
 
@@ -85,6 +87,11 @@ export function Catalog({
     [brandOptions, initialBrandSlug]
   );
 
+  const searchBrand = useMemo(() => {
+    const value = searchParams.get("brand");
+    return brandOptions.some((option) => option.slug === value) ? value ?? "" : normalizedInitialBrand;
+  }, [brandOptions, normalizedInitialBrand, searchParams]);
+
   const [brand, setBrand] = useState(normalizedInitialBrand);
 
   // Начальные значения атрибутных фильтров, отфильтрованные до валидных.
@@ -97,17 +104,28 @@ export function Catalog({
     return result;
   }, [attributeFilters, initialFilters]);
 
+  const searchFilters = useMemo(() => {
+    const result: Record<string, string> = {};
+    for (const filter of attributeFilters) {
+      const value = searchParams.get(attributeParamKey(filter.key));
+      if (value && filter.options.some((option) => option.slug === value)) {
+        result[filter.key] = value;
+      }
+    }
+    return Object.keys(result).length > 0 ? result : normalizedInitialFilters;
+  }, [attributeFilters, normalizedInitialFilters, searchParams]);
+
   const [filters, setFilters] = useState<Record<string, string>>(normalizedInitialFilters);
 
   useEffect(() => {
-    setBrand(normalizedInitialBrand);
+    setBrand(searchBrand);
     setPage(1);
-  }, [normalizedInitialBrand]);
+  }, [searchBrand]);
 
   useEffect(() => {
-    setFilters(normalizedInitialFilters);
+    setFilters(searchFilters);
     setPage(1);
-  }, [normalizedInitialFilters]);
+  }, [searchFilters]);
 
   const filtered = useMemo(
     () =>

@@ -14,6 +14,7 @@ type ProductsQueryResult = {
 
 const PAGE_SIZE = 100;
 const GRAPHQL_URL = process.env.NEXT_PUBLIC_WP_GRAPHQL_URL || "https://wpsandbox.spaces.community/graphql";
+const PRODUCTS_REVALIDATE_SECONDS = 3600;
 
 async function runGraphQL<T>(query: DocumentNode, variables: Record<string, unknown>): Promise<T> {
   const response = await fetch(GRAPHQL_URL, {
@@ -25,7 +26,7 @@ async function runGraphQL<T>(query: DocumentNode, variables: Record<string, unkn
       query: print(query),
       variables,
     }),
-    cache: "no-store",
+    next: { revalidate: PRODUCTS_REVALIDATE_SECONDS },
   });
 
   if (!response.ok) {
@@ -80,12 +81,9 @@ export function fetchProductsByCategory(_client: unknown, categorySlug: string) 
 }
 
 export async function fetchAllCatalogProducts(_client: unknown, brandSlugs: string[]) {
-  const merged: WPProductNode[] = [];
+  const brandProducts = await Promise.all(
+    brandSlugs.map((slug) => fetchProductsByBrand(null, slug)),
+  );
 
-  for (const slug of brandSlugs) {
-    const products = await fetchProductsByBrand(null, slug);
-    merged.push(...products);
-  }
-
-  return merged;
+  return brandProducts.flat();
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import type { ProductPageData } from "@/lib/types/productPage";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs/Breadcrumbs";
@@ -150,8 +151,7 @@ export function ProductPage({ data, contactChannels, highlights }: Props) {
               onClick={() => setActiveImg(i)}
               aria-label={`Фото ${i + 1}`}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={src} alt="" />
+              <Image src={src} alt="" fill sizes="68px" className={styles.thumbImage} />
             </button>
           ))}
         </div>
@@ -162,8 +162,14 @@ export function ProductPage({ data, contactChannels, highlights }: Props) {
           onPointerDown={handlePointerDown}
           onPointerUp={handlePointerUp}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className={styles.mainImg} src={displayedImages[activeImg]} alt={data.title} />
+          <Image
+            src={displayedImages[activeImg]}
+            alt={data.title}
+            fill
+            priority
+            sizes="(max-width: 900px) 100vw, 50vw"
+            className={styles.mainImg}
+          />
         </div>
         <div className={styles.sliderArrows}>
           <button

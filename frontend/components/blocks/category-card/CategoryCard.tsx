@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styles from "./CategoryCard.module.css";
 
 export type CategoryTag = {
@@ -44,7 +45,12 @@ export function CategoryCard({
     <div className={styles.card}>
       <figure className={styles.imageHolder}>
         <a href={href} style={{ display: "contents" }}>
-          <img src={image} alt={imageAlt} />
+          <Image
+            src={image}
+            alt={imageAlt}
+            fill
+            sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
         </a>
         <div className={styles.overlayDetails}>
           {subtitle && (

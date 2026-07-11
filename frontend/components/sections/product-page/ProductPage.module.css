@@ -53,12 +53,8 @@
 }
 
 /* Source: .woo-product-image .product-thumbs .product-thumb > img */
-.thumb img {
+.thumbImage {
   object-fit: cover;
-  width: 4.25rem;
-  min-width: 4.25rem;
-  height: 4.25rem;
-  display: block;
   border-radius: 14px;
   background: rgba(136, 136, 137, 0.05);
 }

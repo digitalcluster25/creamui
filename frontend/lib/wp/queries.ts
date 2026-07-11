@@ -486,6 +486,7 @@ export const GET_PRODUCT_CATEGORIES = gql`
         name
         slug
         hwsSubtitle
+        hwsImageUrl
         image {
           sourceUrl
           altText
@@ -497,6 +498,7 @@ export const GET_PRODUCT_CATEGORIES = gql`
             name
             slug
             hwsSubtitle
+            hwsImageUrl
             image {
               sourceUrl
               altText

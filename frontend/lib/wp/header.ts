@@ -8,6 +8,7 @@ export type WPCategoryNode = {
   name: string;
   slug: string;
   hwsSubtitle?: string | null;
+  hwsImageUrl?: string | null;
   image?: { sourceUrl: string; altText?: string | null } | null;
   count: number | null;
   children?: { nodes: WPCategoryChildNode[] };
@@ -18,6 +19,7 @@ export type WPCategoryChildNode = {
   name: string;
   slug: string;
   hwsSubtitle?: string | null;
+  hwsImageUrl?: string | null;
   image?: { sourceUrl: string; altText?: string | null } | null;
   count: number | null;
 };

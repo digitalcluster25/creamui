@@ -39,7 +39,7 @@ export function CurrencyProvider({
   useEffect(() => {
     let isCancelled = false;
 
-    fetch("/api/exchange-rates", { cache: "no-store" })
+    fetch("/api/exchange-rates")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Exchange rates request failed: ${response.status}`);

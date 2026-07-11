@@ -12,6 +12,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+require_once __DIR__ . '/includes/frontend-revalidate.php';
+
 /**
  * 1) Включаем таксономию product_brand в GraphQL-схему.
  *    WooGraphQL делает это для product_cat/product_tag/атрибутов, но не для product_brand
@@ -241,6 +243,28 @@ add_action(
 
 					$description = trim( wp_strip_all_tags( $description ) );
 					return '' !== $description ? $description : null;
+				},
+			]
+		);
+		register_graphql_field(
+			'productCategory',
+			'hwsImageUrl',
+			[
+				'type'        => 'String',
+				'description' => __( 'URL миниатюры категории товаров из стандартного WooCommerce term thumbnail', 'hws-graphql-bridge' ),
+				'resolve'     => function ( $source ) {
+					$term_id = $source->term_id ?? null;
+					if ( empty( $term_id ) ) {
+						return null;
+					}
+
+					$thumbnail_id = get_term_meta( (int) $term_id, 'thumbnail_id', true );
+					if ( empty( $thumbnail_id ) ) {
+						return null;
+					}
+
+					$url = wp_get_attachment_url( (int) $thumbnail_id );
+					return $url ?: null;
 				},
 			]
 		);

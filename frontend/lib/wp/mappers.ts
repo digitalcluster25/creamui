@@ -212,12 +212,23 @@ const HOME_CATEGORY_ORDER = [
 export function mapToHomeCategoriesData(nodes: WPCategoryNode[]): CategoriesData {
   const bySlug = new Map(nodes.map((node) => [node.slug, node]));
 
+  const resolveCategoryImageSrc = (node: WPCategoryNode): string => {
+    if (node.hwsImageUrl) return node.hwsImageUrl;
+    if (node.image?.sourceUrl) return node.image.sourceUrl;
+
+    const childWithImage = (node.children?.nodes ?? []).find(
+      (child) => Boolean(child.hwsImageUrl ?? child.image?.sourceUrl),
+    );
+
+    return childWithImage?.hwsImageUrl ?? childWithImage?.image?.sourceUrl ?? "";
+  };
+
   const items = HOME_CATEGORY_ORDER
     .map((slug) => bySlug.get(slug))
     .filter((node): node is WPCategoryNode => Boolean(node))
     .map((node) => ({
       id: String(node.databaseId),
-      imageSrc: node.image?.sourceUrl ?? "",
+      imageSrc: resolveCategoryImageSrc(node),
       imageAlt: node.image?.altText?.trim() || node.name,
       href: `/catalog/${node.slug}`,
       subtitle: node.hwsSubtitle?.trim() ?? "",
@@ -248,19 +259,37 @@ type CategoryLikeNode = {
   name: string;
   slug: string;
   hwsSubtitle?: string | null;
+  hwsImageUrl?: string | null;
   image?: { sourceUrl: string; altText?: string | null } | null;
   count: number | null;
+  children?: {
+    nodes: {
+      hwsImageUrl?: string | null;
+      image?: { sourceUrl: string; altText?: string | null } | null;
+    }[];
+  };
 };
 
 export function mapToCategoryCardsData(
   nodes: CategoryLikeNode[],
   sectionTitle: string,
 ): CategoriesData {
+  const resolveCategoryImageSrc = (node: CategoryLikeNode): string => {
+    if (node.hwsImageUrl) return node.hwsImageUrl;
+    if (node.image?.sourceUrl) return node.image.sourceUrl;
+
+    const childWithImage = (node.children?.nodes ?? []).find(
+      (child) => Boolean(child.hwsImageUrl ?? child.image?.sourceUrl),
+    );
+
+    return childWithImage?.hwsImageUrl ?? childWithImage?.image?.sourceUrl ?? "";
+  };
+
   return {
     sectionTitle,
     items: nodes.map((node) => ({
       id: String(node.databaseId),
-      imageSrc: node.image?.sourceUrl ?? CATEGORY_FALLBACK_IMAGES[node.slug] ?? "/assets/sauna.png",
+      imageSrc: resolveCategoryImageSrc(node),
       imageAlt: node.image?.altText?.trim() || node.name,
       href: `/catalog/${node.slug}`,
       subtitle: node.hwsSubtitle?.trim() || (typeof node.count === "number" ? `${node.count} товаров` : ""),

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useCurrency } from "@/components/providers/CurrencyProvider";
 import {
   convertPrice,
@@ -30,8 +31,13 @@ export function CatalogProductCard({ href, image, title, category, priceMin, pri
     <div className={styles.card}>
       <a href={href} className={styles.imageLink}>
         <div className={styles.imageWrap}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={image} alt={title} className={styles.image} />
+          <Image
+            src={image}
+            alt={title}
+            fill
+            sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+            className={styles.image}
+          />
         </div>
       </a>
       <div className={styles.info}>

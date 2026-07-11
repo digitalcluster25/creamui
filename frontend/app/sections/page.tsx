@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Header } from "@/components/sections/header";
 import { Hero } from "@/components/sections/hero";
 import { heroData } from "@/lib/data/hero";
@@ -139,7 +140,9 @@ export default function SectionsPage() {
       </div>
       <ContactForm data={contactFormData} />
       <div style={section}>
-        <Catalog data={catalogData} />
+        <Suspense fallback={null}>
+          <Catalog data={catalogData} />
+        </Suspense>
       </div>
       <div style={section}>
         <ProductPage
