@@ -25,9 +25,30 @@ function fix_log( string $msg ): void {
 
 $rename_map = [
 	'pa_equipment-type' => [
-		'steam-thermal-stove' => 'Паротермальная печь',
-		'steam-generator'     => 'Парогенератор',
-		'control-unit'        => 'Пульт управления',
+		'steam-room-equipment'       => 'Оборудование для парной',
+		'bathing-accessory'          => 'Аксессуар для бани',
+		'aroma-and-steam'            => 'Арома и пар',
+		'water-tank'                 => 'Бак для воды',
+		'gas-burner'                 => 'Газовая горелка',
+		'gas-bath-stove'             => 'Газовая печь для бани',
+		'wood-storage'               => 'Дровница',
+		'wood-bath-stove'            => 'Дровяная печь для бани',
+		'chimney'                    => 'Дымоход',
+		'natural-stone-product'      => 'Изделие из природного камня',
+		'heater-stones'              => 'Камни для каменки',
+		'commercial-bath-stove'      => 'Коммерческая печь для бани',
+		'commercial-bath-sauna-stove'=> 'Коммерческая печь для бани и сауны',
+		'convection-element'         => 'Конвекционный элемент',
+		'mounting-element'           => 'Монтажный элемент',
+		'pouring-device'             => 'Обливное устройство',
+		'steam-generator'            => 'Парогенератор',
+		'steam-thermal-stove'        => 'Паротермальная печь',
+		'bath-sauna-stove'           => 'Печь для бани и сауны',
+		'fireplace-stove'            => 'Печь-камин',
+		'control-unit'               => 'Пульт управления',
+		'heat-exchanger'             => 'Теплообменник',
+		'economizer'                 => 'Экономайзер',
+		'electric-bath-stove'        => 'Электрическая печь для бани',
 	],
 ];
 
