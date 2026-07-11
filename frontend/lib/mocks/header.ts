@@ -10,7 +10,6 @@ export const headerMock: HeaderData = {
     {
       id: "construction",
       label: "Строительная компания",
-      href: "#",
       isActive: true,
     },
   ],
@@ -87,13 +86,11 @@ export const headerMock: HeaderData = {
   actions: [
     {
       id: "wishlist",
-      href: "#",
       label: "Избранное",
       kind: "wishlist",
     },
     {
       id: "cart",
-      href: "#",
       label: "Корзина",
       kind: "cart",
       badge: 0,

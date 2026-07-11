@@ -1,7 +1,7 @@
 export type FooterLink = {
   id: string;
   label: string;
-  href: string;
+  href?: string;
 };
 
 export type FooterColumn = {
@@ -23,7 +23,7 @@ export type FooterContactColumn = {
 export type FooterLegalLink = {
   id: string;
   label: string;
-  href: string;
+  href?: string;
 };
 
 export type FooterData = {

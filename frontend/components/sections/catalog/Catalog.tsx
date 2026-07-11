@@ -233,20 +233,6 @@ export function Catalog({
       <div className={styles.toolbar}>
         <span className={styles.filtersLabel}>Фильтры</span>
         <div className={styles.filterSelects}>
-          <div className={styles.filterSelectWrap}>
-            <select
-              className={[styles.filterSelect, brand ? styles.filterSelectActive : ""].filter(Boolean).join(" ")}
-              value={brand}
-              onChange={(e) => changeBrand(e.target.value)}
-              aria-label="Бренд"
-            >
-              <option value="">Бренд</option>
-              {brandOptions.map((option) => (
-                <option key={option.slug} value={option.slug}>{option.name}</option>
-              ))}
-            </select>
-          </div>
-
           {attributeFilters.map((filter) => (
             <div key={filter.key} className={styles.filterSelectWrap}>
               <select

@@ -11,11 +11,6 @@ interface FooterProps {
 export function Footer({ data }: FooterProps) {
   const { columns, contactColumn, copyright, legalLinks } = data;
 
-  function handleScrollTop(e: React.MouseEvent<HTMLAnchorElement>) {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-
   return (
     <footer className={`${styles.footer} ${styles.footerStage}`}>
       {/* Columns */}
@@ -26,9 +21,13 @@ export function Footer({ data }: FooterProps) {
             <ul className={styles.linkList}>
               {col.links.map((link) => (
                 <li key={link.id}>
-                  <Link href={link.href} className={styles.link}>
-                    {link.label}
-                  </Link>
+                  {link.href ? (
+                    <Link href={link.href} className={styles.link}>
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <span className={styles.link}>{link.label}</span>
+                  )}
                 </li>
               ))}
             </ul>
@@ -58,17 +57,13 @@ export function Footer({ data }: FooterProps) {
       {/* Scroll to top */}
       <div className={styles.up}>
         <div className={styles.upInner}>
-          <a
-            href="#"
+          <button
+            type="button"
             className={styles.upLink}
             aria-label="Прокрутить наверх"
-            onClick={handleScrollTop}
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
-            <button
-              className={styles.iconButton}
-              type="button"
-              aria-label="Прокрутка"
-            >
+            <span className={styles.iconButton} aria-hidden="true">
               <span className={styles.icon}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -81,9 +76,9 @@ export function Footer({ data }: FooterProps) {
                   <path d="M442.5-170v-476L223-426.5 170-480l310-310 310 310-53 53.5L517.5-646v476h-75Z" />
                 </svg>
               </span>
-            </button>
+            </span>
             <span>Наверх</span>
-          </a>
+          </button>
         </div>
       </div>
 
@@ -95,7 +90,7 @@ export function Footer({ data }: FooterProps) {
             {legalLinks.map((link, i) => (
               <span key={link.id}>
                 {i > 0 && " | "}
-                <Link href={link.href}>{link.label}</Link>
+                {link.href ? <Link href={link.href}>{link.label}</Link> : link.label}
               </span>
             ))}
           </span>

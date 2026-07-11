@@ -26,7 +26,7 @@ export type HeaderCurrency = {
 
 export type HeaderIconAction = {
   id: string;
-  href: string;
+  href?: string;
   label: string;
   kind: "wishlist" | "cart";
   badge?: number;

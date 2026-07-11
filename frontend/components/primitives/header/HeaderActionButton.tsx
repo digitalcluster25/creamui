@@ -24,15 +24,21 @@ function CartIcon() {
 
 export function HeaderActionButton({ action }: HeaderActionButtonProps) {
   const icon = action.kind === "cart" ? <CartIcon /> : <WishlistIcon />;
+  const className = `${action.kind === "cart" ? styles.iconCircleLarge : styles.iconCircleSmall} ${
+    action.kind === "cart" ? styles.iconCircleFilled : ""
+  }`;
+
+  if (!action.href) {
+    return (
+      <button type="button" aria-label={action.label} className={className}>
+        {action.badge !== undefined ? <span className={styles.cartBadge}>{action.badge}</span> : null}
+        {icon}
+      </button>
+    );
+  }
 
   return (
-    <a
-      href={action.href}
-      aria-label={action.label}
-      className={`${action.kind === "cart" ? styles.iconCircleLarge : styles.iconCircleSmall} ${
-        action.kind === "cart" ? styles.iconCircleFilled : ""
-      }`}
-    >
+    <a href={action.href} aria-label={action.label} className={className}>
       {action.badge !== undefined ? <span className={styles.cartBadge}>{action.badge}</span> : null}
       {icon}
     </a>
