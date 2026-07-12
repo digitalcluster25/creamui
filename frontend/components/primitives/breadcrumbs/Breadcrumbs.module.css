@@ -1,15 +1,17 @@
 .holder {
-  padding: 20px 1.5vw;
+  max-width: 1366px;
+  margin: 0 auto;
+  padding: 20px 0;
 }
 
 .inner {
-  max-width: 1350px;
-  margin: 0 auto;
+  width: 100%;
 }
 
 @media (max-width: 900px) {
   .holder {
     padding: 20px clamp(16px, 2vw, 28px);
+    max-width: 100%;
   }
 }
 
