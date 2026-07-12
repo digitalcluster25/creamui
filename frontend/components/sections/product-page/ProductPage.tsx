@@ -304,7 +304,9 @@ export function ProductPage({ data, contactChannels, highlights }: Props) {
           </div>
         )}
 
-        <hr className={styles.divider} />
+        {(data.variantGroups.length > 0 || (data.facingOptions && data.facingOptions.length > 1)) && (
+          <hr className={styles.divider} />
+        )}
 
         {/* Variant groups */}
         <div className={styles.variantGroups}>

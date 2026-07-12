@@ -12,7 +12,12 @@ export function Categories({ data }: Props) {
   return (
     <section>
       <div className={styles.section}>
-<div className={styles.grid}>
+        {sectionTitle && (
+          <div className={styles.head}>
+            <h2 className={styles.title}>{sectionTitle}</h2>
+          </div>
+        )}
+        <div className={styles.grid}>
           {items.map((item, index) => (
             <CategoryCard
               key={item.id}

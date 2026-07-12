@@ -45,6 +45,8 @@
   background: transparent;
   transition: all 0.35s cubic-bezier(.645,.045,.355,1);
   overflow: hidden;
+  aspect-ratio: 1 / 1;
+  width: 100%;
 }
 
 /* Source: type1 .product-thumb:not(.active):hover */
@@ -68,6 +70,7 @@
   bottom: 0;
   left: 0;
   right: 0;
+  border-radius: inherit;
   box-shadow: 0 0 0 2px color-mix(in srgb, #111013 50%, white) inset;
 }
 

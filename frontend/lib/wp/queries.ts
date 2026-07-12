@@ -577,6 +577,7 @@ export const GET_POSTS = gql`
         author {
           node {
             name
+            nickname
           }
         }
         tags {
@@ -607,6 +608,7 @@ export const GET_POST_BY_SLUG = gql`
       author {
         node {
           name
+          nickname
           avatar {
             url
           }

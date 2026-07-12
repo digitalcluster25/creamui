@@ -353,6 +353,12 @@
   }
 }
 
+@media (max-width: 1365px) {
+  .header {
+    padding-inline: 16px;
+  }
+}
+
 @media (max-width: 640px) {
   .header {
     padding-inline: 16px;

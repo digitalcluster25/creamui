@@ -214,6 +214,7 @@ const HOME_CATEGORY_ORDER = [
   "sauna-stoves",
   "steam-generators-and-hammam",
   "commercial",
+  "control-units",
 ] as const;
 
 export function mapToHomeCategoriesData(nodes: WPCategoryNode[]): CategoriesData {
@@ -432,8 +433,8 @@ export function mapToProductPageData(node: WPProductNode): ProductPageData {
     ? categories.find((c) => c.href === `/catalog/${childCat.parentSlug}`) ?? null
     : null;
 
-  const breadcrumbCategories = parentCat && childCat
-    ? [parentCat, childCat]
+  const breadcrumbCategories = parentCat
+    ? [parentCat]
     : categories.length > 0
       ? [categories[0]]
       : [];
@@ -524,7 +525,7 @@ export type WPPostNode = {
   date: string;
   excerpt?: string;
   content?: string;
-  author?: { node: { name: string; avatar?: { url: string } | null } } | null;
+  author?: { node: { name: string; nickname?: string; avatar?: { url: string } | null } } | null;
   tags?: { nodes: { name: string; slug: string }[] } | null;
   categories?: { nodes: { name: string; slug: string }[] } | null;
   featuredImage?: { node: { sourceUrl: string; altText?: string } } | null;
@@ -567,7 +568,7 @@ export function mapToBlogPost(node: WPPostNode): BlogPost {
     title: node.title,
     href: `/knowledge/${node.slug}`,
     readTime: estimateReadTime(node),
-    author: node.author?.node?.name ?? "HWS",
+    author: node.author?.node?.nickname ?? node.author?.node?.name ?? "HWS",
     excerpt: stripHtml(node.excerpt),
     tags: (node.tags?.nodes ?? []).map((t) => t.name),
     date: formatRuDate(node.date),
@@ -591,7 +592,7 @@ export function mapToArticlePageData(node: WPPostNode): ArticlePageData {
   return {
     title: node.title,
     image: node.featuredImage?.node?.sourceUrl ?? undefined,
-    author: node.author?.node?.name ?? "HWS",
+    author: node.author?.node?.nickname ?? node.author?.node?.name ?? "HWS",
     authorAvatar: node.author?.node?.avatar?.url ?? undefined,
     date: formatRuDate(node.date),
     readTime: estimateReadTime(node),

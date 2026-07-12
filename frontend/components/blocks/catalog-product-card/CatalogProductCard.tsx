@@ -49,7 +49,9 @@ export function CatalogProductCard({ href, image, title, category, priceMin, pri
         <p className={styles.price}>
           {priceOnRequest
             ? "Цена по запросу"
-            : `${symbol}${formatMoney(convertedMin, activeCurrency)} – ${symbol}${formatMoney(convertedMax, activeCurrency)}`}
+            : convertedMin === convertedMax
+              ? `${symbol}${formatMoney(convertedMin, activeCurrency)}`
+              : `${symbol}${formatMoney(convertedMin, activeCurrency)} – ${symbol}${formatMoney(convertedMax, activeCurrency)}`}
         </p>
       </div>
     </div>
