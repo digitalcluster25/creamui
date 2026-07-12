@@ -151,7 +151,14 @@ export function ProductPage({ data, contactChannels, highlights }: Props) {
               onClick={() => setActiveImg(i)}
               aria-label={`Фото ${i + 1}`}
             >
-              <Image src={src} alt="" fill sizes="68px" className={styles.thumbImage} />
+              <Image
+                src={src}
+                alt=""
+                fill
+                sizes="68px"
+                quality={50}
+                className={styles.thumbImage}
+              />
             </button>
           ))}
         </div>
@@ -168,6 +175,7 @@ export function ProductPage({ data, contactChannels, highlights }: Props) {
             fill
             priority
             sizes="(max-width: 900px) 100vw, 50vw"
+            quality={68}
             className={styles.mainImg}
           />
         </div>

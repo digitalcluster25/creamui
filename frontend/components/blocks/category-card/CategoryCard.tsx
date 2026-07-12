@@ -61,6 +61,7 @@ export function CategoryCard({
             alt={imageAlt}
             fill
             sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            quality={60}
             className={styles.image}
             loading={imagePriority ? undefined : imageLoading}
             fetchPriority={imageFetchPriority}

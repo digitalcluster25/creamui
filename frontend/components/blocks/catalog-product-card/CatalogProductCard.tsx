@@ -36,6 +36,7 @@ export function CatalogProductCard({ href, image, title, category, priceMin, pri
             alt={title}
             fill
             sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+            quality={60}
             className={styles.image}
           />
         </div>
