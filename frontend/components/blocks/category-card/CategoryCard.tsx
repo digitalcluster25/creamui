@@ -69,11 +69,6 @@ export function CategoryCard({
           />
         </a>
         <div className={styles.overlayDetails}>
-          {subtitle && (
-            <div className={styles.headlineMeta}>
-              <div className={styles.date}>{subtitle}</div>
-            </div>
-          )}
           <h4 className={styles.heading}>
             <a href={href}>{title}</a>
           </h4>
