@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { CatalogProductCard } from "@/components/blocks/catalog-product-card";
 import type { CatalogProduct } from "@/lib/types/catalog";
 import styles from "./CatalogPreview.module.css";
@@ -17,50 +17,142 @@ type Props = {
   filters?: FilterItem[];
 };
 
+function Dropdown({
+  label,
+  options,
+  selected,
+  onToggle,
+}: {
+  label: string;
+  options: FilterItem[];
+  selected: Set<string>;
+  onToggle: (slug: string) => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function close(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    }
+    if (open) document.addEventListener("mousedown", close);
+    return () => document.removeEventListener("mousedown", close);
+  }, [open]);
+
+  const activeCount = options.filter((o) => selected.has(o.slug)).length;
+
+  return (
+    <div className={styles.dropdown} ref={ref}>
+      <button
+        className={`${styles.dropdownTrigger}${activeCount > 0 ? ` ${styles.dropdownTriggerActive}` : ""}`}
+        onClick={() => setOpen((v) => !v)}
+        type="button"
+      >
+        {label}
+        {activeCount > 0 && <span className={styles.dropdownBadge}>{activeCount}</span>}
+        <svg className={`${styles.dropdownChevron}${open ? ` ${styles.dropdownChevronOpen}` : ""}`} width="10" height="6" viewBox="0 0 10 6" fill="none">
+          <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </button>
+      {open && (
+        <div className={styles.dropdownMenu}>
+          {options.map((opt) => (
+            <label key={opt.slug} className={styles.dropdownOption}>
+              <input
+                type="checkbox"
+                checked={selected.has(opt.slug)}
+                onChange={() => onToggle(opt.slug)}
+                className={styles.dropdownCheckbox}
+              />
+              <span className={styles.dropdownCheckmark} />
+              <span className={styles.dropdownOptionLabel}>{opt.name}</span>
+            </label>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export function CatalogPreview({ total, products, filters }: Props) {
-  const [active, setActive] = useState<string | null>(null);
+  const [selectedCategories, setSelectedCategories] = useState<Set<string>>(new Set());
+  const [selectedBrands, setSelectedBrands] = useState<Set<string>>(new Set());
 
   if (products.length === 0) return null;
 
-  const visible = active
-    ? products.filter((p) => {
-        const f = filters?.find((x) => x.slug === active);
-        if (!f) return true;
-        return f.type === "brand"
-          ? p.brandSlug === active
-          : (p.categorySlugs?.includes(active) ?? false);
-      })
-    : products;
+  const categoryOptions = filters?.filter((f) => f.type === "category") ?? [];
+  const brandOptions = filters?.filter((f) => f.type === "brand") ?? [];
 
-  const hasFilters = filters && filters.length > 1;
+  function toggleCategory(slug: string) {
+    setSelectedCategories((prev) => {
+      const next = new Set(prev);
+      next.has(slug) ? next.delete(slug) : next.add(slug);
+      return next;
+    });
+  }
+
+  function toggleBrand(slug: string) {
+    setSelectedBrands((prev) => {
+      const next = new Set(prev);
+      next.has(slug) ? next.delete(slug) : next.add(slug);
+      return next;
+    });
+  }
+
+  const visible = products.filter((p) => {
+    const catOk = selectedCategories.size === 0 || (p.categorySlugs?.some((s) => selectedCategories.has(s)) ?? false);
+    const brandOk = selectedBrands.size === 0 || (p.brandSlug ? selectedBrands.has(p.brandSlug) : false);
+    return catOk && brandOk;
+  });
+
+  const hasFilters = categoryOptions.length > 1 || brandOptions.length > 1;
+  const allSelected: FilterItem[] = [
+    ...categoryOptions.filter((o) => selectedCategories.has(o.slug)),
+    ...brandOptions.filter((o) => selectedBrands.has(o.slug)),
+  ];
+  const hasActive = allSelected.length > 0;
 
   return (
     <section className={styles.section}>
-      <div className={styles.head}>
-        <p className={styles.count}>
-          {visible.length < total
-            ? `${visible.length} из ${total} товаров`
-            : `${total} товаров`}
-        </p>
-      </div>
-
       {hasFilters && (
-        <div className={styles.filters}>
-          <button
-            className={`${styles.filterBtn}${active === null ? ` ${styles.filterBtnActive}` : ""}`}
-            onClick={() => setActive(null)}
-          >
-            Все
-          </button>
-          {filters.map((f) => (
-            <button
-              key={f.slug}
-              className={`${styles.filterBtn}${active === f.slug ? ` ${styles.filterBtnActive}` : ""}`}
-              onClick={() => setActive(active === f.slug ? null : f.slug)}
-            >
-              {f.name}
-            </button>
-          ))}
+        <div className={styles.filterBar}>
+          {categoryOptions.length > 1 && (
+            <Dropdown
+              label="Подкатегория"
+              options={categoryOptions}
+              selected={selectedCategories}
+              onToggle={toggleCategory}
+            />
+          )}
+          {brandOptions.length > 1 && (
+            <Dropdown
+              label="Бренд"
+              options={brandOptions}
+              selected={selectedBrands}
+              onToggle={toggleBrand}
+            />
+          )}
+        </div>
+      )}
+
+      {hasActive && (
+        <div className={styles.activeFilters}>
+          <span className={styles.activeCount}>Подобрано {visible.length} из {total} товаров</span>
+          <div className={styles.activeChips}>
+            {allSelected.map((f) => (
+              <button
+                key={f.slug}
+                className={styles.activeChip}
+                onClick={() => f.type === "category" ? toggleCategory(f.slug) : toggleBrand(f.slug)}
+                type="button"
+              >
+                {f.name}
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+                  <path d="M1 1L9 9M9 1L1 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                </svg>
+              </button>
+            ))}
+          </div>
         </div>
       )}
 

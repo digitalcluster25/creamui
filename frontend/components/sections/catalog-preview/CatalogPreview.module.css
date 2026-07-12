@@ -1,79 +1,176 @@
 .section {
   display: grid;
-  gap: 28px;
-}
-
-.head {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
   gap: 20px;
-  flex-wrap: wrap;
 }
 
-.copy {
-  display: grid;
-  gap: 10px;
-}
+/* Filter bar */
 
-.title {
-  margin: 0;
-  font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.5rem);
-  line-height: 1.04;
-  letter-spacing: -0.03em;
-}
-
-.description {
-  margin: 0;
-  max-width: 760px;
-  color: rgba(31, 31, 31, 0.72);
-  font-size: 1rem;
-  line-height: 1.65;
-}
-
-.count {
-  margin: 0;
-  color: rgba(31, 31, 31, 0.6);
-  font-size: 0.95rem;
-  line-height: 1.4;
-  white-space: nowrap;
-}
-
-.filters {
+.filterBar {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
 
-.filterBtn {
-  padding: 6px 16px;
-  border: 1px solid rgba(17, 16, 19, 0.15);
+.dropdown {
+  position: relative;
+}
+
+.dropdownTrigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border: 1px solid rgba(17, 16, 19, 0.18);
   border-radius: 999px;
   background: transparent;
   font-family: var(--font-text);
   font-size: 14px;
   font-weight: 500;
-  color: rgba(17, 16, 19, 0.7);
+  color: rgba(17, 16, 19, 0.75);
   cursor: pointer;
-  transition: background 0.18s, border-color 0.18s, color 0.18s;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+  white-space: nowrap;
 }
 
-.filterBtn:hover {
-  background: rgba(17, 16, 19, 0.05);
-  border-color: rgba(17, 16, 19, 0.3);
+.dropdownTrigger:hover {
+  border-color: rgba(17, 16, 19, 0.35);
   color: rgb(17, 16, 19);
 }
 
-.filterBtnActive {
-  background: rgb(17, 16, 19);
+.dropdownTriggerActive {
   border-color: rgb(17, 16, 19);
-  color: #fff;
+  color: rgb(17, 16, 19);
+  background: rgba(17, 16, 19, 0.05);
 }
 
-.filterBtnActive:hover {
-  background: rgba(17, 16, 19, 0.85);
+.dropdownBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgb(17, 16, 19);
   color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
 }
+
+.dropdownChevron {
+  transition: transform 0.15s;
+  color: rgba(17, 16, 19, 0.5);
+}
+
+.dropdownChevronOpen {
+  transform: rotate(180deg);
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 100;
+  min-width: 200px;
+  padding: 6px;
+  border: 1px solid rgba(17, 16, 19, 0.1);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.09);
+}
+
+.dropdownOption {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+
+.dropdownOption:hover {
+  background: rgba(17, 16, 19, 0.05);
+}
+
+.dropdownCheckbox {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.dropdownCheckmark {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid rgba(17, 16, 19, 0.3);
+  border-radius: 4px;
+  background: transparent;
+  transition: background 0.12s, border-color 0.12s;
+}
+
+.dropdownCheckbox:checked + .dropdownCheckmark {
+  background: rgb(17, 16, 19);
+  border-color: rgb(17, 16, 19);
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4L3.5 6.5L9 1' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.dropdownOptionLabel {
+  font-family: var(--font-text);
+  font-size: 14px;
+  font-weight: 400;
+  color: rgb(17, 16, 19);
+  line-height: 1.4;
+}
+
+/* Active filters row */
+
+.activeFilters {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.activeCount {
+  font-family: var(--font-text);
+  font-size: 13px;
+  color: rgba(17, 16, 19, 0.55);
+  white-space: nowrap;
+  margin-right: 4px;
+}
+
+.activeChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.activeChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px 4px 12px;
+  border: 1px solid rgba(17, 16, 19, 0.2);
+  border-radius: 999px;
+  background: rgba(17, 16, 19, 0.06);
+  font-family: var(--font-text);
+  font-size: 13px;
+  font-weight: 500;
+  color: rgb(17, 16, 19);
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+}
+
+.activeChip:hover {
+  background: rgba(17, 16, 19, 0.12);
+  border-color: rgba(17, 16, 19, 0.35);
+}
+
+/* Grid */
 
 .grid {
   display: grid;
@@ -95,15 +192,11 @@
 
 @media (max-width: 640px) {
   .section {
-    gap: 20px;
-  }
-
-  .head {
-    align-items: start;
+    gap: 16px;
   }
 
   .grid {
-    grid-template-columns: 1fr;
-    gap: 18px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
   }
 }
