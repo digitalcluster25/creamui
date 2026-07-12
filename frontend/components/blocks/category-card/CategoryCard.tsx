@@ -18,6 +18,10 @@ export type CategoryCardProps = {
   title: string;
   /** List of tag chips rendered below the title */
   tags?: CategoryTag[];
+  /** Browser loading hint for above-the-fold cards */
+  imageLoading?: "eager" | "lazy";
+  /** Browser fetch priority hint for LCP-sensitive cards */
+  imageFetchPriority?: "high" | "low" | "auto";
 };
 
 /**
@@ -39,6 +43,8 @@ export function CategoryCard({
   subtitle,
   title,
   tags = [],
+  imageLoading = "lazy",
+  imageFetchPriority = "auto",
 }: CategoryCardProps) {
   const normalizedImage = normalizeImageSrc(image);
 
@@ -46,7 +52,13 @@ export function CategoryCard({
     <div className={styles.card}>
       <figure className={styles.imageHolder}>
         <a href={href} style={{ display: "contents" }}>
-          <img src={normalizedImage} alt={imageAlt} loading="lazy" />
+          <img
+            src={normalizedImage}
+            alt={imageAlt}
+            loading={imageLoading}
+            fetchPriority={imageFetchPriority}
+            decoding="async"
+          />
         </a>
         <div className={styles.overlayDetails}>
           {subtitle && (

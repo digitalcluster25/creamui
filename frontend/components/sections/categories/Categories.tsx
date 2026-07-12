@@ -16,7 +16,7 @@ export function Categories({ data }: Props) {
           <h2 className={styles.title}>{sectionTitle}</h2>
         </div>
         <div className={styles.grid}>
-          {items.map((item) => (
+          {items.map((item, index) => (
             <CategoryCard
               key={item.id}
               image={item.imageSrc}
@@ -25,6 +25,8 @@ export function Categories({ data }: Props) {
               subtitle={item.subtitle}
               title={item.title}
               tags={item.tags}
+              imageLoading={index < 4 ? "eager" : "lazy"}
+              imageFetchPriority={index < 2 ? "high" : "auto"}
             />
           ))}
         </div>
