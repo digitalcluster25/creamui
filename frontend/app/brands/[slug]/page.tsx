@@ -9,22 +9,16 @@ import { Breadcrumbs } from "@/components/primitives/breadcrumbs/Breadcrumbs";
 import { footerData } from "@/lib/data/footer";
 import { flattenCategories, getHeaderData, type WPCategoryNode, type WPCategoryChildNode } from "@/lib/wp/header";
 import { getClient } from "@/lib/wp/apollo";
-import { GET_PRODUCT_BRANDS, GET_PRODUCT_CATEGORIES } from "@/lib/wp/queries";
 import { mapToCatalogProduct, type WPProductNode } from "@/lib/wp/mappers";
 import type { CategoriesData } from "@/lib/types/categories";
 import { fetchProductsByBrand } from "@/lib/wp/products";
+import { getProductBrands, getProductCategoriesTree } from "@/lib/wp/catalog-taxonomy";
 import styles from "../../page.module.css";
 
 export const revalidate = 3600;
 const BRAND_PREVIEW_LIMIT = 8;
 
 type Params = { slug: string };
-
-type BrandNode = {
-  name: string;
-  slug: string;
-  logoUrl?: string | null;
-};
 
 type FlatCategoryNode = WPCategoryNode | WPCategoryChildNode;
 
@@ -120,12 +114,7 @@ function buildBrandCategoryCards(
 
 export async function generateStaticParams(): Promise<Params[]> {
   try {
-    const client = getClient();
-    const { data } = await client.query<{ productBrands: { nodes: BrandNode[] } }>({
-      query: GET_PRODUCT_BRANDS,
-    });
-
-    return (data?.productBrands?.nodes ?? []).map((brand) => ({ slug: brand.slug }));
+    return (await getProductBrands()).map((brand) => ({ slug: brand.slug }));
   } catch (e) {
     console.error("WP GraphQL error (generateStaticParams brands):", e);
     return [];
@@ -140,12 +129,7 @@ export async function generateMetadata({
   const { slug } = await params;
 
   try {
-    const client = getClient();
-    const { data } = await client.query<{ productBrands: { nodes: BrandNode[] } }>({
-      query: GET_PRODUCT_BRANDS,
-    });
-
-    const brand = (data?.productBrands?.nodes ?? []).find((entry) => entry.slug === slug);
+    const brand = (await getProductBrands()).find((entry) => entry.slug === slug);
     if (!brand) {
       return {
         title: "Бренды HWS",
@@ -176,23 +160,17 @@ export default async function BrandPage({
 }) {
   const { slug } = await params;
 
-  const client = getClient();
-  const [{ data: brandsData }, { data: categoriesData }] = await Promise.all([
-    client.query<{ productBrands: { nodes: BrandNode[] } }>({
-      query: GET_PRODUCT_BRANDS,
-    }),
-    client.query<{ productCategories: { nodes: WPCategoryNode[] } }>({
-      query: GET_PRODUCT_CATEGORIES,
-    }),
+  const [brands, categoryTree] = await Promise.all([
+    getProductBrands(),
+    getProductCategoriesTree(),
   ]);
-
-  const brand = (brandsData?.productBrands?.nodes ?? []).find((entry) => entry.slug === slug);
+  const brand = brands.find((entry) => entry.slug === slug);
   if (!brand) notFound();
 
+  const client = getClient();
   const brandProducts = await fetchProductsByBrand(client, slug);
   if (brandProducts.length === 0) notFound();
 
-  const categoryTree = categoriesData?.productCategories?.nodes ?? [];
   const flatCategories = flattenCategories(categoryTree);
   const overviewCategories = buildBrandCategoryCards(brandProducts, flatCategories);
   const uniqueCategoryNames = overviewCategories?.items.map((item) => item.title) ?? [];

@@ -11,18 +11,17 @@ import { Breadcrumbs } from "@/components/primitives/breadcrumbs/Breadcrumbs";
 import { getHeaderData, flattenCategories, type WPCategoryNode } from "@/lib/wp/header";
 import { footerData } from "@/lib/data/footer";
 import { getClient } from "@/lib/wp/apollo";
-import { GET_PRODUCT_BRANDS, GET_PRODUCT_CATEGORIES, GET_PRODUCT_CATEGORY_BY_SLUG } from "@/lib/wp/queries";
 import { mapToCategoryCardsData, mapToCatalogProduct, type WPProductNode } from "@/lib/wp/mappers";
 import { CATALOG_BRANCH_INTROS, buildCatalogCategoryContent } from "@/lib/data/catalogBranches";
 import type { CategoriesData } from "@/lib/types/categories";
 import { fetchProductsByCategory } from "@/lib/wp/products";
+import { getProductBrands, getProductCategoriesTree, getProductCategoryBySlug, type WPBrandNode } from "@/lib/wp/catalog-taxonomy";
 import styles from "../page.module.css";
 
 export const revalidate = 3600;
 const CATEGORY_PREVIEW_LIMIT = 12;
 
 type Params = { category: string };
-type BrandNode = { name: string; slug: string; logoUrl?: string | null };
 
 const BRAND_FALLBACK_IMAGE = "/assets/hws-dark-logo-short.png";
 
@@ -45,14 +44,7 @@ export async function generateMetadata({
   }
 
   try {
-    const client = getClient();
-    const { data } = await client.query<{
-      productCategory: { name: string; slug: string; count?: number | null; parent?: { node: { name: string; slug: string } } | null } | null;
-    }>({
-      query: GET_PRODUCT_CATEGORY_BY_SLUG,
-      variables: { slug: category },
-    });
-    const found = data?.productCategory;
+    const found = await getProductCategoryBySlug(category);
     if (!found?.name) {
       return {
         title: "Каталог HWS",
@@ -96,11 +88,7 @@ export async function generateMetadata({
 // разворачиваем дерево в плоский список перед поиском/генерацией путей.
 export async function generateStaticParams(): Promise<Params[]> {
   try {
-    const client = getClient();
-    const { data } = await client.query<{
-      productCategories: { nodes: WPCategoryNode[] };
-    }>({ query: GET_PRODUCT_CATEGORIES });
-    const all = flattenCategories(data?.productCategories?.nodes ?? []);
+    const all = flattenCategories(await getProductCategoriesTree());
     return all.map((c) => ({ category: c.slug }));
   } catch (e) {
     console.error("WP GraphQL error (generateStaticParams category):", e);
@@ -116,29 +104,15 @@ export default async function CatalogCategoryPage({
   const { category } = await params;
 
   const client = getClient();
-  const [{ data: categoryTreeData }, { data: categoryData }, { data: brandsData }] = await Promise.all([
-    client.query<{
-      productCategories: { nodes: WPCategoryNode[] };
-    }>({
-      query: GET_PRODUCT_CATEGORIES,
-    }),
-    client.query<{
-      productCategory: { name: string; slug: string; count?: number | null; parent?: { node: { name: string; slug: string } } | null } | null;
-    }>({
-      query: GET_PRODUCT_CATEGORY_BY_SLUG,
-      variables: { slug: category },
-    }),
-    client.query<{ productBrands: { nodes: BrandNode[] } }>({
-      query: GET_PRODUCT_BRANDS,
-    }),
+  const [topCategories, found, brands] = await Promise.all([
+    getProductCategoriesTree(),
+    getProductCategoryBySlug(category),
+    getProductBrands(),
   ]);
-
-  const found = categoryData?.productCategory;
   if (!found?.slug) {
     notFound();
   }
 
-  const topCategories = categoryTreeData?.productCategories?.nodes ?? [];
   const currentParentNode =
     topCategories.find((node) => node.slug === found.slug) ??
     topCategories.find((node) => node.slug === found.parent?.node?.slug) ??
@@ -171,7 +145,7 @@ export default async function CatalogCategoryPage({
         });
 
   const headerData = await getHeaderData();
-  const brandCards = buildCategoryBrandCards(productsNodes, brandsData?.productBrands?.nodes ?? []);
+  const brandCards = buildCategoryBrandCards(productsNodes, brands);
   const childCollections =
     found.slug === branchSlug
       ? buildChildCollections(currentChildNodes, productsNodes)
@@ -265,7 +239,7 @@ function buildChildCollections(
   return collections.filter((collection): collection is CatalogCollection => collection !== null);
 }
 
-function buildCategoryBrandCards(products: WPProductNode[], allBrands: BrandNode[]): CategoriesData | null {
+function buildCategoryBrandCards(products: WPProductNode[], allBrands: WPBrandNode[]): CategoriesData | null {
   const brandCounts = new Map<string, { name: string; count: number }>();
 
   for (const product of products) {

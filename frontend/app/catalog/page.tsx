@@ -9,10 +9,10 @@ import { CATALOG_BRANCH_INTROS } from "@/lib/data/catalogBranches";
 import { getHeaderData, HEADER_CATEGORY_ORDER, type WPCategoryNode } from "@/lib/wp/header";
 import { footerData } from "@/lib/data/footer";
 import { getClient } from "@/lib/wp/apollo";
-import { GET_PRODUCT_CATEGORIES } from "@/lib/wp/queries";
 import { mapToCatalogProduct, mapToCategoryCardsData, type WPProductNode } from "@/lib/wp/mappers";
 import { CATALOG_ROOT_SEO } from "@/lib/data/catalogBranches";
 import { fetchProductsByCategory } from "@/lib/wp/products";
+import { getProductCategoriesTree } from "@/lib/wp/catalog-taxonomy";
 import styles from "./page.module.css";
 
 export const revalidate = 3600;
@@ -36,10 +36,7 @@ export default async function CatalogPage() {
   let collections: CatalogCollection[] = [];
   try {
     const client = getClient();
-    const { data: categoriesData } = await client.query<{ productCategories: { nodes: WPCategoryNode[] } }>({
-      query: GET_PRODUCT_CATEGORIES,
-    });
-    const categoryNodes = categoriesData?.productCategories?.nodes ?? [];
+    const categoryNodes = await getProductCategoriesTree();
     hubData = mapToCategoryCardsData(categoryNodes, "Основные направления каталога");
     collections = await buildRootCollections(client, categoryNodes);
   } catch (e) {

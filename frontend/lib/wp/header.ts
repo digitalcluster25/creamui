@@ -1,7 +1,6 @@
-import { getClient } from "@/lib/wp/apollo";
-import { GET_PRODUCT_CATEGORIES } from "@/lib/wp/queries";
 import { headerMock } from "@/lib/mocks/header";
 import type { HeaderData, HeaderCatalogItem } from "@/lib/types/header";
+import { getProductCategoriesTree } from "@/lib/wp/catalog-taxonomy";
 
 export type WPCategoryNode = {
   databaseId: number;
@@ -61,12 +60,7 @@ export function flattenCategories(
 
 export async function getHeaderData(): Promise<HeaderData> {
   try {
-    const client = getClient();
-    const { data } = await client.query<{ productCategories: { nodes: WPCategoryNode[] } }>({
-      query: GET_PRODUCT_CATEGORIES,
-    });
-
-    const parents = data?.productCategories?.nodes ?? [];
+    const parents = await getProductCategoriesTree();
     const bySlug = new Map(parents.map((node) => [node.slug, node]));
 
     // Каноническое меню каталога строим по верхнему уровню taxonomy, а не по
