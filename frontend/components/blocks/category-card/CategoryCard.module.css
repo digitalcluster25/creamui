@@ -34,6 +34,8 @@
   display: block;
   object-fit: cover;
   transition: all var(--transition-base);
+}
+
 .card:hover .image {
   transform: scale3d(1.06, 1.06, 1.06);
 }
