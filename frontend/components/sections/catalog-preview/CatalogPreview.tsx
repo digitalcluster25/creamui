@@ -17,7 +17,16 @@ type Props = {
   filters?: FilterItem[];
 };
 
-function Dropdown({
+const SORT_OPTIONS = [
+  { value: "default", label: "По умолчанию" },
+  { value: "price_asc", label: "Цена: по возрастанию" },
+  { value: "price_desc", label: "Цена: по убыванию" },
+  { value: "name_asc", label: "Название: А–Я" },
+];
+
+const PER_PAGE_OPTIONS = [12, 24, 48];
+
+function MultiDropdown({
   label,
   options,
   selected,
@@ -74,9 +83,68 @@ function Dropdown({
   );
 }
 
+function SingleDropdown({
+  label,
+  value,
+  options,
+  onChange,
+  alignRight,
+}: {
+  label: string;
+  value: string;
+  options: { value: string; label: string }[];
+  onChange: (v: string) => void;
+  alignRight?: boolean;
+}) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function close(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    }
+    if (open) document.addEventListener("mousedown", close);
+    return () => document.removeEventListener("mousedown", close);
+  }, [open]);
+
+  const current = options.find((o) => o.value === value);
+
+  return (
+    <div className={styles.dropdown} ref={ref}>
+      <button
+        className={styles.dropdownTrigger}
+        onClick={() => setOpen((v) => !v)}
+        type="button"
+      >
+        <span className={styles.dropdownTriggerMeta}>{label}:</span>
+        {current?.label}
+        <svg className={`${styles.dropdownChevron}${open ? ` ${styles.dropdownChevronOpen}` : ""}`} width="10" height="6" viewBox="0 0 10 6" fill="none">
+          <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </button>
+      {open && (
+        <div className={`${styles.dropdownMenu}${alignRight ? ` ${styles.dropdownMenuRight}` : ""}`}>
+          {options.map((opt) => (
+            <button
+              key={opt.value}
+              className={`${styles.dropdownOption} ${styles.dropdownOptionBtn}${opt.value === value ? ` ${styles.dropdownOptionSelected}` : ""}`}
+              onClick={() => { onChange(opt.value); setOpen(false); }}
+              type="button"
+            >
+              {opt.label}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export function CatalogPreview({ total, products, filters }: Props) {
   const [selectedCategories, setSelectedCategories] = useState<Set<string>>(new Set());
   const [selectedBrands, setSelectedBrands] = useState<Set<string>>(new Set());
+  const [sort, setSort] = useState("default");
+  const [perPage, setPerPage] = useState(12);
 
   if (products.length === 0) return null;
 
@@ -99,11 +167,20 @@ export function CatalogPreview({ total, products, filters }: Props) {
     });
   }
 
-  const visible = products.filter((p) => {
+  const filtered = products.filter((p) => {
     const catOk = selectedCategories.size === 0 || (p.categorySlugs?.some((s) => selectedCategories.has(s)) ?? false);
     const brandOk = selectedBrands.size === 0 || (p.brandSlug ? selectedBrands.has(p.brandSlug) : false);
     return catOk && brandOk;
   });
+
+  const sorted = [...filtered].sort((a, b) => {
+    if (sort === "price_asc") return a.priceMin - b.priceMin;
+    if (sort === "price_desc") return b.priceMin - a.priceMin;
+    if (sort === "name_asc") return a.title.localeCompare(b.title, "ru");
+    return 0;
+  });
+
+  const paged = sorted.slice(0, perPage);
 
   const hasFilters = categoryOptions.length > 1 || brandOptions.length > 1;
   const allSelected: FilterItem[] = [
@@ -114,18 +191,18 @@ export function CatalogPreview({ total, products, filters }: Props) {
 
   return (
     <section className={styles.section}>
-      {hasFilters && (
-        <div className={styles.filterBar}>
-          {categoryOptions.length > 1 && (
-            <Dropdown
+      <div className={styles.filterBar}>
+        <div className={styles.filterBarLeft}>
+          {hasFilters && categoryOptions.length > 1 && (
+            <MultiDropdown
               label="Подкатегория"
               options={categoryOptions}
               selected={selectedCategories}
               onToggle={toggleCategory}
             />
           )}
-          {brandOptions.length > 1 && (
-            <Dropdown
+          {hasFilters && brandOptions.length > 1 && (
+            <MultiDropdown
               label="Бренд"
               options={brandOptions}
               selected={selectedBrands}
@@ -133,11 +210,27 @@ export function CatalogPreview({ total, products, filters }: Props) {
             />
           )}
         </div>
-      )}
+        <div className={styles.filterBarRight}>
+          <SingleDropdown
+            label="Сортировка"
+            value={sort}
+            options={SORT_OPTIONS}
+            onChange={setSort}
+            alignRight
+          />
+          <SingleDropdown
+            label="На странице"
+            value={String(perPage)}
+            options={PER_PAGE_OPTIONS.map((n) => ({ value: String(n), label: String(n) }))}
+            onChange={(v) => setPerPage(Number(v))}
+            alignRight
+          />
+        </div>
+      </div>
 
       {hasActive && (
         <div className={styles.activeFilters}>
-          <span className={styles.activeCount}>Подобрано {visible.length} из {total} товаров</span>
+          <span className={styles.activeCount}>Подобрано {filtered.length} из {total} товаров</span>
           <div className={styles.activeChips}>
             {allSelected.map((f) => (
               <button
@@ -157,7 +250,7 @@ export function CatalogPreview({ total, products, filters }: Props) {
       )}
 
       <div className={styles.grid}>
-        {visible.map((product) => (
+        {paged.map((product) => (
           <CatalogProductCard
             key={product.id}
             href={product.href}
@@ -171,6 +264,18 @@ export function CatalogPreview({ total, products, filters }: Props) {
           />
         ))}
       </div>
+
+      {sorted.length > paged.length && (
+        <div className={styles.showMore}>
+          <button
+            className={styles.showMoreBtn}
+            onClick={() => setPerPage((v) => v + perPage)}
+            type="button"
+          >
+            Показать ещё ({sorted.length - paged.length})
+          </button>
+        </div>
+      )}
     </section>
   );
 }
