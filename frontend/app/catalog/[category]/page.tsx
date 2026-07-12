@@ -4,7 +4,6 @@ import { Header } from "@/components/sections/header";
 import { CatalogPreview } from "@/components/sections/catalog-preview";
 import { CatalogOverview } from "@/components/sections/catalog-overview/CatalogOverview";
 import { CatalogSeo } from "@/components/sections/catalog-seo/CatalogSeo";
-import { Categories } from "@/components/sections/categories";
 import { Footer } from "@/components/sections/footer";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs/Breadcrumbs";
 import { getHeaderData, flattenCategories, type WPCategoryNode } from "@/lib/wp/header";
@@ -12,7 +11,6 @@ import { footerData } from "@/lib/data/footer";
 import { getClient } from "@/lib/wp/apollo";
 import { mapToCatalogProduct, type WPProductNode } from "@/lib/wp/mappers";
 import { CATALOG_BRANCH_INTROS, buildCatalogCategoryContent } from "@/lib/data/catalogBranches";
-import type { CategoriesData } from "@/lib/types/categories";
 import { fetchProductsByCategory } from "@/lib/wp/products";
 import { getProductBrands, getProductCategoriesTree, getProductCategoryBySlug, type WPBrandNode } from "@/lib/wp/catalog-taxonomy";
 import styles from "../page.module.css";
@@ -143,8 +141,13 @@ export default async function CatalogCategoryPage({
         });
 
   const headerData = await getHeaderData();
-  const brandCards = buildCategoryBrandCards(productsNodes, brands);
   const previewProducts = productsNodes.map(mapToCatalogProduct);
+  const brandFilters = buildBrandFilters(productsNodes, brands);
+  const categoryFilters =
+    found.slug === branchSlug && currentChildNodes.length > 1
+      ? currentChildNodes.map((n) => ({ slug: n.slug, name: n.name, type: "category" as const }))
+      : [];
+  const allFilters = [...categoryFilters, ...brandFilters];
 
   return (
     <main>
@@ -163,16 +166,10 @@ export default async function CatalogCategoryPage({
           lead={found.slug === branchSlug ? (branchIntro?.lead ?? undefined) : (categoryContent?.lead ?? undefined)}
           categories={null}
         />
-        {brandCards ? <Categories data={brandCards} /> : null}
         <CatalogPreview
-          title="Товары в разделе"
           total={productsNodes.length}
           products={previewProducts}
-          filterCategories={
-            found.slug === branchSlug && currentChildNodes.length > 1
-              ? currentChildNodes.map((n) => ({ slug: n.slug, name: n.name }))
-              : undefined
-          }
+          filters={allFilters.length > 1 ? allFilters : undefined}
         />
         <CatalogSeo data={found.slug === branchSlug ? branchIntro?.seo ?? null : categoryContent?.seo ?? null} />
       </div>
@@ -184,47 +181,18 @@ export default async function CatalogCategoryPage({
 }
 
 
-function buildCategoryBrandCards(products: WPProductNode[], allBrands: WPBrandNode[]): CategoriesData | null {
-  const brandCounts = new Map<string, { name: string; count: number }>();
-
+function buildBrandFilters(
+  products: WPProductNode[],
+  _allBrands: WPBrandNode[],
+): { slug: string; name: string; type: "brand" }[] {
+  const seen = new Map<string, string>();
   for (const product of products) {
     for (const brand of product.productBrands?.nodes ?? []) {
-      if (!brand.slug || !brand.name) continue;
-      const current = brandCounts.get(brand.slug);
-      brandCounts.set(brand.slug, {
-        name: brand.name,
-        count: (current?.count ?? 0) + 1,
-      });
+      if (brand.slug && brand.name && !seen.has(brand.slug)) {
+        seen.set(brand.slug, brand.name);
+      }
     }
   }
-
-  if (brandCounts.size < 2) {
-    return null;
-  }
-
-  const brandMeta = new Map(allBrands.map((brand) => [brand.slug, brand]));
-  const items = Array.from(brandCounts.entries())
-    .map(([slug, data]) => {
-      const meta = brandMeta.get(slug);
-      return {
-        id: `brand-${slug}`,
-        imageSrc: meta?.logoUrl || BRAND_FALLBACK_IMAGE,
-        imageAlt: data.name,
-        href: `/brands/${slug}`,
-        subtitle: `${data.count} товаров`,
-        title: data.name,
-        tags: [{ id: `brand-${slug}-link`, label: "Страница бренда", href: `/brands/${slug}` }],
-        count: data.count,
-      };
-    })
-    .sort((a, b) => b.count - a.count || a.title.localeCompare(b.title, "ru"))
-    .slice(0, 6)
-    .map(({ count: _count, ...item }) => item);
-
-  return items.length > 1
-    ? {
-        sectionTitle: "Бренды в разделе",
-        items,
-      }
-    : null;
+  if (seen.size < 2) return [];
+  return Array.from(seen.entries()).map(([slug, name]) => ({ slug, name, type: "brand" as const }));
 }

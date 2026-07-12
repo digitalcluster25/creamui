@@ -193,8 +193,6 @@ export default async function BrandPage({
       <div className={styles.section}>
         <CatalogOverview title={brand.name} lead={lead} categories={overviewCategories} />
         <CatalogPreview
-          title="Товары бренда"
-          description="Брендовая страница отдает готовую витрину карточек без тяжелой клиентской фильтрации, поэтому открывается заметно быстрее."
           total={brandProducts.length}
           products={previewProducts}
         />

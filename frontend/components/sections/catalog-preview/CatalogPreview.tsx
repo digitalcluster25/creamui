@@ -5,43 +5,39 @@ import { CatalogProductCard } from "@/components/blocks/catalog-product-card";
 import type { CatalogProduct } from "@/lib/types/catalog";
 import styles from "./CatalogPreview.module.css";
 
-type FilterCategory = {
+type FilterItem = {
   slug: string;
   name: string;
+  type: "category" | "brand";
 };
 
 type Props = {
-  title?: string;
-  description?: string | null;
   total: number;
   products: CatalogProduct[];
-  filterCategories?: FilterCategory[];
+  filters?: FilterItem[];
 };
 
-export function CatalogPreview({
-  title = "Товары в разделе",
-  description,
-  total,
-  products,
-  filterCategories,
-}: Props) {
-  const [activeFilter, setActiveFilter] = useState<string | null>(null);
+export function CatalogPreview({ total, products, filters }: Props) {
+  const [active, setActive] = useState<string | null>(null);
 
   if (products.length === 0) return null;
 
-  const visible = activeFilter
-    ? products.filter((p) => p.categorySlugs?.includes(activeFilter))
+  const visible = active
+    ? products.filter((p) => {
+        const f = filters?.find((x) => x.slug === active);
+        if (!f) return true;
+        return f.type === "brand"
+          ? p.brandSlug === active
+          : (p.categorySlugs?.includes(active) ?? false);
+      })
     : products;
 
-  const hasFilters = filterCategories && filterCategories.length > 1;
+  const hasFilters = filters && filters.length > 1;
 
   return (
     <section className={styles.section}>
       <div className={styles.head}>
-        <div className={styles.copy}>
-          <h2 className={styles.title}>{title}</h2>
-          {description ? <p className={styles.description}>{description}</p> : null}
-        </div>
+        <div />
         <p className={styles.count}>
           {visible.length < total
             ? `${visible.length} из ${total} товаров`
@@ -52,18 +48,18 @@ export function CatalogPreview({
       {hasFilters && (
         <div className={styles.filters}>
           <button
-            className={`${styles.filterBtn}${activeFilter === null ? ` ${styles.filterBtnActive}` : ""}`}
-            onClick={() => setActiveFilter(null)}
+            className={`${styles.filterBtn}${active === null ? ` ${styles.filterBtnActive}` : ""}`}
+            onClick={() => setActive(null)}
           >
             Все
           </button>
-          {filterCategories.map((cat) => (
+          {filters.map((f) => (
             <button
-              key={cat.slug}
-              className={`${styles.filterBtn}${activeFilter === cat.slug ? ` ${styles.filterBtnActive}` : ""}`}
-              onClick={() => setActiveFilter(activeFilter === cat.slug ? null : cat.slug)}
+              key={f.slug}
+              className={`${styles.filterBtn}${active === f.slug ? ` ${styles.filterBtnActive}` : ""}`}
+              onClick={() => setActive(active === f.slug ? null : f.slug)}
             >
-              {cat.name}
+              {f.name}
             </button>
           ))}
         </div>
