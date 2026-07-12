@@ -29,12 +29,21 @@ const GET_FOOTER_MENUS = gql`
 type MenuItem = { label: string; url: string };
 type MenuResult = { menuItems: { nodes: MenuItem[] } } | null;
 
+function normalizeHref(url: string): string {
+  let path = url.replace(WP_ORIGIN, "") || "/";
+  // WP product category URLs → Next.js catalog routes
+  path = path.replace(/^\/product-category\/([^/]+)\/?.*$/, "/catalog/$1");
+  // strip trailing slash
+  path = path.replace(/\/$/, "") || "/";
+  return path;
+}
+
 function toLinks(menu: MenuResult, idPrefix: string) {
   if (!menu) return [];
   return menu.menuItems.nodes.map((item, i) => ({
     id: `${idPrefix}-${i}`,
     label: item.label,
-    href: item.url.replace(WP_ORIGIN, "") || "/",
+    href: normalizeHref(item.url),
   }));
 }
 

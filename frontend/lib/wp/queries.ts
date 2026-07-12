@@ -636,6 +636,16 @@ export const GET_POST_BY_SLUG = gql`
   }
 `;
 
+export const GET_WP_PAGE = gql`
+  query GetWPPage($slug: ID!) {
+    page(id: $slug, idType: URI) {
+      title
+      content
+      slug
+    }
+  }
+`;
+
 export const GET_POST_SLUGS = gql`
   query GetPostSlugs($categoryName: String, $first: Int = 100) {
     posts(first: $first, where: { categoryName: $categoryName, status: PUBLISH }) {
