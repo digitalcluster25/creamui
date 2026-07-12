@@ -1,7 +1,11 @@
 .holder {
-  max-width: 1350px;
-  margin: 0 auto;
-  padding: 20px clamp(16px, 2vw, 40px);
+  padding: 20px 1.5vw;
+}
+
+@media (max-width: 900px) {
+  .holder {
+    padding: 20px clamp(16px, 2vw, 28px);
+  }
 }
 
 .list {
