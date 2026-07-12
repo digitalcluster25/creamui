@@ -58,7 +58,7 @@
 /* ── Headline meta ───────────────────────────────────── */
 /* Ohio: .headline-meta.-small-t, .blog-item.-layout2 .overlay-details .headline-meta */
 .headlineMeta {
-  font-size: 0.72em;
+  font-size: 15px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
