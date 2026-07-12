@@ -37,7 +37,6 @@ export function CatalogPreview({ total, products, filters }: Props) {
   return (
     <section className={styles.section}>
       <div className={styles.head}>
-        <div />
         <p className={styles.count}>
           {visible.length < total
             ? `${visible.length} из ${total} товаров`

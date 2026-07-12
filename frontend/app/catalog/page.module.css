@@ -4,6 +4,12 @@
   padding: 40px 0;
 }
 
+@media (max-width: 1365px) {
+  .section {
+    padding-inline: 16px;
+  }
+}
+
 .sectionFooter {
   padding: 0 clamp(16px, 1.5vw, 28px) 40px;
 }
