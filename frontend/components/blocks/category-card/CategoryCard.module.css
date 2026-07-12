@@ -25,7 +25,7 @@
   background-color: color-mix(in srgb, #888889 40%, transparent);
 }
 
-.imageHolder img {
+.image {
   position: absolute;
   inset: 0;
   min-width: 100%;
@@ -34,9 +34,7 @@
   display: block;
   object-fit: cover;
   transition: all var(--transition-base);
-}
-
-.card:hover .imageHolder img {
+.card:hover .image {
   transform: scale3d(1.06, 1.06, 1.06);
 }
 

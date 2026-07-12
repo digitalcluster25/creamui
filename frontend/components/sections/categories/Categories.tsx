@@ -27,6 +27,7 @@ export function Categories({ data }: Props) {
               tags={item.tags}
               imageLoading={index < 4 ? "eager" : "lazy"}
               imageFetchPriority={index < 2 ? "high" : "auto"}
+              imagePriority={index < 2}
             />
           ))}
         </div>

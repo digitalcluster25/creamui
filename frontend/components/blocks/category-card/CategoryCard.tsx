@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styles from "./CategoryCard.module.css";
 
 export type CategoryTag = {
@@ -22,6 +23,8 @@ export type CategoryCardProps = {
   imageLoading?: "eager" | "lazy";
   /** Browser fetch priority hint for LCP-sensitive cards */
   imageFetchPriority?: "high" | "low" | "auto";
+  /** Next image priority for the very first cards */
+  imagePriority?: boolean;
 };
 
 /**
@@ -45,6 +48,7 @@ export function CategoryCard({
   tags = [],
   imageLoading = "lazy",
   imageFetchPriority = "auto",
+  imagePriority = false,
 }: CategoryCardProps) {
   const normalizedImage = normalizeImageSrc(image);
 
@@ -52,12 +56,15 @@ export function CategoryCard({
     <div className={styles.card}>
       <figure className={styles.imageHolder}>
         <a href={href} style={{ display: "contents" }}>
-          <img
+          <Image
             src={normalizedImage}
             alt={imageAlt}
-            loading={imageLoading}
+            fill
+            sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className={styles.image}
+            loading={imagePriority ? undefined : imageLoading}
             fetchPriority={imageFetchPriority}
-            decoding="async"
+            priority={imagePriority}
           />
         </a>
         <div className={styles.overlayDetails}>
