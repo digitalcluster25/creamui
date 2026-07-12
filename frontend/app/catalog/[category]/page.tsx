@@ -1,9 +1,8 @@
-import { Suspense } from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/sections/header";
-import { Catalog } from "@/components/sections/catalog";
 import { CatalogCollections, type CatalogCollection } from "@/components/sections/catalog-collections";
+import { CatalogPreview } from "@/components/sections/catalog-preview";
 import { CatalogOverview } from "@/components/sections/catalog-overview/CatalogOverview";
 import { CatalogSeo } from "@/components/sections/catalog-seo/CatalogSeo";
 import { Categories } from "@/components/sections/categories";
@@ -12,47 +11,15 @@ import { Breadcrumbs } from "@/components/primitives/breadcrumbs/Breadcrumbs";
 import { getHeaderData, flattenCategories, type WPCategoryNode } from "@/lib/wp/header";
 import { footerData } from "@/lib/data/footer";
 import { getClient } from "@/lib/wp/apollo";
-import { GET_PRODUCT_BRANDS, GET_PRODUCT_CATEGORIES, GET_PRODUCT_CATEGORY_BY_SLUG, GET_ATTRIBUTE_TERMS } from "@/lib/wp/queries";
-import { mapToCatalogData, mapToCategoryCardsData, mapToCatalogProduct, type WPProductNode } from "@/lib/wp/mappers";
-import { filtersForBranch } from "@/lib/data/catalogFilters";
+import { GET_PRODUCT_BRANDS, GET_PRODUCT_CATEGORIES, GET_PRODUCT_CATEGORY_BY_SLUG } from "@/lib/wp/queries";
+import { mapToCategoryCardsData, mapToCatalogProduct, type WPProductNode } from "@/lib/wp/mappers";
 import { CATALOG_BRANCH_INTROS, buildCatalogCategoryContent } from "@/lib/data/catalogBranches";
-import type { AttributeTermLabels } from "@/lib/types/catalog";
 import type { CategoriesData } from "@/lib/types/categories";
 import { fetchProductsByCategory } from "@/lib/wp/products";
 import styles from "../page.module.css";
 
-// Корневое поле WPGraphQL (allPa*) -> имя таксономии (pa_*).
-const ATTRIBUTE_TERM_FIELDS: Record<string, string> = {
-  allPaFuelType: "pa_fuel-type",
-  allPaEquipmentType: "pa_equipment-type",
-  allPaSteamRoomVolume: "pa_steam-room-volume",
-  allPaPower: "pa_power",
-  allPaVoltage: "pa_voltage",
-  allPaCladdingMaterial: "pa_cladding-material",
-  allPaUsageClass: "pa_usage-class",
-  allPaRoomType: "pa_room-type",
-  allPaSeries: "pa_series",
-};
-
-async function getAttributeTermLabels(
-  client: ReturnType<typeof getClient>
-): Promise<AttributeTermLabels> {
-  const labels: AttributeTermLabels = {};
-  try {
-    const { data } = await client.query<Record<string, { nodes: { name: string; slug: string }[] }>>({
-      query: GET_ATTRIBUTE_TERMS,
-    });
-    for (const [field, taxonomy] of Object.entries(ATTRIBUTE_TERM_FIELDS)) {
-      const nodes = data?.[field]?.nodes ?? [];
-      labels[taxonomy] = Object.fromEntries(nodes.map((n) => [n.slug, n.name]));
-    }
-  } catch (e) {
-    console.error("WP GraphQL error (attribute terms):", e);
-  }
-  return labels;
-}
-
 export const revalidate = 3600;
+const CATEGORY_PREVIEW_LIMIT = 12;
 
 type Params = { category: string };
 type BrandNode = { name: string; slug: string; logoUrl?: string | null };
@@ -182,19 +149,15 @@ export default async function CatalogCategoryPage({
       hwsSubtitle: node.hwsSubtitle || currentParentNode.hwsSubtitle || null,
     })) ?? [];
 
-  let catalogData;
   let productsNodes: WPProductNode[] = [];
   try {
     productsNodes = await fetchProductsByCategory(client, category);
-    catalogData = mapToCatalogData(productsNodes, undefined);
   } catch (e) {
     console.error("WP GraphQL error (catalog category):", e);
-    catalogData = mapToCatalogData([], undefined);
   }
 
   // Ветка = верхний раздел. Для подкатегории берём родителя, иначе саму себя.
   const branchSlug = found.parent?.node?.slug ?? found.slug;
-  const filterKeys = filtersForBranch(branchSlug);
   const branchIntro = CATALOG_BRANCH_INTROS[branchSlug];
   const categoryContent =
     found.slug === branchSlug
@@ -207,13 +170,17 @@ export default async function CatalogCategoryPage({
           branchSlug,
         });
 
-  const termLabels = await getAttributeTermLabels(client);
   const headerData = await getHeaderData();
   const brandCards = buildCategoryBrandCards(productsNodes, brandsData?.productBrands?.nodes ?? []);
   const childCollections =
     found.slug === branchSlug
       ? buildChildCollections(currentChildNodes, productsNodes)
       : [];
+  const previewProducts = productsNodes.slice(0, CATEGORY_PREVIEW_LIMIT).map(mapToCatalogProduct);
+  const previewDescription =
+    found.slug === branchSlug
+      ? "Верхний уровень раздела отдает легкую обзорную выдачу по ключевым подкатегориям без перегрузки страницы."
+      : "На странице оставлена быстрая серверная выдача карточек, чтобы каталог открывался заметно быстрее и не раздувался клиентскими данными.";
 
   return (
     <main>
@@ -247,13 +214,12 @@ export default async function CatalogCategoryPage({
         ) : (
           <>
             {brandCards ? <Categories data={brandCards} /> : null}
-            <Suspense fallback={null}>
-              <Catalog
-                data={catalogData}
-                filterKeys={filterKeys}
-                termLabels={termLabels}
-              />
-            </Suspense>
+            <CatalogPreview
+              title="Товары в категории"
+              description={previewDescription}
+              total={productsNodes.length}
+              products={previewProducts}
+            />
           </>
         )}
         <CatalogSeo data={found.slug === branchSlug ? branchIntro?.seo ?? null : categoryContent?.seo ?? null} />

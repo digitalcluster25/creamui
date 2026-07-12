@@ -1,8 +1,7 @@
-import { Suspense } from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/sections/header";
-import { Catalog } from "@/components/sections/catalog";
+import { CatalogPreview } from "@/components/sections/catalog-preview";
 import { CatalogOverview } from "@/components/sections/catalog-overview/CatalogOverview";
 import { CatalogSeo, type CatalogSeoData } from "@/components/sections/catalog-seo/CatalogSeo";
 import { Footer } from "@/components/sections/footer";
@@ -10,15 +9,14 @@ import { Breadcrumbs } from "@/components/primitives/breadcrumbs/Breadcrumbs";
 import { footerData } from "@/lib/data/footer";
 import { flattenCategories, getHeaderData, type WPCategoryNode, type WPCategoryChildNode } from "@/lib/wp/header";
 import { getClient } from "@/lib/wp/apollo";
-import { GET_PRODUCT_BRANDS, GET_PRODUCT_CATEGORIES, GET_ATTRIBUTE_TERMS } from "@/lib/wp/queries";
-import { filtersForBranch } from "@/lib/data/catalogFilters";
-import { mapToCatalogData, type WPProductNode } from "@/lib/wp/mappers";
-import type { AttributeTermLabels } from "@/lib/types/catalog";
+import { GET_PRODUCT_BRANDS, GET_PRODUCT_CATEGORIES } from "@/lib/wp/queries";
+import { mapToCatalogProduct, type WPProductNode } from "@/lib/wp/mappers";
 import type { CategoriesData } from "@/lib/types/categories";
 import { fetchProductsByBrand } from "@/lib/wp/products";
 import styles from "../../page.module.css";
 
 export const revalidate = 3600;
+const BRAND_PREVIEW_LIMIT = 8;
 
 type Params = { slug: string };
 
@@ -41,36 +39,6 @@ const CATEGORY_FALLBACK_IMAGES: Record<string, string> = {
   "stones-and-cladding": "/assets/sauna.png",
   accessories: "/assets/acs.png",
 };
-
-const ATTRIBUTE_TERM_FIELDS: Record<string, string> = {
-  allPaFuelType: "pa_fuel-type",
-  allPaEquipmentType: "pa_equipment-type",
-  allPaSteamRoomVolume: "pa_steam-room-volume",
-  allPaPower: "pa_power",
-  allPaVoltage: "pa_voltage",
-  allPaCladdingMaterial: "pa_cladding-material",
-  allPaUsageClass: "pa_usage-class",
-  allPaRoomType: "pa_room-type",
-  allPaSeries: "pa_series",
-};
-
-async function getAttributeTermLabels(
-  client: ReturnType<typeof getClient>
-): Promise<AttributeTermLabels> {
-  const labels: AttributeTermLabels = {};
-  try {
-    const { data } = await client.query<Record<string, { nodes: { name: string; slug: string }[] }>>({
-      query: GET_ATTRIBUTE_TERMS,
-    });
-    for (const [field, taxonomy] of Object.entries(ATTRIBUTE_TERM_FIELDS)) {
-      const nodes = data?.[field]?.nodes ?? [];
-      labels[taxonomy] = Object.fromEntries(nodes.map((n) => [n.slug, n.name]));
-    }
-  } catch (e) {
-    console.error("WP GraphQL error (brand attribute terms):", e);
-  }
-  return labels;
-}
 
 function pickProductCategorySlugs(product: WPProductNode): string[] {
   const categories = product.productCategories?.nodes ?? [];
@@ -106,26 +74,6 @@ function buildBrandSeo(brandName: string, categoryNames: string[]): CatalogSeoDa
       "Дальше пользователь уточняет выбор branch-aware фильтрами внутри каталога.",
     ],
   };
-}
-
-function collectBrandFilterKeys(products: WPProductNode[]): string[] {
-  const keys = new Set<string>();
-
-  for (const product of products) {
-    const branchSlugs = new Set(
-      (product.productCategories?.nodes ?? [])
-        .map((category) => category.parent?.node?.slug ?? category.slug)
-        .filter(Boolean),
-    );
-
-    for (const branchSlug of branchSlugs) {
-      for (const key of filtersForBranch(branchSlug)) {
-        keys.add(key);
-      }
-    }
-  }
-
-  return Array.from(keys);
 }
 
 function buildBrandCategoryCards(
@@ -249,12 +197,10 @@ export default async function BrandPage({
   const overviewCategories = buildBrandCategoryCards(brandProducts, flatCategories);
   const uniqueCategoryNames = overviewCategories?.items.map((item) => item.title) ?? [];
 
-  const filterKeys = collectBrandFilterKeys(brandProducts);
-  const catalogData = mapToCatalogData(brandProducts, undefined);
-  const termLabels = await getAttributeTermLabels(client);
   const headerData = await getHeaderData();
   const lead = buildBrandLead(brand.name, brandProducts.length, uniqueCategoryNames);
   const seoData = buildBrandSeo(brand.name, uniqueCategoryNames);
+  const previewProducts = brandProducts.slice(0, BRAND_PREVIEW_LIMIT).map(mapToCatalogProduct);
 
   return (
     <main>
@@ -268,9 +214,12 @@ export default async function BrandPage({
       />
       <div className={styles.section}>
         <CatalogOverview title={brand.name} lead={lead} categories={overviewCategories} />
-        <Suspense fallback={null}>
-          <Catalog data={catalogData} filterKeys={filterKeys} termLabels={termLabels} />
-        </Suspense>
+        <CatalogPreview
+          title="Товары бренда"
+          description="Брендовая страница отдает готовую витрину карточек без тяжелой клиентской фильтрации, поэтому открывается заметно быстрее."
+          total={brandProducts.length}
+          products={previewProducts}
+        />
         <CatalogSeo data={seoData} />
       </div>
       <div className={styles.sectionFooter}>
