@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { cache } from "react";
 import { Header } from "@/components/sections/header";
 import { ProductPage } from "@/components/sections/product-page";
 import { ProductDescription } from "@/components/sections/product-description/ProductDescription";
@@ -23,6 +24,36 @@ export const revalidate = 3600;
 
 type Params = { slug: string };
 
+const getProductBySlugCached = cache(async (slug: string) => {
+  const client = getClient();
+  const { data } = await client.query<{ product: WPProductNode | null }>({
+    query: GET_PRODUCT_BY_SLUG,
+    variables: { slug },
+    errorPolicy: "all",
+  });
+
+  return data?.product ?? null;
+});
+
+const getProductSlugsCached = cache(async () => {
+  const client = getClient();
+  const { data } = await client.query<{ products: { nodes: { slug: string }[] } }>({
+    query: GET_PRODUCT_SLUGS,
+    variables: { first: 200 },
+  });
+
+  return data?.products?.nodes ?? [];
+});
+
+const getContactChannelsCached = cache(async () => {
+  const client = getClient();
+  const { data } = await client.query<{
+    hwsContactChannels: { whatsappNumber: string; telegramUsername: string } | null;
+  }>({ query: GET_CONTACT_CHANNELS });
+
+  return data?.hwsContactChannels ?? null;
+});
+
 export async function generateMetadata({
   params,
 }: {
@@ -31,22 +62,16 @@ export async function generateMetadata({
   const { slug } = await params;
 
   try {
-    const client = getClient();
-    const { data } = await client.query<{ product: WPProductNode | null }>({
-      query: GET_PRODUCT_BY_SLUG,
-      variables: { slug },
-      errorPolicy: "all",
-    });
-
-    if (!data?.product) {
+    const product = await getProductBySlugCached(slug);
+    if (!product) {
       return {
         title: "Товар не найден | HWS",
         description: "Карточка товара в каталоге HWS.",
       };
     }
 
-    const mapped = mapToProductPageData(data.product);
-    const descriptionHtml = mapToProductDescriptionHtml(data.product) ?? "";
+    const mapped = mapToProductPageData(product);
+    const descriptionHtml = mapToProductDescriptionHtml(product) ?? "";
     const descriptionText = descriptionHtml
       .replace(/<[^>]+>/g, " ")
       .replace(/\s+/g, " ")
@@ -71,12 +96,7 @@ export async function generateMetadata({
 // по требованию благодаря `revalidate` (ISR fallback), просто не в первой сборке.
 export async function generateStaticParams(): Promise<Params[]> {
   try {
-    const client = getClient();
-    const { data } = await client.query<{ products: { nodes: { slug: string }[] } }>({
-      query: GET_PRODUCT_SLUGS,
-      variables: { first: 200 },
-    });
-    return (data?.products?.nodes ?? []).map((n) => ({ slug: n.slug }));
+    return (await getProductSlugsCached()).map((n) => ({ slug: n.slug }));
   } catch (e) {
     console.error("WP GraphQL error (generateStaticParams product):", e);
     return [];
@@ -90,35 +110,23 @@ export default async function ProductPageRoute({
 }) {
   const { slug } = await params;
 
-  const client = getClient();
-
-  // Три запроса параллельно: товар + контакты + хедер
-  const [productResult, channelsResult, headerData] = await Promise.all([
-    client.query<{ product: WPProductNode | null }>({
-      query: GET_PRODUCT_BY_SLUG,
-      variables: { slug },
-      errorPolicy: "all",
-    }),
-    client.query<{
-      hwsContactChannels: { whatsappNumber: string; telegramUsername: string } | null;
-    }>({ query: GET_CONTACT_CHANNELS }).catch(() => ({ data: null })),
+  const [product, channelsData, headerData] = await Promise.all([
+    getProductBySlugCached(slug),
+    getContactChannelsCached().catch(() => null),
     getHeaderData(),
   ]);
-
-  const data = productResult.data;
-
-  if (!data?.product) {
+  if (!product) {
     notFound();
   }
 
   const override = getProductOverride(slug);
-  const productPageDataBase = mapToProductPageData(data.product);
+  const productPageDataBase = mapToProductPageData(product);
   const productPageData = override
     ? { ...productPageDataBase, ...override.page }
     : productPageDataBase;
-  const specs = override?.specs ?? mapToProductSpecsData(data.product);
+  const specs = override?.specs ?? mapToProductSpecsData(product);
   const productSpecsData = specs.groups.length ? specs : mockProductSpecsData;
-  const descriptionHtml = override?.descriptionHtml ?? mapToProductDescriptionHtml(data.product);
+  const descriptionHtml = override?.descriptionHtml ?? mapToProductDescriptionHtml(product);
 
   // Извлекаем highlights из характеристик для инфографики под галереей
   const highlights: { value: string; label: string }[] = [];
@@ -162,10 +170,9 @@ export default async function ProductPageRoute({
     }
   }
 
-  const c = channelsResult.data?.hwsContactChannels;
   const contactChannels = {
-    whatsappNumber: c?.whatsappNumber || undefined,
-    telegramUsername: c?.telegramUsername || undefined,
+    whatsappNumber: channelsData?.whatsappNumber || undefined,
+    telegramUsername: channelsData?.telegramUsername || undefined,
   };
 
   return (

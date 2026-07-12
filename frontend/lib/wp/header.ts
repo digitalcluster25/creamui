@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { headerMock } from "@/lib/mocks/header";
 import type { HeaderData, HeaderCatalogItem } from "@/lib/types/header";
 import { getProductCategoriesTree } from "@/lib/wp/catalog-taxonomy";
@@ -58,7 +59,7 @@ export function flattenCategories(
   return nodes.flatMap((node) => [node, ...(node.children?.nodes ?? [])]);
 }
 
-export async function getHeaderData(): Promise<HeaderData> {
+const getHeaderDataCached = cache(async (): Promise<HeaderData> => {
   try {
     const parents = await getProductCategoriesTree();
     const bySlug = new Map(parents.map((node) => [node.slug, node]));
@@ -97,4 +98,8 @@ export async function getHeaderData(): Promise<HeaderData> {
     console.error("WP GraphQL error (header categories):", e);
     return { ...headerMock, brandHref: "/" };
   }
+});
+
+export function getHeaderData(): Promise<HeaderData> {
+  return getHeaderDataCached();
 }
