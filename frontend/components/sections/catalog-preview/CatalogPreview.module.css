@@ -39,6 +39,42 @@
   white-space: nowrap;
 }
 
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filterBtn {
+  padding: 6px 16px;
+  border: 1px solid rgba(17, 16, 19, 0.15);
+  border-radius: 999px;
+  background: transparent;
+  font-family: var(--font-text);
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(17, 16, 19, 0.7);
+  cursor: pointer;
+  transition: background 0.18s, border-color 0.18s, color 0.18s;
+}
+
+.filterBtn:hover {
+  background: rgba(17, 16, 19, 0.05);
+  border-color: rgba(17, 16, 19, 0.3);
+  color: rgb(17, 16, 19);
+}
+
+.filterBtnActive {
+  background: rgb(17, 16, 19);
+  border-color: rgb(17, 16, 19);
+  color: #fff;
+}
+
+.filterBtnActive:hover {
+  background: rgba(17, 16, 19, 0.85);
+  color: #fff;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));

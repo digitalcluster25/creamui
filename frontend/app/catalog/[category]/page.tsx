@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/sections/header";
-import { CatalogCollections, type CatalogCollection } from "@/components/sections/catalog-collections";
 import { CatalogPreview } from "@/components/sections/catalog-preview";
 import { CatalogOverview } from "@/components/sections/catalog-overview/CatalogOverview";
 import { CatalogSeo } from "@/components/sections/catalog-seo/CatalogSeo";
@@ -11,7 +10,7 @@ import { Breadcrumbs } from "@/components/primitives/breadcrumbs/Breadcrumbs";
 import { getHeaderData, flattenCategories, type WPCategoryNode } from "@/lib/wp/header";
 import { footerData } from "@/lib/data/footer";
 import { getClient } from "@/lib/wp/apollo";
-import { mapToCategoryCardsData, mapToCatalogProduct, type WPProductNode } from "@/lib/wp/mappers";
+import { mapToCatalogProduct, type WPProductNode } from "@/lib/wp/mappers";
 import { CATALOG_BRANCH_INTROS, buildCatalogCategoryContent } from "@/lib/data/catalogBranches";
 import type { CategoriesData } from "@/lib/types/categories";
 import { fetchProductsByCategory } from "@/lib/wp/products";
@@ -19,7 +18,6 @@ import { getProductBrands, getProductCategoriesTree, getProductCategoryBySlug, t
 import styles from "../page.module.css";
 
 export const revalidate = 3600;
-const CATEGORY_PREVIEW_LIMIT = 12;
 
 type Params = { category: string };
 
@@ -146,15 +144,7 @@ export default async function CatalogCategoryPage({
 
   const headerData = await getHeaderData();
   const brandCards = buildCategoryBrandCards(productsNodes, brands);
-  const childCollections =
-    found.slug === branchSlug
-      ? buildChildCollections(currentChildNodes, productsNodes)
-      : [];
-  const previewProducts = productsNodes.slice(0, CATEGORY_PREVIEW_LIMIT).map(mapToCatalogProduct);
-  const previewDescription =
-    found.slug === branchSlug
-      ? "Верхний уровень раздела отдает легкую обзорную выдачу по ключевым подкатегориям без перегрузки страницы."
-      : "На странице оставлена быстрая серверная выдача карточек, чтобы каталог открывался заметно быстрее и не раздувался клиентскими данными.";
+  const previewProducts = productsNodes.map(mapToCatalogProduct);
 
   return (
     <main>
@@ -170,32 +160,20 @@ export default async function CatalogCategoryPage({
       <div className={styles.section}>
         <CatalogOverview
           title={found.name}
-          lead={found.slug === branchSlug ? branchIntro?.lead : (categoryContent?.lead ?? `Раздел внутри ветки «${currentParentNode?.name ?? branchIntro?.title ?? found.name}». Сначала выберите подходящий подтип, затем сузьте выдачу фильтрами только этой ветки.`)}
-          categories={
-            currentChildNodes.length > 0
-              ? mapToCategoryCardsData(
-                  currentChildNodes,
-                  found.slug === branchSlug ? "Подразделы" : "Соседние подразделы",
-                )
-              : null
+          lead={found.slug === branchSlug ? (branchIntro?.lead ?? undefined) : (categoryContent?.lead ?? undefined)}
+          categories={null}
+        />
+        {brandCards ? <Categories data={brandCards} /> : null}
+        <CatalogPreview
+          title="Товары в разделе"
+          total={productsNodes.length}
+          products={previewProducts}
+          filterCategories={
+            found.slug === branchSlug && currentChildNodes.length > 1
+              ? currentChildNodes.map((n) => ({ slug: n.slug, name: n.name }))
+              : undefined
           }
         />
-        {found.slug === branchSlug ? (
-          <CatalogCollections
-            title="Популярные товары по подкатегориям"
-            collections={childCollections}
-          />
-        ) : (
-          <>
-            {brandCards ? <Categories data={brandCards} /> : null}
-            <CatalogPreview
-              title="Товары в категории"
-              description={previewDescription}
-              total={productsNodes.length}
-              products={previewProducts}
-            />
-          </>
-        )}
         <CatalogSeo data={found.slug === branchSlug ? branchIntro?.seo ?? null : categoryContent?.seo ?? null} />
       </div>
       <div className={styles.sectionFooter}>
@@ -205,39 +183,6 @@ export default async function CatalogCategoryPage({
   );
 }
 
-function buildChildCollections(
-  childNodes: Array<{
-    databaseId: number;
-    name: string;
-    slug: string;
-    hwsSubtitle?: string | null;
-  }>,
-  products: WPProductNode[],
-): CatalogCollection[] {
-  const collections: Array<CatalogCollection | null> = childNodes
-    .map((child) => {
-      const collectionProducts = products
-        .filter((product) =>
-          (product.productCategories?.nodes ?? []).some((category) => category.slug === child.slug),
-        )
-        .slice(0, 8)
-        .map(mapToCatalogProduct);
-
-      if (collectionProducts.length === 0) {
-        return null;
-      }
-
-      return {
-        id: child.slug,
-        title: child.name,
-        href: `/catalog/${child.slug}`,
-        description: child.hwsSubtitle?.trim() || null,
-        products: collectionProducts,
-      };
-    });
-
-  return collections.filter((collection): collection is CatalogCollection => collection !== null);
-}
 
 function buildCategoryBrandCards(products: WPProductNode[], allBrands: WPBrandNode[]): CategoriesData | null {
   const brandCounts = new Map<string, { name: string; count: number }>();

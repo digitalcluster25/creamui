@@ -142,6 +142,7 @@ export function mapToCatalogProduct(node: WPProductNode): CatalogProduct {
     priceOnRequest: Boolean(node.hwsPriceOnRequest),
     baseCurrencyCode: getCurrencyCode(node.price),
     attributes: mapProductAttributes(node.attributes?.nodes),
+    categorySlugs: node.productCategories?.nodes.map((c) => c.slug) ?? [],
   };
 }
 

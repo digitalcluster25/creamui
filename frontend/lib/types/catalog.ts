@@ -14,6 +14,8 @@ export type CatalogProduct = {
   baseCurrencyCode: CurrencyCode;
   // Атрибуты товара: taxonomy (pa_*) -> список slug-значений.
   attributes?: Record<string, string[]>;
+  // Slugs всех категорий товара — для клиентской фильтрации по подкатегории.
+  categorySlugs?: string[];
 };
 
 // slug -> человекочитаемое имя термина, по каждой таксономии.
