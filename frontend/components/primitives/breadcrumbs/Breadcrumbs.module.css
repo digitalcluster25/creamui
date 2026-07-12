@@ -1,5 +1,5 @@
 .holder {
-  max-width: 1366px;
+  max-width: 1350px;
   margin: 0 auto;
   padding: 20px clamp(16px, 2vw, 40px);
 }

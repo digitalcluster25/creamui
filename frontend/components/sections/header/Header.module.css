@@ -11,6 +11,7 @@
 
 .headerInner {
   width: 100%;
+  max-width: 1350px;
   min-height: 108px;
   margin: 0 auto;
   display: grid;
