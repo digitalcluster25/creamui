@@ -1,5 +1,5 @@
 .section {
-  padding: 28px clamp(16px, 1.5vw, 28px) 12px;
+  padding: 28px 0 12px;
 }
 
 .head {
@@ -94,7 +94,7 @@
 
 @media (max-width: 860px) {
   .section {
-    padding: 18px clamp(16px, 1.5vw, 28px) 12px;
+    padding: 18px 0 12px;
   }
 
   .collectionHead {
