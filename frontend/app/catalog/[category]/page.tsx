@@ -7,7 +7,7 @@ import { CatalogSeo } from "@/components/sections/catalog-seo/CatalogSeo";
 import { Footer } from "@/components/sections/footer";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs/Breadcrumbs";
 import { getHeaderData, flattenCategories, type WPCategoryNode } from "@/lib/wp/header";
-import { footerData } from "@/lib/data/footer";
+import { getFooterData } from "@/lib/wp/footer";
 import { getClient } from "@/lib/wp/apollo";
 import { mapToCatalogProduct, type WPProductNode } from "@/lib/wp/mappers";
 import { CATALOG_BRANCH_INTROS, buildCatalogCategoryContent } from "@/lib/data/catalogBranches";
@@ -97,6 +97,7 @@ export default async function CatalogCategoryPage({
 }: {
   params: Promise<Params>;
 }) {
+  const footerData = await getFooterData();
   const { category } = await params;
 
   const client = getClient();

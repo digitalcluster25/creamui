@@ -10,7 +10,7 @@ import { ContactForm } from "@/components/sections/contact-form";
 import { Footer } from "@/components/sections/footer";
 import { getHeaderData } from "@/lib/wp/header";
 import { heroData } from "@/lib/data/hero";
-import { footerData } from "@/lib/data/footer";
+import { getFooterData } from "@/lib/wp/footer";
 import { casesData } from "@/lib/data/cases";
 import { howWeWorkData } from "@/lib/data/howWeWork";
 import { contactFormData } from "@/lib/data/contactForm";
@@ -27,6 +27,7 @@ export const revalidate = 3600;
 const KNOWLEDGE_CATEGORY = "home-wood-spa";
 
 export default async function HomePage() {
+  const footerData = await getFooterData();
   let brandLogos: BrandLogo[] = [];
   let categoriesData: CategoriesData = { sectionTitle: "Решения для любых задач", items: [] };
   let blogPostsData: BlogPostsData = { title: "База знаний", allHref: "/knowledge", posts: [] };

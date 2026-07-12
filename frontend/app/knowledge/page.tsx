@@ -3,7 +3,7 @@ import { KnowledgeBase } from "@/components/sections/knowledge-base";
 import { Footer } from "@/components/sections/footer";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs/Breadcrumbs";
 import { getHeaderData } from "@/lib/wp/header";
-import { footerData } from "@/lib/data/footer";
+import { getFooterData } from "@/lib/wp/footer";
 import { getClient } from "@/lib/wp/apollo";
 import { GET_POSTS } from "@/lib/wp/queries";
 import { mapToBlogPost, type WPPostNode } from "@/lib/wp/mappers";
@@ -17,6 +17,7 @@ export const revalidate = 3600;
 const KNOWLEDGE_CATEGORY = "home-wood-spa";
 
 export default async function KnowledgePage() {
+  const footerData = await getFooterData();
   let posts: ReturnType<typeof mapToBlogPost>[] = [];
   try {
     const client = getClient();

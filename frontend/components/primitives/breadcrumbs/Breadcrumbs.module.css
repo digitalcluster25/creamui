@@ -8,9 +8,16 @@
   width: 100%;
 }
 
+@media (max-width: 1365px) {
+  .holder {
+    padding-inline: 16px;
+  }
+}
+
 @media (max-width: 900px) {
   .holder {
-    padding: 20px clamp(16px, 2vw, 28px);
+    padding-top: 20px;
+    padding-bottom: 20px;
     max-width: 100%;
   }
 }

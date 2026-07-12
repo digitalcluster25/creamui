@@ -7,7 +7,7 @@ import { ProductDescription } from "@/components/sections/product-description/Pr
 import { ProductSpecs } from "@/components/sections/product-specs";
 import { Footer } from "@/components/sections/footer";
 import { getHeaderData } from "@/lib/wp/header";
-import { footerData } from "@/lib/data/footer";
+import { getFooterData } from "@/lib/wp/footer";
 import { getClient } from "@/lib/wp/apollo";
 import { GET_PRODUCT_BY_SLUG, GET_PRODUCT_SLUGS, GET_CONTACT_CHANNELS } from "@/lib/wp/queries";
 import {
@@ -108,6 +108,7 @@ export default async function ProductPageRoute({
 }: {
   params: Promise<Params>;
 }) {
+  const footerData = await getFooterData();
   const { slug } = await params;
 
   const [product, channelsData, headerData] = await Promise.all([

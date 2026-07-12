@@ -6,7 +6,7 @@ import { CatalogOverview } from "@/components/sections/catalog-overview/CatalogO
 import { CatalogSeo, type CatalogSeoData } from "@/components/sections/catalog-seo/CatalogSeo";
 import { Footer } from "@/components/sections/footer";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs/Breadcrumbs";
-import { footerData } from "@/lib/data/footer";
+import { getFooterData } from "@/lib/wp/footer";
 import { flattenCategories, getHeaderData, type WPCategoryNode, type WPCategoryChildNode } from "@/lib/wp/header";
 import { getClient } from "@/lib/wp/apollo";
 import { mapToCatalogProduct, type WPProductNode } from "@/lib/wp/mappers";
@@ -158,6 +158,7 @@ export default async function BrandPage({
 }: {
   params: Promise<Params>;
 }) {
+  const footerData = await getFooterData();
   const { slug } = await params;
 
   const [brands, categoryTree] = await Promise.all([

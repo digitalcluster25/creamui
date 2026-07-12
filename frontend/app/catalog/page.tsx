@@ -7,7 +7,7 @@ import { Footer } from "@/components/sections/footer";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs/Breadcrumbs";
 import { CATALOG_BRANCH_INTROS } from "@/lib/data/catalogBranches";
 import { getHeaderData, HEADER_CATEGORY_ORDER, type WPCategoryNode } from "@/lib/wp/header";
-import { footerData } from "@/lib/data/footer";
+import { getFooterData } from "@/lib/wp/footer";
 import { getClient } from "@/lib/wp/apollo";
 import { mapToCatalogProduct, mapToCategoryCardsData, type WPProductNode } from "@/lib/wp/mappers";
 import { CATALOG_ROOT_SEO } from "@/lib/data/catalogBranches";
@@ -32,6 +32,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function CatalogPage() {
+  const footerData = await getFooterData();
   let hubData = null;
   let collections: CatalogCollection[] = [];
   try {

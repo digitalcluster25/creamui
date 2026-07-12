@@ -2,7 +2,7 @@ import { Header } from "@/components/sections/header";
 import { Footer } from "@/components/sections/footer";
 import { ContactsOverview } from "@/components/sections/contacts-overview/ContactsOverview";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs/Breadcrumbs";
-import { footerData } from "@/lib/data/footer";
+import { getFooterData } from "@/lib/wp/footer";
 import { contactsPageData } from "@/lib/data/contactsPage";
 import { getHeaderData } from "@/lib/wp/header";
 import styles from "../page.module.css";
@@ -10,6 +10,7 @@ import styles from "../page.module.css";
 export const revalidate = 3600;
 
 export default async function ContactsPage() {
+  const footerData = await getFooterData();
   const headerData = await getHeaderData();
 
   return (

@@ -3,7 +3,7 @@ import { Header } from "@/components/sections/header";
 import { ArticlePage } from "@/components/sections/article-page";
 import { Footer } from "@/components/sections/footer";
 import { getHeaderData } from "@/lib/wp/header";
-import { footerData } from "@/lib/data/footer";
+import { getFooterData } from "@/lib/wp/footer";
 import { getClient } from "@/lib/wp/apollo";
 import { GET_POST_BY_SLUG, GET_POST_SLUGS, GET_POSTS } from "@/lib/wp/queries";
 import { mapToArticlePageData, mapToBlogPost, type WPPostNode } from "@/lib/wp/mappers";
@@ -34,6 +34,7 @@ export default async function KnowledgeArticlePage({
 }: {
   params: Promise<Params>;
 }) {
+  const footerData = await getFooterData();
   const { slug: rawSlug } = await params;
   const slug = decodeURIComponent(rawSlug);
 

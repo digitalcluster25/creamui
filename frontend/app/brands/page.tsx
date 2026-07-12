@@ -3,7 +3,7 @@ import { Header } from "@/components/sections/header";
 import { Footer } from "@/components/sections/footer";
 import { BrandsDirectory } from "@/components/sections/brands-directory/BrandsDirectory";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs/Breadcrumbs";
-import { footerData } from "@/lib/data/footer";
+import { getFooterData } from "@/lib/wp/footer";
 import { getHeaderData } from "@/lib/wp/header";
 import { getClient } from "@/lib/wp/apollo";
 import { GET_PRODUCT_BRANDS } from "@/lib/wp/queries";
@@ -26,6 +26,7 @@ type BrandNode = {
 };
 
 export default async function BrandsPage() {
+  const footerData = await getFooterData();
   let brands: BrandNode[] = [];
 
   try {
