@@ -41,14 +41,16 @@ function toLinks(menu: MenuResult, idPrefix: string) {
 export const getFooterData = cache(async (): Promise<FooterData> => {
   try {
     const client = getClient();
-    const { data } = await client.query<{
+    type FooterMenusQuery = {
       products: MenuResult;
       company: MenuResult;
       help: MenuResult;
-    }>({
+    };
+    const result = await client.query<FooterMenusQuery>({
       query: GET_FOOTER_MENUS,
       context: { fetchOptions: { next: { revalidate: 3600 } } },
     });
+    const data = result.data;
 
     return {
       ...staticFooterData,
@@ -56,17 +58,17 @@ export const getFooterData = cache(async (): Promise<FooterData> => {
         {
           id: "products",
           title: staticFooterData.columns[0].title,
-          links: toLinks(data.products, "p"),
+          links: toLinks(data?.products ?? null, "p"),
         },
         {
           id: "company",
           title: staticFooterData.columns[1].title,
-          links: toLinks(data.company, "c"),
+          links: toLinks(data?.company ?? null, "c"),
         },
         {
           id: "help",
           title: staticFooterData.columns[2].title,
-          links: toLinks(data.help, "h"),
+          links: toLinks(data?.help ?? null, "h"),
         },
       ],
     };
