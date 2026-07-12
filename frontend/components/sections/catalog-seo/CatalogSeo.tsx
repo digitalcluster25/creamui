@@ -22,7 +22,7 @@ export function CatalogSeo({ data }: Props) {
 
   return (
     <section className={styles.section}>
-      <div className={styles.shell}>
+      <div className={`${styles.shell}${!data.faqs?.length ? ` ${styles.shellFull}` : ""}`}>
         <div className={styles.copy}>
           {data.eyebrow && <p className={styles.eyebrow}>{data.eyebrow}</p>}
           <h2 className={styles.title}>{data.title}</h2>
