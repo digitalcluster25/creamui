@@ -21,8 +21,8 @@ export type WPProductNode = {
   regularPrice?: string | null;
   salePrice?: string | null;
   sku?: string;
-  image?: { sourceUrl: string; altText: string } | null;
-  galleryImages?: { nodes: { sourceUrl: string; altText: string }[] };
+  image?: { sourceUrl: string; altText: string; hwsOptimizedUrl?: string | null } | null;
+  galleryImages?: { nodes: { sourceUrl: string; altText: string; hwsOptimizedUrl?: string | null }[] };
   productCategories?: { nodes: { name: string; slug: string; parent?: { node: { name: string; slug: string } } | null }[] };
   productBrands?: { nodes: { name: string; slug: string }[] };
   hwsSpecs?: { label: string; value: string }[];
@@ -54,7 +54,7 @@ export type WPProductNode = {
       name?: string;
       sku?: string;
       price?: string | null;
-      image?: { sourceUrl: string } | null;
+      image?: { sourceUrl: string; hwsOptimizedUrl?: string | null } | null;
       attributes?: { nodes: { name: string; value: string }[] };
     }[];
   };
@@ -132,7 +132,7 @@ export function mapToCatalogProduct(node: WPProductNode): CatalogProduct {
   return {
     id: node.databaseId,
     href: `/product/${node.slug}`,
-    image: node.image?.sourceUrl ?? "",
+    image: resolveMediaUrl(node.image) ?? "",
     title: node.name,
     category: pickDisplayCategory(node.productCategories?.nodes),
     brand: node.productBrands?.nodes[0]?.name,
@@ -155,6 +155,12 @@ function mapProductAttributes(
     if (options.length > 0) result[attr.name] = options;
   }
   return result;
+}
+
+function resolveMediaUrl(
+  media?: { sourceUrl?: string | null; hwsOptimizedUrl?: string | null } | null,
+): string | undefined {
+  return media?.hwsOptimizedUrl ?? media?.sourceUrl ?? undefined;
 }
 
 // Фильтр/сортировка/пагинация теперь полностью клиентские (Catalog.tsx) —
@@ -183,8 +189,8 @@ export function mapToHomeProductsData(nodes: WPProductNode[]): ProductsData {
       priceOnRequest: Boolean(node.hwsPriceOnRequest),
       baseCurrencyCode: getCurrencyCode(node.price),
       categories: (node.productCategories?.nodes ?? []).map((category) => category.name),
-      image1: node.image?.sourceUrl ?? "",
-      image2: node.galleryImages?.nodes?.[0]?.sourceUrl,
+      image1: resolveMediaUrl(node.image) ?? "",
+      image2: resolveMediaUrl(node.galleryImages?.nodes?.[0]),
       swatches: node.hwsFacingOptions?.map((option) => ({
         slug: option.slug,
         title: option.label,
@@ -401,7 +407,7 @@ function buildVariantEntries(
       selection,
       price: parsePrice(v.price),
       sku: v.sku,
-      image: v.image?.sourceUrl ?? undefined,
+      image: resolveMediaUrl(v.image),
     });
   }
 
@@ -435,8 +441,8 @@ export function mapToProductPageData(node: WPProductNode): ProductPageData {
 
   return {
     images: [
-      node.image?.sourceUrl,
-      ...(node.galleryImages?.nodes.map((g) => g.sourceUrl) ?? []),
+      resolveMediaUrl(node.image),
+      ...(node.galleryImages?.nodes.map((g) => resolveMediaUrl(g)) ?? []),
     ].filter(Boolean) as string[],
     badges: node.salePrice ? [{ label: "Sale", variant: "sale" as const }] : [],
     breadcrumbs: [

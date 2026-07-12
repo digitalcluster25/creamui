@@ -23,11 +23,13 @@ export const GET_PRODUCTS = gql`
           image {
             sourceUrl
             altText
+            hwsOptimizedUrl
           }
           galleryImages {
             nodes {
               sourceUrl
               altText
+              hwsOptimizedUrl
             }
           }
           productCategories {
@@ -64,11 +66,13 @@ export const GET_PRODUCTS = gql`
           image {
             sourceUrl
             altText
+            hwsOptimizedUrl
           }
           galleryImages {
             nodes {
               sourceUrl
               altText
+              hwsOptimizedUrl
             }
           }
           productCategories {
@@ -130,11 +134,13 @@ export const GET_PRODUCTS_BY_BRAND = gql`
           image {
             sourceUrl
             altText
+            hwsOptimizedUrl
           }
           galleryImages {
             nodes {
               sourceUrl
               altText
+              hwsOptimizedUrl
             }
           }
           productCategories {
@@ -171,11 +177,13 @@ export const GET_PRODUCTS_BY_BRAND = gql`
           image {
             sourceUrl
             altText
+            hwsOptimizedUrl
           }
           galleryImages {
             nodes {
               sourceUrl
               altText
+              hwsOptimizedUrl
             }
           }
           productCategories {
@@ -237,11 +245,13 @@ export const GET_PRODUCTS_BY_CATEGORY_FILTER = gql`
           image {
             sourceUrl
             altText
+            hwsOptimizedUrl
           }
           galleryImages {
             nodes {
               sourceUrl
               altText
+              hwsOptimizedUrl
             }
           }
           productCategories {
@@ -278,11 +288,13 @@ export const GET_PRODUCTS_BY_CATEGORY_FILTER = gql`
           image {
             sourceUrl
             altText
+            hwsOptimizedUrl
           }
           galleryImages {
             nodes {
               sourceUrl
               altText
+              hwsOptimizedUrl
             }
           }
           productCategories {
@@ -349,11 +361,13 @@ export const GET_PRODUCT_BY_SLUG = gql`
         image {
           sourceUrl
           altText
+          hwsOptimizedUrl
         }
         galleryImages {
           nodes {
             sourceUrl
             altText
+            hwsOptimizedUrl
           }
         }
         productCategories {
@@ -406,11 +420,13 @@ export const GET_PRODUCT_BY_SLUG = gql`
         image {
           sourceUrl
           altText
+          hwsOptimizedUrl
         }
         galleryImages {
           nodes {
             sourceUrl
             altText
+            hwsOptimizedUrl
           }
         }
         productCategories {
@@ -464,6 +480,7 @@ export const GET_PRODUCT_BY_SLUG = gql`
             price
             image {
               sourceUrl
+              hwsOptimizedUrl
             }
             attributes {
               nodes {
@@ -555,11 +572,13 @@ export const GET_FEATURED_PRODUCTS = gql`
           image {
             sourceUrl
             altText
+            hwsOptimizedUrl
           }
           galleryImages {
             nodes {
               sourceUrl
               altText
+              hwsOptimizedUrl
             }
           }
           productCategories {
@@ -583,11 +602,13 @@ export const GET_FEATURED_PRODUCTS = gql`
           image {
             sourceUrl
             altText
+            hwsOptimizedUrl
           }
           galleryImages {
             nodes {
               sourceUrl
               altText
+              hwsOptimizedUrl
             }
           }
           productCategories {

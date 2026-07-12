@@ -68,6 +68,27 @@ function hws_graphql_bridge_slugify( string $value ): string {
 	return sanitize_title( $value );
 }
 
+function hws_graphql_bridge_get_attachment_best_image_url( int $attachment_id, array $sizes ): ?string {
+	$base_url = wp_get_attachment_url( $attachment_id );
+	$meta     = wp_get_attachment_metadata( $attachment_id );
+
+	if ( empty( $meta['file'] ) || empty( $base_url ) ) {
+		return $base_url ?: null;
+	}
+
+	$uploads = wp_get_upload_dir();
+	$basedir = trailingslashit( dirname( $meta['file'] ) );
+
+	foreach ( $sizes as $size ) {
+		$file = $meta['sizes'][ $size ]['file'] ?? null;
+		if ( $file ) {
+			return trailingslashit( $uploads['baseurl'] ) . $basedir . $file;
+		}
+	}
+
+	return $base_url ?: null;
+}
+
 /**
  * 2) Поле hwsSpecs на интерфейсе Product — разбирает _hws_specs_html
  *    в массив {label, value}. Подтверждено на выборке товаров всех 3 брендов
@@ -215,6 +236,26 @@ add_action(
 
 					$url = wp_get_attachment_url( $thumbnail_id );
 					return $url ?: null;
+				},
+			]
+		);
+
+		register_graphql_field(
+			'MediaItem',
+			'hwsOptimizedUrl',
+			[
+				'type'        => 'String',
+				'description' => __( 'Оптимизированный storefront URL изображения без original full-size файла', 'hws-graphql-bridge' ),
+				'resolve'     => function ( $source ) {
+					$attachment_id = $source->databaseId ?? $source->ID ?? null;
+					if ( empty( $attachment_id ) ) {
+						return null;
+					}
+
+					return hws_graphql_bridge_get_attachment_best_image_url(
+						(int) $attachment_id,
+						[ 'medium_large', 'woocommerce_single', 'large', 'medium', 'thumbnail' ]
+					);
 				},
 			]
 		);
