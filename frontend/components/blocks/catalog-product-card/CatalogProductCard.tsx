@@ -43,7 +43,7 @@ export function CatalogProductCard({ href, image, title, category, priceMin, pri
       </a>
       <div className={styles.info}>
         <a href={href} className={styles.titleLink}>
-          <h2 className={styles.title}>{title}</h2>
+          <span className={styles.title}>{title}</span>
         </a>
         <p className={styles.category}>{category}</p>
         <p className={styles.price}>
