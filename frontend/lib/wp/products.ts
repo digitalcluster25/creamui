@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { print, type DocumentNode } from "graphql";
 import { GET_PRODUCTS_BY_BRAND, GET_PRODUCTS_BY_CATEGORY_FILTER } from "@/lib/wp/queries";
 import type { WPProductNode } from "@/lib/wp/mappers";
@@ -72,12 +73,20 @@ async function paginateProducts(
   return nodes;
 }
 
-export function fetchProductsByBrand(_client: unknown, brandSlug: string) {
+const fetchProductsByBrandCached = cache(async (brandSlug: string) => {
   return paginateProducts(GET_PRODUCTS_BY_BRAND, "brand", brandSlug);
+});
+
+const fetchProductsByCategoryCached = cache(async (categorySlug: string) => {
+  return paginateProducts(GET_PRODUCTS_BY_CATEGORY_FILTER, "category", categorySlug);
+});
+
+export function fetchProductsByBrand(_client: unknown, brandSlug: string) {
+  return fetchProductsByBrandCached(brandSlug);
 }
 
 export function fetchProductsByCategory(_client: unknown, categorySlug: string) {
-  return paginateProducts(GET_PRODUCTS_BY_CATEGORY_FILTER, "category", categorySlug);
+  return fetchProductsByCategoryCached(categorySlug);
 }
 
 export async function fetchAllCatalogProducts(_client: unknown, brandSlugs: string[]) {
