@@ -20,7 +20,7 @@
   margin: 0;
   max-width: 100%;
   min-width: 0;
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-weight: 400;
   font-size: 22px;
   line-height: 1.3;

@@ -19,7 +19,7 @@
 }
 
 .value {
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 22px;
   font-weight: 700;
   color: rgb(17, 16, 19);
@@ -27,7 +27,7 @@
 }
 
 .label {
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 13px;
   font-weight: 400;
   color: rgba(40, 40, 40, 0.55);

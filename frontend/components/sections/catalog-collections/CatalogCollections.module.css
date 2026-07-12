@@ -8,7 +8,7 @@
 
 .title {
   margin: 0;
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: clamp(28px, 3vw, 42px);
   font-weight: 700;
   line-height: 1.1;
@@ -42,7 +42,7 @@
 
 .collectionTitle {
   margin: 0;
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: clamp(24px, 2.4vw, 34px);
   font-weight: 700;
   line-height: 1.15;
@@ -52,7 +52,7 @@
 .collectionDescription {
   margin: 0;
   max-width: 760px;
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 15px;
   line-height: 1.7;
   color: rgba(17, 16, 19, 0.68);
@@ -68,7 +68,7 @@
   border-radius: 999px;
   text-decoration: none;
   white-space: nowrap;
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 14px;
   font-weight: 600;
   color: rgb(17, 16, 19);

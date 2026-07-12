@@ -5,7 +5,7 @@
 }
 
 .sectionTitle {
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 20px;
   font-weight: 700;
   color: rgb(17, 16, 19);
@@ -14,7 +14,7 @@
 
 .blocks {
   display: block;
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 15px;
   font-weight: 400;
   line-height: 1.65;

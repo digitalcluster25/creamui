@@ -172,7 +172,7 @@
   border-radius: 999px;
   font-size: 13px;
   font-weight: 500;
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
 }
 
 .badge_default {
@@ -192,7 +192,7 @@
 
 .title {
   margin: 0 0 4px;
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 32px;
   font-weight: 700;
   line-height: 1.2;
@@ -202,7 +202,7 @@
 
 .categories {
   margin: 0 0 16px;
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 14px;
   color: rgba(17, 16, 19, 0.55);
 }
@@ -224,14 +224,14 @@
 }
 
 .priceOld {
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 18px;
   color: rgba(17, 16, 19, 0.4);
   text-decoration: line-through;
 }
 
 .price {
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 24px;
   font-weight: 600;
   color: rgb(17, 16, 19);
@@ -244,7 +244,7 @@
 
 .meta {
   margin: 0 0 14px;
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 13.5px;
   color: rgba(17, 16, 19, 0.6);
   line-height: 1.6;
@@ -256,7 +256,7 @@
 
 .description {
   margin: 0;
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 15px;
   line-height: 1.7;
   color: rgba(17, 16, 19, 0.8);
@@ -286,7 +286,7 @@
 .variantGroupFull {}
 
 .variantLabel {
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 14px;
   font-weight: 600;
   color: rgb(17, 16, 19);
@@ -312,7 +312,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 13.5px;
   font-weight: 400;
   color: rgb(17, 16, 19);
@@ -367,7 +367,7 @@
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 13.5px;
   font-weight: 400;
   color: rgb(17, 16, 19);
@@ -408,7 +408,7 @@
 
 .clearVariants {
   align-self: flex-end;
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 13.5px;
   font-weight: 600;
   color: rgba(17, 16, 19, 0.55);
@@ -426,7 +426,7 @@
 
 /* ── Config price (после свотчей) ── */
 .configPrice {
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 20px;
   font-weight: 700;
   color: rgb(17, 16, 19);
@@ -445,7 +445,7 @@
 }
 
 .contactText {
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 16px;
   font-weight: 500;
   line-height: 1.35;
@@ -475,7 +475,7 @@
   border: 2px solid transparent;
   background-color: var(--color-dark, rgba(17, 16, 19, 0.9));
   color: #fff;
-  font-family: var(--font-title, "Noto Sans", sans-serif);
+  font-family: var(--font-title);
   font-size: 0.95em;
   font-weight: 700;
   text-decoration: none;

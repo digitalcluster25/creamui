@@ -14,7 +14,7 @@
 
 .eyebrow {
   margin: 0;
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 14px;
   line-height: 1;
   letter-spacing: 0.16em;
@@ -24,7 +24,7 @@
 
 .title {
   margin: 0;
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 72px;
   font-weight: 700;
   line-height: 0.95;
@@ -35,7 +35,7 @@
 .lead {
   margin: 0;
   max-width: 640px;
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 22px;
   line-height: 1.45;
   color: rgba(40, 40, 40, 0.78);
@@ -55,7 +55,7 @@
 
 .introTitle {
   margin: 0 0 28px;
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 48px;
   font-weight: 700;
   line-height: 1;
@@ -66,7 +66,7 @@
 .introLead {
   margin: 0;
   max-width: 270px;
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 18px;
   line-height: 1.55;
   color: rgba(40, 40, 40, 0.74);
@@ -80,7 +80,7 @@
 
 .city {
   margin: 0;
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 28px;
   font-weight: 700;
   line-height: 1.1;
@@ -94,7 +94,7 @@
 
 .label {
   margin: 0;
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 18px;
   font-weight: 700;
   line-height: 1.35;
@@ -103,7 +103,7 @@
 
 .copy {
   margin: 0;
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 17px;
   line-height: 1.55;
   color: rgba(40, 40, 40, 0.84);
@@ -114,7 +114,7 @@
 }
 
 .phone {
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 19px;
   font-weight: 700;
   line-height: 1.35;

@@ -5,7 +5,7 @@
 }
 
 .sectionTitle {
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 20px;
   font-weight: 700;
   color: var(--color-text-strong, #111013);
@@ -47,7 +47,7 @@
 }
 
 .groupTitle {
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 18px;
   font-weight: 600;
   color: var(--color-text-strong, #111013);
@@ -71,7 +71,7 @@
 
 .label {
   grid-column: 1;
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 14px;
   color: var(--color-text-muted, rgba(40,40,40,0.72));
   margin: 0;
@@ -91,7 +91,7 @@
 
 .value {
   grid-column: 3;
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 14px;
   font-weight: 500;
   color: var(--color-text-strong, #111013);
@@ -103,7 +103,7 @@
 .toggle {
   display: inline-block;
   margin-top: 14px;
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 14px;
   font-weight: 500;
   color: var(--color-primary, #3e5759);

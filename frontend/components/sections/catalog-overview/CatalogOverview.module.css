@@ -14,7 +14,7 @@
 
 .title {
   margin: 0;
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: clamp(44px, 5vw, 72px);
   font-weight: 700;
   line-height: 0.98;
@@ -26,7 +26,7 @@
   margin: 0;
   max-width: 560px;
   justify-self: end;
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 17px;
   line-height: 1.7;
   color: rgba(17, 16, 19, 0.72);

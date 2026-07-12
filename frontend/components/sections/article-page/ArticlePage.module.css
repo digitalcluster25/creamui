@@ -109,7 +109,7 @@
 }
 
 .content {
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 16px;
   line-height: 1.7;
   color: rgba(40, 40, 40, 0.85);
@@ -227,7 +227,7 @@
 }
 
 .tagsCaption {
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 14.4px;
   font-weight: 600;
   color: rgb(17, 16, 19);
@@ -246,7 +246,7 @@
   display: inline-flex;
   align-items: center;
   min-height: 32px;
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 14px;
   font-weight: 500;
   color: rgba(40, 40, 40, 0.85);

@@ -36,7 +36,7 @@
 
 .cardTitle {
   margin: 0;
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 15.68px;
   font-weight: 700;
   line-height: 25.088px;
@@ -54,7 +54,7 @@
 
 .cardLocation {
   margin: 0 0 4px;
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 14.4px;
   font-weight: 400;
   line-height: 23.04px;
@@ -71,7 +71,7 @@
   display: flex;
   align-items: flex-start;
   gap: 8px;
-  font-family: "Noto Sans", sans-serif;
+  font-family: var(--font-text);
   font-size: 14.4px;
   font-weight: 400;
   line-height: 23.04px;
