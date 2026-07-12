@@ -39,7 +39,7 @@ const CATEGORY_ICONS: Record<string, string> = {
 };
 const DEFAULT_ICON = "/assets/sauna.png";
 
-const HEADER_CATEGORY_ORDER = [
+export const HEADER_CATEGORY_ORDER = [
   "russian-bath-stoves",
   "sauna-stoves",
   "steam-generators-and-hammam",

@@ -1,26 +1,24 @@
-import { Suspense } from "react";
 import type { Metadata } from "next";
 import { Header } from "@/components/sections/header";
-import { Catalog } from "@/components/sections/catalog";
+import { CatalogCollections, type CatalogCollection } from "@/components/sections/catalog-collections";
 import { CatalogOverview } from "@/components/sections/catalog-overview/CatalogOverview";
 import { CatalogSeo } from "@/components/sections/catalog-seo/CatalogSeo";
 import { Footer } from "@/components/sections/footer";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs/Breadcrumbs";
-import { getHeaderData, type WPCategoryNode } from "@/lib/wp/header";
+import { CATALOG_BRANCH_INTROS } from "@/lib/data/catalogBranches";
+import { getHeaderData, HEADER_CATEGORY_ORDER, type WPCategoryNode } from "@/lib/wp/header";
 import { footerData } from "@/lib/data/footer";
 import { getClient } from "@/lib/wp/apollo";
-import { GET_PRODUCT_BRANDS, GET_PRODUCT_CATEGORIES } from "@/lib/wp/queries";
-import { mapToCatalogData, mapToCategoryCardsData } from "@/lib/wp/mappers";
+import { GET_PRODUCT_CATEGORIES } from "@/lib/wp/queries";
+import { mapToCatalogProduct, mapToCategoryCardsData, type WPProductNode } from "@/lib/wp/mappers";
 import { CATALOG_ROOT_SEO } from "@/lib/data/catalogBranches";
-import { fetchAllCatalogProducts } from "@/lib/wp/products";
+import { fetchProductsByCategory } from "@/lib/wp/products";
 import styles from "./page.module.css";
 
 export const revalidate = 3600;
 
-type BrandNode = {
-  name: string;
-  slug: string;
-};
+const ROOT_COLLECTION_LIMIT = 5;
+const PRODUCTS_PER_COLLECTION = 4;
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -34,27 +32,18 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function CatalogPage() {
-  let catalogData;
   let hubData = null;
+  let collections: CatalogCollection[] = [];
   try {
     const client = getClient();
-    const [{ data: brandsData }, { data: categoriesData }] = await Promise.all([
-      client.query<{ productBrands: { nodes: BrandNode[] } }>({
-        query: GET_PRODUCT_BRANDS,
-      }),
-      client.query<{ productCategories: { nodes: WPCategoryNode[] } }>({
-        query: GET_PRODUCT_CATEGORIES,
-      }),
-    ]);
-    const productsData = await fetchAllCatalogProducts(
-      client,
-      (brandsData?.productBrands?.nodes ?? []).map((brand) => brand.slug).filter(Boolean),
-    );
-    catalogData = mapToCatalogData(productsData, undefined);
-    hubData = mapToCategoryCardsData(categoriesData?.productCategories?.nodes ?? [], "Основные направления каталога");
+    const { data: categoriesData } = await client.query<{ productCategories: { nodes: WPCategoryNode[] } }>({
+      query: GET_PRODUCT_CATEGORIES,
+    });
+    const categoryNodes = categoriesData?.productCategories?.nodes ?? [];
+    hubData = mapToCategoryCardsData(categoryNodes, "Основные направления каталога");
+    collections = await buildRootCollections(client, categoryNodes);
   } catch (e) {
     console.error("WP GraphQL error (catalog):", e);
-    catalogData = mapToCatalogData([], undefined);
   }
 
   const headerData = await getHeaderData();
@@ -69,9 +58,10 @@ export default async function CatalogPage() {
           lead="Каталог организован по реальным сценариям выбора: сначала тип решения, затем подкатегория, и только после этого фильтры по мощности, объёму, серии и бренду."
           categories={hubData}
         />
-        <Suspense fallback={null}>
-          <Catalog data={catalogData} />
-        </Suspense>
+        <CatalogCollections
+          title="Популярные подборки по ключевым разделам"
+          collections={collections}
+        />
         <CatalogSeo data={CATALOG_ROOT_SEO} />
       </div>
       <div className={styles.sectionFooter}>
@@ -79,4 +69,43 @@ export default async function CatalogPage() {
       </div>
     </main>
   );
+}
+
+async function buildRootCollections(
+  client: ReturnType<typeof getClient>,
+  categories: WPCategoryNode[],
+): Promise<CatalogCollection[]> {
+  const bySlug = new Map(categories.map((category) => [category.slug, category]));
+  const topCategories = HEADER_CATEGORY_ORDER
+    .map((slug) => bySlug.get(slug))
+    .filter((category): category is WPCategoryNode => Boolean(category))
+    .slice(0, ROOT_COLLECTION_LIMIT);
+
+  const productGroups = await Promise.all(
+    topCategories.map((category) => fetchProductsByCategory(client, category.slug)),
+  );
+
+  const collections: Array<CatalogCollection | null> = topCategories
+    .map((category, index) => {
+      const products = (productGroups[index] ?? [])
+        .slice(0, PRODUCTS_PER_COLLECTION)
+        .map((product: WPProductNode) => mapToCatalogProduct(product));
+
+      if (products.length === 0) {
+        return null;
+      }
+
+      return {
+        id: category.slug,
+        title: category.name,
+        href: `/catalog/${category.slug}`,
+        description:
+          category.hwsSubtitle?.trim() ??
+          CATALOG_BRANCH_INTROS[category.slug]?.lead ??
+          null,
+        products,
+      };
+    });
+
+  return collections.filter((collection): collection is CatalogCollection => collection !== null);
 }
