@@ -251,7 +251,7 @@ add_action(
 			'hwsImageUrl',
 			[
 				'type'        => 'String',
-				'description' => __( 'URL миниатюры категории товаров из стандартного WooCommerce term thumbnail', 'hws-graphql-bridge' ),
+				'description' => __( 'URL оптимизированной обложки категории товаров из стандартного WooCommerce term thumbnail', 'hws-graphql-bridge' ),
 				'resolve'     => function ( $source ) {
 					$term_id = $source->term_id ?? null;
 					if ( empty( $term_id ) ) {
@@ -263,8 +263,26 @@ add_action(
 						return null;
 					}
 
-					$url = wp_get_attachment_url( (int) $thumbnail_id );
-					return $url ?: null;
+					$thumbnail_id = (int) $thumbnail_id;
+					$meta         = wp_get_attachment_metadata( $thumbnail_id );
+					$base_url     = wp_get_attachment_url( $thumbnail_id );
+
+					if ( empty( $meta['file'] ) || empty( $base_url ) ) {
+						return $base_url ?: null;
+					}
+
+					$uploads = wp_get_upload_dir();
+					$basedir = trailingslashit( dirname( $meta['file'] ) );
+					$sizes   = [ 'medium_large', 'woocommerce_single', 'large', 'medium', 'thumbnail' ];
+
+					foreach ( $sizes as $size ) {
+						$file = $meta['sizes'][ $size ]['file'] ?? null;
+						if ( $file ) {
+							return trailingslashit( $uploads['baseurl'] ) . $basedir . $file;
+						}
+					}
+
+					return $base_url ?: null;
 				},
 			]
 		);
