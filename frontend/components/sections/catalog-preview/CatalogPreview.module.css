@@ -259,13 +259,28 @@
     gap: 16px;
   }
 
+  .filterBarRight {
+    width: 100%;
+    flex-direction: column;
+    margin-left: 0;
+  }
+
   .filterBarLeft {
     width: 100%;
     flex-direction: column;
   }
 
+  .filterBarRight .dropdown {
+    width: 100%;
+  }
+
   .filterBarLeft .dropdown {
     width: 100%;
+  }
+
+  .filterBarRight .dropdownTrigger {
+    width: 100%;
+    justify-content: space-between;
   }
 
   .filterBarLeft .dropdownTrigger {

@@ -11,10 +11,20 @@ type FilterItem = {
   type: "category" | "brand";
 };
 
+type AttributeFilter = {
+  slug: string;
+  type: string; // "multicheck" | "input"
+  label: string;
+  options: { value: string; name: string }[];
+};
+
 type Props = {
   total: number;
   products: CatalogProduct[];
   filters?: FilterItem[];
+  subcategoryLabel?: string | null;
+  brandLabel?: string | null;
+  attributeFilters?: AttributeFilter[];
 };
 
 const SORT_OPTIONS = [
@@ -140,9 +150,11 @@ function SingleDropdown({
   );
 }
 
-export function CatalogPreview({ total, products, filters }: Props) {
+export function CatalogPreview({ total, products, filters, subcategoryLabel, brandLabel, attributeFilters }: Props) {
   const [selectedCategories, setSelectedCategories] = useState<Set<string>>(new Set());
   const [selectedBrands, setSelectedBrands] = useState<Set<string>>(new Set());
+  const [selectedAttributes, setSelectedAttributes] = useState<Record<string, Set<string>>>({});
+  const [inputAttributes, setInputAttributes] = useState<Record<string, string>>({});
   const [sort, setSort] = useState("default");
   const [perPage, setPerPage] = useState(12);
 
@@ -167,10 +179,28 @@ export function CatalogPreview({ total, products, filters }: Props) {
     });
   }
 
+  function toggleAttribute(attrSlug: string, value: string) {
+    setSelectedAttributes((prev) => {
+      const set = new Set(prev[attrSlug] ?? []);
+      set.has(value) ? set.delete(value) : set.add(value);
+      return { ...prev, [attrSlug]: set };
+    });
+  }
+
   const filtered = products.filter((p) => {
     const catOk = selectedCategories.size === 0 || (p.categorySlugs?.some((s) => selectedCategories.has(s)) ?? false);
     const brandOk = selectedBrands.size === 0 || (p.brandSlug ? selectedBrands.has(p.brandSlug) : false);
-    return catOk && brandOk;
+    const attrOk = Object.entries(selectedAttributes).every(([slug, vals]) => {
+      if (vals.size === 0) return true;
+      const productVals = p.attributes?.[slug] ?? [];
+      return productVals.some((v) => vals.has(v));
+    }) && Object.entries(inputAttributes).every(([slug, query]) => {
+      if (!query.trim()) return true;
+      const productVals = p.attributes?.[slug] ?? [];
+      const q = query.trim().toLowerCase();
+      return productVals.some((v) => v.toLowerCase().includes(q));
+    });
+    return catOk && brandOk && attrOk;
   });
 
   const sorted = [...filtered].sort((a, b) => {
@@ -182,12 +212,24 @@ export function CatalogPreview({ total, products, filters }: Props) {
 
   const paged = sorted.slice(0, perPage);
 
-  const hasFilters = categoryOptions.length > 1 || brandOptions.length > 1;
+  const hasFilters = categoryOptions.length > 1 || brandOptions.length > 1 || (attributeFilters?.length ?? 0) > 0;
+  const activeInputChips = Object.entries(inputAttributes).filter(([, v]) => v.trim()).map(([slug, val]) => ({
+    attrSlug: slug,
+    value: val,
+    name: `${(attributeFilters ?? []).find((f) => f.slug === slug)?.label ?? slug}: ${val}`,
+  }));
   const allSelected: FilterItem[] = [
     ...categoryOptions.filter((o) => selectedCategories.has(o.slug)),
     ...brandOptions.filter((o) => selectedBrands.has(o.slug)),
   ];
-  const hasActive = allSelected.length > 0;
+  const activeAttrChips: { attrSlug: string; value: string; name: string }[] = [];
+  for (const af of attributeFilters ?? []) {
+    for (const v of selectedAttributes[af.slug] ?? []) {
+      const name = af.options.find((o) => o.value === v)?.name ?? v;
+      activeAttrChips.push({ attrSlug: af.slug, value: v, name });
+    }
+  }
+  const hasActive = allSelected.length > 0 || activeAttrChips.length > 0 || activeInputChips.length > 0;
 
   return (
     <section className={styles.section}>
@@ -195,7 +237,7 @@ export function CatalogPreview({ total, products, filters }: Props) {
         <div className={styles.filterBarLeft}>
           {hasFilters && categoryOptions.length > 1 && (
             <MultiDropdown
-              label="Подкатегория"
+              label={subcategoryLabel || "Подкатегория"}
               options={categoryOptions}
               selected={selectedCategories}
               onToggle={toggleCategory}
@@ -203,11 +245,33 @@ export function CatalogPreview({ total, products, filters }: Props) {
           )}
           {hasFilters && brandOptions.length > 1 && (
             <MultiDropdown
-              label="Бренд"
+              label={brandLabel || "Бренд"}
               options={brandOptions}
               selected={selectedBrands}
               onToggle={toggleBrand}
             />
+          )}
+          {hasFilters && (attributeFilters ?? []).map((af) =>
+            af.type === "input" ? (
+              <div key={af.slug} className={styles.dropdown}>
+                <input
+                  type="text"
+                  className={styles.dropdownTrigger}
+                  placeholder={af.label}
+                  value={inputAttributes[af.slug] ?? ""}
+                  onChange={(e) => setInputAttributes((prev) => ({ ...prev, [af.slug]: e.target.value }))}
+                  style={{ cursor: "text" }}
+                />
+              </div>
+            ) : (
+              <MultiDropdown
+                key={af.slug}
+                label={af.label}
+                options={af.options.map((o) => ({ slug: o.value, name: o.name, type: "category" as const }))}
+                selected={selectedAttributes[af.slug] ?? new Set()}
+                onToggle={(v) => toggleAttribute(af.slug, v)}
+              />
+            )
           )}
         </div>
         <div className={styles.filterBarRight}>
@@ -240,6 +304,32 @@ export function CatalogPreview({ total, products, filters }: Props) {
                 type="button"
               >
                 {f.name}
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+                  <path d="M1 1L9 9M9 1L1 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                </svg>
+              </button>
+            ))}
+            {activeAttrChips.map((c) => (
+              <button
+                key={`${c.attrSlug}:${c.value}`}
+                className={styles.activeChip}
+                onClick={() => toggleAttribute(c.attrSlug, c.value)}
+                type="button"
+              >
+                {c.name}
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+                  <path d="M1 1L9 9M9 1L1 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                </svg>
+              </button>
+            ))}
+            {activeInputChips.map((c) => (
+              <button
+                key={`input:${c.attrSlug}`}
+                className={styles.activeChip}
+                onClick={() => setInputAttributes((prev) => ({ ...prev, [c.attrSlug]: "" }))}
+                type="button"
+              >
+                {c.name}
                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
                   <path d="M1 1L9 9M9 1L1 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                 </svg>

@@ -13,6 +13,9 @@ export type WPCategoryBySlugNode = {
   name: string;
   slug: string;
   count?: number | null;
+  hwsFilterSubcatLabel?: string | null;
+  hwsFilterBrandLabel?: string | null;
+  hwsCatalogFilters?: { slug: string; type: string }[] | null;
   parent?: { node: { name: string; slug: string } } | null;
 };
 

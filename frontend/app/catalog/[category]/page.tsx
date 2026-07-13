@@ -11,6 +11,8 @@ import { getFooterData } from "@/lib/wp/footer";
 import { getClient } from "@/lib/wp/apollo";
 import { mapToCatalogProduct, type WPProductNode } from "@/lib/wp/mappers";
 import { CATALOG_BRANCH_INTROS, buildCatalogCategoryContent } from "@/lib/data/catalogBranches";
+import { ATTRIBUTE_LABELS } from "@/lib/data/catalogFilters";
+import { GET_ATTRIBUTE_TERMS } from "@/lib/wp/queries";
 import { fetchProductsByCategory } from "@/lib/wp/products";
 import { getProductBrands, getProductCategoriesTree, getProductCategoryBySlug, type WPBrandNode } from "@/lib/wp/catalog-taxonomy";
 import styles from "../page.module.css";
@@ -101,10 +103,11 @@ export default async function CatalogCategoryPage({
   const { category } = await params;
 
   const client = getClient();
-  const [topCategories, found, brands] = await Promise.all([
+  const [topCategories, found, brands, attrTermsResult] = await Promise.all([
     getProductCategoriesTree(),
     getProductCategoryBySlug(category),
     getProductBrands(),
+    client.query<Record<string, { nodes: { name: string; slug: string }[] }>>({ query: GET_ATTRIBUTE_TERMS }).catch(() => null),
   ]);
   if (!found?.slug) {
     notFound();
@@ -149,6 +152,8 @@ export default async function CatalogCategoryPage({
       ? currentChildNodes.map((n) => ({ slug: n.slug, name: n.name, type: "category" as const }))
       : [];
   const allFilters = [...categoryFilters, ...brandFilters];
+  const attrTermMap = buildAttrTermMap(attrTermsResult?.data ?? null);
+  const attributeFilters = buildAttributeFilters(productsNodes, found.hwsCatalogFilters ?? [], attrTermMap);
 
   return (
     <main>
@@ -171,6 +176,9 @@ export default async function CatalogCategoryPage({
           total={productsNodes.length}
           products={previewProducts}
           filters={allFilters.length > 1 ? allFilters : undefined}
+          subcategoryLabel={found.hwsFilterSubcatLabel}
+          brandLabel={found.hwsFilterBrandLabel}
+          attributeFilters={attributeFilters.length > 0 ? attributeFilters : undefined}
         />
         <CatalogSeo data={found.slug === branchSlug ? branchIntro?.seo ?? null : categoryContent?.seo ?? null} />
       </div>
@@ -181,6 +189,62 @@ export default async function CatalogCategoryPage({
   );
 }
 
+
+// Maps WooGraphQL allPa* field names to pa_* taxonomy slugs
+const GQL_FIELD_TO_TAX: Record<string, string> = {
+  allPaFuelType: "pa_fuel-type",
+  allPaEquipmentType: "pa_equipment-type",
+  allPaSteamRoomVolume: "pa_steam-room-volume",
+  allPaPower: "pa_power",
+  allPaVoltage: "pa_voltage",
+  allPaCladdingMaterial: "pa_cladding-material",
+  allPaUsageClass: "pa_usage-class",
+  allPaRoomType: "pa_room-type",
+  allPaSeries: "pa_series",
+};
+
+function buildAttrTermMap(
+  data: Record<string, { nodes: { name: string; slug: string }[] }> | null,
+): Record<string, Record<string, string>> {
+  const map: Record<string, Record<string, string>> = {};
+  if (!data) return map;
+  for (const [field, tax] of Object.entries(GQL_FIELD_TO_TAX)) {
+    const nodes = data[field]?.nodes ?? [];
+    if (nodes.length) {
+      map[tax] = Object.fromEntries(nodes.map((n) => [n.slug, n.name]));
+    }
+  }
+  return map;
+}
+
+function buildAttributeFilters(
+  products: WPProductNode[],
+  filterConfigs: { slug: string; type: string }[],
+  termMap: Record<string, Record<string, string>>,
+): { slug: string; type: string; label: string; options: { value: string; name: string }[] }[] {
+  if (!filterConfigs.length) return [];
+  const result: { slug: string; type: string; label: string; options: { value: string; name: string }[] }[] = [];
+  for (const { slug, type } of filterConfigs) {
+    const seen = new Map<string, string>();
+    const terms = termMap[slug] ?? {};
+    for (const p of products) {
+      for (const attr of p.attributes?.nodes ?? []) {
+        if (attr.name === slug) {
+          for (const opt of attr.options ?? []) {
+            if (!seen.has(opt)) seen.set(opt, terms[opt] ?? opt);
+          }
+        }
+      }
+    }
+    if (seen.size > 0) {
+      const options = [...seen.entries()]
+        .map(([value, name]) => ({ value, name }))
+        .sort((a, b) => a.name.localeCompare(b.name, "ru"));
+      result.push({ slug, type, label: ATTRIBUTE_LABELS[slug] ?? slug.replace(/^pa_/, ""), options });
+    }
+  }
+  return result;
+}
 
 function buildBrandFilters(
   products: WPProductNode[],
