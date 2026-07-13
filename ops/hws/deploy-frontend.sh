@@ -5,7 +5,7 @@ HOST="${HWS_HOST:-69.62.121.157}"
 USER_NAME="${HWS_USER:-root}"
 PORT="${HWS_PORT:-22}"
 REMOTE_DIR="${HWS_REMOTE_DIR:-/opt/hws-frontend}"
-PM2_APP="${HWS_PM2_APP:-hws-frontend}"
+CONTAINER_NAME="${HWS_CONTAINER_NAME:-hws-frontend}"
 
 ROOT_DIR="$(cd "$(dirname "$0")/../.." && pwd)"
 cd "$ROOT_DIR"
@@ -29,13 +29,11 @@ p = Path('$REMOTE_DIR/.env.local')
 text = p.read_text() if p.exists() else ''
 lines = [line for line in text.splitlines() if not line.startswith('NEXT_PUBLIC_SITE_URL=')]
 lines.append('NEXT_PUBLIC_SITE_URL=https://hws.shopping')
-p.write_text('\\n'.join(lines).rstrip() + '\\n')
+  p.write_text('\\n'.join(lines).rstrip() + '\\n')
 PY
   cd '$REMOTE_DIR'
+  docker rm -f '$CONTAINER_NAME' >/dev/null 2>&1 || true
   docker compose up -d --build --remove-orphans
-  if pm2 describe '$PM2_APP' >/dev/null 2>&1; then
-    pm2 delete '$PM2_APP'
-  fi
 "
 
 printf 'Deployed frontend to %s:%s\n' "$HOST" "$REMOTE_DIR"
