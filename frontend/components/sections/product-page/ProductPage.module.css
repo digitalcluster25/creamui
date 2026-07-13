@@ -648,6 +648,12 @@
     display: block;
   }
 
+  .galleryInner {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
   .thumbs {
     display: none;
   }
@@ -673,6 +679,8 @@
   }
 
   .contactBtn {
+    width: 100%;
+    flex: 0 0 100%;
     justify-content: center;
   }
 
