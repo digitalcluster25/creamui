@@ -209,6 +209,12 @@ export const GET_PRODUCTS_BY_CATEGORY_FILTER = gql`
               slug
             }
           }
+          attributes {
+            nodes {
+              name
+              options
+            }
+          }
         }
         ... on VariableProduct {
           hwsPriceOnRequest
@@ -236,6 +242,12 @@ export const GET_PRODUCTS_BY_CATEGORY_FILTER = gql`
             nodes {
               name
               slug
+            }
+          }
+          attributes {
+            nodes {
+              name
+              options
             }
           }
         }
@@ -312,7 +324,13 @@ export const GET_PRODUCT_BY_SLUG = gql`
           paymentText
           warrantyTitle
           warrantyText
+          postwarrantyTitle
+          postwarrantyText
           note
+        }
+        hwsHighlights {
+          value
+          label
         }
         hwsFacingOptions {
           label
@@ -371,7 +389,13 @@ export const GET_PRODUCT_BY_SLUG = gql`
           paymentText
           warrantyTitle
           warrantyText
+          postwarrantyTitle
+          postwarrantyText
           note
+        }
+        hwsHighlights {
+          value
+          label
         }
         hwsFacingOptions {
           label
@@ -451,6 +475,12 @@ export const GET_PRODUCT_CATEGORY_BY_SLUG = gql`
       name
       slug
       count
+      hwsFilterSubcatLabel
+      hwsFilterBrandLabel
+      hwsCatalogFilters {
+        slug
+        type
+      }
       parent {
         node { name slug }
       }
@@ -546,7 +576,7 @@ export const GET_FEATURED_PRODUCTS = gql`
 `;
 
 export const GET_PRODUCT_SLUGS = gql`
-  query GetProductSlugs($first: Int = 100) {
+  query GetProductSlugs($first: Int = 1000) {
     products(first: $first, where: { status: "publish" }) {
       nodes {
         slug
@@ -652,6 +682,22 @@ export const GET_POST_SLUGS = gql`
       nodes {
         slug
       }
+    }
+  }
+`;
+
+export const GET_SITE_TEXTS = gql`
+  query GetSiteTexts {
+    hwsSiteTexts {
+      catalogCollectionsTitle
+      catalogOverviewTitle
+      catalogOverviewLead
+      homeCategoriesTitle
+      homeProductsTitle
+      homeBlogTitle
+      brandCategoriesTitle
+      knowledgePageTitle
+      productDescriptionTitle
     }
   }
 `;

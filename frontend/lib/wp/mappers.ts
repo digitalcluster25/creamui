@@ -34,8 +34,11 @@ export type WPProductNode = {
     paymentText?: string;
     warrantyTitle?: string;
     warrantyText?: string;
+    postwarrantyTitle?: string;
+    postwarrantyText?: string;
     note?: string;
   } | null;
+  hwsHighlights?: { value: string; label: string }[] | null;
   hwsFacingOptions?: {
     label: string;
     iconUrl?: string | null;
@@ -465,6 +468,7 @@ export function mapToProductPageData(node: WPProductNode): ProductPageData {
     brandHref: node.productBrands?.nodes[0]?.slug ? `/brands/${node.productBrands.nodes[0].slug}` : undefined,
     description: htmlToPlainText(node.shortDescription),
     commerceInfo: node.hwsCommerceInfo ?? undefined,
+    highlights: node.hwsHighlights?.length ? node.hwsHighlights : undefined,
     facingOptions: node.hwsFacingOptions && node.hwsFacingOptions.length > 1
       ? node.hwsFacingOptions.map((f) => ({
           label: f.label,

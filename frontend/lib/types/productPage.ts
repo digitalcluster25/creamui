@@ -56,6 +56,7 @@ export type ProductPageData = {
   brandHref?: string;
   description: string;
   commerceInfo?: CommerceInfo;
+  highlights?: { value: string; label: string }[];
   facingOptions?: FacingOption[];
   variantGroups: ProductVariantGroup[];
   variantEntries?: ProductVariantEntry[];
