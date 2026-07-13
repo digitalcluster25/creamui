@@ -20,6 +20,10 @@
   padding-top: 20px;
 }
 
+.galleryMobile {
+  display: none;
+}
+
 .galleryInner {
   display: flex;
   justify-content: flex-end;
@@ -639,6 +643,15 @@
   .section {
     display: block;
     padding: 0;
+  }
+
+  .galleryDesktop {
+    display: none;
+  }
+
+  .galleryMobile {
+    display: block;
+    margin: 10px 0 32px;
   }
 
   .gallery {

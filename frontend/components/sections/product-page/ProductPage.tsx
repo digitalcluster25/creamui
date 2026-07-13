@@ -132,16 +132,9 @@ export function ProductPage({ data, contactChannels, highlights }: Props) {
     ? `https://t.me/${contactChannels.telegramUsername}?text=${encodeURIComponent(messageText)}`
     : null;
 
-  return (
-    <>
-    {data.breadcrumbs && data.breadcrumbs.length > 0 && (
-      <Breadcrumbs items={data.breadcrumbs} />
-    )}
-    <section className={styles.section}>
-      {/* ── Gallery ── */}
-      <div className={styles.gallery}>
-        <div className={styles.galleryInner}>
-        {/* Thumbs column */}
+  const galleryBlock = (
+    <div className={styles.gallery}>
+      <div className={styles.galleryInner}>
         <div className={styles.thumbs}>
           {displayedImages.map((src, i) => (
             <button
@@ -163,7 +156,6 @@ export function ProductPage({ data, contactChannels, highlights }: Props) {
           ))}
         </div>
 
-        {/* Slider */}
         <div
           className={styles.slider}
           onPointerDown={handlePointerDown}
@@ -197,11 +189,21 @@ export function ProductPage({ data, contactChannels, highlights }: Props) {
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
           </button>
         </div>
-        </div>
-        {/* ── Highlights (инфографика внутри gallery) ── */}
-        {highlights && highlights.length > 0 && (
-          <ProductHighlights highlights={highlights} />
-        )}
+      </div>
+      {highlights && highlights.length > 0 && (
+        <ProductHighlights highlights={highlights} />
+      )}
+    </div>
+  );
+
+  return (
+    <>
+    {data.breadcrumbs && data.breadcrumbs.length > 0 && (
+      <Breadcrumbs items={data.breadcrumbs} />
+    )}
+    <section className={styles.section}>
+      <div className={styles.galleryDesktop}>
+        {galleryBlock}
       </div>
 
       {/* ── Info ── */}
@@ -387,6 +389,9 @@ export function ProductPage({ data, contactChannels, highlights }: Props) {
             </div>
           </div>
         )}
+        <div className={styles.galleryMobile}>
+          {galleryBlock}
+        </div>
       </div>
     </section>
     </>
