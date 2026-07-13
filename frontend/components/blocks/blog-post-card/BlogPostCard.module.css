@@ -142,7 +142,7 @@
 
 @media (max-width: 860px) {
   .imageHolder {
-    aspect-ratio: 4 / 1;
+    aspect-ratio: 2 / 1;
   }
 
   .imageHolder img {
