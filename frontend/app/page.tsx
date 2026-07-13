@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Header } from "@/components/sections/header";
 import { Hero } from "@/components/sections/hero";
 import { Categories } from "@/components/sections/categories";
@@ -25,6 +26,23 @@ import styles from "./page.module.css";
 
 export const revalidate = 3600;
 const KNOWLEDGE_CATEGORY = "home-wood-spa";
+
+export const metadata: Metadata = {
+  title: "HWS | Печи, сауны, хаммамы и SPA-оборудование под ключ",
+  description:
+    "HWS подбирает и поставляет оборудование для бань, саун, хаммамов и SPA: печи, парогенераторы, автоматику, аксессуары, монтаж и запуск проектов.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "HWS | Премиальные бани, сауны и хаммамы под ключ",
+    description:
+      "Каталог оборудования и проектные решения для бань, саун, хаммамов и SPA: подбор, поставка, монтаж и сервис.",
+    url: "/",
+    siteName: "HWS",
+    type: "website",
+  },
+};
 
 export default async function HomePage() {
   const footerData = await getFooterData();
