@@ -1,0 +1,28 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hws-frontend
+    restart: unless-stopped
+    env_file:
+      - .env.local
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      HOSTNAME: 0.0.0.0
+    expose:
+      - "3000"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:3000/api/health >/dev/null || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.hws-frontend.entrypoints: "${TRAEFIK_ENTRYPOINTS:-websecure}"
+      traefik.http.routers.hws-frontend.rule: "Host(`${APP_HOST:-hws.shopping}`) || Host(`hwsstore.spaces.community`)"
+      traefik.http.routers.hws-frontend.tls: "true"
+      traefik.http.routers.hws-frontend.tls.certresolver: "${TRAEFIK_CERTRESOLVER:-letsencrypt}"
+      traefik.http.services.hws-frontend.loadbalancer.server.port: "3000"

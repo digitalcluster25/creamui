@@ -6,41 +6,36 @@ USER_NAME="${HWS_USER:-root}"
 PORT="${HWS_PORT:-22}"
 REMOTE_DIR="${HWS_REMOTE_DIR:-/opt/hws-frontend}"
 PM2_APP="${HWS_PM2_APP:-hws-frontend}"
-TMP_DIR="/tmp/hws-frontend-deploy"
-ARCHIVE_NAME="frontend-release.tgz"
-ARCHIVE_PATH="$TMP_DIR/$ARCHIVE_NAME"
 
 ROOT_DIR="$(cd "$(dirname "$0")/../.." && pwd)"
 cd "$ROOT_DIR"
 
-mkdir -p "$TMP_DIR"
-export COPYFILE_DISABLE=1
-tar -C frontend -czf "$ARCHIVE_PATH" \
-  --exclude='./.env.local' \
-  --exclude='./.git' \
-  --exclude='./.next' \
-  --exclude='./node_modules' \
-  --exclude='./tsconfig.tsbuildinfo' \
-  .
+ssh -p "$PORT" "$USER_NAME@$HOST" "mkdir -p '$REMOTE_DIR'"
 
-ssh -p "$PORT" "$USER_NAME@$HOST" "mkdir -p '$TMP_DIR' '$REMOTE_DIR'"
-scp -P "$PORT" "$ARCHIVE_PATH" "$USER_NAME@$HOST:$ARCHIVE_PATH"
+rsync -az --delete \
+  -e "ssh -p $PORT" \
+  --exclude '.env.local' \
+  --exclude '.git' \
+  --exclude '.next' \
+  --exclude 'node_modules' \
+  --exclude 'tsconfig.tsbuildinfo' \
+  frontend/ "$USER_NAME@$HOST:$REMOTE_DIR/"
 
 ssh -p "$PORT" "$USER_NAME@$HOST" "
   set -euo pipefail
-  workdir=\$(mktemp -d '$TMP_DIR/release-XXXXXX')
-  tar -xzf '$ARCHIVE_PATH' -C \"\$workdir\"
-  rsync -az --delete \
-    --exclude '.env.local' \
-    --exclude '.git' \
-    --exclude '.next' \
-    --exclude 'node_modules' \
-    \"\$workdir/\" '$REMOTE_DIR/'
+  python3 - <<'PY'
+from pathlib import Path
+p = Path('$REMOTE_DIR/.env.local')
+text = p.read_text() if p.exists() else ''
+lines = [line for line in text.splitlines() if not line.startswith('NEXT_PUBLIC_SITE_URL=')]
+lines.append('NEXT_PUBLIC_SITE_URL=https://hws.shopping')
+p.write_text('\\n'.join(lines).rstrip() + '\\n')
+PY
   cd '$REMOTE_DIR'
-  npm ci
-  npm run build
-  pm2 restart '$PM2_APP'
-  rm -rf \"\$workdir\" '$ARCHIVE_PATH'
+  docker compose up -d --build --remove-orphans
+  if pm2 describe '$PM2_APP' >/dev/null 2>&1; then
+    pm2 delete '$PM2_APP'
+  fi
 "
 
 printf 'Deployed frontend to %s:%s\n' "$HOST" "$REMOTE_DIR"
