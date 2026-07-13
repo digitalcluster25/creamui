@@ -40,7 +40,21 @@ jobs:
         run: ./ops/hws/deploy-frontend.sh
 
       - name: Verify homepage
+        env:
+          HWS_HOST: ${{ secrets.DEPLOY_HOST }}
+          HWS_USER: ${{ secrets.DEPLOY_USER }}
         run: |
-          curl --fail --silent --show-error \
-            --retry 5 --retry-delay 2 \
-            https://hwsstore.spaces.community/ > /dev/null
+          ssh "$HWS_USER@$HWS_HOST" '
+            set -euo pipefail
+            for i in 1 2 3 4 5 6 7 8 9 10; do
+              status=$(docker inspect -f "{{.State.Health.Status}}" hws-frontend 2>/dev/null || true)
+              if [ "$status" = "healthy" ]; then
+                docker exec hws-frontend wget -qO- http://127.0.0.1:3000/ >/dev/null
+                exit 0
+              fi
+              sleep 3
+            done
+            echo "hws-frontend did not become healthy in time" >&2
+            docker ps --format "table {{.Names}}\t{{.Status}}"
+            exit 1
+          '
