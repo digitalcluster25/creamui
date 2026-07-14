@@ -19,12 +19,12 @@ import type { CategoriesData } from "@/lib/types/categories";
 import type { BlogPostsData } from "@/lib/types/blogPosts";
 import type { ProductsData } from "@/lib/types/products";
 import { getClient } from "@/lib/wp/apollo";
-import { GET_FEATURED_PRODUCTS, GET_POSTS, GET_PRODUCT_BRANDS, GET_PRODUCT_CATEGORIES } from "@/lib/wp/queries";
+import { GET_FEATURED_PRODUCTS, GET_HOME_PRODUCTS, GET_POSTS, GET_PRODUCT_BRANDS, GET_PRODUCT_CATEGORIES, GET_SITE_TEXTS } from "@/lib/wp/queries";
 import { mapToBlogPost, mapToHomeCategoriesData, mapToHomeProductsData, type WPPostNode, type WPProductNode } from "@/lib/wp/mappers";
 import type { WPCategoryNode } from "@/lib/wp/header";
 import styles from "./page.module.css";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 const KNOWLEDGE_CATEGORY = "home-wood-spa";
 
 export const metadata: Metadata = {
@@ -59,8 +59,7 @@ export default async function HomePage() {
   try {
     const client = getClient();
 
-    // Все 4 GraphQL-запроса параллельно — вместо ~4с последовательно получаем ~1с
-    const [brandsResult, categoriesResult, featuredResult, postsResult] = await Promise.all([
+    const [brandsResult, categoriesResult, featuredResult, homeProductsResult, postsResult, textsResult] = await Promise.all([
       client.query<{
         productBrands: { nodes: { name: string; slug: string; logoUrl: string | null }[] };
       }>({ query: GET_PRODUCT_BRANDS }),
@@ -74,22 +73,39 @@ export default async function HomePage() {
         variables: { first: 50 },
       }),
       client.query<{
+        products: { nodes: WPProductNode[] };
+      }>({
+        query: GET_HOME_PRODUCTS,
+        variables: { first: 50 },
+      }),
+      client.query<{
         posts: { nodes: WPPostNode[] };
       }>({
         query: GET_POSTS,
         variables: { categoryName: KNOWLEDGE_CATEGORY, first: 4 },
       }),
+      client.query<{ hwsSiteTexts: { homeCategoriesTitle?: string | null; homeProductsTitle?: string | null; homeBlogTitle?: string | null } }>({ query: GET_SITE_TEXTS }).catch(() => null),
     ]);
+
+    const siteTexts = textsResult?.data?.hwsSiteTexts ?? {};
 
     brandLogos = (brandsResult.data?.productBrands?.nodes ?? [])
       .filter((b) => !!b.logoUrl)
       .map((b) => ({ src: b.logoUrl as string, alt: b.name }));
 
-    categoriesData = mapToHomeCategoriesData(categoriesResult.data?.productCategories?.nodes ?? []);
-    productsData = mapToHomeProductsData(featuredResult.data?.products?.nodes ?? []);
+    categoriesData = {
+      ...mapToHomeCategoriesData(categoriesResult.data?.productCategories?.nodes ?? []),
+      sectionTitle: siteTexts.homeCategoriesTitle ?? "Решения для любых задач",
+    };
+    const featuredNodes = featuredResult.data?.products?.nodes ?? [];
+    const fallbackNodes = homeProductsResult.data?.products?.nodes ?? [];
+    productsData = {
+      ...mapToHomeProductsData(featuredNodes.length > 0 ? featuredNodes : fallbackNodes),
+      title: siteTexts.homeProductsTitle ?? "Подобранная коллекция",
+    };
 
     blogPostsData = {
-      title: "База знаний",
+      title: siteTexts.homeBlogTitle ?? "База знаний",
       allHref: "/knowledge",
       posts: (postsResult.data?.posts?.nodes ?? []).map(mapToBlogPost),
     };

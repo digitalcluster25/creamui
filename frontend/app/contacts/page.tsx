@@ -7,7 +7,7 @@ import { contactsPageData } from "@/lib/data/contactsPage";
 import { getHeaderData } from "@/lib/wp/header";
 import styles from "../page.module.css";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 export default async function ContactsPage() {
   const footerData = await getFooterData();

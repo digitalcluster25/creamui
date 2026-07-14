@@ -9,24 +9,14 @@ import { GET_POST_BY_SLUG, GET_POST_SLUGS, GET_POSTS } from "@/lib/wp/queries";
 import { mapToArticlePageData, mapToBlogPost, type WPPostNode } from "@/lib/wp/mappers";
 import styles from "./page.module.css";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 const KNOWLEDGE_CATEGORY = "home-wood-spa";
 
 type Params = { slug: string };
 
 export async function generateStaticParams(): Promise<Params[]> {
-  try {
-    const client = getClient();
-    const { data } = await client.query<{ posts: { nodes: { slug: string }[] } }>({
-      query: GET_POST_SLUGS,
-      variables: { categoryName: KNOWLEDGE_CATEGORY, first: 100 },
-    });
-    return (data?.posts?.nodes ?? []).map((n) => ({ slug: n.slug }));
-  } catch (e) {
-    console.error("WP GraphQL error (generateStaticParams knowledge):", e);
-    return [];
-  }
+  return [];
 }
 
 export default async function KnowledgeArticlePage({

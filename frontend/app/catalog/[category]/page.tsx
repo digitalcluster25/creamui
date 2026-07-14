@@ -17,7 +17,7 @@ import { fetchProductsByCategory } from "@/lib/wp/products";
 import { getProductBrands, getProductCategoriesTree, getProductCategoryBySlug, type WPBrandNode } from "@/lib/wp/catalog-taxonomy";
 import styles from "../page.module.css";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 type Params = { category: string };
 
@@ -85,13 +85,7 @@ export async function generateMetadata({
 // только среди верхнего уровня, поэтому все подкатегории отдавали 404 —
 // разворачиваем дерево в плоский список перед поиском/генерацией путей.
 export async function generateStaticParams(): Promise<Params[]> {
-  try {
-    const all = flattenCategories(await getProductCategoriesTree());
-    return all.map((c) => ({ category: c.slug }));
-  } catch (e) {
-    console.error("WP GraphQL error (generateStaticParams category):", e);
-    return [];
-  }
+  return [];
 }
 
 export default async function CatalogCategoryPage({

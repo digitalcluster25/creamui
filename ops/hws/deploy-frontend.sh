@@ -29,6 +29,8 @@ p = Path('$REMOTE_DIR/.env.local')
 text = p.read_text() if p.exists() else ''
 lines = [line for line in text.splitlines() if not line.startswith('NEXT_PUBLIC_SITE_URL=')]
 lines.append('NEXT_PUBLIC_SITE_URL=https://hws.shopping')
+lines = [line for line in lines if not line.startswith('NEXT_PUBLIC_WP_GRAPHQL_URL=')]
+lines.append('NEXT_PUBLIC_WP_GRAPHQL_URL=http://wordpress/graphql')
 p.write_text('\\n'.join(lines).rstrip() + '\\n')
 PY
   cd '$REMOTE_DIR'

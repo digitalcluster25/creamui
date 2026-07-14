@@ -9,13 +9,14 @@ import { Breadcrumbs } from "@/components/primitives/breadcrumbs/Breadcrumbs";
 import { getFooterData } from "@/lib/wp/footer";
 import { flattenCategories, getHeaderData, type WPCategoryNode, type WPCategoryChildNode } from "@/lib/wp/header";
 import { getClient } from "@/lib/wp/apollo";
+import { GET_SITE_TEXTS } from "@/lib/wp/queries";
 import { mapToCatalogProduct, type WPProductNode } from "@/lib/wp/mappers";
 import type { CategoriesData } from "@/lib/types/categories";
 import { fetchProductsByBrand } from "@/lib/wp/products";
 import { getProductBrands, getProductCategoriesTree } from "@/lib/wp/catalog-taxonomy";
 import styles from "../../page.module.css";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 const BRAND_PREVIEW_LIMIT = 8;
 
 type Params = { slug: string };
@@ -113,12 +114,7 @@ function buildBrandCategoryCards(
 }
 
 export async function generateStaticParams(): Promise<Params[]> {
-  try {
-    return (await getProductBrands()).map((brand) => ({ slug: brand.slug }));
-  } catch (e) {
-    console.error("WP GraphQL error (generateStaticParams brands):", e);
-    return [];
-  }
+  return [];
 }
 
 export async function generateMetadata({
@@ -169,11 +165,16 @@ export default async function BrandPage({
   if (!brand) notFound();
 
   const client = getClient();
-  const brandProducts = await fetchProductsByBrand(client, slug);
+  const [brandProducts, textsResult] = await Promise.all([
+    fetchProductsByBrand(client, slug),
+    client.query<{ hwsSiteTexts: { brandCategoriesTitle?: string | null } }>({ query: GET_SITE_TEXTS }).catch(() => null),
+  ]);
   if (brandProducts.length === 0) notFound();
 
   const flatCategories = flattenCategories(categoryTree);
-  const overviewCategories = buildBrandCategoryCards(brandProducts, flatCategories);
+  const brandCategoriesTitle = textsResult?.data?.hwsSiteTexts?.brandCategoriesTitle ?? "Ключевые разделы бренда";
+  const overviewCategoriesRaw = buildBrandCategoryCards(brandProducts, flatCategories);
+  const overviewCategories = overviewCategoriesRaw ? { ...overviewCategoriesRaw, sectionTitle: brandCategoriesTitle } : null;
   const uniqueCategoryNames = overviewCategories?.items.map((item) => item.title) ?? [];
 
   const headerData = await getHeaderData();

@@ -8,7 +8,7 @@ import { getClient } from "@/lib/wp/apollo";
 import { GET_WP_PAGE } from "@/lib/wp/queries";
 import styles from "./page.module.css";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 type Params = { slug: string };
 

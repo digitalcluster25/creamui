@@ -9,7 +9,7 @@ import { getClient } from "@/lib/wp/apollo";
 import { GET_PRODUCT_BRANDS } from "@/lib/wp/queries";
 import styles from "../page.module.css";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Бренды HWS",

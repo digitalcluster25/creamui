@@ -20,7 +20,7 @@ import { productSpecsData as mockProductSpecsData } from "@/lib/data/productSpec
 import { getProductOverride } from "@/lib/data/productOverrides";
 import styles from "./page.module.css";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 type Params = { slug: string };
 
@@ -95,12 +95,7 @@ export async function generateMetadata({
 // Товары, добавленные позже, всё равно откроются — Next.js дособерёт страницу
 // по требованию благодаря `revalidate` (ISR fallback), просто не в первой сборке.
 export async function generateStaticParams(): Promise<Params[]> {
-  try {
-    return (await getProductSlugsCached()).map((n) => ({ slug: n.slug }));
-  } catch (e) {
-    console.error("WP GraphQL error (generateStaticParams product):", e);
-    return [];
-  }
+  return [];
 }
 
 export default async function ProductPageRoute({

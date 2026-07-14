@@ -575,6 +575,81 @@ export const GET_FEATURED_PRODUCTS = gql`
   }
 `;
 
+export const GET_HOME_PRODUCTS = gql`
+  query GetHomeProducts($first: Int = 12) {
+    products(first: $first, where: { status: "publish" }) {
+      nodes {
+        databaseId
+        name
+        slug
+        ... on Product {
+          date
+        }
+        ... on SimpleProduct {
+          hwsPriceOnRequest
+          price
+          regularPrice
+          salePrice
+          image {
+            sourceUrl
+            altText
+            hwsOptimizedUrl
+          }
+          galleryImages {
+            nodes {
+              sourceUrl
+              altText
+              hwsOptimizedUrl
+            }
+          }
+          productCategories {
+            nodes {
+              name
+              slug
+            }
+          }
+          hwsFacingOptions {
+            label
+            iconUrl
+            slug
+            isActive
+          }
+        }
+        ... on VariableProduct {
+          hwsPriceOnRequest
+          price
+          regularPrice
+          salePrice
+          image {
+            sourceUrl
+            altText
+            hwsOptimizedUrl
+          }
+          galleryImages {
+            nodes {
+              sourceUrl
+              altText
+              hwsOptimizedUrl
+            }
+          }
+          productCategories {
+            nodes {
+              name
+              slug
+            }
+          }
+          hwsFacingOptions {
+            label
+            iconUrl
+            slug
+            isActive
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const GET_PRODUCT_SLUGS = gql`
   query GetProductSlugs($first: Int = 1000) {
     products(first: $first, where: { status: "publish" }) {

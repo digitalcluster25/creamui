@@ -26,3 +26,10 @@ services:
       traefik.http.routers.hws-frontend.tls: "true"
       traefik.http.routers.hws-frontend.tls.certresolver: "${TRAEFIK_CERTRESOLVER:-letsencrypt}"
       traefik.http.services.hws-frontend.loadbalancer.server.port: "3000"
+    networks:
+      - default
+      - wpsandbox_internal
+
+networks:
+  wpsandbox_internal:
+    external: true
