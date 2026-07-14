@@ -3,6 +3,14 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   output: "standalone",
+  async rewrites() {
+    return [
+      {
+        source: "/wp-content/uploads/:path*",
+        destination: "http://wordpress/wp-content/uploads/:path*",
+      },
+    ];
+  },
   turbopack: {
     root: __dirname,
   },

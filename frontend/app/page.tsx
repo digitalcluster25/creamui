@@ -22,6 +22,7 @@ import { getClient } from "@/lib/wp/apollo";
 import { GET_FEATURED_PRODUCTS, GET_HOME_PRODUCTS, GET_POSTS, GET_PRODUCT_BRANDS, GET_PRODUCT_CATEGORIES, GET_SITE_TEXTS } from "@/lib/wp/queries";
 import { mapToBlogPost, mapToHomeCategoriesData, mapToHomeProductsData, type WPPostNode, type WPProductNode } from "@/lib/wp/mappers";
 import type { WPCategoryNode } from "@/lib/wp/header";
+import { normalizeWpMediaUrl } from "@/lib/wp/media";
 import styles from "./page.module.css";
 
 export const dynamic = "force-dynamic";
@@ -91,7 +92,7 @@ export default async function HomePage() {
 
     brandLogos = (brandsResult.data?.productBrands?.nodes ?? [])
       .filter((b) => !!b.logoUrl)
-      .map((b) => ({ src: b.logoUrl as string, alt: b.name }));
+      .map((b) => ({ src: normalizeWpMediaUrl(b.logoUrl) ?? (b.logoUrl as string), alt: b.name }));
 
     categoriesData = {
       ...mapToHomeCategoriesData(categoriesResult.data?.productCategories?.nodes ?? []),

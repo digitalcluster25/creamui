@@ -14,6 +14,7 @@ import { mapToCatalogProduct, type WPProductNode } from "@/lib/wp/mappers";
 import type { CategoriesData } from "@/lib/types/categories";
 import { fetchProductsByBrand } from "@/lib/wp/products";
 import { getProductBrands, getProductCategoriesTree } from "@/lib/wp/catalog-taxonomy";
+import { normalizeWpMediaUrl } from "@/lib/wp/media";
 import styles from "../../page.module.css";
 
 export const dynamic = "force-dynamic";
@@ -91,7 +92,7 @@ function buildBrandCategoryCards(
 
       return {
         id: String(category.databaseId),
-        imageSrc: category.image?.sourceUrl ?? CATEGORY_FALLBACK_IMAGES[slug] ?? "/assets/sauna.png",
+        imageSrc: normalizeWpMediaUrl(category.image?.sourceUrl) ?? CATEGORY_FALLBACK_IMAGES[slug] ?? "/assets/sauna.png",
         imageAlt: category.image?.altText?.trim() || category.name,
         href: `/catalog/${slug}`,
         subtitle: `${count} товаров ${count === 1 ? "бренда" : "бренда"}`,

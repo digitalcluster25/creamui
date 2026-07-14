@@ -7,6 +7,7 @@ import type { ProductsData } from "@/lib/types/products";
 import type { CurrencyCode } from "@/lib/currency/format";
 import { htmlToPlainText } from "@/lib/content/plainText";
 import type { WPCategoryNode } from "@/lib/wp/header";
+import { normalizeWpMediaUrl } from "@/lib/wp/media";
 
 // Форма, которую реально отдаёт WooGraphQL (проверено на живом эндпоинте wpsandbox)
 export type WPProductNode = {
@@ -164,7 +165,7 @@ function mapProductAttributes(
 function resolveMediaUrl(
   media?: { sourceUrl?: string | null; hwsOptimizedUrl?: string | null } | null,
 ): string | undefined {
-  return media?.hwsOptimizedUrl ?? media?.sourceUrl ?? undefined;
+  return normalizeWpMediaUrl(media?.hwsOptimizedUrl) ?? normalizeWpMediaUrl(media?.sourceUrl) ?? undefined;
 }
 
 // Фильтр/сортировка/пагинация теперь полностью клиентские (Catalog.tsx) —
@@ -224,14 +225,14 @@ export function mapToHomeCategoriesData(nodes: WPCategoryNode[]): CategoriesData
   const bySlug = new Map(nodes.map((node) => [node.slug, node]));
 
   const resolveCategoryImageSrc = (node: WPCategoryNode): string => {
-    if (node.hwsImageUrl) return node.hwsImageUrl;
-    if (node.image?.sourceUrl) return node.image.sourceUrl;
+    if (node.hwsImageUrl) return normalizeWpMediaUrl(node.hwsImageUrl) ?? node.hwsImageUrl;
+    if (node.image?.sourceUrl) return normalizeWpMediaUrl(node.image.sourceUrl) ?? node.image.sourceUrl;
 
     const childWithImage = (node.children?.nodes ?? []).find(
       (child) => Boolean(child.hwsImageUrl ?? child.image?.sourceUrl),
     );
 
-    return childWithImage?.hwsImageUrl ?? childWithImage?.image?.sourceUrl ?? "";
+    return normalizeWpMediaUrl(childWithImage?.hwsImageUrl) ?? normalizeWpMediaUrl(childWithImage?.image?.sourceUrl) ?? "";
   };
 
   const items = HOME_CATEGORY_ORDER
@@ -286,14 +287,14 @@ export function mapToCategoryCardsData(
   sectionTitle: string,
 ): CategoriesData {
   const resolveCategoryImageSrc = (node: CategoryLikeNode): string => {
-    if (node.hwsImageUrl) return node.hwsImageUrl;
-    if (node.image?.sourceUrl) return node.image.sourceUrl;
+    if (node.hwsImageUrl) return normalizeWpMediaUrl(node.hwsImageUrl) ?? node.hwsImageUrl;
+    if (node.image?.sourceUrl) return normalizeWpMediaUrl(node.image.sourceUrl) ?? node.image.sourceUrl;
 
     const childWithImage = (node.children?.nodes ?? []).find(
       (child) => Boolean(child.hwsImageUrl ?? child.image?.sourceUrl),
     );
 
-    return childWithImage?.hwsImageUrl ?? childWithImage?.image?.sourceUrl ?? "";
+    return normalizeWpMediaUrl(childWithImage?.hwsImageUrl) ?? normalizeWpMediaUrl(childWithImage?.image?.sourceUrl) ?? "";
   };
 
   return {
@@ -568,7 +569,7 @@ function formatRuDate(iso: string): string {
 export function mapToBlogPost(node: WPPostNode): BlogPost {
   return {
     id: node.databaseId,
-    image: node.featuredImage?.node?.sourceUrl ?? "",
+    image: normalizeWpMediaUrl(node.featuredImage?.node?.sourceUrl) ?? "",
     title: node.title,
     href: `/knowledge/${node.slug}`,
     readTime: estimateReadTime(node),
@@ -595,7 +596,7 @@ export function mapToArticlePageData(node: WPPostNode): ArticlePageData {
   const category = node.categories?.nodes?.[0];
   return {
     title: node.title,
-    image: node.featuredImage?.node?.sourceUrl ?? undefined,
+    image: normalizeWpMediaUrl(node.featuredImage?.node?.sourceUrl) ?? undefined,
     author: node.author?.node?.nickname ?? node.author?.node?.name ?? "HWS",
     authorAvatar: node.author?.node?.avatar?.url ?? undefined,
     date: formatRuDate(node.date),
