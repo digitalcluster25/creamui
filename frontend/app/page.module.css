@@ -7,7 +7,7 @@
 }
 
 .sectionFooter {
-  padding: 0 clamp(16px, 1.5vw, 28px) 64px;
+  padding: 0 clamp(16px, 1.5vw, 28px);
 }
 
 @media (max-width: 860px) {
