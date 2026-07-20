@@ -8,6 +8,7 @@
     "frontend:build": "npm --prefix frontend run build",
     "frontend:start": "npm --prefix frontend run start",
     "uikit:serve": "python3 -m http.server 4173 -d UIkit",
+    "test:e2e": "playwright test",
     "hws:backup": "./ops/hws/backup-frontend.sh",
     "hws:deploy": "./ops/hws/deploy-frontend.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -24,6 +25,7 @@
   },
   "homepage": "https://github.com/digitalcluster25/creamui#readme",
   "devDependencies": {
+    "@playwright/test": "^1.60.0",
     "playwright": "^1.60.0"
   }
 }

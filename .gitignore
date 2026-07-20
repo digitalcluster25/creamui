@@ -2,6 +2,7 @@ node_modules
 .DS_Store
 .codegraph/daemon.pid
 frontend/tsconfig.tsbuildinfo
+test-results/
 .claude/worktrees/
 .codex-*.png
 backups/
