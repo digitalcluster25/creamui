@@ -41,7 +41,7 @@ function PlusIcon() {
 
 export function Header({ data, hideBurgerOnDesktop, hideActionsOnDesktop }: HeaderProps) {
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
-  const [isCatalogOpen, setIsCatalogOpen] = useState(false);
+  const [openSubmenuId, setOpenSubmenuId] = useState<string | null>(null);
 
   useEffect(() => {
     document.body.style.overflow = isOverlayOpen ? "hidden" : "";
@@ -106,7 +106,9 @@ export function Header({ data, hideBurgerOnDesktop, hideActionsOnDesktop }: Head
             <ul className={styles.overlayList}>
               {data.primaryNav.map((item) => {
                 const isCatalog = item.id === catalogItem?.id;
-                const isActive = isCatalog && isCatalogOpen;
+                const submenuItems = item.children ?? (isCatalog ? item.megaMenu : undefined);
+                const hasSubmenu = Boolean(submenuItems?.length);
+                const isActive = hasSubmenu && openSubmenuId === item.id;
 
                 return (
                   <li key={item.id} className={styles.overlayItem}>
@@ -114,17 +116,17 @@ export function Header({ data, hideBurgerOnDesktop, hideActionsOnDesktop }: Head
                       href={item.href}
                       className={`${styles.overlayLink} ${isActive ? styles.overlayLinkActive : ""}`}
                       onClick={(event) => {
-                        if (!isCatalog) {
+                        if (!hasSubmenu) {
                           setIsOverlayOpen(false);
                           return;
                         }
 
                         event.preventDefault();
-                        setIsCatalogOpen((current) => !current);
+                        setOpenSubmenuId((current) => (current === item.id ? null : item.id));
                       }}
                     >
                       <span>{item.label}</span>
-                      {isCatalog ? (
+                      {hasSubmenu ? (
                         <span
                           className={`${styles.overlayPlus} ${isActive ? styles.overlayPlusActive : ""}`}
                           aria-hidden="true"
@@ -134,15 +136,15 @@ export function Header({ data, hideBurgerOnDesktop, hideActionsOnDesktop }: Head
                       ) : null}
                     </a>
 
-                    {isCatalog ? (
+                    {hasSubmenu ? (
                       <ul
                         className={`${styles.overlaySubmenu} ${
-                          isCatalogOpen ? styles.overlaySubmenuOpen : ""
+                          isActive ? styles.overlaySubmenuOpen : ""
                         }`}
                       >
-                        {item.megaMenu?.map((megaItem) => (
-                          <li key={megaItem.id}>
-                            <a href={megaItem.href}>{megaItem.label}</a>
+                        {submenuItems?.map((submenuItem) => (
+                          <li key={submenuItem.id}>
+                            <a href={submenuItem.href}>{submenuItem.label}</a>
                           </li>
                         ))}
                       </ul>

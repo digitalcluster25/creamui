@@ -12,6 +12,7 @@ export async function POST(request: NextRequest) {
   }
 
   revalidatePath("/");
+  revalidatePath("/", "layout");
   revalidatePath("/catalog");
   revalidatePath("/catalog/[category]", "page");
   revalidatePath("/brands/[slug]", "page");

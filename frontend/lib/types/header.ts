@@ -17,6 +17,7 @@ export type HeaderNavItem = {
   label: string;
   href: string;
   megaMenu?: HeaderCatalogItem[];
+  children?: HeaderNavItem[];
 };
 
 export type HeaderCurrency = {

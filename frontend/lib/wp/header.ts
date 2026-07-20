@@ -1,7 +1,9 @@
 import { cache } from "react";
+import { gql } from "@apollo/client";
 import { headerMock } from "@/lib/mocks/header";
-import type { HeaderData, HeaderCatalogItem } from "@/lib/types/header";
+import type { HeaderData, HeaderCatalogItem, HeaderNavItem } from "@/lib/types/header";
 import { getProductCategoriesTree } from "@/lib/wp/catalog-taxonomy";
+import { getClient } from "@/lib/wp/apollo";
 
 export type WPCategoryNode = {
   databaseId: number;
@@ -39,6 +41,43 @@ const CATEGORY_ICONS: Record<string, string> = {
 };
 const DEFAULT_ICON = "/assets/sauna.png";
 
+const GET_HEADER_MENU = gql`
+  query GetHeaderMenu {
+    menus(first: 50) {
+      nodes {
+        locations
+        menuItems(first: 100) {
+          nodes { id label url parentId }
+        }
+      }
+    }
+  }
+`;
+
+type WPMenuItem = { id: string; label: string; url: string; parentId?: string | null };
+type WPMenuNode = { locations: string[]; menuItems: { nodes: WPMenuItem[] } };
+
+function normalizeHref(url: string): string {
+  let path = url.replace("https://wpsandbox.spaces.community", "") || "/";
+  path = path.replace(/^\/product-category\/([^/]+)\/?$/, "/catalog/$1");
+  path = path.replace(/\/$/, "") || "/";
+  return path;
+}
+
+function toNavItems(items: WPMenuItem[], parentId: string | null = null): HeaderNavItem[] {
+  return items
+    .filter((item) => (item.parentId ?? null) === parentId)
+    .map((item) => {
+      const children = toNavItems(items, item.id);
+      return {
+        id: item.id,
+        label: item.label,
+        href: normalizeHref(item.url),
+        ...(children.length ? { children } : {}),
+      };
+    });
+}
+
 export const HEADER_CATEGORY_ORDER = [
   "russian-bath-stoves",
   "sauna-stoves",
@@ -61,6 +100,13 @@ export function flattenCategories(
 
 const getHeaderDataCached = cache(async (): Promise<HeaderData> => {
   try {
+    const menuResult = await getClient({ noStore: true }).query<{ menus: { nodes: WPMenuNode[] } }>({
+      query: GET_HEADER_MENU,
+    });
+    const mainMenu = menuResult.data?.menus.nodes.find((menu) =>
+      menu.locations.some((location) => ["MENU_1", "PRIMARY", "PRIMARY_MENU"].includes(location)),
+    );
+
     const parents = await getProductCategoriesTree();
     const bySlug = new Map(parents.map((node) => [node.slug, node]));
 
@@ -77,22 +123,22 @@ const getHeaderDataCached = cache(async (): Promise<HeaderData> => {
         iconSrc: CATEGORY_ICONS[node.slug] ?? DEFAULT_ICON,
       }));
 
-    if (!megaMenu.length) {
+    if (!megaMenu.length && !mainMenu) {
       return { ...headerMock, brandHref: "/" };
     }
+
+    const primaryNav = mainMenu
+      ? toNavItems(mainMenu.menuItems.nodes).map((item) =>
+          item.href === "/catalog"
+            ? { ...item, megaMenu }
+            : item,
+        )
+      : headerMock.primaryNav;
 
     return {
       ...headerMock,
       brandHref: "/",
-      primaryNav: headerMock.primaryNav.map((item) =>
-        item.id === "catalog"
-          ? { ...item, href: "/catalog", megaMenu }
-          : item.id === "brands"
-            ? { ...item, href: "/brands" }
-            : item.id === "contacts"
-              ? { ...item, href: "/contacts" }
-            : item,
-      ),
+      primaryNav,
     };
   } catch (e) {
     console.error("WP GraphQL error (header categories):", e);

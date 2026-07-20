@@ -100,6 +100,24 @@ function NavItemWithMegaMenu({ item }: NavItemWithMegaMenuProps) {
   );
 }
 
+function NavItemWithSubmenu({ item }: NavItemWithMegaMenuProps) {
+  return (
+    <li className={styles.mainNavItem}>
+      <a href={item.href} className={styles.mainNavLink}>
+        <span>{item.label}</span>
+        <span className={styles.mainNavChevron}><ChevronIcon /></span>
+      </a>
+      <ul className={styles.simpleSubmenu}>
+        {item.children?.map((child) => (
+          <li key={child.id} className={styles.simpleSubmenuItem}>
+            <a href={child.href} className={styles.simpleSubmenuLink}>{child.label}</a>
+          </li>
+        ))}
+      </ul>
+    </li>
+  );
+}
+
 export function MainNav({ items }: MainNavProps) {
   return (
     <nav className={styles.mainNav} aria-label="Навигация HWS">
@@ -107,6 +125,9 @@ export function MainNav({ items }: MainNavProps) {
         {items.map((item) => {
           if (item.megaMenu?.length) {
             return <NavItemWithMegaMenu key={item.id} item={item} />;
+          }
+          if (item.children?.length) {
+            return <NavItemWithSubmenu key={item.id} item={item} />;
           }
 
           return (

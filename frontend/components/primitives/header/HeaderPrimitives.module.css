@@ -281,6 +281,45 @@
   line-height: 1;
 }
 
+.simpleSubmenu {
+  position: absolute;
+  top: 44px;
+  left: 0;
+  z-index: 20;
+  min-width: 220px;
+  margin: 0;
+  padding: 8px;
+  list-style: none;
+  background: var(--color-white);
+  border-radius: 18px;
+  box-shadow: 0 20px 32px -8px rgba(17, 16, 19, 0.15), 0 0 1px rgba(17, 16, 19, 0.05);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: transform var(--transition-base), opacity var(--transition-base), visibility var(--transition-base);
+}
+
+.mainNavItem:hover .simpleSubmenu,
+.mainNavItem:focus-within .simpleSubmenu {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.simpleSubmenuLink {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: rgba(40, 40, 40, 0.85);
+  font-size: 15px;
+}
+
+.simpleSubmenuLink:hover,
+.simpleSubmenuLink:focus-visible {
+  background: rgba(136, 136, 137, 0.05);
+  outline: none;
+}
+
 .currencySwitcher {
   position: relative;
   display: inline-flex;

@@ -52,6 +52,13 @@ function hws_graphql_bridge_schedule_frontend_revalidate( $term_id = 0 ): void {
 	);
 }
 
+function hws_graphql_bridge_schedule_menu_revalidate(): void {
+	hws_graphql_bridge_trigger_frontend_revalidate();
+}
+
 add_action( 'created_product_cat', 'hws_graphql_bridge_schedule_frontend_revalidate', 20, 1 );
 add_action( 'edited_product_cat', 'hws_graphql_bridge_schedule_frontend_revalidate', 20, 1 );
 add_action( 'delete_product_cat', 'hws_graphql_bridge_schedule_frontend_revalidate', 20, 1 );
+add_action( 'wp_update_nav_menu', 'hws_graphql_bridge_schedule_menu_revalidate', 20 );
+add_action( 'wp_update_nav_menu_item', 'hws_graphql_bridge_schedule_menu_revalidate', 20 );
+add_action( 'wp_delete_nav_menu', 'hws_graphql_bridge_schedule_menu_revalidate', 20 );
