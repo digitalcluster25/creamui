@@ -43,9 +43,13 @@ export const footerMock: FooterData = {
   contactColumn: {
     id: "contacts",
     title: "Контакты",
-    phone: "8 800 200-00-00",
-    schedule: ["Понедельник - пятница", "10:00 - 19:00"],
-    email: "sales@wpsandbox.spaces.community",
+    phone: "+994 50 859 98 67",
+    schedule: [
+      "Понедельник - пятница",
+      "10:00 - 19:00 (Узбекистан, UTC+5)",
+      "10:00 - 19:00 (Азербайджан, UTC+4)",
+    ],
+    email: "office@hws.shopping",
   },
   copyright: "© 2016-2026 HWS. Все права защищены",
   legalLinks: [
