@@ -25,16 +25,16 @@
   padding: 24px;
 }
 
-.menuHeading {
+.cardMenu .menuHeading {
   color: var(--color-text-main);
 }
 
-.menuTag {
+.cardMenu .menuTag {
   background: var(--color-surface-pill);
   color: var(--color-text-main);
 }
 
-.menuTag:hover {
+.cardMenu .menuTag:hover {
   background: var(--color-surface-soft);
 }
 
