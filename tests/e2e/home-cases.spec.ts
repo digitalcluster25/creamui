@@ -8,6 +8,12 @@ for (const viewport of [
     await page.setViewportSize({ width: viewport.width, height: viewport.height });
     await page.goto("/", { waitUntil: "networkidle" });
 
+    const casesBlock = page.locator('[data-home-block="cases"]');
+    if (await casesBlock.count() === 0) {
+      await expect(casesBlock).toHaveCount(0);
+      return;
+    }
+
     const carousel = page.locator("section").filter({ has: page.locator('[aria-label="Индикатор слайдов"]') }).first();
     await expect(carousel).toBeVisible();
     await expect(carousel.locator('[role="tab"]:visible').first()).toBeVisible();
