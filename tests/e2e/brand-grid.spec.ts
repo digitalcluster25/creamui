@@ -12,6 +12,22 @@ test.describe("brand category grid", () => {
       .toBe(4);
   });
 
+  test("keeps the product grid aligned with the brand content grid", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto("/brands/eos", { waitUntil: "networkidle" });
+
+    const categoryGrid = page.locator('[class*="gridCatalog"]');
+    const productGrid = page.getByTestId("catalog-preview-grid");
+    await expect(categoryGrid).toHaveCount(1);
+    await expect(productGrid).toHaveCount(1);
+
+    const bounds = await Promise.all([categoryGrid.boundingBox(), productGrid.boundingBox()]);
+    expect(bounds[0]).not.toBeNull();
+    expect(bounds[1]).not.toBeNull();
+    expect(Math.abs(bounds[0]!.x - bounds[1]!.x)).toBeLessThanOrEqual(1);
+    expect(Math.abs((bounds[0]!.x + bounds[0]!.width) - (bounds[1]!.x + bounds[1]!.width))).toBeLessThanOrEqual(1);
+  });
+
   test("collapses without horizontal overflow on mobile", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/brands/eos", { waitUntil: "networkidle" });

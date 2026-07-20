@@ -1,6 +1,10 @@
 .section {
   display: grid;
   gap: 20px;
+  width: 100%;
+  max-width: 1366px;
+  min-width: 0;
+  margin-inline: auto;
 }
 
 /* Filter bar */
@@ -240,6 +244,8 @@
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 24px;
+  width: 100%;
+  min-width: 0;
 }
 
 @media (max-width: 1200px) {

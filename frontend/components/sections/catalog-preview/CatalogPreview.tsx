@@ -339,7 +339,7 @@ export function CatalogPreview({ total, products, filters, subcategoryLabel, bra
         </div>
       )}
 
-      <div className={styles.grid}>
+      <div className={styles.grid} data-testid="catalog-preview-grid">
         {paged.map((product) => (
           <CatalogProductCard
             key={product.id}
