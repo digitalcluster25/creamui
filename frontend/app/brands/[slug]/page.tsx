@@ -194,7 +194,12 @@ export default async function BrandPage({
         ]}
       />
       <div className={styles.section}>
-        <CatalogOverview title={brand.name} lead={lead} categories={overviewCategories} />
+        <CatalogOverview
+          title={brand.name}
+          lead={lead}
+          categories={overviewCategories}
+          categoryCardVariant="menu"
+        />
         <CatalogPreview
           total={brandProducts.length}
           products={previewProducts}

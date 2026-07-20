@@ -1,13 +1,15 @@
 import { CategoryCard } from "@/components/blocks/category-card";
+import type { CategoryCardProps } from "@/components/blocks/category-card";
 import type { CategoriesData } from "@/lib/types/categories";
 import styles from "./Categories.module.css";
 
 type Props = {
   data: CategoriesData;
   variant?: "default" | "catalog";
+  cardVariant?: CategoryCardProps["variant"];
 };
 
-export function Categories({ data, variant = "default" }: Props) {
+export function Categories({ data, variant = "default", cardVariant = "image" }: Props) {
   const { sectionTitle, items } = data;
 
   return (
@@ -31,6 +33,7 @@ export function Categories({ data, variant = "default" }: Props) {
               imageLoading={index < 4 ? "eager" : "lazy"}
               imageFetchPriority={index < 2 ? "high" : "auto"}
               imagePriority={index < 2}
+              variant={cardVariant}
             />
           ))}
         </div>

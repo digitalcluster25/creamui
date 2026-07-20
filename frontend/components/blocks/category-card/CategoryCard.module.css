@@ -12,6 +12,32 @@
   position: relative;
 }
 
+.cardMenu {
+  display: flex;
+  height: 100%;
+  border-radius: 14px;
+  background: var(--color-surface-nav);
+}
+
+.menuContent {
+  flex: 1;
+  height: 100%;
+  padding: 24px;
+}
+
+.menuHeading {
+  color: var(--color-text-main);
+}
+
+.menuTag {
+  background: var(--color-surface-pill);
+  color: var(--color-text-main);
+}
+
+.menuTag:hover {
+  background: var(--color-surface-soft);
+}
+
 /* ── Image holder (figure) ───────────────────────────── */
 .imageHolder {
   overflow: hidden;

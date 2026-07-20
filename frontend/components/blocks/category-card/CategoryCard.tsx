@@ -25,6 +25,8 @@ export type CategoryCardProps = {
   imageFetchPriority?: "high" | "low" | "auto";
   /** Next image priority for the very first cards */
   imagePriority?: boolean;
+  /** Visual treatment for catalog navigation cards */
+  variant?: "image" | "menu";
 };
 
 /**
@@ -49,8 +51,30 @@ export function CategoryCard({
   imageLoading = "lazy",
   imageFetchPriority = "auto",
   imagePriority = false,
+  variant = "image",
 }: CategoryCardProps) {
   const normalizedImage = normalizeImageSrc(image);
+
+  if (variant === "menu") {
+    return (
+      <div className={`${styles.card} ${styles.cardMenu}`}>
+        <div className={styles.menuContent}>
+          <h4 className={`${styles.heading} ${styles.menuHeading}`}>
+            <a href={href}>{title}</a>
+          </h4>
+          {tags.length > 0 && (
+            <div className={styles.categoryHolder}>
+              {tags.map((tag, i) => (
+                <a key={i} className={`${styles.tag} ${styles.menuTag}`} href={tag.href ?? "#"}>
+                  {tag.label}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.card}>

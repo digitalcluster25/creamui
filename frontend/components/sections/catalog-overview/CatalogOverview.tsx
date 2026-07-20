@@ -6,9 +6,10 @@ type Props = {
   title: string;
   lead?: string;
   categories?: CategoriesData | null;
+  categoryCardVariant?: "image" | "menu";
 };
 
-export function CatalogOverview({ title, lead, categories }: Props) {
+export function CatalogOverview({ title, lead, categories, categoryCardVariant = "image" }: Props) {
   return (
     <section className={styles.section}>
       <div className={styles.intro}>
@@ -16,7 +17,7 @@ export function CatalogOverview({ title, lead, categories }: Props) {
       </div>
       {categories && categories.items.length > 0 && (
         <div className={styles.categories}>
-          <Categories data={categories} variant="catalog" />
+          <Categories data={categories} variant="catalog" cardVariant={categoryCardVariant} />
         </div>
       )}
     </section>
