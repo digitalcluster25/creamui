@@ -84,16 +84,16 @@ function hws_slugify_meta( string $value ): string {
 
 function hws_category_chain_ids( string $path ): array {
 	$slugs = array_values( array_filter( explode( '/', $path ) ) );
-	$ids   = [];
-	foreach ( $slugs as $slug ) {
-		$term = get_term_by( 'slug', $slug, 'product_cat' );
-		if ( ! $term || is_wp_error( $term ) ) {
-			hws_import_warn( 'Missing product_cat slug: ' . $slug );
-			continue;
-		}
-		$ids[] = (int) $term->term_id;
+	$root_slug = $slugs[0] ?? '';
+	if ( '' === $root_slug ) {
+		return [];
 	}
-	return array_values( array_unique( $ids ) ) ;
+	$term = get_term_by( 'slug', $root_slug, 'product_cat' );
+	if ( ! $term || is_wp_error( $term ) ) {
+		hws_import_warn( 'Missing top-level product_cat slug: ' . $root_slug );
+		return [];
+	}
+	return [ (int) $term->term_id ];
 }
 
 function hws_find_existing_product_id( string $sku, string $slug ): int {
