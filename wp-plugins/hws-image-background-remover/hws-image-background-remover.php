@@ -323,7 +323,7 @@ final class HWS_Image_Background_Remover {
 		}
 
 		$temp = trailingslashit( dirname( $source ) ) . '.hws-ibr-' . $attachment_id . '-' . wp_generate_password( 10, false, false ) . '.png';
-		$command = 'U2NET_HOME=/opt/hws-rembg/models timeout 240s ' . escapeshellarg( $binary ) . ' i ' . escapeshellarg( $source ) . ' ' . escapeshellarg( $temp );
+		$command = 'NUMBA_DISABLE_JIT=1 U2NET_HOME=/opt/hws-rembg/models timeout 240s ' . escapeshellarg( $binary ) . ' i ' . escapeshellarg( $source ) . ' ' . escapeshellarg( $temp );
 		$output  = [];
 		$code    = 0;
 		exec( $command . ' 2>&1', $output, $code );
