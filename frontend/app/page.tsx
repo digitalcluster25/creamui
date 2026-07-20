@@ -18,6 +18,7 @@ import { contactFormData } from "@/lib/data/contactForm";
 import type { CategoriesData } from "@/lib/types/categories";
 import type { BlogPostsData } from "@/lib/types/blogPosts";
 import type { ProductsData } from "@/lib/types/products";
+import type { CasesData } from "@/lib/types/cases";
 import { getClient } from "@/lib/wp/apollo";
 import { GET_FEATURED_PRODUCTS, GET_HOME_PRODUCTS, GET_POSTS, GET_PRODUCT_BRANDS, GET_PRODUCT_CATEGORIES, GET_SITE_TEXTS } from "@/lib/wp/queries";
 import { mapToBlogPost, mapToHomeCategoriesData, mapToHomeProductsData, type WPPostNode, type WPProductNode } from "@/lib/wp/mappers";
@@ -57,6 +58,7 @@ export default async function HomePage() {
     bannerImage: "https://colabrio.ams3.cdn.digitaloceanspaces.com/ohio-stage-demo-19/oh__demo19__17.webp",
     bannerHref: "#",
   };
+  let homeCasesData: CasesData | null = casesData;
   try {
     const client = getClient();
 
@@ -85,10 +87,27 @@ export default async function HomePage() {
         query: GET_POSTS,
         variables: { categoryName: KNOWLEDGE_CATEGORY, first: 4 },
       }),
-      client.query<{ hwsSiteTexts: { homeCategoriesTitle?: string | null; homeProductsTitle?: string | null; homeBlogTitle?: string | null } }>({ query: GET_SITE_TEXTS }).catch(() => null),
+      client.query<{ hwsSiteTexts: {
+        homeCategoriesTitle?: string | null;
+        homeProductsTitle?: string | null;
+        homeBlogTitle?: string | null;
+        homeCasesEnabled?: boolean | null;
+        homeCasesTitle?: string | null;
+        homeCasesSlides?: CasesData["projects"] | null;
+      } }>({ query: GET_SITE_TEXTS }).catch(() => null),
     ]);
 
     const siteTexts = textsResult?.data?.hwsSiteTexts ?? {};
+
+    if (textsResult?.data?.hwsSiteTexts?.homeCasesEnabled !== undefined) {
+      const configuredSlides = siteTexts.homeCasesSlides ?? [];
+      homeCasesData = siteTexts.homeCasesEnabled === false || configuredSlides.length === 0
+        ? null
+        : {
+            title: siteTexts.homeCasesTitle ?? casesData.title,
+            projects: configuredSlides,
+          };
+    }
 
     brandLogos = (brandsResult.data?.productBrands?.nodes ?? [])
       .filter((b) => !!b.logoUrl)
@@ -124,7 +143,7 @@ export default async function HomePage() {
         <Categories data={categoriesData} />
       </div>
       <div className={styles.section}>
-        <Cases data={casesData} />
+        {homeCasesData ? <Cases data={homeCasesData} /> : null}
       </div>
       <div className={styles.section}>
         <Products data={productsData} />

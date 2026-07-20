@@ -770,9 +770,29 @@ export const GET_SITE_TEXTS = gql`
       homeCategoriesTitle
       homeProductsTitle
       homeBlogTitle
+      homeHowTitle
+      homeHowSteps {
+        number
+        title
+        description
+      }
       brandCategoriesTitle
       knowledgePageTitle
       productDescriptionTitle
+      homeCasesEnabled
+      homeCasesTitle
+      homeCasesSlides {
+        id
+        image
+        title
+        href
+        location
+        meta {
+          area
+          type
+          tech
+        }
+      }
     }
   }
 `;
