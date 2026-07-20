@@ -27,10 +27,10 @@ export type WPCategoryChildNode = {
 // Статичная карта иконок по slug категории — миниатюры категорий в WP не
 // заполнены (image всегда null), поэтому иконки мега-меню держим на фронте.
 const CATEGORY_ICONS: Record<string, string> = {
-  "russian-bath-stoves": "/assets/sauna.png",
-  "sauna-stoves": "/assets/sauna.png",
-  "steam-generators-and-hammam": "/assets/steam.png",
-  commercial: "/assets/heater.png",
+  "russian-bath-stoves": "/assets/menu-russian-bath.png",
+  "sauna-stoves": "/assets/menu-sauna.png",
+  "steam-generators-and-hammam": "/assets/menu-hammam.png",
+  commercial: "/assets/menu-commercial.png",
   "control-units": "/assets/heater.png",
   "chimneys-and-installation": "/assets/heater.png",
   "water-tanks-and-heat-exchangers": "/assets/heater.png",
