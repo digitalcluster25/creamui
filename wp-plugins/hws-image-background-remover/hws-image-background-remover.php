@@ -286,6 +286,7 @@ final class HWS_Image_Background_Remover {
 	private static function rembg_binary(): ?string {
 		$candidates = [
 			defined( 'HWS_IBR_REMBG_BIN' ) ? HWS_IBR_REMBG_BIN : '',
+			'/var/www/html/wp-content/hws-rembg/bin/rembg',
 			'/opt/hws-rembg/bin/rembg',
 			'/usr/local/bin/rembg',
 			'/usr/bin/rembg',
