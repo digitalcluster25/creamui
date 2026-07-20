@@ -144,9 +144,11 @@ export default async function HomePage() {
       <div className={styles.section} data-home-block="categories">
         <Categories data={categoriesData} />
       </div>
-      <div className={styles.section} data-home-block="cases">
-        {homeCasesData ? <Cases data={homeCasesData} /> : null}
-      </div>
+      {homeCasesData ? (
+        <div className={styles.section} data-home-block="cases">
+          <Cases data={homeCasesData} />
+        </div>
+      ) : null}
       <div className={styles.section} data-home-block="products">
         <Products data={productsData} />
       </div>
