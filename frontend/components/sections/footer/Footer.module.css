@@ -158,7 +158,7 @@
 .legalInner {
   max-width: 1366px;
   margin: 0 auto;
-  padding: clamp(7px, 0.75vw, 14px) 0 6px;
+  padding: clamp(14px, 1.5vw, 28px) 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
