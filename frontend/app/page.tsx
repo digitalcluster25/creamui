@@ -136,29 +136,33 @@ export default async function HomePage() {
   const headerData = await getHeaderData();
 
   return (
-    <main>
+    <main className={styles.home} data-home-page>
       <Header data={headerData} hideBurgerOnDesktop hideActionsOnDesktop />
-      <Hero data={heroData} />
-      <div className={styles.section}>
+      <div className={styles.heroBlock} data-home-block="hero">
+        <Hero data={heroData} />
+      </div>
+      <div className={styles.section} data-home-block="categories">
         <Categories data={categoriesData} />
       </div>
-      <div className={styles.section}>
+      <div className={styles.section} data-home-block="cases">
         {homeCasesData ? <Cases data={homeCasesData} /> : null}
       </div>
-      <div className={styles.section}>
+      <div className={styles.section} data-home-block="products">
         <Products data={productsData} />
       </div>
-      <div className={styles.sectionFlush}>
+      <div className={styles.sectionFlush} data-home-block="brands">
         <Brands brands={brandLogos} />
       </div>
-      <div className={styles.section}>
+      <div className={styles.section} data-home-block="how-we-work">
         <HowWeWork data={howWeWorkData} />
       </div>
-      <div className={styles.section}>
+      <div className={styles.section} data-home-block="knowledge">
         <BlogPosts data={blogPostsData} />
       </div>
-      <ContactForm data={contactFormData} />
-      <div className={styles.sectionFooter}>
+      <div className={styles.contactBlock} data-home-block="contact">
+        <ContactForm data={contactFormData} />
+      </div>
+      <div className={styles.sectionFooter} data-home-block="footer">
         <Footer data={footerData} />
       </div>
     </main>

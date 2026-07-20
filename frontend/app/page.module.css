@@ -1,9 +1,18 @@
+.home {
+  --home-section-gap: 20px;
+}
+
+.heroBlock,
+.contactBlock {
+  margin-bottom: var(--home-section-gap);
+}
+
 .section {
-  padding: 64px clamp(16px, 1.5vw, 28px);
+  padding: 0 clamp(16px, 1.5vw, 28px) var(--home-section-gap);
 }
 
 .sectionFlush {
-  padding: 0 clamp(16px, 1.5vw, 28px);
+  padding: 0 clamp(16px, 1.5vw, 28px) var(--home-section-gap);
 }
 
 .sectionFooter {
@@ -12,10 +21,10 @@
 
 @media (max-width: 860px) {
   .section {
-    padding: 40px clamp(16px, 1.5vw, 28px);
+    padding: 0 clamp(16px, 1.5vw, 28px) var(--home-section-gap);
   }
 
   .sectionFlush {
-    padding: 0 clamp(16px, 1.5vw, 28px);
+    padding: 0 clamp(16px, 1.5vw, 28px) var(--home-section-gap);
   }
 }
