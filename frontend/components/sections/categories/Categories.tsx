@@ -4,9 +4,10 @@ import styles from "./Categories.module.css";
 
 type Props = {
   data: CategoriesData;
+  variant?: "default" | "catalog";
 };
 
-export function Categories({ data }: Props) {
+export function Categories({ data, variant = "default" }: Props) {
   const { sectionTitle, items } = data;
 
   return (
@@ -17,7 +18,7 @@ export function Categories({ data }: Props) {
             <h2 className={styles.title}>{sectionTitle}</h2>
           </div>
         )}
-        <div className={styles.grid}>
+        <div className={`${styles.grid} ${variant === "catalog" ? styles.gridCatalog : ""}`}>
           {items.map((item, index) => (
             <CategoryCard
               key={item.id}

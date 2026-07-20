@@ -16,10 +16,9 @@ export function CatalogOverview({ title, lead, categories }: Props) {
       </div>
       {categories && categories.items.length > 0 && (
         <div className={styles.categories}>
-          <Categories data={categories} />
+          <Categories data={categories} variant="catalog" />
         </div>
       )}
     </section>
   );
 }
-
