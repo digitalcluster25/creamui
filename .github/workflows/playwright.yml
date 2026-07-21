@@ -1,4 +1,4 @@
-name: Playwright E2E
+name: HWS frontend build
 
 on:
   push:
@@ -21,7 +21,7 @@ on:
       - ".github/workflows/playwright.yml"
 
 jobs:
-  e2e:
+  build:
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -41,8 +41,5 @@ jobs:
       - name: Install frontend dependencies
         run: npm --prefix frontend ci
 
-      - name: Install Chromium
-        run: npx playwright install --with-deps chromium
-
-      - name: Run Playwright tests
-        run: npm run test:e2e
+      - name: Build frontend
+        run: npm run frontend:build

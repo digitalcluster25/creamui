@@ -7,15 +7,17 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   reporter: process.env.CI ? "github" : "list",
   use: {
-    baseURL: "http://localhost:3001",
+    baseURL: process.env.E2E_BASE_URL || "http://localhost:3001",
     trace: "retain-on-failure",
   },
-  webServer: {
-    command: "npm run frontend:dev",
-    url: "http://localhost:3001",
-    reuseExistingServer: !process.env.CI,
-    timeout: 120_000,
-  },
+  webServer: process.env.E2E_BASE_URL
+    ? undefined
+    : {
+        command: "npm run frontend:dev",
+        url: "http://localhost:3001",
+        reuseExistingServer: !process.env.CI,
+        timeout: 120_000,
+      },
   projects: [
     {
       name: "chromium",

@@ -1,13 +1,6 @@
 name: Deploy HWS frontend
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - "frontend/**"
-      - "ops/hws/**"
-      - ".github/workflows/deploy.yml"
   workflow_dispatch:
 
 concurrency:
@@ -17,6 +10,7 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: production
     timeout-minutes: 15
 
     steps:

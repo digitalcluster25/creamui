@@ -78,11 +78,15 @@ test.describe("brand category grid", () => {
 
     const categoryHref = await categoryLinks.first().getAttribute("href");
     expect(categoryHref).toContain("brand=eos");
-    await page.goto(categoryHref!, { waitUntil: "networkidle" });
+    // Currency rates load in the background and can keep the network busy;
+    // the catalog DOM is ready once the document has loaded.
+    await page.goto(categoryHref!, { waitUntil: "domcontentloaded" });
 
     await expect(page).toHaveURL(/brand=eos/);
-    await expect(page.locator('[class*="chip"]')).toContainText("EOS");
-    const productCards = page.getByTestId("catalog-preview-grid").locator('[class*="productCard"]');
+    await expect(page.locator('button[class*="activeChip"]')).toContainText("EOS");
+    const productCards = page
+      .getByTestId("catalog-preview-grid")
+      .locator('[class*="CatalogProductCard-module"][class*="__card"]');
     expect(await productCards.count()).toBeGreaterThan(0);
   });
 });
