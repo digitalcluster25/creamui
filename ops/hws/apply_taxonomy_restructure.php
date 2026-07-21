@@ -56,6 +56,7 @@ $terms = get_terms([
     'hide_empty' => false,
 ]);
 $term_snapshot = [];
+$child_product_ids = [];
 foreach ($terms as $term) {
     $term_snapshot[] = [
         'term_id' => (int) $term->term_id,
@@ -64,10 +65,20 @@ foreach ($terms as $term) {
         'parent' => (int) $term->parent,
         'count' => (int) $term->count,
     ];
+    if ($term->parent) {
+        $child_product_ids = array_merge(
+            $child_product_ids,
+            array_map('intval', get_objects_in_term((int) $term->term_id, 'product_cat')),
+        );
+    }
 }
 
 $products = [];
-foreach (array_keys($moves + [$duplicate_id => '']) as $product_id) {
+$product_ids_to_backup = array_values(array_unique(array_merge(
+    array_keys($moves + [$duplicate_id => '']),
+    $child_product_ids,
+)));
+foreach ($product_ids_to_backup as $product_id) {
     $product = wc_get_product((int) $product_id);
     if (!$product) {
         $log("ERROR: product {$product_id} not found");
@@ -120,9 +131,9 @@ foreach ($active + $hidden as $slug => $name) {
     }
 }
 
+$disabled = get_option('hws_disabled_cats', []);
+$disabled = is_array($disabled) ? array_map('intval', $disabled) : [];
 if ($apply && class_exists('HWS_Cat_Toggle')) {
-    $disabled = get_option('hws_disabled_cats', []);
-    $disabled = is_array($disabled) ? array_map('intval', $disabled) : [];
     foreach (array_keys($hidden) as $slug) {
         if (isset($term_ids[$slug])) {
             $disabled[] = $term_ids[$slug];
@@ -151,6 +162,47 @@ if (wc_get_product($duplicate_id)) {
     if ($apply) {
         wp_trash_post($duplicate_id);
     }
+}
+
+// The target catalog is flat. Products from every child category are first
+// assigned to its direct parent; only then is the now-empty child removed.
+foreach ($terms as $term) {
+    if (!$term->parent) {
+        continue;
+    }
+    $parent = get_term((int) $term->parent, 'product_cat');
+    if (!$parent || is_wp_error($parent)) {
+        $log("ERROR: parent missing for {$term->slug}");
+        exit(1);
+    }
+    $object_ids = array_map('intval', get_objects_in_term((int) $term->term_id, 'product_cat'));
+    $log(($apply ? 'FLATTEN' : 'WOULD FLATTEN') . ": {$term->slug} → {$parent->slug} (" . count($object_ids) . ' products)');
+    if (!$apply) {
+        continue;
+    }
+    foreach ($object_ids as $object_id) {
+        $result = wp_set_object_terms($object_id, [(int) $parent->term_id], 'product_cat', false);
+        if (is_wp_error($result) || !has_term((int) $parent->term_id, 'product_cat', $object_id)) {
+            $message = is_wp_error($result) ? $result->get_error_message() : 'parent category was not assigned';
+            $log("ERROR: product {$object_id} → {$parent->slug}: {$message}");
+            exit(1);
+        }
+    }
+    if (get_objects_in_term((int) $term->term_id, 'product_cat')) {
+        $log("ERROR: child {$term->slug} still has products");
+        exit(1);
+    }
+    $deleted = wp_delete_term((int) $term->term_id, 'product_cat');
+    if (is_wp_error($deleted) || !$deleted) {
+        $message = is_wp_error($deleted) ? $deleted->get_error_message() : 'term was not deleted';
+        $log("ERROR: child {$term->slug}: {$message}");
+        exit(1);
+    }
+    $disabled = array_values(array_diff($disabled, [(int) $term->term_id]));
+}
+
+if ($apply && class_exists('HWS_Cat_Toggle')) {
+    update_option('hws_disabled_cats', array_values(array_unique($disabled)));
 }
 
 if ($footer_menu_id) {
