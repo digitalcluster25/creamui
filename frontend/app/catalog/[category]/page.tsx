@@ -14,7 +14,7 @@ import { CATALOG_BRANCH_INTROS, buildCatalogCategoryContent } from "@/lib/data/c
 import { ATTRIBUTE_LABELS } from "@/lib/data/catalogFilters";
 import { GET_ATTRIBUTE_TERMS } from "@/lib/wp/queries";
 import { fetchProductsByCategory } from "@/lib/wp/products";
-import { getProductBrands, getProductCategoriesTree, getProductCategoryBySlug, type WPBrandNode } from "@/lib/wp/catalog-taxonomy";
+import { ACTIVE_CATALOG_CATEGORY_SLUGS, getProductBrands, getProductCategoriesTree, getProductCategoryBySlug, type WPBrandNode } from "@/lib/wp/catalog-taxonomy";
 import styles from "../page.module.css";
 
 export const dynamic = "force-dynamic";
@@ -95,6 +95,10 @@ export default async function CatalogCategoryPage({
 }) {
   const footerData = await getFooterData();
   const { category } = await params;
+
+  if (!ACTIVE_CATALOG_CATEGORY_SLUGS.includes(category as (typeof ACTIVE_CATALOG_CATEGORY_SLUGS)[number])) {
+    notFound();
+  }
 
   const client = getClient();
   const [topCategories, found, brands, attrTermsResult] = await Promise.all([

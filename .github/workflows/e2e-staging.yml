@@ -8,6 +8,8 @@ on:
       - "tests/e2e/**"
       - "playwright.config.ts"
       - "ops/hws/staging/**"
+      - "ops/hws/apply_taxonomy_restructure.php"
+      - "ops/hws/deploy-staging.sh"
       - ".github/workflows/e2e-staging.yml"
   workflow_dispatch:
 

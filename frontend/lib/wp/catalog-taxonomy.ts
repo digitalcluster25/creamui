@@ -19,13 +19,33 @@ export type WPCategoryBySlugNode = {
   parent?: { node: { name: string; slug: string } } | null;
 };
 
+export const ACTIVE_CATALOG_CATEGORY_SLUGS = [
+  "sauna-stoves",
+  "russian-bath-stoves",
+  "steam-generators-and-hammam",
+  "commercial",
+] as const;
+
+export const HIDDEN_CATALOG_CATEGORY_SLUGS = [
+  "control-units",
+  "accessories",
+  "chimneys-and-installation",
+  "stones-and-cladding",
+  "water-tanks-and-heat-exchangers",
+  "spa-systems",
+  "ready-saunas",
+] as const;
+
 export const getProductCategoriesTree = cache(async (): Promise<WPCategoryNode[]> => {
   const client = getClient();
   const { data } = await client.query<{
     productCategories: { nodes: WPCategoryNode[] };
   }>({ query: GET_PRODUCT_CATEGORIES });
 
-  return data?.productCategories?.nodes ?? [];
+  const nodes = data?.productCategories?.nodes ?? [];
+  return nodes.filter((node) =>
+    ACTIVE_CATALOG_CATEGORY_SLUGS.includes(node.slug as (typeof ACTIVE_CATALOG_CATEGORY_SLUGS)[number]),
+  );
 });
 
 export const getProductBrands = cache(async (): Promise<WPBrandNode[]> => {

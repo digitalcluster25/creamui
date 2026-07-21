@@ -33,12 +33,6 @@ const CATEGORY_ICONS: Record<string, string> = {
   "sauna-stoves": "/assets/menu-sauna.png",
   "steam-generators-and-hammam": "/assets/menu-hammam.png",
   commercial: "/assets/menu-commercial.png",
-  "ready-saunas": "/assets/sauna.png",
-  "control-units": "/assets/heater.png",
-  "chimneys-and-installation": "/assets/heater.png",
-  "water-tanks-and-heat-exchangers": "/assets/heater.png",
-  "stones-and-cladding": "/assets/sauna.png",
-  accessories: "/assets/acs.png",
 };
 const DEFAULT_ICON = "/assets/sauna.png";
 
@@ -84,12 +78,6 @@ export const HEADER_CATEGORY_ORDER = [
   "sauna-stoves",
   "steam-generators-and-hammam",
   "commercial",
-  "ready-saunas",
-  "control-units",
-  "chimneys-and-installation",
-  "water-tanks-and-heat-exchangers",
-  "stones-and-cladding",
-  "accessories",
 ] as const;
 
 // Разворачивает дерево категорий (parent + children) в плоский список —

@@ -3,6 +3,7 @@ import { getClient } from "@/lib/wp/apollo";
 import { gql } from "@apollo/client";
 import type { FooterData } from "@/lib/types/footer";
 import { footerData as staticFooterData } from "@/lib/data/footer";
+import { ACTIVE_CATALOG_CATEGORY_SLUGS } from "@/lib/wp/catalog-taxonomy";
 
 const WP_ORIGIN = "https://wpsandbox.spaces.community";
 const SITE_ORIGIN = "https://hws.shopping";
@@ -44,11 +45,16 @@ function normalizeHref(url: string): string {
 
 function toLinks(menu: MenuResult, idPrefix: string) {
   if (!menu) return [];
-  return menu.menuItems.nodes.map((item, i) => ({
+  return menu.menuItems.nodes
+    .filter((item) => {
+      const match = item.url.match(/\/product-category\/([^/?#]+)/);
+      return !match || ACTIVE_CATALOG_CATEGORY_SLUGS.includes(match[1] as (typeof ACTIVE_CATALOG_CATEGORY_SLUGS)[number]);
+    })
+    .map((item, i) => ({
     id: `${idPrefix}-${i}`,
     label: item.label,
     href: normalizeHref(item.url),
-  }));
+    }));
 }
 
 export const getFooterData = cache(async (): Promise<FooterData> => {

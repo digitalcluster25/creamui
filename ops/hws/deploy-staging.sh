@@ -20,7 +20,7 @@ tar -C "$ROOT_DIR" -czf "$ARCHIVE" \
   --exclude='./frontend/.next' \
   --exclude='./frontend/node_modules' \
   --exclude='./frontend/.env*.local' \
-  frontend ops/hws/staging/docker-compose.yml
+  frontend ops/hws/staging/docker-compose.yml ops/hws/apply_taxonomy_restructure.php
 
 cat > "$ENV_FILE" <<EOF
 NEXT_PUBLIC_SITE_URL=$SITE_URL
@@ -49,6 +49,8 @@ chmod 600 "$REMOTE_DIR/.env.staging"
 cd "$REMOTE_DIR"
 docker compose --env-file .env.staging -f docker-compose.yml up -d --build --remove-orphans
 docker compose --env-file .env.staging -f docker-compose.yml ps
+docker cp "$workdir/ops/hws/apply_taxonomy_restructure.php" wpsandbox-wordpress-1:/tmp/apply_taxonomy_restructure.php
+docker exec wpsandbox-wordpress-1 php /tmp/apply_taxonomy_restructure.php run
 REMOTE_SCRIPT
 
 printf 'Staging deployed to %s\n' "$SITE_URL"
