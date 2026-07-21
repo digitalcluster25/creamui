@@ -29,13 +29,18 @@ jobs:
       - name: Configure SSH key
         env:
           HWS_SSH_KEY: ${{ secrets.HWS_SSH_KEY }}
+          HWS_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
           HWS_HOST: ${{ secrets.HWS_HOST || '69.62.121.157' }}
           HWS_PORT: ${{ secrets.HWS_PORT || '22' }}
         run: |
           install -m 700 -d ~/.ssh
           printf '%s\n' "$HWS_SSH_KEY" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -p "$HWS_PORT" -H "$HWS_HOST" >> ~/.ssh/known_hosts
+          if [ -n "$HWS_KNOWN_HOSTS" ]; then
+            printf '%s\n' "$HWS_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          else
+            ssh-keyscan -p "$HWS_PORT" -H "$HWS_HOST" > ~/.ssh/known_hosts
+          fi
 
       - name: Deploy staging frontend
         env:
