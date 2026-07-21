@@ -259,6 +259,37 @@ foreach (get_posts(['post_type' => 'product', 'post_status' => 'publish', 'posts
     }
 }
 
+// Merge the legacy transliterated SPA category into the canonical hidden slug.
+foreach (['spa-sistemy' => 'spa-systems'] as $legacy_slug => $target_slug) {
+    $legacy_term = get_term_by('slug', $legacy_slug, 'product_cat');
+    if (!$legacy_term || !isset($term_ids[$target_slug])) {
+        continue;
+    }
+    $object_ids = array_map('intval', get_objects_in_term((int) $legacy_term->term_id, 'product_cat'));
+    $log(($apply ? 'MERGE' : 'WOULD MERGE') . ": {$legacy_slug} → {$target_slug} (" . count($object_ids) . ' products)');
+    if (!$apply) {
+        continue;
+    }
+    foreach ($object_ids as $object_id) {
+        $result = wp_set_object_terms($object_id, [$term_ids[$target_slug]], 'product_cat', false);
+        if (is_wp_error($result) || !has_term($target_slug, 'product_cat', $object_id)) {
+            $message = is_wp_error($result) ? $result->get_error_message() : 'canonical category was not assigned';
+            $log("ERROR: product {$object_id} → {$target_slug}: {$message}");
+            exit(1);
+        }
+    }
+    $deleted = wp_delete_term((int) $legacy_term->term_id, 'product_cat');
+    if (is_wp_error($deleted) || !$deleted) {
+        $message = is_wp_error($deleted) ? $deleted->get_error_message() : 'legacy category was not deleted';
+        $log("ERROR: legacy category {$legacy_slug}: {$message}");
+        exit(1);
+    }
+    $disabled = array_values(array_diff($disabled, [(int) $legacy_term->term_id]));
+    if (class_exists('HWS_Cat_Toggle')) {
+        update_option('hws_disabled_cats', array_values(array_unique($disabled)));
+    }
+}
+
 if ($footer_menu_id) {
     $allowed_urls = array_map(static fn (string $slug): string => '/product-category/' . $slug . '/', array_keys($active));
     $allowed_urls[] = 'https://hws.shopping/product-category/';
