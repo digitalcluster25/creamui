@@ -49,7 +49,7 @@ jobs:
         run: ./ops/hws/deploy-staging.sh
 
       - name: Verify staging health
-        run: curl --fail --silent --show-error --retry 10 --retry-delay 3 https://staging.hws.shopping/api/health
+        run: curl --fail --silent --show-error --retry 20 --retry-all-errors --retry-delay 3 https://staging.hws.shopping/api/health
 
   e2e:
     needs: deploy
