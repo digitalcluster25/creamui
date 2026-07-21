@@ -10,6 +10,13 @@ declare(strict_types=1);
 
 require_once '/var/www/html/wp-load.php';
 
+// The site hides disabled categories through get_terms filters. This migration
+// must see the real taxonomy while it changes it; visibility is restored below.
+if (class_exists('HWS_Cat_Toggle')) {
+    remove_filter('get_terms_args', ['HWS_Cat_Toggle', 'pre_filter_terms_args'], 10);
+    remove_filter('get_terms', ['HWS_Cat_Toggle', 'filter_terms'], 10);
+}
+
 $mode = $argv[1] ?? 'dry-run';
 $apply = $mode === 'run';
 $log = static function (string $message): void {
@@ -111,6 +118,17 @@ foreach ($active + $hidden as $slug => $name) {
     } else {
         $term_ids[$slug] = (int) $term->term_id;
     }
+}
+
+if ($apply && class_exists('HWS_Cat_Toggle')) {
+    $disabled = get_option('hws_disabled_cats', []);
+    $disabled = is_array($disabled) ? array_map('intval', $disabled) : [];
+    foreach (array_keys($hidden) as $slug) {
+        if (isset($term_ids[$slug])) {
+            $disabled[] = $term_ids[$slug];
+        }
+    }
+    update_option('hws_disabled_cats', array_values(array_unique($disabled)));
 }
 
 foreach ($moves as $product_id => $target_slug) {
