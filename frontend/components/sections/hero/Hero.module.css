@@ -34,7 +34,7 @@
   width: 100%;
   margin: 0 auto;
   padding: clamp(48px, 8vh, 96px) 1.5vw clamp(32px, 5vh, 60px);
-  gap: 3rem;
+  gap: 1.5rem;
 }
 
 /* .ohio-hero-content */
@@ -59,7 +59,7 @@
 /* .hero-display-title */
 .displayTitle {
   font-family: var(--font-title);
-  font-size: 3vw;
+  font-size: 40px;
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.045em;
@@ -67,6 +67,12 @@
   margin: 0;
   /* .hero-eyebrow + .hero-display-title */
   padding-top: 0.15em;
+}
+
+@media (min-width: 769px) {
+  .displayTitle {
+    font-size: 40px !important;
+  }
 }
 
 /* .hero-lead — .ohio-hero .hero-display-title + .hero-lead */

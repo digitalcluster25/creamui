@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 function hws_graphql_bridge_get_frontend_revalidate_url(): string {
 	$base = getenv( 'HWS_FRONTEND_URL' );
 	if ( ! is_string( $base ) || '' === trim( $base ) ) {
-		$base = 'https://hwsstore.spaces.community';
+		$base = 'https://hws.shopping';
 	}
 
 	return rtrim( $base, '/' ) . '/api/revalidate-catalog';

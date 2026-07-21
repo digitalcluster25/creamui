@@ -6,7 +6,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "CreamUI Frontend",
   description: "Headless frontend previews for CreamUI blocks.",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://hwsstore.spaces.community"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://hws.shopping"),
 };
 
 export default function RootLayout({

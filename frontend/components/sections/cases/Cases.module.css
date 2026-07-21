@@ -247,10 +247,10 @@
 
   .carousel {
     --projects-visible-slides: 1;
-    --projects-carousel-peek: 20px;
-    width: calc(100% + 40px);
-    margin-left: -20px;
-    margin-right: -20px;
+    --projects-carousel-peek: 28px;
+    width: calc(100% + 56px);
+    margin-left: -28px;
+    margin-right: -28px;
   }
 
   .viewport {

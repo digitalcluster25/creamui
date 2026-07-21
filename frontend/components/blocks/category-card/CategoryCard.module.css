@@ -74,7 +74,7 @@
   left: 0;
   bottom: 0;
   z-index: 1;
-  padding: 12px;
+  padding: 24px;
   display: block;
   /* Ohio: .blog-item.-layout2 .overlay-details:not(.-top) */
   background: linear-gradient(360deg, rgba(17, 16, 19, 0.82) 0%, rgba(17, 16, 19, 0) 100%);
