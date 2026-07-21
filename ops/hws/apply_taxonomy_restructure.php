@@ -118,8 +118,13 @@ foreach ($moves as $product_id => $target_slug) {
         continue;
     }
     $log(($apply ? 'MOVE' : 'WOULD MOVE') . ": product {$product_id} → {$target_slug}");
-    if ($apply && isset($term_ids[$target_slug])) {
-        wp_set_object_terms((int) $product_id, [$term_ids[$target_slug]], 'product_cat', false);
+    if ($apply) {
+        $result = wp_set_object_terms((int) $product_id, [$target_slug], 'product_cat', false);
+        if (is_wp_error($result) || !has_term($target_slug, 'product_cat', (int) $product_id)) {
+            $message = is_wp_error($result) ? $result->get_error_message() : 'term was not assigned';
+            $log("ERROR: product {$product_id} → {$target_slug}: {$message}");
+            exit(1);
+        }
     }
 }
 
