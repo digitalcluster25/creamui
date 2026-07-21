@@ -15,6 +15,8 @@ require_once '/var/www/html/wp-load.php';
 if (class_exists('HWS_Cat_Toggle')) {
     remove_filter('get_terms_args', ['HWS_Cat_Toggle', 'pre_filter_terms_args'], 10);
     remove_filter('get_terms', ['HWS_Cat_Toggle', 'filter_terms'], 10);
+    remove_action('pre_get_posts', ['HWS_Cat_Toggle', 'filter_products']);
+    remove_filter('woocommerce_product_query_tax_query', ['HWS_Cat_Toggle', 'filter_wc_tax_query']);
 }
 
 $mode = $argv[1] ?? 'dry-run';
@@ -45,6 +47,32 @@ $moves = [
     249643 => 'sauna-stoves',
 ];
 $duplicate_id = 251727;
+
+function hws_target_category_for_product(int $product_id): ?string {
+    $types = wp_get_post_terms($product_id, 'pa_equipment-type', ['fields' => 'slugs']);
+    $rooms = wp_get_post_terms($product_id, 'pa_room-type', ['fields' => 'slugs']);
+    $usage = wp_get_post_terms($product_id, 'pa_usage-class', ['fields' => 'slugs']);
+    $title = (string) get_the_title($product_id);
+
+    if (in_array('control-unit', $types, true)) return 'control-units';
+    if (in_array('steam-generator', $types, true)) return 'steam-generators-and-hammam';
+    if (in_array('commercial-bath-stove', $types, true) || in_array('commercial-bath-sauna-stove', $types, true)) return 'commercial';
+    if (in_array('water-tank', $types, true) || in_array('heat-exchanger', $types, true) || in_array('economizer', $types, true)) return 'water-tanks-and-heat-exchangers';
+    if (in_array('chimney', $types, true) || in_array('gas-burner', $types, true) || in_array('convection-element', $types, true) || in_array('mounting-element', $types, true)) return 'chimneys-and-installation';
+    if (in_array('heater-stones', $types, true) || in_array('natural-stone-product', $types, true)) return 'stones-and-cladding';
+    if (in_array('bathing-accessory', $types, true) || in_array('aroma-and-steam', $types, true) || in_array('pouring-device', $types, true) || in_array('wood-storage', $types, true)) return 'accessories';
+    if (in_array('steam-room-equipment', $types, true)) {
+        return str_contains($title, 'SteamRock') ? 'steam-generators-and-hammam' : 'accessories';
+    }
+    if (in_array('commercial-bath-stove', $types, true) || in_array('commercial-bath-sauna-stove', $types, true)) return 'commercial';
+    if (in_array('wood-bath-stove', $types, true) || in_array('electric-bath-stove', $types, true) || in_array('steam-thermal-stove', $types, true)) return 'russian-bath-stoves';
+    if (in_array('bath-sauna-stove', $types, true)) {
+        if (in_array('kommercheskoe-ispolzovanie', $usage, true)) return 'commercial';
+        if (in_array('russian-bath', $rooms, true)) return 'russian-bath-stoves';
+        return 'sauna-stoves';
+    }
+    return null;
+}
 
 $backup_dir = '/var/www/html/data/audit';
 if ($apply && !is_dir($backup_dir)) {
@@ -77,6 +105,7 @@ $products = [];
 $product_ids_to_backup = array_values(array_unique(array_merge(
     array_keys($moves + [$duplicate_id => '']),
     $child_product_ids,
+    get_posts(['post_type' => 'product', 'post_status' => 'publish', 'posts_per_page' => -1, 'fields' => 'ids']),
 )));
 foreach ($product_ids_to_backup as $product_id) {
     $product = wc_get_product((int) $product_id);
@@ -203,6 +232,31 @@ foreach ($terms as $term) {
 
 if ($apply && class_exists('HWS_Cat_Toggle')) {
     update_option('hws_disabled_cats', array_values(array_unique($disabled)));
+}
+
+// Reclassify published products from their structured WooCommerce attributes.
+// This prevents the flattening step from leaving stoves or controls inside an
+// unrelated hidden parent category. Ready-made saunas are intentionally hidden
+// and excluded from automatic reassignment.
+foreach (get_posts(['post_type' => 'product', 'post_status' => 'publish', 'posts_per_page' => -1, 'fields' => 'ids']) as $product_id) {
+    $current_slugs = wp_get_post_terms((int) $product_id, 'product_cat', ['fields' => 'slugs']);
+    if (in_array('ready-saunas', $current_slugs, true)) {
+        continue;
+    }
+    $target_slug = hws_target_category_for_product((int) $product_id);
+    if (!$target_slug || $current_slugs === [$target_slug]) {
+        continue;
+    }
+    $log(($apply ? 'CLASSIFY' : 'WOULD CLASSIFY') . ": product {$product_id} → {$target_slug}");
+    if (!$apply) {
+        continue;
+    }
+    $result = wp_set_object_terms((int) $product_id, [$target_slug], 'product_cat', false);
+    if (is_wp_error($result) || !has_term($target_slug, 'product_cat', (int) $product_id)) {
+        $message = is_wp_error($result) ? $result->get_error_message() : 'target category was not assigned';
+        $log("ERROR: product {$product_id} → {$target_slug}: {$message}");
+        exit(1);
+    }
 }
 
 if ($footer_menu_id) {
