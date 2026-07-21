@@ -21,7 +21,6 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: staging
     timeout-minutes: 20
     steps:
       - name: Check out repository
