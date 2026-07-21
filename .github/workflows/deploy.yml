@@ -1,7 +1,9 @@
 name: Deploy HWS frontend
 
 on:
-  workflow_dispatch:
+  workflow_run:
+    workflows: ["HWS staging E2E"]
+    types: [completed]
 
 concurrency:
   group: deploy-hws-frontend
@@ -9,13 +11,17 @@ concurrency:
 
 jobs:
   deploy:
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.head_branch == 'main'
     runs-on: ubuntu-latest
-    environment: production
     timeout-minutes: 15
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
 
       - name: Configure SSH key
         env:

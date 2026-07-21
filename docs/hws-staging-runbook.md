@@ -23,4 +23,4 @@ The workflow does not print secret values and never stores `.env.staging` in Git
 ## Current limitations
 
 - WordPress data is shared with the existing `wpsandbox` instance; this is a staging frontend, not an isolated WordPress database.
-- Production deployment remains unchanged. The existing production workflow targets the old PM2-based deployment and must be reconciled with the current Docker-based server before enabling an automatic production gate.
+- После успешных staging health check и E2E GitHub Actions автоматически запускает production-деплой того же commit.
