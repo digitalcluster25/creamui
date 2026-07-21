@@ -5,5 +5,7 @@ frontend/tsconfig.tsbuildinfo
 test-results/
 .claude/worktrees/
 .codex-*.png
+.codex-tmp/
+spets1.png
 backups/
 artifacts/

@@ -5,22 +5,16 @@ import type { FooterData } from "@/lib/types/footer";
 import { footerData as staticFooterData } from "@/lib/data/footer";
 
 const WP_ORIGIN = "https://wpsandbox.spaces.community";
+const SITE_ORIGIN = "https://hws.shopping";
 
 const GET_FOOTER_MENUS = gql`
   query GetFooterMenus {
-    products: menu(id: "FOOTER_PRODUCTS", idType: LOCATION) {
-      menuItems(first: 50) {
-        nodes { label url }
-      }
-    }
-    company: menu(id: "FOOTER_COMPANY", idType: LOCATION) {
-      menuItems(first: 50) {
-        nodes { label url }
-      }
-    }
-    help: menu(id: "FOOTER_HELP", idType: LOCATION) {
-      menuItems(first: 50) {
-        nodes { label url }
+    menus(first: 50) {
+      nodes {
+        locations
+        menuItems(first: 50) {
+          nodes { label url }
+        }
       }
     }
   }
@@ -28,9 +22,19 @@ const GET_FOOTER_MENUS = gql`
 
 type MenuItem = { label: string; url: string };
 type MenuResult = { menuItems: { nodes: MenuItem[] } } | null;
+type MenuNode = { locations: string[]; menuItems: { nodes: MenuItem[] } };
 
 function normalizeHref(url: string): string {
-  let path = url.replace(WP_ORIGIN, "") || "/";
+  let path = url;
+  try {
+    const parsed = new URL(url);
+    if (parsed.origin === WP_ORIGIN || parsed.origin === SITE_ORIGIN) {
+      path = `${parsed.pathname}${parsed.search}${parsed.hash}`;
+    }
+  } catch {
+    // Keep relative or otherwise non-URL menu values unchanged.
+  }
+  path = path || "/";
   // WP product category URLs → Next.js catalog routes
   path = path.replace(/^\/product-category\/([^/]+)\/?.*$/, "/catalog/$1");
   // strip trailing slash
@@ -49,17 +53,18 @@ function toLinks(menu: MenuResult, idPrefix: string) {
 
 export const getFooterData = cache(async (): Promise<FooterData> => {
   try {
-    const client = getClient();
+    // Menu edits must be visible immediately; WordPress menu changes are not
+    // covered by the catalog revalidation webhook.
+    const client = getClient({ noStore: true });
     type FooterMenusQuery = {
-      products: MenuResult;
-      company: MenuResult;
-      help: MenuResult;
+      menus: { nodes: MenuNode[] };
     };
     const result = await client.query<FooterMenusQuery>({
       query: GET_FOOTER_MENUS,
-      context: { fetchOptions: { next: { revalidate: 3600 } } },
     });
-    const data = result.data;
+    const menus = result.data?.menus?.nodes ?? [];
+    const byLocation = (location: string): MenuResult =>
+      menus.find((menu) => menu.locations.includes(location)) ?? null;
 
     return {
       ...staticFooterData,
@@ -67,17 +72,17 @@ export const getFooterData = cache(async (): Promise<FooterData> => {
         {
           id: "products",
           title: staticFooterData.columns[0].title,
-          links: toLinks(data?.products ?? null, "p"),
+          links: toLinks(byLocation("FOOTER_PRODUCTS"), "p"),
         },
         {
           id: "company",
           title: staticFooterData.columns[1].title,
-          links: toLinks(data?.company ?? null, "c"),
+          links: toLinks(byLocation("FOOTER_COMPANY"), "c"),
         },
         {
           id: "help",
           title: staticFooterData.columns[2].title,
-          links: toLinks(data?.help ?? null, "h"),
+          links: toLinks(byLocation("FOOTER_HELP"), "h"),
         },
       ],
     };

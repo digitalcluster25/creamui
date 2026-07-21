@@ -14,6 +14,7 @@ import { heroData } from "@/lib/data/hero";
 import { getFooterData } from "@/lib/wp/footer";
 import { casesData } from "@/lib/data/cases";
 import { howWeWorkData } from "@/lib/data/howWeWork";
+import type { HowWeWorkData } from "@/lib/types/howWeWork";
 import { contactFormData } from "@/lib/data/contactForm";
 import type { CategoriesData } from "@/lib/types/categories";
 import type { BlogPostsData } from "@/lib/types/blogPosts";
@@ -58,6 +59,7 @@ export default async function HomePage() {
     bannerImage: "https://colabrio.ams3.cdn.digitaloceanspaces.com/ohio-stage-demo-19/oh__demo19__17.webp",
     bannerHref: "#",
   };
+  let homeHowData: HowWeWorkData = howWeWorkData;
   let homeCasesData: CasesData | null = casesData;
   try {
     const client = getClient();
@@ -91,6 +93,8 @@ export default async function HomePage() {
         homeCategoriesTitle?: string | null;
         homeProductsTitle?: string | null;
         homeBlogTitle?: string | null;
+        homeHowTitle?: string | null;
+        homeHowSteps?: { number?: string | null; title?: string | null; description?: string | null }[] | null;
         homeCasesEnabled?: boolean | null;
         homeCasesTitle?: string | null;
         homeCasesSlides?: CasesData["projects"] | null;
@@ -108,6 +112,19 @@ export default async function HomePage() {
             projects: configuredSlides,
           };
     }
+
+    homeHowData = {
+      title: siteTexts.homeHowTitle ?? howWeWorkData.title,
+      steps: howWeWorkData.steps.map((step, index) => {
+        const cmsStep = siteTexts.homeHowSteps?.[index];
+        return {
+          ...step,
+          number: cmsStep?.number ?? step.number,
+          title: cmsStep?.title ?? step.title,
+          description: cmsStep?.description ?? step.description,
+        };
+      }),
+    };
 
     brandLogos = (brandsResult.data?.productBrands?.nodes ?? [])
       .filter((b) => !!b.logoUrl)
@@ -156,7 +173,7 @@ export default async function HomePage() {
         <Brands brands={brandLogos} />
       </div>
       <div className={styles.section} data-home-block="how-we-work">
-        <HowWeWork data={howWeWorkData} />
+        <HowWeWork data={homeHowData} />
       </div>
       <div className={styles.section} data-home-block="knowledge">
         <BlogPosts data={blogPostsData} />
