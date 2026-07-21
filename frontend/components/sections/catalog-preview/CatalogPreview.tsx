@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
+import { useSearchParams } from "next/navigation";
 import { CatalogProductCard } from "@/components/blocks/catalog-product-card";
 import type { CatalogProduct } from "@/lib/types/catalog";
 import styles from "./CatalogPreview.module.css";
@@ -151,6 +152,7 @@ function SingleDropdown({
 }
 
 export function CatalogPreview({ total, products, filters, subcategoryLabel, brandLabel, attributeFilters }: Props) {
+  const searchParams = useSearchParams();
   const [selectedCategories, setSelectedCategories] = useState<Set<string>>(new Set());
   const [selectedBrands, setSelectedBrands] = useState<Set<string>>(new Set());
   const [selectedAttributes, setSelectedAttributes] = useState<Record<string, Set<string>>>({});
@@ -158,10 +160,16 @@ export function CatalogPreview({ total, products, filters, subcategoryLabel, bra
   const [sort, setSort] = useState("default");
   const [perPage, setPerPage] = useState(12);
 
-  if (products.length === 0) return null;
+  const categoryOptions = useMemo(() => filters?.filter((f) => f.type === "category") ?? [], [filters]);
+  const brandOptions = useMemo(() => filters?.filter((f) => f.type === "brand") ?? [], [filters]);
 
-  const categoryOptions = filters?.filter((f) => f.type === "category") ?? [];
-  const brandOptions = filters?.filter((f) => f.type === "brand") ?? [];
+  useEffect(() => {
+    const brandFromUrl = searchParams.get("brand");
+    if (!brandFromUrl || !brandOptions.some((option) => option.slug === brandFromUrl)) return;
+    setSelectedBrands(new Set([brandFromUrl]));
+  }, [brandOptions, searchParams]);
+
+  if (products.length === 0) return null;
 
   function toggleCategory(slug: string) {
     setSelectedCategories((prev) => {

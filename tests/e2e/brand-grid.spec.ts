@@ -65,4 +65,24 @@ test.describe("brand category grid", () => {
     const firstRowTop = heights[0]?.top;
     expect(new Set(heights.filter((rect) => rect.top === firstRowTop).map((rect) => rect.height)).size).toBe(1);
   });
+
+  test("links brand categories to a catalog with the active brand filter", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto("/brands/eos", { waitUntil: "networkidle" });
+
+    await expect(page.getByRole("heading", { name: "Ключевые разделы бренда", exact: true })).toHaveCount(0);
+
+    const categoryLinks = page.locator('a[href^="/catalog/"][href*="brand=eos"]');
+    const linkCount = await categoryLinks.count();
+    expect(linkCount).toBeGreaterThan(0);
+
+    const categoryHref = await categoryLinks.first().getAttribute("href");
+    expect(categoryHref).toContain("brand=eos");
+    await page.goto(categoryHref!, { waitUntil: "networkidle" });
+
+    await expect(page).toHaveURL(/brand=eos/);
+    await expect(page.locator('[class*="chip"]')).toContainText("EOS");
+    const productCards = page.getByTestId("catalog-preview-grid").locator('[class*="productCard"]');
+    expect(await productCards.count()).toBeGreaterThan(0);
+  });
 });

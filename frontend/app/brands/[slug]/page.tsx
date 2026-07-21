@@ -9,7 +9,6 @@ import { Breadcrumbs } from "@/components/primitives/breadcrumbs/Breadcrumbs";
 import { getFooterData } from "@/lib/wp/footer";
 import { flattenCategories, getHeaderData, type WPCategoryNode, type WPCategoryChildNode } from "@/lib/wp/header";
 import { getClient } from "@/lib/wp/apollo";
-import { GET_SITE_TEXTS } from "@/lib/wp/queries";
 import { mapToCatalogProduct, type WPProductNode } from "@/lib/wp/mappers";
 import type { CategoriesData } from "@/lib/types/categories";
 import { fetchProductsByBrand } from "@/lib/wp/products";
@@ -75,6 +74,7 @@ function buildBrandSeo(brandName: string, categoryNames: string[]): CatalogSeoDa
 function buildBrandCategoryCards(
   products: WPProductNode[],
   allCategories: FlatCategoryNode[],
+  brandSlug: string,
 ): CategoriesData | null {
   const counts = new Map<string, number>();
 
@@ -89,15 +89,16 @@ function buildBrandCategoryCards(
     .map(([slug, count]) => {
       const category = categoryMap.get(slug);
       if (!category) return null;
+      const categoryHref = `/catalog/${slug}?brand=${encodeURIComponent(brandSlug)}`;
 
       return {
         id: String(category.databaseId),
         imageSrc: normalizeWpMediaUrl(category.image?.sourceUrl) ?? CATEGORY_FALLBACK_IMAGES[slug] ?? "/assets/sauna.png",
         imageAlt: category.image?.altText?.trim() || category.name,
-        href: `/catalog/${slug}`,
+        href: categoryHref,
         subtitle: `${count} товаров ${count === 1 ? "бренда" : "бренда"}`,
         title: category.name,
-        tags: [{ id: `${slug}-brand-count`, label: `${count} товаров`, href: `/catalog/${slug}` }],
+        tags: [{ id: `${slug}-brand-count`, label: `${count} товаров`, href: categoryHref }],
         count,
       };
     })
@@ -109,7 +110,7 @@ function buildBrandCategoryCards(
   if (items.length === 0) return null;
 
   return {
-    sectionTitle: "Ключевые разделы бренда",
+    sectionTitle: "",
     items,
   };
 }
@@ -166,16 +167,11 @@ export default async function BrandPage({
   if (!brand) notFound();
 
   const client = getClient();
-  const [brandProducts, textsResult] = await Promise.all([
-    fetchProductsByBrand(client, slug),
-    client.query<{ hwsSiteTexts: { brandCategoriesTitle?: string | null } }>({ query: GET_SITE_TEXTS }).catch(() => null),
-  ]);
+  const brandProducts = await fetchProductsByBrand(client, slug);
   if (brandProducts.length === 0) notFound();
 
   const flatCategories = flattenCategories(categoryTree);
-  const brandCategoriesTitle = textsResult?.data?.hwsSiteTexts?.brandCategoriesTitle ?? "Ключевые разделы бренда";
-  const overviewCategoriesRaw = buildBrandCategoryCards(brandProducts, flatCategories);
-  const overviewCategories = overviewCategoriesRaw ? { ...overviewCategoriesRaw, sectionTitle: brandCategoriesTitle } : null;
+  const overviewCategories = buildBrandCategoryCards(brandProducts, flatCategories, slug);
   const uniqueCategoryNames = overviewCategories?.items.map((item) => item.title) ?? [];
 
   const headerData = await getHeaderData();
