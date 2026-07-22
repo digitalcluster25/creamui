@@ -2,7 +2,7 @@
   width: 100%;
   max-width: 1366px;
   margin: 0 auto;
-  padding: 0 clamp(16px, 2vw, 40px) 80px;
+  padding: 0 0 80px;
 }
 
 .hero {
@@ -82,6 +82,78 @@
   padding: 0 clamp(16px, 1.5vw, 28px);
 }
 
+.directory {
+  padding-top: 52px;
+  border-top: 1px solid rgba(17, 16, 19, 0.08);
+}
+
+.directoryTitle {
+  margin: 0 0 28px;
+  font-family: var(--font-text);
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -1.2px;
+  color: rgb(17, 16, 19);
+}
+
+.catalogGroups {
+  display: grid;
+  gap: 44px;
+}
+
+.catalogGroup {
+  min-width: 0;
+}
+
+.catalogTitle {
+  margin: 0 0 20px;
+  font-family: var(--font-text);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.catalogTitle a {
+  color: rgb(17, 16, 19);
+  text-decoration: none;
+}
+
+.deepLinks {
+  columns: 3 240px;
+  column-gap: 36px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.deepLinks li {
+  break-inside: avoid;
+  margin-bottom: 12px;
+}
+
+.deepLinks a {
+  font-family: var(--font-text);
+  font-size: 16px;
+  line-height: 1.45;
+  color: rgba(40, 40, 40, 0.84);
+  text-underline-offset: 3px;
+}
+
+.deepLinks a:hover,
+.deepLinks a:focus-visible,
+.catalogTitle a:hover,
+.catalogTitle a:focus-visible {
+  color: var(--color-primary, #b05e3a);
+  outline: none;
+}
+
+.directoryGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 56px;
+}
+
 @media (max-width: 1024px) {
   .navigation {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -91,7 +163,7 @@
 
 @media (max-width: 860px) {
   .section {
-    padding-bottom: 56px;
+    padding: 0 16px 56px;
   }
 
   .hero {
@@ -111,6 +183,19 @@
   .navigation {
     padding-top: 36px;
   }
+
+  .directory {
+    padding-top: 36px;
+  }
+
+  .directoryTitle {
+    margin-bottom: 22px;
+    font-size: 40px;
+  }
+
+  .deepLinks {
+    columns: 2 200px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -122,5 +207,26 @@
   .groupTitle {
     margin-bottom: 18px;
     font-size: 24px;
+  }
+
+  .catalogGroups {
+    gap: 32px;
+  }
+
+  .directoryGrid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .directoryTitle {
+    font-size: 34px;
+  }
+
+  .catalogTitle {
+    font-size: 24px;
+  }
+
+  .deepLinks {
+    columns: 1;
   }
 }

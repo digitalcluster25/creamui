@@ -12,6 +12,9 @@ for (const viewport of [
     await expect(page.getByRole("heading", { level: 1, name: "Карта сайта" })).toBeVisible();
     await expect(page.locator("footer").getByRole("link", { name: "Карта сайта" })).toHaveAttribute("href", "/sitemap");
     await expect(page.getByRole("navigation", { name: "Разделы сайта" })).toBeVisible();
+    await expect(page.getByRole("heading", { level: 2, name: "Каталог" })).toBeVisible();
+    await expect(page.locator('a[href^="/product/"]')).not.toHaveCount(0);
+    await expect(page.locator('a[href^="/knowledge/"]')).not.toHaveCount(0);
 
     const pageWidths = await page.evaluate(() => ({
       client: document.documentElement.clientWidth,

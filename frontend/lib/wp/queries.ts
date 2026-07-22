@@ -92,6 +92,33 @@ export const GET_PRODUCTS = gql`
   }
 `;
 
+export const GET_SITEMAP_PRODUCTS = gql`
+  query GetSitemapProducts($first: Int = 1000) {
+    products(first: $first, where: { status: "publish" }) {
+      nodes {
+        name
+        slug
+        ... on SimpleProduct {
+          productCategories {
+            nodes {
+              name
+              slug
+            }
+          }
+        }
+        ... on VariableProduct {
+          productCategories {
+            nodes {
+              name
+              slug
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const GET_PRODUCTS_BY_BRAND = gql`
   query GetProductsByBrand($first: Int = 100, $after: String, $brand: String!) {
     products(
@@ -739,6 +766,17 @@ export const GET_POSTS = gql`
             altText
           }
         }
+      }
+    }
+  }
+`;
+
+export const GET_SITEMAP_POSTS = gql`
+  query GetSitemapPosts($categoryName: String, $first: Int = 1000) {
+    posts(first: $first, where: { categoryName: $categoryName, status: PUBLISH }) {
+      nodes {
+        title
+        slug
       }
     }
   }

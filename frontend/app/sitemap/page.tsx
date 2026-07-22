@@ -5,6 +5,7 @@ import { Footer } from "@/components/sections/footer";
 import { Header } from "@/components/sections/header";
 import { getFooterData } from "@/lib/wp/footer";
 import { getHeaderData } from "@/lib/wp/header";
+import { getSitemapData } from "@/lib/wp/sitemap";
 import styles from "./page.module.css";
 
 export const dynamic = "force-dynamic";
@@ -29,7 +30,11 @@ const coreLinks = [
 ];
 
 export default async function SitemapPage() {
-  const [footerData, headerData] = await Promise.all([getFooterData(), getHeaderData()]);
+  const [footerData, headerData, sitemapData] = await Promise.all([
+    getFooterData(),
+    getHeaderData(),
+    getSitemapData(),
+  ]);
 
   return (
     <main>
@@ -70,6 +75,56 @@ export default async function SitemapPage() {
             </section>
           ))}
         </nav>
+
+        <section className={styles.directory} aria-labelledby="catalog-directory-title">
+          <h2 id="catalog-directory-title" className={styles.directoryTitle}>
+            Каталог
+          </h2>
+          <div className={styles.catalogGroups}>
+            {sitemapData.catalog.map((group) => (
+              <section key={group.category.href} className={styles.catalogGroup}>
+                <h3 className={styles.catalogTitle}>
+                  <Link href={group.category.href}>{group.category.label}</Link>
+                </h3>
+                <ul className={styles.deepLinks}>
+                  {group.products.map((product) => (
+                    <li key={product.href}>
+                      <Link href={product.href}>{product.label}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ))}
+          </div>
+        </section>
+
+        <div className={styles.directoryGrid}>
+          <section className={styles.directory} aria-labelledby="brands-directory-title">
+            <h2 id="brands-directory-title" className={styles.directoryTitle}>
+              Бренды
+            </h2>
+            <ul className={styles.deepLinks}>
+              {sitemapData.brands.map((brand) => (
+                <li key={brand.href}>
+                  <Link href={brand.href}>{brand.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section className={styles.directory} aria-labelledby="articles-directory-title">
+            <h2 id="articles-directory-title" className={styles.directoryTitle}>
+              Статьи
+            </h2>
+            <ul className={styles.deepLinks}>
+              {sitemapData.articles.map((article) => (
+                <li key={article.href}>
+                  <Link href={article.href}>{article.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
       </section>
       <div className={styles.footer}>
         <Footer data={footerData} />
