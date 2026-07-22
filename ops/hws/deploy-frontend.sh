@@ -21,7 +21,7 @@ rsync -az --delete --mkpath \
   --exclude 'tsconfig.tsbuildinfo' \
   frontend/ "$USER_NAME@$HOST:$REMOTE_DIR/"
 
-rsync -az --delete \
+rsync -az --delete --mkpath \
   -e "ssh -p $PORT" \
   --exclude '.DS_Store' \
   wp-plugins/hws-graphql-bridge/ "$USER_NAME@$HOST:$REMOTE_DIR/wp-plugins/hws-graphql-bridge/"
