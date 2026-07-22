@@ -12,7 +12,7 @@ cd "$ROOT_DIR"
 
 ssh -p "$PORT" "$USER_NAME@$HOST" "mkdir -p '$REMOTE_DIR/wp-plugins/hws-graphql-bridge'"
 
-rsync -az --delete \
+rsync -az --delete --mkpath \
   -e "ssh -p $PORT" \
   --exclude '.env.local' \
   --exclude '.git' \
