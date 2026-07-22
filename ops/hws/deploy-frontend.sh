@@ -21,6 +21,11 @@ rsync -az --delete \
   --exclude 'tsconfig.tsbuildinfo' \
   frontend/ "$USER_NAME@$HOST:$REMOTE_DIR/"
 
+rsync -az --delete \
+  -e "ssh -p $PORT" \
+  --exclude '.DS_Store' \
+  wp-plugins/hws-graphql-bridge/ "$USER_NAME@$HOST:$REMOTE_DIR/wp-plugins/hws-graphql-bridge/"
+
 ssh -p "$PORT" "$USER_NAME@$HOST" "
   set -euo pipefail
   python3 - <<'PY'
@@ -36,6 +41,7 @@ PY
   cd '$REMOTE_DIR'
   docker rm -f '$CONTAINER_NAME' >/dev/null 2>&1 || true
   docker compose up -d --build --remove-orphans
+  docker cp '$REMOTE_DIR/wp-plugins/hws-graphql-bridge/.' wpsandbox-wordpress-1:/var/www/html/wp-content/plugins/hws-graphql-bridge/
 "
 
 printf 'Deployed frontend to %s:%s\n' "$HOST" "$REMOTE_DIR"

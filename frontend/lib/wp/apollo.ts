@@ -11,12 +11,13 @@ type ClientOptions = {
 
 // Серверный клиент — создаём заново на каждый запрос (без singleton),
 // чтобы избежать утечки кэша между пользователями в RSC.
-// next: { revalidate: 3600 } — Next.js Data Cache кэширует ответы GraphQL
-// на час, повторные хиты отдаются из кэша без обращения к WP.
+// Данные каталога редактируются в WordPress. По умолчанию всегда запрашиваем
+// свежую версию, чтобы фото и свойства товара появлялись на сайте сразу после
+// сохранения в админке. Для редких, явно заданных случаев можно включить ISR.
 export function getClient(options: ClientOptions = {}) {
-  const fetchOptions = options.noStore
-    ? { cache: "no-store" as RequestCache }
-    : { next: { revalidate: options.revalidate ?? 3600 } };
+  const fetchOptions = options.revalidate !== undefined && !options.noStore
+    ? { next: { revalidate: options.revalidate } }
+    : { cache: "no-store" as RequestCache };
 
   return new ApolloClient({
     link: new HttpLink({

@@ -20,7 +20,7 @@ tar -C "$ROOT_DIR" -czf "$ARCHIVE" \
   --exclude='./frontend/.next' \
   --exclude='./frontend/node_modules' \
   --exclude='./frontend/.env*.local' \
-  frontend ops/hws/staging/docker-compose.yml ops/hws/apply_taxonomy_restructure.php
+  frontend wp-plugins/hws-graphql-bridge ops/hws/staging/docker-compose.yml ops/hws/apply_taxonomy_restructure.php
 
 cat > "$ENV_FILE" <<EOF
 NEXT_PUBLIC_SITE_URL=$SITE_URL
@@ -51,6 +51,7 @@ docker compose --env-file .env.staging -f docker-compose.yml up -d --build --rem
 docker compose --env-file .env.staging -f docker-compose.yml ps
 docker cp "$workdir/ops/hws/apply_taxonomy_restructure.php" wpsandbox-wordpress-1:/tmp/apply_taxonomy_restructure.php
 docker exec wpsandbox-wordpress-1 php /tmp/apply_taxonomy_restructure.php run
+docker cp "$workdir/wp-plugins/hws-graphql-bridge/." wpsandbox-wordpress-1:/var/www/html/wp-content/plugins/hws-graphql-bridge/
 REMOTE_SCRIPT
 
 printf 'Staging deployed to %s\n' "$SITE_URL"

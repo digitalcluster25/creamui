@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - "frontend/**"
+      - "wp-plugins/hws-graphql-bridge/**"
       - "tests/e2e/**"
       - "playwright.config.ts"
       - "ops/hws/staging/**"

@@ -15,8 +15,6 @@ type ProductsQueryResult = {
 
 const PAGE_SIZE = 100;
 const GRAPHQL_URL = process.env.NEXT_PUBLIC_WP_GRAPHQL_URL || "https://wpsandbox.spaces.community/graphql";
-const PRODUCTS_REVALIDATE_SECONDS = 3600;
-
 async function runGraphQL<T>(query: DocumentNode, variables: Record<string, unknown>): Promise<T> {
   const response = await fetch(GRAPHQL_URL, {
     method: "POST",
@@ -27,7 +25,9 @@ async function runGraphQL<T>(query: DocumentNode, variables: Record<string, unkn
       query: print(query),
       variables,
     }),
-    next: { revalidate: PRODUCTS_REVALIDATE_SECONDS },
+    // Карточки каталога должны показывать изменения из WordPress сразу,
+    // в том числе новую фотографию товара.
+    cache: "no-store",
   });
 
   if (!response.ok) {
