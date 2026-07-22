@@ -426,7 +426,7 @@ add_action(
 				'type'        => 'String',
 				'description' => __( 'Целевой slug для 301 со старой карточки товара', 'hws-graphql-bridge' ),
 				'args'        => [
-					'slug' => [ 'type' => [ 'non_null' => 'String' ] ],
+					'slug' => [ 'type' => 'String' ],
 				],
 				'resolve'     => function ( $root, $args ) {
 					$slug      = sanitize_title( (string) ( $args['slug'] ?? '' ) );
