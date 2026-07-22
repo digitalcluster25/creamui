@@ -54,6 +54,7 @@ export const footerData: FooterData = {
   legalLinks: [
     { id: "policy", label: "Полиси" },
     { id: "terms", label: "Условия использования" },
+    { id: "sitemap", label: "Карта сайта", href: "/sitemap" },
     { id: "ui-kit", label: "UI Kit", href: "/dev" },
   ],
 };
