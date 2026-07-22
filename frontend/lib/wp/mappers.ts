@@ -136,7 +136,7 @@ export function mapToCatalogProduct(node: WPProductNode): CatalogProduct {
   return {
     id: node.databaseId,
     href: `/product/${node.slug}`,
-    image: resolveMediaUrl(node.image) ?? "",
+    image: resolveMediaUrl(node.image) ?? resolveMediaUrl(node.galleryImages?.nodes?.[0]) ?? "",
     title: node.name,
     category: pickDisplayCategory(node.productCategories?.nodes),
     brand: node.productBrands?.nodes[0]?.name,
