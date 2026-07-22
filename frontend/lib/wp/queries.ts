@@ -25,6 +25,13 @@ export const GET_PRODUCTS = gql`
             altText
             hwsOptimizedUrl
           }
+          galleryImages {
+            nodes {
+              sourceUrl
+              altText
+              hwsOptimizedUrl
+            }
+          }
           productCategories {
             nodes {
               name
@@ -53,6 +60,13 @@ export const GET_PRODUCTS = gql`
             sourceUrl
             altText
             hwsOptimizedUrl
+          }
+          galleryImages {
+            nodes {
+              sourceUrl
+              altText
+              hwsOptimizedUrl
+            }
           }
           productCategories {
             nodes {
@@ -108,6 +122,13 @@ export const GET_PRODUCTS_BY_BRAND = gql`
             altText
             hwsOptimizedUrl
           }
+          galleryImages {
+            nodes {
+              sourceUrl
+              altText
+              hwsOptimizedUrl
+            }
+          }
           productCategories {
             nodes {
               name
@@ -136,6 +157,13 @@ export const GET_PRODUCTS_BY_BRAND = gql`
             sourceUrl
             altText
             hwsOptimizedUrl
+          }
+          galleryImages {
+            nodes {
+              sourceUrl
+              altText
+              hwsOptimizedUrl
+            }
           }
           productCategories {
             nodes {
@@ -191,6 +219,13 @@ export const GET_PRODUCTS_BY_CATEGORY_FILTER = gql`
             altText
             hwsOptimizedUrl
           }
+          galleryImages {
+            nodes {
+              sourceUrl
+              altText
+              hwsOptimizedUrl
+            }
+          }
           productCategories {
             nodes {
               name
@@ -225,6 +260,13 @@ export const GET_PRODUCTS_BY_CATEGORY_FILTER = gql`
             sourceUrl
             altText
             hwsOptimizedUrl
+          }
+          galleryImages {
+            nodes {
+              sourceUrl
+              altText
+              hwsOptimizedUrl
+            }
           }
           productCategories {
             nodes {
