@@ -374,23 +374,13 @@ add_action(
 					}
 
 					$rate = (float) get_post_meta( $product_id, '_hws_usd_rub_rate', true );
-					if ( $rate <= 0 ) {
-						// Без курса конвертация недостоверна — лучше отдать пусто,
-						// чем смешать рубли с долларами на фронте.
-						return [];
-					}
-
 					$raw = get_post_meta( $product_id, '_hws_source_payload', true );
-					if ( empty( $raw ) ) {
-						return [];
-					}
-
 					$payload = json_decode( $raw, true );
-					if ( ! is_array( $payload ) || empty( $payload['option_groups'] ) || ! is_array( $payload['option_groups'] ) ) {
-						return [];
+					if ( $rate > 0 && is_array( $payload ) && ! empty( $payload['option_groups'] ) && is_array( $payload['option_groups'] ) ) {
+						return hws_graphql_bridge_map_variant_groups( $payload['option_groups'], $rate );
 					}
 
-					return hws_graphql_bridge_map_variant_groups( $payload['option_groups'], $rate );
+					return hws_graphql_bridge_get_wc_variant_groups( $product_id );
 				},
 			]
 		);
@@ -425,6 +415,25 @@ add_action(
 						'whatsappNumber'   => $row['whatsapp_number'],
 						'telegramUsername' => $row['telegram_username'],
 					];
+				},
+			]
+		);
+
+		register_graphql_field(
+			'RootQuery',
+			'hwsProductRedirect',
+			[
+				'type'        => 'String',
+				'description' => __( 'Целевой slug для 301 со старой карточки товара', 'hws-graphql-bridge' ),
+				'args'        => [
+					'slug' => [ 'type' => [ 'non_null' => 'String' ] ],
+				],
+				'resolve'     => function ( $root, $args ) {
+					$slug      = sanitize_title( (string) ( $args['slug'] ?? '' ) );
+					$redirects = get_option( 'hws_product_redirects', [] );
+					$target    = is_array( $redirects ) ? ( $redirects[ $slug ] ?? null ) : null;
+
+					return is_string( $target ) && '' !== sanitize_title( $target ) ? sanitize_title( $target ) : null;
 				},
 			]
 		);
@@ -545,6 +554,53 @@ function hws_graphql_bridge_map_variant_groups( array $groups, float $rate ): ar
 		$result[] = [
 			'key'     => ! empty( $group['id'] ) ? (string) $group['id'] : hws_graphql_bridge_slugify( (string) $group['name'] ),
 			'label'   => $group['name'],
+			'options' => $options,
+		];
+	}
+
+	return $result;
+}
+
+/**
+ * Возвращает группы из нативных атрибутов WooCommerce variable product.
+ * Это fallback для товаров, созданных в WooCommerce, а не импортированных
+ * из _hws_source_payload.
+ *
+ * @return array<int, array{key: string, label: string, options: array<int, array{value: string, slug: string, priceModifier: float}>}>
+ */
+function hws_graphql_bridge_get_wc_variant_groups( int $product_id ): array {
+	$product = wc_get_product( $product_id );
+	if ( ! $product || ! $product->is_type( 'variable' ) ) {
+		return [];
+	}
+
+	$result = [];
+	foreach ( $product->get_attributes() as $attribute ) {
+		if ( ! $attribute instanceof WC_Product_Attribute || ! $attribute->get_variation() ) {
+			continue;
+		}
+
+		$name   = (string) $attribute->get_name();
+		$values = $attribute->is_taxonomy()
+			? wc_get_product_terms( $product_id, $name, [ 'fields' => 'names' ] )
+			: $attribute->get_options();
+		$values = array_values( array_filter( array_map( 'strval', $values ) ) );
+		if ( empty( $values ) ) {
+			continue;
+		}
+
+		$options = [];
+		foreach ( $values as $value ) {
+			$options[] = [
+				'value'         => $value,
+				'slug'          => hws_graphql_bridge_slugify( $value ),
+				'priceModifier' => 0,
+			];
+		}
+
+		$result[] = [
+			'key'     => preg_replace( '/^pa_/', '', $name ),
+			'label'   => wc_attribute_label( $name, $product ),
 			'options' => $options,
 		];
 	}
