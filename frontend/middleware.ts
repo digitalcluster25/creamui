@@ -11,7 +11,7 @@ export async function middleware(request: NextRequest) {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
-        query: "query ProductRedirect($slug: String!) { hwsProductRedirect(slug: $slug) }",
+        query: "query ProductRedirect($slug: String) { hwsProductRedirect(slug: $slug) }",
         variables: { slug },
       }),
       cache: "no-store",
