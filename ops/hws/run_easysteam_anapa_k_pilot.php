@@ -19,10 +19,10 @@ function hws_easysteam_anapa_k_log( string $message ): void {
 	echo $message . PHP_EOL;
 }
 
-function hws_easysteam_anapa_k_attribute( array $term_ids ): WC_Product_Attribute {
+function hws_easysteam_anapa_k_attribute( string $taxonomy, array $term_ids ): WC_Product_Attribute {
 	$attribute = new WC_Product_Attribute();
-	$attribute->set_id( wc_attribute_taxonomy_id_by_name( 'pa_cladding-type' ) );
-	$attribute->set_name( 'pa_cladding-type' );
+	$attribute->set_id( wc_attribute_taxonomy_id_by_name( $taxonomy ) );
+	$attribute->set_name( $taxonomy );
 	$attribute->set_options( array_values( array_unique( array_map( 'intval', $term_ids ) ) ) );
 	$attribute->set_visible( true );
 	$attribute->set_variation( true );
@@ -37,10 +37,10 @@ function hws_easysteam_anapa_k_source( int $id ): WC_Product {
 	return $product;
 }
 
-function hws_easysteam_anapa_k_term( string $slug ): WP_Term {
-	$term = get_term_by( 'slug', $slug, 'pa_cladding-type' );
+function hws_easysteam_anapa_k_term( string $taxonomy, string $slug ): WP_Term {
+	$term = get_term_by( 'slug', $slug, $taxonomy );
 	if ( ! $term instanceof WP_Term ) {
-		throw new RuntimeException( "Expected existing pa_cladding-type term {$slug}." );
+		throw new RuntimeException( "Expected existing {$taxonomy} term {$slug}." );
 	}
 	return $term;
 }
@@ -69,6 +69,12 @@ $groups = [
 		'slug' => 'easysteam-gelendzhik-k',
 		'sources' => [ 249010 => 'bez-oblicovki', 249011 => '3-storonniy-kamennyy-kozhuh', 249012 => 'polnyy-kamennyy-kozhuh', 249013 => 'nabornyy-kamennyy-kozhuh' ],
 	],
+	'domna-k' => [
+		'name' => 'Дровяная печь EasySteam Домна К',
+		'slug' => 'easysteam-domna-k',
+		'variation_taxonomies' => [ 'pa_cladding-type', 'pa_series' ],
+		'sources' => [ 249014 => 'bez-oblicovki', 249015 => '3-storonniy-kamennyy-kozhuh', 249016 => 'polnyy-kamennyy-kozhuh', 249017 => 'nabornyy-kamennyy-kozhuh', 249018 => 'bez-oblicovki', 249019 => '3-storonniy-kamennyy-kozhuh', 249020 => 'polnyy-kamennyy-kozhuh', 249021 => 'nabornyy-kamennyy-kozhuh', 249022 => 'bez-oblicovki', 249023 => 'polnyy-kamennyy-kozhuh' ],
+	],
 ];
 if ( ! isset( $groups[ $group ] ) ) {
 	throw new RuntimeException( 'Execution requires one supported --group: ' . implode( ', ', array_keys( $groups ) ) . '.' );
@@ -78,7 +84,9 @@ $confirmed = in_array( '--confirm=easysteam-' . $group, $cli_args, true );
 $merge_key = 'easysteam-' . $group . '-v1';
 $target_slug = $config['slug'];
 $source_map = $config['sources'];
+$variation_taxonomies = $config['variation_taxonomies'] ?? [ 'pa_cladding-type' ];
 $sources = [];
+$source_variations = [];
 $skus = [];
 $report = [ 'mode' => $execute ? 'execute' : 'dry-run', 'merge_key' => $merge_key, 'target_slug' => $target_slug, 'sources' => [], 'parent_id' => null, 'variation_ids' => [] ];
 
@@ -90,7 +98,18 @@ foreach ( $source_map as $id => $casing ) {
 	}
 	$skus[] = $sku;
 	$sources[ $id ] = $source;
-	$report['sources'][] = [ 'id' => $id, 'slug' => $source->get_slug(), 'sku' => $sku, 'price' => $source->get_price(), 'cladding_type' => $casing ];
+	$source_variations[ $id ] = [ 'pa_cladding-type' => $casing ];
+	foreach ( $variation_taxonomies as $taxonomy ) {
+		if ( 'pa_cladding-type' === $taxonomy ) {
+			continue;
+		}
+		$terms = wp_get_object_terms( $id, $taxonomy, [ 'fields' => 'all' ] );
+		if ( is_wp_error( $terms ) || 1 !== count( $terms ) ) {
+			throw new RuntimeException( "Expected one {$taxonomy} term for product {$id}." );
+		}
+		$source_variations[ $id ][ $taxonomy ] = $terms[0]->slug;
+	}
+	$report['sources'][] = [ 'id' => $id, 'slug' => $source->get_slug(), 'sku' => $sku, 'price' => $source->get_price(), 'variation_attributes' => $source_variations[ $id ] ];
 }
 
 $existing = get_posts( [ 'post_type' => 'product', 'post_status' => 'any', 'posts_per_page' => 1, 'fields' => 'ids', 'meta_key' => '_hws_merge_key', 'meta_value' => $merge_key ] );
@@ -121,20 +140,25 @@ $parent_id = $parent->save();
 
 $parent_attributes = [];
 foreach ( $base->get_attributes() as $attribute ) {
-	if ( $attribute instanceof WC_Product_Attribute && 'pa_cladding-type' !== $attribute->get_name() ) {
+	if ( $attribute instanceof WC_Product_Attribute && ! in_array( $attribute->get_name(), $variation_taxonomies, true ) ) {
 		$attribute->set_visible( true );
 		$attribute->set_variation( false );
 		$parent_attributes[ $attribute->get_name() ] = $attribute;
 	}
 }
-$terms = [];
-foreach ( $source_map as $cladding_slug ) {
-	$terms[ $cladding_slug ] = hws_easysteam_anapa_k_term( $cladding_slug );
+$default_attributes = [];
+foreach ( $variation_taxonomies as $taxonomy ) {
+	$terms = [];
+	foreach ( $source_variations as $variation_values ) {
+		$slug = $variation_values[ $taxonomy ];
+		$terms[ $slug ] = hws_easysteam_anapa_k_term( $taxonomy, $slug );
+	}
+	wp_set_object_terms( $parent_id, array_map( static fn( WP_Term $term ): int => $term->term_id, $terms ), $taxonomy );
+	$parent_attributes[ $taxonomy ] = hws_easysteam_anapa_k_attribute( $taxonomy, array_map( static fn( WP_Term $term ): int => $term->term_id, $terms ) );
+	$default_attributes[ $taxonomy ] = reset( $source_variations )[ $taxonomy ];
 }
-wp_set_object_terms( $parent_id, array_map( static fn( WP_Term $term ): int => $term->term_id, $terms ), 'pa_cladding-type' );
-$parent_attributes['pa_cladding-type'] = hws_easysteam_anapa_k_attribute( array_map( static fn( WP_Term $term ): int => $term->term_id, $terms ) );
 $parent->set_attributes( $parent_attributes );
-$parent->set_default_attributes( [ 'pa_cladding-type' => 'bez-oblicovki' ] );
+$parent->set_default_attributes( $default_attributes );
 $parent->save();
 
 $redirects = get_option( 'hws_product_redirects', [] );
@@ -147,7 +171,7 @@ foreach ( $sources as $id => $source ) {
 	$variation->set_sale_price( $source->get_sale_price() );
 	$variation->set_price( $source->get_price() );
 	$variation->set_image_id( $source->get_image_id() );
-	$variation->set_attributes( [ 'pa_cladding-type' => $source_map[ $id ] ] );
+	$variation->set_attributes( $source_variations[ $id ] );
 	$variation_id = $variation->save();
 	update_post_meta( $variation_id, '_hws_merge_source_product_id', $id );
 	$report['variation_ids'][ $id ] = $variation_id;
