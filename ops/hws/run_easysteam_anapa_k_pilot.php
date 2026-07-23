@@ -1,10 +1,10 @@
 <?php
 /**
- * Recoverable EasySteam pilot: four "Анапа К" simple products become one
- * variable product. Default mode only validates and prints the proposed move.
+ * Recoverable EasySteam cladding batches. Each selected family contains four
+ * simple products that differ only by the existing "тип облицовки" attribute.
  *
- * wp eval-file run_easysteam_anapa_k_pilot.php
- * wp eval-file run_easysteam_anapa_k_pilot.php -- --execute --confirm=easysteam-anapa-k
+ * wp eval-file run_easysteam_anapa_k_pilot.php -- --group=sochi-k
+ * wp eval-file run_easysteam_anapa_k_pilot.php -- --group=sochi-k --execute --confirm=easysteam-sochi-k
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -47,15 +47,32 @@ function hws_easysteam_anapa_k_term( string $slug ): WP_Term {
 
 $cli_args = isset( $args ) && is_array( $args ) ? $args : ( $argv ?? [] );
 $execute = in_array( '--execute', $cli_args, true );
-$confirmed = in_array( '--confirm=easysteam-anapa-k', $cli_args, true );
-$merge_key = 'easysteam-anapa-k-v1';
-$target_slug = 'easysteam-anapa-k';
-$source_map = [
-	249002 => 'bez-oblicovki',
-	249003 => '3-storonniy-kamennyy-kozhuh',
-	249004 => 'polnyy-kamennyy-kozhuh',
-	249005 => 'nabornyy-kamennyy-kozhuh',
+$group = '';
+foreach ( $cli_args as $arg ) {
+	if ( 0 === strpos( (string) $arg, '--group=' ) ) {
+		$group = substr( (string) $arg, 8 );
+	}
+}
+$groups = [
+	'anapa-k' => [
+		'name' => 'Дровяная печь EasySteam Анапа К',
+		'slug' => 'easysteam-anapa-k',
+		'sources' => [ 249002 => 'bez-oblicovki', 249003 => '3-storonniy-kamennyy-kozhuh', 249004 => 'polnyy-kamennyy-kozhuh', 249005 => 'nabornyy-kamennyy-kozhuh' ],
+	],
+	'sochi-k' => [
+		'name' => 'Дровяная печь EasySteam Сочи К',
+		'slug' => 'easysteam-sochi-k',
+		'sources' => [ 249006 => 'bez-oblicovki', 249007 => '3-storonniy-kamennyy-kozhuh', 249008 => 'polnyy-kamennyy-kozhuh', 249009 => 'nabornyy-kamennyy-kozhuh' ],
+	],
 ];
+if ( ! isset( $groups[ $group ] ) ) {
+	throw new RuntimeException( 'Execution requires one supported --group: ' . implode( ', ', array_keys( $groups ) ) . '.' );
+}
+$config = $groups[ $group ];
+$confirmed = in_array( '--confirm=easysteam-' . $group, $cli_args, true );
+$merge_key = 'easysteam-' . $group . '-v1';
+$target_slug = $config['slug'];
+$source_map = $config['sources'];
 $sources = [];
 $skus = [];
 $report = [ 'mode' => $execute ? 'execute' : 'dry-run', 'merge_key' => $merge_key, 'target_slug' => $target_slug, 'sources' => [], 'parent_id' => null, 'variation_ids' => [] ];
@@ -85,7 +102,7 @@ if ( ! $execute || ! empty( $existing ) ) {
 
 $base = reset( $sources );
 $parent = new WC_Product_Variable();
-$parent->set_name( 'Дровяная печь EasySteam Анапа К' );
+$parent->set_name( $config['name'] );
 $parent->set_slug( $target_slug );
 $parent->set_status( 'draft' );
 $parent->set_catalog_visibility( 'visible' );
