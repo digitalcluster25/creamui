@@ -64,6 +64,11 @@ $groups = [
 		'slug' => 'easysteam-sochi-k',
 		'sources' => [ 249006 => 'bez-oblicovki', 249007 => '3-storonniy-kamennyy-kozhuh', 249008 => 'polnyy-kamennyy-kozhuh', 249009 => 'nabornyy-kamennyy-kozhuh' ],
 	],
+	'gelendzhik-k' => [
+		'name' => 'Дровяная печь EasySteam Геленджик К',
+		'slug' => 'easysteam-gelendzhik-k',
+		'sources' => [ 249010 => 'bez-oblicovki', 249011 => '3-storonniy-kamennyy-kozhuh', 249012 => 'polnyy-kamennyy-kozhuh', 249013 => 'nabornyy-kamennyy-kozhuh' ],
+	],
 ];
 if ( ! isset( $groups[ $group ] ) ) {
 	throw new RuntimeException( 'Execution requires one supported --group: ' . implode( ', ', array_keys( $groups ) ) . '.' );
