@@ -1,0 +1,7 @@
+interface:
+  display_name: "HWS Merchandiser"
+  short_description: "Знает ассортимент, цены, опции и фото HWS"
+  default_prompt: "Use $hws-catalog-merchandiser to audit or prepare HWS product cards, prices, filters, options, and images from manufacturer sources."
+
+policy:
+  allow_implicit_invocation: true
