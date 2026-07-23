@@ -1,6 +1,8 @@
 import { NextResponse, type NextRequest } from "next/server";
 
-const graphQlUrl = process.env.NEXT_PUBLIC_WP_GRAPHQL_URL ?? "https://wpsandbox.spaces.community/graphql";
+// Middleware runs in the Next edge runtime. Its Docker-internal GraphQL host
+// is not resolvable there, so redirects use the public WordPress endpoint.
+const graphQlUrl = process.env.HWS_REDIRECT_GRAPHQL_URL ?? "https://wpsandbox.spaces.community/graphql";
 
 export async function middleware(request: NextRequest) {
   const slug = request.nextUrl.pathname.split("/").filter(Boolean).at(-1);
