@@ -31,7 +31,17 @@ function hws_sangens_pilot_source_product( int $product_id ): WC_Product {
 }
 
 $cli_args   = isset( $args ) && is_array( $args ) ? $args : ( $argv ?? [] );
-$mode       = in_array( 'run', $cli_args, true ) ? 'run' : 'dry-run';
+$mode       = 'dry-run';
+
+// This legacy proof-of-concept used to create live products when invoked with
+// "run". Product merging is now allowed only through an approved, complete
+// manifest with redirect mappings and per-variant validation. Keep this file
+// read-only so it cannot alter the live catalogue by accident.
+if ( in_array( 'run', $cli_args, true ) ) {
+	throw new RuntimeException(
+		'Merge execution is disabled in this pilot. Use an approved manifest through the production merge runner.'
+	);
+}
 $merge_key  = 'sangens-l-ceramic-v1';
 $source_ids = [ 249595, 249596, 249597 ];
 $sources    = array_map( 'hws_sangens_pilot_source_product', $source_ids );
@@ -71,13 +81,11 @@ $existing_ids = get_posts(
 	]
 );
 
-if ( 'dry-run' === $mode ) {
-	if ( ! empty( $existing_ids ) ) {
-		$report['created_id'] = (int) $existing_ids[0];
-	}
-	hws_sangens_pilot_log( wp_json_encode( $report, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) );
-	exit( 0 );
+if ( ! empty( $existing_ids ) ) {
+	$report['created_id'] = (int) $existing_ids[0];
 }
+hws_sangens_pilot_log( wp_json_encode( $report, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) );
+exit( 0 );
 
 $base = $sources[0];
 $parent = ! empty( $existing_ids ) ? wc_get_product( (int) $existing_ids[0] ) : new WC_Product_Variable();
