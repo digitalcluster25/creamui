@@ -75,6 +75,20 @@ $groups = [
 		'variation_taxonomies' => [ 'pa_cladding-type', 'pa_series' ],
 		'sources' => [ 249014 => 'bez-oblicovki', 249015 => '3-storonniy-kamennyy-kozhuh', 249016 => 'polnyy-kamennyy-kozhuh', 249017 => 'nabornyy-kamennyy-kozhuh', 249018 => 'bez-oblicovki', 249019 => '3-storonniy-kamennyy-kozhuh', 249020 => 'polnyy-kamennyy-kozhuh', 249021 => 'nabornyy-kamennyy-kozhuh', 249022 => 'bez-oblicovki', 249023 => 'polnyy-kamennyy-kozhuh' ],
 	],
+	'vivarte' => [
+		'name' => 'Электрическая печь EasySteam VIVARTE',
+		'slug' => 'easysteam-vivarte',
+		'variation_taxonomies' => [ 'pa_power', 'pa_cladding-material' ],
+		'sources' => [ 248950 => '', 248951 => '', 248998 => '', 248999 => '', 249000 => '', 249001 => '' ],
+		'source_variations' => [
+			248950 => [ 'pa_power' => '6-kvt', 'pa_cladding-material' => 'steklo' ],
+			248951 => [ 'pa_power' => '6-kvt', 'pa_cladding-material' => 'kamen' ],
+			248998 => [ 'pa_power' => '9-kvt', 'pa_cladding-material' => 'steklo' ],
+			248999 => [ 'pa_power' => '9-kvt', 'pa_cladding-material' => 'kamen' ],
+			249000 => [ 'pa_power' => '12-kvt', 'pa_cladding-material' => 'steklo' ],
+			249001 => [ 'pa_power' => '12-kvt', 'pa_cladding-material' => 'kamen' ],
+		],
+	],
 ];
 if ( ! isset( $groups[ $group ] ) ) {
 	throw new RuntimeException( 'Execution requires one supported --group: ' . implode( ', ', array_keys( $groups ) ) . '.' );
@@ -98,9 +112,9 @@ foreach ( $source_map as $id => $casing ) {
 	}
 	$skus[] = $sku;
 	$sources[ $id ] = $source;
-	$source_variations[ $id ] = [ 'pa_cladding-type' => $casing ];
+	$source_variations[ $id ] = $config['source_variations'][ $id ] ?? [ 'pa_cladding-type' => $casing ];
 	foreach ( $variation_taxonomies as $taxonomy ) {
-		if ( 'pa_cladding-type' === $taxonomy ) {
+		if ( isset( $source_variations[ $id ][ $taxonomy ] ) ) {
 			continue;
 		}
 		$terms = wp_get_object_terms( $id, $taxonomy, [ 'fields' => 'all' ] );
