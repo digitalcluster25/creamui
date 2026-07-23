@@ -119,6 +119,12 @@ def source_groups(
             elif label == "Южная":
                 match = re.search(r"\bЮжная\s+(\d+)\b", name)
                 label = f"Южная {match.group(1)}" if match else label
+            elif re.fullmatch(r"Ялта\s+\d+\s+К", label):
+                label = "Ялта К"
+            elif re.fullmatch(r"Ялта\s+\d+", label):
+                label = "Ялта"
+            elif re.fullmatch(r"Домна\s+\d+\s+К", label):
+                label = "Домна К"
         else:
             label = str(source.get("eos_family", "")).strip()
         if not label:
