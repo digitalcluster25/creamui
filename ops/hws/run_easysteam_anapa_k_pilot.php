@@ -21,8 +21,8 @@ function hws_easysteam_anapa_k_log( string $message ): void {
 
 function hws_easysteam_anapa_k_attribute( array $term_ids ): WC_Product_Attribute {
 	$attribute = new WC_Product_Attribute();
-	$attribute->set_id( wc_attribute_taxonomy_id_by_name( 'pa_casing' ) );
-	$attribute->set_name( 'pa_casing' );
+	$attribute->set_id( wc_attribute_taxonomy_id_by_name( 'pa_cladding-type' ) );
+	$attribute->set_name( 'pa_cladding-type' );
 	$attribute->set_options( array_values( array_unique( array_map( 'intval', $term_ids ) ) ) );
 	$attribute->set_visible( true );
 	$attribute->set_variation( true );
@@ -37,17 +37,10 @@ function hws_easysteam_anapa_k_source( int $id ): WC_Product {
 	return $product;
 }
 
-function hws_easysteam_anapa_k_term( string $name, string $slug ): WP_Term {
-	$term = get_term_by( 'slug', $slug, 'pa_casing' );
-	if ( ! $term ) {
-		$created = wp_insert_term( $name, 'pa_casing', [ 'slug' => $slug ] );
-		if ( is_wp_error( $created ) ) {
-			throw new RuntimeException( 'Cannot create pa_casing term: ' . $created->get_error_message() );
-		}
-		$term = get_term( (int) $created['term_id'], 'pa_casing' );
-	}
+function hws_easysteam_anapa_k_term( string $slug ): WP_Term {
+	$term = get_term_by( 'slug', $slug, 'pa_cladding-type' );
 	if ( ! $term instanceof WP_Term ) {
-		throw new RuntimeException( "Cannot read pa_casing term {$slug}." );
+		throw new RuntimeException( "Expected existing pa_cladding-type term {$slug}." );
 	}
 	return $term;
 }
@@ -58,10 +51,10 @@ $confirmed = in_array( '--confirm=easysteam-anapa-k', $cli_args, true );
 $merge_key = 'easysteam-anapa-k-v1';
 $target_slug = 'easysteam-anapa-k';
 $source_map = [
-	249002 => [ 'базовая модель', 'base' ],
-	249003 => [ 'трехсторонний кожух', 'three-sided' ],
-	249004 => [ 'полноценный кожух', 'full' ],
-	249005 => [ 'полноценный наборный кожух', 'full-stacked' ],
+	249002 => 'bez-oblicovki',
+	249003 => '3-storonniy-kamennyy-kozhuh',
+	249004 => 'polnyy-kamennyy-kozhuh',
+	249005 => 'nabornyy-kamennyy-kozhuh',
 ];
 $sources = [];
 $skus = [];
@@ -75,7 +68,7 @@ foreach ( $source_map as $id => $casing ) {
 	}
 	$skus[] = $sku;
 	$sources[ $id ] = $source;
-	$report['sources'][] = [ 'id' => $id, 'slug' => $source->get_slug(), 'sku' => $sku, 'price' => $source->get_price(), 'casing' => $casing[1] ];
+	$report['sources'][] = [ 'id' => $id, 'slug' => $source->get_slug(), 'sku' => $sku, 'price' => $source->get_price(), 'cladding_type' => $casing ];
 }
 
 $existing = get_posts( [ 'post_type' => 'product', 'post_status' => 'any', 'posts_per_page' => 1, 'fields' => 'ids', 'meta_key' => '_hws_merge_key', 'meta_value' => $merge_key ] );
@@ -106,21 +99,20 @@ $parent_id = $parent->save();
 
 $parent_attributes = [];
 foreach ( $base->get_attributes() as $attribute ) {
-	if ( $attribute instanceof WC_Product_Attribute && 'pa_casing' !== $attribute->get_name() ) {
+	if ( $attribute instanceof WC_Product_Attribute && 'pa_cladding-type' !== $attribute->get_name() ) {
 		$attribute->set_visible( true );
 		$attribute->set_variation( false );
 		$parent_attributes[ $attribute->get_name() ] = $attribute;
 	}
 }
 $terms = [];
-foreach ( $source_map as $casing ) {
-	$term = hws_easysteam_anapa_k_term( $casing[0], $casing[1] );
-	$terms[ $casing[1] ] = $term;
+foreach ( $source_map as $cladding_slug ) {
+	$terms[ $cladding_slug ] = hws_easysteam_anapa_k_term( $cladding_slug );
 }
-wp_set_object_terms( $parent_id, array_map( static fn( WP_Term $term ): int => $term->term_id, $terms ), 'pa_casing' );
-$parent_attributes['pa_casing'] = hws_easysteam_anapa_k_attribute( array_map( static fn( WP_Term $term ): int => $term->term_id, $terms ) );
+wp_set_object_terms( $parent_id, array_map( static fn( WP_Term $term ): int => $term->term_id, $terms ), 'pa_cladding-type' );
+$parent_attributes['pa_cladding-type'] = hws_easysteam_anapa_k_attribute( array_map( static fn( WP_Term $term ): int => $term->term_id, $terms ) );
 $parent->set_attributes( $parent_attributes );
-$parent->set_default_attributes( [ 'pa_casing' => 'base' ] );
+$parent->set_default_attributes( [ 'pa_cladding-type' => 'bez-oblicovki' ] );
 $parent->save();
 
 $redirects = get_option( 'hws_product_redirects', [] );
@@ -133,7 +125,7 @@ foreach ( $sources as $id => $source ) {
 	$variation->set_sale_price( $source->get_sale_price() );
 	$variation->set_price( $source->get_price() );
 	$variation->set_image_id( $source->get_image_id() );
-	$variation->set_attributes( [ 'pa_casing' => $source_map[ $id ][1] ] );
+	$variation->set_attributes( [ 'pa_cladding-type' => $source_map[ $id ] ] );
 	$variation_id = $variation->save();
 	update_post_meta( $variation_id, '_hws_merge_source_product_id', $id );
 	$report['variation_ids'][ $id ] = $variation_id;
