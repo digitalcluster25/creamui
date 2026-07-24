@@ -583,6 +583,19 @@ function updateAttrDropdowns(card, attrs) {
                 if ($name === '' || isset($attrs[$name])) continue;
                 $attrs[$name] = self::attribute_label($name);
             }
+
+            foreach (self::product_characteristics($pid) as $spec_label => $spec_value) {
+                if ($spec_value === '') {
+                    continue;
+                }
+
+                $spec_key = self::spec_key($spec_label);
+                if (isset($attrs[$spec_key])) {
+                    continue;
+                }
+
+                $attrs[$spec_key] = 'Характеристика · ' . $spec_label;
+            }
         }
         if (!empty($attrs)) {
             natcasesort($attrs);
@@ -730,6 +743,10 @@ function updateAttrDropdowns(card, attrs) {
         $attr_name = trim($attr_name);
         if ($attr_name === '') return '';
 
+        if (self::is_spec_key($attr_name)) {
+            return self::spec_label_from_key($attr_name);
+        }
+
         $label = wc_attribute_label($attr_name);
         return is_string($label) && $label !== '' ? $label : $attr_name;
     }
@@ -737,6 +754,11 @@ function updateAttrDropdowns(card, attrs) {
     private static function product_attribute_value(WC_Product $product, string $attr_name): string {
         $attr_name = trim($attr_name);
         if ($attr_name === '') return '';
+
+        if (self::is_spec_key($attr_name)) {
+            $specs = self::product_characteristics($product->get_id());
+            return $specs[self::spec_label_from_key($attr_name)] ?? '';
+        }
 
         $direct = $product->get_attribute($attr_name);
         if (is_string($direct) && $direct !== '') {
@@ -792,6 +814,69 @@ function updateAttrDropdowns(card, attrs) {
         }
 
         return '';
+    }
+
+    private static function product_characteristics(int $product_id): array {
+        $raw = get_post_meta($product_id, '_hws_source_characteristics_json', true);
+        if (is_string($raw) && $raw !== '') {
+            $decoded = json_decode($raw, true);
+            if (is_array($decoded)) {
+                $result = [];
+                foreach ($decoded as $label => $value) {
+                    $label = trim((string) $label);
+                    $value = trim((string) $value);
+                    if ($label === '' || $value === '') {
+                        continue;
+                    }
+                    $result[$label] = $value;
+                }
+                if ($result) {
+                    return $result;
+                }
+            }
+        }
+
+        $html = get_post_meta($product_id, '_hws_specs_html', true);
+        if (!is_string($html) || $html === '') {
+            return [];
+        }
+
+        $rows = [];
+        $dom = new DOMDocument();
+        libxml_use_internal_errors(true);
+        $dom->loadHTML('<?xml encoding="utf-8" ?>' . $html);
+        libxml_clear_errors();
+
+        foreach ($dom->getElementsByTagName('tr') as $tr) {
+            $th = $tr->getElementsByTagName('th');
+            $td = $tr->getElementsByTagName('td');
+
+            if ($th->length < 1 || $td->length < 1) {
+                continue;
+            }
+
+            $label = trim((string) $th->item(0)->textContent);
+            $value = trim((string) $td->item(0)->textContent);
+            if ($label === '' || $value === '') {
+                continue;
+            }
+
+            $rows[$label] = $value;
+        }
+
+        return $rows;
+    }
+
+    private static function is_spec_key(string $value): bool {
+        return str_starts_with($value, 'spec:');
+    }
+
+    private static function spec_key(string $label): string {
+        return 'spec:' . trim($label);
+    }
+
+    private static function spec_label_from_key(string $key): string {
+        return trim(substr($key, 5));
     }
 
     // ─── Resolution ──────────────────────────────────────────────────────
