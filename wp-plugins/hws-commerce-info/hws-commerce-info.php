@@ -504,7 +504,7 @@ function updateAttrDropdowns(card, attrs) {
     private static function render_info_block_html(string $cidx, string $bidx, ?array $block): void {
         $prefix    = "hws_info[{$cidx}][blocks][{$bidx}]";
         $attr_slug = $block['attr_slug'] ?? '';
-        $label     = $block['label']     ?? '';
+        $label     = self::normalize_block_label((string) ($block['label'] ?? ''), (string) $attr_slug);
         ?>
         <div class="hws-info-block">
             <span class="hws-info-block__label">Атрибут</span>
@@ -535,10 +535,14 @@ function updateAttrDropdowns(card, attrs) {
             $blocks_raw = $row['blocks'] ?? [];
             $blocks = [];
             foreach ($blocks_raw as $b) {
-                $lbl = sanitize_text_field($b['label'] ?? '');
+                $attr_slug = sanitize_text_field((string) ($b['attr_slug'] ?? ''));
+                $lbl = self::normalize_block_label(
+                    sanitize_text_field($b['label'] ?? ''),
+                    $attr_slug
+                );
                 if (empty($b['attr_slug']) && $lbl === '') continue;
                 $blocks[] = [
-                    'attr_slug' => sanitize_text_field((string) ($b['attr_slug'] ?? '')),
+                    'attr_slug' => $attr_slug,
                     'label'     => $lbl,
                 ];
             }
@@ -727,7 +731,7 @@ function updateAttrDropdowns(card, attrs) {
         $result = [];
         foreach ($cfg['blocks'] as $block) {
             $slug  = trim((string) ($block['attr_slug'] ?? ''));
-            $label = $block['label'] ?? '';
+            $label = self::normalize_block_label((string) ($block['label'] ?? ''), $slug);
             if ($slug === '') continue;
             $value = self::product_attribute_value($wc, $slug);
             if ($value === '') continue;
@@ -877,6 +881,20 @@ function updateAttrDropdowns(card, attrs) {
 
     private static function spec_label_from_key(string $key): string {
         return trim(substr($key, 5));
+    }
+
+    private static function normalize_block_label(string $label, string $attr_slug): string {
+        $label = trim($label);
+        if ($label === '' || !self::is_spec_key($attr_slug)) {
+            return $label;
+        }
+
+        $prefix = 'Характеристика · ';
+        if (str_starts_with($label, $prefix)) {
+            return trim(substr($label, strlen($prefix)));
+        }
+
+        return $label;
     }
 
     // ─── Resolution ──────────────────────────────────────────────────────
