@@ -279,6 +279,17 @@ final class HWS_Image_Background_Remover {
 			}
 			$attachment_ids[] = $product->get_image_id();
 			$attachment_ids   = array_merge( $attachment_ids, $product->get_gallery_image_ids() );
+
+			// Вариации не имеют собственной product_brand taxonomy, поэтому они не
+			// попадают в исходный запрос по бренду. Добавляем их фото через родителя.
+			if ( $product->is_type( 'variable' ) ) {
+				foreach ( $product->get_children() as $variation_id ) {
+					$variation = wc_get_product( $variation_id );
+					if ( $variation ) {
+						$attachment_ids[] = $variation->get_image_id();
+					}
+				}
+			}
 		}
 		return array_values( array_filter( array_unique( array_map( 'absint', $attachment_ids ) ) ) );
 	}
