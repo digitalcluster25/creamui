@@ -499,6 +499,8 @@ export const GET_PRODUCT_BY_SLUG = gql`
             value
             slug
             priceModifier
+            imageUrl
+            isDefault
           }
         }
         variations(first: 5000) {

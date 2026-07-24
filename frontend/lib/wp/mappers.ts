@@ -6,7 +6,6 @@ import type { CategoriesData } from "@/lib/types/categories";
 import type { ProductsData } from "@/lib/types/products";
 import type { CurrencyCode } from "@/lib/currency/format";
 import { htmlToPlainText } from "@/lib/content/plainText";
-import { productPageData } from "@/lib/data/productPage";
 import type { WPCategoryNode } from "@/lib/wp/header";
 import { normalizeWpMediaUrl } from "@/lib/wp/media";
 
@@ -54,7 +53,7 @@ export type WPProductNode = {
   hwsVariantGroups?: {
     key: string;
     label: string;
-    options: { value: string; slug?: string; priceModifier: number }[];
+    options: { value: string; slug?: string; priceModifier: number; imageUrl?: string | null; isDefault?: boolean }[];
   }[];
   attributes?: { nodes: { name: string; options: string[] }[] };
   variations?: {
@@ -194,6 +193,13 @@ function swatchColorForValue(value: string): string | undefined {
 function isSwatchGroup(label: string): boolean {
   const normalized = label.trim().toLowerCase();
   return normalized.includes("кожух") || normalized.includes("материал");
+}
+
+function pickInitialImages(node: WPProductNode): string[] {
+  return [
+    resolveMediaUrl(node.image) ?? node.hwsSourceImageUrl ?? undefined,
+    ...(node.galleryImages?.nodes.map((g) => resolveMediaUrl(g)) ?? []),
+  ].filter(Boolean) as string[];
 }
 
 // Фильтр/сортировка/пагинация теперь полностью клиентские (Catalog.tsx) —
@@ -435,16 +441,27 @@ function buildVariantEntries(
 
   for (const v of variations) {
     const directSourceOptions = parseSourceOptionsJson(v.hwsSourceOptionsJson);
+    const selectionFromAttrs: Record<string, string> = {};
+    for (const attr of v.attributes?.nodes ?? []) {
+      const decodedName = decodeURIComponent(attr.name);
+      const groupKey = keyByAttr.get(decodedName);
+      if (!groupKey) continue;
+      const decodedVal = toSlug(decodeURIComponent(attr.value));
+      const labelMap = slugToLabel.get(groupKey);
+      const label = labelMap?.get(decodedVal);
+      if (label) selectionFromAttrs[groupKey] = label;
+    }
     if (directSourceOptions) {
       const directSelection = Object.fromEntries(
         groups
           .map((group) => [group.key, directSourceOptions[group.label]])
           .filter((entry): entry is [string, string] => typeof entry[1] === "string" && entry[1].length > 0),
       );
+      const mergedSelection = { ...selectionFromAttrs, ...directSelection };
 
-      if (Object.keys(directSelection).length > 0) {
+      if (Object.keys(mergedSelection).length > 0) {
         entries.push({
-          selection: directSelection,
+          selection: mergedSelection,
           price: parsePrice(v.price),
           sku: v.sku,
           image: normalizeWpMediaUrl(v.hwsSourceImageUrl) ?? resolveMediaUrl(v.image) ?? undefined,
@@ -508,10 +525,7 @@ export function mapToProductPageData(node: WPProductNode): ProductPageData {
   const variantEntries = buildVariantEntries(node);
 
   return {
-    images: [
-      resolveMediaUrl(node.image) ?? node.hwsSourceImageUrl ?? undefined,
-      ...(node.galleryImages?.nodes.map((g) => resolveMediaUrl(g)) ?? []),
-    ].filter(Boolean) as string[],
+    images: pickInitialImages(node),
     badges: node.salePrice ? [{ label: "Sale", variant: "sale" as const }] : [],
     breadcrumbs: [
       { label: "Главная", href: "/" },
@@ -530,7 +544,7 @@ export function mapToProductPageData(node: WPProductNode): ProductPageData {
     brand: node.productBrands?.nodes[0]?.name ?? node.hwsSourceBrand ?? undefined,
     brandHref: node.productBrands?.nodes[0]?.slug ? `/brands/${node.productBrands.nodes[0].slug}` : undefined,
     description: htmlToPlainText(node.shortDescription),
-    commerceInfo: node.hwsCommerceInfo ?? productPageData.commerceInfo ?? undefined,
+    commerceInfo: node.hwsCommerceInfo ?? undefined,
     highlights: node.hwsHighlights?.length ? node.hwsHighlights : undefined,
     facingOptions: node.hwsFacingOptions && node.hwsFacingOptions.length > 1
       ? node.hwsFacingOptions.map((f) => ({
@@ -547,7 +561,9 @@ export function mapToProductPageData(node: WPProductNode): ProductPageData {
       options: g.options.map((o) => ({
         value: o.value,
         priceModifier: o.priceModifier,
+        image: normalizeWpMediaUrl(o.imageUrl) ?? undefined,
         color: isSwatchGroup(g.label) ? swatchColorForValue(o.value) : undefined,
+        isDefault: o.isDefault,
       })),
     })),
     variantEntries,

@@ -39,6 +39,8 @@ function hws_gelendzhik_repair_build_source_payload( array $product ): string {
 				'delta_price'=> (int) ( $value['price_delta_rub'] ?? 0 ),
 				'is_default' => ! empty( $value['checked'] ),
 				'sort_order' => $value_index,
+				'image'      => (string) ( $value['image'] ?? '' ),
+				'additional_image' => (string) ( $value['additional_image'] ?? '' ),
 			];
 		}
 

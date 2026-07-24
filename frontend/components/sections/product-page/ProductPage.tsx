@@ -30,7 +30,8 @@ type Props = { data: ProductPageData; contactChannels?: ContactChannels; highlig
 function buildDefaults(groups: ProductPageData["variantGroups"]): Record<string, string> {
   const out: Record<string, string> = {};
   for (const g of groups) {
-    if (g.options.length > 0) out[g.key] = g.options[0].value;
+    const defaultOption = g.options.find((option) => option.isDefault) ?? g.options[0];
+    if (defaultOption) out[g.key] = defaultOption.value;
   }
   return out;
 }
@@ -38,6 +39,7 @@ function buildDefaults(groups: ProductPageData["variantGroups"]): Record<string,
 export function ProductPage({ data, contactChannels, highlights }: Props) {
   const [activeImg, setActiveImg] = useState(0);
   const [variants, setVariants] = useState<Record<string, string>>(() => buildDefaults(data.variantGroups));
+  const [hasUserChangedVariant, setHasUserChangedVariant] = useState(false);
   const [qty, setQty] = useState(1);
   const { activeCurrency, rates } = useCurrency();
   const dragStartX = useRef<number | null>(null);
@@ -53,7 +55,7 @@ export function ProductPage({ data, contactChannels, highlights }: Props) {
   );
 
   const displayedImages =
-    matchedVariant?.image
+    hasUserChangedVariant && matchedVariant?.image
       ? [matchedVariant.image, ...data.images.filter((src) => src !== matchedVariant.image)]
       : data.images;
 
@@ -75,10 +77,12 @@ export function ProductPage({ data, contactChannels, highlights }: Props) {
   }
 
   function setVariant(key: string, val: string) {
+    setHasUserChangedVariant(true);
     setVariants((prev) => ({ ...prev, [key]: val }));
   }
 
   function clearVariants() {
+    setHasUserChangedVariant(false);
     setVariants(buildDefaults(data.variantGroups));
   }
 
@@ -328,7 +332,10 @@ export function ProductPage({ data, contactChannels, highlights }: Props) {
                         type="button"
                         title={opt.value}
                         className={[styles.swatchColor, active ? styles.swatchColorActive : ""].filter(Boolean).join(" ")}
-                        style={{ "--swatch-color": opt.color } as React.CSSProperties}
+                        style={{
+                          "--swatch-color": opt.color,
+                          "--swatch-image": opt.image ? `url("${opt.image}")` : "none",
+                        } as React.CSSProperties}
                         onClick={() => setVariant(group.key, opt.value)}
                         aria-pressed={active}
                       />

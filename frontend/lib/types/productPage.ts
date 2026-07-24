@@ -3,7 +3,9 @@ import type { CurrencyCode } from "@/lib/currency/format";
 export type ProductSwatch = {
   value: string;
   color?: string;
+  image?: string;
   priceModifier?: number;
+  isDefault?: boolean;
 };
 
 export type ProductVariantGroup = {
