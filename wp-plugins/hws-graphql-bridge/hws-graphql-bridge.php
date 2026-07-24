@@ -630,7 +630,7 @@ add_action(
 );
 
 /**
- * @param array<int, array{id?: mixed, name?: string, values?: array<int, array{name?: string, delta_price?: float, is_default?: bool, sort_order?: int, image?: string, additional_image?: string}>}> $groups
+ * @param array<int, array{id?: mixed, name?: string, values?: array<int, array{name?: string, delta_price?: float, is_default?: bool, sort_order?: int, image?: string, swatch_image?: string, additional_image?: string}>}> $groups
  * @param float $rate unused legacy argument
  * @return array<int, array{key: string, label: string, options: array<int, array{value: string, slug: string, priceModifier: float, imageUrl: ?string, isDefault: bool}>}>
  */
@@ -665,7 +665,9 @@ function hws_graphql_bridge_map_variant_groups( array $groups, float $rate ): ar
 			}
 			$delta_rub      = (float) ( $value['delta_price'] ?? 0 );
 			$image_url      = '';
-			if ( ! empty( $value['image'] ) && is_string( $value['image'] ) ) {
+			if ( ! empty( $value['swatch_image'] ) && is_string( $value['swatch_image'] ) ) {
+				$image_url = trim( $value['swatch_image'] );
+			} elseif ( ! empty( $value['image'] ) && is_string( $value['image'] ) ) {
 				$image_url = trim( $value['image'] );
 			} elseif ( ! empty( $value['additional_image'] ) && is_string( $value['additional_image'] ) ) {
 				$image_url = trim( $value['additional_image'] );

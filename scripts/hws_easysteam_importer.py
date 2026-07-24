@@ -118,6 +118,7 @@ class OptionValue:
     api_id: str
     price_delta_rub: int
     image: str
+    swatch_image: str
     additional_image: str
     checked: bool
 
@@ -320,6 +321,7 @@ class EasySteamParser:
                     api_id=label_el.get("data-id", ""),
                     price_delta_rub=parse_int(input_el.get("data-price")),
                     image=abs_url(input_el.get("data-image")),
+                    swatch_image=abs_url((option.select_one("img") or {}).get("src")),
                     additional_image=abs_url(input_el.get("data-add-image")),
                     checked=input_el.has_attr("checked"),
                 ))

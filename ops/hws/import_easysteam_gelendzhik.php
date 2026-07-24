@@ -343,6 +343,7 @@ function hws_gelendzhik_build_source_payload( array $product ): string {
 				'is_default' => ! empty( $value['checked'] ),
 				'sort_order' => $value_index,
 				'image'      => (string) ( $value['image'] ?? '' ),
+				'swatch_image' => (string) ( $value['swatch_image'] ?? '' ),
 				'additional_image' => (string) ( $value['additional_image'] ?? '' ),
 			];
 		}

@@ -54,12 +54,9 @@ export function ProductPage({ data, contactChannels, highlights }: Props) {
     Object.entries(entry.selection).every(([key, value]) => variants[key] === value)
   );
 
-  const selectedSwatchImage = data.variantGroups
-    .filter((group) => group.type === "color")
-    .map((group) => group.options.find((option) => option.value === variants[group.key])?.image)
-    .find(Boolean);
-
-  const primaryVariantImage = selectedSwatchImage ?? matchedVariant?.image;
+  // Изображение свотча — это текстура материала для кнопки, а не фото товара.
+  // Главное фото берём только у точной выбранной вариации.
+  const primaryVariantImage = matchedVariant?.image;
 
   const displayedImages =
     hasUserChangedVariant && primaryVariantImage
