@@ -25,8 +25,57 @@ function toRubPerUnit(value?: CbrValute): number | null {
   return value.Value / value.Nominal;
 }
 
+function getWpRatesUrl(): string | null {
+  const graphqlUrl = process.env.NEXT_PUBLIC_WP_GRAPHQL_URL;
+  if (!graphqlUrl) return null;
+
+  try {
+    const url = new URL(graphqlUrl);
+    url.pathname = "/wp-json/hws-currency/v1/rates";
+    url.search = "";
+    return url.toString();
+  } catch {
+    return null;
+  }
+}
+
 export async function GET() {
   try {
+    const wpRatesUrl = getWpRatesUrl();
+
+    if (wpRatesUrl) {
+      const response = await fetch(wpRatesUrl, {
+        next: { revalidate: 3600 },
+      });
+
+      if (response.ok) {
+        const payload = await response.json() as {
+          USD?: number;
+          AZN?: number;
+          UZS?: number;
+          RUB?: number;
+          updatedAt?: string;
+        };
+
+        if (payload.USD && payload.AZN && payload.UZS && payload.RUB) {
+          return NextResponse.json(
+            {
+              USD: payload.USD,
+              AZN: payload.AZN,
+              UZS: payload.UZS,
+              RUB: payload.RUB,
+              updatedAt: payload.updatedAt,
+            },
+            {
+              headers: {
+                "Cache-Control": "s-maxage=3600, stale-while-revalidate=86400",
+              },
+            },
+          );
+        }
+      }
+    }
+
     const response = await fetch("https://www.cbr-xml-daily.ru/daily_json.js", {
       next: { revalidate: 3600 },
     });

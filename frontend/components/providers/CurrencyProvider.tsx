@@ -27,7 +27,7 @@ export function CurrencyProvider({
 
   useEffect(() => {
     const saved = window.localStorage.getItem(STORAGE_KEY);
-    if (saved === "USD" || saved === "AZN" || saved === "UZS") {
+    if (saved === "USD" || saved === "AZN" || saved === "UZS" || saved === "RUB") {
       setActiveCurrency(saved);
     }
   }, []);

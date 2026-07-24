@@ -27,6 +27,10 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "easysteam.ru",
+      },
+      {
+        protocol: "https",
         hostname: "colabrio.ams3.cdn.digitaloceanspaces.com",
       },
     ],

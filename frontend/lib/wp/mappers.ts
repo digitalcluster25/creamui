@@ -18,6 +18,8 @@ export type WPProductNode = {
   description?: string;
   shortDescription?: string;
   hwsPriceOnRequest?: boolean;
+  hwsPriceCurrency?: CurrencyCode | null;
+  hwsSourceImageUrl?: string | null;
   price?: string | null;
   regularPrice?: string | null;
   salePrice?: string | null;
@@ -58,6 +60,7 @@ export type WPProductNode = {
       name?: string;
       sku?: string;
       price?: string | null;
+      hwsSourceImageUrl?: string | null;
       image?: { sourceUrl: string; hwsOptimizedUrl?: string | null } | null;
       attributes?: { nodes: { name: string; value: string }[] };
     }[];
@@ -136,7 +139,7 @@ export function mapToCatalogProduct(node: WPProductNode): CatalogProduct {
   return {
     id: node.databaseId,
     href: `/product/${node.slug}`,
-    image: resolveMediaUrl(node.image) ?? resolveMediaUrl(node.galleryImages?.nodes?.[0]) ?? "",
+    image: resolveMediaUrl(node.image) ?? resolveMediaUrl(node.galleryImages?.nodes?.[0]) ?? node.hwsSourceImageUrl ?? "",
     title: node.name,
     category: pickDisplayCategory(node.productCategories?.nodes),
     brand: node.productBrands?.nodes[0]?.name,
@@ -144,7 +147,7 @@ export function mapToCatalogProduct(node: WPProductNode): CatalogProduct {
     priceMin: min,
     priceMax: max,
     priceOnRequest: Boolean(node.hwsPriceOnRequest),
-    baseCurrencyCode: getCurrencyCode(node.price),
+    baseCurrencyCode: node.hwsPriceCurrency ?? getCurrencyCode(node.price),
     attributes: mapProductAttributes(node.attributes?.nodes),
     categorySlugs: node.productCategories?.nodes.map((c) => c.slug) ?? [],
   };
@@ -192,9 +195,9 @@ export function mapToHomeProductsData(nodes: WPProductNode[]): ProductsData {
       priceMin: parsePrice(node.price),
       priceMax: parsePrice(node.price),
       priceOnRequest: Boolean(node.hwsPriceOnRequest),
-      baseCurrencyCode: getCurrencyCode(node.price),
+      baseCurrencyCode: node.hwsPriceCurrency ?? getCurrencyCode(node.price),
       categories: (node.productCategories?.nodes ?? []).map((category) => category.name),
-      image1: resolveMediaUrl(node.image) ?? "",
+      image1: resolveMediaUrl(node.image) ?? node.hwsSourceImageUrl ?? "",
       image2: resolveMediaUrl(node.galleryImages?.nodes?.[0]),
       swatches: node.hwsFacingOptions?.map((option) => ({
         slug: option.slug,
@@ -413,7 +416,7 @@ function buildVariantEntries(
       selection,
       price: parsePrice(v.price),
       sku: v.sku,
-      image: resolveMediaUrl(v.image),
+      image: resolveMediaUrl(v.image) ?? v.hwsSourceImageUrl ?? undefined,
     });
   }
 
@@ -447,7 +450,7 @@ export function mapToProductPageData(node: WPProductNode): ProductPageData {
 
   return {
     images: [
-      resolveMediaUrl(node.image),
+      resolveMediaUrl(node.image) ?? node.hwsSourceImageUrl ?? undefined,
       ...(node.galleryImages?.nodes.map((g) => resolveMediaUrl(g)) ?? []),
     ].filter(Boolean) as string[],
     badges: node.salePrice ? [{ label: "Sale", variant: "sale" as const }] : [],
@@ -462,7 +465,7 @@ export function mapToProductPageData(node: WPProductNode): ProductPageData {
     priceOld,
     price,
     priceOnRequest: Boolean(node.hwsPriceOnRequest),
-    baseCurrencyCode: getCurrencyCode(node.price),
+    baseCurrencyCode: node.hwsPriceCurrency ?? getCurrencyCode(node.price),
     sku: node.sku,
     tag: undefined, // нет надёжного источника — productTags на бэке содержат демо-теги WooCommerce, не реальные
     brand: node.productBrands?.nodes[0]?.name,

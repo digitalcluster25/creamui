@@ -12,6 +12,7 @@ export const DEFAULT_CURRENCY_RATES: CurrencyRates = {
   USD: 1,
   AZN: 1.7,
   UZS: 12600,
+  RUB: 78.4,
 };
 
 function getRate(currency: CurrencyCode, rates: CurrencyRates): number {

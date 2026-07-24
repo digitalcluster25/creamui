@@ -366,7 +366,7 @@ export function ProductPage({ data, contactChannels, highlights }: Props) {
           <>
             <hr className={styles.divider} />
             <p className={styles.configPrice}>
-              Цена комплектации {currencySymbol}{formatMoney(displayedPrice, activeCurrency)}
+              Цена выбранной комплектации {currencySymbol}{formatMoney(displayedPrice, activeCurrency)}
             </p>
           </>
         )}

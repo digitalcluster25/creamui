@@ -149,6 +149,64 @@ add_action(
 			]
 		);
 
+		register_graphql_field(
+			'Product',
+			'hwsPriceCurrency',
+			[
+				'type'        => 'String',
+				'description' => __( 'Код базовой валюты хранения цены товара', 'hws-graphql-bridge' ),
+				'resolve'     => function ( $source ) {
+					$product_id = hws_graphql_bridge_get_product_id( $source );
+					if ( empty( $product_id ) ) {
+						return null;
+					}
+
+					$currency = get_post_meta( $product_id, '_hws_price_currency', true );
+					if ( ! $currency ) {
+						$currency = get_woocommerce_currency();
+					}
+
+					return $currency ?: null;
+				},
+			]
+		);
+
+		register_graphql_field(
+			'Product',
+			'hwsSourceImageUrl',
+			[
+				'type'        => 'String',
+				'description' => __( 'Резервный URL исходного изображения товара, если attachment ещё не привязан', 'hws-graphql-bridge' ),
+				'resolve'     => function ( $source ) {
+					$product_id = hws_graphql_bridge_get_product_id( $source );
+					if ( empty( $product_id ) ) {
+						return null;
+					}
+
+					$url = get_post_meta( $product_id, '_hws_source_base_image', true );
+					return $url ?: null;
+				},
+			]
+		);
+
+		register_graphql_field(
+			'ProductVariation',
+			'hwsSourceImageUrl',
+			[
+				'type'        => 'String',
+				'description' => __( 'Резервный URL исходного изображения вариации, если attachment ещё не привязан', 'hws-graphql-bridge' ),
+				'resolve'     => function ( $source ) {
+					$variation_id = $source->databaseId ?? $source->ID ?? null;
+					if ( empty( $variation_id ) ) {
+						return null;
+					}
+
+					$url = get_post_meta( (int) $variation_id, '_hws_source_image', true );
+					return $url ?: null;
+				},
+			]
+		);
+
 		/**
 		 * 3) Поле hwsCommerceInfo на интерфейсе Product — условия доставки/оплаты/гарантии
 		 *    по бренду товара. Источник данных — плагин hws-commerce-info (его публичный
@@ -373,11 +431,10 @@ add_action(
 						return [];
 					}
 
-					$rate = (float) get_post_meta( $product_id, '_hws_usd_rub_rate', true );
 					$raw = get_post_meta( $product_id, '_hws_source_payload', true );
 					$payload = json_decode( $raw, true );
-					if ( $rate > 0 && is_array( $payload ) && ! empty( $payload['option_groups'] ) && is_array( $payload['option_groups'] ) ) {
-						return hws_graphql_bridge_map_variant_groups( $payload['option_groups'], $rate );
+					if ( is_array( $payload ) && ! empty( $payload['option_groups'] ) && is_array( $payload['option_groups'] ) ) {
+						return hws_graphql_bridge_map_variant_groups( $payload['option_groups'], 1.0 );
 					}
 
 					return hws_graphql_bridge_get_wc_variant_groups( $product_id );
@@ -508,10 +565,11 @@ add_action(
 
 /**
  * @param array<int, array{id?: mixed, name?: string, values?: array<int, array{name?: string, delta_price?: float, is_default?: bool, sort_order?: int}>}> $groups
- * @param float $rate USD/RUB курс — delta_price (RUB) / rate = priceModifier (USD)
+ * @param float $rate unused legacy argument
  * @return array<int, array{key: string, label: string, options: array<int, array{value: string, slug: string, priceModifier: float}>}>
  */
 function hws_graphql_bridge_map_variant_groups( array $groups, float $rate ): array {
+	unset( $rate );
 	$result = [];
 
 	foreach ( $groups as $group ) {
@@ -543,7 +601,7 @@ function hws_graphql_bridge_map_variant_groups( array $groups, float $rate ): ar
 			$options[]      = [
 				'value'         => $value['name'],
 				'slug'          => hws_graphql_bridge_slugify( (string) $value['name'] ),
-				'priceModifier' => round( $delta_rub / $rate ),
+				'priceModifier' => $delta_rub,
 			];
 		}
 

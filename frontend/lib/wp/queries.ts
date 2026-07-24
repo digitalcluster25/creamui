@@ -17,6 +17,8 @@ export const GET_PRODUCTS = gql`
         slug
         ... on SimpleProduct {
           hwsPriceOnRequest
+          hwsPriceCurrency
+          hwsSourceImageUrl
           price
           regularPrice
           salePrice
@@ -53,6 +55,8 @@ export const GET_PRODUCTS = gql`
         }
         ... on VariableProduct {
           hwsPriceOnRequest
+          hwsPriceCurrency
+          hwsSourceImageUrl
           price
           regularPrice
           salePrice
@@ -141,6 +145,8 @@ export const GET_PRODUCTS_BY_BRAND = gql`
         slug
         ... on SimpleProduct {
           hwsPriceOnRequest
+          hwsPriceCurrency
+          hwsSourceImageUrl
           price
           regularPrice
           salePrice
@@ -177,6 +183,8 @@ export const GET_PRODUCTS_BY_BRAND = gql`
         }
         ... on VariableProduct {
           hwsPriceOnRequest
+          hwsPriceCurrency
+          hwsSourceImageUrl
           price
           regularPrice
           salePrice
@@ -238,6 +246,8 @@ export const GET_PRODUCTS_BY_CATEGORY_FILTER = gql`
         slug
         ... on SimpleProduct {
           hwsPriceOnRequest
+          hwsPriceCurrency
+          hwsSourceImageUrl
           price
           regularPrice
           salePrice
@@ -280,6 +290,8 @@ export const GET_PRODUCTS_BY_CATEGORY_FILTER = gql`
         }
         ... on VariableProduct {
           hwsPriceOnRequest
+          hwsPriceCurrency
+          hwsSourceImageUrl
           price
           regularPrice
           salePrice
@@ -351,6 +363,8 @@ export const GET_PRODUCT_BY_SLUG = gql`
       shortDescription
       ... on SimpleProduct {
         hwsPriceOnRequest
+        hwsPriceCurrency
+        hwsSourceImageUrl
         price
         regularPrice
         salePrice
@@ -416,6 +430,8 @@ export const GET_PRODUCT_BY_SLUG = gql`
       }
       ... on VariableProduct {
         hwsPriceOnRequest
+        hwsPriceCurrency
+        hwsSourceImageUrl
         price
         regularPrice
         salePrice
@@ -487,6 +503,7 @@ export const GET_PRODUCT_BY_SLUG = gql`
             name
             sku
             price
+            hwsSourceImageUrl
             image {
               sourceUrl
               hwsOptimizedUrl
@@ -581,6 +598,8 @@ export const GET_FEATURED_PRODUCTS = gql`
         }
         ... on SimpleProduct {
           hwsPriceOnRequest
+          hwsPriceCurrency
+          hwsSourceImageUrl
           price
           regularPrice
           salePrice
@@ -611,6 +630,8 @@ export const GET_FEATURED_PRODUCTS = gql`
         }
         ... on VariableProduct {
           hwsPriceOnRequest
+          hwsPriceCurrency
+          hwsSourceImageUrl
           price
           regularPrice
           salePrice
@@ -656,6 +677,8 @@ export const GET_HOME_PRODUCTS = gql`
         }
         ... on SimpleProduct {
           hwsPriceOnRequest
+          hwsPriceCurrency
+          hwsSourceImageUrl
           price
           regularPrice
           salePrice
@@ -686,6 +709,8 @@ export const GET_HOME_PRODUCTS = gql`
         }
         ... on VariableProduct {
           hwsPriceOnRequest
+          hwsPriceCurrency
+          hwsSourceImageUrl
           price
           regularPrice
           salePrice
