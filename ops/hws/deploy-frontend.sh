@@ -12,7 +12,7 @@ cd "$ROOT_DIR"
 
 ssh -p "$PORT" "$USER_NAME@$HOST" "mkdir -p '$REMOTE_DIR/wp-plugins/hws-graphql-bridge'"
 
-rsync -az --delete --mkpath \
+rsync -az --delete \
   -e "ssh -p $PORT" \
   --exclude '.env.local' \
   --exclude '.git' \
@@ -21,7 +21,7 @@ rsync -az --delete --mkpath \
   --exclude 'tsconfig.tsbuildinfo' \
   frontend/ "$USER_NAME@$HOST:$REMOTE_DIR/"
 
-rsync -az --delete --mkpath \
+rsync -az --delete \
   -e "ssh -p $PORT" \
   --exclude '.DS_Store' \
   wp-plugins/hws-graphql-bridge/ "$USER_NAME@$HOST:$REMOTE_DIR/wp-plugins/hws-graphql-bridge/"
