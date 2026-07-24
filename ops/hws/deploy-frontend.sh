@@ -10,8 +10,6 @@ CONTAINER_NAME="${HWS_CONTAINER_NAME:-hws-frontend}"
 ROOT_DIR="$(cd "$(dirname "$0")/../.." && pwd)"
 cd "$ROOT_DIR"
 
-ssh -p "$PORT" "$USER_NAME@$HOST" "mkdir -p '$REMOTE_DIR/wp-plugins/hws-graphql-bridge'"
-
 rsync -az --delete \
   -e "ssh -p $PORT" \
   --exclude '.env.local' \
@@ -20,6 +18,8 @@ rsync -az --delete \
   --exclude 'node_modules' \
   --exclude 'tsconfig.tsbuildinfo' \
   frontend/ "$USER_NAME@$HOST:$REMOTE_DIR/"
+
+ssh -p "$PORT" "$USER_NAME@$HOST" "mkdir -p '$REMOTE_DIR/wp-plugins/hws-graphql-bridge'"
 
 rsync -az --delete \
   -e "ssh -p $PORT" \
