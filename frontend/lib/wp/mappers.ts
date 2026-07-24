@@ -53,7 +53,15 @@ export type WPProductNode = {
   hwsVariantGroups?: {
     key: string;
     label: string;
-    options: { value: string; slug?: string; priceModifier: number; imageUrl?: string | null; isDefault?: boolean }[];
+    options: {
+      value: string;
+      slug?: string;
+      priceModifier: number;
+      imageUrl?: string | null;
+      swatchImageUrl?: string | null;
+      configurationImageUrl?: string | null;
+      isDefault?: boolean;
+    }[];
   }[];
   attributes?: { nodes: { name: string; options: string[] }[] };
   variations?: {
@@ -561,7 +569,8 @@ export function mapToProductPageData(node: WPProductNode): ProductPageData {
       options: g.options.map((o) => ({
         value: o.value,
         priceModifier: o.priceModifier,
-        image: normalizeWpMediaUrl(o.imageUrl) ?? undefined,
+        image: normalizeWpMediaUrl(o.swatchImageUrl ?? o.imageUrl) ?? undefined,
+        configurationImage: normalizeWpMediaUrl(o.configurationImageUrl) ?? undefined,
         color: isSwatchGroup(g.label) ? swatchColorForValue(o.value) : undefined,
         isDefault: o.isDefault,
       })),

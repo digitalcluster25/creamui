@@ -54,9 +54,17 @@ export function ProductPage({ data, contactChannels, highlights }: Props) {
     Object.entries(entry.selection).every(([key, value]) => variants[key] === value)
   );
 
-  // Изображение свотча — это текстура материала для кнопки, а не фото товара.
-  // Главное фото берём только у точной выбранной вариации.
-  const primaryVariantImage = matchedVariant?.image;
+  // Текстура свотча и фото комплектации — два разных поля. Для главного
+  // изображения приоритет у выбранного материала/облицовки, затем у вариации.
+  const selectedConfigurationImage =
+    data.variantGroups
+      .filter((group) => group.type === "color")
+      .map((group) => group.options.find((option) => option.value === variants[group.key])?.configurationImage)
+      .find(Boolean)
+    ?? data.variantGroups
+      .map((group) => group.options.find((option) => option.value === variants[group.key])?.configurationImage)
+      .find(Boolean);
+  const primaryVariantImage = selectedConfigurationImage ?? matchedVariant?.image;
 
   const displayedImages =
     hasUserChangedVariant && primaryVariantImage

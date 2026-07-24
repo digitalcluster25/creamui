@@ -467,7 +467,10 @@ add_action(
 					'value'         => [ 'type' => 'String' ],
 					'slug'          => [ 'type' => 'String' ],
 					'priceModifier' => [ 'type' => 'Float' ],
-					'imageUrl'      => [ 'type' => 'String' ],
+					// imageUrl оставлен для старых клиентов: это изображение свотча.
+					'imageUrl'              => [ 'type' => 'String' ],
+					'swatchImageUrl'        => [ 'type' => 'String' ],
+					'configurationImageUrl' => [ 'type' => 'String' ],
 					'isDefault'     => [ 'type' => 'Boolean' ],
 				],
 			]
@@ -632,7 +635,7 @@ add_action(
 /**
  * @param array<int, array{id?: mixed, name?: string, values?: array<int, array{name?: string, delta_price?: float, is_default?: bool, sort_order?: int, image?: string, swatch_image?: string, additional_image?: string}>}> $groups
  * @param float $rate unused legacy argument
- * @return array<int, array{key: string, label: string, options: array<int, array{value: string, slug: string, priceModifier: float, imageUrl: ?string, isDefault: bool}>}>
+ * @return array<int, array{key: string, label: string, options: array<int, array{value: string, slug: string, priceModifier: float, imageUrl: ?string, swatchImageUrl: ?string, configurationImageUrl: ?string, isDefault: bool}>}>
  */
 function hws_graphql_bridge_map_variant_groups( array $groups, float $rate ): array {
 	unset( $rate );
@@ -663,20 +666,24 @@ function hws_graphql_bridge_map_variant_groups( array $groups, float $rate ): ar
 			if ( empty( $value['name'] ) ) {
 				continue;
 			}
-			$delta_rub      = (float) ( $value['delta_price'] ?? 0 );
-			$image_url      = '';
+			$delta_rub               = (float) ( $value['delta_price'] ?? 0 );
+			$swatch_image_url        = '';
+			$configuration_image_url = '';
 			if ( ! empty( $value['swatch_image'] ) && is_string( $value['swatch_image'] ) ) {
-				$image_url = trim( $value['swatch_image'] );
-			} elseif ( ! empty( $value['image'] ) && is_string( $value['image'] ) ) {
-				$image_url = trim( $value['image'] );
+				$swatch_image_url = trim( $value['swatch_image'] );
+			}
+			if ( ! empty( $value['image'] ) && is_string( $value['image'] ) ) {
+				$configuration_image_url = trim( $value['image'] );
 			} elseif ( ! empty( $value['additional_image'] ) && is_string( $value['additional_image'] ) ) {
-				$image_url = trim( $value['additional_image'] );
+				$configuration_image_url = trim( $value['additional_image'] );
 			}
 			$options[]      = [
 				'value'         => $value['name'],
 				'slug'          => hws_graphql_bridge_slugify( (string) $value['name'] ),
 				'priceModifier' => $delta_rub,
-				'imageUrl'      => '' !== $image_url ? $image_url : null,
+				'imageUrl'      => '' !== $swatch_image_url ? $swatch_image_url : ( '' !== $configuration_image_url ? $configuration_image_url : null ),
+				'swatchImageUrl' => '' !== $swatch_image_url ? $swatch_image_url : null,
+				'configurationImageUrl' => '' !== $configuration_image_url ? $configuration_image_url : null,
 				'isDefault'     => ! empty( $value['is_default'] ),
 			];
 		}

@@ -3,7 +3,10 @@ import type { CurrencyCode } from "@/lib/currency/format";
 export type ProductSwatch = {
   value: string;
   color?: string;
+  /** Текстура/иконка, показываемая на свотче. */
   image?: string;
+  /** Фото товара для выбранного значения опции. */
+  configurationImage?: string;
   priceModifier?: number;
   isDefault?: boolean;
 };

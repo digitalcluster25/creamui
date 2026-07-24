@@ -500,6 +500,8 @@ export const GET_PRODUCT_BY_SLUG = gql`
             slug
             priceModifier
             imageUrl
+            swatchImageUrl
+            configurationImageUrl
             isDefault
           }
         }
