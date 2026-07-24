@@ -12,6 +12,8 @@ final class HWS_Image_Background_Remover {
 	private const OPTION = 'hws_ibr_job';
 	private const BACKUP_META = '_hws_ibr_original_backup';
 	private const PROCESSED_META = '_hws_ibr_processed_sha256';
+	private const SOURCE_META = '_hws_ibr_source_url';
+	private const QUEUE_VERSION = 2;
 
 	public static function init(): void {
 		add_action( 'admin_menu', [ __CLASS__, 'admin_menu' ] );
@@ -187,8 +189,8 @@ final class HWS_Image_Background_Remover {
 		$brand_id = self::check_request();
 		$job      = self::get_job( $brand_id );
 		if ( ! $job ) {
-			$ids = self::brand_attachment_ids( $brand_id );
-			wp_send_json_success( [ 'total' => count( $ids ), 'processed' => 0, 'failed' => 0, 'done' => 0 ] );
+			$queue = self::brand_queue( $brand_id );
+			wp_send_json_success( [ 'total' => count( $queue ), 'processed' => 0, 'failed' => 0, 'done' => 0 ] );
 		}
 		wp_send_json_success( self::job_status( $job ) );
 	}
@@ -198,13 +200,14 @@ final class HWS_Image_Background_Remover {
 		if ( ! self::rembg_binary() ) {
 			wp_send_json_error( 'Локальная библиотека rembg не установлена.', 500 );
 		}
-		$ids = self::brand_attachment_ids( $brand_id );
+		$queue = self::brand_queue( $brand_id );
 		$job = [
-			'brand'     => $brand_id,
-			'queue'     => $ids,
-			'processed' => [],
-			'failed'    => [],
-			'created'   => time(),
+			'brand'         => $brand_id,
+			'queue_version' => self::QUEUE_VERSION,
+			'queue'         => $queue,
+			'processed'     => [],
+			'failed'        => [],
+			'created'       => time(),
 		];
 		update_option( self::OPTION, $job, false );
 		wp_send_json_success( self::job_status( $job ) );
@@ -220,12 +223,13 @@ final class HWS_Image_Background_Remover {
 			wp_send_json_success( array_merge( self::job_status( $job ), [ 'done' => true, 'message' => 'Готово.' ] ) );
 		}
 
-		$attachment_id = absint( array_shift( $job['queue'] ) );
-		$result        = self::process_attachment( $attachment_id );
+		$entry  = array_shift( $job['queue'] );
+		$result = self::process_queue_entry( $entry );
+		$key    = is_array( $entry ) && 'source' === ( $entry['type'] ?? '' ) ? (string) ( $entry['url'] ?? '' ) : (string) absint( is_array( $entry ) ? ( $entry['id'] ?? 0 ) : $entry );
 		if ( $result['ok'] ) {
-			$job['processed'][] = $attachment_id;
+			$job['processed'][] = $key;
 		} else {
-			$job['failed'][ $attachment_id ] = $result['message'];
+			$job['failed'][ $key ] = $result['message'];
 		}
 		update_option( self::OPTION, $job, false );
 		$status = self::job_status( $job );
@@ -245,7 +249,7 @@ final class HWS_Image_Background_Remover {
 
 	private static function get_job( int $brand_id ): ?array {
 		$job = get_option( self::OPTION, [] );
-		return is_array( $job ) && (int) ( $job['brand'] ?? 0 ) === $brand_id ? $job : null;
+		return is_array( $job ) && (int) ( $job['brand'] ?? 0 ) === $brand_id && self::QUEUE_VERSION === (int) ( $job['queue_version'] ?? 0 ) ? $job : null;
 	}
 
 	private static function job_status( array $job ): array {
@@ -292,6 +296,122 @@ final class HWS_Image_Background_Remover {
 			}
 		}
 		return array_values( array_filter( array_unique( array_map( 'absint', $attachment_ids ) ) ) );
+	}
+
+	private static function brand_queue( int $brand_id ): array {
+		$queue = array_map(
+			static fn( int $id ): array => [ 'type' => 'attachment', 'id' => $id ],
+			self::brand_attachment_ids( $brand_id )
+		);
+		foreach ( self::brand_source_image_urls( $brand_id ) as $url ) {
+			$queue[] = [ 'type' => 'source', 'url' => $url ];
+		}
+		return $queue;
+	}
+
+	private static function brand_source_image_urls( int $brand_id ): array {
+		if ( ! function_exists( 'wc_get_products' ) ) {
+			return [];
+		}
+		$product_ids = wc_get_products( [
+			'limit'     => -1,
+			'return'    => 'ids',
+			'status'    => [ 'publish', 'draft', 'pending', 'private' ],
+			'tax_query' => [ [
+				'taxonomy' => 'product_brand',
+				'field'    => 'term_id',
+				'terms'    => [ $brand_id ],
+			] ],
+		] );
+		$urls = [];
+		foreach ( $product_ids as $product_id ) {
+			$product = wc_get_product( $product_id );
+			if ( ! $product || ! $product->is_type( 'variable' ) ) {
+				continue;
+			}
+			foreach ( $product->get_children() as $variation_id ) {
+				$url = esc_url_raw( (string) get_post_meta( $variation_id, '_hws_source_image', true ) );
+				if ( $url && wp_http_validate_url( $url ) ) {
+					$urls[ $url ] = true;
+				}
+			}
+		}
+		return array_keys( $urls );
+	}
+
+	private static function process_queue_entry( $entry ): array {
+		if ( is_array( $entry ) && 'source' === ( $entry['type'] ?? '' ) ) {
+			return self::process_source_image( (string) ( $entry['url'] ?? '' ) );
+		}
+		$attachment_id = is_array( $entry ) ? absint( $entry['id'] ?? 0 ) : absint( $entry );
+		return self::process_attachment( $attachment_id );
+	}
+
+	private static function process_source_image( string $source_url ): array {
+		$source_url = esc_url_raw( $source_url );
+		if ( ! $source_url || ! wp_http_validate_url( $source_url ) ) {
+			return [ 'ok' => false, 'message' => 'Некорректный URL фото варианта.' ];
+		}
+
+		$attachment_id = self::source_attachment_id( $source_url );
+		if ( ! $attachment_id ) {
+			require_once ABSPATH . 'wp-admin/includes/file.php';
+			require_once ABSPATH . 'wp-admin/includes/media.php';
+			require_once ABSPATH . 'wp-admin/includes/image.php';
+			$temp = download_url( $source_url, 60 );
+			if ( is_wp_error( $temp ) ) {
+				return [ 'ok' => false, 'message' => 'Не удалось скачать фото варианта: ' . $temp->get_error_message() ];
+			}
+			$filename = wp_basename( (string) wp_parse_url( $source_url, PHP_URL_PATH ) );
+			if ( '' === $filename ) {
+				$filename = 'source-' . md5( $source_url ) . '.jpg';
+			}
+			$attachment_id = media_handle_sideload( [ 'name' => $filename, 'tmp_name' => $temp ], 0 );
+			if ( is_wp_error( $attachment_id ) ) {
+				@unlink( $temp );
+				return [ 'ok' => false, 'message' => 'Не удалось сохранить фото варианта: ' . $attachment_id->get_error_message() ];
+			}
+			update_post_meta( $attachment_id, self::SOURCE_META, $source_url );
+		}
+
+		$result = self::process_attachment( $attachment_id );
+		if ( ! $result['ok'] ) {
+			return $result;
+		}
+		self::replace_variation_source_image( $source_url, $attachment_id );
+		return [ 'ok' => true, 'message' => 'Фото варианта: ' . $result['message'] ];
+	}
+
+	private static function source_attachment_id( string $source_url ): int {
+		$attachments = get_posts( [
+			'post_type'      => 'attachment',
+			'post_status'    => 'inherit',
+			'posts_per_page' => 1,
+			'fields'         => 'ids',
+			'meta_key'       => self::SOURCE_META,
+			'meta_value'     => $source_url,
+		] );
+		return $attachments ? absint( $attachments[0] ) : 0;
+	}
+
+	private static function replace_variation_source_image( string $source_url, int $attachment_id ): void {
+		global $wpdb;
+		$variation_ids = $wpdb->get_col( $wpdb->prepare(
+			"SELECT post_id FROM {$wpdb->postmeta} WHERE meta_key = %s AND meta_value = %s",
+			'_hws_source_image',
+			$source_url
+		) );
+		$local_url = wp_get_attachment_url( $attachment_id );
+		if ( ! $local_url ) {
+			return;
+		}
+		foreach ( $variation_ids as $variation_id ) {
+			if ( ! get_post_meta( $variation_id, '_hws_original_source_image', true ) ) {
+				update_post_meta( $variation_id, '_hws_original_source_image', $source_url );
+			}
+			update_post_meta( $variation_id, '_hws_source_image', $local_url );
+			update_post_meta( $variation_id, '_thumbnail_id', $attachment_id );
+		}
 	}
 
 	private static function rembg_binary(): ?string {
