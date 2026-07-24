@@ -6,6 +6,7 @@ import type { CategoriesData } from "@/lib/types/categories";
 import type { ProductsData } from "@/lib/types/products";
 import type { CurrencyCode } from "@/lib/currency/format";
 import { htmlToPlainText } from "@/lib/content/plainText";
+import { productPageData } from "@/lib/data/productPage";
 import type { WPCategoryNode } from "@/lib/wp/header";
 import { normalizeWpMediaUrl } from "@/lib/wp/media";
 
@@ -20,6 +21,8 @@ export type WPProductNode = {
   hwsPriceOnRequest?: boolean;
   hwsPriceCurrency?: CurrencyCode | null;
   hwsSourceImageUrl?: string | null;
+  hwsSourceBrand?: string | null;
+  hwsSourceBaseArticle?: string | null;
   price?: string | null;
   regularPrice?: string | null;
   salePrice?: string | null;
@@ -61,6 +64,7 @@ export type WPProductNode = {
       sku?: string;
       price?: string | null;
       hwsSourceImageUrl?: string | null;
+      hwsSourceOptionsJson?: string | null;
       image?: { sourceUrl: string; hwsOptimizedUrl?: string | null } | null;
       attributes?: { nodes: { name: string; value: string }[] };
     }[];
@@ -169,6 +173,27 @@ function resolveMediaUrl(
   media?: { sourceUrl?: string | null; hwsOptimizedUrl?: string | null } | null,
 ): string | undefined {
   return normalizeWpMediaUrl(media?.hwsOptimizedUrl) ?? normalizeWpMediaUrl(media?.sourceUrl) ?? undefined;
+}
+
+function swatchColorForValue(value: string): string | undefined {
+  const normalized = value.trim().toLowerCase();
+  const palette: Record<string, string> = {
+    "жадеит": "#6F8F78",
+    "талькохлорит": "#C9C2B4",
+    "змеевик": "#4A4A4A",
+    "пироксенит": "#B1B1B1",
+    "слева": "#F4EFE6",
+    "справа": "#1F1F1F",
+    "с тыла": "#A96F6F",
+    "сзади": "#A96F6F",
+    "спереди": "#355E52",
+  };
+  return palette[normalized];
+}
+
+function isSwatchGroup(label: string): boolean {
+  const normalized = label.trim().toLowerCase();
+  return normalized.includes("кожух") || normalized.includes("материал");
 }
 
 // Фильтр/сортировка/пагинация теперь полностью клиентские (Catalog.tsx) —
@@ -324,6 +349,21 @@ function toSlug(s: string): string {
   return s.toLowerCase().replace(/\s+/g, "-").replace(/ё/g, "е");
 }
 
+function parseSourceOptionsJson(raw?: string | null): Record<string, string> | null {
+  if (!raw) return null;
+  try {
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) return null;
+    return Object.fromEntries(
+      Object.entries(parsed).filter(
+        (entry): entry is [string, string] => typeof entry[0] === "string" && typeof entry[1] === "string",
+      ),
+    );
+  } catch {
+    return null;
+  }
+}
+
 // Строим variantEntries из нативных WooCommerce variations.
 // Slug-значения атрибутов вариаций ("10-квт") маппим обратно к
 // человекочитаемым лейблам из hwsVariantGroups ("10 кВт").
@@ -394,6 +434,25 @@ function buildVariantEntries(
   const entries: NonNullable<ProductPageData["variantEntries"]> = [];
 
   for (const v of variations) {
+    const directSourceOptions = parseSourceOptionsJson(v.hwsSourceOptionsJson);
+    if (directSourceOptions) {
+      const directSelection = Object.fromEntries(
+        groups
+          .map((group) => [group.key, directSourceOptions[group.label]])
+          .filter((entry): entry is [string, string] => typeof entry[1] === "string" && entry[1].length > 0),
+      );
+
+      if (Object.keys(directSelection).length > 0) {
+        entries.push({
+          selection: directSelection,
+          price: parsePrice(v.price),
+          sku: v.sku,
+          image: normalizeWpMediaUrl(v.hwsSourceImageUrl) ?? resolveMediaUrl(v.image) ?? undefined,
+        });
+        continue;
+      }
+    }
+
     const selection: Record<string, string> = {};
     let valid = true;
 
@@ -416,7 +475,7 @@ function buildVariantEntries(
       selection,
       price: parsePrice(v.price),
       sku: v.sku,
-      image: resolveMediaUrl(v.image) ?? v.hwsSourceImageUrl ?? undefined,
+      image: normalizeWpMediaUrl(v.hwsSourceImageUrl) ?? resolveMediaUrl(v.image) ?? undefined,
     });
   }
 
@@ -466,12 +525,12 @@ export function mapToProductPageData(node: WPProductNode): ProductPageData {
     price,
     priceOnRequest: Boolean(node.hwsPriceOnRequest),
     baseCurrencyCode: node.hwsPriceCurrency ?? getCurrencyCode(node.price),
-    sku: node.sku,
+    sku: node.sku ?? node.hwsSourceBaseArticle ?? undefined,
     tag: undefined, // нет надёжного источника — productTags на бэке содержат демо-теги WooCommerce, не реальные
-    brand: node.productBrands?.nodes[0]?.name,
+    brand: node.productBrands?.nodes[0]?.name ?? node.hwsSourceBrand ?? undefined,
     brandHref: node.productBrands?.nodes[0]?.slug ? `/brands/${node.productBrands.nodes[0].slug}` : undefined,
     description: htmlToPlainText(node.shortDescription),
-    commerceInfo: node.hwsCommerceInfo ?? undefined,
+    commerceInfo: node.hwsCommerceInfo ?? productPageData.commerceInfo ?? undefined,
     highlights: node.hwsHighlights?.length ? node.hwsHighlights : undefined,
     facingOptions: node.hwsFacingOptions && node.hwsFacingOptions.length > 1
       ? node.hwsFacingOptions.map((f) => ({
@@ -484,8 +543,12 @@ export function mapToProductPageData(node: WPProductNode): ProductPageData {
     variantGroups: (node.hwsVariantGroups ?? []).map((g) => ({
       key: g.key,
       label: g.label,
-      type: "text" as const,
-      options: g.options.map((o) => ({ value: o.value, priceModifier: o.priceModifier })),
+      type: isSwatchGroup(g.label) ? "color" as const : "text" as const,
+      options: g.options.map((o) => ({
+        value: o.value,
+        priceModifier: o.priceModifier,
+        color: isSwatchGroup(g.label) ? swatchColorForValue(o.value) : undefined,
+      })),
     })),
     variantEntries,
   };

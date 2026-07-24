@@ -61,6 +61,36 @@ function hws_gelendzhik_repair_build_source_payload( array $product ): string {
 	);
 }
 
+function hws_gelendzhik_repair_ensure_brand_term( string $brand_name ): int {
+	if ( '' === $brand_name || ! taxonomy_exists( 'product_brand' ) ) {
+		return 0;
+	}
+
+	$slug = sanitize_title( $brand_name );
+	$term = get_term_by( 'slug', $slug, 'product_brand' );
+	if ( $term && ! is_wp_error( $term ) ) {
+		return (int) $term->term_id;
+	}
+
+	$term = get_term_by( 'name', $brand_name, 'product_brand' );
+	if ( $term && ! is_wp_error( $term ) ) {
+		return (int) $term->term_id;
+	}
+
+	$created = wp_insert_term(
+		$brand_name,
+		'product_brand',
+		[
+			'slug' => $slug,
+		]
+	);
+	if ( is_wp_error( $created ) ) {
+		return 0;
+	}
+
+	return (int) ( $created['term_id'] ?? 0 );
+}
+
 function hws_gelendzhik_repair_sideload( string $url, int $post_id ): int {
 	static $cache = [];
 	if ( '' === $url ) {
@@ -138,6 +168,7 @@ $report = [
 	'payload_fixed'         => 0,
 	'series_removed'        => 0,
 	'variation_series_removed' => 0,
+	'brand_fixed'           => 0,
 ];
 
 foreach ( $products as $product_id ) {
@@ -170,6 +201,15 @@ foreach ( $products as $product_id ) {
 	$product = wc_get_product( $product_id );
 	if ( ! $product instanceof WC_Product_Variable ) {
 		continue;
+	}
+
+	$source_brand   = (string) get_post_meta( $product_id, '_hws_source_brand', true );
+	$brand_term_id  = hws_gelendzhik_repair_ensure_brand_term( $source_brand );
+	if ( $brand_term_id > 0 ) {
+		$report['brand_fixed']++;
+		if ( ! $dry_run ) {
+			wp_set_object_terms( $product_id, [ $brand_term_id ], 'product_brand', false );
+		}
 	}
 
 	$attributes = $product->get_attributes();

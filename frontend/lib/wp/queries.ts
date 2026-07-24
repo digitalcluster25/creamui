@@ -365,6 +365,8 @@ export const GET_PRODUCT_BY_SLUG = gql`
         hwsPriceOnRequest
         hwsPriceCurrency
         hwsSourceImageUrl
+        hwsSourceBrand
+        hwsSourceBaseArticle
         price
         regularPrice
         salePrice
@@ -432,6 +434,8 @@ export const GET_PRODUCT_BY_SLUG = gql`
         hwsPriceOnRequest
         hwsPriceCurrency
         hwsSourceImageUrl
+        hwsSourceBrand
+        hwsSourceBaseArticle
         price
         regularPrice
         salePrice
@@ -497,13 +501,14 @@ export const GET_PRODUCT_BY_SLUG = gql`
             priceModifier
           }
         }
-        variations(first: 100) {
+        variations(first: 5000) {
           nodes {
             databaseId
             name
             sku
             price
             hwsSourceImageUrl
+            hwsSourceOptionsJson
             image {
               sourceUrl
               hwsOptimizedUrl

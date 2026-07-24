@@ -173,6 +173,42 @@ add_action(
 
 		register_graphql_field(
 			'Product',
+			'hwsSourceBrand',
+			[
+				'type'        => 'String',
+				'description' => __( 'Резервное название бренда из source meta, если taxonomy product_brand ещё не привязана', 'hws-graphql-bridge' ),
+				'resolve'     => function ( $source ) {
+					$product_id = hws_graphql_bridge_get_product_id( $source );
+					if ( empty( $product_id ) ) {
+						return null;
+					}
+
+					$value = get_post_meta( $product_id, '_hws_source_brand', true );
+					return $value ?: null;
+				},
+			]
+		);
+
+		register_graphql_field(
+			'Product',
+			'hwsSourceBaseArticle',
+			[
+				'type'        => 'String',
+				'description' => __( 'Резервный базовый артикул товара из source meta, если SKU у parent-поста не заполнен', 'hws-graphql-bridge' ),
+				'resolve'     => function ( $source ) {
+					$product_id = hws_graphql_bridge_get_product_id( $source );
+					if ( empty( $product_id ) ) {
+						return null;
+					}
+
+					$value = get_post_meta( $product_id, '_hws_source_base_article', true );
+					return $value ?: null;
+				},
+			]
+		);
+
+		register_graphql_field(
+			'Product',
 			'hwsSourceImageUrl',
 			[
 				'type'        => 'String',
@@ -203,6 +239,24 @@ add_action(
 
 					$url = get_post_meta( (int) $variation_id, '_hws_source_image', true );
 					return $url ?: null;
+				},
+			]
+		);
+
+		register_graphql_field(
+			'ProductVariation',
+			'hwsSourceOptionsJson',
+			[
+				'type'        => 'String',
+				'description' => __( 'JSON исходных опций производителя для вариации', 'hws-graphql-bridge' ),
+				'resolve'     => function ( $source ) {
+					$variation_id = $source->databaseId ?? $source->ID ?? null;
+					if ( empty( $variation_id ) ) {
+						return null;
+					}
+
+					$value = get_post_meta( (int) $variation_id, '_hws_source_options', true );
+					return $value ?: null;
 				},
 			]
 		);
@@ -246,11 +300,21 @@ add_action(
 					}
 
 					$brands = wp_get_post_terms( $product_id, 'product_brand' );
-					if ( ! is_array( $brands ) || is_wp_error( $brands ) || empty( $brands[0] ) ) {
+					$brand  = ( is_array( $brands ) && ! is_wp_error( $brands ) && ! empty( $brands[0] ) ) ? $brands[0] : null;
+					if ( ! $brand ) {
+						$source_brand = trim( (string) get_post_meta( $product_id, '_hws_source_brand', true ) );
+						if ( '' !== $source_brand ) {
+							$brand = get_term_by( 'slug', sanitize_title( $source_brand ), 'product_brand' );
+							if ( ! $brand || is_wp_error( $brand ) ) {
+								$brand = get_term_by( 'name', $source_brand, 'product_brand' );
+							}
+						}
+					}
+					if ( ! $brand || is_wp_error( $brand ) ) {
 						return null;
 					}
 
-					$row = HWS_Commerce_Info::get_settings_for_brand( $brands[0]->term_id );
+					$row = HWS_Commerce_Info::get_settings_for_brand( $brand->term_id );
 					if ( empty( $row['enabled'] ) ) {
 						return null;
 					}
