@@ -594,7 +594,7 @@ function updateAttrDropdowns(card, attrs) {
                     continue;
                 }
 
-                $attrs[$spec_key] = 'Характеристика · ' . $spec_label;
+                $attrs[$spec_key] = $spec_label;
             }
         }
         if (!empty($attrs)) {
