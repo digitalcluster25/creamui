@@ -69,12 +69,19 @@ foreach ( $products as $product_id ) {
 		$report['failed_products']++;
 		continue;
 	}
+	if ( empty( $payload['option_groups'] ) || ! is_array( $payload['option_groups'] ) ) {
+		$report['failed_products']++;
+		continue;
+	}
 	$changed = 0;
-	foreach ( ( $payload['option_groups'] ?? [] ) as &$group ) {
+	foreach ( $payload['option_groups'] as &$group ) {
 		if ( false === mb_stripos( (string) ( $group['name'] ?? '' ), 'кожух' ) ) {
 			continue;
 		}
-		foreach ( ( $group['values'] ?? [] ) as &$value ) {
+		if ( empty( $group['values'] ) || ! is_array( $group['values'] ) ) {
+			continue;
+		}
+		foreach ( $group['values'] as &$value ) {
 			$name = hws_gelendzhik_swatch_text( (string) ( $value['name'] ?? '' ) );
 			if ( isset( $swatches[ $name ] ) && $swatches[ $name ] !== ( $value['swatch_image'] ?? '' ) ) {
 				$value['swatch_image'] = $swatches[ $name ];
