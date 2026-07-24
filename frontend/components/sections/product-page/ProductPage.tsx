@@ -54,14 +54,21 @@ export function ProductPage({ data, contactChannels, highlights }: Props) {
     Object.entries(entry.selection).every(([key, value]) => variants[key] === value)
   );
 
+  const selectedSwatchImage = data.variantGroups
+    .filter((group) => group.type === "color")
+    .map((group) => group.options.find((option) => option.value === variants[group.key])?.image)
+    .find(Boolean);
+
+  const primaryVariantImage = selectedSwatchImage ?? matchedVariant?.image;
+
   const displayedImages =
-    hasUserChangedVariant && matchedVariant?.image
-      ? [matchedVariant.image, ...data.images.filter((src) => src !== matchedVariant.image)]
+    hasUserChangedVariant && primaryVariantImage
+      ? [primaryVariantImage, ...data.images.filter((src) => src !== primaryVariantImage)]
       : data.images;
 
   useEffect(() => {
     setActiveImg(0);
-  }, [matchedVariant?.image]);
+  }, [primaryVariantImage]);
 
   function handlePointerDown(e: React.PointerEvent<HTMLDivElement>) {
     dragStartX.current = e.clientX;
