@@ -111,7 +111,13 @@ final class HWS_Image_Background_Remover {
 			function status() {
 				if (!selectedBrand) { render({}); return; }
 				request('hws_ibr_status').done(function(response){
-					if (response.success) { render(response.data); }
+					if (!response.success) return;
+					render(response.data);
+					$('#hws-ibr-message').text(
+						typeof response.data.pending !== 'undefined' && response.data.pending > 0
+							? 'Обработка остановлена. Нажмите «Запустить», чтобы продолжить.'
+							: (response.data.total ? 'Готово к запуску. Нажмите «Запустить».': 'Для бренда нет изображений.')
+					);
 				});
 			}
 			function finish() {
@@ -145,7 +151,7 @@ final class HWS_Image_Background_Remover {
 			$('#hws-ibr-brand').on('change', function(){
 				selectedBrand = $(this).val();
 				$('#hws-ibr-log').empty();
-				$('#hws-ibr-message').text(selectedBrand ? 'Проверяем изображения…' : 'Выберите бренд.');
+				$('#hws-ibr-message').text(selectedBrand ? 'Готовим очередь…' : 'Выберите бренд.');
 				status();
 			});
 			$('#hws-ibr-start').on('click', function(){
