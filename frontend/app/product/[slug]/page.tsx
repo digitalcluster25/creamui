@@ -127,29 +127,7 @@ export default async function ProductPageRoute({
   const productSpecsData = specs.groups.length ? specs : mockProductSpecsData;
   const descriptionHtml = override?.descriptionHtml ?? mapToProductDescriptionHtml(product);
 
-  // Highlights из GraphQL (плагин Инфографика) или fallback из характеристик
-  let highlights: { value: string; label: string }[] = productPageData.highlights ?? [];
-
-  if (!highlights.length) {
-    let volumeMin = "", volumeMax = "", volumeSingle = "", power = "";
-    for (const group of productSpecsData.groups) {
-      for (const row of group.rows) {
-        const l = row.label.toLowerCase();
-        if (l.includes("минимальный объем") || l.includes("минимальный объём")) volumeMin = row.value;
-        else if (l.includes("максимальный объем") || l.includes("максимальный объём")) volumeMax = row.value;
-        else if ((l.includes("объём парн") || l.includes("объем парн") || l.includes("объём парного")) && !volumeSingle) volumeSingle = row.value;
-        if ((l.includes("мощность") && !l.includes("макс") && !l.includes("температур")) || (l.includes("номинальная") && l.includes("мощность"))) {
-          if (!power) power = row.value;
-        }
-      }
-    }
-    if (volumeMin && volumeMax) highlights.push({ value: `${volumeMin} – ${volumeMax}`, label: "Объём парной" });
-    else if (volumeSingle) highlights.push({ value: volumeSingle, label: "Объём парной" });
-    else if (volumeMax) highlights.push({ value: volumeMax, label: "Объём парной" });
-    if (power) highlights.push({ value: power, label: "Мощность" });
-    else if (productPageData.categories.some((c) => c.label.toLowerCase().includes("дров")))
-      highlights.push({ value: "Дрова / Газ", label: "Топливо" });
-  }
+  const highlights: { value: string; label: string }[] = productPageData.highlights ?? [];
 
   const contactChannels = {
     whatsappNumber: channelsData?.whatsappNumber || undefined,
