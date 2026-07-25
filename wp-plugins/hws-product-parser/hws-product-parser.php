@@ -232,6 +232,10 @@ final class HWS_Product_Parser {
         .hws-parser-table code { white-space:normal; }
         .hws-parser-products td:first-child { width:35%; }
         .hws-parser-field-actions { display:flex;gap:6px;flex-wrap:wrap; }
+        .hws-parser-accordion { margin:0; }
+        .hws-parser-accordion summary { cursor:pointer;font-weight:600;color:#2271b1; }
+        .hws-parser-accordion__body { margin-top:12px; }
+        .hws-parser-store-link { margin:8px 0;color:#646970; }
         </style>
         <?php
     }
@@ -322,7 +326,8 @@ final class HWS_Product_Parser {
                 <?php endif; ?>
                 <?php foreach ($products as $product_id => $item): ?>
                     <?php
-                    $status = self::status(self::status_key('product', $manufacturer, $category, $product_id));
+                    $status = self::product_status($manufacturer, $category, $product_id);
+                    $parsed = self::parsed_product($manufacturer, $category, $product_id);
                     $product_url = add_query_arg(
                         [
                             'page'         => self::MENU_SLUG,
@@ -339,6 +344,16 @@ final class HWS_Product_Parser {
                         <td><?php self::render_status_badge($status); ?><br><span class="hws-parser-meta"><?php echo esc_html(self::status_date($status)); ?></span></td>
                         <td><?php self::render_action_button('Спарсить товар с нуля', 'product', $manufacturer, $category, $product_id); ?></td>
                     </tr>
+                    <tr>
+                        <td colspan="4">
+                            <details class="hws-parser-accordion">
+                                <summary>Показать поля товара</summary>
+                                <div class="hws-parser-accordion__body">
+                                    <?php self::render_product_fields_table($manufacturer, $category, $product_id, $parsed); ?>
+                                </div>
+                            </details>
+                        </td>
+                    </tr>
                 <?php endforeach; ?>
                 </tbody>
             </table>
@@ -351,38 +366,56 @@ final class HWS_Product_Parser {
         ?>
         <div class="hws-parser-panel">
             <h2><?php echo esc_html($item['title']); ?></h2>
-            <p><a href="<?php echo esc_url($item['url']); ?>" target="_blank" rel="noreferrer"><?php echo esc_html($item['url']); ?></a></p>
-            <table class="widefat striped hws-parser-table">
-                <thead>
-                    <tr>
-                        <th>Поле у производителя</th>
-                        <th>Поле магазина</th>
-                        <th>Текущее значение парсера</th>
-                        <th>Статус</th>
-                        <th>Действие</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <?php foreach (self::PRODUCT_FIELDS as $field => $mapping): ?>
-                    <?php $status = self::status(self::status_key('field', $manufacturer, $category, $product_id, $field)); ?>
-                    <tr>
-                        <td><?php echo esc_html($mapping['source']); ?></td>
-                        <td><?php echo esc_html($mapping['target']); ?></td>
-                        <td><?php echo esc_html(self::format_value($parsed[$field] ?? null)); ?></td>
-                        <td><?php self::render_status_badge($status); ?><br><span class="hws-parser-meta"><?php echo esc_html(self::status_date($status)); ?></span></td>
-                        <td class="hws-parser-field-actions">
-                            <?php self::render_action_button('Перепарсить поле', 'field', $manufacturer, $category, $product_id, $field); ?>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-                </tbody>
-            </table>
+            <p>Источник: <a href="<?php echo esc_url($item['url']); ?>" target="_blank" rel="noreferrer"><?php echo esc_html($item['url']); ?></a></p>
+            <?php self::render_store_product_link($parsed); ?>
+            <?php self::render_product_fields_table($manufacturer, $category, $product_id, $parsed); ?>
         </div>
         <div class="hws-parser-panel">
             <h2>Не импортировать по ТЗ</h2>
             <p><?php echo esc_html(implode(', ', self::BLOCKED_TABS)); ?></p>
         </div>
         <?php
+    }
+
+    private static function render_product_fields_table(string $manufacturer, string $category, string $product_id, array $parsed): void {
+        ?>
+        <table class="widefat striped hws-parser-table">
+            <thead>
+                <tr>
+                    <th>Поле у производителя</th>
+                    <th>Поле магазина</th>
+                    <th>Текущее значение парсера</th>
+                    <th>Статус</th>
+                    <th>Действие</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php foreach (self::PRODUCT_FIELDS as $field => $mapping): ?>
+                <?php $status = self::status(self::status_key('field', $manufacturer, $category, $product_id, $field)); ?>
+                <tr>
+                    <td><?php echo esc_html($mapping['source']); ?></td>
+                    <td><?php echo esc_html($mapping['target']); ?></td>
+                    <td><?php echo esc_html(self::format_value($parsed[$field] ?? null)); ?></td>
+                    <td><?php self::render_status_badge($status); ?><br><span class="hws-parser-meta"><?php echo esc_html(self::status_date($status)); ?></span></td>
+                    <td class="hws-parser-field-actions">
+                        <?php self::render_action_button('Перепарсить поле', 'field', $manufacturer, $category, $product_id, $field); ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+        <?php
+    }
+
+    private static function render_store_product_link(array $parsed): void {
+        $url = self::store_product_url($parsed);
+        echo '<p class="hws-parser-store-link">Товар на сайте HWS: ';
+        if ($url !== '') {
+            echo '<a href="' . esc_url($url) . '" target="_blank" rel="noreferrer">' . esc_html($url) . '</a>';
+        } else {
+            echo 'не найден';
+        }
+        echo '</p>';
     }
 
     private static function render_action_button(string $label, string $scope, string $manufacturer, string $category, string $product = '', string $field = ''): void {
@@ -466,11 +499,11 @@ final class HWS_Product_Parser {
             );
         }
         if ($only_field === null) {
-            $all_fields_valid = true;
-            foreach (array_keys(self::PRODUCT_FIELDS) as $field) {
-                $all_fields_valid = $all_fields_valid && self::field_is_valid($field, $parsed[$field] ?? null);
-            }
-            self::mark_status(self::status_key('product', $manufacturer, $category, $product_id), $all_fields_valid);
+            self::mark_status(
+                self::status_key('product', $manufacturer, $category, $product_id),
+                self::product_has_parsed_data($parsed),
+                'fields=' . count(array_filter($parsed, static fn($value): bool => self::value_is_not_empty($value)))
+            );
         }
     }
 
@@ -718,9 +751,38 @@ final class HWS_Product_Parser {
         return is_array($parsed) ? $parsed : [];
     }
 
+    private static function product_status(string $manufacturer, string $category, string $product_id): array {
+        $status = self::status(self::status_key('product', $manufacturer, $category, $product_id));
+        if (!empty($status['parsed'])) {
+            return $status;
+        }
+
+        $parsed = self::parsed_product($manufacturer, $category, $product_id);
+        if (self::product_has_parsed_data($parsed)) {
+            $status['parsed'] = true;
+            $status['note'] = 'derived from parsed product data';
+            return $status;
+        }
+
+        return $status;
+    }
+
     private static function status(string $key): array {
         $status = self::state()['statuses'][$key] ?? [];
         return is_array($status) ? $status : ['parsed' => false, 'date' => ''];
+    }
+
+    private static function product_has_parsed_data(array $parsed): bool {
+        return self::field_is_valid('title', $parsed['title'] ?? '')
+            && self::field_is_valid('article', $parsed['article'] ?? '')
+            && self::field_is_valid('price', $parsed['price'] ?? '');
+    }
+
+    private static function value_is_not_empty($value): bool {
+        if (is_array($value)) {
+            return count($value) > 0;
+        }
+        return trim((string) $value) !== '';
     }
 
     private static function field_is_valid(string $field, $value): bool {
@@ -759,6 +821,33 @@ final class HWS_Product_Parser {
             'note'   => $note,
         ];
         update_option(self::OPTION, $state, false);
+    }
+
+    private static function store_product_url(array $parsed): string {
+        $sku = trim((string) ($parsed['article'] ?? ''));
+        if ($sku === '' || !function_exists('wc_get_product_id_by_sku')) {
+            return '';
+        }
+
+        $product_id = (int) wc_get_product_id_by_sku($sku);
+        if ($product_id <= 0 || !function_exists('wc_get_product')) {
+            return '';
+        }
+
+        $product = wc_get_product($product_id);
+        if (!$product) {
+            return '';
+        }
+
+        if (method_exists($product, 'is_type') && $product->is_type('variation') && method_exists($product, 'get_parent_id')) {
+            $parent_id = (int) $product->get_parent_id();
+            if ($parent_id > 0) {
+                $product_id = $parent_id;
+            }
+        }
+
+        $url = get_permalink($product_id);
+        return is_string($url) ? $url : '';
     }
 
     private static function status_key(string $scope, string $manufacturer, string $category = '', string $product = '', string $field = ''): string {
