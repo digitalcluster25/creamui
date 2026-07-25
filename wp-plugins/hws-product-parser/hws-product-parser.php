@@ -157,6 +157,9 @@ final class HWS_Product_Parser {
                 self::parse_product($manufacturer, $category, $product, null);
             } elseif ($scope === 'field') {
                 self::parse_product($manufacturer, $category, $product, $field);
+            } elseif ($scope === 'empty_fields') {
+                self::parse_empty_fields($manufacturer, $category);
+                $message = 'empty_fields_report';
             } else {
                 throw new RuntimeException('Unknown parse scope.');
             }
@@ -198,6 +201,7 @@ final class HWS_Product_Parser {
         <div class="wrap hws-parser-wrap">
             <h1>HWS Parser</h1>
             <?php self::render_notice(); ?>
+            <?php self::render_empty_parse_report($state); ?>
             <?php self::render_styles(); ?>
             <?php self::render_filters($manufacturer, $category, $product, $products); ?>
             <?php self::render_scope_actions($manufacturer, $category, $product); ?>
@@ -228,7 +232,49 @@ final class HWS_Product_Parser {
             return;
         }
 
+        if ($message === 'empty_fields_report') {
+            echo '<div class="notice notice-success"><p>Парсинг пустых полей завершен. Отчет ниже.</p></div>';
+            return;
+        }
+
         echo '<div class="notice notice-success"><p>Статус парсинга обновлен.</p></div>';
+    }
+
+    private static function render_empty_parse_report(array $state): void {
+        $report = $state['last_empty_parse_report'] ?? [];
+        if (!is_array($report) || empty($report)) {
+            return;
+        }
+
+        $total = max(1, (int) ($report['total_products'] ?? 0));
+        $checked = max(0, (int) ($report['checked_products'] ?? 0));
+        $percent = min(100, (int) floor(($checked / $total) * 100));
+        $errors = is_array($report['errors'] ?? null) ? $report['errors'] : [];
+        ?>
+        <div class="hws-parser-panel">
+            <h2>Отчет: Спарсить пустые поля</h2>
+            <div class="hws-parser-progress" aria-label="Прогресс">
+                <span style="width:<?php echo esc_attr((string) $percent); ?>%"></span>
+            </div>
+            <p class="hws-parser-meta">
+                Проверено товаров: <?php echo esc_html((string) $checked); ?> из <?php echo esc_html((string) $total); ?>.
+                Пустых полей найдено: <?php echo esc_html((string) ($report['empty_fields'] ?? 0)); ?>.
+                Заполнено: <?php echo esc_html((string) ($report['filled_fields'] ?? 0)); ?>.
+                Уже заполнено: <?php echo esc_html((string) ($report['skipped_fields'] ?? 0)); ?>.
+                Ошибок: <?php echo esc_html((string) count($errors)); ?>.
+            </p>
+            <?php if ($errors): ?>
+                <details class="hws-parser-accordion" open>
+                    <summary>Ошибки</summary>
+                    <ul>
+                        <?php foreach (array_slice($errors, 0, 30) as $error): ?>
+                            <li><?php echo esc_html((string) $error); ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </details>
+            <?php endif; ?>
+        </div>
+        <?php
     }
 
     private static function render_styles(): void {
@@ -252,6 +298,8 @@ final class HWS_Product_Parser {
         .hws-parser-accordion summary { cursor:pointer;font-weight:600;color:#2271b1; }
         .hws-parser-accordion__body { margin-top:12px; }
         .hws-parser-store-link { margin:8px 0;color:#646970; }
+        .hws-parser-progress { background:#f0f0f1;border:1px solid #c3c4c7;height:14px;margin:8px 0;max-width:520px; }
+        .hws-parser-progress span { background:#2271b1;display:block;height:100%; }
         </style>
         <?php
     }
@@ -301,6 +349,7 @@ final class HWS_Product_Parser {
             <strong>Парсинг выбранного уровня</strong>
             <div class="hws-parser-actions">
                 <?php self::render_action_button('Спарсить с нуля', $scope, $manufacturer, $category ?: 'gelendzhik', $product); ?>
+                <?php self::render_action_button('Спарсить пустые поля', 'empty_fields', $manufacturer, $category ?: 'gelendzhik'); ?>
             </div>
         </div>
         <?php
@@ -483,6 +532,90 @@ final class HWS_Product_Parser {
             count($products) === 18,
             'products=' . count($products)
         );
+    }
+
+    private static function parse_empty_fields(string $manufacturer, string $category): void {
+        if (!isset(self::CATEGORIES[$category]) || self::CATEGORIES[$category]['manufacturer'] !== $manufacturer) {
+            throw new RuntimeException('Category is not allowed by parser manifest.');
+        }
+
+        $state = self::state();
+        $products = self::products_for_category($state, $manufacturer, $category);
+        if (!$products) {
+            self::parse_category($manufacturer, $category);
+            $state = self::state();
+            $products = self::products_for_category($state, $manufacturer, $category);
+        }
+
+        $report = [
+            'date'             => current_time('mysql'),
+            'manufacturer'     => $manufacturer,
+            'category'         => $category,
+            'total_products'   => count($products),
+            'checked_products' => 0,
+            'empty_fields'     => 0,
+            'filled_fields'    => 0,
+            'skipped_fields'   => 0,
+            'errors'           => [],
+        ];
+
+        foreach ($products as $product_id => $item) {
+            $report['checked_products']++;
+            $current = self::parsed_product($manufacturer, $category, $product_id);
+            $empty_fields = [];
+
+            foreach (array_keys(self::PRODUCT_FIELDS) as $field) {
+                if (self::field_is_valid($field, $current[$field] ?? null)) {
+                    $report['skipped_fields']++;
+                    continue;
+                }
+                $empty_fields[] = $field;
+            }
+
+            if (!$empty_fields) {
+                continue;
+            }
+
+            $report['empty_fields'] += count($empty_fields);
+
+            try {
+                $html = self::fetch_html($item['url']);
+                $parsed = self::extract_product_fields($html);
+                $state = self::state();
+                $field_statuses = [];
+
+                foreach ($empty_fields as $field) {
+                    $value = $parsed[$field] ?? null;
+                    $state['parsed_products'][$manufacturer][$category][$product_id][$field] = $value;
+                    $valid = self::field_is_valid($field, $value);
+                    $field_statuses[$field] = $valid;
+                    if ($valid) {
+                        $report['filled_fields']++;
+                    } else {
+                        $report['errors'][] = $item['title'] . ': поле "' . self::PRODUCT_FIELDS[$field]['source'] . '" осталось пустым';
+                    }
+                }
+
+                update_option(self::OPTION, $state, false);
+                foreach ($field_statuses as $field => $valid) {
+                    self::mark_status(self::status_key('field', $manufacturer, $category, $product_id, $field), $valid);
+                }
+                self::sync_product_to_woocommerce($parsed, $empty_fields);
+
+                $merged = array_merge($current, array_intersect_key($parsed, array_flip($empty_fields)));
+                self::mark_status(
+                    self::status_key('product', $manufacturer, $category, $product_id),
+                    self::product_has_parsed_data($merged),
+                    'empty_fields=' . count($empty_fields)
+                );
+            } catch (Throwable $e) {
+                $report['errors'][] = $item['title'] . ': ' . $e->getMessage();
+            }
+        }
+
+        $state = self::state();
+        $state['last_empty_parse_report'] = $report;
+        update_option(self::OPTION, $state, false);
     }
 
     private static function parse_product(string $manufacturer, string $category, string $product_id, ?string $only_field): void {
