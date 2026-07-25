@@ -13,6 +13,7 @@ final class HWS_Product_Parser {
     private const MENU_SLUG = 'hws-product-parser';
     private const OPTION    = 'hws_product_parser_state';
     private const NONCE     = 'hws_product_parser_action';
+    private const STATE_VERSION = '0.2.0';
 
     private const MANUFACTURERS = [
         'easysteam' => [
@@ -73,19 +74,45 @@ final class HWS_Product_Parser {
     ];
 
     public static function init(): void {
+        add_action('admin_init', [__CLASS__, 'maybe_migrate_state']);
         add_action('admin_menu', [__CLASS__, 'admin_menu']);
         add_action('admin_post_hws_product_parser_parse', [__CLASS__, 'handle_parse']);
     }
 
     public static function admin_menu(): void {
+        add_menu_page(
+            'HWS Parser',
+            'HWS Parser',
+            'manage_woocommerce',
+            self::MENU_SLUG,
+            [__CLASS__, 'render_page'],
+            'dashicons-database-import',
+            56
+        );
+
         add_submenu_page(
-            'woocommerce',
+            self::MENU_SLUG,
             'HWS Parser',
             'HWS Parser',
             'manage_woocommerce',
             self::MENU_SLUG,
             [__CLASS__, 'render_page']
         );
+    }
+
+    public static function maybe_migrate_state(): void {
+        $state = get_option(self::OPTION, []);
+        if (!is_array($state)) {
+            update_option(self::OPTION, ['version' => self::STATE_VERSION], false);
+            return;
+        }
+        if (($state['version'] ?? '') === self::STATE_VERSION) {
+            return;
+        }
+
+        $state['version']  = self::STATE_VERSION;
+        $state['statuses'] = [];
+        update_option(self::OPTION, $state, false);
     }
 
     public static function handle_parse(): void {
@@ -370,10 +397,13 @@ final class HWS_Product_Parser {
     }
 
     private static function parse_manufacturer(string $manufacturer): void {
+        $all_parsed = true;
         foreach (self::MANUFACTURERS[$manufacturer]['categories'] as $category) {
             self::parse_category($manufacturer, $category);
+            $status = self::status(self::status_key('category', $manufacturer, $category));
+            $all_parsed = $all_parsed && !empty($status['parsed']);
         }
-        self::mark_status(self::status_key('manufacturer', $manufacturer));
+        self::mark_status(self::status_key('manufacturer', $manufacturer), $all_parsed);
     }
 
     private static function parse_category(string $manufacturer, string $category): void {
@@ -388,7 +418,11 @@ final class HWS_Product_Parser {
         $state['products'][$manufacturer][$category] = $products;
         update_option(self::OPTION, $state, false);
 
-        self::mark_status(self::status_key('category', $manufacturer, $category));
+        self::mark_status(
+            self::status_key('category', $manufacturer, $category),
+            count($products) === 18,
+            'products=' . count($products)
+        );
     }
 
     private static function parse_product(string $manufacturer, string $category, string $product_id, ?string $only_field): void {
@@ -415,10 +449,17 @@ final class HWS_Product_Parser {
         update_option(self::OPTION, $state, false);
 
         foreach ($fields as $field) {
-            self::mark_status(self::status_key('field', $manufacturer, $category, $product_id, $field));
+            self::mark_status(
+                self::status_key('field', $manufacturer, $category, $product_id, $field),
+                self::field_is_valid($field, $parsed[$field] ?? null)
+            );
         }
         if ($only_field === null) {
-            self::mark_status(self::status_key('product', $manufacturer, $category, $product_id));
+            $all_fields_valid = true;
+            foreach (array_keys(self::PRODUCT_FIELDS) as $field) {
+                $all_fields_valid = $all_fields_valid && self::field_is_valid($field, $parsed[$field] ?? null);
+            }
+            self::mark_status(self::status_key('product', $manufacturer, $category, $product_id), $all_fields_valid);
         }
     }
 
@@ -467,9 +508,9 @@ final class HWS_Product_Parser {
             'short_description' => $text_blocks['Описание'] ?? '',
             'long_description'  => trim(($text_blocks['Назначение'] ?? '') . "\n\n" . ($text_blocks['Преимущества'] ?? '')),
             'characteristics'   => $chars,
-            'fuel_type'         => self::first_present($options, $chars, ['Вид топлива', 'Тип топлива']),
+            'fuel_type'         => self::normalize_fuel_type(self::first_present($options, $chars, ['Вид топлива', 'Тип топлива'])),
             'purpose'           => self::first_present($options, $chars, ['Назначение']),
-            'steam_volume'      => self::first_present($options, $chars, ['Объем парной', 'Объём парной']),
+            'steam_volume'      => self::extract_steam_volume($chars),
             'model'             => self::first_present($options, $chars, ['Модель']),
             'jacket_material'   => self::first_present($options, $chars, ['Вид кожуха', 'Варианты кожуха', 'Материал кожуха']),
             'steel_grade'       => self::first_present($options, $chars, ['Марка стали']),
@@ -545,10 +586,54 @@ final class HWS_Product_Parser {
     }
 
     private static function extract_image(string $html): string {
-        if (preg_match('~<img[^>]+class=["\'][^"\']*(?:js-product-main-image|product__image)[^"\']*["\'][^>]+src=["\']([^"\']+)["\']~isu', $html, $match)) {
+        if (preg_match('~<img(?=[^>]+class=["\'][^"\']*(?:js-product-main-image|product__image)[^"\']*["\'])(?=[^>]+src=["\']([^"\']+)["\'])[^>]*>~isu', $html, $match)) {
+            return self::absolute_url(html_entity_decode($match[1], ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+        }
+        if (preg_match('~class=["\'][^"\']*js-product-main-image-wrap[^"\']*["\'][^>]+href=["\']([^"\']+)["\']~isu', $html, $match)) {
             return self::absolute_url(html_entity_decode($match[1], ENT_QUOTES | ENT_HTML5, 'UTF-8'));
         }
         return '';
+    }
+
+    private static function extract_steam_volume(array $chars): string {
+        $direct = self::first_present([], $chars, ['Объем парной', 'Объём парной']);
+        if ($direct !== '') {
+            return $direct;
+        }
+
+        $min = $chars['Минимальный объем парной'] ?? $chars['Минимальный объём парной'] ?? '';
+        $max = $chars['Максимальный объем парной'] ?? $chars['Максимальный объём парной'] ?? '';
+        if ($min !== '' && $max !== '') {
+            return trim($min . ' - ' . $max);
+        }
+        if ($max !== '') {
+            return 'до ' . $max;
+        }
+        if ($min !== '') {
+            return 'от ' . $min;
+        }
+
+        return '';
+    }
+
+    private static function normalize_fuel_type(string $raw): string {
+        $raw = mb_strtolower($raw);
+        $values = [];
+
+        if (str_contains($raw, 'дрова')) {
+            $values[] = 'дрова';
+        }
+        if (str_contains($raw, 'подготовка') || str_contains($raw, 'ггу')) {
+            $values[] = 'подготовка под газ';
+        }
+        if (str_contains($raw, 'сабк') || preg_match('~(^|[,\s])газ([,\s]|$)~u', $raw)) {
+            $values[] = 'газ';
+        }
+        if (str_contains($raw, 'газ, дрова') || str_contains($raw, 'газ + дрова')) {
+            $values[] = 'газ + дрова';
+        }
+
+        return implode(', ', array_values(array_unique($values)));
     }
 
     private static function extract_attr(string $html, string $attr): string {
@@ -627,11 +712,40 @@ final class HWS_Product_Parser {
         return is_array($status) ? $status : ['parsed' => false, 'date' => ''];
     }
 
-    private static function mark_status(string $key): void {
+    private static function field_is_valid(string $field, $value): bool {
+        if (is_array($value)) {
+            return count($value) > 0;
+        }
+
+        $value = trim((string) $value);
+        if ($value === '') {
+            return false;
+        }
+
+        if ($field === 'price') {
+            return (float) preg_replace('~[^\d.]~', '', str_replace(',', '.', $value)) > 0;
+        }
+        if ($field === 'offer_image') {
+            return str_starts_with($value, 'http://') || str_starts_with($value, 'https://');
+        }
+        if ($field === 'fuel_type') {
+            $allowed = ['дрова', 'подготовка под газ', 'газ', 'газ + дрова'];
+            $parts = array_filter(array_map('trim', explode(',', $value)));
+            return $parts !== [] && count(array_diff($parts, $allowed)) === 0;
+        }
+        if ($field === 'steam_volume') {
+            return preg_match('~\d~', $value) === 1;
+        }
+
+        return true;
+    }
+
+    private static function mark_status(string $key, bool $parsed, string $note = ''): void {
         $state = self::state();
         $state['statuses'][$key] = [
-            'parsed' => true,
+            'parsed' => $parsed,
             'date'   => current_time('mysql'),
+            'note'   => $note,
         ];
         update_option(self::OPTION, $state, false);
     }
