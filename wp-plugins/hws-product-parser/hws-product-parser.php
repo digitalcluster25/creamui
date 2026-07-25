@@ -42,10 +42,27 @@ final class HWS_Product_Parser {
         'purpose'           => ['source' => 'Назначение', 'target' => 'Назначение'],
         'steam_volume'      => ['source' => 'Объем парной', 'target' => 'Объем парной'],
         'model'             => ['source' => 'Модель', 'target' => 'Модель'],
+        'jacket_material'   => ['source' => 'Вид кожуха / Варианты кожуха', 'target' => 'Материал кожуха'],
+        'firebox_protection' => ['source' => 'Защита топки', 'target' => 'Защита топки'],
         'steel_grade'       => ['source' => 'Марка стали', 'target' => 'Марка стали'],
         'door_side'         => ['source' => 'Исполнение дверки', 'target' => 'Сторона дверки'],
         'stone_side'        => ['source' => 'Боковой вход в каменку', 'target' => 'Сторона входа в каменку'],
         'chimney_side'      => ['source' => 'Боковое подключение дымохода', 'target' => 'Сторона подключения дымохода'],
+    ];
+
+    private const REQUIRED_PRODUCT_FIELDS = [
+        'title',
+        'article',
+        'price',
+        'offer_image',
+        'short_description',
+        'long_description',
+        'characteristics',
+        'fuel_type',
+        'purpose',
+        'steam_volume',
+        'model',
+        'steel_grade',
     ];
 
     private const MANUFACTURER_MAPPING = [
@@ -598,10 +615,12 @@ final class HWS_Product_Parser {
             'purpose'           => self::first_present($options, $chars, ['Назначение']),
             'steam_volume'      => self::extract_steam_volume($chars),
             'model'             => self::first_present($options, $chars, ['Модель']),
+            'jacket_material'   => self::normalize_jacket_material(self::first_present($options, $chars, ['Вид кожуха', 'Варианты кожуха', 'Материал кожуха'])),
+            'firebox_protection' => self::normalize_firebox_protection(self::first_present($options, $chars, ['Защита топки'])),
             'steel_grade'       => self::first_present($options, $chars, ['Марка стали']),
-            'door_side'         => self::first_present($options, $chars, ['Исполнение дверки', 'Сторона дверки']),
-            'stone_side'        => self::first_present($options, $chars, ['Боковой вход в каменку']),
-            'chimney_side'      => self::first_present($options, $chars, ['Боковое подключение дымохода']),
+            'door_side'         => self::normalize_side(self::first_present($options, $chars, ['Исполнение дверки', 'Сторона дверки'])),
+            'stone_side'        => self::normalize_side(self::first_present($options, $chars, ['Боковой вход в каменку'])),
+            'chimney_side'      => self::normalize_side(self::first_present($options, $chars, ['Боковое подключение дымохода'])),
         ];
     }
 
@@ -705,17 +724,57 @@ final class HWS_Product_Parser {
         $raw = mb_strtolower($raw);
         $values = [];
 
+        if (str_contains($raw, 'газ, дрова') || str_contains($raw, 'газ + дрова')) {
+            $values[] = 'газ + дрова';
+        }
         if (str_contains($raw, 'дрова')) {
             $values[] = 'дрова';
         }
-        if (str_contains($raw, 'подготовка') || str_contains($raw, 'ггу')) {
+        if (str_contains($raw, 'подготовка')) {
             $values[] = 'подготовка под газ';
         }
         if (str_contains($raw, 'сабк') || preg_match('~(^|[,\s])газ([,\s]|$)~u', $raw)) {
             $values[] = 'газ';
         }
-        if (str_contains($raw, 'газ, дрова') || str_contains($raw, 'газ + дрова')) {
-            $values[] = 'газ + дрова';
+
+        return implode(', ', array_values(array_unique($values)));
+    }
+
+    private static function normalize_jacket_material(string $raw): string {
+        $raw = mb_strtolower($raw);
+        $values = [];
+
+        foreach (['талькохлорит', 'змеевик', 'пироксенит', 'жадеит'] as $material) {
+            if (str_contains($raw, $material)) {
+                $values[] = $material;
+            }
+        }
+
+        return implode(', ', array_values(array_unique($values)));
+    }
+
+    private static function normalize_firebox_protection(string $raw): string {
+        $raw = mb_strtolower($raw);
+        $values = [];
+
+        if (str_contains($raw, 'защ')) {
+            $values[] = 'защитные экраны';
+        }
+        if (str_contains($raw, 'футеровка')) {
+            $values[] = 'футеровка';
+        }
+
+        return implode(', ', array_values(array_unique($values)));
+    }
+
+    private static function normalize_side(string $raw): string {
+        $raw = mb_strtolower($raw);
+        $values = [];
+
+        foreach (['слева', 'справа', 'с тыла', 'сзади', 'спереди'] as $side) {
+            if (str_contains($raw, $side)) {
+                $values[] = $side;
+            }
         }
 
         return implode(', ', array_values(array_unique($values)));
@@ -814,9 +873,13 @@ final class HWS_Product_Parser {
     }
 
     private static function product_has_parsed_data(array $parsed): bool {
-        return self::field_is_valid('title', $parsed['title'] ?? '')
-            && self::field_is_valid('article', $parsed['article'] ?? '')
-            && self::field_is_valid('price', $parsed['price'] ?? '');
+        foreach (self::REQUIRED_PRODUCT_FIELDS as $field) {
+            if (!self::field_is_valid($field, $parsed[$field] ?? null)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private static function value_is_not_empty($value): bool {
@@ -844,6 +907,26 @@ final class HWS_Product_Parser {
         }
         if ($field === 'fuel_type') {
             $allowed = ['дрова', 'подготовка под газ', 'газ', 'газ + дрова'];
+            $parts = array_filter(array_map('trim', explode(',', $value)));
+            return $parts !== [] && count(array_diff($parts, $allowed)) === 0;
+        }
+        if ($field === 'jacket_material') {
+            $allowed = ['талькохлорит', 'змеевик', 'пироксенит', 'жадеит'];
+            $parts = array_filter(array_map('trim', explode(',', $value)));
+            return $parts !== [] && count(array_diff($parts, $allowed)) === 0;
+        }
+        if ($field === 'firebox_protection') {
+            $allowed = ['защитные экраны', 'футеровка'];
+            $parts = array_filter(array_map('trim', explode(',', $value)));
+            return $parts !== [] && count(array_diff($parts, $allowed)) === 0;
+        }
+        if (in_array($field, ['door_side', 'stone_side'], true)) {
+            $allowed = ['слева', 'справа', 'с тыла'];
+            $parts = array_filter(array_map('trim', explode(',', $value)));
+            return $parts !== [] && count(array_diff($parts, $allowed)) === 0;
+        }
+        if ($field === 'chimney_side') {
+            $allowed = ['слева', 'справа', 'сзади', 'спереди'];
             $parts = array_filter(array_map('trim', explode(',', $value)));
             return $parts !== [] && count(array_diff($parts, $allowed)) === 0;
         }
