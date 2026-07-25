@@ -321,9 +321,20 @@ final class HWS_Product_Parser {
                     <tr><td colspan="4">Товары еще не спарсены. Запустите парсинг категории.</td></tr>
                 <?php endif; ?>
                 <?php foreach ($products as $product_id => $item): ?>
-                    <?php $status = self::status(self::status_key('product', $manufacturer, $category, $product_id)); ?>
+                    <?php
+                    $status = self::status(self::status_key('product', $manufacturer, $category, $product_id));
+                    $product_url = add_query_arg(
+                        [
+                            'page'         => self::MENU_SLUG,
+                            'manufacturer' => $manufacturer,
+                            'category'     => $category,
+                            'product'      => $product_id,
+                        ],
+                        admin_url('admin.php')
+                    );
+                    ?>
                     <tr>
-                        <td><?php echo esc_html($item['title']); ?></td>
+                        <td><a href="<?php echo esc_url($product_url); ?>"><?php echo esc_html($item['title']); ?></a></td>
                         <td><a href="<?php echo esc_url($item['url']); ?>" target="_blank" rel="noreferrer"><?php echo esc_html($item['url']); ?></a></td>
                         <td><?php self::render_status_badge($status); ?><br><span class="hws-parser-meta"><?php echo esc_html(self::status_date($status)); ?></span></td>
                         <td><?php self::render_action_button('Спарсить товар с нуля', 'product', $manufacturer, $category, $product_id); ?></td>
