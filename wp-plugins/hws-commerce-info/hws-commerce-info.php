@@ -555,6 +555,7 @@ function updateAttrDropdowns(card, attrs) {
             ];
         }
         update_option(self::OPTION_INFO, $saved, false);
+        self::flush_infographic_cache();
         wp_safe_redirect(add_query_arg(['page' => 'hws-infographic', 'updated' => '1'], admin_url('admin.php')));
         exit;
     }
@@ -959,6 +960,21 @@ function updateAttrDropdowns(card, attrs) {
     private static function infographic_configs(): array {
         $data = get_option(self::OPTION_INFO, []);
         return is_array($data) ? array_values($data) : [];
+    }
+
+    private static function flush_infographic_cache(): void {
+        if (function_exists('wc_delete_product_transients')) {
+            wc_delete_product_transients();
+        }
+        if (function_exists('wp_cache_flush')) {
+            wp_cache_flush();
+        }
+        if (function_exists('hws_revalidate')) {
+            hws_revalidate();
+        }
+        if (function_exists('hws_graphql_bridge_trigger_frontend_revalidate')) {
+            hws_graphql_bridge_trigger_frontend_revalidate();
+        }
     }
 
     private static function brand_terms(): array {

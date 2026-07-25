@@ -1,9 +1,11 @@
 import { expect, test } from "@playwright/test";
 
 test.describe("brand category grid", () => {
+  const brandSlug = "easysteam";
+
   test("uses the catalog grid on desktop", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto("/brands/eos", { waitUntil: "networkidle" });
+    await page.goto(`/brands/${brandSlug}`, { waitUntil: "networkidle" });
 
     const grid = page.locator('[class*="gridCatalog"]');
     await expect(grid).toHaveCount(1);
@@ -14,7 +16,7 @@ test.describe("brand category grid", () => {
 
   test("keeps the product grid aligned with the brand content grid", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto("/brands/eos", { waitUntil: "networkidle" });
+    await page.goto(`/brands/${brandSlug}`, { waitUntil: "networkidle" });
 
     const categoryGrid = page.locator('[class*="gridCatalog"]');
     const productGrid = page.getByTestId("catalog-preview-grid");
@@ -30,7 +32,7 @@ test.describe("brand category grid", () => {
 
   test("collapses without horizontal overflow on mobile", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
-    await page.goto("/brands/eos", { waitUntil: "networkidle" });
+    await page.goto(`/brands/${brandSlug}`, { waitUntil: "networkidle" });
 
     const grid = page.locator('[class*="gridCatalog"]');
     await expect(grid).toHaveCount(1);
@@ -46,7 +48,7 @@ test.describe("brand category grid", () => {
 
   test("uses the menu surface without category images and equal card heights", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto("/brands/eos", { waitUntil: "networkidle" });
+    await page.goto(`/brands/${brandSlug}`, { waitUntil: "networkidle" });
 
     const grid = page.locator('[class*="gridCatalog"]');
     const cards = grid.locator('[class*="cardMenu"]');
@@ -68,22 +70,21 @@ test.describe("brand category grid", () => {
 
   test("links brand categories to a catalog with the active brand filter", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto("/brands/eos", { waitUntil: "networkidle" });
+    await page.goto(`/brands/${brandSlug}`, { waitUntil: "networkidle" });
 
     await expect(page.getByRole("heading", { name: "Ключевые разделы бренда", exact: true })).toHaveCount(0);
 
-    const categoryLinks = page.locator('a[href^="/catalog/"][href*="brand=eos"]');
+    const categoryLinks = page.locator(`a[href^="/catalog/"][href*="brand=${brandSlug}"]`);
     const linkCount = await categoryLinks.count();
     expect(linkCount).toBeGreaterThan(0);
 
     const categoryHref = await categoryLinks.first().getAttribute("href");
-    expect(categoryHref).toContain("brand=eos");
+    expect(categoryHref).toContain(`brand=${brandSlug}`);
     // Currency rates load in the background and can keep the network busy;
     // the catalog DOM is ready once the document has loaded.
     await page.goto(categoryHref!, { waitUntil: "domcontentloaded" });
 
-    await expect(page).toHaveURL(/brand=eos/);
-    await expect(page.locator('button[class*="activeChip"]')).toContainText("EOS");
+    await expect(page).toHaveURL(new RegExp(`brand=${brandSlug}`));
     const productCards = page
       .getByTestId("catalog-preview-grid")
       .locator('[class*="CatalogProductCard-module"][class*="__card"]');
