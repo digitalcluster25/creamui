@@ -491,6 +491,7 @@ final class HWS_Product_Parser {
             $state['parsed_products'][$manufacturer][$category][$product_id][$field] = $parsed[$field] ?? null;
         }
         update_option(self::OPTION, $state, false);
+        self::sync_product_to_woocommerce($parsed, $fields);
 
         foreach ($fields as $field) {
             self::mark_status(
@@ -504,6 +505,48 @@ final class HWS_Product_Parser {
                 self::product_has_parsed_data($parsed),
                 'fields=' . count(array_filter($parsed, static fn($value): bool => self::value_is_not_empty($value)))
             );
+        }
+    }
+
+    private static function sync_product_to_woocommerce(array $parsed, array $fields): void {
+        $product_id = self::store_product_id($parsed);
+        if ($product_id <= 0) {
+            return;
+        }
+
+        $post_updates = ['ID' => $product_id];
+        $should_update_post = false;
+
+        if (in_array('short_description', $fields, true) && self::field_is_valid('short_description', $parsed['short_description'] ?? '')) {
+            $post_updates['post_excerpt'] = wp_kses_post((string) $parsed['short_description']);
+            $should_update_post = true;
+        }
+
+        if (in_array('long_description', $fields, true) && self::field_is_valid('long_description', $parsed['long_description'] ?? '')) {
+            $post_updates['post_content'] = self::paragraphs_to_html((string) $parsed['long_description']);
+            $should_update_post = true;
+        }
+
+        if ($should_update_post) {
+            wp_update_post(wp_slash($post_updates));
+        }
+
+        if (in_array('characteristics', $fields, true) && self::field_is_valid('characteristics', $parsed['characteristics'] ?? [])) {
+            $characteristics = is_array($parsed['characteristics']) ? $parsed['characteristics'] : [];
+            update_post_meta(
+                $product_id,
+                '_hws_source_characteristics_json',
+                wp_json_encode($characteristics, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)
+            );
+            update_post_meta($product_id, '_hws_specs_html', self::specs_to_html($characteristics));
+        }
+
+        if (function_exists('wc_delete_product_transients')) {
+            wc_delete_product_transients($product_id);
+        }
+        clean_post_cache($product_id);
+        if (function_exists('hws_revalidate')) {
+            hws_revalidate();
         }
     }
 
@@ -824,19 +867,29 @@ final class HWS_Product_Parser {
     }
 
     private static function store_product_url(array $parsed): string {
+        $product_id = self::store_product_id($parsed);
+        if ($product_id <= 0) {
+            return '';
+        }
+
+        $url = get_permalink($product_id);
+        return is_string($url) ? $url : '';
+    }
+
+    private static function store_product_id(array $parsed): int {
         $sku = trim((string) ($parsed['article'] ?? ''));
         if ($sku === '' || !function_exists('wc_get_product_id_by_sku')) {
-            return '';
+            return 0;
         }
 
         $product_id = (int) wc_get_product_id_by_sku($sku);
         if ($product_id <= 0 || !function_exists('wc_get_product')) {
-            return '';
+            return 0;
         }
 
         $product = wc_get_product($product_id);
         if (!$product) {
-            return '';
+            return 0;
         }
 
         if (method_exists($product, 'is_type') && $product->is_type('variation') && method_exists($product, 'get_parent_id')) {
@@ -846,8 +899,37 @@ final class HWS_Product_Parser {
             }
         }
 
-        $url = get_permalink($product_id);
-        return is_string($url) ? $url : '';
+        return $product_id;
+    }
+
+    private static function paragraphs_to_html(string $value): string {
+        $parts = preg_split('/\R{2,}/u', trim($value));
+        $parts = is_array($parts) ? $parts : [$value];
+        $html = '';
+        foreach ($parts as $part) {
+            $part = trim((string) $part);
+            if ($part === '') {
+                continue;
+            }
+            $html .= '<p>' . esc_html($part) . '</p>';
+        }
+        return $html;
+    }
+
+    private static function specs_to_html(array $characteristics): string {
+        $rows = '';
+        foreach ($characteristics as $label => $value) {
+            $label = trim((string) $label);
+            $value = trim((string) $value);
+            if ($label === '' || $value === '') {
+                continue;
+            }
+            $rows .= '<tr><th>' . esc_html($label) . '</th><td>' . esc_html($value) . '</td></tr>';
+        }
+        if ($rows === '') {
+            return '';
+        }
+        return '<table><tbody>' . $rows . '</tbody></table>';
     }
 
     private static function status_key(string $scope, string $manufacturer, string $category = '', string $product = '', string $field = ''): string {
