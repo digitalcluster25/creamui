@@ -20,7 +20,7 @@ from typing import Any
 from urllib.parse import urljoin
 
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Tag
 
 
 BASE_URL = "https://easysteam.ru"
@@ -138,6 +138,7 @@ class ProductPreview:
     base_price_rub: int
     base_image: str
     short_description: str
+    long_description: str
     target_category: str
     product_type: str
     option_groups: list[OptionGroup]
@@ -161,6 +162,25 @@ def slugify(value: str) -> str:
     value = "".join(mapping.get(ch, ch) for ch in value)
     value = re.sub(r"[^a-z0-9]+", "-", value)
     return value.strip("-")
+
+
+def build_long_description(purpose_text: str, advantage_text: str) -> str:
+    sections = []
+    if clean_text(purpose_text):
+        sections.append(f"Назначение\n\n{clean_text(purpose_text)}")
+    if clean_text(advantage_text):
+        sections.append(f"Преимущества\n\n{clean_text(advantage_text)}")
+    return "\n\n".join(sections)
+
+
+def is_importable_variant(variant: dict[str, Any]) -> bool:
+    article = clean_text(str(variant.get("manufacturer_article", "")))
+    return (
+        variant.get("status") == "ok"
+        and article != ""
+        and article != "missing manufacturer article"
+        and int(variant.get("price_rub") or 0) > 0
+    )
 
 
 class EasySteamParser:
@@ -210,6 +230,7 @@ class EasySteamParser:
         advantage_text = self.extract_tab_text(soup, "#prod-advantage")
         short_description = self.extract_description_tab(soup)
         short_description = short_description or fallback_short_description(purpose_text, advantage_text)
+        long_description = build_long_description(purpose_text, advantage_text)
         characteristics = self.extract_characteristics(soup)
         option_groups = self.extract_option_groups(soup)
         variants = self.resolve_variants(url, csrf, source_product_id, base_image, option_groups)
@@ -222,6 +243,7 @@ class EasySteamParser:
             base_price_rub=base_price_rub,
             base_image=base_image,
             short_description=short_description,
+            long_description=long_description,
             target_category="Печи для русской бани",
             product_type="variable" if option_groups else "simple",
             option_groups=option_groups,
@@ -246,6 +268,17 @@ class EasySteamParser:
         pane = soup.select_one("#prod-technical-data")
         if not pane:
             return ""
+
+        for title in pane.select(".product__description-title"):
+            if clean_text(title.get_text(" ", strip=True)) != "Описание":
+                continue
+            for sibling in title.next_siblings:
+                if not isinstance(sibling, Tag):
+                    continue
+                text = clean_text(sibling.get_text(" ", strip=True))
+                if text:
+                    return text
+
         candidates: list[str] = []
         for p in pane.select("p"):
             text = clean_text(p.get_text(" ", strip=True))
@@ -416,10 +449,12 @@ def build_import_payload(products: list[ProductPreview]) -> dict[str, Any]:
     payload_products: list[dict[str, Any]] = []
 
     for product in products:
-        default_variant = next((variant for variant in product.variants if variant["status"] == "ok"), None)
+        importable_variants = [variant for variant in product.variants if is_importable_variant(variant)]
+        skipped_variants = [variant for variant in product.variants if not is_importable_variant(variant)]
+        default_variant = next(iter(importable_variants), None)
         parent_attributes: dict[str, list[str]] = {}
 
-        for variant in product.variants:
+        for variant in importable_variants:
             for attr_name, attr_value in variant["normalized_attributes"].items():
                 parent_attributes.setdefault(attr_name, [])
                 if attr_value not in parent_attributes[attr_name]:
@@ -441,6 +476,7 @@ def build_import_payload(products: list[ProductPreview]) -> dict[str, Any]:
             "base_price_rub": product.base_price_rub,
             "base_image": product.base_image,
             "short_description": product.short_description,
+            "long_description": product.long_description,
             "raw_tabs": {
                 "purpose": product.purpose_text,
                 "advantage": product.advantage_text,
@@ -450,7 +486,8 @@ def build_import_payload(products: list[ProductPreview]) -> dict[str, Any]:
             "parent_attributes": parent_attributes,
             "default_variant_article": default_variant["manufacturer_article"] if default_variant else "",
             "default_variant_attributes": default_variant["normalized_attributes"] if default_variant else {},
-            "variants": product.variants,
+            "variants": importable_variants,
+            "skipped_variants": skipped_variants,
             "skipped_tabs": product.skipped_tabs,
             "post_import_content_sources": product.post_import_content_sources,
         })
@@ -477,12 +514,13 @@ def build_import_payload(products: list[ProductPreview]) -> dict[str, Any]:
             "media_import_mode": "separate_phase",
             "description_policy": {
                 "short_description": "import from manufacturer tab 'Описание' without rewrite",
-                "long_description": "defer rewrite; keep raw purpose + advantage for later composition",
+                "long_description": "compose from manufacturer tabs 'Назначение' and 'Преимущества' without importing skipped tabs",
             },
         },
         "filter_index": filter_index,
         "products_count": len(payload_products),
         "variants_count": sum(len(product["variants"]) for product in payload_products),
+        "skipped_variants_count": sum(len(product["skipped_variants"]) for product in payload_products),
         "products": payload_products,
     }
 

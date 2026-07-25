@@ -248,7 +248,9 @@ function hws_gelendzhik_build_report( array $payload, int $limit = 0 ): array {
 		'missing_prices'          => [],
 		'missing_articles'        => [],
 		'missing_short_desc'      => [],
+		'missing_long_desc'       => [],
 		'missing_raw_tabs'        => [],
+		'skipped_non_importable'  => [],
 	];
 	$seen_articles = [];
 
@@ -267,6 +269,16 @@ function hws_gelendzhik_build_report( array $payload, int $limit = 0 ): array {
 			$report['variants_checked']++;
 			$article = (string) ( $variant['manufacturer_article'] ?? '' );
 			$price   = (int) ( $variant['price_rub'] ?? 0 );
+			$status  = (string) ( $variant['status'] ?? '' );
+			if ( 'ok' !== $status || '' === $article || 'missing manufacturer article' === $article || $price <= 0 ) {
+				$report['skipped_non_importable'][] = [
+					'product' => $product['title'] ?? '',
+					'article' => $article,
+					'status'  => $status,
+					'price'   => $price,
+					'options' => $variant['source_options'] ?? [],
+				];
+			}
 			if ( '' === $article || 'missing manufacturer article' === $article ) {
 				$report['missing_articles'][] = [
 					'product' => $product['title'] ?? '',
@@ -300,6 +312,9 @@ function hws_gelendzhik_build_report( array $payload, int $limit = 0 ): array {
 
 		if ( '' === hws_gelendzhik_normalize_text( (string) ( $product['short_description'] ?? '' ) ) ) {
 			$report['missing_short_desc'][] = (string) ( $product['title'] ?? '' );
+		}
+		if ( '' === hws_gelendzhik_normalize_text( (string) ( $product['long_description'] ?? '' ) ) ) {
+			$report['missing_long_desc'][] = (string) ( $product['title'] ?? '' );
 		}
 		if (
 			'' === hws_gelendzhik_normalize_text( (string) ( $product['raw_tabs']['purpose'] ?? '' ) ) &&
@@ -415,8 +430,10 @@ function hws_gelendzhik_sync_parent_attributes( int $product_id, array $product 
 
 function hws_gelendzhik_sync_variant( int $parent_id, array $variant, string $price_mode ): int {
 	$article = (string) ( $variant['manufacturer_article'] ?? '' );
-	if ( '' === $article || 'missing manufacturer article' === $article ) {
-		hws_gelendzhik_error( 'Cannot import variation without manufacturer article.' );
+	$price   = (int) ( $variant['price_rub'] ?? 0 );
+	$status  = (string) ( $variant['status'] ?? '' );
+	if ( 'ok' !== $status || '' === $article || 'missing manufacturer article' === $article || $price <= 0 ) {
+		return 0;
 	}
 
 	$variation_id = hws_gelendzhik_find_variation_id_by_sku( $article );
@@ -469,6 +486,7 @@ function hws_gelendzhik_import_product( array $payload, array $product, string $
 	$wc_product->set_status( 'publish' );
 	$wc_product->set_catalog_visibility( 'visible' );
 	$wc_product->set_short_description( (string) ( $product['short_description'] ?? '' ) );
+	$wc_product->set_description( (string) ( $product['long_description'] ?? '' ) );
 	$wc_product->set_category_ids( hws_gelendzhik_product_cat_ids( $payload ) );
 	$product_id = $wc_product->save();
 
@@ -509,7 +527,10 @@ function hws_gelendzhik_import_product( array $payload, array $product, string $
 
 	$variation_ids = [];
 	foreach ( ( $product['variants'] ?? [] ) as $variant ) {
-		$variation_ids[] = hws_gelendzhik_sync_variant( $product_id, $variant, $price_mode );
+		$variation_id = hws_gelendzhik_sync_variant( $product_id, $variant, $price_mode );
+		if ( $variation_id > 0 ) {
+			$variation_ids[] = $variation_id;
+		}
 	}
 	WC_Product_Variable::sync( $product_id );
 	wc_delete_product_transients( $product_id );
