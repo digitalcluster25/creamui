@@ -65,6 +65,14 @@ final class HWS_Product_Parser {
         'steel_grade',
     ];
 
+    private const OPTIONAL_PRODUCT_FIELDS = [
+        'jacket_material',
+        'firebox_protection',
+        'door_side',
+        'stone_side',
+        'chimney_side',
+    ];
+
     private const MANUFACTURER_MAPPING = [
         ['source' => 'EasySteam', 'target' => 'Product brand'],
         ['source' => 'Печи для русской бани / Геленджик', 'target' => 'WooCommerce category scope'],
@@ -455,7 +463,8 @@ final class HWS_Product_Parser {
                 </tr>
             </thead>
             <tbody>
-            <?php foreach (self::PRODUCT_FIELDS as $field => $mapping): ?>
+            <?php foreach (self::display_product_fields($parsed) as $field): ?>
+                <?php $mapping = self::PRODUCT_FIELDS[$field]; ?>
                 <?php $status = self::status(self::status_key('field', $manufacturer, $category, $product_id, $field)); ?>
                 <tr>
                     <td><?php echo esc_html($mapping['source']); ?></td>
@@ -561,10 +570,28 @@ final class HWS_Product_Parser {
 
         foreach ($products as $product_id => $item) {
             $report['checked_products']++;
+            try {
+                $html = self::fetch_html($item['url']);
+                $parsed = self::extract_product_fields($html);
+                $applicable_fields = self::applicable_product_fields($parsed);
+            } catch (Throwable $e) {
+                $report['errors'][] = $item['title'] . ': ' . $e->getMessage();
+                continue;
+            }
+
             $current = self::parsed_product($manufacturer, $category, $product_id);
+            $state = self::state();
+            $state['parsed_products'][$manufacturer][$category][$product_id]['_applicable_fields'] = $applicable_fields;
+            foreach (self::OPTIONAL_PRODUCT_FIELDS as $optional_field) {
+                if (!in_array($optional_field, $applicable_fields, true)) {
+                    unset($state['parsed_products'][$manufacturer][$category][$product_id][$optional_field]);
+                }
+            }
+            update_option(self::OPTION, $state, false);
+
             $empty_fields = [];
 
-            foreach (array_keys(self::PRODUCT_FIELDS) as $field) {
+            foreach ($applicable_fields as $field) {
                 if (self::field_is_valid($field, $current[$field] ?? null)) {
                     $report['skipped_fields']++;
                     continue;
@@ -579,8 +606,6 @@ final class HWS_Product_Parser {
             $report['empty_fields'] += count($empty_fields);
 
             try {
-                $html = self::fetch_html($item['url']);
-                $parsed = self::extract_product_fields($html);
                 $state = self::state();
                 $field_statuses = [];
 
@@ -633,8 +658,18 @@ final class HWS_Product_Parser {
 
         $html   = self::fetch_html($products[$product_id]['url']);
         $parsed = self::extract_product_fields($html);
-        $fields = $only_field === null ? array_keys(self::PRODUCT_FIELDS) : [$only_field];
+        $applicable_fields = self::applicable_product_fields($parsed);
+        $fields = $only_field === null ? $applicable_fields : [$only_field];
         $state  = self::state();
+
+        if ($only_field === null) {
+            $state['parsed_products'][$manufacturer][$category][$product_id]['_applicable_fields'] = $applicable_fields;
+            foreach (self::OPTIONAL_PRODUCT_FIELDS as $optional_field) {
+                if (!in_array($optional_field, $applicable_fields, true)) {
+                    unset($state['parsed_products'][$manufacturer][$category][$product_id][$optional_field]);
+                }
+            }
+        }
 
         foreach ($fields as $field) {
             $state['parsed_products'][$manufacturer][$category][$product_id][$field] = $parsed[$field] ?? null;
@@ -982,6 +1017,33 @@ final class HWS_Product_Parser {
     private static function parsed_product(string $manufacturer, string $category, string $product_id): array {
         $parsed = self::state()['parsed_products'][$manufacturer][$category][$product_id] ?? [];
         return is_array($parsed) ? $parsed : [];
+    }
+
+    private static function display_product_fields(array $parsed): array {
+        $applicable = $parsed['_applicable_fields'] ?? [];
+        if (is_array($applicable) && $applicable) {
+            return array_values(array_filter($applicable, static fn(string $field): bool => isset(self::PRODUCT_FIELDS[$field])));
+        }
+
+        $fields = self::REQUIRED_PRODUCT_FIELDS;
+        foreach (self::OPTIONAL_PRODUCT_FIELDS as $field) {
+            if (self::field_is_valid($field, $parsed[$field] ?? null)) {
+                $fields[] = $field;
+            }
+        }
+
+        return $fields;
+    }
+
+    private static function applicable_product_fields(array $parsed): array {
+        $fields = self::REQUIRED_PRODUCT_FIELDS;
+        foreach (self::OPTIONAL_PRODUCT_FIELDS as $field) {
+            if (self::field_is_valid($field, $parsed[$field] ?? null)) {
+                $fields[] = $field;
+            }
+        }
+
+        return $fields;
     }
 
     private static function product_status(string $manufacturer, string $category, string $product_id): array {
