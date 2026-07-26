@@ -725,7 +725,11 @@ final class HWS_Product_Parser {
             $state['parsed_products'][$manufacturer][$category][$product_id][$field] = $parsed[$field] ?? null;
         }
         update_option(self::OPTION, $state, false);
-        self::sync_product_to_woocommerce($parsed, $fields);
+        $sync_fields = $fields;
+        if ($only_field === null) {
+            $sync_fields = array_values(array_unique(array_merge($sync_fields, self::SOURCE_DEPENDENT_PRODUCT_FIELDS)));
+        }
+        self::sync_product_to_woocommerce($parsed, $sync_fields);
 
         foreach ($fields as $field) {
             self::mark_status(
@@ -753,6 +757,9 @@ final class HWS_Product_Parser {
 
         if (in_array('short_description', $fields, true) && self::field_is_valid('short_description', $parsed['short_description'] ?? '')) {
             $post_updates['post_excerpt'] = wp_kses_post((string) $parsed['short_description']);
+            $should_update_post = true;
+        } elseif (in_array('short_description', $fields, true)) {
+            $post_updates['post_excerpt'] = '';
             $should_update_post = true;
         }
 
