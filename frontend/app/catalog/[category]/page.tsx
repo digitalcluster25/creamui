@@ -11,7 +11,7 @@ import { getFooterData } from "@/lib/wp/footer";
 import { getClient } from "@/lib/wp/apollo";
 import { mapToCatalogProduct, type WPProductNode } from "@/lib/wp/mappers";
 import { CATALOG_BRANCH_INTROS, buildCatalogCategoryContent } from "@/lib/data/catalogBranches";
-import { ATTRIBUTE_LABELS } from "@/lib/data/catalogFilters";
+import { ATTRIBUTE_LABELS, attributeOptionLabel } from "@/lib/data/catalogFilters";
 import { GET_ATTRIBUTE_TERMS } from "@/lib/wp/queries";
 import { fetchProductsByCategory } from "@/lib/wp/products";
 import { ACTIVE_CATALOG_CATEGORY_SLUGS, getProductBrands, getProductCategoriesTree, getProductCategoryBySlug, type WPBrandNode } from "@/lib/wp/catalog-taxonomy";
@@ -144,14 +144,16 @@ export default async function CatalogCategoryPage({
 
   const headerData = await getHeaderData();
   const previewProducts = productsNodes.map(mapToCatalogProduct);
-  const brandFilters = buildBrandFilters(productsNodes, brands);
+  const configuredFilters = found.hwsCatalogFilters ?? [];
+  const hasConfiguredFilters = configuredFilters.length > 0;
+  const brandFilters = hasConfiguredFilters ? buildBrandFilters(productsNodes, brands) : [];
   const categoryFilters =
-    found.slug === branchSlug && currentChildNodes.length > 1
+    hasConfiguredFilters && found.slug === branchSlug && currentChildNodes.length > 1
       ? currentChildNodes.map((n) => ({ slug: n.slug, name: n.name, type: "category" as const }))
       : [];
   const allFilters = [...categoryFilters, ...brandFilters];
   const attrTermMap = buildAttrTermMap(attrTermsResult?.data ?? null);
-  const attributeFilters = buildAttributeFilters(productsNodes, found.hwsCatalogFilters ?? [], attrTermMap);
+  const attributeFilters = buildAttributeFilters(productsNodes, configuredFilters, attrTermMap);
 
   return (
     <main>
@@ -229,7 +231,7 @@ function buildAttributeFilters(
       for (const attr of p.attributes?.nodes ?? []) {
         if (attr.name === slug) {
           for (const opt of attr.options ?? []) {
-            if (!seen.has(opt)) seen.set(opt, terms[opt] ?? opt);
+          if (!seen.has(opt)) seen.set(opt, attributeOptionLabel(slug, opt, terms[opt]));
           }
         }
       }

@@ -93,7 +93,16 @@ export function attributeOptionLabel(taxonomy: string, slug: string, termLabel?:
     return fallback;
   }
 
-  return slug;
+  return decodeAttributeLabel(slug);
+}
+
+function decodeAttributeLabel(value: string): string {
+  try {
+    const decoded = decodeURIComponent(value);
+    return decoded.replace(/-/g, " ");
+  } catch {
+    return value;
+  }
 }
 
 // pa_power -> "power" для короткого query-параметра в URL.
