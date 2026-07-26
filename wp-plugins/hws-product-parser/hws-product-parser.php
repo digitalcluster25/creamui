@@ -156,7 +156,7 @@ final class HWS_Product_Parser {
         $field        = sanitize_key(wp_unslash($_POST['field'] ?? ''));
         $message      = 'parsed';
 
-        if ($category === '' && $scope !== 'empty_fields') {
+        if ($category === '' && !in_array($scope, ['empty_fields', 'overview'], true)) {
             $category = 'gelendzhik';
         }
 
@@ -169,6 +169,9 @@ final class HWS_Product_Parser {
                 self::parse_product($manufacturer, $category, $product, null);
             } elseif ($scope === 'field') {
                 self::parse_product($manufacturer, $category, $product, $field);
+            } elseif ($scope === 'overview') {
+                self::make_overview($manufacturer, $category);
+                $message = 'overview_report';
             } elseif ($scope === 'empty_fields') {
                 self::parse_empty_fields($manufacturer, $category);
                 $message = 'empty_fields_report';
@@ -189,7 +192,7 @@ final class HWS_Product_Parser {
             ],
             admin_url('admin.php')
         );
-        if ($message === 'empty_fields_report') {
+        if (in_array($message, ['empty_fields_report', 'overview_report'], true)) {
             $redirect .= '#hws-empty-parse-report';
         }
 
@@ -251,12 +254,22 @@ final class HWS_Product_Parser {
             echo '<div class="notice notice-success"><p>Парсинг пустых полей завершен. Отчет ниже.</p></div>';
             return;
         }
+        if ($message === 'overview_report') {
+            echo '<div class="notice notice-success"><p>Обзор сформирован. Отчет ниже.</p></div>';
+            return;
+        }
 
         echo '<div class="notice notice-success"><p>Статус парсинга обновлен.</p></div>';
     }
 
     private static function render_empty_parse_report(array $state, string $manufacturer, string $category): void {
-        $report = $state['last_empty_parse_report'] ?? [];
+        $message = sanitize_text_field(wp_unslash($_GET['hws_message'] ?? ''));
+        if (!in_array($message, ['empty_fields_report', 'overview_report'], true)) {
+            return;
+        }
+
+        $is_overview = $message === 'overview_report';
+        $report = $state[$is_overview ? 'last_overview_report' : 'last_empty_parse_report'] ?? [];
         if (!is_array($report) || empty($report)) {
             return;
         }
@@ -273,15 +286,16 @@ final class HWS_Product_Parser {
         $errors = is_array($report['errors'] ?? null) ? $report['errors'] : [];
         ?>
         <div id="hws-empty-parse-report" class="hws-parser-panel">
-            <h2>Отчет: Спарсить пустые поля</h2>
+            <h2><?php echo esc_html($is_overview ? 'Отчет: Обзор пустых полей' : 'Отчет: Спарсить пустые поля'); ?></h2>
             <div class="hws-parser-progress" aria-label="Прогресс">
                 <span style="width:<?php echo esc_attr((string) $percent); ?>%"></span>
             </div>
             <p class="hws-parser-meta">
+                Сформирован: <?php echo esc_html((string) ($report['date'] ?? '')); ?>.
                 Проверено товаров: <?php echo esc_html((string) $checked); ?> из <?php echo esc_html((string) $total); ?>.
                 Уровень: <?php echo esc_html((string) ($report['scope_label'] ?? '')); ?>.
                 Пустых полей найдено: <?php echo esc_html((string) ($report['empty_fields'] ?? 0)); ?>.
-                Заполнено: <?php echo esc_html((string) ($report['filled_fields'] ?? 0)); ?>.
+                <?php echo esc_html($is_overview ? 'Можно заполнить' : 'Заполнено'); ?>: <?php echo esc_html((string) ($report['filled_fields'] ?? 0)); ?>.
                 Уже заполнено: <?php echo esc_html((string) ($report['skipped_fields'] ?? 0)); ?>.
                 Ошибок: <?php echo esc_html((string) count($errors)); ?>.
             </p>
@@ -370,6 +384,7 @@ final class HWS_Product_Parser {
         <div class="hws-parser-panel">
             <strong>Парсинг выбранного уровня</strong>
             <div class="hws-parser-actions">
+                <?php self::render_action_button('Сделать обзор', 'overview', $manufacturer, $category, $product); ?>
                 <?php self::render_action_button('Спарсить с нуля', $scope, $manufacturer, $category ?: 'gelendzhik', $product); ?>
                 <?php self::render_action_button('Спарсить пустые поля', 'empty_fields', $manufacturer, $category, $product); ?>
             </div>
@@ -555,6 +570,99 @@ final class HWS_Product_Parser {
             count($products) === 18,
             'products=' . count($products)
         );
+    }
+
+    private static function make_overview(string $manufacturer, string $category): void {
+        if ($category === '') {
+            $report = [
+                'date'             => current_time('mysql'),
+                'manufacturer'     => $manufacturer,
+                'category'         => '',
+                'scope_label'      => self::MANUFACTURERS[$manufacturer]['label'] . ' / все категории',
+                'total_products'   => 0,
+                'checked_products' => 0,
+                'empty_fields'     => 0,
+                'filled_fields'    => 0,
+                'skipped_fields'   => 0,
+                'errors'           => [],
+            ];
+
+            foreach (self::MANUFACTURERS[$manufacturer]['categories'] as $item_category) {
+                $category_report = self::make_overview_for_category($manufacturer, $item_category);
+                $report['total_products'] += (int) ($category_report['total_products'] ?? 0);
+                $report['checked_products'] += (int) ($category_report['checked_products'] ?? 0);
+                $report['empty_fields'] += (int) ($category_report['empty_fields'] ?? 0);
+                $report['filled_fields'] += (int) ($category_report['filled_fields'] ?? 0);
+                $report['skipped_fields'] += (int) ($category_report['skipped_fields'] ?? 0);
+                $report['errors'] = array_merge($report['errors'], is_array($category_report['errors'] ?? null) ? $category_report['errors'] : []);
+            }
+
+            $state = self::state();
+            $state['last_overview_report'] = $report;
+            update_option(self::OPTION, $state, false);
+            return;
+        }
+
+        $report = self::make_overview_for_category($manufacturer, $category);
+        $state = self::state();
+        $state['last_overview_report'] = $report;
+        update_option(self::OPTION, $state, false);
+    }
+
+    private static function make_overview_for_category(string $manufacturer, string $category): array {
+        if (!isset(self::CATEGORIES[$category]) || self::CATEGORIES[$category]['manufacturer'] !== $manufacturer) {
+            throw new RuntimeException('Category is not allowed by parser manifest.');
+        }
+
+        $state = self::state();
+        $products = self::products_for_category($state, $manufacturer, $category);
+        if (!$products) {
+            self::parse_category($manufacturer, $category);
+            $state = self::state();
+            $products = self::products_for_category($state, $manufacturer, $category);
+        }
+
+        $report = [
+            'date'             => current_time('mysql'),
+            'manufacturer'     => $manufacturer,
+            'category'         => $category,
+            'scope_label'      => self::MANUFACTURERS[$manufacturer]['label'] . ' / ' . self::CATEGORIES[$category]['label'],
+            'total_products'   => count($products),
+            'checked_products' => 0,
+            'empty_fields'     => 0,
+            'filled_fields'    => 0,
+            'skipped_fields'   => 0,
+            'errors'           => [],
+        ];
+
+        foreach ($products as $product_id => $item) {
+            $report['checked_products']++;
+            try {
+                $html = self::fetch_html($item['url']);
+                $parsed = self::extract_product_fields($html);
+                $applicable_fields = self::applicable_product_fields($parsed);
+            } catch (Throwable $e) {
+                $report['errors'][] = $item['title'] . ': ' . $e->getMessage();
+                continue;
+            }
+
+            $current = self::parsed_product($manufacturer, $category, $product_id);
+            foreach ($applicable_fields as $field) {
+                if (self::field_is_valid($field, $current[$field] ?? null)) {
+                    $report['skipped_fields']++;
+                    continue;
+                }
+
+                $report['empty_fields']++;
+                if (self::field_is_valid($field, $parsed[$field] ?? null)) {
+                    $report['filled_fields']++;
+                } else {
+                    $report['errors'][] = $item['title'] . ': источник не вернул поле "' . self::PRODUCT_FIELDS[$field]['source'] . '"';
+                }
+            }
+        }
+
+        return $report;
     }
 
     private static function parse_empty_fields(string $manufacturer, string $category): void {
