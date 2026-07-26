@@ -765,6 +765,12 @@ final class HWS_Product_Parser {
             wp_update_post(wp_slash($post_updates));
         }
 
+        if (in_array('article', $fields, true) && self::field_is_valid('article', $parsed['article'] ?? '')) {
+            $article = trim((string) $parsed['article']);
+            update_post_meta($product_id, '_hws_source_base_article', $article);
+            update_post_meta($product_id, '_hws_source_article', $article);
+        }
+
         if (in_array('characteristics', $fields, true) && self::field_is_valid('characteristics', $parsed['characteristics'] ?? [])) {
             $characteristics = is_array($parsed['characteristics']) ? $parsed['characteristics'] : [];
             update_post_meta(
