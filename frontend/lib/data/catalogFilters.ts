@@ -40,15 +40,25 @@ export const DEFAULT_BRANCH_FILTERS: string[] = ["pa_equipment-type", "pa_series
 // Плейсхолдеры селектов (подпись фильтра). Значения опций берутся из имён
 // терминов таксономии (см. GET_ATTRIBUTE_TERMS).
 export const ATTRIBUTE_LABELS: Record<string, string> = {
-  "pa_fuel-type": "Тип топлива",
-  "pa_equipment-type": "Тип оборудования",
-  "pa_steam-room-volume": "Объём парной",
-  "pa_power": "Мощность",
+  "pa_steam-room-volume": "Объем парной",
+  "pa_color": "Цвет",
+  "pa_leg-material": "Материал ножек",
+  "pa_firebox-protection": "Защита топки",
+  "pa_usage-class": "Класс использования",
+  "pa_steel-grade": "Марка стали",
   "pa_cladding-material": "Облицовка",
   "pa_voltage": "Напряжение",
-  "pa_usage-class": "Применение",
-  "pa_room-type": "Тип помещения",
+  "pa_power": "Мощность",
+  "pa_facing": "Облицовочный материал",
   "pa_series": "Серия",
+  "pa_stone-entry-side": "Сторона входа в каменку",
+  "pa_door-side": "Сторона дверки",
+  "pa_chimney-connection-side": "Сторона подключения дымохода",
+  "pa_cladding-type": "Тип облицовки",
+  "pa_equipment-type": "Тип оборудования",
+  "pa_connection-type": "Тип подключения",
+  "pa_room-type": "Тип помещения",
+  "pa_fuel-type": "Тип топлива",
 };
 
 // Фолбэки для случаев, когда WP term name не нормализован и во фронт

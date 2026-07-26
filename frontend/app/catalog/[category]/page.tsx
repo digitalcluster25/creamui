@@ -225,22 +225,27 @@ function buildAttributeFilters(
   if (!filterConfigs.length) return [];
   const result: { slug: string; type: string; label: string; options: { value: string; name: string }[] }[] = [];
   for (const { slug, type } of filterConfigs) {
+    const label = ATTRIBUTE_LABELS[slug] ?? slug.replace(/^pa_/, "");
     const seen = new Map<string, string>();
     const terms = termMap[slug] ?? {};
     for (const p of products) {
       for (const attr of p.attributes?.nodes ?? []) {
         if (attr.name === slug) {
           for (const opt of attr.options ?? []) {
-          if (!seen.has(opt)) seen.set(opt, attributeOptionLabel(slug, opt, terms[opt]));
+            if (!seen.has(opt)) seen.set(opt, attributeOptionLabel(slug, opt, terms[opt]));
           }
         }
       }
+    }
+    if (type === "input") {
+      result.push({ slug, type, label, options: [] });
+      continue;
     }
     if (seen.size > 0) {
       const options = [...seen.entries()]
         .map(([value, name]) => ({ value, name }))
         .sort((a, b) => a.name.localeCompare(b.name, "ru"));
-      result.push({ slug, type, label: ATTRIBUTE_LABELS[slug] ?? slug.replace(/^pa_/, ""), options });
+      result.push({ slug, type, label, options });
     }
   }
   return result;
