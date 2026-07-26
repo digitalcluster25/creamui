@@ -73,6 +73,10 @@ final class HWS_Product_Parser {
         'chimney_side',
     ];
 
+    private const SOURCE_DEPENDENT_PRODUCT_FIELDS = [
+        'short_description',
+    ];
+
     private const MANUFACTURER_MAPPING = [
         ['source' => 'EasySteam', 'target' => 'Product brand'],
         ['source' => 'Печи для русской бани / Геленджик', 'target' => 'WooCommerce category scope'],
@@ -630,7 +634,7 @@ final class HWS_Product_Parser {
             $current = self::parsed_product($manufacturer, $category, $product_id);
             $state = self::state();
             $state['parsed_products'][$manufacturer][$category][$product_id]['_applicable_fields'] = $applicable_fields;
-            foreach (self::OPTIONAL_PRODUCT_FIELDS as $optional_field) {
+            foreach (array_merge(self::OPTIONAL_PRODUCT_FIELDS, self::SOURCE_DEPENDENT_PRODUCT_FIELDS) as $optional_field) {
                 if (!in_array($optional_field, $applicable_fields, true)) {
                     unset($state['parsed_products'][$manufacturer][$category][$product_id][$optional_field]);
                 }
@@ -710,7 +714,7 @@ final class HWS_Product_Parser {
 
         if ($only_field === null) {
             $state['parsed_products'][$manufacturer][$category][$product_id]['_applicable_fields'] = $applicable_fields;
-            foreach (self::OPTIONAL_PRODUCT_FIELDS as $optional_field) {
+            foreach (array_merge(self::OPTIONAL_PRODUCT_FIELDS, self::SOURCE_DEPENDENT_PRODUCT_FIELDS) as $optional_field) {
                 if (!in_array($optional_field, $applicable_fields, true)) {
                     unset($state['parsed_products'][$manufacturer][$category][$product_id][$optional_field]);
                 }
@@ -819,7 +823,7 @@ final class HWS_Product_Parser {
 
         return [
             'title'             => self::extract_first_text($html, ['~<h1[^>]*>(.*?)</h1>~isu']),
-            'article'           => self::extract_attr($html, 'data-product-offer'),
+            'article'           => self::extract_article($html),
             'price'             => self::extract_price($html),
             'offer_image'       => self::extract_image($html),
             'short_description' => $text_blocks['Описание'] ?? '',
@@ -994,6 +998,19 @@ final class HWS_Product_Parser {
         return implode(', ', array_values(array_unique($values)));
     }
 
+    private static function extract_article(string $html): string {
+        $article = self::extract_attr($html, 'data-product-offer');
+        if ($article !== '') {
+            return $article;
+        }
+
+        if (preg_match('~Артикул\s*:\s*([A-Za-zА-Яа-я0-9._/-]+)~u', wp_strip_all_tags($html), $match)) {
+            return trim($match[1]);
+        }
+
+        return '';
+    }
+
     private static function extract_attr(string $html, string $attr): string {
         if (preg_match('~' . preg_quote($attr, '~') . '=["\']([^"\']+)["\']~isu', $html, $match)) {
             return trim(html_entity_decode($match[1], ENT_QUOTES | ENT_HTML5, 'UTF-8'));
@@ -1071,6 +1088,11 @@ final class HWS_Product_Parser {
             return array_values(array_filter($applicable, static fn(string $field): bool => isset(self::PRODUCT_FIELDS[$field])));
         }
 
+        $fields = self::applicable_product_fields($parsed);
+        if ($fields) {
+            return $fields;
+        }
+
         $fields = self::REQUIRED_PRODUCT_FIELDS;
         foreach (self::OPTIONAL_PRODUCT_FIELDS as $field) {
             if (self::field_is_valid($field, $parsed[$field] ?? null)) {
@@ -1082,7 +1104,11 @@ final class HWS_Product_Parser {
     }
 
     private static function applicable_product_fields(array $parsed): array {
-        $fields = self::REQUIRED_PRODUCT_FIELDS;
+        $fields = array_values(array_filter(
+            self::REQUIRED_PRODUCT_FIELDS,
+            static fn(string $field): bool => !in_array($field, self::SOURCE_DEPENDENT_PRODUCT_FIELDS, true)
+                || self::field_is_valid($field, $parsed[$field] ?? null)
+        ));
         foreach (self::OPTIONAL_PRODUCT_FIELDS as $field) {
             if (self::field_is_valid($field, $parsed[$field] ?? null)) {
                 $fields[] = $field;
@@ -1114,7 +1140,12 @@ final class HWS_Product_Parser {
     }
 
     private static function product_has_parsed_data(array $parsed): bool {
-        foreach (self::REQUIRED_PRODUCT_FIELDS as $field) {
+        $fields = $parsed['_applicable_fields'] ?? self::applicable_product_fields($parsed);
+        if (!is_array($fields) || !$fields) {
+            $fields = self::applicable_product_fields($parsed);
+        }
+
+        foreach ($fields as $field) {
             if (!self::field_is_valid($field, $parsed[$field] ?? null)) {
                 return false;
             }
