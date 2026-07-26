@@ -12,6 +12,27 @@ final class HWS_Catalog_Filters {
     private const OPTION_FILTERS = 'hws_catalog_filter_config';
     private const META_SUBCAT    = '_hws_filter_subcat_label';
     private const META_BRAND     = '_hws_filter_brand_label';
+    private const ATTRIBUTE_LABELS = [
+        'pa_steam-room-volume'       => 'Объем парной',
+        'pa_color'                   => 'Цвет',
+        'pa_leg-material'            => 'Материал ножек',
+        'pa_firebox-protection'      => 'Защита топки',
+        'pa_usage-class'             => 'Класс использования',
+        'pa_steel-grade'             => 'Марка стали',
+        'pa_cladding-material'       => 'Материал облицовки',
+        'pa_voltage'                 => 'Напряжение',
+        'pa_power'                   => 'Мощность',
+        'pa_facing'                  => 'Облицовочный материал',
+        'pa_series'                  => 'Серия',
+        'pa_stone-entry-side'        => 'Сторона входа в каменку',
+        'pa_door-side'               => 'Сторона дверки',
+        'pa_chimney-connection-side' => 'Сторона подключения дымохода',
+        'pa_cladding-type'           => 'Тип облицовки',
+        'pa_equipment-type'          => 'Тип оборудования',
+        'pa_connection-type'         => 'Тип подключения',
+        'pa_room-type'               => 'Тип помещения',
+        'pa_fuel-type'               => 'Тип топлива',
+    ];
 
     public static function init(): void {
         add_action('admin_menu',               [__CLASS__, 'admin_menu']);
@@ -54,7 +75,7 @@ final class HWS_Catalog_Filters {
 
             $result[] = [
                 'slug'  => 'pa_' . $name,
-                'label' => (string) (($taxonomy->attribute_label ?? '') ?: $name),
+                'label' => self::attribute_label('pa_' . $name, (string) (($taxonomy->attribute_label ?? '') ?: $name)),
             ];
         }
 
@@ -68,13 +89,17 @@ final class HWS_Catalog_Filters {
 
                 $result[] = [
                     'slug'  => 'pa_' . $name,
-                    'label' => (string) (($row->attribute_label ?? '') ?: $name),
+                    'label' => self::attribute_label('pa_' . $name, (string) (($row->attribute_label ?? '') ?: $name)),
                 ];
             }
         }
 
         usort($result, fn($a, $b) => strcmp($a['label'], $b['label']));
         return $result;
+    }
+
+    private static function attribute_label(string $slug, string $fallback): string {
+        return self::ATTRIBUTE_LABELS[$slug] ?? $fallback;
     }
 
     public static function ajax_save(): void {
