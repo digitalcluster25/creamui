@@ -152,7 +152,7 @@ final class HWS_Product_Parser {
         $field        = sanitize_key(wp_unslash($_POST['field'] ?? ''));
         $message      = 'parsed';
 
-        if ($category === '') {
+        if ($category === '' && $scope !== 'empty_fields') {
             $category = 'gelendzhik';
         }
 
@@ -185,6 +185,9 @@ final class HWS_Product_Parser {
             ],
             admin_url('admin.php')
         );
+        if ($message === 'empty_fields_report') {
+            $redirect .= '#hws-empty-parse-report';
+        }
 
         wp_safe_redirect($redirect);
         exit;
@@ -209,10 +212,10 @@ final class HWS_Product_Parser {
         <div class="wrap hws-parser-wrap">
             <h1>HWS Parser</h1>
             <?php self::render_notice(); ?>
-            <?php self::render_empty_parse_report($state); ?>
             <?php self::render_styles(); ?>
             <?php self::render_filters($manufacturer, $category, $product, $products); ?>
             <?php self::render_scope_actions($manufacturer, $category, $product); ?>
+            <?php self::render_empty_parse_report($state, $manufacturer, $category); ?>
 
             <?php if ($category === '' && $product === ''): ?>
                 <?php self::render_mapping_table('Производитель', self::MANUFACTURER_MAPPING, self::status_key('manufacturer', $manufacturer)); ?>
@@ -248,9 +251,15 @@ final class HWS_Product_Parser {
         echo '<div class="notice notice-success"><p>Статус парсинга обновлен.</p></div>';
     }
 
-    private static function render_empty_parse_report(array $state): void {
+    private static function render_empty_parse_report(array $state, string $manufacturer, string $category): void {
         $report = $state['last_empty_parse_report'] ?? [];
         if (!is_array($report) || empty($report)) {
+            return;
+        }
+        if (($report['manufacturer'] ?? '') !== $manufacturer) {
+            return;
+        }
+        if (($report['category'] ?? '') !== $category) {
             return;
         }
 
@@ -259,13 +268,14 @@ final class HWS_Product_Parser {
         $percent = min(100, (int) floor(($checked / $total) * 100));
         $errors = is_array($report['errors'] ?? null) ? $report['errors'] : [];
         ?>
-        <div class="hws-parser-panel">
+        <div id="hws-empty-parse-report" class="hws-parser-panel">
             <h2>Отчет: Спарсить пустые поля</h2>
             <div class="hws-parser-progress" aria-label="Прогресс">
                 <span style="width:<?php echo esc_attr((string) $percent); ?>%"></span>
             </div>
             <p class="hws-parser-meta">
                 Проверено товаров: <?php echo esc_html((string) $checked); ?> из <?php echo esc_html((string) $total); ?>.
+                Уровень: <?php echo esc_html((string) ($report['scope_label'] ?? '')); ?>.
                 Пустых полей найдено: <?php echo esc_html((string) ($report['empty_fields'] ?? 0)); ?>.
                 Заполнено: <?php echo esc_html((string) ($report['filled_fields'] ?? 0)); ?>.
                 Уже заполнено: <?php echo esc_html((string) ($report['skipped_fields'] ?? 0)); ?>.
@@ -357,7 +367,7 @@ final class HWS_Product_Parser {
             <strong>Парсинг выбранного уровня</strong>
             <div class="hws-parser-actions">
                 <?php self::render_action_button('Спарсить с нуля', $scope, $manufacturer, $category ?: 'gelendzhik', $product); ?>
-                <?php self::render_action_button('Спарсить пустые поля', 'empty_fields', $manufacturer, $category ?: 'gelendzhik'); ?>
+                <?php self::render_action_button('Спарсить пустые поля', 'empty_fields', $manufacturer, $category, $product); ?>
             </div>
         </div>
         <?php
@@ -544,6 +554,43 @@ final class HWS_Product_Parser {
     }
 
     private static function parse_empty_fields(string $manufacturer, string $category): void {
+        if ($category === '') {
+            $report = [
+                'date'             => current_time('mysql'),
+                'manufacturer'     => $manufacturer,
+                'category'         => '',
+                'scope_label'      => self::MANUFACTURERS[$manufacturer]['label'] . ' / все категории',
+                'total_products'   => 0,
+                'checked_products' => 0,
+                'empty_fields'     => 0,
+                'filled_fields'    => 0,
+                'skipped_fields'   => 0,
+                'errors'           => [],
+            ];
+
+            foreach (self::MANUFACTURERS[$manufacturer]['categories'] as $item_category) {
+                $category_report = self::parse_empty_fields_for_category($manufacturer, $item_category);
+                $report['total_products'] += (int) ($category_report['total_products'] ?? 0);
+                $report['checked_products'] += (int) ($category_report['checked_products'] ?? 0);
+                $report['empty_fields'] += (int) ($category_report['empty_fields'] ?? 0);
+                $report['filled_fields'] += (int) ($category_report['filled_fields'] ?? 0);
+                $report['skipped_fields'] += (int) ($category_report['skipped_fields'] ?? 0);
+                $report['errors'] = array_merge($report['errors'], is_array($category_report['errors'] ?? null) ? $category_report['errors'] : []);
+            }
+
+            $state = self::state();
+            $state['last_empty_parse_report'] = $report;
+            update_option(self::OPTION, $state, false);
+            return;
+        }
+
+        $report = self::parse_empty_fields_for_category($manufacturer, $category);
+        $state = self::state();
+        $state['last_empty_parse_report'] = $report;
+        update_option(self::OPTION, $state, false);
+    }
+
+    private static function parse_empty_fields_for_category(string $manufacturer, string $category): array {
         if (!isset(self::CATEGORIES[$category]) || self::CATEGORIES[$category]['manufacturer'] !== $manufacturer) {
             throw new RuntimeException('Category is not allowed by parser manifest.');
         }
@@ -560,6 +607,7 @@ final class HWS_Product_Parser {
             'date'             => current_time('mysql'),
             'manufacturer'     => $manufacturer,
             'category'         => $category,
+            'scope_label'      => self::MANUFACTURERS[$manufacturer]['label'] . ' / ' . self::CATEGORIES[$category]['label'],
             'total_products'   => count($products),
             'checked_products' => 0,
             'empty_fields'     => 0,
@@ -638,9 +686,7 @@ final class HWS_Product_Parser {
             }
         }
 
-        $state = self::state();
-        $state['last_empty_parse_report'] = $report;
-        update_option(self::OPTION, $state, false);
+        return $report;
     }
 
     private static function parse_product(string $manufacturer, string $category, string $product_id, ?string $only_field): void {
