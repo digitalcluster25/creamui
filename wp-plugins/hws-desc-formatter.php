@@ -27,6 +27,8 @@ final class HWS_Desc_Formatter {
 - Раздели текст на логические блоки (2–5 блоков)
 - Каждый блок начинается с <h3>Подзаголовок</h3>
 - За ним следует один или несколько <p>абзацев</p>
+- Пиши весь итоговый текст только на русском языке
+- Не переводи русский текст на английский и не используй английские заголовки
 - Не придумывай информацию, только структурируй имеющийся текст
 - Убери лишние переносы строк и артефакты HTML
 - Верни ТОЛЬКО готовый HTML без объяснений и markdown-разметки
@@ -2169,7 +2171,29 @@ PROMPT;
             return new \WP_Error('empty_response', 'Пустой ответ от модели');
         }
 
-        return trim(self::strip_code_fences($content));
+        $formatted = trim(self::strip_code_fences($content));
+        if (self::contains_english_text($formatted)) {
+            return new \WP_Error('english_response', 'Модель вернула английский текст; описание не сохранено');
+        }
+
+        return $formatted;
+    }
+
+    private static function contains_english_text(string $html): bool {
+        $text = trim(wp_strip_all_tags($html));
+        if ($text === '') {
+            return false;
+        }
+
+        $latin_count = preg_match_all('/[A-Za-z]/u', $text);
+        $cyrillic_count = preg_match_all('/[А-Яа-яЁё]/u', $text);
+        $english_word_count = preg_match_all('/\b(?:the|and|for|with|from|this|that|product|description|features|advantages|purpose|designed|provides|ensures|allows|suitable|installation|operation|steam|sauna|bath)\b/i', $text);
+
+        if ($latin_count === false || $cyrillic_count === false || $english_word_count === false) {
+            return false;
+        }
+
+        return $english_word_count >= 3 && $latin_count >= 80 && $latin_count > ($cyrillic_count * 2);
     }
 
     private static function call_translate_product_openrouter(array $payload, string $api_key, string $model): array|\WP_Error {
