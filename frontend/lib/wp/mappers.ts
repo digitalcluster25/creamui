@@ -160,6 +160,7 @@ export function mapToCatalogProduct(node: WPProductNode): CatalogProduct {
     priceOnRequest: Boolean(node.hwsPriceOnRequest),
     baseCurrencyCode: node.hwsPriceCurrency ?? getCurrencyCode(node.price),
     attributes: mapProductAttributes(node.attributes?.nodes),
+    numericRanges: mapProductNumericRanges(node.hwsSpecs),
     categorySlugs: node.productCategories?.nodes.map((c) => c.slug) ?? [],
   };
 }
@@ -174,6 +175,44 @@ function mapProductAttributes(
     if (options.length > 0) result[attr.name] = options;
   }
   return result;
+}
+
+function mapProductNumericRanges(
+  specs: { label: string; value: string }[] | undefined,
+): Record<string, { min: number; max: number }[]> | undefined {
+  const steamRoomRange = extractSteamRoomVolumeRange(specs);
+  if (!steamRoomRange) return undefined;
+  return { "pa_steam-room-volume": [steamRoomRange] };
+}
+
+function extractSteamRoomVolumeRange(
+  specs: { label: string; value: string }[] | undefined,
+): { min: number; max: number } | undefined {
+  let min: number | undefined;
+  let max: number | undefined;
+
+  for (const spec of specs ?? []) {
+    const label = spec.label.toLowerCase();
+    if (!label.includes("объем парной")) continue;
+
+    const value = parseFirstNumber(spec.value);
+    if (value === undefined) continue;
+    if (label.includes("минимальный")) min = value;
+    if (label.includes("максимальный")) max = value;
+  }
+
+  if (min === undefined && max === undefined) return undefined;
+  const lower = min ?? max;
+  const upper = max ?? min;
+  if (lower === undefined || upper === undefined) return undefined;
+  return { min: Math.min(lower, upper), max: Math.max(lower, upper) };
+}
+
+function parseFirstNumber(value: string): number | undefined {
+  const match = value.replace(",", ".").match(/\d+(?:\.\d+)?/);
+  if (!match) return undefined;
+  const parsed = Number.parseFloat(match[0]);
+  return Number.isFinite(parsed) ? parsed : undefined;
 }
 
 function resolveMediaUrl(

@@ -14,6 +14,8 @@ export type CatalogProduct = {
   baseCurrencyCode: CurrencyCode;
   // Атрибуты товара: taxonomy (pa_*) -> список slug-значений.
   attributes?: Record<string, string[]>;
+  // Числовые диапазоны для input-фильтров: taxonomy (pa_*) -> min/max.
+  numericRanges?: Record<string, { min: number; max: number }[]>;
   // Slugs всех категорий товара — для клиентской фильтрации по подкатегории.
   categorySlugs?: string[];
 };

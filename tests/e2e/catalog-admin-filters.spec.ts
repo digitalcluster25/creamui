@@ -12,4 +12,18 @@ test.describe("catalog admin filters", () => {
       await expect(page.getByPlaceholder("Объем парной")).toBeVisible();
     }
   });
+
+  test("matches steam room volume numeric ranges", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto("/catalog/russian-bath-stoves", { waitUntil: "domcontentloaded" });
+
+    const volumeFilter = page.getByPlaceholder("Объем парной");
+    await volumeFilter.fill("25");
+    await expect.poll(() => page.getByTestId("catalog-preview-grid").locator("a").count()).toBeGreaterThan(0);
+    await expect(page.getByTestId("catalog-preview-grid").getByText("Печь Геленджик").first()).toBeVisible();
+
+    await volumeFilter.fill("25 м3");
+    await expect.poll(() => page.getByTestId("catalog-preview-grid").locator("a").count()).toBeGreaterThan(0);
+    await expect(page.getByTestId("catalog-preview-grid").getByText("Печь Геленджик").first()).toBeVisible();
+  });
 });

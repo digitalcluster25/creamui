@@ -281,6 +281,10 @@ export const GET_PRODUCTS_BY_CATEGORY_FILTER = gql`
               slug
             }
           }
+          hwsSpecs {
+            label
+            value
+          }
           attributes {
             nodes {
               name
@@ -324,6 +328,10 @@ export const GET_PRODUCTS_BY_CATEGORY_FILTER = gql`
               name
               slug
             }
+          }
+          hwsSpecs {
+            label
+            value
           }
           attributes {
             nodes {

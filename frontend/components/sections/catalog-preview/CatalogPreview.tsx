@@ -204,9 +204,7 @@ export function CatalogPreview({ total, products, filters, subcategoryLabel, bra
       return productVals.some((v) => vals.has(v));
     }) && Object.entries(inputAttributes).every(([slug, query]) => {
       if (!query.trim()) return true;
-      const productVals = p.attributes?.[slug] ?? [];
-      const q = query.trim().toLowerCase();
-      return productVals.some((v) => v.toLowerCase().includes(q));
+      return matchesInputFilter(p, slug, query);
     });
     return catOk && brandOk && attrOk;
   });
@@ -376,4 +374,31 @@ export function CatalogPreview({ total, products, filters, subcategoryLabel, bra
       )}
     </section>
   );
+}
+
+function matchesInputFilter(product: CatalogProduct, slug: string, query: string): boolean {
+  const q = normalizeInputFilterValue(query);
+  if (!q) return true;
+
+  const queryNumber = parseInputFilterNumber(query);
+  if (
+    queryNumber !== undefined &&
+    (product.numericRanges?.[slug] ?? []).some((range) => queryNumber >= range.min && queryNumber <= range.max)
+  ) {
+    return true;
+  }
+
+  const productVals = product.attributes?.[slug] ?? [];
+  return productVals.some((value) => normalizeInputFilterValue(value).includes(q));
+}
+
+function normalizeInputFilterValue(value: string): string {
+  return value.trim().toLowerCase().replace(/\s+/g, " ").replace(/м³/g, "м3");
+}
+
+function parseInputFilterNumber(value: string): number | undefined {
+  const match = value.replace(",", ".").match(/\d+(?:\.\d+)?/);
+  if (!match) return undefined;
+  const parsed = Number.parseFloat(match[0]);
+  return Number.isFinite(parsed) ? parsed : undefined;
 }
