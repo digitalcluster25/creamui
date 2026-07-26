@@ -189,7 +189,7 @@ final class HWS_Product_Parser {
             $redirect .= '#hws-empty-parse-report';
         }
 
-        wp_safe_redirect($redirect);
+        wp_redirect($redirect);
         exit;
     }
 
