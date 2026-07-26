@@ -648,6 +648,11 @@ final class HWS_Product_Parser {
 
             $current = self::parsed_product($manufacturer, $category, $product_id);
             foreach ($applicable_fields as $field) {
+                if (self::product_field_has_formatted_content($parsed, $field)) {
+                    $report['skipped_fields']++;
+                    continue;
+                }
+
                 if (self::field_is_valid($field, $current[$field] ?? null)) {
                     $report['skipped_fields']++;
                     continue;
@@ -752,6 +757,11 @@ final class HWS_Product_Parser {
             $empty_fields = [];
 
             foreach ($applicable_fields as $field) {
+                if (self::product_field_has_formatted_content($parsed, $field)) {
+                    $report['skipped_fields']++;
+                    continue;
+                }
+
                 if (self::field_is_valid($field, $current[$field] ?? null)) {
                     $report['skipped_fields']++;
                     continue;
@@ -863,17 +873,23 @@ final class HWS_Product_Parser {
         $post_updates = ['ID' => $product_id];
         $should_update_post = false;
 
-        if (in_array('short_description', $fields, true) && self::field_is_valid('short_description', $parsed['short_description'] ?? '')) {
-            $post_updates['post_excerpt'] = wp_kses_post((string) $parsed['short_description']);
-            $should_update_post = true;
-        } elseif (in_array('short_description', $fields, true)) {
-            $post_updates['post_excerpt'] = '';
-            $should_update_post = true;
+        if (in_array('short_description', $fields, true)) {
+            if (!self::product_field_has_formatted_content($parsed, 'short_description')) {
+                if (self::field_is_valid('short_description', $parsed['short_description'] ?? '')) {
+                    $post_updates['post_excerpt'] = wp_kses_post((string) $parsed['short_description']);
+                    $should_update_post = true;
+                } else {
+                    $post_updates['post_excerpt'] = '';
+                    $should_update_post = true;
+                }
+            }
         }
 
-        if (in_array('long_description', $fields, true) && self::field_is_valid('long_description', $parsed['long_description'] ?? '')) {
-            $post_updates['post_content'] = self::paragraphs_to_html((string) $parsed['long_description']);
-            $should_update_post = true;
+        if (in_array('long_description', $fields, true)) {
+            if (!self::product_field_has_formatted_content($parsed, 'long_description') && self::field_is_valid('long_description', $parsed['long_description'] ?? '')) {
+                $post_updates['post_content'] = self::paragraphs_to_html((string) $parsed['long_description']);
+                $should_update_post = true;
+            }
         }
 
         if ($should_update_post) {
@@ -1388,6 +1404,41 @@ final class HWS_Product_Parser {
             $html .= '<p>' . esc_html($part) . '</p>';
         }
         return $html;
+    }
+
+    private static function product_field_has_formatted_content(array $parsed, string $field): bool {
+        if (!in_array($field, ['short_description', 'long_description'], true)) {
+            return false;
+        }
+
+        $product_id = self::store_product_id($parsed);
+        if ($product_id <= 0 || !function_exists('get_post')) {
+            return false;
+        }
+
+        $post = get_post($product_id);
+        if (!$post) {
+            return false;
+        }
+
+        $html = $field === 'short_description'
+            ? (string) ($post->post_excerpt ?? '')
+            : (string) ($post->post_content ?? '');
+
+        return self::content_is_formatted($html);
+    }
+
+    private static function content_is_formatted(string $html): bool {
+        $text = function_exists('wp_strip_all_tags')
+            ? trim(wp_strip_all_tags($html))
+            : trim(strip_tags($html));
+
+        $normalized_text = function_exists('mb_strtolower') ? mb_strtolower($text) : strtolower($text);
+        if ($text === '' || $normalized_text === 'описание') {
+            return false;
+        }
+
+        return preg_match('~<(p|br|ul|ol|li|h[1-6]|table|tbody|tr|td|th|strong|b|em|i)\b~i', $html) === 1;
     }
 
     private static function specs_to_html(array $characteristics): string {
