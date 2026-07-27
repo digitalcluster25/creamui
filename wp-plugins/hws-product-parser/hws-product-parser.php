@@ -620,6 +620,36 @@ final class HWS_Product_Parser {
     }
 
     private static function parse_category(string $manufacturer, string $category): void {
+        $products = self::parse_category_index($manufacturer, $category);
+
+        $parsed_products = 0;
+        $errors = [];
+        foreach ($products as $product_id => $item) {
+            try {
+                self::parse_product($manufacturer, $category, $product_id, null);
+                $status = self::status(self::status_key('product', $manufacturer, $category, $product_id));
+                if (!empty($status['parsed'])) {
+                    $parsed_products++;
+                }
+            } catch (Throwable $e) {
+                $errors[] = $item['title'] . ': ' . $e->getMessage();
+                self::mark_status(
+                    self::status_key('product', $manufacturer, $category, $product_id),
+                    false,
+                    $e->getMessage()
+                );
+            }
+        }
+
+        $expected = (int) (self::CATEGORIES[$category]['expected'] ?? 0);
+        self::mark_status(
+            self::status_key('category', $manufacturer, $category),
+            count($products) === $expected && $parsed_products === count($products) && !$errors,
+            'products=' . count($products) . '; parsed_products=' . $parsed_products . '; errors=' . count($errors)
+        );
+    }
+
+    private static function parse_category_index(string $manufacturer, string $category): array {
         if (!isset(self::CATEGORIES[$category]) || self::CATEGORIES[$category]['manufacturer'] !== $manufacturer) {
             throw new RuntimeException('Category is not allowed by parser manifest.');
         }
@@ -631,11 +661,7 @@ final class HWS_Product_Parser {
         $state['products'][$manufacturer][$category] = $products;
         update_option(self::OPTION, $state, false);
 
-        self::mark_status(
-            self::status_key('category', $manufacturer, $category),
-            count($products) === (int) (self::CATEGORIES[$category]['expected'] ?? 0),
-            'products=' . count($products)
-        );
+        return $products;
     }
 
     private static function make_overview(string $manufacturer, string $category): void {
@@ -683,7 +709,7 @@ final class HWS_Product_Parser {
         $state = self::state();
         $products = self::products_for_category($state, $manufacturer, $category);
         if (!$products) {
-            self::parse_category($manufacturer, $category);
+            self::parse_category_index($manufacturer, $category);
             $state = self::state();
             $products = self::products_for_category($state, $manufacturer, $category);
         }
@@ -781,7 +807,7 @@ final class HWS_Product_Parser {
         $state = self::state();
         $products = self::products_for_category($state, $manufacturer, $category);
         if (!$products) {
-            self::parse_category($manufacturer, $category);
+            self::parse_category_index($manufacturer, $category);
             $state = self::state();
             $products = self::products_for_category($state, $manufacturer, $category);
         }
@@ -880,7 +906,7 @@ final class HWS_Product_Parser {
     private static function parse_product(string $manufacturer, string $category, string $product_id, ?string $only_field): void {
         $products = self::products_for_category(self::state(), $manufacturer, $category);
         if (!isset($products[$product_id])) {
-            self::parse_category($manufacturer, $category);
+            self::parse_category_index($manufacturer, $category);
             $products = self::products_for_category(self::state(), $manufacturer, $category);
         }
         if (!isset($products[$product_id])) {
