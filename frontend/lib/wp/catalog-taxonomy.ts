@@ -17,7 +17,15 @@ export type WPCategoryBySlugNode = {
   hwsFilterSubcatLabel?: string | null;
   hwsFilterBrandLabel?: string | null;
   hwsCatalogFilters?: { slug: string; type: string }[] | null;
-  parent?: { node: { name: string; slug: string } } | null;
+  parent?: {
+    node: {
+      name: string;
+      slug: string;
+      hwsFilterSubcatLabel?: string | null;
+      hwsFilterBrandLabel?: string | null;
+      hwsCatalogFilters?: { slug: string; type: string }[] | null;
+    };
+  } | null;
 };
 
 export const ACTIVE_CATALOG_CATEGORY_SLUGS = [

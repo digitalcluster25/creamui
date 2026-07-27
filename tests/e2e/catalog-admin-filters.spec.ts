@@ -10,7 +10,21 @@ test.describe("catalog admin filters", () => {
       await page.goto("/catalog/russian-bath-stoves", { waitUntil: "domcontentloaded" });
 
       await expect(page.getByPlaceholder("Объем парной")).toBeVisible();
+      await expect(page.getByRole("button", { name: /Тип топлива/ })).toBeVisible();
+      await expect(page.getByRole("button", { name: /Мощность/ })).toBeVisible();
+      await expect(page.getByRole("button", { name: /Напряжение/ })).toBeVisible();
     }
+  });
+
+  test("shows and applies configured multicheck filters", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto("/catalog/russian-bath-stoves", { waitUntil: "networkidle" });
+
+    await page.getByRole("button", { name: /Тип топлива/ }).click();
+    await page.getByText("дрова", { exact: true }).click();
+
+    await expect(page.getByRole("button", { name: /дрова/i })).toBeVisible();
+    await expect.poll(() => page.getByTestId("catalog-preview-grid").locator("a").count()).toBeGreaterThan(0);
   });
 
   test("matches steam room volume numeric ranges", async ({ page }) => {

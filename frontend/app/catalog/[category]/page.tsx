@@ -20,6 +20,7 @@ import styles from "../page.module.css";
 export const dynamic = "force-dynamic";
 
 type Params = { category: string };
+type CatalogFilterConfig = { slug: string; type: string };
 
 const BRAND_FALLBACK_IMAGE = "/assets/hws-dark-logo-short.png";
 
@@ -144,7 +145,7 @@ export default async function CatalogCategoryPage({
 
   const headerData = await getHeaderData();
   const previewProducts = productsNodes.map(mapToCatalogProduct);
-  const configuredFilters = found.hwsCatalogFilters ?? [];
+  const configuredFilters = resolveCatalogFilters(found);
   const hasConfiguredFilters = configuredFilters.length > 0;
   const brandFilters = hasConfiguredFilters ? buildBrandFilters(productsNodes, brands) : [];
   const categoryFilters =
@@ -175,9 +176,9 @@ export default async function CatalogCategoryPage({
         <CatalogPreview
           total={productsNodes.length}
           products={previewProducts}
-          filters={allFilters.length > 1 ? allFilters : undefined}
-          subcategoryLabel={found.hwsFilterSubcatLabel}
-          brandLabel={found.hwsFilterBrandLabel}
+          filters={allFilters.length > 0 ? allFilters : undefined}
+          subcategoryLabel={found.hwsFilterSubcatLabel ?? found.parent?.node?.hwsFilterSubcatLabel}
+          brandLabel={found.hwsFilterBrandLabel ?? found.parent?.node?.hwsFilterBrandLabel}
           attributeFilters={attributeFilters.length > 0 ? attributeFilters : undefined}
         />
         <CatalogSeo data={found.slug === branchSlug ? branchIntro?.seo ?? null : categoryContent?.seo ?? null} />
@@ -187,6 +188,15 @@ export default async function CatalogCategoryPage({
       </div>
     </main>
   );
+}
+
+function resolveCatalogFilters(category: {
+  hwsCatalogFilters?: CatalogFilterConfig[] | null;
+  parent?: { node?: { hwsCatalogFilters?: CatalogFilterConfig[] | null } | null } | null;
+}): CatalogFilterConfig[] {
+  const ownFilters = category.hwsCatalogFilters ?? [];
+  if (ownFilters.length > 0) return ownFilters;
+  return category.parent?.node?.hwsCatalogFilters ?? [];
 }
 
 
@@ -219,7 +229,7 @@ function buildAttrTermMap(
 
 function buildAttributeFilters(
   products: WPProductNode[],
-  filterConfigs: { slug: string; type: string }[],
+  filterConfigs: CatalogFilterConfig[],
   termMap: Record<string, Record<string, string>>,
 ): { slug: string; type: string; label: string; options: { value: string; name: string }[] }[] {
   if (!filterConfigs.length) return [];
@@ -241,12 +251,10 @@ function buildAttributeFilters(
       result.push({ slug, type, label, options: [] });
       continue;
     }
-    if (seen.size > 0) {
-      const options = [...seen.entries()]
-        .map(([value, name]) => ({ value, name }))
-        .sort((a, b) => a.name.localeCompare(b.name, "ru"));
-      result.push({ slug, type, label, options });
-    }
+    const options = [...seen.entries()]
+      .map(([value, name]) => ({ value, name }))
+      .sort((a, b) => a.name.localeCompare(b.name, "ru"));
+    result.push({ slug, type, label, options });
   }
   return result;
 }
@@ -263,6 +271,5 @@ function buildBrandFilters(
       }
     }
   }
-  if (seen.size < 2) return [];
   return Array.from(seen.entries()).map(([slug, name]) => ({ slug, name, type: "brand" as const }));
 }

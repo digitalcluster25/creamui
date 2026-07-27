@@ -585,7 +585,16 @@ export const GET_PRODUCT_CATEGORY_BY_SLUG = gql`
         type
       }
       parent {
-        node { name slug }
+        node {
+          name
+          slug
+          hwsFilterSubcatLabel
+          hwsFilterBrandLabel
+          hwsCatalogFilters {
+            slug
+            type
+          }
+        }
       }
     }
   }

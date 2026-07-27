@@ -218,7 +218,7 @@ export function CatalogPreview({ total, products, filters, subcategoryLabel, bra
 
   const paged = sorted.slice(0, perPage);
 
-  const hasFilters = categoryOptions.length > 1 || brandOptions.length > 1 || (attributeFilters?.length ?? 0) > 0;
+  const hasFilters = categoryOptions.length > 0 || brandOptions.length > 0 || (attributeFilters?.length ?? 0) > 0;
   const activeInputChips = Object.entries(inputAttributes).filter(([, v]) => v.trim()).map(([slug, val]) => ({
     attrSlug: slug,
     value: val,
@@ -241,7 +241,7 @@ export function CatalogPreview({ total, products, filters, subcategoryLabel, bra
     <section className={styles.section}>
       <div className={styles.filterBar}>
         <div className={styles.filterBarLeft}>
-          {hasFilters && categoryOptions.length > 1 && (
+          {hasFilters && categoryOptions.length > 0 && (
             <MultiDropdown
               label={subcategoryLabel || "Подкатегория"}
               options={categoryOptions}
@@ -249,7 +249,7 @@ export function CatalogPreview({ total, products, filters, subcategoryLabel, bra
               onToggle={toggleCategory}
             />
           )}
-          {hasFilters && brandOptions.length > 1 && (
+          {hasFilters && brandOptions.length > 0 && (
             <MultiDropdown
               label={brandLabel || "Бренд"}
               options={brandOptions}
