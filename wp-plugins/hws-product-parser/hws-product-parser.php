@@ -20,6 +20,10 @@ final class HWS_Product_Parser {
             'label'      => 'EasySteam',
             'categories' => ['gelendzhik'],
         ],
+        'sangens' => [
+            'label'      => 'Sangens',
+            'categories' => ['sangens-electric-furnaces'],
+        ],
     ];
 
     private const CATEGORIES = [
@@ -27,10 +31,21 @@ final class HWS_Product_Parser {
             'manufacturer' => 'easysteam',
             'label'        => 'Геленджик',
             'url'          => 'https://easysteam.ru/products/stoves/pechi/gelendzhik',
+            'base_url'     => 'https://easysteam.ru/',
+            'expected'     => 18,
+        ],
+        'sangens-electric-furnaces' => [
+            'manufacturer' => 'sangens',
+            'label'        => 'Электрические печи',
+            'url'          => 'https://sangens.com/ru/catalog/furnaces/',
+            'base_url'     => 'https://sangens.com/',
+            'expected'     => 25,
         ],
     ];
 
     private const PRODUCT_FIELDS = [
+        'brand'             => ['source' => 'Бренд', 'target' => 'Product brand'],
+        'source_url'        => ['source' => 'URL источника', 'target' => 'Source URL'],
         'title'             => ['source' => 'Название карточки', 'target' => 'WooCommerce product name'],
         'article'           => ['source' => 'Артикул offer', 'target' => 'SKU / variation SKU'],
         'price'             => ['source' => 'Цена offer', 'target' => 'Variation regular price'],
@@ -48,9 +63,18 @@ final class HWS_Product_Parser {
         'door_side'         => ['source' => 'Исполнение дверки', 'target' => 'Сторона дверки'],
         'stone_side'        => ['source' => 'Боковой вход в каменку', 'target' => 'Сторона входа в каменку'],
         'chimney_side'      => ['source' => 'Боковое подключение дымохода', 'target' => 'Сторона подключения дымохода'],
+        'series'            => ['source' => 'Серия', 'target' => 'Серия'],
+        'power'             => ['source' => 'Мощность', 'target' => 'Мощность'],
+        'voltage'           => ['source' => 'Напряжение', 'target' => 'Напряжение'],
+        'material'          => ['source' => 'Материал', 'target' => 'Материал'],
+        'color'             => ['source' => 'Цвет', 'target' => 'Цвет'],
+        'control'           => ['source' => 'Управление', 'target' => 'Управление'],
+        'mode'              => ['source' => 'Режим', 'target' => 'Режим'],
     ];
 
     private const REQUIRED_PRODUCT_FIELDS = [
+        'brand',
+        'source_url',
         'title',
         'article',
         'price',
@@ -65,12 +89,36 @@ final class HWS_Product_Parser {
         'steel_grade',
     ];
 
+    private const SANGENS_REQUIRED_PRODUCT_FIELDS = [
+        'brand',
+        'source_url',
+        'title',
+        'article',
+        'price',
+        'offer_image',
+        'fuel_type',
+        'steam_volume',
+        'power',
+    ];
+
     private const OPTIONAL_PRODUCT_FIELDS = [
         'jacket_material',
         'firebox_protection',
         'door_side',
         'stone_side',
         'chimney_side',
+    ];
+
+    private const SANGENS_OPTIONAL_PRODUCT_FIELDS = [
+        'short_description',
+        'long_description',
+        'characteristics',
+        'series',
+        'voltage',
+        'material',
+        'color',
+        'control',
+        'mode',
     ];
 
     private const SOURCE_DEPENDENT_PRODUCT_FIELDS = [
@@ -99,6 +147,15 @@ final class HWS_Product_Parser {
         'Документация',
         'Видео',
         'Для проектов',
+    ];
+
+    private const SANGENS_BLOCKED_ITEMS = [
+        'Оросительные устройства',
+        'Управление',
+        'Снежные генераторы',
+        'Интеграция',
+        'Второе дыхание',
+        'Дополнительные товары и промо-блоки',
     ];
 
     public static function init(): void {
@@ -157,7 +214,7 @@ final class HWS_Product_Parser {
         $message      = 'parsed';
 
         if ($category === '' && !in_array($scope, ['empty_fields', 'overview'], true)) {
-            $category = 'gelendzhik';
+            $category = self::default_category($manufacturer);
         }
 
         try {
@@ -209,7 +266,8 @@ final class HWS_Product_Parser {
         $category     = self::sanitize_category(wp_unslash($_GET['category'] ?? ''));
         $product      = self::sanitize_product_id(wp_unslash($_GET['product'] ?? ''));
         $state        = self::state();
-        $products     = self::products_for_category($state, $manufacturer, $category ?: 'gelendzhik');
+        $active_category = $category !== '' ? $category : self::default_category($manufacturer);
+        $products        = self::products_for_category($state, $manufacturer, $active_category);
 
         if ($product !== '' && !isset($products[$product])) {
             $product = '';
@@ -225,14 +283,14 @@ final class HWS_Product_Parser {
             <?php self::render_empty_parse_report($state, $manufacturer, $category); ?>
 
             <?php if ($category === '' && $product === ''): ?>
-                <?php self::render_mapping_table('Производитель', self::MANUFACTURER_MAPPING, self::status_key('manufacturer', $manufacturer)); ?>
+                <?php self::render_mapping_table('Производитель', self::manufacturer_mapping($manufacturer), self::status_key('manufacturer', $manufacturer)); ?>
             <?php endif; ?>
 
             <?php if ($product === ''): ?>
-                <?php self::render_mapping_table('Категория: Геленджик', self::CATEGORY_MAPPING, self::status_key('category', $manufacturer, 'gelendzhik')); ?>
-                <?php self::render_products_table($manufacturer, 'gelendzhik', $products); ?>
+                <?php self::render_mapping_table('Категория: ' . self::CATEGORIES[$active_category]['label'], self::category_mapping($active_category), self::status_key('category', $manufacturer, $active_category)); ?>
+                <?php self::render_products_table($manufacturer, $active_category, $products); ?>
             <?php else: ?>
-                <?php self::render_product_detail($manufacturer, 'gelendzhik', $product, $products[$product]); ?>
+                <?php self::render_product_detail($manufacturer, $active_category, $product, $products[$product]); ?>
             <?php endif; ?>
         </div>
         <?php
@@ -347,14 +405,22 @@ final class HWS_Product_Parser {
             <div>
                 <label for="hws-parser-manufacturer">Производитель</label>
                 <select id="hws-parser-manufacturer" name="manufacturer">
-                    <option value="easysteam" selected>EasySteam</option>
+                    <?php foreach (self::MANUFACTURERS as $manufacturer_id => $item): ?>
+                        <option value="<?php echo esc_attr($manufacturer_id); ?>" <?php selected($manufacturer, $manufacturer_id); ?>>
+                            <?php echo esc_html($item['label']); ?>
+                        </option>
+                    <?php endforeach; ?>
                 </select>
             </div>
             <div>
                 <label for="hws-parser-category">Категория производителя</label>
                 <select id="hws-parser-category" name="category">
-                    <option value="" <?php selected($category, ''); ?>>Все категории EasySteam</option>
-                    <option value="gelendzhik" <?php selected($category, 'gelendzhik'); ?>>Геленджик</option>
+                    <option value="" <?php selected($category, ''); ?>>Все категории <?php echo esc_html(self::MANUFACTURERS[$manufacturer]['label']); ?></option>
+                    <?php foreach (self::MANUFACTURERS[$manufacturer]['categories'] as $category_id): ?>
+                        <option value="<?php echo esc_attr($category_id); ?>" <?php selected($category, $category_id); ?>>
+                            <?php echo esc_html(self::CATEGORIES[$category_id]['label']); ?>
+                        </option>
+                    <?php endforeach; ?>
                 </select>
             </div>
             <div>
@@ -385,7 +451,7 @@ final class HWS_Product_Parser {
             <strong>Парсинг выбранного уровня</strong>
             <div class="hws-parser-actions">
                 <?php self::render_action_button('Сделать обзор', 'overview', $manufacturer, $category, $product); ?>
-                <?php self::render_action_button('Спарсить с нуля', $scope, $manufacturer, $category ?: 'gelendzhik', $product); ?>
+                <?php self::render_action_button('Спарсить с нуля', $scope, $manufacturer, $category ?: self::default_category($manufacturer), $product); ?>
                 <?php self::render_action_button('Спарсить пустые поля', 'empty_fields', $manufacturer, $category, $product); ?>
             </div>
         </div>
@@ -474,7 +540,7 @@ final class HWS_Product_Parser {
         </div>
         <div class="hws-parser-panel">
             <h2>Не импортировать по ТЗ</h2>
-            <p><?php echo esc_html(implode(', ', self::BLOCKED_TABS)); ?></p>
+            <p><?php echo esc_html(implode(', ', self::blocked_items($manufacturer))); ?></p>
         </div>
         <?php
     }
@@ -492,7 +558,7 @@ final class HWS_Product_Parser {
                 </tr>
             </thead>
             <tbody>
-            <?php foreach (self::display_product_fields($parsed) as $field): ?>
+            <?php foreach (self::display_product_fields($manufacturer, $parsed) as $field): ?>
                 <?php $mapping = self::PRODUCT_FIELDS[$field]; ?>
                 <?php $status = self::status(self::status_key('field', $manufacturer, $category, $product_id, $field)); ?>
                 <tr>
@@ -559,7 +625,7 @@ final class HWS_Product_Parser {
         }
 
         $html     = self::fetch_html(self::CATEGORIES[$category]['url']);
-        $products = self::extract_category_products($html);
+        $products = self::extract_category_products($html, $manufacturer, $category);
 
         $state = self::state();
         $state['products'][$manufacturer][$category] = $products;
@@ -567,7 +633,7 @@ final class HWS_Product_Parser {
 
         self::mark_status(
             self::status_key('category', $manufacturer, $category),
-            count($products) === 18,
+            count($products) === (int) (self::CATEGORIES[$category]['expected'] ?? 0),
             'products=' . count($products)
         );
     }
@@ -639,8 +705,8 @@ final class HWS_Product_Parser {
             $report['checked_products']++;
             try {
                 $html = self::fetch_html($item['url']);
-                $parsed = self::extract_product_fields($html);
-                $applicable_fields = self::applicable_product_fields($parsed);
+                $parsed = self::extract_product_fields($html, $manufacturer, $item['url']);
+                $applicable_fields = self::applicable_product_fields($manufacturer, $parsed);
             } catch (Throwable $e) {
                 $report['errors'][] = $item['title'] . ': ' . $e->getMessage();
                 continue;
@@ -737,8 +803,8 @@ final class HWS_Product_Parser {
             $report['checked_products']++;
             try {
                 $html = self::fetch_html($item['url']);
-                $parsed = self::extract_product_fields($html);
-                $applicable_fields = self::applicable_product_fields($parsed);
+                $parsed = self::extract_product_fields($html, $manufacturer, $item['url']);
+                $applicable_fields = self::applicable_product_fields($manufacturer, $parsed);
             } catch (Throwable $e) {
                 $report['errors'][] = $item['title'] . ': ' . $e->getMessage();
                 continue;
@@ -747,7 +813,7 @@ final class HWS_Product_Parser {
             $current = self::parsed_product($manufacturer, $category, $product_id);
             $state = self::state();
             $state['parsed_products'][$manufacturer][$category][$product_id]['_applicable_fields'] = $applicable_fields;
-            foreach (array_merge(self::OPTIONAL_PRODUCT_FIELDS, self::SOURCE_DEPENDENT_PRODUCT_FIELDS) as $optional_field) {
+            foreach (array_merge(self::optional_product_fields($manufacturer), self::SOURCE_DEPENDENT_PRODUCT_FIELDS) as $optional_field) {
                 if (!in_array($optional_field, $applicable_fields, true)) {
                     unset($state['parsed_products'][$manufacturer][$category][$product_id][$optional_field]);
                 }
@@ -800,7 +866,7 @@ final class HWS_Product_Parser {
                 $merged = array_merge($current, array_intersect_key($parsed, array_flip($empty_fields)));
                 self::mark_status(
                     self::status_key('product', $manufacturer, $category, $product_id),
-                    self::product_has_parsed_data($merged),
+                    self::product_has_parsed_data($manufacturer, $merged),
                     'empty_fields=' . count($empty_fields)
                 );
             } catch (Throwable $e) {
@@ -825,14 +891,14 @@ final class HWS_Product_Parser {
         }
 
         $html   = self::fetch_html($products[$product_id]['url']);
-        $parsed = self::extract_product_fields($html);
-        $applicable_fields = self::applicable_product_fields($parsed);
+        $parsed = self::extract_product_fields($html, $manufacturer, $products[$product_id]['url']);
+        $applicable_fields = self::applicable_product_fields($manufacturer, $parsed);
         $fields = $only_field === null ? $applicable_fields : [$only_field];
         $state  = self::state();
 
         if ($only_field === null) {
             $state['parsed_products'][$manufacturer][$category][$product_id]['_applicable_fields'] = $applicable_fields;
-            foreach (array_merge(self::OPTIONAL_PRODUCT_FIELDS, self::SOURCE_DEPENDENT_PRODUCT_FIELDS) as $optional_field) {
+            foreach (array_merge(self::optional_product_fields($manufacturer), self::SOURCE_DEPENDENT_PRODUCT_FIELDS) as $optional_field) {
                 if (!in_array($optional_field, $applicable_fields, true)) {
                     unset($state['parsed_products'][$manufacturer][$category][$product_id][$optional_field]);
                 }
@@ -858,7 +924,7 @@ final class HWS_Product_Parser {
         if ($only_field === null) {
             self::mark_status(
                 self::status_key('product', $manufacturer, $category, $product_id),
-                self::product_has_parsed_data($parsed),
+                self::product_has_parsed_data($manufacturer, $parsed),
                 'fields=' . count(array_filter($parsed, static fn($value): bool => self::value_is_not_empty($value)))
             );
         }
@@ -902,6 +968,14 @@ final class HWS_Product_Parser {
             update_post_meta($product_id, '_hws_source_article', $article);
         }
 
+        if (in_array('brand', $fields, true) && self::field_is_valid('brand', $parsed['brand'] ?? '')) {
+            update_post_meta($product_id, '_hws_source_brand', trim((string) $parsed['brand']));
+        }
+
+        if (in_array('source_url', $fields, true) && self::field_is_valid('source_url', $parsed['source_url'] ?? '')) {
+            update_post_meta($product_id, '_hws_source_url', trim((string) $parsed['source_url']));
+        }
+
         if (in_array('characteristics', $fields, true) && self::field_is_valid('characteristics', $parsed['characteristics'] ?? [])) {
             $characteristics = is_array($parsed['characteristics']) ? $parsed['characteristics'] : [];
             update_post_meta(
@@ -921,7 +995,11 @@ final class HWS_Product_Parser {
         }
     }
 
-    private static function extract_category_products(string $html): array {
+    private static function extract_category_products(string $html, string $manufacturer, string $category): array {
+        if ($manufacturer === 'sangens') {
+            return self::extract_sangens_category_products($html, $category);
+        }
+
         $products = [];
         if (!preg_match_all('~<div class=["\'][^"\']*(?<![\w-])product-card(?![\w-])[^"\']*["\'][\s\S]*?<a href=["\']([^"\']+)["\'][^>]*class=["\'][^"\']*product-card__link[^"\']*["\'][^>]*>[\s\S]*?<div class=["\'][^"\']*product-card__title[^"\']*["\'][^>]*>(.*?)</div>\s*(?:<div class=["\'][^"\']*product-card__text[^"\']*["\'][^>]*>(.*?)</div>)?~isu', $html, $matches, PREG_SET_ORDER)) {
             return $products;
@@ -940,7 +1018,7 @@ final class HWS_Product_Parser {
             if ($title === '' || mb_strlen($title) < 4) {
                 continue;
             }
-            $absolute = self::absolute_url($url);
+            $absolute = self::absolute_url($url, self::CATEGORIES[$category]['base_url'] ?? 'https://easysteam.ru/');
             $id       = self::product_id_from_url($absolute);
             $products[$id] = [
                 'title' => $title,
@@ -953,16 +1031,106 @@ final class HWS_Product_Parser {
         return $products;
     }
 
-    private static function extract_product_fields(string $html): array {
+    private static function extract_sangens_category_products(string $html, string $category): array {
+        $products = [];
+        $seen_pages = [];
+        $pages = [$html];
+        $next_url = self::extract_sangens_next_url($html);
+
+        while ($next_url !== '' && count($pages) < 8 && empty($seen_pages[$next_url])) {
+            $seen_pages[$next_url] = true;
+            $next_html = self::fetch_html($next_url);
+            $pages[] = $next_html;
+            $next_url = self::extract_sangens_next_url($next_html);
+        }
+
+        foreach ($pages as $page_html) {
+            if (!preg_match_all('~<a\b[^>]*href=["\']([^"\']+)["\'][^>]*>(.*?)</a>~isu', $page_html, $matches, PREG_SET_ORDER)) {
+                continue;
+            }
+
+            foreach ($matches as $match) {
+                $url = html_entity_decode($match[1], ENT_QUOTES | ENT_HTML5, 'UTF-8');
+                $absolute = self::absolute_url($url, self::CATEGORIES[$category]['base_url'] ?? 'https://sangens.com/');
+                $path = (string) wp_parse_url($absolute, PHP_URL_PATH);
+                if (!preg_match('~/ru/catalog/furnaces/series-[^/]+/sangens_[^/]+/?$~u', $path)) {
+                    continue;
+                }
+                if (str_ends_with(trim($path, '/'), '/sangens_w12g')) {
+                    continue;
+                }
+
+                $title = trim(wp_strip_all_tags($match[2]));
+                $title = preg_replace('~\s+~u', ' ', $title);
+                if ($title === '' || mb_strlen($title) < 4) {
+                    $title = self::title_from_sangens_url($absolute);
+                }
+                if ($title === '') {
+                    continue;
+                }
+
+                $id = self::product_id_from_url($absolute);
+                $products[$id] = [
+                    'title' => $title,
+                    'url'   => $absolute,
+                ];
+            }
+        }
+
+        foreach ($products as $id => $item) {
+            try {
+                $product_html = self::fetch_html($item['url']);
+                $page_title = self::extract_first_text($product_html, [
+                    '~<h1[^>]*class=["\'][^"\']*info-title[^"\']*["\'][^>]*>(.*?)</h1>~isu',
+                    '~<h1[^>]*>(.*?)</h1>~isu',
+                ]);
+                if ($page_title !== '') {
+                    $products[$id]['title'] = $page_title;
+                }
+            } catch (Throwable $e) {
+                continue;
+            }
+        }
+
+        uasort($products, static fn(array $a, array $b): int => strnatcasecmp($a['title'], $b['title']));
+
+        return $products;
+    }
+
+    private static function extract_sangens_next_url(string $html): string {
+        if (preg_match('~<link\s+rel=["\']next["\']\s+href=["\']([^"\']+)["\']~isu', $html, $match)) {
+            return self::absolute_url(html_entity_decode($match[1], ENT_QUOTES | ENT_HTML5, 'UTF-8'), 'https://sangens.com/');
+        }
+        if (preg_match('~<a\b[^>]*href=["\']([^"\']+)["\'][^>]*class=["\'][^"\']*(?:next|pagination__next)[^"\']*["\']~isu', $html, $match)) {
+            return self::absolute_url(html_entity_decode($match[1], ENT_QUOTES | ENT_HTML5, 'UTF-8'), 'https://sangens.com/');
+        }
+        return '';
+    }
+
+    private static function title_from_sangens_url(string $url): string {
+        $path = trim((string) wp_parse_url($url, PHP_URL_PATH), '/');
+        $slug = basename($path);
+        $slug = preg_replace('~^sangens_~', 'Sangens ', $slug);
+        $slug = str_replace(['_', '-'], ' ', $slug);
+        return trim((string) preg_replace('~\s+~u', ' ', $slug));
+    }
+
+    private static function extract_product_fields(string $html, string $manufacturer, string $source_url = ''): array {
+        if ($manufacturer === 'sangens') {
+            return self::extract_sangens_product_fields($html, $source_url);
+        }
+
         $text_blocks = self::extract_tab_texts($html);
         $chars       = self::extract_characteristics($html);
         $options     = self::extract_options($html);
 
         return [
+            'brand'             => 'EasySteam',
+            'source_url'        => $source_url,
             'title'             => self::extract_first_text($html, ['~<h1[^>]*>(.*?)</h1>~isu']),
             'article'           => self::extract_article($html),
             'price'             => self::extract_price($html),
-            'offer_image'       => self::extract_image($html),
+            'offer_image'       => self::extract_image($html, 'https://easysteam.ru/'),
             'short_description' => $text_blocks['Описание'] ?? '',
             'long_description'  => trim(($text_blocks['Назначение'] ?? '') . "\n\n" . ($text_blocks['Преимущества'] ?? '')),
             'characteristics'   => $chars,
@@ -976,6 +1144,47 @@ final class HWS_Product_Parser {
             'door_side'         => self::normalize_side(self::first_present($options, $chars, ['Исполнение дверки', 'Сторона дверки'])),
             'stone_side'        => self::normalize_side(self::first_present($options, $chars, ['Боковой вход в каменку'])),
             'chimney_side'      => self::normalize_side(self::first_present($options, $chars, ['Боковое подключение дымохода'])),
+        ];
+    }
+
+    private static function extract_sangens_product_fields(string $html, string $source_url): array {
+        $chars = self::extract_characteristics($html);
+        $description = self::extract_meta_content($html, 'description');
+        $title = self::extract_first_text($html, [
+            '~<h1[^>]*class=["\'][^"\']*info-title[^"\']*["\'][^>]*>(.*?)</h1>~isu',
+            '~<h1[^>]*>(.*?)</h1>~isu',
+            '~<meta\s+property=["\']og:title["\']\s+content=["\']([^"\']+)["\']~isu',
+        ]);
+
+        $power = self::first_present([], $chars, ['Мощность', 'Мощность печи', 'Потребляемая мощность']);
+        if ($power === '' && preg_match('~(\d+(?:[.,]\d+)?)\s*кВт~iu', wp_strip_all_tags($html), $match)) {
+            $power = $match[1] . ' кВт';
+        }
+
+        $steam_volume = self::extract_steam_volume($chars);
+        if ($steam_volume === '' && preg_match('~(?:об[ъь]ем\s+парной|парная)[^\d]{0,40}(\d+(?:\s*[-–]\s*\d+)?)\s*м~iu', wp_strip_all_tags($html), $match)) {
+            $steam_volume = $match[1] . ' м3';
+        }
+
+        return [
+            'brand'             => 'Sangens',
+            'source_url'        => $source_url,
+            'title'             => $title,
+            'article'           => self::extract_article($html),
+            'price'             => self::extract_sangens_price($html),
+            'offer_image'       => self::extract_image($html, 'https://sangens.com/'),
+            'short_description' => $description,
+            'long_description'  => self::extract_sangens_long_description($html, $description),
+            'characteristics'   => $chars,
+            'fuel_type'         => 'электричество',
+            'steam_volume'      => $steam_volume,
+            'series'            => self::extract_sangens_series($html, $source_url, $title),
+            'power'             => $power,
+            'voltage'           => self::first_present([], $chars, ['Напряжение', 'Питание', 'Напряжение питания']),
+            'material'          => self::first_present([], $chars, ['Материал', 'Материал корпуса', 'Материал отделки']),
+            'color'             => self::first_present([], $chars, ['Цвет']),
+            'control'           => self::first_present([], $chars, ['Управление', 'Тип управления']),
+            'mode'              => self::first_present([], $chars, ['Режим', 'Режим работы']),
         ];
     }
 
@@ -997,15 +1206,57 @@ final class HWS_Product_Parser {
 
     private static function extract_characteristics(string $html): array {
         $result = [];
-        if (!preg_match_all('~<tr[^>]*>\s*<t[hd][^>]*>(.*?)</t[hd]>\s*<t[hd][^>]*>(.*?)</t[hd]>\s*</tr>~isu', $html, $rows, PREG_SET_ORDER)) {
-            return $result;
+
+        if (preg_match_all('~<tr[^>]*>\s*<t[hd][^>]*>(.*?)</t[hd]>\s*<t[hd][^>]*>(.*?)</t[hd]>\s*</tr>~isu', $html, $rows, PREG_SET_ORDER)) {
+            foreach ($rows as $row) {
+                $key = trim(wp_strip_all_tags($row[1]));
+                $val = trim(wp_strip_all_tags($row[2]));
+                if ($key !== '' && $val !== '') {
+                    $result[$key] = $val;
+                }
+            }
         }
 
-        foreach ($rows as $row) {
-            $key = trim(wp_strip_all_tags($row[1]));
-            $val = trim(wp_strip_all_tags($row[2]));
-            if ($key !== '' && $val !== '') {
-                $result[$key] = $val;
+        if (preg_match_all('~<div[^>]*class=["\'][^"\']*product-specs-modal__info-attrs-item[^"\']*["\'][^>]*>\s*([^<]+?)\s*-\s*<span[^>]*>(.*?)</span>\s*</div>~isu', $html, $items, PREG_SET_ORDER)) {
+            foreach ($items as $item) {
+                $key = trim(wp_strip_all_tags($item[1]));
+                $val = trim(wp_strip_all_tags($item[2]));
+                if ($key !== '' && $val !== '') {
+                    $result[$key] = $val;
+                }
+            }
+        }
+
+        if (preg_match_all('~<div[^>]*class=["\'][^"\']*product-specs-list__item[^"\']*["\'][^>]*>(.*?)</div>\s*</div>~isu', $html, $items, PREG_SET_ORDER)) {
+            foreach ($items as $item) {
+                if (
+                    !preg_match('~<div[^>]*class=["\'][^"\']*product-specs-list__label[^"\']*["\'][^>]*>(.*?)</div>~isu', $item[1], $label_match)
+                    || !preg_match('~<div[^>]*class=["\'][^"\']*product-specs-list__main[^"\']*["\'][^>]*>(.*?)</div>~isu', $item[1], $value_match)
+                ) {
+                    continue;
+                }
+                $key = trim(wp_strip_all_tags($label_match[1]));
+                $val = trim(wp_strip_all_tags($value_match[1]));
+                $key = preg_replace('~\s+~u', ' ', $key);
+                $val = preg_replace('~\s+~u', ' ', $val);
+                if ($key !== '' && $val !== '') {
+                    $result[$key] = $val;
+                }
+            }
+        }
+
+        if (preg_match_all('~<dl[^>]*>(.*?)</dl>~isu', $html, $lists, PREG_SET_ORDER)) {
+            foreach ($lists as $list) {
+                if (!preg_match_all('~<dt[^>]*>(.*?)</dt>\s*<dd[^>]*>(.*?)</dd>~isu', $list[1], $rows, PREG_SET_ORDER)) {
+                    continue;
+                }
+                foreach ($rows as $row) {
+                    $key = trim(wp_strip_all_tags($row[1]));
+                    $val = trim(wp_strip_all_tags($row[2]));
+                    if ($key !== '' && $val !== '') {
+                        $result[$key] = $val;
+                    }
+                }
             }
         }
 
@@ -1038,18 +1289,93 @@ final class HWS_Product_Parser {
         if (preg_match('~data-product-offer-price=["\']([^"\']+)["\']~isu', $html, $match)) {
             return trim($match[1]);
         }
+        if (preg_match('~<meta\s+property=["\']product:price:amount["\']\s+content=["\']([^"\']+)["\']~isu', $html, $match)) {
+            return trim($match[1]);
+        }
         if (preg_match('~class=["\'][^"\']*price[^"\']*["\'][^>]*>(.*?)</~isu', $html, $match)) {
-            return preg_replace('~[^\d.,]~u', '', wp_strip_all_tags($match[1]));
+            return trim((string) preg_replace('~[^\d.,]~u', '', wp_strip_all_tags($match[1])), '.,');
         }
         return '';
     }
 
-    private static function extract_image(string $html): string {
-        if (preg_match('~<img(?=[^>]+class=["\'][^"\']*(?:js-product-main-image|product__image)[^"\']*["\'])(?=[^>]+src=["\']([^"\']+)["\'])[^>]*>~isu', $html, $match)) {
-            return self::absolute_url(html_entity_decode($match[1], ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+    private static function extract_sangens_price(string $html): string {
+        $price = self::extract_price($html);
+        if ($price !== '') {
+            return $price;
+        }
+
+        if (preg_match_all('~([\d][\d\s\x{00A0},.]{3,})\s*(?:₽|руб\.?)~iu', $html, $matches)) {
+            foreach ($matches[1] as $raw) {
+                $normalized = preg_replace('~[^\d.,]~u', '', $raw);
+                $normalized = trim((string) $normalized, '.,');
+                if ((float) str_replace(',', '.', $normalized) > 0) {
+                    return $normalized;
+                }
+            }
+        }
+
+        return '';
+    }
+
+    private static function extract_image(string $html, string $base_url = 'https://easysteam.ru/'): string {
+        if (preg_match('~<meta\s+property=["\']og:image["\']\s+content=["\']([^"\']+)["\']~isu', $html, $match)) {
+            return self::absolute_url(html_entity_decode($match[1], ENT_QUOTES | ENT_HTML5, 'UTF-8'), $base_url);
+        }
+        if (preg_match('~<img(?=[^>]+class=["\'][^"\']*(?:js-product-main-image|product__image)[^"\']*["\'])(?=[^>]+(?:src|data-src|data-lazy-src)=["\']([^"\']+)["\'])[^>]*>~isu', $html, $match)) {
+            return self::absolute_url(html_entity_decode($match[1], ENT_QUOTES | ENT_HTML5, 'UTF-8'), $base_url);
         }
         if (preg_match('~class=["\'][^"\']*js-product-main-image-wrap[^"\']*["\'][^>]+href=["\']([^"\']+)["\']~isu', $html, $match)) {
-            return self::absolute_url(html_entity_decode($match[1], ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+            return self::absolute_url(html_entity_decode($match[1], ENT_QUOTES | ENT_HTML5, 'UTF-8'), $base_url);
+        }
+        if (preg_match('~<img\b[^>]+(?:src|data-src|data-lazy-src)=["\']([^"\']*wp-content/uploads/[^"\']+)["\']~isu', $html, $match)) {
+            return self::absolute_url(html_entity_decode($match[1], ENT_QUOTES | ENT_HTML5, 'UTF-8'), $base_url);
+        }
+        return '';
+    }
+
+    private static function extract_meta_content(string $html, string $name): string {
+        $quoted = preg_quote($name, '~');
+        foreach ([
+            '~<meta\s+name=["\']' . $quoted . '["\']\s+content=["\']([^"\']+)["\']~isu',
+            '~<meta\s+content=["\']([^"\']+)["\']\s+name=["\']' . $quoted . '["\']~isu',
+            '~<meta\s+property=["\']og:' . $quoted . '["\']\s+content=["\']([^"\']+)["\']~isu',
+        ] as $pattern) {
+            if (preg_match($pattern, $html, $match)) {
+                return trim(html_entity_decode(wp_strip_all_tags($match[1]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+            }
+        }
+        return '';
+    }
+
+    private static function extract_sangens_long_description(string $html, string $fallback): string {
+        $candidates = [];
+        if (preg_match_all('~<div[^>]*class=["\'][^"\']*(?:text|description|content)[^"\']*["\'][^>]*>(.*?)</div>~isu', $html, $matches)) {
+            foreach ($matches[1] as $block) {
+                $text = trim(wp_strip_all_tags($block));
+                if (mb_strlen($text) >= 80) {
+                    $candidates[] = preg_replace('~\s+~u', ' ', $text);
+                }
+            }
+        }
+
+        if ($candidates) {
+            usort($candidates, static fn(string $a, string $b): int => mb_strlen($b) <=> mb_strlen($a));
+            return $candidates[0];
+        }
+
+        return $fallback;
+    }
+
+    private static function extract_sangens_series(string $html, string $source_url, string $title): string {
+        $from_chars = self::first_present([], self::extract_characteristics($html), ['Серия', 'Модельный ряд']);
+        if ($from_chars !== '') {
+            return $from_chars;
+        }
+        if (preg_match('~/series-([^/]+)/~u', (string) wp_parse_url($source_url, PHP_URL_PATH), $match)) {
+            return strtoupper(str_replace(['-', '_'], ' ', $match[1]));
+        }
+        if (preg_match('~\b([A-ZА-Я]{1,4})\b~u', $title, $match)) {
+            return $match[1];
         }
         return '';
     }
@@ -1219,19 +1545,57 @@ final class HWS_Product_Parser {
         return is_array($parsed) ? $parsed : [];
     }
 
-    private static function display_product_fields(array $parsed): array {
+    private static function default_category(string $manufacturer): string {
+        return self::MANUFACTURERS[$manufacturer]['categories'][0] ?? '';
+    }
+
+    private static function manufacturer_mapping(string $manufacturer): array {
+        if ($manufacturer === 'sangens') {
+            return [
+                ['source' => 'Sangens', 'target' => 'Product brand'],
+                ['source' => 'Электрические печи', 'target' => 'WooCommerce category scope'],
+                ['source' => 'https://sangens.com/ru/catalog/furnaces/', 'target' => 'Category source URL'],
+                ['source' => 'Только карточки электрических печей', 'target' => 'WooCommerce products'],
+            ];
+        }
+
+        return self::MANUFACTURER_MAPPING;
+    }
+
+    private static function category_mapping(string $category): array {
+        if ($category === 'sangens-electric-furnaces') {
+            return [
+                ['source' => 'https://sangens.com/ru/catalog/furnaces/', 'target' => 'Category source URL'],
+                ['source' => '25 карточек электрических печей', 'target' => 'Products in category'],
+                ['source' => 'Артикул', 'target' => 'SKU'],
+                ['source' => 'Цена или явный статус отсутствия цены', 'target' => 'Regular price / parser status'],
+                ['source' => 'Мощность', 'target' => 'Мощность'],
+                ['source' => 'Объем парной', 'target' => 'Объем парной'],
+                ['source' => 'Тип топлива', 'target' => 'электричество'],
+                ['source' => 'Изображение и URL источника', 'target' => 'Product image + source URL'],
+            ];
+        }
+
+        return self::CATEGORY_MAPPING;
+    }
+
+    private static function blocked_items(string $manufacturer): array {
+        return $manufacturer === 'sangens' ? self::SANGENS_BLOCKED_ITEMS : self::BLOCKED_TABS;
+    }
+
+    private static function display_product_fields(string $manufacturer, array $parsed): array {
         $applicable = $parsed['_applicable_fields'] ?? [];
         if (is_array($applicable) && $applicable) {
             return array_values(array_filter($applicable, static fn(string $field): bool => isset(self::PRODUCT_FIELDS[$field])));
         }
 
-        $fields = self::applicable_product_fields($parsed);
+        $fields = self::applicable_product_fields($manufacturer, $parsed);
         if ($fields) {
             return $fields;
         }
 
-        $fields = self::REQUIRED_PRODUCT_FIELDS;
-        foreach (self::OPTIONAL_PRODUCT_FIELDS as $field) {
+        $fields = self::required_product_fields($manufacturer);
+        foreach (self::optional_product_fields($manufacturer) as $field) {
             if (self::field_is_valid($field, $parsed[$field] ?? null)) {
                 $fields[] = $field;
             }
@@ -1240,19 +1604,27 @@ final class HWS_Product_Parser {
         return $fields;
     }
 
-    private static function applicable_product_fields(array $parsed): array {
+    private static function applicable_product_fields(string $manufacturer, array $parsed): array {
         $fields = array_values(array_filter(
-            self::REQUIRED_PRODUCT_FIELDS,
+            self::required_product_fields($manufacturer),
             static fn(string $field): bool => !in_array($field, self::SOURCE_DEPENDENT_PRODUCT_FIELDS, true)
                 || self::field_is_valid($field, $parsed[$field] ?? null)
         ));
-        foreach (self::OPTIONAL_PRODUCT_FIELDS as $field) {
+        foreach (self::optional_product_fields($manufacturer) as $field) {
             if (self::field_is_valid($field, $parsed[$field] ?? null)) {
                 $fields[] = $field;
             }
         }
 
         return $fields;
+    }
+
+    private static function required_product_fields(string $manufacturer): array {
+        return $manufacturer === 'sangens' ? self::SANGENS_REQUIRED_PRODUCT_FIELDS : self::REQUIRED_PRODUCT_FIELDS;
+    }
+
+    private static function optional_product_fields(string $manufacturer): array {
+        return $manufacturer === 'sangens' ? self::SANGENS_OPTIONAL_PRODUCT_FIELDS : self::OPTIONAL_PRODUCT_FIELDS;
     }
 
     private static function product_status(string $manufacturer, string $category, string $product_id): array {
@@ -1262,7 +1634,7 @@ final class HWS_Product_Parser {
         }
 
         $parsed = self::parsed_product($manufacturer, $category, $product_id);
-        if (self::product_has_parsed_data($parsed)) {
+        if (self::product_has_parsed_data($manufacturer, $parsed)) {
             $status['parsed'] = true;
             $status['note'] = 'derived from parsed product data';
             return $status;
@@ -1276,10 +1648,10 @@ final class HWS_Product_Parser {
         return is_array($status) ? $status : ['parsed' => false, 'date' => ''];
     }
 
-    private static function product_has_parsed_data(array $parsed): bool {
-        $fields = $parsed['_applicable_fields'] ?? self::applicable_product_fields($parsed);
+    private static function product_has_parsed_data(string $manufacturer, array $parsed): bool {
+        $fields = $parsed['_applicable_fields'] ?? self::applicable_product_fields($manufacturer, $parsed);
         if (!is_array($fields) || !$fields) {
-            $fields = self::applicable_product_fields($parsed);
+            $fields = self::applicable_product_fields($manufacturer, $parsed);
         }
 
         foreach ($fields as $field) {
@@ -1314,8 +1686,14 @@ final class HWS_Product_Parser {
         if ($field === 'offer_image') {
             return str_starts_with($value, 'http://') || str_starts_with($value, 'https://');
         }
+        if ($field === 'source_url') {
+            return str_starts_with($value, 'http://') || str_starts_with($value, 'https://');
+        }
+        if ($field === 'brand') {
+            return mb_strlen($value) >= 2;
+        }
         if ($field === 'fuel_type') {
-            $allowed = ['дрова', 'подготовка под газ', 'газ', 'газ + дрова'];
+            $allowed = ['дрова', 'подготовка под газ', 'газ', 'газ + дрова', 'электричество'];
             $parts = array_filter(array_map('trim', explode(',', $value)));
             return $parts !== [] && count(array_diff($parts, $allowed)) === 0;
         }
@@ -1340,6 +1718,9 @@ final class HWS_Product_Parser {
             return $parts !== [] && count(array_diff($parts, $allowed)) === 0;
         }
         if ($field === 'steam_volume') {
+            return preg_match('~\d~', $value) === 1;
+        }
+        if ($field === 'power') {
             return preg_match('~\d~', $value) === 1;
         }
 
@@ -1500,11 +1881,11 @@ final class HWS_Product_Parser {
         return $slug !== '' ? $slug : substr(md5($url), 0, 12);
     }
 
-    private static function absolute_url(string $url): string {
+    private static function absolute_url(string $url, string $base_url = 'https://easysteam.ru/'): string {
         if (str_starts_with($url, 'http://') || str_starts_with($url, 'https://')) {
             return $url;
         }
-        return 'https://easysteam.ru/' . ltrim($url, '/');
+        return rtrim($base_url, '/') . '/' . ltrim($url, '/');
     }
 }
 
