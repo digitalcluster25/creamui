@@ -1,5 +1,6 @@
 import { cache } from "react";
 import { getClient } from "@/lib/wp/apollo";
+import { hasPublishedProductsInCategory } from "@/lib/wp/category-count";
 import type { WPCategoryNode } from "@/lib/wp/header";
 import { GET_PRODUCT_BRANDS, GET_PRODUCT_CATEGORIES, GET_PRODUCT_CATEGORY_BY_SLUG } from "@/lib/wp/queries";
 
@@ -44,7 +45,8 @@ export const getProductCategoriesTree = cache(async (): Promise<WPCategoryNode[]
 
   const nodes = data?.productCategories?.nodes ?? [];
   return nodes.filter((node) =>
-    ACTIVE_CATALOG_CATEGORY_SLUGS.includes(node.slug as (typeof ACTIVE_CATALOG_CATEGORY_SLUGS)[number]),
+    ACTIVE_CATALOG_CATEGORY_SLUGS.includes(node.slug as (typeof ACTIVE_CATALOG_CATEGORY_SLUGS)[number]) &&
+    hasPublishedProductsInCategory(node),
   );
 });
 

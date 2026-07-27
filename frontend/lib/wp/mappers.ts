@@ -7,6 +7,7 @@ import type { ProductsData } from "@/lib/types/products";
 import type { CurrencyCode } from "@/lib/currency/format";
 import { htmlToPlainText } from "@/lib/content/plainText";
 import type { WPCategoryNode } from "@/lib/wp/header";
+import { hasPublishedProductsInCategory } from "@/lib/wp/category-count";
 import { normalizeWpMediaUrl } from "@/lib/wp/media";
 
 // Форма, которую реально отдаёт WooGraphQL (проверено на живом эндпоинте wpsandbox)
@@ -319,6 +320,7 @@ export function mapToHomeCategoriesData(nodes: WPCategoryNode[]): CategoriesData
   const items = HOME_CATEGORY_ORDER
     .map((slug) => bySlug.get(slug))
     .filter((node): node is WPCategoryNode => Boolean(node))
+    .filter(hasPublishedProductsInCategory)
     .map((node) => ({
       id: String(node.databaseId),
       imageSrc: resolveCategoryImageSrc(node),

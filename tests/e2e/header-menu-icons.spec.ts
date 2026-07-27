@@ -8,13 +8,10 @@ for (const viewport of [
     await page.setViewportSize({ width: viewport.width, height: viewport.height });
     await page.goto("/", { waitUntil: "networkidle" });
 
-    for (const asset of [
-      "menu-russian-bath.png",
-      "menu-sauna.png",
-      "menu-hammam.png",
-      "menu-commercial.png",
-    ]) {
-      await expect(page.locator(`img[src*="${asset}"]`), asset).toHaveCount(1);
+    await expect(page.locator('img[src*="menu-russian-bath.png"]')).toHaveCount(1);
+
+    for (const asset of ["menu-sauna.png", "menu-hammam.png", "menu-commercial.png"]) {
+      await expect(page.locator(`img[src*="${asset}"]`), asset).toHaveCount(0);
     }
   });
 }
