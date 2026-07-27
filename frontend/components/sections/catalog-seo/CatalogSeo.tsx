@@ -21,7 +21,7 @@ export function CatalogSeo({ data }: Props) {
   if (!data) return null;
 
   return (
-    <section className={styles.section}>
+    <section className={styles.section} data-testid="catalog-seo">
       <div className={`${styles.shell}${!data.faqs?.length ? ` ${styles.shellFull}` : ""}`}>
         <div className={styles.copy}>
           {data.eyebrow && <p className={styles.eyebrow}>{data.eyebrow}</p>}

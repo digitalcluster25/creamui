@@ -52,21 +52,21 @@ function buildBrandLead(brandName: string, productsCount: number, categoryNames:
   return `${brandName} представлен в ${productsCount} товарах HWS. На этой странице собраны все позиции бренда, а ниже можно быстро перейти к ключевым направлениям: ${catalogFocus}.`;
 }
 
-function buildBrandSeo(brandName: string, categoryNames: string[]): CatalogSeoData {
+function buildBrandSeo(brandName: string, productsCount: number, categoryNames: string[]): CatalogSeoData {
   const names = categoryNames.slice(0, 4);
-  const focus = names.length > 0 ? names.join(", ") : "релевантным разделам каталога";
+  const focus = names.length > 0 ? names.join(", ") : "разделы каталога с товарами бренда";
 
   return {
-    eyebrow: "Брендовая посадочная страница",
-    title: `${brandName} в каталоге HWS`,
+    eyebrow: "Бренд в каталоге HWS",
+    title: `${brandName}: оборудование для бани, сауны и СПА`,
     paragraphs: [
-      `Страница бренда ${brandName} собирает ассортимент в одном месте и убирает необходимость начинать поиск с фильтра по бренду внутри общего каталога.`,
-      `Для UX это короткий путь к нужным товарам, а для SEO это отдельная индексируемая посадочная страница с понятной тематикой и выходами в ${focus}.`,
+      `На странице ${brandName} собраны товары бренда, доступные в каталоге HWS${productsCount ? `: ${productsCount} позиций` : ""}. Здесь удобно посмотреть ассортимент производителя, сравнить модели и перейти в категории, где представлено это оборудование.`,
+      `Брендовые товары распределены по направлениям: ${focus}. При подборе учитывайте назначение помещения, мощность, совместимость с автоматикой и условия монтажа. Менеджеры HWS помогут выбрать подходящую модель и собрать комплект под ваш объект.`,
     ],
     bullets: [
-      "Все товары бренда собраны на одной странице.",
-      "Переходы в категории идут из брендовой посадочной страницы, а не только через query-фильтры.",
-      "Дальше пользователь уточняет выбор branch-aware фильтрами внутри каталога.",
+      "Оригинальные товары бренда в одном разделе каталога.",
+      "Быстрый переход в категории, где есть оборудование выбранного производителя.",
+      "Помощь с подбором по мощности, назначению и совместимым комплектующим.",
     ],
   };
 }
@@ -137,7 +137,7 @@ export async function generateMetadata({
 
     return {
       title: `${brand.name} | Бренд в каталоге HWS`,
-      description: `Все товары бренда ${brand.name} в каталоге HWS: быстрый переход в релевантные категории и подбор по branch-aware фильтрам.`,
+      description: `Все товары бренда ${brand.name} в каталоге HWS: оборудование для бани, сауны и СПА с переходом в подходящие категории.`,
       alternates: {
         canonical: `/brands/${brand.slug}`,
       },
@@ -176,7 +176,7 @@ export default async function BrandPage({
 
   const headerData = await getHeaderData();
   const lead = buildBrandLead(brand.name, brandProducts.length, uniqueCategoryNames);
-  const seoData = buildBrandSeo(brand.name, uniqueCategoryNames);
+  const seoData = buildBrandSeo(brand.name, brandProducts.length, uniqueCategoryNames);
   const previewProducts = brandProducts.slice(0, BRAND_PREVIEW_LIMIT).map(mapToCatalogProduct);
 
   return (
